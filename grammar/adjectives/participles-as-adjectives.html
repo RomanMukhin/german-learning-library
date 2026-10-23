@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Participles as adjectives · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Adjectives</a><span class="sep">/</span><span class="cur">Participles</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1</span><h1>Participles as adjectives</h1><p class="sub">die geschlossene Tür and das lachende Kind: using Partizip I and II as adjectives, and what each one means.</p></header>
+<article class="prose card">
+<p>German verbs have two participles, and both can work as adjectives: <strong>Partizip II</strong> (<em>geschlossen</em>, closed) and <strong>Partizip I</strong> (<em>lachend</em>, laughing). In front of a noun they take normal adjective endings: <em>die geschlossene Tür, das lachende Kind</em>. You already use many of them without noticing: <em>gebraucht, bekannt, verheiratet, geöffnet, kostenlos</em>... they appear on every shop door and in every form.</p>
+<h2>A2 core</h2>
+<h3>Partizip II as an adjective</h3>
+<p>You know the Partizip II from the Perfekt (<em>ich habe gekocht</em>). Put it in front of a noun, add an ending, and it becomes an adjective with a <strong>finished, passive</strong> meaning:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Partizip II</th>
+<th>As an adjective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schließen</td>
+<td>geschlossen</td>
+<td>die geschlossen<strong>e</strong> Tür — <em>the closed door</em></td>
+</tr>
+<tr>
+<td>kochen</td>
+<td>gekocht</td>
+<td>ein gekocht<strong>es</strong> Ei — <em>a boiled egg</em></td>
+</tr>
+<tr>
+<td>öffnen</td>
+<td>geöffnet</td>
+<td>das geöffnet<strong>e</strong> Fenster — <em>the opened window</em></td>
+</tr>
+<tr>
+<td>brauchen</td>
+<td>gebraucht</td>
+<td>ein gebraucht<strong>es</strong> Auto — <em>a used car</em></td>
+</tr>
+<tr>
+<td>stehlen</td>
+<td>gestohlen</td>
+<td>das gestohlen<strong>e</strong> Fahrrad — <em>the stolen bike</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>After <em>sein</em> there is no ending, just like any adjective: <em>Der Laden ist <strong>geschlossen</strong>. Das Fenster ist <strong>geöffnet</strong>.</em></p>
+<ul>
+<li>Ich habe ein <strong>gebrauchtes</strong> Handy gekauft. — <em>I bought a used phone.</em></li>
+<li>Das Museum ist montags <strong>geschlossen</strong>. — <em>The museum is closed on Mondays.</em></li>
+<li>Wir essen <strong>gekochte</strong> Kartoffeln. — <em>We're eating boiled potatoes.</em></li>
+</ul>
+<h3>Everyday adjectives that are really participles</h3>
+<p>Many words you learnt as adjectives are participles: <em>bekannt</em> (known, from <em>kennen</em>), <em>verheiratet</em> (married), <em>geschieden</em> (divorced), <em>verletzt</em> (injured), <em>verboten</em> (forbidden), <em>beliebt</em> (popular), <em>interessiert</em>, <em>begeistert</em>, <em>verliebt</em>, <em>gestresst</em>.</p>
+<ul>
+<li>Ich bin <strong>verheiratet</strong>. — <em>I'm married.</em> (Я одружений.)</li>
+<li>Rauchen ist hier <strong>verboten</strong>.</li>
+<li>Er ist ein <strong>bekannter</strong> Schauspieler. — <em>He's a well-known actor.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Partizip II = &quot;has been done&quot;</p><p>If you can translate it with English "-ed / -en" (closed, broken, stolen), it's Partizip II: the action is <strong>finished</strong> and was done <strong>to</strong> the noun. <em>die reparierte Uhr</em> = the watch that has been repaired.</p></aside>
+<h2>B1</h2>
+<h3>Partizip I: infinitive + d</h3>
+<p>Partizip I is formed from the infinitive + <strong>-d</strong>: <em>lachen → lachend, schlafen → schlafend, kommen → kommend</em>. It means the action is <strong>happening right now</strong>, done <strong>by</strong> the noun, like English "-ing".</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Partizip I</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lachen</td>
+<td>lachend</td>
+<td>das lachend<strong>e</strong> Kind — <em>the laughing child</em></td>
+</tr>
+<tr>
+<td>schlafen</td>
+<td>schlafend</td>
+<td>der schlafend<strong>e</strong> Hund — <em>the sleeping dog</em></td>
+</tr>
+<tr>
+<td>kommen</td>
+<td>kommend</td>
+<td>in den kommend<strong>en</strong> Tagen — <em>in the coming days</em></td>
+</tr>
+<tr>
+<td>folgen</td>
+<td>folgend</td>
+<td>die folgend<strong>en</strong> Fragen — <em>the following questions</em></td>
+</tr>
+<tr>
+<td>fließen</td>
+<td>fließend</td>
+<td>fließend<strong>es</strong> Wasser — <em>running water</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>As an adverb (no ending) it describes how someone does something: <em>Er spricht <strong>fließend</strong> Deutsch.</em> <em>Sie kam <strong>lachend</strong> ins Zimmer.</em></p>
+<h3>Partizip I vs Partizip II</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Partizip I (-end)</th>
+<th>Partizip II (ge-...-t/-en)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>happening now</td>
+<td>finished</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>active: the noun does it</td>
+<td>passive: done to the noun</td>
+</tr>
+<tr>
+<td>example</td>
+<td>die kochende Suppe — <em>the boiling soup</em></td>
+<td>die gekochte Suppe — <em>the cooked soup</em></td>
+</tr>
+<tr>
+<td>example</td>
+<td>der streikende Arbeiter — <em>the striking worker</em></td>
+<td>das gestohlene Auto — <em>the stolen car</em></td>
+</tr>
+<tr>
+<td>example</td>
+<td>ein spannender Film — <em>an exciting film</em></td>
+<td>ein gespannter Zuschauer — <em>an excited viewer</em></td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">-end = &quot;-ing&quot;, ge- = &quot;-ed&quot;</p><p>The match with English is almost perfect: <em>spannend = exciting</em>, <em>gespannt = excited</em>; <em>langweilend</em> is rare, but <em>langweilig = boring</em>, <em>gelangweilt = bored</em>. If the noun <em>causes</em> the feeling, use -end; if it <em>feels</em> it, use Partizip II.</p></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>das ~~geschlossen~~ Fenster</em> — in front of a noun you need an ending: <em>das geschlossene Fenster</em>.</li>
+<li><em>Die Tür ist ~~geschlossene~~</em> — after <em>sein</em>, no ending.</li>
+<li><em>Ich bin ~~langweilig~~</em> means "I am boring". "I am bored" = <em>Mir ist langweilig</em> or <em>Ich bin gelangweilt</em>.</li>
+<li><em>ein ~~gekochende~~ Ei</em> — don't mix forms: <em>ein gekochtes Ei</em> (boiled) or <em>kochendes Wasser</em> (boiling).</li>
+<li>Partizip I is not a tense: never ~~ich bin lesend~~ for "I am reading". Say <em>ich lese (gerade)</em>.</li>
+</ul></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian has the same pair: дієприкметники like <em>зачинені двері</em> (Partizip II, <em>die geschlossene Tür</em>) and <em>усміхнена дитина</em>. Active present participles in <em>-учий/-ючий</em> (<em>палаючий</em>) are often avoided in Ukrainian, which prefers a clause (<em>дитина, що сміється</em>). German uses Partizip I freely: <em>das lachende Kind</em>.</p></aside>
+<aside class="callout fact"><p class="callout-title">German loves its participle signs</p><p>Look at any German shop or office: <em>Geöffnet</em> (open), <em>Geschlossen</em> (closed), <em>Reserviert</em> (reserved), <em>Besetzt</em> (occupied), <em>Ausverkauft</em> (sold out), <em>Verboten</em> (forbidden). Most German signs are Partizip II forms, because they describe a state that results from an action. Even <em>Achtung, frisch gestrichen!</em> (wet paint, literally "freshly painted") is one.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: extended participle phrases</p><p>Formal German puts whole clauses in front of a noun: <em>die <strong>von der Regierung geplante</strong> Reform</em> (the reform planned by the government), <em>der <strong>seit Stunden auf den Zug wartende</strong> Mann</em> (the man who has been waiting for the train for hours). Read them from the article to the noun, then go back to the middle. In speech, use a relative clause instead: <em>die Reform, die die Regierung geplant hat</em>. See <a href="../../docs/b2-formal-german.html">Formal German</a>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/adjectives/endings.html">Adjective endings</a></li>
+<li><a href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a></li>
+<li><a href="../../grammar/tenses/past.html">Past tenses</a></li>
+<li><a href="../../grammar/passive.html">Passive</a></li>
+<li><a href="../../docs/relative-pronouns.html">Relative pronouns</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="adjectives-as-nouns.html">← As nouns</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Die Tür ist *___*. (closed)", "options": ["geschlossene", "geschlossen", "schließend", "geschließt", "geschlossenen"], "answer": 1, "explain": "After *sein* the participle takes no ending: *Die Tür ist geschlossen* (A2)."}, {"q": "Bitte öffne die *___* Tür.", "options": ["geschlossen", "geschlossenen", "geschlossener", "schließende", "geschlossene"], "answer": 4, "explain": "In front of a noun the participle takes an adjective ending: *die geschlossene Tür* (A2)."}, {"q": "Ich habe ein *___* Auto gekauft. (used)", "options": ["gebraucht", "gebrauchte", "gebrauchten", "brauchendes", "gebrauchtes"], "answer": 4, "explain": "Partizip II of *brauchen* + neuter ending after *ein*: *ein gebrauchtes Auto* (A2)."}, {"q": "Zum Frühstück esse ich ein *___* Ei.", "options": ["kochendes", "gekochtes", "gekocht", "gekochte", "kochtes"], "answer": 1, "explain": "A boiled egg has been cooked (finished, passive), so Partizip II: *ein gekochtes Ei* (A2)."}, {"q": "Ich bin seit fünf Jahren *___*.", "options": ["verheiratete", "heiratend", "geheiratet", "verheirateter", "verheiratet"], "answer": 4, "explain": "*verheiratet* is a participle used as an adjective; after *sein* no ending (A2)."}, {"q": "Er ist ein *___* Schauspieler.", "options": ["bekannter", "bekannt", "bekannte", "bekannten", "gekannter"], "answer": 0, "explain": "*bekannt* (from *kennen*) + masculine ending after *ein*: *ein bekannter Schauspieler* (A2)."}, {"q": "Rauchen ist hier *___*.", "options": ["verboten", "verbietend", "verbotene", "verbotenes", "gebietet"], "answer": 0, "explain": "Partizip II of *verbieten* used as a predicative adjective (A2)."}, {"q": "Die Polizei hat das *___* Fahrrad gefunden. (stolen)", "options": ["gestohlen", "gestohlene", "stehlende", "gestohlenes", "gestehlte"], "answer": 1, "explain": "Partizip II of *stehlen* + *-e* after *das*: *das gestohlene Fahrrad* (A2)."}, {"q": "Das *___* Kind spielt im Garten. (laughing)", "options": ["gelachte", "lachendes", "lachende", "lachen", "lachend"], "answer": 2, "explain": "Partizip I (infinitive + *-d*) means \"-ing\": *das lachende Kind* (B1)."}, {"q": "How do you form Partizip I?", "options": ["ge- + stem + t", "stem + end + e", "infinitive + d", "infinitive + t", "ge- + infinitive"], "answer": 2, "explain": "Partizip I = infinitive + *-d*: *lachen → lachend*, *schlafen → schlafend* (B1)."}, {"q": "Weck den *___* Hund nicht! (sleeping)", "options": ["schlafende", "geschlafenen", "schlafender", "schlafenden", "schlafend"], "answer": 3, "explain": "Accusative masculine after *den*: *-en*, so *den schlafenden Hund* (B1)."}, {"q": "Er spricht *___* Deutsch.", "options": ["fließende", "geflossen", "fließend", "fließendes", "fließ"], "answer": 2, "explain": "Used as an adverb, Partizip I takes no ending: *fließend Deutsch* (B1)."}, {"q": "Beantworten Sie die *___* Fragen.", "options": ["folgende", "folgenden", "gefolgten", "folgender", "folgendes"], "answer": 1, "explain": "*die folgenden Fragen*: plural after *die* takes *-en* (B1)."}, {"q": "In den *___* Tagen wird es kalt.", "options": ["kommenden", "kommende", "gekommenen", "kommender", "kommend"], "answer": 0, "explain": "Dative plural after *den*: *in den kommenden Tagen* (B1)."}, {"q": "Vorsicht, *___* Wasser! (boiling)", "options": ["gekochtes", "kochende", "kochend", "kochenes", "kochendes"], "answer": 4, "explain": "The water is boiling right now, so Partizip I; no article, neuter: *kochendes Wasser* (B1)."}, {"q": "Der Film war sehr *___*. (exciting)", "options": ["gespannt", "spannende", "spannend", "gespannte", "spannt"], "answer": 2, "explain": "The film causes the feeling: Partizip I *spannend* (B1)."}, {"q": "Ich bin *___*, wie es weitergeht. (I'm curious/excited)", "options": ["spannend", "gespannend", "gespannte", "gespannt", "spannende"], "answer": 3, "explain": "The person feels it: Partizip II *gespannt* (B1)."}, {"q": "\"I'm bored\" is...", "options": ["Mir ist langweilig.", "Ich bin langweilig.", "Ich bin langweilend.", "Mich ist langweilig.", "Ich langweile."], "answer": 0, "explain": "*Ich bin langweilig* means \"I am boring\"; use *Mir ist langweilig* or *ich bin gelangweilt* (B1)."}, {"q": "Which means \"the cooked soup\"?", "options": ["die kochende Suppe", "die kochte Suppe", "die gekochende Suppe", "die gekochte Suppe", "die kochend Suppe"], "answer": 3, "explain": "Finished action done to the soup: Partizip II, *die gekochte Suppe* (B1)."}, {"q": "*die kochende Suppe* means...", "options": ["the cooked soup", "the soup that was boiled yesterday", "the cooking pot", "the boiling soup", "the soup cook"], "answer": 3, "explain": "Partizip I = happening now, like English \"-ing\" (B1)."}, {"q": "Sie kam *___* ins Zimmer. (laughing)", "options": ["lachende", "lachend", "gelacht", "lachenden", "gelachend"], "answer": 1, "explain": "As an adverb describing how she came in, Partizip I has no ending (B1)."}, {"q": "Der Laden ist heute *___*. (open)", "options": ["geöffnet", "öffnend", "geöffnete", "geöffneter", "geöffent"], "answer": 0, "explain": "Shop signs and states use Partizip II: *geöffnet* (A2)."}, {"q": "\"I am reading\" is...", "options": ["Ich bin lesend.", "Ich bin gelesen.", "Ich lesend.", "Ich lese gerade.", "Ich bin am gelesen."], "answer": 3, "explain": "Partizip I is not a tense; German uses the present, often with *gerade* (B1)."}, {"q": "Der *___* Mann wurde ins Krankenhaus gebracht. (injured)", "options": ["verletzende", "verletzt", "verletzte", "verletzten", "verletzter"], "answer": 2, "explain": "Partizip II *verletzt* + *-e* after *der* in the nominative (B1)."}, {"q": "Achtung, frisch *___*! (wet paint)", "options": ["streichend", "gestreicht", "gestrichene", "streichen", "gestrichen"], "answer": 4, "explain": "The sign uses Partizip II of *streichen*: *frisch gestrichen* (B1)."}], "title": "Participles as adjectives quiz", "level": "B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

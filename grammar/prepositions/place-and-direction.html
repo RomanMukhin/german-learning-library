@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Place and direction · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Place and direction</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Place and direction</h1><p class="sub">nach, zu or in for going somewhere; aus or von for coming from; bei for being there; am Meer, auf dem Markt, im Kino.</p></header>
+<article class="prose card">
+<p>"Going to" is one preposition in English and Ukrainian (<em>до</em>, <em>в</em>), but German has three: <em>nach</em>, <em>zu</em> and <em>in</em>. And each "going to" has a partner for "being there" and "coming from". This page gives you the system so you can say where you go, where you are and where you come from without guessing.</p>
+<h2>A2 core</h2>
+<h3>The three-column system</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Where to? (wohin)</th>
+<th>Where? (wo)</th>
+<th>Where from? (woher)</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>nach</strong> Berlin</td>
+<td><strong>in</strong> Berlin</td>
+<td><strong>aus</strong> Berlin</td>
+<td>cities, countries without article</td>
+</tr>
+<tr>
+<td><strong>in die</strong> Schweiz</td>
+<td><strong>in der</strong> Schweiz</td>
+<td><strong>aus der</strong> Schweiz</td>
+<td>countries with article</td>
+</tr>
+<tr>
+<td><strong>zum</strong> Arzt</td>
+<td><strong>beim</strong> Arzt</td>
+<td><strong>vom</strong> Arzt</td>
+<td>people, professions</td>
+</tr>
+<tr>
+<td><strong>zu</strong> meiner Freundin</td>
+<td><strong>bei</strong> meiner Freundin</td>
+<td><strong>von</strong> meiner Freundin</td>
+<td>people</td>
+</tr>
+<tr>
+<td><strong>zur</strong> Post / <strong>zum</strong> Bahnhof</td>
+<td><strong>an der</strong> Post / <strong>am</strong> Bahnhof</td>
+<td><strong>von der</strong> Post / <strong>vom</strong> Bahnhof</td>
+<td>places as a point, not entered</td>
+</tr>
+<tr>
+<td><strong>ins</strong> Kino / <strong>in die</strong> Schule</td>
+<td><strong>im</strong> Kino / <strong>in der</strong> Schule</td>
+<td><strong>aus dem</strong> Kino / <strong>aus der</strong> Schule</td>
+<td>buildings you go into</td>
+</tr>
+<tr>
+<td><strong>nach Hause</strong></td>
+<td><strong>zu Hause</strong></td>
+<td><strong>von zu Hause</strong></td>
+<td>home</td>
+</tr>
+</tbody>
+</table></div>
+<p>Countries with an article: <em>die Schweiz, die Türkei, die Ukraine, die Slowakei, die USA (plural), die Niederlande, der Iran, der Irak</em>. Most others (<em>Deutschland, Österreich, Polen, Spanien</em>) have no article and take <em>nach</em>.</p>
+<p>Examples:
+- <em>Morgen fahre ich <strong>nach</strong> Wien.</em> — <em>Tomorrow I'm going to Vienna.</em>
+- <em>Wir fliegen im Sommer <strong>in die</strong> Türkei.</em> — <em>We are flying to Turkey in summer.</em>
+- <em>Ich muss heute <strong>zum</strong> Arzt.</em> — <em>I have to go to the doctor today.</em> (<em>до лікаря</em>)
+- <em>Ich war gestern <strong>beim</strong> Arzt.</em> — <em>I was at the doctor's yesterday.</em> (<em>у лікаря</em>)
+- <em>Ich komme <strong>aus der</strong> Ukraine.</em> — <em>I'm from Ukraine.</em>
+- <em>Ich gehe jetzt <strong>nach Hause</strong>. Bist du heute Abend <strong>zu Hause</strong>?</em> — <em>I'm going home now. Are you at home tonight?</em></p>
+<aside class="callout hack"><p class="callout-title">The zu-bei-von triangle</p><p>For people and shops named after people, use <strong>zu → bei → von</strong>: <em>zum Bäcker, beim Bäcker, vom Bäcker</em>. All three take the dative, so the forms are always <em>zum, beim, vom</em> (masc./neut.) or <em>zur, bei der, von der</em> (fem.). If you are unsure whether to say <em>in</em> or <em>zu</em> for a place, <em>zu</em> is rarely wrong for "going to".</p></aside>
+<h3>bei vs mit</h3>
+<ul>
+<li><strong>bei</strong> = at someone's place / at a company: <em>Ich wohne <strong>bei</strong> meinen Eltern. Er arbeitet <strong>bei</strong> Siemens.</em></li>
+<li><strong>mit</strong> = together with / by means of: <em>Ich fahre <strong>mit</strong> meinen Eltern in den Urlaub. Ich fahre <strong>mit dem</strong> Bus.</em></li>
+</ul>
+<p>Ukrainian <em>у батьків</em> is <em>bei den Eltern</em>, <em>з батьками</em> is <em>mit den Eltern</em>.</p>
+<h3>aus vs von</h3>
+<ul>
+<li><strong>aus</strong> = out of something (origin, building, country): <em>aus Polen, aus dem Haus, aus dem Zug</em>.</li>
+<li><strong>von</strong> = from a person, from a point or surface: <em>ein Brief <strong>von</strong> meiner Oma, <strong>vom</strong> Bahnhof, <strong>von der</strong> Arbeit</em>.</li>
+</ul>
+<h2>B1</h2>
+<h3>an, auf, in for places</h3>
+<p>Many places "just are" <em>an</em>, <em>auf</em> or <em>in</em>. The logic: <strong>an</strong> = at an edge or next to (water, borders), <strong>auf</strong> = on an open surface or at an event, <strong>in</strong> = inside an enclosed space or area.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>an (edge)</th>
+<th>auf (surface, event)</th>
+<th>in (inside)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>am Meer, am See, am Strand</em></td>
+<td><em>auf dem Markt, auf dem Land</em></td>
+<td><em>im Kino, im Büro, im Restaurant</em></td>
+</tr>
+<tr>
+<td><em>an der Grenze, am Fluss</em></td>
+<td><em>auf der Party, auf der Hochzeit</em></td>
+<td><em>in der Stadt, in den Bergen</em></td>
+</tr>
+<tr>
+<td><em>an der Uni</em> (studying there)</td>
+<td><em>auf der Post, auf der Bank</em> (old/southern)</td>
+<td><em>im Garten, im Supermarkt</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Direction uses the same preposition with the accusative: <em>ans Meer, auf den Markt, aufs Land, auf eine Party, in die Berge, ins Büro</em>.</p>
+<h3>Typical sentences</h3>
+<ul>
+<li><em>Im Juli fahren wir <strong>ans</strong> Meer. Wir waren schon dreimal <strong>am</strong> Meer.</em></li>
+<li><em>Ich kaufe Gemüse <strong>auf dem</strong> Markt.</em></li>
+<li><em>Sie studiert <strong>an der</strong> Universität Wien.</em></li>
+<li><em>Wir fahren <strong>in die</strong> USA / <strong>in die</strong> Berge.</em></li>
+<li><em>Ich komme gerade <strong>vom</strong> Arzt.</em> (not ~~aus dem Arzt~~: a person is not a building)</li>
+<li><em>Ich steige <strong>aus dem</strong> Zug aus.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Islands and &quot;the country&quot;</p><p><strong>auf</strong> also covers islands and the countryside: <em>auf Sylt, auf Mallorca, auf dem Land</em>. Think of standing <em>on</em> a piece of land in the sea.</p></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Ich fahre ~~nach die~~ Schweiz</em> → <em><strong>in die</strong> Schweiz.</em> Article = <em>in</em>.</li>
+<li><em>Ich gehe ~~nach~~ dem Arzt</em> → <em><strong>zum</strong> Arzt.</em> <em>nach</em> is for cities and countries (and <em>nach Hause</em>).</li>
+<li><em>Ich bin ~~nach Hause~~</em> → <em>Ich bin <strong>zu Hause</strong>.</em> <em>nach Hause</em> is only direction.</li>
+<li><em>Ich wohne ~~mit~~ meinen Eltern</em> → <em>Ich wohne <strong>bei</strong> meinen Eltern</em> (or <em>mit meinen Eltern <strong>zusammen</strong></em>).</li>
+<li><em>Ich komme ~~von~~ Deutschland</em> → <em><strong>aus</strong> Deutschland.</em> Origin is <em>aus</em>.</li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">Why &quot;zu Hause&quot; has an extra -e</p><p><em>Hause</em> is an old dative form: in older German, many masculine and neuter nouns took <strong>-e</strong> in the dative (<em>dem Hause, dem Tage, dem Manne</em>). The ending has almost disappeared, but it survives in fixed phrases: <em>zu Hause, nach Hause, im Jahre 1990, zu Tode</em>. In Austria and Switzerland people even write it as one word: <em>zuhause</em>, which is also allowed in Germany today.</p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian <em>до</em> covers German <em>nach</em>, <em>zu</em> and <em>in</em>: <em>до Берліна</em> = <em>nach Berlin</em>, <em>до лікаря</em> = <em>zum Arzt</em>, <em>до кіно</em> = <em>ins Kino</em>. Ukrainian <em>у</em> + genitive for "at someone's" (<em>у бабусі</em>) is German <em>bei</em> (<em>bei der Oma</em>). And <em>з</em> + genitive (<em>з України</em>) is <em>aus</em> (<em>aus der Ukraine</em>).</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: gen, hin, her</p><p>In stylish or old-fashioned German you will meet <em>gen Süden</em> (towards the south), and the direction prefixes <em>hin-</em> (away from the speaker) and <em>her-</em> (towards the speaker): <em>Wo gehst du <strong>hin</strong>? Wo kommst du <strong>her</strong>?</em> These split <em>wohin</em> and <em>woher</em> into two parts.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/prepositions/two-way.html">Two-way prepositions</a></li>
+<li><a href="../../grammar/prepositions/time.html">Prepositions of time</a></li>
+<li><a href="../../grammar/cases/dative.html">Dative case</a></li>
+<li><a href="../../docs/prepositions.html">Prepositions reference</a></li>
+<li><a href="../../docs/gotchas.html">Gotchas</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="time.html">← Time</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich fahre morgen *___* Berlin.", "options": ["zu", "zum", "nach", "bei", "an"], "answer": 2, "explain": "Cities and countries without an article take *nach* for direction (A2)."}, {"q": "Wir fliegen *___* Schweiz.", "options": ["in die", "nach", "nach der", "zu der", "in der"], "answer": 0, "explain": "*die Schweiz* has an article, so direction is *in* + accusative: *in die Schweiz* (A2)."}, {"q": "Ich muss heute *___* Arzt.", "options": ["nach", "beim", "zu", "zum", "im"], "answer": 3, "explain": "Going to a person or profession: *zu* + dative, *zu dem = zum Arzt*, Ukrainian *до лікаря* (A2)."}, {"q": "Ich war gestern *___* Arzt.", "options": ["zum", "beim", "bei", "nach", "am"], "answer": 1, "explain": "Being at a person's place or practice: *bei dem = beim Arzt*, Ukrainian *у лікаря* (A2)."}, {"q": "Ich komme *___* der Ukraine.", "options": ["von", "nach", "zu", "in", "aus"], "answer": 4, "explain": "Origin from a country or city: *aus*, Ukrainian *з України* (A2)."}, {"q": "Ich komme gerade *___* Arzt.", "options": ["aus dem", "vom", "beim", "zum", "nach dem"], "answer": 1, "explain": "Coming from a person: *von* + dative, *vom Arzt*. *aus* is for buildings and countries (B1)."}, {"q": "Ich gehe jetzt *___*.", "options": ["zu Hause", "nach dem Haus", "ins Hause", "nach Hause", "im Hause"], "answer": 3, "explain": "Going home is the fixed phrase *nach Hause* (direction) (A2)."}, {"q": "Am Wochenende bleibe ich *___*.", "options": ["zu Hause", "nach Hause", "in Hause", "bei Hause", "zum Haus"], "answer": 0, "explain": "Being at home (location) is *zu Hause*; *nach Hause* is only for going there (A2)."}, {"q": "Im Sommer fahren wir *___* Meer.", "options": ["am", "im", "auf das", "nach dem", "ans"], "answer": 4, "explain": "The sea is an *an* place (*am Meer*), and direction takes the accusative: *an das = ans Meer* (B1)."}, {"q": "Wir waren im Urlaub *___* Meer.", "options": ["ans", "im", "am", "auf dem", "zum"], "answer": 2, "explain": "Location at the sea: *an* + dative, *am Meer* (A2)."}, {"q": "Ich kaufe Gemüse *___* Markt.", "options": ["an den", "im", "auf dem", "zum", "auf den"], "answer": 2, "explain": "A market is an open surface, an *auf* place; buying there is location: *auf dem Markt* (B1)."}, {"q": "Wir gehen heute *___* Party.", "options": ["auf eine", "in eine", "zu eine", "an eine", "bei einer"], "answer": 0, "explain": "Events take *auf*: *auf eine Party* (direction, accusative). *zu* would need the dative *zu einer* (B1)."}, {"q": "Ich wohne noch *___* meinen Eltern.", "options": ["nach", "zu", "von", "bei", "an"], "answer": 3, "explain": "Living at someone's home: *bei*, Ukrainian *у батьків* (A2)."}, {"q": "Ich fahre *___* dem Bus zur Arbeit.", "options": ["bei", "mit", "von", "nach", "auf"], "answer": 1, "explain": "Means of transport: *mit* + dative, *mit dem Bus* (A2)."}, {"q": "Der Brief ist *___* meiner Oma.", "options": ["aus", "bei", "mit", "nach", "von"], "answer": 4, "explain": "From a person: *von*. *aus* is for places of origin (B1)."}, {"q": "Er arbeitet *___* Siemens.", "options": ["in", "bei", "an", "zu", "mit"], "answer": 1, "explain": "Working for a company: *bei* + company name (B1)."}, {"q": "Wir fahren im Juli *___* USA.", "options": ["nach", "nach den", "zu den", "in die", "in den"], "answer": 3, "explain": "*die USA* is plural with an article: direction *in die USA*; *in den USA* is location (B1)."}, {"q": "Ich gehe heute Abend *___* meiner Freundin.", "options": ["zu", "nach", "bei", "an", "in"], "answer": 0, "explain": "Going to a person: *zu* + dative (A2)."}, {"q": "Ich bin heute Abend *___* meiner Freundin.", "options": ["zu", "an", "von", "nach", "bei"], "answer": 4, "explain": "Being at a person's place: *bei* + dative (B1)."}, {"q": "Sie studiert *___* der Universität Wien.", "options": ["auf", "bei", "an", "nach", "zu"], "answer": 2, "explain": "Studying at a university or school of higher education: *an der Uni* (B1)."}, {"q": "Wo ist Oma? – Sie ist *___* Garten.", "options": ["in den", "auf dem", "im", "ins", "am"], "answer": 2, "explain": "The garden is an enclosed area and *wo?* asks for location: *im Garten* (B1)."}, {"q": "Wir fahren am Wochenende *___* Berge.", "options": ["in die", "nach den", "nach die", "zu den", "an die"], "answer": 0, "explain": "Mountains as a region: *in den Bergen* (wo) / *in die Berge* (wohin) (B1)."}, {"q": "Ich steige *___* dem Zug aus.", "options": ["von", "nach", "zu", "aus", "bei"], "answer": 3, "explain": "Getting out of a vehicle: *aus* + dative, matching the prefix of *aussteigen* (B1)."}], "title": "Place and direction quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

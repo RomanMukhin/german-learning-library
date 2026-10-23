@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>N-declension · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Cases</a><span class="sep">/</span><span class="cur">N-declension</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1</span><h1>N-declension</h1><p class="sub">Weak masculine nouns like der Junge, der Student and der Herr that add -n in every case except the nominative.</p></header>
+<article class="prose card">
+<p>Most German nouns hardly change in the singular; the article does the work. A group of masculine nouns is different: they add <strong>-n</strong> or <strong>-en</strong> in every case except the nominative singular. This is the <em>n-Deklination</em> (weak masculine nouns). It matters because some of the most common words belong here: <em>der Herr, der Kollege, der Student, der Mensch, der Nachbar</em>.</p>
+<h2>A2 core</h2>
+<h3>The pattern</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>der Junge</th>
+<th>der Student</th>
+<th>der Mensch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>der Junge</td>
+<td>der Student</td>
+<td>der Mensch</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>den Junge<strong>n</strong></td>
+<td>den Student<strong>en</strong></td>
+<td>den Mensch<strong>en</strong></td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>dem Junge<strong>n</strong></td>
+<td>dem Student<strong>en</strong></td>
+<td>dem Mensch<strong>en</strong></td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>des Junge<strong>n</strong></td>
+<td>des Student<strong>en</strong></td>
+<td>des Mensch<strong>en</strong></td>
+</tr>
+<tr>
+<td>Plural</td>
+<td>die Junge<strong>n</strong></td>
+<td>die Student<strong>en</strong></td>
+<td>die Mensch<strong>en</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Only the nominative singular has no ending. Everything else ends in <strong>-(e)n</strong>, and the plural looks the same.</p>
+<ul>
+<li>Ich kenne <strong>den Jungen</strong>. — <em>I know the boy.</em></li>
+<li>Ich helfe <strong>dem Studenten</strong>. — <em>I'm helping the student.</em></li>
+<li>Das ist das Buch <strong>des Kollegen</strong>. — <em>That is the colleague's book.</em></li>
+<li>Hast du <strong>unseren Nachbarn</strong> gesehen? — <em>Have you seen our neighbour?</em></li>
+<li>Sehr geehrter <strong>Herr</strong> Müller — but: Ich habe <strong>Herrn</strong> Müller angerufen.</li>
+<li>Jeder <strong>Mensch</strong> braucht Freunde. — Wir helfen <strong>jedem Menschen</strong>.</li>
+</ul>
+<h3>Der Herr: -n singular, -en plural</h3>
+<p><em>der Herr</em> is slightly special: singular <strong>Herrn</strong> (den/dem/des Herrn), plural <strong>Herren</strong> (<em>Meine Damen und Herren!</em>). In letters: <em>Sehr geehrter Herr Schmidt</em> (nominative), but on the envelope or in a sentence: <em>an Herrn Schmidt, mit Herrn Schmidt</em>.</p>
+<aside class="callout hack"><p class="callout-title">The &quot;-e + der + alive&quot; test</p><p>If a noun is <strong>masculine</strong>, ends in <strong>-e</strong> and is a <strong>person or animal</strong>, it is almost certainly weak: <em>der Junge, der Kollege, der Kunde, der Löwe, der Affe, der Hase, der Russe, der Franzose</em>. This one rule covers most weak nouns you will meet.</p></aside>
+<h2>B1</h2>
+<h3>How to recognise weak nouns</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>masculine, -e, people and animals</td>
+<td>der Junge, der Kollege, der Kunde, der Neffe, der Löwe, der Affe</td>
+</tr>
+<tr>
+<td>nationalities in -e</td>
+<td>der Pole, der Russe, der Türke, der Franzose, der Schwede</td>
+</tr>
+<tr>
+<td>foreign words in -ent, -ant, -ist, -at, -oge, -nom</td>
+<td>der Student, der Präsident, der Elefant, der Polizist, der Tourist, der Soldat, der Biologe, der Astronom</td>
+</tr>
+<tr>
+<td>a few short old words</td>
+<td>der Mensch, der Herr, der Bär, der Nachbar, der Bauer, der Held, der Prinz, der Fotograf</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>der Deutsche</em> looks similar but is an adjective used as a noun (<em>ein Deutscher</em>): see <a href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a>.</p>
+<p>Note: nationalities in <em>-er</em> are normal nouns: <em>der Ukrainer → den Ukrainer</em>, <em>der Engländer → den Engländer</em>. Only those in <em>-e</em> are weak.</p>
+<aside class="callout hack"><p class="callout-title">The dictionary tells you</p><p>A dictionary entry like <strong>Student, der; -en, -en</strong> means genitive <em>-en</em> and plural <em>-en</em>: weak. A normal noun looks like <strong>Tisch, der; -(e)s, -e</strong>: genitive with <em>-s</em>. If the genitive ending is <em>-n/-en</em>, add it in the accusative and dative too. More on genders and plurals: <a href="../../docs/noun-gender-plurals.html">Noun gender and plurals</a>.</p></aside>
+<h3>The mixed group: der Name</h3>
+<p>A handful of nouns take <strong>-n</strong> like weak nouns but <strong>-ns</strong> in the genitive: <em>der Name, der Buchstabe, der Gedanke, der Glaube, der Wille, der Friede</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Nom</th>
+<th>Akk</th>
+<th>Dat</th>
+<th>Gen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Name</td>
+<td>den Name<strong>n</strong></td>
+<td>dem Name<strong>n</strong></td>
+<td>des Name<strong>ns</strong></td>
+</tr>
+<tr>
+<td>der Gedanke</td>
+<td>den Gedanke<strong>n</strong></td>
+<td>dem Gedanke<strong>n</strong></td>
+<td>des Gedanke<strong>ns</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wie schreibt man <strong>deinen Namen</strong>? — <em>How do you spell your name?</em></li>
+<li>Ich habe <strong>keinen Gedanken</strong> daran verschwendet.</li>
+</ul>
+<p><em>das Herz</em> is the one neuter odd one: <em>das Herz, dem Herzen, des Herzens</em> (accusative stays <em>das Herz</em>).</p>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Ich frage ~~den Student~~</em> — weak: <em>den Studenten</em>.</li>
+<li><em>Ich schreibe ~~Herr~~ Meier eine E-Mail</em> — dative: <em>Herrn Meier</em>.</li>
+<li><em>Wie ist ~~dein Namen~~?</em> — nominative has no -n: <em>dein Name</em>; but <em>Ich kenne deinen Namen</em>.</li>
+<li>Don't over-apply it: <em>der Lehrer, der Arzt, der Ukrainer</em> are normal: <em>den Lehrer, dem Arzt</em>.</li>
+<li>In spoken German the -n is often dropped (<em>mit dem Student</em>), but in writing and exams it counts as a mistake.</li>
+</ul></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>In Ukrainian every noun changes its ending (<em>студент, студента, студентові</em>), so the idea is familiar. The German weak nouns are the one place where the noun itself, not only the article, carries the case in the singular: <em>den Studenten</em> ~ <em>студента</em>. Think of the German -n as a small Ukrainian ending.</p></aside>
+<aside class="callout fact"><p class="callout-title">Why they are called &quot;weak&quot;</p><p>The terms "strong" and "weak" declension come from Jacob Grimm (of the Brothers Grimm), who used them in his <em>Deutsche Grammatik</em> (1819 onwards) for verbs and nouns. Weak nouns were once a much bigger class, and many have since moved to the normal pattern. Compounds sometimes still show the old -n: <em>der Hahn</em> is a normal noun today, but the rooster's comb is still <em>der Hahnenkamm</em>. The group keeps shrinking, which is why spoken German often drops the -n.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../docs/noun-gender-plurals.html">Noun gender and plurals</a></li>
+<li><a href="../../grammar/cases/nominative-accusative.html">Nominative and accusative</a></li>
+<li><a href="../../grammar/cases/genitive.html">Genitive</a></li>
+<li><a href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="genitive.html">← Genitive</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich kenne den *___* nicht. (der Junge)", "options": ["Junge", "Jungen", "Junges", "Jungens", "Jungem"], "answer": 1, "explain": "*der Junge* is a weak noun: accusative *den Jungen* (A2)."}, {"q": "Ich helfe dem *___*. (der Student)", "options": ["Student", "Studenten", "Studente", "Students", "Studentem"], "answer": 1, "explain": "Weak noun in *-ent*: dative *dem Studenten* (A2)."}, {"q": "Der *___* wohnt neben uns. (der Nachbar)", "options": ["Nachbarn", "Nachbar", "Nachbaren", "Nachbars", "Nachbare"], "answer": 1, "explain": "Nominative singular is the one form without *-n*: *der Nachbar* (A2)."}, {"q": "Ich habe *___* Müller angerufen.", "options": ["Herr", "Herren", "Herrn", "Herrs", "Herre"], "answer": 2, "explain": "Accusative singular of *der Herr* is *Herrn*; *Herren* is the plural (A2)."}, {"q": "Meine Damen und *___*!", "options": ["Herrn", "Herren", "Herr", "Herrs", "Herre"], "answer": 1, "explain": "The plural of *der Herr* is *die Herren* (A2)."}, {"q": "Sehr geehrter *___* Schmidt,", "options": ["Herr", "Herrn", "Herren", "Herrs", "Herre"], "answer": 0, "explain": "In the greeting of a letter it is nominative: *Sehr geehrter Herr Schmidt* (A2)."}, {"q": "Wie ist dein *___*?", "options": ["Namen", "Namens", "Names", "Name", "Namem"], "answer": 3, "explain": "Nominative: *dein Name*, with no *-n* (A2)."}, {"q": "Wie schreibt man deinen *___*?", "options": ["Name", "Namens", "Namen", "Names", "Namem"], "answer": 2, "explain": "Accusative of *der Name* is *den/deinen Namen* (B1)."}, {"q": "Ich weiß den Ursprung des *___* nicht.", "options": ["Namens", "Namen", "Name", "Names", "Namees"], "answer": 0, "explain": "*der Name* belongs to the mixed group: genitive *des Namens* (B1)."}, {"q": "Which noun is weak (n-declension)?", "options": ["der Lehrer", "der Tisch", "der Ukrainer", "der Arzt", "der Kollege"], "answer": 4, "explain": "Masculine, ends in *-e*, a person: *der Kollege → den Kollegen*. The others are normal nouns (B1)."}, {"q": "Which noun is NOT weak?", "options": ["der Russe", "der Pole", "der Franzose", "der Türke", "der Ukrainer"], "answer": 4, "explain": "Nationalities in *-er* are normal: *den Ukrainer*; those in *-e* are weak (B1)."}, {"q": "Das ist das Büro des *___*. (der Präsident)", "options": ["Präsidents", "Präsident", "Präsidentes", "Präsidenten", "Präsidente"], "answer": 3, "explain": "Weak nouns take *-en* in the genitive, not *-s*: *des Präsidenten* (B1)."}, {"q": "Im Zoo haben wir einen *___* gesehen. (der Löwe)", "options": ["Löwe", "Löwes", "Löwen", "Löwem", "Löwer"], "answer": 2, "explain": "Masculine animal in *-e*: weak, so *einen Löwen* (B1)."}, {"q": "Der Polizist fragt den *___*. (der Tourist)", "options": ["Tourist", "Touristen", "Touriste", "Tourists", "Touristem"], "answer": 1, "explain": "Nouns in *-ist* are weak: *den Touristen* (B1)."}, {"q": "Jeder *___* braucht Freunde.", "options": ["Mensch", "Menschen", "Menschens", "Mensche", "Menschem"], "answer": 0, "explain": "Subject in the nominative singular: *jeder Mensch*, no ending (A2)."}, {"q": "Wir müssen jedem *___* helfen.", "options": ["Menschen", "Mensch", "Menschs", "Mensche", "Menschem"], "answer": 0, "explain": "Dative of the weak noun *der Mensch*: *jedem Menschen* (B1)."}, {"q": "A dictionary says *Kunde, der; -n, -n*. This means...", "options": ["the plural is Kunde", "it is feminine", "it is a weak noun", "the genitive is des Kundes", "it has no plural"], "answer": 2, "explain": "Genitive *-n* and plural *-n* mark a weak noun: *des Kunden, die Kunden* (B1)."}, {"q": "Ich schreibe *___* eine E-Mail. (der Kunde)", "options": ["dem Kunde", "den Kunde", "der Kunden", "des Kunde", "dem Kunden"], "answer": 4, "explain": "The receiver is dative, and weak nouns add *-n*: *dem Kunden* (B1)."}, {"q": "Ich habe einen guten *___* (der Gedanke).", "options": ["Gedanke", "Gedankens", "Gedankes", "Gedankem", "Gedanken"], "answer": 4, "explain": "*der Gedanke* is in the mixed group: accusative *-n*, so *einen Gedanken* (B1)."}, {"q": "Er hat ein gutes *___*. (das Herz)", "options": ["Herzen", "Herzens", "Herze", "Herz", "Herzes"], "answer": 3, "explain": "The accusative of neuter *das Herz* stays *Herz*; only dative *Herzen* and genitive *Herzens* change (B1)."}, {"q": "Ich frage den *___* nach dem Weg. (der Passant)", "options": ["Passant", "Passants", "Passanten", "Passante", "Passantes"], "answer": 2, "explain": "Nouns in *-ant* are weak, like *der Elefant*: *den Passanten* (B1)."}, {"q": "Kennst du meinen *___*? (der Neffe)", "options": ["Neffe", "Neffes", "Neffem", "Neffer", "Neffen"], "answer": 4, "explain": "Masculine, *-e*, a person: weak, so *meinen Neffen* (B1)."}, {"q": "Ich spreche mit dem *___*. (der Arzt)", "options": ["Arzt", "Arzten", "Ärzten", "Arzte", "Arztes"], "answer": 0, "explain": "*der Arzt* is a normal noun; the dative singular has no ending: *mit dem Arzt* (B1)."}, {"q": "Die Kinder spielen mit dem *___*. (der Bär)", "options": ["Bär", "Bärs", "Bäre", "Bären", "Bärn"], "answer": 3, "explain": "*der Bär* is one of the short weak nouns: *dem Bären* (B1)."}, {"q": "Ukrainian *бачу студента*: German...", "options": ["Ich sehe den Student.", "Ich sehe dem Studenten.", "Ich sehe der Student.", "Ich sehe den Studenten.", "Ich sehe des Studenten."], "answer": 3, "explain": "Like the Ukrainian ending *-а*, the German weak noun adds *-en* in the accusative (A2)."}], "title": "N-declension quiz", "level": "B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

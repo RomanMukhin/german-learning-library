@@ -182,17 +182,20 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
-  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-  document.getElementById('title').textContent = data.title;
-  document.getElementById('crumb').textContent = data.title;
-  var dl = document.getElementById('doclink');
-  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
-  var intro = document.getElementById('intro');
-  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
-  if (data.doc && data.doc.url) {
-    intro.appendChild(document.createTextNode(' Based on '));
-    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
-    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
   }
 
   // State lives only in memory: reloading the page starts the quiz fresh
@@ -248,7 +251,7 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
     var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];

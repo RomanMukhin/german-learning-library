@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Demonstrative pronouns · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Demonstrative</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Demonstrative pronouns</h1><p class="sub">der/die/das as pronouns in speech, dieser and jener, and derselbe for &quot;the same&quot;.</p></header>
+<article class="prose card">
+<p>Demonstratives point at something: "this one", "that one", "the same". In spoken German the most common demonstrative is simply the article <strong>der / die / das</strong> used on its own: <em>Der ist nett!</em> You will hear it all the time, so it is worth learning to recognise and use it, along with <em>dieser</em> and <em>derselbe</em>.</p>
+<h2>A2 core</h2>
+<h3>der / die / das as pronouns</h3>
+<p>In speech Germans often replace <em>er / sie / es</em> with <em>der / die / das</em>. It sounds a bit more pointed, like "that one":</p>
+<ul>
+<li>Kennst du Thomas? – Ja, <strong>der</strong> ist nett. – <em>Do you know Thomas? – Yes, he's nice.</em></li>
+<li>Wie findest du die Jacke? – <strong>Die</strong> ist zu teuer. – <em>What do you think of the jacket? – It's too expensive.</em></li>
+<li>Das Café da? <strong>Das</strong> kenne ich nicht. – <em>That café? I don't know it.</em></li>
+<li>Die Nachbarn? <strong>Die</strong> sind im Urlaub. – <em>The neighbours? They're on holiday.</em></li>
+</ul>
+<h3>dieser</h3>
+<p><em>dieser</em> = "this (one)" and takes the same endings as <em>der/die/das</em> (<em>-er, -e, -es</em>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominative</td>
+<td>dies<strong>er</strong></td>
+<td>dies<strong>e</strong></td>
+<td>dies<strong>es</strong></td>
+<td>dies<strong>e</strong></td>
+</tr>
+<tr>
+<td>Accusative</td>
+<td>dies<strong>en</strong></td>
+<td>dies<strong>e</strong></td>
+<td>dies<strong>es</strong></td>
+<td>dies<strong>e</strong></td>
+</tr>
+<tr>
+<td>Dative</td>
+<td>dies<strong>em</strong></td>
+<td>dies<strong>er</strong></td>
+<td>dies<strong>em</strong></td>
+<td>dies<strong>en</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Dieser</strong> Film ist super. – <em>This film is great.</em></li>
+<li>Ich nehme <strong>diese</strong> Schuhe. – <em>I'll take these shoes.</em></li>
+<li>In <strong>diesem</strong> Haus wohnt mein Freund. – <em>My friend lives in this house.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">dieser = der + &quot;dies-&quot;</p><p>Look at the last letters of the article and copy them: <em>der → dieser, den → diesen, dem → diesem, die → diese, das → dieses</em>. The only change is <em>das → dieses</em> (with <em>-es</em>, not <em>-as</em>).</p></aside>
+<h2>B1</h2>
+<h3>The full forms of der/die/das as pronouns</h3>
+<p>Used as pronouns, <em>der/die/das</em> are almost the same as the articles. Only the dative plural and the genitive are longer:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominative</td>
+<td>der</td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Accusative</td>
+<td>den</td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Dative</td>
+<td>dem</td>
+<td>der</td>
+<td>dem</td>
+<td><strong>denen</strong></td>
+</tr>
+<tr>
+<td>Genitive</td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Mit <strong>denen</strong> rede ich nicht mehr. – <em>I'm not talking to them any more.</em></li>
+<li>Den kenne ich! – <em>I know him!</em> (the pronoun often jumps to position 1 for emphasis)</li>
+<li>Das glaube ich nicht. – <em>I don't believe that.</em></li>
+</ul>
+<p>These are the same forms as the relative pronouns, see <a href="../../docs/relative-pronouns.html">Relative pronouns</a>. The difference: a demonstrative starts a main clause (verb second), a relative pronoun starts a subordinate clause (verb at the end).</p>
+<aside class="callout trap"><p class="callout-title">denen, not den</p><p>Dative plural pronoun is <strong>denen</strong>: <em>Ich helfe denen</em> (I help them). <em>Ich helfe den</em> is incomplete; <em>den</em> needs a noun after it: <em>Ich helfe den Kindern</em>.</p></aside>
+<h3>jener</h3>
+<p><em>jener</em> ("that one there") has the same endings as <em>dieser</em>, but it is rare in speech and sounds bookish. Today you will mostly meet it in writing and fixed contrasts: <em>dieser oder jener</em> ("this or that one"). In conversation say <em>der da</em> or <em>das da drüben</em> instead.</p>
+<h3>derselbe, dieselbe, dasselbe</h3>
+<p>"The same" is written as one word: article + <em>selb-</em>. Both halves are declined: the article part like <em>der</em>, the <em>selb-</em> part like an adjective after <em>der</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominative</td>
+<td>derselbe</td>
+<td>dieselbe</td>
+<td>dasselbe</td>
+<td>dieselben</td>
+</tr>
+<tr>
+<td>Accusative</td>
+<td>denselben</td>
+<td>dieselbe</td>
+<td>dasselbe</td>
+<td>dieselben</td>
+</tr>
+<tr>
+<td>Dative</td>
+<td>demselben</td>
+<td>derselben</td>
+<td>demselben</td>
+<td>denselben</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wir haben <strong>dasselbe</strong> Handy. – <em>We have the same phone.</em></li>
+<li>Sie trägt <strong>dieselbe</strong> Jacke wie gestern. – <em>She's wearing the same jacket as yesterday.</em></li>
+<li>With a contracted preposition the parts separate: <strong>im selben</strong> Haus, <strong>zur selben</strong> Zeit.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">derselbe vs der gleiche</p><p>Strictly, <strong>derselbe</strong> = the very same one (one object), <strong>der gleiche</strong> = an identical one (two objects). <em>Wir wohnen im selben Haus</em> (one house) vs <em>Wir haben das gleiche Auto</em> (two identical cars). In everyday speech many Germans mix them, so do not worry too much, but the strict rule is good for writing.</p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian цей / той</p><p><em>dieser</em> ≈ <em>цей</em>, <em>jener</em> ≈ <em>той</em>, but Ukrainian <em>той</em> is everyday while German <em>jener</em> is not. Ukrainian <em>Той хлопець?</em> in German speech is <strong>Der da?</strong> or <strong>Der Typ da?</strong> And <em>той самий</em> = <strong>derselbe</strong>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Why &quot;der&quot; can be impolite</p><p>Using <em>der/die</em> for a person who is present (<em>Die hat mich angeschaut!</em>) can sound rude or dismissive, a bit like pointing with your finger. Talking about friends with <em>der</em> is normal, but for a stranger or a superior, <em>er/sie</em> is safer.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: dessen, deren in writing</p><p>In written German <em>dessen/deren</em> can clarify ownership: <em>Maria sprach mit Anna und deren Mutter</em> = with Anna's mother, not Maria's.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../docs/relative-pronouns.html">Relative pronouns</a></li>
+<li><a href="../../grammar/pronouns/personal.html">Personal pronouns</a></li>
+<li><a href="../../docs/articles.html">Articles</a></li>
+<li><a href="../../grammar/adjectives/endings.html">Adjective endings</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="indefinite.html">← Indefinite</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Kennst du Thomas? – Ja, *___* ist nett.", "options": ["die", "der", "den", "das", "dem"], "answer": 1, "explain": "Thomas is male, nominative: in speech *der* replaces *er* (A2)."}, {"q": "Wie findest du die Jacke? – *___* ist zu teuer.", "options": ["Der", "Das", "Die", "Den", "Dem"], "answer": 2, "explain": "*die Jacke* → *die* as a pronoun (A2)."}, {"q": "*___* Film ist super!", "options": ["Dieser", "Diese", "Dieses", "Diesen", "Diesem"], "answer": 0, "explain": "*der Film* nominative → *dieser* (A2)."}, {"q": "Ich nehme *___* Schuhe.", "options": ["dieser", "dieses", "diesen", "diesem", "diese"], "answer": 4, "explain": "Plural accusative → *diese* (A2)."}, {"q": "In *___* Haus wohnt meine Tante.", "options": ["dieses", "diesem", "diesen", "dieser", "diese"], "answer": 1, "explain": "*in* + dative (where?), *das Haus* → *diesem* (A2)."}, {"q": "Ich kaufe *___* Pullover.", "options": ["dieser", "dieses", "diesem", "diesen", "diese"], "answer": 3, "explain": "*der Pullover* accusative → *diesen* (A2)."}, {"q": "*___* Buch habe ich schon gelesen.", "options": ["Dieses", "Dieser", "Diesen", "Diese", "Dies"], "answer": 0, "explain": "*das Buch* → *dieses* (with *-es*, not *-as*) (A2)."}, {"q": "Die Nachbarn? *___* sind im Urlaub.", "options": ["Der", "Das", "Den", "Denen", "Die"], "answer": 4, "explain": "Plural nominative pronoun: *die* (A2)."}, {"q": "Meine Kollegen? Mit *___* rede ich nicht mehr.", "options": ["den", "die", "denen", "deren", "dem"], "answer": 2, "explain": "Dative plural of the demonstrative pronoun is *denen* (B1)."}, {"q": "Den Mann da? *___* kenne ich nicht.", "options": ["Der", "Den", "Dem", "Die", "Denen"], "answer": 1, "explain": "*kennen* + accusative → *den*, moved to position 1 for emphasis (B1)."}, {"q": "Hilfst du Lena? – Nein, *___* helfe ich nicht.", "options": ["die", "der", "den", "dem", "deren"], "answer": 1, "explain": "*helfen* + dative; feminine dative pronoun → *der* (B1)."}, {"q": "Wir haben *___* Chef wie letztes Jahr.", "options": ["derselbe", "denselben", "demselben", "dieselben", "dasselbe"], "answer": 1, "explain": "*haben* + accusative, masculine → *denselben* (B1)."}, {"q": "Sie trägt *___* Kleid wie gestern.", "options": ["dasselbe", "derselbe", "dieselbe", "desselben", "das selbes"], "answer": 0, "explain": "*das Kleid* → *dasselbe*, written as one word (B1)."}, {"q": "Wir sind zur *___* Zeit angekommen.", "options": ["derselben", "selbe", "selben", "dieselbe", "selber"], "answer": 2, "explain": "*zur* = *zu der*, so only *selben* follows: *zur selben Zeit* (B1)."}, {"q": "Er wohnt in *___* Straße wie ich.", "options": ["dieselbe", "derselbe", "demselben", "derselben", "denselben"], "answer": 3, "explain": "*in* + dative (where?), feminine → *derselben* (B1)."}, {"q": "Two people own two identical cars: Wir haben *___* Auto.", "options": ["dasselbe", "das gleiche", "derselbe", "das selbes", "den gleichen"], "answer": 1, "explain": "Strictly, two identical objects → *das gleiche*; *dasselbe* = the very same one object (B1)."}, {"q": "Das glaube ich nicht. – Here *das* is ...", "options": ["an article", "a relative pronoun", "the conjunction dass", "a demonstrative pronoun", "a personal pronoun"], "answer": 3, "explain": "*das* stands alone, points at what was said, and the verb is second → demonstrative (B1)."}, {"q": "Der Mann, *___* dort steht, ist mein Chef.", "options": ["den", "dem", "der", "dessen", "die"], "answer": 2, "explain": "This is a relative pronoun (verb at the end); same forms as the demonstrative: subject → *der* (B1)."}, {"q": "Ich helfe *___*. (them)", "options": ["den", "denen", "die", "deren", "dem"], "answer": 1, "explain": "Standing alone, dative plural must be *denen*; *den* needs a noun (B1)."}, {"q": "Möchtest du dieses Brot oder *___* da?", "options": ["den", "der", "die", "das", "dem"], "answer": 3, "explain": "*das Brot*, accusative neuter → *das da* (that one there) (A2)."}, {"q": "*___* Woche habe ich viel Arbeit.", "options": ["Dieser", "Dieses", "Diesen", "Diesem", "Diese"], "answer": 4, "explain": "Time expression in the accusative, *die Woche* → *diese Woche* (A2)."}, {"q": "Wir sprechen über *___* Problem wie gestern.", "options": ["dasselbe", "demselben", "derselbe", "desselben", "denselben"], "answer": 0, "explain": "*über* + accusative here (talk about), neuter → *dasselbe* (B1)."}], "title": "Demonstrative pronouns quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The passive · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="index.html">Grammar</a><span class="sep">/</span><span class="cur">Passive</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>The passive</h1><p class="sub">werden + Partizip II for &quot;is done&quot;, sein + Partizip II for &quot;is finished&quot;, and the everyday alternatives with man.</p></header>
+<article class="prose card">
+<p>The passive puts the action in the centre and the doer in the background: not <em>who</em> does it, but <em>what is done</em>. <em>Das Haus wird gebaut</em> — <em>The house is being built.</em> You meet it in news, instructions, signs, menus and at work. German has two passives: the <strong>werden-passive</strong> (a process) and the <strong>sein-passive</strong> (a resulting state).</p>
+<h2>A2 core</h2>
+<h3>werden + Partizip II</h3>
+<p>Take the object of an active sentence, make it the subject, and use <strong>werden</strong> + <strong>Partizip II</strong> at the end:</p>
+<ul>
+<li>Active: <em>Der Mechaniker repariert das Auto.</em> — <em>The mechanic repairs the car.</em></li>
+<li>Passive: <em>Das Auto <strong>wird</strong> repariert.</em> — <em>The car is being repaired.</em></li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>werden</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>werde</td>
+<td>Ich werde abgeholt. — <em>I'm being picked up.</em></td>
+</tr>
+<tr>
+<td>du</td>
+<td>wirst</td>
+<td>Du wirst gefragt.</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>wird</td>
+<td>Das Essen wird gekocht.</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>werden</td>
+<td>Wir werden eingeladen.</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>werdet</td>
+<td>Ihr werdet gesucht.</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>werden</td>
+<td>Die Briefe werden geschickt.</td>
+</tr>
+</tbody>
+</table></div>
+<p>More examples:</p>
+<ul>
+<li><em>Hier wird Deutsch gesprochen.</em> — <em>German is spoken here.</em></li>
+<li><em>Das Museum wird um 10 Uhr geöffnet.</em> — <em>The museum is opened at 10.</em></li>
+<li><em>Die Kinder werden von der Oma abgeholt.</em> — <em>The children are picked up by grandma.</em></li>
+<li><em>Wie wird das Wort geschrieben?</em> — <em>How is the word spelled?</em></li>
+</ul>
+<h3>Three tenses</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tense</th>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Präsens</td>
+<td>wird + Partizip</td>
+<td><em>Das Haus wird gebaut.</em></td>
+</tr>
+<tr>
+<td>Präteritum</td>
+<td>wurde + Partizip</td>
+<td><em>Das Haus wurde 1900 gebaut.</em> — <em>was built</em></td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td>ist + Partizip + <strong>worden</strong></td>
+<td><em>Das Haus ist 1900 gebaut worden.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>In the Perfekt passive, <em>werden</em> becomes <strong>worden</strong>, not <em>geworden</em>. <em>Geworden</em> means "become": <em>Er ist Arzt geworden.</em> Most people prefer the Präteritum for passive in the past: <em>wurde gebaut</em> is shorter than <em>ist gebaut worden</em>.</p>
+<aside class="callout hack"><p class="callout-title">Who did it? Ask &quot;von&quot;</p><p>Want to mention the doer? Add <strong>von + Dativ</strong>: <em>Das Bild wurde von Picasso gemalt.</em> If you cannot answer "von wem?", leave it out. Most German passive sentences have no doer at all.</p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian has several passive tools: <em>-ся</em> verbs (<em>будинок будується</em>), short forms in <em>-но/-то</em> (<em>зроблено</em>, <em>відкрито</em>) and the participle (<em>будинок збудований</em>). German maps roughly like this:</p>
+<ul>
+<li><em>Будинок будується.</em> → <em>Das Haus <strong>wird</strong> gebaut.</em> (process: werden-passive)</li>
+<li><em>Магазин відкрито.</em> / <em>Магазин відкритий.</em> → <em>Das Geschäft <strong>ist</strong> geöffnet.</em> (state: sein-passive)</li>
+<li><em>Тут не курять.</em> → <em>Hier wird nicht geraucht.</em> / <em>Hier raucht man nicht.</em></li>
+</ul>
+<p>Careful: German reflexive <em>sich</em> is <strong>not</strong> a passive. <em>Das Haus baut sich</em> is nonsense; Ukrainian <em>-ся</em> becomes <em>werden</em> + Partizip.</p></aside>
+<h2>B1</h2>
+<h3>von vs durch</h3>
+<ul>
+<li><strong>von + Dativ</strong> for the person or the direct doer: <em>Der Brief wurde von meiner Chefin unterschrieben.</em></li>
+<li><strong>durch + Akkusativ</strong> for the means, cause or an intermediary: <em>Die Stadt wurde durch ein Erdbeben zerstört.</em> — <em>The city was destroyed by an earthquake.</em> <em>Ich wurde durch einen Freund informiert.</em> — <em>I was informed through a friend.</em></li>
+</ul>
+<h3>Passive with modal verbs</h3>
+<p>Modal verb + Partizip II + <strong>werden</strong> (infinitive) at the end:</p>
+<ul>
+<li><em>Das muss heute gemacht werden.</em> — <em>This has to be done today.</em></li>
+<li><em>Der Antrag kann online gestellt werden.</em> — <em>The application can be made online.</em></li>
+<li><em>Hier darf nicht geparkt werden.</em> — <em>Parking is not allowed here.</em></li>
+<li><em>Das Problem sollte schnell gelöst werden.</em> — <em>The problem should be solved quickly.</em></li>
+<li>Past: <em>Das musste sofort repariert werden.</em> — <em>That had to be repaired immediately.</em></li>
+</ul>
+<h3>Vorgangspassiv vs Zustandspassiv</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Vorgangspassiv (process)</th>
+<th>Zustandspassiv (state)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Form</td>
+<td><strong>werden</strong> + Partizip II</td>
+<td><strong>sein</strong> + Partizip II</td>
+</tr>
+<tr>
+<td>Meaning</td>
+<td>something is being done</td>
+<td>something is done / finished</td>
+</tr>
+<tr>
+<td>Example</td>
+<td><em>Die Tür wird geschlossen.</em> — The door is being closed.</td>
+<td><em>Die Tür ist geschlossen.</em> — The door is closed.</td>
+</tr>
+<tr>
+<td>Example</td>
+<td><em>Der Tisch wird gedeckt.</em></td>
+<td><em>Der Tisch ist gedeckt.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>The Zustandspassiv is the result of the Vorgangspassiv: first <em>das Fenster wird geöffnet</em>, then <em>das Fenster ist geöffnet</em>.</p>
+<h3>Impersonal passive</h3>
+<p>German can make a passive even without an object, for activities in general. There is no subject; <em>es</em> appears only if nothing else stands in first position:</p>
+<ul>
+<li><em>Hier wird nicht geraucht.</em> — <em>No smoking here.</em></li>
+<li><em>Am Samstag wird getanzt.</em> — <em>On Saturday there's dancing.</em></li>
+<li><em>Es wird viel gelacht.</em> — <em>There's a lot of laughing.</em></li>
+<li><em>Sonntags wird nicht gearbeitet.</em> — <em>Nobody works on Sundays.</em></li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li>~~Das Haus ist gebaut geworden.~~ → <strong>Das Haus ist gebaut worden.</strong></li>
+<li>Confusing future and passive: <em>Ich werde fragen</em> = I will ask (werden + <strong>infinitive</strong>). <em>Ich werde gefragt</em> = I am asked (werden + <strong>Partizip</strong>).</li>
+<li>Using <em>sein</em> for a process: ~~Das Auto ist gerade repariert.~~ (if it is happening now) → <strong>Das Auto wird gerade repariert.</strong></li>
+<li>The dative object stays dative: <em>Mir wird geholfen</em> (not ~~Ich werde geholfen~~), because <em>helfen</em> takes the dative.</li>
+</ul></aside>
+<aside class="callout hack"><p class="callout-title">werden&#x27;s three jobs</p><p><strong>werden</strong> + noun/adjective = become (<em>Er wird Lehrer</em>). <strong>werden</strong> + infinitive = future (<em>Er wird kommen</em>). <strong>werden</strong> + Partizip II = passive (<em>Er wird gefragt</em>). Look at the word at the end of the sentence and you know which one it is.</p></aside>
+<aside class="callout fact"><p class="callout-title">Why German bureaucracy loves the passive</p><p>Official German is famous for sentences like <em>Es wird darauf hingewiesen, dass...</em> ("Attention is drawn to the fact that..."). The passive hides who is responsible, which suits notices and rules. That is why the mocking term <em>Behördendeutsch</em> ("officialese") is so strongly linked with passive and noun-heavy style, and why plain-language guides tell writers to prefer the active.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: alternatives to the passive</p><ul>
+<li><strong>man</strong>: <em>Man spricht hier Deutsch.</em> = <em>Hier wird Deutsch gesprochen.</em> This is the most common alternative in speech and you can use it now.</li>
+<li><strong>sich lassen + infinitive</strong> = "can be done": <em>Das Fenster lässt sich nicht öffnen.</em> — <em>The window can't be opened.</em> <em>Das lässt sich machen.</em> — <em>That can be done.</em></li>
+<li><strong>-bar adjectives</strong> = "-able": <em>Das ist machbar</em> (= <em>kann gemacht werden</em>), <em>trinkbar, lesbar, essbar</em>.</li>
+<li><strong>sein + zu + infinitive</strong> = "must / can be done": <em>Die Rechnung ist bis Freitag zu bezahlen.</em> — <em>The bill is to be paid by Friday.</em></li>
+</ul></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></li>
+<li><a href="../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a href="../grammar/tenses/past.html">Past tenses</a></li>
+<li><a href="../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></li>
+<li><a href="../docs/b2-formal-german.html">Formal German (B2)</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="moods/index.html">← Moods</a><a class="btn" href="verbs/index.html">Verbs →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Das Auto *___* gerade repariert.", "options": ["sind", "hat", "werden", "wird", "wurde gerade"], "answer": 3, "explain": "*gerade* = right now, a process: werden-passive, *wird repariert* (A2)"}, {"q": "Hier *___* Deutsch gesprochen.", "options": ["werden", "wird", "ist", "hat", "wurden"], "answer": 1, "explain": "Classic passive: *Hier wird Deutsch gesprochen* = German is spoken here. *Deutsch* is singular, so *wird* (A2)"}, {"q": "Die Briefe *___* morgen verschickt.", "options": ["wird", "seid", "haben", "werdet", "werden"], "answer": 4, "explain": "*Die Briefe* is plural, so *werden* + Partizip II (A2)"}, {"q": "Das Haus wurde 1900 *___*.", "options": ["bauen", "baute", "gebaut", "gebaute", "bauend"], "answer": 2, "explain": "The passive needs the Partizip II at the end: *wurde gebaut* (A2)"}, {"q": "Die Kinder werden *___* der Oma abgeholt.", "options": ["von", "durch", "mit", "bei", "aus"], "answer": 0, "explain": "The person who does the action is introduced with *von* + Dativ (A2)"}, {"q": "Ich *___* morgen vom Bahnhof abgeholt.", "options": ["wird", "bin", "habe", "werde", "wurde morgen"], "answer": 3, "explain": "ich-form of *werden* + Partizip II: *Ich werde abgeholt* = I'm being picked up (A2)"}, {"q": "Das Museum *___* gestern um 10 Uhr geöffnet.", "options": ["wird", "wurde", "werde", "wurden", "worden"], "answer": 1, "explain": "*gestern* = past, so Präteritum passive: *wurde geöffnet* (A2)"}, {"q": "Wie *___* das Wort geschrieben?", "options": ["werdet", "hat", "werden", "wirst", "wird"], "answer": 4, "explain": "Question with the passive: *Wie wird das Wort geschrieben?* = How is it spelled? (A2)"}, {"q": "*Das Bild wurde von Picasso gemalt.* Who painted it?", "options": ["nobody knows", "the speaker", "Picasso", "a museum", "it is not said"], "answer": 2, "explain": "*von* + person names the doer of a passive action (A2)"}, {"q": "Which sentence is passive?", "options": ["Der Kuchen wird gebacken.", "Der Kuchen wird bald fertig.", "Ich werde einen Kuchen backen.", "Er backt einen Kuchen.", "Der Kuchen wird groß."], "answer": 0, "explain": "werden + Partizip II = passive. werden + infinitive = future, werden + adjective = become (A2)"}, {"q": "Das Haus ist 1900 gebaut *___*.", "options": ["geworden", "gewesen", "werden", "worden", "wurde"], "answer": 3, "explain": "In the Perfekt passive *werden* becomes *worden*, not *geworden* (B1)"}, {"q": "Er ist Arzt *___*.", "options": ["worden", "geworden", "gewesen worden", "werden", "wurde"], "answer": 1, "explain": "Here *werden* means \"become\", so the Partizip is the full *geworden* (B1)"}, {"q": "Das muss heute noch gemacht *___*.", "options": ["worden", "wird", "sein", "geworden", "werden"], "answer": 4, "explain": "Modal + Partizip II + *werden* (infinitive): *muss gemacht werden* (B1)"}, {"q": "Der Antrag kann online *___* werden.", "options": ["stellen", "stellt", "gestellt", "gestellen", "zu stellen"], "answer": 2, "explain": "Modal passive: *kann* + Partizip II + *werden* (B1)"}, {"q": "Hier darf nicht *___*.", "options": ["geparkt werden", "parken werden", "geparkt worden", "parken wird", "geparkt wird"], "answer": 0, "explain": "Impersonal passive with a modal: *darf nicht geparkt werden* = parking is not allowed (B1)"}, {"q": "Die Stadt wurde *___* ein Erdbeben zerstört.", "options": ["von", "mit", "bei", "durch", "aus"], "answer": 3, "explain": "A cause or event (not a person) takes *durch* + Akkusativ (B1)"}, {"q": "Ich wurde *___* einen Kollegen informiert. (= through a colleague, as an intermediary)", "options": ["von", "durch", "mit", "zu", "aus"], "answer": 1, "explain": "*durch* marks the intermediary or means: informed *through* someone (B1)"}, {"q": "Die Tür *___* geschlossen. Man kann jetzt nicht rein. (state)", "options": ["wird", "wurde", "hat", "werden", "ist"], "answer": 4, "explain": "A resulting state = Zustandspassiv: *sein* + Partizip II (B1)"}, {"q": "Der Tisch *___* gerade gedeckt. Gleich können wir essen. (process)", "options": ["ist", "war", "wird", "hat", "sind"], "answer": 2, "explain": "*gerade* = it is happening now: Vorgangspassiv with *werden* (B1)"}, {"q": "Sonntags *___* nicht gearbeitet.", "options": ["wird", "werden", "ist", "hat", "man"], "answer": 0, "explain": "Impersonal passive has no subject, so the verb is always 3rd person singular: *wird* (B1)"}, {"q": "*Es wird viel gelacht.* What does it mean?", "options": ["It is laughing a lot.", "It will laugh a lot.", "He laughs a lot.", "There's a lot of laughing.", "It was a lot of laughter."], "answer": 3, "explain": "Impersonal passive describes an activity in general; *es* only fills the first position (B1)"}, {"q": "*___* wird geholfen. (ich)", "options": ["Ich", "Mir", "Mich", "Mein", "Meiner"], "answer": 1, "explain": "*helfen* takes the dative, and the dative stays in the passive: *Mir wird geholfen* (B1)"}, {"q": "Which sentence means the same as *Man spricht hier Englisch*?", "options": ["Hier ist Englisch gesprochen worden.", "Hier spricht sich Englisch.", "Hier wird Englisch sprechen.", "Hier hat man Englisch gesprochen.", "Hier wird Englisch gesprochen."], "answer": 4, "explain": "*man* + active is the everyday alternative to the werden-passive (B1)"}, {"q": "*Будинок будується.* In German:", "options": ["Das Haus baut sich.", "Das Haus ist bauen.", "Das Haus wird gebaut.", "Das Haus baut.", "Das Haus hat gebaut."], "answer": 2, "explain": "Ukrainian *-ся* passive becomes *werden* + Partizip II; German *sich* is not a passive (B1)"}, {"q": "Das Problem *___* gestern schnell gelöst werden.", "options": ["konnte", "kann gestern", "wurde", "ist", "hat"], "answer": 0, "explain": "Modal passive in the past: Präteritum of the modal + Partizip II + *werden*: *konnte gelöst werden* (B1)"}], "title": "The passive quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Adjectives as nouns · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Adjectives</a><span class="sep">/</span><span class="cur">As nouns</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1</span><h1>Adjectives as nouns</h1><p class="sub">der Deutsche, ein Bekannter, etwas Neues, das Gute: adjectives that become nouns but keep adjective endings.</p></header>
+<article class="prose card">
+<p>German can turn almost any adjective into a noun: <em>deutsch → der Deutsche</em>, <em>bekannt → ein Bekannter</em>, <em>neu → etwas Neues</em>. The new noun is written with a capital letter, but it keeps the <strong>adjective endings</strong> it would have had in front of a noun. You need this for very common words: <em>der/die Deutsche, die Erwachsenen, die Verwandten, der/die Bekannte, Alles Gute!</em></p>
+<h2>A2 core</h2>
+<h3>People: der Deutsche, die Deutsche, ein Deutscher</h3>
+<p>Think of an invisible noun: <em>der Deutsche (Mann)</em>, <em>eine Deutsche (Frau)</em>. The ending is exactly what the adjective would have in front of <em>Mann</em> or <em>Frau</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>after der/die</th>
+<th>after ein/eine</th>
+<th>no article</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>man</td>
+<td>der Deutsch<strong>e</strong></td>
+<td>ein Deutsch<strong>er</strong></td>
+<td>–</td>
+</tr>
+<tr>
+<td>woman</td>
+<td>die Deutsch<strong>e</strong></td>
+<td>eine Deutsch<strong>e</strong></td>
+<td>–</td>
+</tr>
+<tr>
+<td>plural</td>
+<td>die Deutsch<strong>en</strong></td>
+<td>–</td>
+<td>Deutsch<strong>e</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Mein Nachbar ist <strong>Deutscher</strong>, seine Frau ist <strong>Deutsche</strong>. — <em>My neighbour is German, his wife is German.</em></li>
+<li><strong>Die Deutschen</strong> trinken viel Kaffee. — <em>Germans drink a lot of coffee.</em></li>
+<li>Das ist <strong>ein Bekannter</strong> von mir. — <em>That's an acquaintance of mine.</em></li>
+<li><strong>Die Erwachsenen</strong> sitzen, <strong>die Kleinen</strong> spielen. — <em>The adults sit, the little ones play.</em></li>
+<li>Ich habe viele <strong>Verwandte</strong> in Kyjiw. — <em>I have many relatives in Kyiv.</em></li>
+</ul>
+<p>Common ones: <em>der/die Bekannte</em> (acquaintance), <em>der/die Verwandte</em> (relative), <em>der/die Erwachsene</em> (adult), <em>der/die Kranke</em> (sick person), <em>der/die Arbeitslose</em>, <em>der/die Jugendliche</em> (teenager), <em>der/die Angestellte</em> (employee), <em>der/die Verlobte</em> (fiancé/e), <em>der/die Fremde</em> (stranger).</p>
+<aside class="callout hack"><p class="callout-title">Imagine Mann, Frau or Leute</p><p>When you're unsure, add the invisible noun and decline the adjective normally: <em>ein Bekannter (Mann)</em>, <em>mit einer Bekannten (Frau)</em>, <em>meine Bekannten (Leute)</em>. Then delete the noun and capitalise. That's it.</p></aside>
+<aside class="callout trap"><p class="callout-title">der Deutsche is not like der Ukrainer</p><p><em>der Ukrainer, der Pole, der Russe</em> are real nouns. <em>der Deutsche</em> is an adjective: so it's <strong>ein Deutscher</strong>, not ~~ein Deutsche~~, and plural <strong>Deutsche</strong> / <strong>die Deutschen</strong>. Also: <em>Ich bin ~~ein~~ Deutscher</em> sounds fine, but with nationalities you usually drop the article: <em>Ich bin Ukrainer. Sie ist Deutsche.</em></p></aside>
+<h2>B1</h2>
+<h3>The endings change with case</h3>
+<p>Because they are adjectives, the endings follow case too:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>definite</th>
+<th>indefinite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>der Bekannt<strong>e</strong></td>
+<td>ein Bekannt<strong>er</strong></td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>den Bekannt<strong>en</strong></td>
+<td>einen Bekannt<strong>en</strong></td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>dem Bekannt<strong>en</strong></td>
+<td>einem Bekannt<strong>en</strong></td>
+</tr>
+<tr>
+<td>Dat (fem.)</td>
+<td>der Bekannt<strong>en</strong></td>
+<td>einer Bekannt<strong>en</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ich habe <strong>einen Bekannten</strong> getroffen. — <em>I met an acquaintance.</em></li>
+<li>Sie hilft <strong>den Kranken</strong>. — <em>She helps the sick.</em></li>
+<li>Er ist mit <strong>einer Deutschen</strong> verheiratet. — <em>He's married to a German woman.</em></li>
+</ul>
+<h3>Things: etwas Neues, nichts Gutes, viel Schönes</h3>
+<p>After <strong>etwas, nichts, viel, wenig, alles</strong> the adjective becomes a neuter noun:</p>
+<ul>
+<li>after <em>etwas, nichts, viel, wenig</em>: ending <strong>-es</strong> (table 3): <em>etwas <strong>Neues</strong></em>, <em>nichts <strong>Besonderes</strong></em>, <em>viel <strong>Schönes</strong></em>, <em>wenig <strong>Interessantes</strong></em>.</li>
+<li>
+<p>after <em>alles</em>: ending <strong>-e</strong> (like after <em>das</em>): <em>alles <strong>Gute</strong></em>, <em>alles <strong>Liebe</strong></em>.</p>
+</li>
+<li>
+<p>Gibt es <strong>etwas Neues</strong>? — <em>Is there anything new?</em> (Є щось нове?)</p>
+</li>
+<li>Ich habe <strong>nichts Gutes</strong> gehört. — <em>I haven't heard anything good.</em></li>
+<li><strong>Alles Gute</strong> zum Geburtstag! — <em>Happy birthday!</em></li>
+<li>Wir haben <strong>viel Schönes</strong> erlebt. — <em>We experienced many lovely things.</em></li>
+<li>Mit <strong>etwas Neuem</strong> (dative) / von <strong>nichts Gutem</strong>.</li>
+</ul>
+<h3>Abstract ideas: das Gute, das Schöne</h3>
+<p><em>das</em> + adjective + <em>-e</em> names an abstract idea: <em>das Gute</em> (the good), <em>das Schöne</em>, <em>das Neue</em>, <em>das Wichtigste</em> (the most important thing), <em>das Beste</em>.</p>
+<ul>
+<li><strong>Das Wichtigste</strong> ist, dass du gesund bist. — <em>The most important thing is that you are healthy.</em></li>
+<li><strong>Das Gute</strong> daran ist, ... — <em>The good thing about it is ...</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">etwas/nichts/viel → -es, alles → -e</p><p>Remember one pair: <em>etwas Gutes</em> and <em>alles Gute</em>. <em>etwas</em> gives no signal, so the adjective shows <em>-es</em>; <em>alles</em> already ends in <em>-es</em>, so the adjective relaxes to <em>-e</em>. Exception: <em>anderes</em> stays lowercase: <em>etwas anderes</em>.</p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian does the same: <em>знайомий, хворий, дорослий, рідні</em> are adjectives used as nouns, and they keep adjective endings (<em>з моїм знайомим</em>). So <em>der Bekannte</em> ~ <em>знайомий</em> works the same way. The difference is German <em>etwas Neues</em>, where Ukrainian uses the neuter <em>щось нове</em>, and German capitalises the noun.</p></aside>
+<aside class="callout fact"><p class="callout-title">Why &quot;Deutsch&quot; is an adjective</p><p>The word <em>deutsch</em> comes from Old High German <em>diutisc</em>, "of the people", from <em>diot</em> (people). It started as an adjective describing the language of ordinary people (as opposed to Latin), and only later became a name for the people themselves. That's why <em>der Deutsche</em> still declines like an adjective, while most other nationalities (<em>der Ukrainer, der Franzose</em>) are normal nouns.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/adjectives/endings.html">Adjective endings</a></li>
+<li><a href="../../grammar/cases/n-declension.html">N-declension</a></li>
+<li><a href="../../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></li>
+<li><a href="../../docs/word-formation.html">Word formation</a></li>
+<li><a href="../../grammar/pronouns/indefinite.html">Indefinite pronouns</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="comparison.html">← Comparison</a><a class="btn" href="participles-as-adjectives.html">Participles →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Mein Nachbar ist *___*. (German, no article)", "options": ["Deutscher", "Deutsche", "Deutschen", "Deutsches", "Deutsch"], "answer": 0, "explain": "Without an article a man is *Deutscher*: the adjective shows the masculine *-er* (A2)."}, {"q": "Seine Frau ist *___*.", "options": ["Deutscher", "Deutschen", "Deutsche", "Deutsches", "Deutschin"], "answer": 2, "explain": "A German woman is *Deutsche*; there is no *-in* form (A2)."}, {"q": "*___* trinken viel Kaffee. (the Germans)", "options": ["Die Deutschen", "Die Deutsche", "Die Deutscher", "Den Deutschen", "Die Deutschs"], "answer": 0, "explain": "Plural after *die* takes *-en*: *die Deutschen* (A2)."}, {"q": "Das ist ein *___* von mir. (acquaintance, man)", "options": ["Bekannte", "Bekannten", "Bekanntes", "Bekannt", "Bekannter"], "answer": 4, "explain": "After *ein* the adjective noun shows the gender: *ein Bekannter* (A2)."}, {"q": "Das ist die *___* von Anna. (acquaintance, woman)", "options": ["Bekannten", "Bekannter", "Bekanntin", "Bekanntes", "Bekannte"], "answer": 4, "explain": "After *die* in the nominative: *-e*, so *die Bekannte* (A2)."}, {"q": "Ich habe *___* in Kyjiw. (relatives, no article)", "options": ["Verwandten", "Verwandter", "Verwandtes", "Verwandte", "Verwandtem"], "answer": 3, "explain": "With no article the plural ending is *-e*: *Ich habe Verwandte*, but *meine Verwandten* (B1)."}, {"q": "Ich habe gestern einen *___* getroffen.", "options": ["Bekannter", "Bekannten", "Bekannte", "Bekanntes", "Bekanntem"], "answer": 1, "explain": "Masculine accusative after *einen*: *-en*, like *einen alten Mann* (B1)."}, {"q": "Er ist mit einer *___* verheiratet.", "options": ["Deutschen", "Deutsche", "Deutscher", "Deutsches", "Deutschem"], "answer": 0, "explain": "*mit* + dative feminine after *einer*: *-en* (B1)."}, {"q": "Die Ärztin hilft den *___*.", "options": ["Kranken", "Kranke", "Kranker", "Krankes", "Krankem"], "answer": 0, "explain": "Dative plural after *den*: *den Kranken* (B1)."}, {"q": "Gibt es etwas *___*?", "options": ["Neue", "neues", "Neuen", "Neues", "Neuer"], "answer": 3, "explain": "After *etwas* the adjective is a capitalised neuter noun with *-es* (B1)."}, {"q": "*___* zum Geburtstag!", "options": ["Alles Gutes", "Alles gute", "Alle Gute", "Alles Guten", "Alles Gute"], "answer": 4, "explain": "After *alles* the ending is *-e*: *Alles Gute* (A2)."}, {"q": "Ich habe nichts *___* gehört.", "options": ["Gute", "Gutes", "gutes", "Guten", "Gut"], "answer": 1, "explain": "After *nichts* use *-es* and a capital letter: *nichts Gutes* (B1)."}, {"q": "Wir haben im Urlaub viel *___* erlebt.", "options": ["Schöne", "Schönes", "schöne", "Schönen", "Schöner"], "answer": 1, "explain": "After *viel* (singular, uncountable): *-es*, like *etwas Schönes* (B1)."}, {"q": "*___* ist, dass du gesund bist. (the most important thing)", "options": ["Das Wichtigste", "Der Wichtigste", "Das wichtigste", "Das Wichtigstes", "Am Wichtigsten"], "answer": 0, "explain": "*das* + superlative + *-e* = an abstract idea, written with a capital (B1)."}, {"q": "Lass uns etwas *___* machen. (something else)", "options": ["anderen", "Andere", "andere", "anderem", "anderes"], "answer": 4, "explain": "*anderes* is the exception: it usually stays lowercase after *etwas* (B1)."}, {"q": "Die *___* sitzen am Tisch, die Kinder spielen. (adults)", "options": ["Erwachsene", "Erwachsener", "Erwachsenes", "Erwachsenen", "Erwachsens"], "answer": 3, "explain": "Plural after *die*: *-en*, so *die Erwachsenen* (A2)."}, {"q": "Ich bin *___*. (Ukrainian man)", "options": ["Ukrainischer", "Ukrainers", "Ukrainer", "Ukrainen", "Ukrainischen"], "answer": 2, "explain": "*der Ukrainer* is a normal noun, not an adjective noun; nationalities drop the article (A2)."}, {"q": "Der *___* hat mir den Weg gezeigt. (stranger)", "options": ["Fremder", "Fremden", "Fremdes", "Fremde", "Fremdem"], "answer": 3, "explain": "After *der* in the nominative: *-e*, so *der Fremde* (B1)."}, {"q": "Ein *___* hat mir den Weg gezeigt. (stranger)", "options": ["Fremde", "Fremder", "Fremden", "Fremdes", "Fremd"], "answer": 1, "explain": "After *ein* the adjective noun takes *-er*: *ein Fremder* (B1)."}, {"q": "Unsere *___* arbeiten viel. (employees)", "options": ["Angestellte", "Angestellter", "Angestelltes", "Angestellt", "Angestellten"], "answer": 4, "explain": "Plural after *unsere* (an ein-word) takes *-en*: *unsere Angestellten* (B1)."}, {"q": "Ich träume von etwas *___*.", "options": ["Neues", "Neuen", "Neue", "Neuem", "Neuer"], "answer": 3, "explain": "*von* + dative: with no article the ending is *-em*, so *von etwas Neuem* (B1)."}, {"q": "Das *___* daran ist, dass es billig ist.", "options": ["Gutes", "Guten", "Gute", "Guter", "gute"], "answer": 2, "explain": "*das Gute* (the good thing) takes *-e* after *das* (B1)."}, {"q": "*___* zum neuen Jahr!", "options": ["Alles Liebes", "Alles Liebe", "Alle Liebe", "Alles liebe", "Allen Lieben"], "answer": 1, "explain": "After *alles* the adjective noun ends in *-e*: *Alles Liebe* (A2)."}, {"q": "Ukrainian *знайомий* corresponds to German...", "options": ["der Bekannter", "das Bekannte", "der Bekannte", "der Bekennt", "die Bekannten"], "answer": 2, "explain": "Both are adjectives used as nouns: *знайомий* = *der Bekannte* (singular, masculine) (B1)."}, {"q": "Der *___* sucht eine Arbeit. (unemployed man)", "options": ["Arbeitsloser", "Arbeitslosen", "Arbeitslose", "Arbeitsloses", "Arbeitslos"], "answer": 2, "explain": "After *der* in the nominative the adjective noun ends in *-e* (B1)."}], "title": "Adjectives as nouns quiz", "level": "B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The imperative · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Imperative</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>The imperative</h1><p class="sub">How to tell, ask and invite people to do things: du, ihr, Sie and wir forms, plus the little words that make an order sound friendly.</p></header>
+<article class="prose card">
+<p>The imperative is the verb form for commands, requests, instructions and invitations: <em>Komm!</em>, <em>Hört zu!</em>, <em>Warten Sie bitte!</em> You need it from day one in a classroom, in recipes, on signs and every time you ask a friend for something. German has a separate form for each "you" (du, ihr, Sie), plus a "let's" form with <em>wir</em>.</p>
+<h2>A2 core</h2>
+<h3>The four forms</h3>
+<p>The verb always goes <strong>first</strong>. Only <em>Sie</em> and <em>wir</em> keep their pronoun after the verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Who</th>
+<th>How to build it</th>
+<th>machen</th>
+<th>kommen</th>
+<th>warten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>du</strong></td>
+<td>du-form minus <em>-st</em> (no <em>du</em>)</td>
+<td>Mach!</td>
+<td>Komm!</td>
+<td>Warte!</td>
+</tr>
+<tr>
+<td><strong>ihr</strong></td>
+<td>same as the ihr-form (no <em>ihr</em>)</td>
+<td>Macht!</td>
+<td>Kommt!</td>
+<td>Wartet!</td>
+</tr>
+<tr>
+<td><strong>Sie</strong></td>
+<td>Sie-form, verb first + <em>Sie</em></td>
+<td>Machen Sie!</td>
+<td>Kommen Sie!</td>
+<td>Warten Sie!</td>
+</tr>
+<tr>
+<td><strong>wir</strong></td>
+<td>wir-form, verb first + <em>wir</em></td>
+<td>Machen wir!</td>
+<td>Kommen wir!</td>
+<td>Warten wir!</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <strong>du</strong> form in three steps: <em>du kommst</em> → drop <em>du</em> → drop <em>-st</em> → <strong>Komm!</strong> Verbs whose stem ends in <em>-t, -d</em> or a hard consonant cluster keep an <em>-e</em>: <em>Warte! Rede! Öffne! Atme!</em></p>
+<ul>
+<li><em>Mach bitte das Fenster zu!</em> — <em>Please close the window!</em> (to a friend)</li>
+<li><em>Kommt rein, Kinder!</em> — <em>Come in, kids!</em></li>
+<li><em>Nehmen Sie Platz.</em> — <em>Take a seat.</em> (formal)</li>
+<li><em>Gehen wir!</em> — <em>Let's go!</em> — <em>Ходімо!</em></li>
+<li><em>Ruf mich morgen an!</em> — <em>Call me tomorrow!</em> (the prefix goes to the end, as usual)</li>
+</ul>
+<h3>e → i verbs keep the vowel change</h3>
+<p>If the <strong>du</strong> form of the present tense changes <strong>e → i/ie</strong>, the imperative keeps it, and there is no <em>-e</em> at the end:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>du (present)</th>
+<th>Imperative du</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geben</td>
+<td>du gibst</td>
+<td><strong>Gib!</strong></td>
+</tr>
+<tr>
+<td>nehmen</td>
+<td>du nimmst</td>
+<td><strong>Nimm!</strong></td>
+</tr>
+<tr>
+<td>lesen</td>
+<td>du liest</td>
+<td><strong>Lies!</strong></td>
+</tr>
+<tr>
+<td>sprechen</td>
+<td>du sprichst</td>
+<td><strong>Sprich!</strong></td>
+</tr>
+<tr>
+<td>essen</td>
+<td>du isst</td>
+<td><strong>Iss!</strong></td>
+</tr>
+<tr>
+<td>helfen</td>
+<td>du hilfst</td>
+<td><strong>Hilf!</strong></td>
+</tr>
+<tr>
+<td>vergessen</td>
+<td>du vergisst</td>
+<td><strong>Vergiss!</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>But the <strong>a → ä</strong> change does <em>not</em> carry over: <em>du fährst</em> → <strong>Fahr!</strong>, <em>du schläfst</em> → <strong>Schlaf!</strong>, <em>du läufst</em> → <strong>Lauf!</strong></p>
+<h3>sein is irregular</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>du</th>
+<th>ihr</th>
+<th>Sie</th>
+<th>wir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sei!</strong></td>
+<td><strong>Seid!</strong></td>
+<td><strong>Seien Sie!</strong></td>
+<td><strong>Seien wir!</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Sei leise!</em> — <em>Be quiet!</em></li>
+<li><em>Seid pünktlich!</em> — <em>Be on time!</em> (to a group)</li>
+<li><em>Seien Sie bitte vorsichtig.</em> — <em>Please be careful.</em></li>
+</ul>
+<p>Note the spelling: <strong>seid</strong> (imperative and <em>ihr seid</em>) vs <strong>seit</strong> (since).</p>
+<aside class="callout hack"><p class="callout-title">The du-form shortcut</p><p>Say the du-form, chop off <em>du</em> and <em>-st</em>: <em>du liest</em> → <strong>Lies</strong>, <em>du gibst</em> → <strong>Gib</strong>, <em>du fährst</em> → <em>Fahr</em> (then remove the umlaut). If the result is hard to pronounce (<em>wart</em>, <em>red</em>), add <em>-e</em>: <strong>Warte, Rede</strong>.</p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian also has a separate imperative: <em>читай! / читайте! / читаймо!</em> German maps neatly: <strong>Lies!</strong> = <em>читай!</em>, <strong>Lest!</strong> or <strong>Lesen Sie!</strong> = <em>читайте!</em>, <strong>Lesen wir!</strong> = <em>читаймо!</em> The difference: German needs the pronoun <em>Sie</em> or <em>wir</em> after the verb, and German has no aspect, so <em>Lies!</em> covers both <em>читай</em> and <em>прочитай</em>.</p></aside>
+<h2>B1</h2>
+<h3>Softeners: mal, doch, bitte</h3>
+<p>A bare German imperative can sound sharp. Native speakers almost always add a particle:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Particle</th>
+<th>Effect</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bitte</strong></td>
+<td>polite, neutral</td>
+<td><em>Setzen Sie sich bitte.</em></td>
+</tr>
+<tr>
+<td><strong>mal</strong></td>
+<td>casual, "just"</td>
+<td><em>Komm mal her!</em> — <em>Come here a sec.</em></td>
+</tr>
+<tr>
+<td><strong>doch</strong></td>
+<td>encouraging or slightly impatient, "go on"</td>
+<td><em>Komm doch mit!</em> — <em>Why don't you come along!</em></td>
+</tr>
+<tr>
+<td><strong>doch mal</strong></td>
+<td>friendly push</td>
+<td><em>Probier doch mal den Kuchen!</em></td>
+</tr>
+<tr>
+<td><strong>ruhig</strong></td>
+<td>"feel free"</td>
+<td><em>Nimm dir ruhig noch ein Stück.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>bitte</em> can stand at the start, after the verb or at the end: <em>Bitte warten Sie! / Warten Sie bitte! / Warten Sie, bitte!</em></p>
+<h3>Polite alternatives to the imperative</h3>
+<p>In shops, offices and with strangers, a question in <strong>Konjunktiv II</strong> sounds much nicer than an order:</p>
+<ul>
+<li><em>Könnten Sie mir bitte helfen?</em> — <em>Could you please help me?</em></li>
+<li><em>Würden Sie bitte das Fenster schließen?</em> — <em>Would you close the window, please?</em></li>
+<li><em>Kannst du mal kurz warten?</em> — <em>Can you wait a moment?</em> (informal, present tense is fine)</li>
+<li><em>Wären Sie so nett, mir den Weg zu zeigen?</em> — <em>Would you be so kind as to show me the way?</em></li>
+</ul>
+<h3>Infinitive instructions</h3>
+<p>On signs, in recipes and in instructions you often see a bare infinitive at the end: <em>Bitte nicht rauchen.</em> <em>Zwiebeln klein schneiden.</em> <em>Einsteigen, bitte!</em> It is impersonal and neutral, like English "No smoking".</p>
+<aside class="callout hack"><p class="callout-title">When in doubt, ask</p><p>If you are not sure how polite to be, turn the order into <em>Könnten Sie ...?</em> or <em>Kannst du mal ...?</em> You can never be too polite with <em>könnten</em>.</p></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li>Adding <em>du</em>: ~~Komm du her!~~ → <strong>Komm her!</strong> (only for strong emphasis do Germans say <em>Mach du das!</em>).</li>
+<li>Keeping the umlaut: ~~Fähr langsam!~~ → <strong>Fahr langsam!</strong></li>
+<li>Forgetting e → i: ~~Nehm das!~~ ~~Gebe mir!~~ → <strong>Nimm das! Gib mir!</strong></li>
+<li>~~Seit ruhig!~~ → <strong>Seid ruhig!</strong></li>
+<li>Forgetting <em>Sie</em>: ~~Kommen bitte!~~ → <strong>Kommen Sie bitte!</strong></li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">The *-e* that disappeared</p><p>Older German regularly had <em>-e</em> in the du imperative: <em>Komme! Mache!</em> You still find <em>Gehe hin</em> or <em>Siehe oben</em> ("see above") in old texts and fixed phrases. In modern speech the <em>-e</em> is dropped wherever pronunciation allows, so <em>Mach!</em> and <em>Komm!</em> are now the standard.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: lassen and the &quot;Lass uns&quot; form</p><p>Instead of <em>Gehen wir!</em> people often say <strong>Lass uns gehen!</strong> (to one friend) or <strong>Lasst uns gehen!</strong> (to a group). It works just like English "let's" and is very common in speech.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a> for polite questions</li>
+<li><a href="../../grammar/moods/index.html">Moods overview</a></li>
+<li><a href="../../docs/particles-expressions.html">Particles and expressions</a></li>
+<li><a href="../../docs/irregular-verbs.html">Irregular verbs</a></li>
+<li><a href="../../everyday/formal-informal.html">Formal and informal</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="konjunktiv-2.html">Konjunktiv II →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "*___* bitte das Fenster zu! (du, zumachen)", "options": ["Machst", "Mach", "Mache du", "Machen", "Macht du"], "answer": 1, "explain": "The du imperative is the du-form minus *du* and *-st*: *du machst* → *Mach!* (A2)"}, {"q": "*___* mir bitte das Buch! (du, geben)", "options": ["Gebe", "Gibst", "Geb", "Gibt", "Gib"], "answer": 4, "explain": "*geben* changes e → i in the du-form (*du gibst*), and the imperative keeps it: *Gib!* (A2)"}, {"q": "*___* den Text laut! (du, lesen)", "options": ["Les", "Lese", "Lies", "Liest", "Lest"], "answer": 2, "explain": "*du liest* → drop *-st* → *Lies!* The e → ie change stays in the imperative (A2)"}, {"q": "*___* langsamer! (du, fahren)", "options": ["Fahr", "Fähr", "Fährst", "Fahrt", "Fähre"], "answer": 0, "explain": "The a → ä change of *du fährst* does NOT go into the imperative: *Fahr!* (A2)"}, {"q": "Kinder, *___* bitte leise! (sein)", "options": ["seit", "sind", "seien", "seid", "sei"], "answer": 3, "explain": "The ihr imperative of *sein* is *Seid!* Don't confuse it with *seit* (since) (A2)"}, {"q": "Herr Weber, *___* Sie bitte vorsichtig! (sein)", "options": ["sind", "seien", "seid", "sei", "wären"], "answer": 1, "explain": "The Sie imperative of *sein* is irregular: *Seien Sie...!* (A2)"}, {"q": "*___* Sie bitte Platz! (nehmen)", "options": ["Nimm", "Nehmt", "Nimmst", "Nehme", "Nehmen"], "answer": 4, "explain": "The Sie form is the infinitive form + *Sie*: *Nehmen Sie Platz!* The e → i change only affects the du form (B1)"}, {"q": "Peter, *___* ruhig! (sein)", "options": ["seid", "bist", "sei", "seien", "sein"], "answer": 2, "explain": "The du imperative of *sein* is *Sei!* (A2)"}, {"q": "*___* doch mal einen Moment! (du, warten)", "options": ["Warte", "Wartst", "Wartest", "Wartet du", "Warten"], "answer": 0, "explain": "Stems ending in *-t* keep an *-e* so the word is pronounceable: *Warte!* (B1)"}, {"q": "Ihr habt Hunger? Dann *___* doch! (essen)", "options": ["isst", "iss", "essen", "esst", "esse"], "answer": 3, "explain": "The ihr imperative is the ihr-form without *ihr*: *ihr esst* → *Esst!* (A2)"}, {"q": "*___* mir bitte! Ich schaffe das nicht allein. (du, helfen)", "options": ["Helf", "Hilf", "Helfe", "Hilfst", "Hilft"], "answer": 1, "explain": "*du hilfst* → *Hilf!* e → i verbs keep the vowel change in the du imperative (B1)"}, {"q": "*___* wir! Der Zug fährt gleich. (gehen)", "options": ["Geht", "Geh", "Gehe", "Gingen", "Gehen"], "answer": 4, "explain": "The wir imperative (\"let's\") is the wir-form with the verb first: *Gehen wir!*, like Ukrainian *ходімо!* (B1)"}, {"q": "*___* deinen Schlüssel nicht! (du, vergessen)", "options": ["Vergess", "Vergesse", "Vergiss", "Vergisst", "Vergesst du"], "answer": 2, "explain": "*du vergisst* → *Vergiss!* (B1)"}, {"q": "Ruf mich morgen *___*!", "options": ["an", "ab", "zu", "mit", "um"], "answer": 0, "explain": "Separable verbs split in the imperative too: *anrufen* → *Ruf ... an!* (A2)"}, {"q": "Which sounds friendliest to a friend? (come along)", "options": ["Mitkommen!", "Du kommst mit!", "Kommst mit!", "Komm doch mit!", "Komm du mit!"], "answer": 3, "explain": "*doch* turns an order into a friendly invitation: *Komm doch mit!* = \"Why don't you come along!\" (B1)"}, {"q": "Komm *___* her, ich zeig dir was! (casual \"just\")", "options": ["schon", "mal", "noch", "denn", "ja"], "answer": 1, "explain": "*mal* softens a request and makes it casual: *Komm mal her!* (B1)"}, {"q": "Most polite way to ask a stranger for help:", "options": ["Helfen Sie mir!", "Hilf mir bitte!", "Sie helfen mir.", "Helfen mir bitte!", "Könnten Sie mir bitte helfen?"], "answer": 4, "explain": "A Konjunktiv II question (*Könnten Sie...?*) sounds much softer than any imperative (B1)"}, {"q": "*___* Sie bitte das Formular aus! (ausfüllen)", "options": ["Füll", "Füllt", "Füllen", "Füllst", "Fülle"], "answer": 2, "explain": "Sie imperative = infinitive form + *Sie*, prefix at the end: *Füllen Sie ... aus!* (A2)"}, {"q": "*___* lauter, ich höre dich nicht! (du, sprechen)", "options": ["Sprich", "Sprech", "Spreche", "Sprichst", "Sprecht"], "answer": 0, "explain": "*du sprichst* → *Sprich!* (B1)"}, {"q": "Which sentence is correct?", "options": ["Nehm das!", "Nehme das!", "Nimmst das!", "Nimm das!", "Nimmt das!"], "answer": 3, "explain": "*nehmen* → *du nimmst* → *Nimm!* Learners often say *Nehm!*, but the vowel must change (B1)"}, {"q": "A sign in a train: *Bitte nicht *___*.*", "options": ["raucht", "rauchen", "rauch", "raucht ihr", "geraucht"], "answer": 1, "explain": "Signs and instructions often use the bare infinitive at the end: *Bitte nicht rauchen.* (B1)"}, {"q": "*___* gut, bis morgen! (du, schlafen)", "options": ["Schläf", "Schläfst", "Schlaft du", "Schläfe", "Schlaf"], "answer": 4, "explain": "No umlaut in the imperative: *du schläfst* → *Schlaf!* (B1)"}, {"q": "*___* euch die Hände! (waschen, ihr)", "options": ["Wäscht", "Wasch", "Wascht", "Waschen", "Wäsche"], "answer": 2, "explain": "ihr-form without *ihr*: *ihr wascht* → *Wascht euch die Hände!* The reflexive pronoun stays (B1)"}, {"q": "Which is NOT a polite request?", "options": ["Geben Sie mir das!", "Würden Sie mir das geben?", "Könnten Sie mir das geben?", "Geben Sie mir das bitte.", "Wären Sie so nett, mir das zu geben?"], "answer": 0, "explain": "A bare Sie imperative without *bitte* sounds like a command; the others are softened with *bitte* or Konjunktiv II (B1)"}, {"q": "*___* Sie mich bitte morgen an! (anrufen)", "options": ["Ruf", "Ruft", "Rufe", "Rufen", "Anrufen"], "answer": 3, "explain": "Sie imperative: *Rufen Sie mich an!* The prefix *an* goes to the end (A2)"}], "title": "The imperative quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

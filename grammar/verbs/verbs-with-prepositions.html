@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Verbs with prepositions · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Verbs + prepositions</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Verbs with prepositions</h1><p class="sub">The 30 most useful verb + preposition pairs with their case, plus the da- and wo- words that replace them.</p></header>
+<article class="prose card">
+<p>Many German verbs come with a fixed preposition: <em>warten <strong>auf</strong></em>, <em>denken <strong>an</strong></em>, <em>sich interessieren <strong>für</strong></em>. The preposition often differs from English (<em>wait <strong>for</strong></em> but <em>warten <strong>auf</strong></em>) and it fixes the case of the noun after it. These pairs are not logical, you simply learn them. This page gives you the 30 you will use most and shows how to ask and answer with <em>worauf?</em> and <em>darauf</em>.</p>
+<h2>A2 core</h2>
+<h3>The top 30</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Preposition + case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>warten</td>
+<td>auf + Akk</td>
+<td>Ich warte auf den Bus.</td>
+</tr>
+<tr>
+<td>denken</td>
+<td>an + Akk</td>
+<td>Ich denke oft an dich.</td>
+</tr>
+<tr>
+<td>sich freuen</td>
+<td>auf + Akk (future)</td>
+<td>Ich freue mich auf den Urlaub.</td>
+</tr>
+<tr>
+<td>sich freuen</td>
+<td>über + Akk (now/past)</td>
+<td>Ich freue mich über das Geschenk.</td>
+</tr>
+<tr>
+<td>sich erinnern</td>
+<td>an + Akk</td>
+<td>Erinnerst du dich an ihn?</td>
+</tr>
+<tr>
+<td>sich interessieren</td>
+<td>für + Akk</td>
+<td>Sie interessiert sich für Kunst.</td>
+</tr>
+<tr>
+<td>sprechen</td>
+<td>über + Akk</td>
+<td>Wir sprechen über das Wetter.</td>
+</tr>
+<tr>
+<td>sprechen</td>
+<td>mit + Dat</td>
+<td>Ich spreche mit meinem Chef.</td>
+</tr>
+<tr>
+<td>fragen</td>
+<td>nach + Dat</td>
+<td>Er fragt nach dem Weg.</td>
+</tr>
+<tr>
+<td>antworten</td>
+<td>auf + Akk</td>
+<td>Bitte antworte auf meine Frage.</td>
+</tr>
+<tr>
+<td>sich kümmern</td>
+<td>um + Akk</td>
+<td>Ich kümmere mich um die Kinder.</td>
+</tr>
+<tr>
+<td>Angst haben</td>
+<td>vor + Dat</td>
+<td>Sie hat Angst vor Hunden.</td>
+</tr>
+<tr>
+<td>träumen</td>
+<td>von + Dat</td>
+<td>Ich träume von einem Haus am Meer.</td>
+</tr>
+<tr>
+<td>teilnehmen</td>
+<td>an + Dat</td>
+<td>Wir nehmen an dem Kurs teil.</td>
+</tr>
+<tr>
+<td>glauben</td>
+<td>an + Akk</td>
+<td>Glaubst du an Gott?</td>
+</tr>
+<tr>
+<td>sich ärgern</td>
+<td>über + Akk</td>
+<td>Ich ärgere mich über den Lärm.</td>
+</tr>
+<tr>
+<td>sich gewöhnen</td>
+<td>an + Akk</td>
+<td>Ich gewöhne mich an die Arbeit.</td>
+</tr>
+<tr>
+<td>bitten</td>
+<td>um + Akk</td>
+<td>Darf ich Sie um Hilfe bitten?</td>
+</tr>
+<tr>
+<td>sich bedanken</td>
+<td>bei + Dat / für + Akk</td>
+<td>Ich bedanke mich bei dir für die Hilfe.</td>
+</tr>
+<tr>
+<td>sich entschuldigen</td>
+<td>bei + Dat / für + Akk</td>
+<td>Er entschuldigt sich bei ihr für den Fehler.</td>
+</tr>
+<tr>
+<td>helfen</td>
+<td>bei + Dat</td>
+<td>Hilfst du mir bei den Hausaufgaben?</td>
+</tr>
+<tr>
+<td>anfangen</td>
+<td>mit + Dat</td>
+<td>Wir fangen mit der Übung an.</td>
+</tr>
+<tr>
+<td>aufhören</td>
+<td>mit + Dat</td>
+<td>Er hört mit dem Rauchen auf.</td>
+</tr>
+<tr>
+<td>sich bewerben</td>
+<td>um + Akk</td>
+<td>Ich bewerbe mich um die Stelle.</td>
+</tr>
+<tr>
+<td>abhängen</td>
+<td>von + Dat</td>
+<td>Das hängt vom Wetter ab.</td>
+</tr>
+<tr>
+<td>sich beschweren</td>
+<td>über + Akk</td>
+<td>Sie beschwert sich über das Essen.</td>
+</tr>
+<tr>
+<td>sich verlassen</td>
+<td>auf + Akk</td>
+<td>Du kannst dich auf mich verlassen.</td>
+</tr>
+<tr>
+<td>sich vorbereiten</td>
+<td>auf + Akk</td>
+<td>Ich bereite mich auf die Prüfung vor.</td>
+</tr>
+<tr>
+<td>einladen</td>
+<td>zu + Dat</td>
+<td>Ich lade dich zu meiner Party ein.</td>
+</tr>
+<tr>
+<td>erzählen</td>
+<td>von + Dat</td>
+<td>Erzähl mir von deiner Reise!</td>
+</tr>
+</tbody>
+</table></div>
+<p>The case is decided by the preposition: <em>mit, von, zu, bei, nach</em> are always dative, <em>für, um</em> always accusative. With the two-way prepositions (<em>an, auf, über, vor</em>) the verb decides, and you just learn it with the verb.</p>
+<aside class="callout hack"><p class="callout-title">auf and über with a verb = accusative</p><p>In fixed verb pairs, <em>auf</em> and <em>über</em> are almost always followed by the accusative (<em>warten auf den, sprechen über das</em>). <em>vor</em> is dative (<em>Angst vor dem Hund</em>). <em>an</em> is usually accusative, except a few dative ones like <em>teilnehmen an</em> and <em>sterben an</em>.</p></aside>
+<aside class="callout trap"><p class="callout-title">Don&#x27;t translate the English preposition</p><ul>
+<li><em>warten <strong>auf</strong></em>, not <em>warten für</em> (wait for).</li>
+<li><em>Angst haben <strong>vor</strong></em>, not <em>Angst von</em> (afraid of).</li>
+<li><em>denken <strong>an</strong></em>, not <em>denken über</em> in the sense of "think of someone".</li>
+<li><em>fragen <strong>nach</strong> dem Weg</em>, not <em>fragen für</em>.</li>
+<li><em>sich interessieren <strong>für</strong></em>, not <em>interessiert in</em>.</li>
+</ul></aside>
+<h2>B1</h2>
+<h3>da-words and wo-words</h3>
+<p>When you replace a <strong>thing</strong> with a pronoun, German glues <em>da-</em> to the preposition. To ask about a thing, it uses <em>wo-</em>. If the preposition starts with a vowel, an <em>-r-</em> comes in between.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Answer (da-)</th>
+<th>Question (wo-)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auf</td>
+<td>darauf</td>
+<td>worauf</td>
+</tr>
+<tr>
+<td>an</td>
+<td>daran</td>
+<td>woran</td>
+</tr>
+<tr>
+<td>über</td>
+<td>darüber</td>
+<td>worüber</td>
+</tr>
+<tr>
+<td>um</td>
+<td>darum</td>
+<td>worum</td>
+</tr>
+<tr>
+<td>für</td>
+<td>dafür</td>
+<td>wofür</td>
+</tr>
+<tr>
+<td>mit</td>
+<td>damit</td>
+<td>womit</td>
+</tr>
+<tr>
+<td>von</td>
+<td>davon</td>
+<td>wovon</td>
+</tr>
+<tr>
+<td>nach</td>
+<td>danach</td>
+<td>wonach</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Worauf</strong> wartest du? – Auf den Bus. – Ich warte schon lange <strong>darauf</strong>.</li>
+<li><strong>Woran</strong> denkst du? – An die Prüfung. – Denk nicht so viel <strong>daran</strong>!</li>
+<li><strong>Wovon</strong> träumst du? – Von einer Weltreise.</li>
+</ul>
+<p>For <strong>people</strong>, keep the preposition and use a pronoun: <em>Auf <strong>wen</strong> wartest du? – Auf meinen Bruder. Ich warte auf <strong>ihn</strong>.</em> (not <em>darauf</em>).</p>
+<aside class="callout hack"><p class="callout-title">Thing → da/wo, person → preposition + pronoun</p><p>Ask yourself "is it alive?" A person (or a pet) keeps the normal preposition: <em>an ihn, mit ihr, auf wen</em>. Everything else gets <em>da-</em> or <em>wo-</em>: <em>daran, damit, worauf</em>.</p></aside>
+<h3>The da-word that announces a clause</h3>
+<p>A <em>da</em>-word often points forward to a <em>dass</em>-clause or a <em>zu</em>-infinitive:</p>
+<ul>
+<li>Ich freue mich <strong>darauf</strong>, dich zu sehen. – <em>I'm looking forward to seeing you.</em></li>
+<li>Er denkt nicht <strong>daran</strong>, dass wir morgen Besuch haben. – <em>He doesn't think about the fact that we have guests tomorrow.</em></li>
+</ul>
+<h3>sich freuen auf vs über</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Time</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sich freuen <strong>auf</strong></td>
+<td>something still to come</td>
+<td>Ich freue mich <strong>auf</strong> deinen Besuch. (next week)</td>
+</tr>
+<tr>
+<td>sich freuen <strong>über</strong></td>
+<td>something that is here or happened</td>
+<td>Ich freue mich <strong>über</strong> deinen Besuch. (you are here now)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Think of <em>auf</em> as looking ahead, <em>über</em> as looking at something in your hands.</p>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian sometimes matches</p><p><em>чекати <strong>на</strong> автобус</em> is exactly <em>warten <strong>auf</strong> den Bus</em>: same preposition idea and both with the accusative. <em>залежати <strong>від</strong></em> = <em>abhängen <strong>von</strong></em>. But <em>думати <strong>про</strong></em> is <em>denken <strong>an</strong></em>, and <em>боятися</em> (+ genitive, no preposition) is <em>Angst haben <strong>vor</strong> + Dat</em>.</p></aside>
+<aside class="callout fact"><p class="callout-title">English still has da-words</p><p><em>darauf, damit, wofür</em> follow the same old pattern as English <em>thereupon, therewith, wherefore, whereby</em>. In English these survive mostly in legal texts; in German they are everyday words. In northern colloquial German the two parts are often split: <em>Da weiß ich nichts von</em> instead of <em>Davon weiß ich nichts</em>.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: prepositional objects with a whole clause</p><p>At B2 you will meet <em>da</em>-words that are optional or even required before clauses: <em>Es kommt <strong>darauf</strong> an, ob ...</em> (it depends on whether ...), <em>Ich bestehe <strong>darauf</strong>, dass ...</em> (I insist that ...).</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../docs/prepositions.html">Prepositions reference</a></li>
+<li><a href="../../grammar/verbs/reflexive-verbs.html">Reflexive verbs</a></li>
+<li><a href="../../grammar/prepositions/two-way.html">Two-way prepositions</a></li>
+<li><a href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="reflexive-verbs.html">← Reflexive verbs</a><a class="btn" href="dative-verbs.html">Dative verbs →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich warte schon zehn Minuten *___* den Bus.", "options": ["für", "an", "nach", "auf", "zu"], "answer": 3, "explain": "*warten auf + Akk*; English 'for' leads to the wrong *für*. Ukrainian *чекати на* has the same idea (A2)."}, {"q": "Ich denke oft *___* meine Oma.", "options": ["über", "von", "an", "auf", "um"], "answer": 2, "explain": "*denken an + Akk* = think of someone, unlike Ukrainian *думати про* (A2)."}, {"q": "Sie interessiert sich *___* Politik.", "options": ["für", "in", "an", "über", "mit"], "answer": 0, "explain": "*sich interessieren für + Akk*; never *in* (A2)."}, {"q": "Hast du Angst *___* Spinnen?", "options": ["von", "für", "über", "an", "vor"], "answer": 4, "explain": "*Angst haben vor + Dat* (A2)."}, {"q": "Ich spreche morgen *___* meinem Chef.", "options": ["zu", "über", "bei", "mit", "an"], "answer": 3, "explain": "*sprechen mit + Dat* = talk to/with a person (A2)."}, {"q": "Wir sprechen *___* den neuen Film.", "options": ["über", "von dem", "mit", "an", "zu"], "answer": 0, "explain": "*sprechen über + Akk* = talk about something (A2)."}, {"q": "Ein Tourist fragt mich *___* dem Weg zum Bahnhof.", "options": ["für", "über", "um", "nach", "auf"], "answer": 3, "explain": "*fragen nach + Dat* = ask about/for information (A2)."}, {"q": "Ich träume *___* einem eigenen Haus.", "options": ["über", "von", "auf", "an", "für"], "answer": 1, "explain": "*träumen von + Dat*, like English 'dream of' (A2)."}, {"q": "Kannst du dich *___* unseren Lehrer erinnern?", "options": ["auf", "über", "für", "von", "an"], "answer": 4, "explain": "*sich erinnern an + Akk* (A2)."}, {"q": "Er nimmt jede Woche *___* einem Deutschkurs teil.", "options": ["an", "bei", "in", "auf", "zu"], "answer": 0, "explain": "*teilnehmen an + Dat* is one of the few *an* verbs with the dative (B1)."}, {"q": "Ich warte auf *___* Antwort.", "options": ["deiner", "deinen", "dein", "deinem", "deine"], "answer": 4, "explain": "*auf* in verb pairs takes the accusative: feminine *deine* (B1)."}, {"q": "Er hat Angst vor *___* Prüfung.", "options": ["die", "der", "den", "das", "dem"], "answer": 1, "explain": "*Angst vor + Dat*: feminine dative is *der* (B1)."}, {"q": "Das hängt *___* Wetter ab.", "options": ["von", "auf", "vom", "am", "zum"], "answer": 2, "explain": "*abhängen von + Dat*; *von dem* contracts to *vom* (B1)."}, {"q": "*___* wartest du? – Auf den Zug.", "options": ["Worauf", "Wofür", "Auf wen", "Woran", "Was"], "answer": 0, "explain": "For a thing you ask with *wo(r) + preposition*: *worauf*. *Auf wen* is only for people (B1)."}, {"q": "*___* denkst du? – An meinen Freund.", "options": ["Woran", "An wen", "An was", "Wem", "Worüber"], "answer": 1, "explain": "For a person keep the preposition and use *wen*: *An wen denkst du?* (B1)."}, {"q": "Der Urlaub ist in zwei Wochen. Ich freue mich schon sehr *___*.", "options": ["darüber", "daran", "dafür", "darauf", "davon"], "answer": 3, "explain": "Looking forward = *sich freuen auf* → *darauf* (B1)."}, {"q": "Was für ein tolles Geschenk! Ich freue mich sehr *___*.", "options": ["darauf", "dafür", "darüber", "daran", "damit"], "answer": 2, "explain": "The present is already here, so *sich freuen über* → *darüber* (B1)."}, {"q": "Wartest du auf Anna? – Ja, ich warte auf *___*.", "options": ["darauf", "sie", "ihr", "ihn", "worauf"], "answer": 1, "explain": "For people use preposition + pronoun: *auf sie*, never *darauf* (B1)."}, {"q": "Hast du über das Angebot nachgedacht? – Ja, ich habe lange *___* nachgedacht.", "options": ["darüber", "über es", "daran", "worüber", "über ihn"], "answer": 0, "explain": "A thing becomes *da(r) + preposition*: *darüber*. *über es* is not used (B1)."}, {"q": "Ich bewerbe mich *___* eine Stelle bei Siemens.", "options": ["für", "an", "nach", "zu", "um"], "answer": 4, "explain": "*sich bewerben um + Akk* = apply for (B1)."}, {"q": "Er hört endlich *___* dem Rauchen auf.", "options": ["von", "mit", "bei", "zu", "an"], "answer": 1, "explain": "*aufhören mit + Dat* (B1)."}, {"q": "Ich bedanke mich *___* Ihnen für die Hilfe.", "options": ["zu", "an", "mit", "bei", "von"], "answer": 3, "explain": "*sich bedanken bei + person (Dat) + für + thing (Akk)* (B1)."}, {"q": "Darf ich Sie *___* einen Gefallen bitten?", "options": ["für", "nach", "um", "auf", "über"], "answer": 2, "explain": "*bitten um + Akk* = ask for something; *fragen nach* is for information (B1)."}, {"q": "Ich freue mich *___*, dich bald zu sehen.", "options": ["auf", "darauf", "worauf", "dafür", "auf es"], "answer": 1, "explain": "Before a *zu*-infinitive or *dass*-clause the *da*-word announces it: *darauf, dich zu sehen* (B1)."}, {"q": "Sie beschwert sich *___* den Lärm der Nachbarn.", "options": ["von", "gegen", "an", "auf", "über"], "answer": 4, "explain": "*sich beschweren über + Akk* (B1)."}], "title": "Verbs with prepositions quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

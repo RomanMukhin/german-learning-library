@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Konjunktiv II · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Konjunktiv II</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Konjunktiv II</h1><p class="sub">The &quot;would&quot; mood: polite requests, wishes, advice and unreal if-clauses with würde, hätte, wäre and könnte.</p></header>
+<article class="prose card">
+<p>Konjunktiv II is the German "would" mood. You use it for anything that is not real: dreams, wishes, unreal conditions, and also for politeness, because a hypothetical sounds softer than a fact. At A2 you already need <em>Ich hätte gern...</em> and <em>Könnten Sie...?</em>; at B1 you build full <em>wenn</em>-sentences and talk about the past that did not happen.</p>
+<h2>A2 core</h2>
+<h3>würde + infinitive</h3>
+<p>For most verbs, Konjunktiv II is simply <strong>würde</strong> (conjugated) + <strong>infinitive at the end</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>würde</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>würde</td>
+<td>Ich würde gern reisen.</td>
+</tr>
+<tr>
+<td>du</td>
+<td>würdest</td>
+<td>Würdest du mir helfen?</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>würde</td>
+<td>Sie würde das nie sagen.</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>würden</td>
+<td>Wir würden lieber bleiben.</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>würdet</td>
+<td>Würdet ihr mitkommen?</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>würden</td>
+<td>Würden Sie bitte warten?</td>
+</tr>
+</tbody>
+</table></div>
+<h3>The five you must know as one word</h3>
+<p>These verbs are almost always used in their own Konjunktiv II form, not with <em>würde</em>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>ich / er</th>
+<th>du</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sein</td>
+<td><strong>wäre</strong></td>
+<td>wärst</td>
+<td>would be</td>
+</tr>
+<tr>
+<td>haben</td>
+<td><strong>hätte</strong></td>
+<td>hättest</td>
+<td>would have</td>
+</tr>
+<tr>
+<td>können</td>
+<td><strong>könnte</strong></td>
+<td>könntest</td>
+<td>could</td>
+</tr>
+<tr>
+<td>müssen</td>
+<td><strong>müsste</strong></td>
+<td>müsstest</td>
+<td>would have to</td>
+</tr>
+<tr>
+<td>sollen</td>
+<td><strong>sollte</strong></td>
+<td>solltest</td>
+<td>should</td>
+</tr>
+</tbody>
+</table></div>
+<p>Also common: <em>dürfte</em> (might), <em>wollte</em> (would want, same form as past), <em>möchte</em> (would like, originally the Konjunktiv II of <em>mögen</em>).</p>
+<h3>Politeness</h3>
+<ul>
+<li><em>Ich hätte gern einen Kaffee.</em> — <em>I'd like a coffee.</em></li>
+<li><em>Könnten Sie mir bitte helfen?</em> — <em>Could you help me, please?</em></li>
+<li><em>Wäre es möglich, früher zu kommen?</em> — <em>Would it be possible to come earlier?</em></li>
+<li><em>Würden Sie das bitte wiederholen?</em> — <em>Would you repeat that, please?</em></li>
+</ul>
+<h3>Wishes</h3>
+<ul>
+<li><em>Ich hätte gern mehr Zeit.</em> — <em>I'd like more time.</em></li>
+<li><em>Ich wäre jetzt gern am Strand.</em> — <em>I'd love to be on the beach now.</em></li>
+<li><em>Wenn ich doch nur mehr Geld hätte!</em> — <em>If only I had more money!</em> — <em>Якби ж у мене було більше грошей!</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">The umlaut is the signal</p><p><em>hatte</em> (had) → <strong>hätte</strong> (would have), <em>war</em> → <strong>wäre</strong>, <em>konnte</em> → <strong>könnte</strong>, <em>musste</em> → <strong>müsste</strong>. Take the simple past and add umlaut dots. Only <em>sollte</em> and <em>wollte</em> look the same as the past; context tells you which.</p></aside>
+<h2>B1</h2>
+<h3>Unreal if-clauses</h3>
+<p>The real/unreal split is the heart of Konjunktiv II:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Real (Indikativ)</th>
+<th>Unreal (Konjunktiv II)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Wenn ich Zeit habe, komme ich.</em> — If I have time, I'll come.</td>
+<td><em>Wenn ich Zeit hätte, würde ich kommen.</em> — If I had time, I would come.</td>
+</tr>
+<tr>
+<td><em>Wenn es nicht regnet, gehen wir raus.</em></td>
+<td><em>Wenn es nicht regnen würde, würden wir rausgehen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Both halves get Konjunktiv II. The <em>wenn</em>-clause sends its verb to the end; the main clause starts with the verb: <em>Wenn ich reich <strong>wäre</strong>, <strong>würde</strong> ich ein Haus kaufen.</em></p>
+<p><strong>Without wenn:</strong> you can drop <em>wenn</em> and put the verb first. This is common in writing and in fixed phrases:</p>
+<ul>
+<li><em>Hätte ich mehr Zeit, würde ich Spanisch lernen.</em> — <em>Had I more time, I would learn Spanish.</em></li>
+<li><em>Wäre das Wetter besser, könnten wir grillen.</em></li>
+</ul>
+<h3>Advice: Ratschläge</h3>
+<ul>
+<li><em>An deiner Stelle würde ich zum Arzt gehen.</em> — <em>In your place I would go to the doctor.</em></li>
+<li><em>Du solltest mehr schlafen.</em> — <em>You should sleep more.</em></li>
+<li><em>Ich würde das nicht machen.</em> — <em>I wouldn't do that.</em></li>
+<li><em>Es wäre besser, wenn du anrufst / anrufen würdest.</em> — <em>It would be better if you called.</em></li>
+</ul>
+<h3>als ob: "as if"</h3>
+<p><em>als ob</em> + Konjunktiv II, verb at the end:</p>
+<ul>
+<li><em>Er tut so, als ob er nichts wüsste.</em> — <em>He acts as if he knew nothing.</em></li>
+<li><em>Sie sieht aus, als ob sie krank wäre.</em> — <em>She looks as if she were ill.</em></li>
+</ul>
+<h3>Konjunktiv II of the past</h3>
+<p>For things that did not happen: <strong>hätte / wäre + Partizip II</strong>. The choice of <em>hätte</em> or <em>wäre</em> follows the Perfekt: if the Perfekt uses <em>haben</em>, take <em>hätte</em>; if <em>sein</em>, take <em>wäre</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Perfekt</th>
+<th>Konjunktiv II Vergangenheit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich habe es gemacht.</td>
+<td>Ich <strong>hätte</strong> es gemacht. — <em>I would have done it.</em></td>
+</tr>
+<tr>
+<td>Ich bin gegangen.</td>
+<td>Ich <strong>wäre</strong> gegangen. — <em>I would have gone.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Wenn ich das gewusst hätte, wäre ich früher gekommen.</em> — <em>If I had known that, I would have come earlier.</em></li>
+<li><em>Du hättest mich anrufen sollen!</em> — <em>You should have called me!</em> (with a modal: two infinitives at the end)</li>
+</ul>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian би vs German Konjunktiv II</p><p>Ukrainian has one tool for all of this: past-tense verb + <strong>би</strong> (<em>якби</em> in the if-clause): <em>Якби я мав час, я б прийшов.</em> German says <em>Wenn ich Zeit hätte, würde ich kommen.</em> Two differences:</p>
+<ul>
+<li>Ukrainian uses the same <em>би</em>-form for present and past (<em>я б прийшов</em> = I would come / would have come). German must choose: <em>würde kommen</em> (now) vs <strong>wäre gekommen</strong> (in the past).</li>
+<li>In Ukrainian <em>би</em> appears once in each half; in German <strong>both verbs</strong> change form.</li>
+</ul></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>würde</em> in both halves is fine in speech, but avoid it with <em>sein</em> and <em>haben</em>: ~~Wenn ich reich sein würde~~ sounds clumsy → <strong>Wenn ich reich wäre</strong>.</li>
+<li>Mixing tenses: ~~Wenn ich Zeit hätte, komme ich.~~ → <em>..., würde ich kommen / käme ich.</em></li>
+<li>Forgetting the umlaut: <em>Ich hatte gern einen Kaffee</em> means "I liked having a coffee". Say <strong>hätte</strong>.</li>
+<li>Past with <em>würde</em>: ~~Ich würde es gemacht haben~~ exists but sounds bookish → <strong>Ich hätte es gemacht.</strong></li>
+</ul></aside>
+<aside class="callout hack"><p class="callout-title">The *wenn* sandwich</p><p>Wenn + subject + ... + <strong>Konj. II verb</strong>, <strong>Konj. II verb</strong> + subject + ... Two verbs meet at the comma: <em>Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich kommen.</em> If two verbs are not touching the comma, check your word order.</p></aside>
+<aside class="callout fact"><p class="callout-title">möchte is a Konjunktiv in disguise</p><p>The everyday <em>ich möchte</em> ("I would like") is historically the Konjunktiv II of <em>mögen</em> (<em>ich mochte</em> → <em>ich möchte</em>), which is why it sounds polite. It is used so often that most learners treat it as a separate verb. A popular proverb plays with the mood too: <em>Wenn das Wörtchen "wenn" nicht wär, wär mein Vater Millionär</em> ("if the little word <em>if</em> didn't exist, my father would be a millionaire"), said to anyone who builds castles out of hypotheticals.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: the old one-word forms</p><p>Many strong verbs have their own Konjunktiv II, built from the Präteritum: <em>ginge, käme, wüsste, bliebe, gäbe, fände</em>. In speech only a few are common (<em>käme, wüsste, gäbe es, ließe</em>); others like <em>hülfe</em> or <em>stürbe</em> sound archaic. You will meet them in literature and newspapers.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/moods/index.html">Moods overview</a></li>
+<li><a href="../../grammar/moods/imperative.html">Imperative</a></li>
+<li><a href="../../grammar/moods/konjunktiv-1.html">Konjunktiv I</a></li>
+<li><a href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a href="../../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="imperative.html">← Imperative</a><a class="btn" href="konjunktiv-1.html">Konjunktiv I →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich *___* gern einen Kaffee, bitte.", "options": ["hatte", "habe gehabt", "hätte", "hätten", "haben"], "answer": 2, "explain": "*Ich hätte gern...* is the standard polite way to order. *hatte* without umlaut is simple past (A2)"}, {"q": "*___* Sie mir bitte helfen?", "options": ["Könnten", "Konnten", "Können Sie", "Könntest", "Kannst"], "answer": 0, "explain": "*Könnten Sie...?* is Konjunktiv II and sounds more polite than *Können Sie...?* (A2)"}, {"q": "Wenn ich reich *___*, würde ich um die Welt reisen.", "options": ["war", "bin", "würde", "wäre", "sei"], "answer": 3, "explain": "Unreal condition: Konjunktiv II of *sein* = *wäre*, like Ukrainian *якби я був* (A2)"}, {"q": "Ich *___* jetzt gern am Meer.", "options": ["war", "wäre", "wären", "würde", "hätte"], "answer": 1, "explain": "A wish about being somewhere: *Ich wäre gern...* (A2)"}, {"q": "*___* du mir das Salz geben?", "options": ["Würde", "Wurdest", "Würdet", "Würden", "Würdest"], "answer": 4, "explain": "*würde* + infinitive for a polite request; du-form = *würdest* (A2)"}, {"q": "Du *___* mehr schlafen. Du siehst müde aus.", "options": ["solle", "solltet", "solltest", "sollten", "sollte"], "answer": 2, "explain": "Advice: *Du solltest...* = you should. du-form of *sollte* (A2)"}, {"q": "Wenn ich Zeit *___*, würde ich mitkommen.", "options": ["hätte", "habe", "hatte", "hätten", "hättest"], "answer": 0, "explain": "Unreal *wenn*-clause: *hätte*. The indicative *habe* would mean a real possibility (A2)"}, {"q": "Es *___* schön, wenn du kommen könntest.", "options": ["ist", "war", "würde", "wäre", "sei"], "answer": 3, "explain": "*Es wäre schön* = it would be nice; Konjunktiv II because it is hypothetical (A2)"}, {"q": "Wir *___* gern ein Doppelzimmer.", "options": ["hatten", "hätten", "hätte", "haben gehabt", "hättet"], "answer": 1, "explain": "Polite wish in a hotel: *Wir hätten gern...*, wir-form *hätten* (A2)"}, {"q": "Ich *___* das nicht machen. Das ist zu gefährlich.", "options": ["wurde", "wären", "wäre", "wird", "würde"], "answer": 4, "explain": "*Ich würde das nicht machen* = I wouldn't do that. *wurde* without umlaut is past tense (A2)"}, {"q": "An deiner Stelle *___* ich zum Arzt gehen.", "options": ["würdest", "wurde", "würde", "wäre", "hätte"], "answer": 2, "explain": "Advice pattern: *An deiner Stelle würde ich...* (B1)"}, {"q": "Wenn ich du *___*, würde ich das Angebot annehmen.", "options": ["wäre", "bin", "würde", "war", "hätte"], "answer": 0, "explain": "*Wenn ich du wäre...* = if I were you. Konjunktiv II of *sein* (B1)"}, {"q": "Wenn es nicht so kalt *___*, könnten wir draußen essen.", "options": ["ist", "sei", "war", "wäre", "würde"], "answer": 3, "explain": "Both halves of an unreal condition take Konjunktiv II: *wäre ... könnten* (B1)"}, {"q": "Which sentence is a REAL condition?", "options": ["Wenn es regnen würde, bliebe ich zu Hause.", "Wenn es regnet, bleibe ich zu Hause.", "Wenn es regnete, würde ich zu Hause bleiben.", "Würde es regnen, bliebe ich zu Hause.", "Wenn es doch nur regnen würde!"], "answer": 1, "explain": "Indicative in both halves = a real possibility; all the others use Konjunktiv II (B1)"}, {"q": "*___* ich mehr Geld, würde ich ein Auto kaufen.", "options": ["Wenn hätte", "Habe", "Hatte", "Wenn ich hätte", "Hätte"], "answer": 4, "explain": "Without *wenn* the verb comes first: *Hätte ich mehr Geld, ...* (B1)"}, {"q": "Wenn ich doch nur mehr Zeit *___*!", "options": ["habe", "hatte", "hätte", "hättest", "hätten"], "answer": 2, "explain": "A wish with *Wenn ... doch nur* takes Konjunktiv II, verb at the end: *Wenn ich doch nur mehr Zeit hätte!* (B1)"}, {"q": "Er tut so, als ob er alles *___*.", "options": ["wüsste", "wüsstest", "wissen", "gewusst", "weißt"], "answer": 0, "explain": "*als ob* + Konjunktiv II: *als ob er alles wüsste* = as if he knew everything (B1)"}, {"q": "Sie sieht aus, als ob sie krank *___*.", "options": ["wärst", "wären", "sein", "wäre", "hätte"], "answer": 3, "explain": "*als ob* + Konjunktiv II, verb at the end: *als ob sie krank wäre* (B1)"}, {"q": "Wenn ich das gewusst hätte, *___* ich dir geholfen.", "options": ["wäre", "hätte", "würde", "habe", "hatte"], "answer": 1, "explain": "Past Konjunktiv II: *helfen* takes *haben* in the Perfekt, so *hätte geholfen* (B1)"}, {"q": "Wenn der Bus pünktlich gewesen wäre, *___* ich nicht zu spät gekommen.", "options": ["hätte", "würde", "bin", "war", "wäre"], "answer": 4, "explain": "*kommen* takes *sein* in the Perfekt, so past Konjunktiv II is *wäre gekommen* (B1)"}, {"q": "Ohne den Streik *___* ich gestern nach Berlin gefahren.", "options": ["hätte", "würde", "wäre", "wärst", "hatte"], "answer": 2, "explain": "*fahren* (movement) takes *sein*, so the unreal past is *wäre gefahren*: I would have gone, but I didn't (B1)"}, {"q": "Du *___* mich anrufen sollen!", "options": ["hättest", "wärst", "würdest", "hattest", "solltest"], "answer": 0, "explain": "*You should have called*: *hättest* + infinitive + *sollen* (double infinitive) (B1)"}, {"q": "Wir *___* das früher machen müssen.", "options": ["wären", "hättet", "hatten", "hätten", "müssten"], "answer": 3, "explain": "*We would have had to*: *hätten ... machen müssen*; modals take *haben* (B1)"}, {"q": "How do you say *Якби я знав, я б прийшов* (about the past)?", "options": ["Wenn ich es wüsste, käme ich.", "Wenn ich es gewusst hätte, wäre ich gekommen.", "Wenn ich es wusste, bin ich gekommen.", "Wenn ich es weiß, komme ich.", "Wenn ich es gewusst habe, wäre ich gekommen."], "answer": 1, "explain": "Ukrainian *би* covers present and past; German must choose. For the past: *hätte gewusst ... wäre gekommen* (B1)"}, {"q": "Ich *___* morgen kommen, aber ich bin nicht sicher. (= could)", "options": ["konnte", "kann gekonnt", "könne", "könnten", "könnte"], "answer": 4, "explain": "*könnte* = could (possibility). *konnte* without umlaut means \"was able to\" (B1)"}], "title": "Konjunktiv II quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

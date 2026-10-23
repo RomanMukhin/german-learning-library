@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prepositions of time · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Time</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Prepositions of time</h1><p class="sub">am Montag, um acht, im Mai, seit, vor, in, bis and während, plus years without a preposition.</p></header>
+<article class="prose card">
+<p>German uses a different small word for each size of time: a clock time, a day, a month, a period that started in the past. English says "at, on, in"; German says <em>um, am, im</em>, and adds <em>seit</em>, <em>vor</em> and <em>in</em> where English needs whole constructions ("for three years", "three years ago", "in two days"). You need these every time you make an appointment or tell a story.</p>
+<h2>A2 core</h2>
+<h3>um, am, im: the size rule</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Used for</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>um</strong></td>
+<td>clock times</td>
+<td><em>um 8 Uhr, um halb drei, um Mitternacht</em></td>
+</tr>
+<tr>
+<td><strong>am</strong> (an dem)</td>
+<td>days, dates, parts of the day</td>
+<td><em>am Montag, am Wochenende, am 3. Mai, am Abend, am Morgen</em></td>
+</tr>
+<tr>
+<td><strong>im</strong> (in dem)</td>
+<td>months, seasons, longer periods</td>
+<td><em>im Mai, im Winter, im Urlaub, im 20. Jahrhundert</em></td>
+</tr>
+<tr>
+<td><strong>in der</strong></td>
+<td>the night, a week</td>
+<td><em>in der Nacht, in der Woche</em></td>
+</tr>
+<tr>
+<td>— (none)</td>
+<td>years</td>
+<td><em>2026 ziehe ich um.</em> or <em>im Jahr 2026</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Exceptions: <em>in der Nacht</em> (not <em>am Nacht</em>), and Easter and Christmas: <em>zu Ostern, zu Weihnachten</em> in the north, <em>an Ostern, an Weihnachten</em> in the south.</p>
+<h3>Past, present, future: vor, seit, in</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Meaning</th>
+<th>Tense</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>vor</strong> + Dat</td>
+<td>ago</td>
+<td>past</td>
+<td><em>Ich bin <strong>vor</strong> drei Jahren nach Wien gezogen.</em></td>
+</tr>
+<tr>
+<td><strong>seit</strong> + Dat</td>
+<td>for / since (still true)</td>
+<td><strong>present</strong></td>
+<td><em>Ich wohne <strong>seit</strong> drei Jahren in Wien.</em></td>
+</tr>
+<tr>
+<td><strong>in</strong> + Dat</td>
+<td>in (from now)</td>
+<td>present / future</td>
+<td><em>Der Zug kommt <strong>in</strong> zehn Minuten.</em></td>
+</tr>
+<tr>
+<td><strong>ab</strong> + Dat</td>
+<td>from ... on</td>
+<td>present / future</td>
+<td><em><strong>Ab</strong> Montag arbeite ich wieder.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Examples:
+- <em>Wir treffen uns <strong>am</strong> Freitag <strong>um</strong> sieben.</em> — <em>We are meeting on Friday at seven.</em>
+- <em><strong>Im</strong> Sommer fahren wir ans Meer.</em> — <em>In summer we go to the seaside.</em>
+- <em>Ich lerne <strong>seit</strong> zwei Jahren Deutsch.</em> — <em>I have been learning German for two years.</em> (<em>Я вивчаю німецьку вже два роки.</em>)
+- <em>Ich war <strong>vor</strong> einer Woche beim Arzt.</em> — <em>I was at the doctor's a week ago.</em>
+- <em>Mein Bruder wurde 1998 geboren.</em> — <em>My brother was born in 1998.</em>
+- <em>Das Geschäft ist <strong>von</strong> 9 <strong>bis</strong> 18 Uhr geöffnet.</em> — <em>The shop is open from 9 to 6.</em></p>
+<aside class="callout hack"><p class="callout-title">Big, medium, small: im, am, um</p><p>Go from the biggest to the smallest unit: <strong>im</strong> (months, seasons) → <strong>am</strong> (days) → <strong>um</strong> (minutes). The vowels even go in a chain: <em>i, a, u</em>. Days are the "a" in the middle: <strong>a</strong>m <strong>M</strong>ontag, <strong>a</strong>m <strong>A</strong>bend, <strong>a</strong>m <strong>3.</strong> <strong>M</strong>ai.</p></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>~~In~~ 2019</em> → just <em>2019</em>, or <em>im Jahr 2019</em>. "In 2019" is an anglicism.</li>
+<li><em>Ich ~~habe~~ seit drei Jahren hier ~~gewohnt~~</em> → <em>Ich wohne seit drei Jahren hier.</em> With <em>seit</em>, German uses the present tense, like Ukrainian.</li>
+<li><em>~~Für~~ drei Jahren wohne ich hier</em> → <em>Seit drei Jahren...</em> Use <em>für</em> only for a planned period: <em>Ich fahre <strong>für</strong> zwei Wochen nach Spanien.</em></li>
+<li><em>~~Am~~ Nacht</em> → <em>in der Nacht</em>.</li>
+</ul></aside>
+<h2>B1</h2>
+<h3>More time prepositions</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Case</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bis</strong></td>
+<td>Akk (usually no article)</td>
+<td>until</td>
+<td><em>Ich bleibe <strong>bis</strong> Freitag.</em> / <em><strong>bis zum</strong> Abend</em></td>
+</tr>
+<tr>
+<td><strong>von ... bis</strong></td>
+<td>Dat ...</td>
+<td>from ... to</td>
+<td><em>von Montag bis Mittwoch</em></td>
+</tr>
+<tr>
+<td><strong>von ... an</strong></td>
+<td>Dat</td>
+<td>from ... on</td>
+<td><em>von Anfang an, von heute an</em></td>
+</tr>
+<tr>
+<td><strong>nach</strong></td>
+<td>Dat</td>
+<td>after</td>
+<td><em>nach dem Unterricht, nach der Arbeit</em></td>
+</tr>
+<tr>
+<td><strong>vor</strong></td>
+<td>Dat</td>
+<td>before</td>
+<td><em>vor dem Essen, vor der Prüfung</em></td>
+</tr>
+<tr>
+<td><strong>zwischen</strong></td>
+<td>Dat</td>
+<td>between</td>
+<td><em>zwischen drei und vier Uhr</em></td>
+</tr>
+<tr>
+<td><strong>während</strong></td>
+<td>Gen (spoken: Dat)</td>
+<td>during</td>
+<td><em>während des Essens, während der Ferien</em></td>
+</tr>
+<tr>
+<td><strong>gegen</strong></td>
+<td>Akk</td>
+<td>around (approximately)</td>
+<td><em>gegen acht Uhr</em></td>
+</tr>
+<tr>
+<td><strong>innerhalb</strong></td>
+<td>Gen</td>
+<td>within</td>
+<td><em>innerhalb einer Woche</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Typical sentences</h3>
+<ul>
+<li><em>Ich arbeite <strong>von</strong> Montag <strong>bis</strong> Freitag, <strong>am</strong> Wochenende habe ich frei.</em></li>
+<li><em><strong>Nach dem</strong> Unterricht gehen wir Kaffee trinken.</em></li>
+<li><em><strong>Während der</strong> Ferien arbeite ich in einem Café.</em></li>
+<li><em>Er kommt <strong>zwischen</strong> drei <strong>und</strong> vier.</em></li>
+<li><em>Bitte antworten Sie <strong>innerhalb einer</strong> Woche.</em></li>
+</ul>
+<p>Note: <em>vor</em> has two meanings that look the same: <em>vor dem Essen</em> (before the meal) and <em>vor einem Jahr</em> (a year ago). Both take the dative.</p>
+<aside class="callout hack"><p class="callout-title">seit = &quot;Ukrainian вже&quot;</p><p>If in Ukrainian you would say <em>вже</em> with the present tense (<em>я тут вже три роки</em>), German uses <em>seit</em> + present: <em>Ich bin seit drei Jahren hier.</em> If the action is finished and you would say <em>тому</em> (<em>три роки тому</em>), use <em>vor</em>: <em>vor drei Jahren</em>.</p></aside>
+<aside class="callout fact"><p class="callout-title">&quot;Zwischen den Jahren&quot;</p><p>Germans call the quiet days between Christmas and New Year <em>zwischen den Jahren</em> ("between the years"). The phrase goes back to old calendar conflicts: for centuries the year was started on different dates (25 December, 1 January, 6 January) in different places, so these days seemed to belong to neither year. Many offices close then, and an email reply often says <em>Ich bin zwischen den Jahren nicht erreichbar.</em></p></aside>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian is closer to German here than English is: <em>у понеділок</em> has no "on", and German <em>am Montag</em> also feels like "in/at". Ukrainian <em>о восьмій</em> = <em>um acht</em>, <em>у травні</em> = <em>im Mai</em>, <em>через десять хвилин</em> = <em>in zehn Minuten</em>, <em>три роки тому</em> = <em>vor drei Jahren</em>.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: formal time words</p><p>In formal texts you will see <em>binnen</em> (within), <em>seitens</em> (on the part of, not time), <em>zeit seines Lebens</em> (all his life) and <em>anlässlich</em> (on the occasion of). For now, <em>innerhalb</em> and <em>während</em> are enough.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/prepositions/index.html">Prepositions hub</a></li>
+<li><a href="../../everyday/clock-and-time.html">Clock and time</a></li>
+<li><a href="../../docs/numbers-dates.html">Numbers and dates</a></li>
+<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a href="../../grammar/cases/dative.html">Dative case</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="two-way.html">← Two-way</a><a class="btn" href="place-and-direction.html">Place and direction →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Wir treffen uns *___* Montag.", "options": ["im", "um", "am", "an", "in"], "answer": 2, "explain": "Days take *am* (*an dem*): *am Montag*. Ukrainian *у понеділок* has no article either, but German needs the contraction (A2)."}, {"q": "Der Film beginnt *___* 20 Uhr.", "options": ["um", "am", "im", "in", "an"], "answer": 0, "explain": "Clock times always take *um*, like Ukrainian *о восьмій* (A2)."}, {"q": "*___* Juli fahren wir nach Italien.", "options": ["Am", "Um", "In", "Im", "An"], "answer": 3, "explain": "Months and seasons take *im* (*in dem*) (A2)."}, {"q": "Ich wohne *___* drei Jahren in Wien.", "options": ["vor", "seit", "für", "ab", "nach"], "answer": 1, "explain": "Started in the past and still true: *seit* + present tense, like Ukrainian *вже три роки* (B1)."}, {"q": "Ich bin *___* drei Jahren nach Wien gezogen.", "options": ["seit", "in", "ab", "für", "vor"], "answer": 4, "explain": "A finished action in the past = *vor* + dative (ago), Ukrainian *три роки тому* (B1)."}, {"q": "Der Zug kommt *___* zehn Minuten.", "options": ["vor", "in", "seit", "ab", "um"], "answer": 1, "explain": "*in* + dative = from now into the future, Ukrainian *через десять хвилин* (B1)."}, {"q": "Mein Bruder wurde *___* geboren.", "options": ["in 1998", "im 1998", "am 1998", "1998", "an 1998"], "answer": 3, "explain": "Years need no preposition in German: *1998* or *im Jahr 1998*. *in 1998* is an anglicism (A2)."}, {"q": "*___* Winter ist es hier sehr kalt.", "options": ["Im", "Am", "In", "Um", "Zum"], "answer": 0, "explain": "Seasons take *im*: *im Winter, im Sommer* (A2)."}, {"q": "*___* nächster Woche habe ich Urlaub.", "options": ["Seit", "Am", "Um", "Im", "Ab"], "answer": 4, "explain": "*ab* = from ... on, for a start point in the future. *seit* is only for things that started in the past (B1)."}, {"q": "Das Geschäft ist von 9 *___* 18 Uhr geöffnet.", "options": ["zu", "nach", "bis", "an", "um"], "answer": 2, "explain": "The fixed pair is *von ... bis*: from ... to (A2)."}, {"q": "*___* des Essens hat er die ganze Zeit telefoniert.", "options": ["Seit", "Bei", "Während", "Zwischen", "Im"], "answer": 2, "explain": "*während* + genitive = during: *während des Essens* (B1)."}, {"q": "Was machst du *___* Wochenende?", "options": ["am", "im", "um", "an", "in"], "answer": 0, "explain": "The weekend works like a day: *am Wochenende* (A2)."}, {"q": "Nach *___* Unterricht gehen wir Kaffee trinken.", "options": ["den", "der", "des", "dem", "das"], "answer": 3, "explain": "*nach* always takes the dative: *der Unterricht* becomes *dem Unterricht* (B1)."}, {"q": "Wir besuchen euch *___* Weihnachten.", "options": ["um", "zu", "im", "seit", "bei"], "answer": 1, "explain": "Holidays take *zu* in the north (*zu Weihnachten, zu Ostern*) and *an* in the south (*an Weihnachten*) (B1)."}, {"q": "Ich habe *___* Montag bis Mittwoch frei.", "options": ["an", "seit", "um", "im", "von"], "answer": 4, "explain": "A period with start and end: *von Montag bis Mittwoch* (A2)."}, {"q": "*___* vier Wochen lerne ich Deutsch.", "options": ["Vor", "Seit", "Ab", "Nach", "Um"], "answer": 1, "explain": "Present tense + a period that is still going on = *seit* (B1)."}, {"q": "Er kommt *___* drei und vier Uhr.", "options": ["von", "bis", "um", "zwischen", "ab"], "answer": 3, "explain": "*und* between the two times shows *zwischen ... und* (between). *von* would need *bis* (B1)."}, {"q": "*___* Abend gehen wir essen.", "options": ["Am", "Im", "Um", "An", "Zum"], "answer": 0, "explain": "Parts of the day take *am*: *am Abend, am Morgen* (but *in der Nacht*) (A2)."}, {"q": "Ich bleibe *___* Freitag in Hamburg, dann fahre ich nach Hause.", "options": ["ab", "seit", "um", "im", "bis"], "answer": 4, "explain": "*dann fahre ich nach Hause* shows the stay ends on Friday: *bis* = until (B1)."}, {"q": "*___* 1. Mai ist in Deutschland ein Feiertag.", "options": ["Im", "Um", "Am", "An", "Zum"], "answer": 2, "explain": "Dates are days, so they take *am*: *am ersten Mai* (A2)."}, {"q": "Ich fahre *___* zwei Wochen nach Spanien.", "options": ["seit", "vor", "für", "ab", "um"], "answer": 2, "explain": "A planned period in the future: *für zwei Wochen*. *seit* is only for something still going on from the past (B1)."}, {"q": "*___* Nacht hat es stark geregnet.", "options": ["In der", "Am", "Im", "Um die", "An der"], "answer": 0, "explain": "*Nacht* is the exception to the *am* rule: *in der Nacht* (B1)."}, {"q": "*___* der Ferien arbeite ich in einem Café.", "options": ["Seit", "Zwischen", "Um", "Während", "Bis"], "answer": 3, "explain": "*während* + genitive plural *der Ferien* = during the holidays (B1)."}], "title": "Prepositions of time quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

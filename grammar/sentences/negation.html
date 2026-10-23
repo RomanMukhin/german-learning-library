@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Negation · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Sentences</a><span class="sep">/</span><span class="cur">Negation</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Negation</h1><p class="sub">nicht vs kein, where nicht goes, doch, nicht ... sondern, noch nicht / nicht mehr, and why German has only one negative.</p></header>
+<article class="prose card">
+<p>German has two main negative words: <strong>kein</strong> for nouns and <strong>nicht</strong> for (almost) everything else. The tricky parts are where <em>nicht</em> stands in the sentence, how to answer "yes" to a negative question (<em>doch!</em>), and the rule that a German sentence has only <strong>one</strong> negative, unlike Ukrainian.</p>
+<h2>A2 core</h2>
+<h3>kein or nicht?</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>When</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>kein</strong></td>
+<td>noun with <em>ein</em> or with no article</td>
+<td>Ich habe <strong>kein</strong> Auto. Ich trinke <strong>keinen</strong> Kaffee.</td>
+</tr>
+<tr>
+<td><strong>nicht</strong></td>
+<td>verbs, adjectives, adverbs</td>
+<td>Ich komme <strong>nicht</strong>. Das ist <strong>nicht</strong> teuer.</td>
+</tr>
+<tr>
+<td><strong>nicht</strong></td>
+<td>noun with <em>der/die/das</em>, <em>mein</em>, a name</td>
+<td>Das ist <strong>nicht</strong> mein Auto. Ich sehe den Film <strong>nicht</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>kein</em> takes the same endings as <em>ein</em>, plus plural forms: <em>keine Zeit, keinen Hund, keine Kinder, mit keinem Menschen</em>.</p>
+<h3>Examples</h3>
+<ul>
+<li>Ich habe heute <strong>keine</strong> Zeit. – <em>I don't have time today.</em></li>
+<li>Er spricht <strong>kein</strong> Englisch. – <em>He doesn't speak English.</em> (language = noun without article)</li>
+<li>Das Wetter ist <strong>nicht</strong> schön. – <em>The weather isn't nice.</em></li>
+<li>Wir fahren <strong>nicht</strong> nach Berlin. – <em>We aren't going to Berlin.</em></li>
+<li>Ich kenne ihn <strong>nicht</strong>. – <em>I don't know him.</em></li>
+<li>Das ist <strong>kein</strong> Problem. – <em>That's no problem.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Would English say &quot;a&quot; or nothing? Then kein.</p><p>If the positive sentence has <em>ein</em> or no article (<em>Ich habe <strong>ein</strong> Auto</em>, <em>Ich habe Zeit</em>), negate with <strong>kein</strong>. If it has <em>der/die/das</em>, a possessive or no noun at all, use <strong>nicht</strong>. <em>kein</em> is literally <em>k + ein</em>.</p></aside>
+<h3>doch</h3>
+<p>Answering a <strong>negative</strong> question with "yes" needs <strong>doch</strong>, not <em>ja</em>:
+- Kommst du <strong>nicht</strong> mit? – <strong>Doch</strong>, ich komme mit! – <em>Yes, I am!</em>
+- Kommst du nicht mit? – <strong>Nein</strong>, ich komme nicht mit. – <em>No, I'm not.</em>
+- Hast du <strong>keinen</strong> Hunger? – <strong>Doch</strong>, großen Hunger!</p>
+<p><em>doch</em> also contradicts a negative statement: <em>Das stimmt nicht! – Doch!</em></p>
+<h2>B1</h2>
+<h3>Where does nicht go?</h3>
+<ul>
+<li><strong>Whole sentence negated</strong>: <em>nicht</em> goes towards the end, after objects and time expressions, but <strong>before</strong> the second part of the verb (participle, infinitive, separable prefix) and before most place and "how" phrases:</li>
+<li>Ich kaufe das Buch <strong>nicht</strong>.</li>
+<li>Ich habe ihn gestern <strong>nicht</strong> gesehen.</li>
+<li>Er kommt heute <strong>nicht</strong> mit.</li>
+<li>Sie wohnt <strong>nicht</strong> in München.</li>
+<li>Ich bin <strong>nicht</strong> müde.</li>
+<li><strong>One word negated</strong>: <em>nicht</em> stands directly before that word, often with <em>sondern</em> after:</li>
+<li><strong>Nicht</strong> ich habe das gesagt, sondern Peter.</li>
+<li>Ich fahre <strong>nicht</strong> heute, sondern morgen.</li>
+</ul>
+<h3>nicht ... sondern, kein ... sondern</h3>
+<p>After a negation, "but (instead)" is <strong>sondern</strong>, not <em>aber</em>:
+- Das ist <strong>nicht</strong> Tee, <strong>sondern</strong> Kaffee.
+- Ich habe <strong>keinen</strong> Bruder, <strong>sondern</strong> eine Schwester.</p>
+<p><em>aber</em> means "but (anyway)": <em>Das ist nicht teuer, <strong>aber</strong> gut.</em> (no correction, just a contrast)</p>
+<h3>noch / schon / mehr</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Positive</th>
+<th>Negative</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schon (already)</td>
+<td><strong>noch nicht</strong> (not yet)</td>
+<td>ще не</td>
+</tr>
+<tr>
+<td>noch (still)</td>
+<td><strong>nicht mehr</strong> (no longer)</td>
+<td>вже не</td>
+</tr>
+<tr>
+<td>noch ein / noch etwas</td>
+<td><strong>kein ... mehr</strong> (no more)</td>
+<td>більше нема</td>
+</tr>
+<tr>
+<td>noch jemand</td>
+<td><strong>niemand mehr</strong></td>
+<td>більше ніхто</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Bist du <strong>schon</strong> fertig? – Nein, <strong>noch nicht</strong>.</li>
+<li>Wohnst du <strong>noch</strong> in Kyjiw? – Nein, <strong>nicht mehr</strong>.</li>
+<li>Es gibt <strong>keine</strong> Milch <strong>mehr</strong>. – <em>There's no milk left.</em></li>
+</ul>
+<h3>nie, niemand, nichts, nirgends</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Positive</th>
+<th>Negative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>immer / manchmal</td>
+<td><strong>nie</strong> / niemals (never)</td>
+</tr>
+<tr>
+<td>jemand</td>
+<td><strong>niemand</strong> / keiner (nobody)</td>
+</tr>
+<tr>
+<td>etwas</td>
+<td><strong>nichts</strong> (nothing)</td>
+</tr>
+<tr>
+<td>irgendwo</td>
+<td><strong>nirgends</strong> / nirgendwo (nowhere)</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout ukbox"><p class="callout-title">No double negation</p><p>Ukrainian needs several negatives: <em>Я ніколи нікому нічого не кажу.</em> German allows <strong>one</strong>: <em>Ich sage <strong>nie</strong> jemandem etwas.</em> Every other word goes positive: <em>jemand, etwas, irgendwo</em>. <em>Ich sage nie niemandem nichts</em> is wrong in standard German (you may hear double negatives in some Bavarian dialects, but do not copy them).</p></aside>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Ich habe nicht Zeit</em> → <strong>Ich habe keine Zeit.</strong></li>
+<li><em>Ich habe nicht ein Auto</em> → <strong>kein Auto</strong> (<em>nicht ein</em> only for emphasis: "not a single").</li>
+<li><em>Kommst du nicht? – Ja!</em> → <strong>Doch!</strong> if you mean "yes, I am".</li>
+<li><em>nicht heute, aber morgen</em> → <strong>sondern</strong> morgen.</li>
+<li><em>Ich habe niemand nicht gesehen</em> → <strong>Ich habe niemanden gesehen.</strong></li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">Where &quot;doch&quot; lives</p><p>English has no single word for <em>doch</em>, but French does: <em>si</em> is used in exactly the same way to answer a negative question with yes (<em>Tu ne viens pas ? – Si !</em>). Dutch has the same with <em>jawel</em> and <em>toch</em>.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: weder ... noch</p><p>"Neither ... nor" is <strong>weder ... noch</strong>: <em>Ich trinke weder Kaffee noch Tee.</em> It is already negative, so no <em>nicht</em> or <em>kein</em>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/pronouns/indefinite.html">Indefinite pronouns</a></li>
+<li><a href="../../grammar/sentences/word-order.html">Word order</a></li>
+<li><a href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a href="../../docs/gotchas.html">Gotchas</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="questions.html">← Questions</a><a class="btn" href="word-order.html">Word order →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich habe heute *___* Zeit.", "options": ["nicht", "keine", "kein", "nichts", "keinen"], "answer": 1, "explain": "*Zeit* has no article in the positive sentence, so *kein*; feminine → *keine* (A2)."}, {"q": "Ich trinke *___* Kaffee.", "options": ["kein", "nicht", "keine", "keinen", "keinem"], "answer": 3, "explain": "*der Kaffee*, no article, accusative → *keinen* (A2)."}, {"q": "Das Hotel ist *___* teuer.", "options": ["kein", "keine", "nichts", "nie nicht", "nicht"], "answer": 4, "explain": "Adjectives are negated with *nicht* (A2)."}, {"q": "Das ist *___* Problem.", "options": ["kein", "nicht", "keine", "keinen", "nichts"], "answer": 0, "explain": "*ein Problem* → *kein Problem* (A2)."}, {"q": "Das ist *___* mein Handy.", "options": ["kein", "nicht", "keine", "nichts", "keinem"], "answer": 1, "explain": "With a possessive (*mein*) use *nicht* (A2)."}, {"q": "Er spricht *___* Deutsch.", "options": ["nicht ein", "keine", "kein", "keinen", "nichts"], "answer": 2, "explain": "Languages are nouns without an article → *kein Deutsch* (*nicht Deutsch* is also heard, but *kein* is standard) (A2)."}, {"q": "Ich kenne den Mann *___*.", "options": ["kein", "keinen", "nichts", "nicht", "nie nicht"], "answer": 3, "explain": "Noun with *den* → *nicht*, at the end of the sentence (A2)."}, {"q": "Kommst du nicht mit? – *___*, ich komme gern mit!", "options": ["Ja", "Doch", "Nein", "Nicht", "Schon"], "answer": 1, "explain": "Yes to a negative question → *doch* (A2)."}, {"q": "Hast du keinen Hunger? – *___*, ich habe keinen Hunger.", "options": ["Doch", "Ja", "Schon", "Nein", "Nicht"], "answer": 3, "explain": "Agreeing with the negative → *nein* (A2)."}, {"q": "Ich habe ihn gestern *___*.", "options": ["gesehen nicht", "nicht gesehen", "kein gesehen", "nichts gesehen", "gesehen kein"], "answer": 1, "explain": "*nicht* comes before the participle at the end (B1)."}, {"q": "Er kommt heute *___*.", "options": ["nicht mit", "mit nicht", "kein mit", "mit kein", "nichts mit"], "answer": 0, "explain": "*nicht* stands before the separable prefix *mit* (B1)."}, {"q": "Das ist nicht Tee, *___* Kaffee.", "options": ["aber", "oder", "doch", "denn", "sondern"], "answer": 4, "explain": "Correcting after a negation → *sondern* (B1)."}, {"q": "Das Restaurant ist nicht billig, *___* sehr gut.", "options": ["sondern", "aber", "oder", "doch nicht", "denn"], "answer": 1, "explain": "No correction, just a contrast (not cheap but good anyway) → *aber* (B1)."}, {"q": "Bist du schon fertig? – Nein, *___*.", "options": ["nicht mehr", "noch nicht", "kein mehr", "schon nicht", "nie"], "answer": 1, "explain": "*schon* → negative *noch nicht* (ще ні) (B1)."}, {"q": "Rauchst du noch? – Nein, ich rauche *___*.", "options": ["noch nicht", "kein mehr", "nicht mehr", "nichts mehr", "mehr nicht"], "answer": 2, "explain": "*noch* (still) → negative *nicht mehr* (вже не) (B1)."}, {"q": "Wir haben *___* Brot mehr.", "options": ["nicht", "keine", "keinen", "kein", "nichts"], "answer": 3, "explain": "*kein ... mehr* = no more; *das Brot* → *kein* (B1)."}, {"q": "Я ніколи нікому нічого не кажу. → Ich sage *___* jemandem etwas.", "options": ["nie", "niemals nicht", "nicht nie", "kein", "nichts"], "answer": 0, "explain": "One negative only: *nie*, the rest stays positive (*jemandem, etwas*) (B1)."}, {"q": "Ich habe *___* gesehen. Der Raum war leer.", "options": ["niemand nicht", "keinen nicht", "nicht jemand", "jemanden", "niemanden"], "answer": 4, "explain": "*niemand(en)* already negates; no second *nicht* (B1)."}, {"q": "Ich habe überall gesucht, aber ich finde meine Brille *___*.", "options": ["nirgends", "irgendwo", "nicht nirgends", "kein wo", "niemand"], "answer": 0, "explain": "*nirgends* = nowhere (ніде) (B1)."}, {"q": "Ich fahre nicht heute, *___* morgen.", "options": ["aber", "sondern", "oder", "und", "doch"], "answer": 1, "explain": "*nicht X, sondern Y*: the correction (B1)."}, {"q": "Sie wohnt *___* in München.", "options": ["kein", "nichts", "nicht", "keine", "nie nicht"], "answer": 2, "explain": "*nicht* goes before the place phrase (B1)."}, {"q": "Ich habe keinen Bruder, *___* zwei Schwestern.", "options": ["aber", "oder", "denn", "sondern", "nicht"], "answer": 3, "explain": "*kein ..., sondern* corrects too (B1)."}, {"q": "Das stimmt nicht! – *___*, das stimmt!", "options": ["Ja", "Nein", "Nicht", "Kein", "Doch"], "answer": 4, "explain": "*doch* contradicts a negative statement (B1)."}, {"q": "Ich esse *___* Fleisch mehr.", "options": ["nicht", "kein", "keinen", "nichts", "keines"], "answer": 1, "explain": "*Fleisch* (uncountable, no article) → *kein Fleisch mehr* (B1)."}], "title": "Negation quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Modal verbs · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Modal verbs</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Modal verbs</h1><p class="sub">können, müssen, dürfen, sollen, wollen, mögen and möchten: their forms, the sentence frame they build and the meaning traps.</p></header>
+<article class="prose card">
+<p>Modal verbs say <em>how</em> you relate to an action: you can do it, must do it, may do it, want to do it. They almost never stand alone; they push a second verb to the end of the sentence as a bare infinitive. You need them from day one: <em>Ich möchte einen Kaffee. Kannst du mir helfen?</em></p>
+<h2>A2 core</h2>
+<h3>Present tense</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>sollen</th>
+<th>wollen</th>
+<th>mögen</th>
+<th>möchten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td><strong>kann</strong></td>
+<td><strong>muss</strong></td>
+<td><strong>darf</strong></td>
+<td><strong>soll</strong></td>
+<td><strong>will</strong></td>
+<td><strong>mag</strong></td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>kannst</td>
+<td>musst</td>
+<td>darfst</td>
+<td>sollst</td>
+<td>willst</td>
+<td>magst</td>
+<td>möchtest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td><strong>kann</strong></td>
+<td><strong>muss</strong></td>
+<td><strong>darf</strong></td>
+<td><strong>soll</strong></td>
+<td><strong>will</strong></td>
+<td><strong>mag</strong></td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>sollen</td>
+<td>wollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>könnt</td>
+<td>müsst</td>
+<td>dürft</td>
+<td>sollt</td>
+<td>wollt</td>
+<td>mögt</td>
+<td>möchtet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>sollen</td>
+<td>wollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two rules: <strong>ich</strong> and <strong>er/sie/es</strong> have no ending and are identical (<em>ich kann, er kann</em>), and most modals change their vowel in the singular (<em>können → kann</em>, <em>dürfen → darf</em>). Only <em>sollen</em> keeps its vowel.</p>
+<h3>Meanings</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>können</td>
+<td>can, be able to</td>
+<td>Ich <strong>kann</strong> gut kochen.</td>
+</tr>
+<tr>
+<td>müssen</td>
+<td>must, have to</td>
+<td>Ich <strong>muss</strong> morgen arbeiten.</td>
+</tr>
+<tr>
+<td>dürfen</td>
+<td>may, be allowed to</td>
+<td>Hier <strong>darf</strong> man parken.</td>
+</tr>
+<tr>
+<td>sollen</td>
+<td>should, be supposed to</td>
+<td>Der Arzt sagt, ich <strong>soll</strong> weniger essen.</td>
+</tr>
+<tr>
+<td>wollen</td>
+<td>want (a firm plan)</td>
+<td>Wir <strong>wollen</strong> ein Haus kaufen.</td>
+</tr>
+<tr>
+<td>mögen</td>
+<td>like (with a noun)</td>
+<td>Ich <strong>mag</strong> Schokolade.</td>
+</tr>
+<tr>
+<td>möchten</td>
+<td>would like (polite)</td>
+<td>Ich <strong>möchte</strong> ein Bier, bitte.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>The sentence frame</h3>
+<p>The modal is in position 2, the infinitive goes to the very end:</p>
+<ul>
+<li>Ich <strong>kann</strong> heute leider nicht <strong>kommen</strong>. – <em>Unfortunately I can't come today.</em></li>
+<li><strong>Musst</strong> du am Samstag <strong>arbeiten</strong>? – <em>Do you have to work on Saturday?</em></li>
+<li>Wir <strong>möchten</strong> im Sommer nach Italien <strong>fahren</strong>. – <em>We'd like to go to Italy in summer.</em></li>
+</ul>
+<p>In a subordinate clause the modal itself jumps to the end, after the infinitive:</p>
+<ul>
+<li>Ich weiß, dass du gut Deutsch <strong>sprechen kannst</strong>. – <em>I know that you can speak German well.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Modal = no &quot;zu&quot;, no ending</p><p>Two quick checks after you write a modal sentence: the modal has no <em>-t</em> with <em>er</em> (<em>er kann</em>, never <em>er kannt</em>), and the second verb has no <em>zu</em> (<em>ich muss arbeiten</em>, never <em>ich muss zu arbeiten</em>).</p></aside>
+<aside class="callout trap"><p class="callout-title">nicht müssen ≠ must not</p><p><em>Du musst nicht kommen</em> means <strong>you don't have to come</strong>. "You must not" is <em>Du darfst nicht kommen</em>. English speakers fall into this every day. Ukrainian is closer: <em>не мусиш</em> (no need) vs <em>не можна</em> (forbidden). Instead of <em>nicht müssen</em> you can also say <em>nicht brauchen zu</em>: <em>Du brauchst nicht zu kommen.</em></p></aside>
+<h2>B1</h2>
+<h3>möchten vs wollen</h3>
+<p>Both mean "want", but the tone differs:</p>
+<ul>
+<li><em>Ich <strong>möchte</strong> einen Kaffee.</em> – polite, the normal way to order.</li>
+<li><em>Ich <strong>will</strong> einen Kaffee!</em> – blunt, sounds like a child.</li>
+</ul>
+<p><em>wollen</em> is fine for plans and decisions: <em>Wir wollen nächstes Jahr heiraten.</em> It is <strong>not</strong> a future tense: <em>Ich will gehen</em> = I want to go, not "I will go".</p>
+<h3>sollen: someone else's will</h3>
+<p><em>sollen</em> reports what another person wants or what is expected: <em>Meine Mutter sagt, ich <strong>soll</strong> anrufen.</em> As a question it offers help: <em><strong>Soll</strong> ich das Fenster öffnen?</em> – <em>Shall I open the window?</em></p>
+<h3>Präteritum</h3>
+<p>In the past, modals are used in the Präteritum, also in speech:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>sollen</th>
+<th>wollen</th>
+<th>mögen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich/er</td>
+<td>konnte</td>
+<td>musste</td>
+<td>durfte</td>
+<td>sollte</td>
+<td>wollte</td>
+<td>mochte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>konntest</td>
+<td>musstest</td>
+<td>durftest</td>
+<td>solltest</td>
+<td>wolltest</td>
+<td>mochtest</td>
+</tr>
+<tr>
+<td>wir/sie</td>
+<td>konnten</td>
+<td>mussten</td>
+<td>durften</td>
+<td>sollten</td>
+<td>wollten</td>
+<td>mochten</td>
+</tr>
+</tbody>
+</table></div>
+<p>The umlaut disappears: <em>können → konnte</em>, <em>müssen → musste</em>. <em>möchten</em> has no past form of its own, so use <em>wollte</em>: <em>Ich wollte dich anrufen.</em></p>
+<ul>
+<li>Gestern <strong>konnte</strong> ich nicht schlafen. – <em>Yesterday I couldn't sleep.</em></li>
+<li>Als Kind <strong>musste</strong> ich jeden Tag Klavier üben. – <em>As a child I had to practise piano every day.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">The Präteritum looks like a weak verb</p><p>Take the infinitive, drop the umlaut, add <em>-te</em>: <em>dürfen → durfte, müssen → musste, können → konnte</em>. Only <em>mögen → mochte</em> changes the consonant too.</p></aside>
+<h3>Modals without a second verb</h3>
+<p>When the meaning is obvious, the infinitive can disappear: <em>Ich <strong>kann</strong> Deutsch</em> (speak), <em>Ich <strong>muss</strong> nach Hause</em> (go), <em>Das <strong>darfst</strong> du nicht</em> (do).</p>
+<aside class="callout ukbox"><p class="callout-title">Ukrainian has the same idea, different tools</p><p><em>можу</em> = <em>kann</em>, <em>мушу/треба</em> = <em>muss</em>, <em>можна</em> = <em>darf</em>, <em>хочу</em> = <em>will</em>, <em>хотів би</em> = <em>möchte</em>. Note that Ukrainian <em>можна</em> (it is allowed) is <em>man darf</em>, not <em>man kann</em>: <em>Тут можна палити? – Darf man hier rauchen?</em></p></aside>
+<aside class="callout fact"><p class="callout-title">möchte is a past form in disguise</p><p><em>möchte</em> is historically the Konjunktiv II of <em>mögen</em> ("would like"), which is why it looks like a past tense. <em>mögen</em> once meant "to be able", like English <em>may</em> and <em>might</em>, which come from the same root. The noun <em>die Macht</em> (power) is related too.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: modal verbs in the Perfekt</p><p>When a modal has another verb, its Perfekt uses a double infinitive: <em>Ich <strong>habe</strong> nicht <strong>kommen können</strong>.</em> In a subordinate clause <em>haben</em> comes before both infinitives: <em>..., weil ich nicht <strong>habe kommen können</strong>.</em> In daily speech just use the Präteritum: <em>Ich konnte nicht kommen.</em></p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></li>
+<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
+<li><a href="../../docs/word-order.html">Word order</a></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="sein-haben-werden.html">← sein, haben, werden</a><a class="btn" href="reflexive-verbs.html">Reflexive verbs →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Er *___* sehr gut Gitarre spielen.", "options": ["könnt", "kannt", "kann", "kannst", "können"], "answer": 2, "explain": "Modal verbs have no ending with *er/sie/es*: *er kann* (A2)."}, {"q": "*___* du mir bitte helfen?", "options": ["Kannst", "Kann", "Könnst", "Kanst", "Könnt"], "answer": 0, "explain": "*du kannst*; the *-st* ending is normal, only *ich* and *er* have none (A2)."}, {"q": "Ich muss heute lange *___*.", "options": ["zu arbeiten", "arbeite", "gearbeitet", "arbeiten", "arbeitet"], "answer": 3, "explain": "After a modal the second verb is a bare infinitive at the end, without *zu* (A2)."}, {"q": "Im Museum *___* man nicht fotografieren. Das ist verboten.", "options": ["muss", "darf", "will", "möchte", "mag"], "answer": 1, "explain": "Forbidden = *nicht dürfen*, like Ukrainian *не можна* (A2)."}, {"q": "Du *___* nicht kommen, wenn du keine Zeit hast. Es ist kein Problem.", "options": ["darfst", "sollst", "kannst", "willst", "musst"], "answer": 4, "explain": "*nicht müssen* = there is no need. *nicht dürfen* would mean it is forbidden (B1)."}, {"q": "Guten Tag, ich *___* bitte zwei Brötchen.", "options": ["will", "mag", "möchte", "muss", "möchten"], "answer": 2, "explain": "*möchte* is the polite way to order; *will* sounds blunt (A2)."}, {"q": "Ich *___* keine Tomaten. Sie schmecken mir nicht.", "options": ["mag", "mögen", "mage", "mögt", "magst"], "answer": 0, "explain": "*mögen* + noun = to like in general; *ich mag* has no ending (A2)."}, {"q": "Wir *___* nächstes Jahr ein Haus kaufen. Das ist unser Plan.", "options": ["wollt", "will", "willen", "wollen", "wolle"], "answer": 3, "explain": "*wir wollen*; plural forms of modals are regular (A2)."}, {"q": "Ihr *___* jetzt nach Hause gehen. Es ist spät.", "options": ["müssen", "müsst", "musst", "muss", "müssten"], "answer": 1, "explain": "*ihr müsst*; the plural keeps the umlaut (A2)."}, {"q": "Mein Arzt sagt, ich *___* mehr Sport machen.", "options": ["will", "darf", "mag", "soll", "möchte"], "answer": 3, "explain": "*sollen* reports what another person wants you to do (B1)."}, {"q": "*___* ich das Fenster aufmachen? Es ist so warm hier.", "options": ["Musst", "Wollt", "Magst", "Mag", "Soll"], "answer": 4, "explain": "*Soll ich ...?* offers help: 'Shall I ...?' With *ich* the other forms are wrong: *ich muss, ich will, ich mag* (B1)."}, {"q": "Ich weiß, dass du gut Deutsch *___*.", "options": ["sprechen kannst", "kannst sprechen", "sprichst können", "kannst zu sprechen", "kann sprechen"], "answer": 0, "explain": "In a subordinate clause the modal goes to the very end, after the infinitive (B1)."}, {"q": "Gestern *___* ich nicht schlafen.", "options": ["kann", "könnte", "konnte", "konnt", "gekonnt"], "answer": 2, "explain": "Präteritum: drop the umlaut, add *-te*: *konnte*. *könnte* is Konjunktiv II ('could, would be able') (B1)."}, {"q": "Als Kind *___* ich jeden Tag um sieben Uhr ins Bett gehen.", "options": ["musste", "müsste", "muss", "musstet", "mussten"], "answer": 0, "explain": "*ich musste*: Präteritum without umlaut (B1)."}, {"q": "Früher *___* wir nicht so lange fernsehen.", "options": ["dürfen", "durften", "dürften", "durftet", "darften"], "answer": 1, "explain": "Präteritum of *dürfen*: *wir durften* (B1)."}, {"q": "Ich *___* dich gestern anrufen, aber ich hatte keine Zeit.", "options": ["möchte", "möchtete", "mochte", "wollte", "will"], "answer": 3, "explain": "*möchten* has no past form, so the past of 'want to' is *wollte* (B1)."}, {"q": "Als Kind *___* er keinen Spinat.", "options": ["mag", "mögte", "möchte", "magte", "mochte"], "answer": 4, "explain": "*mögen* changes the consonant in the Präteritum: *mochte* (B1)."}, {"q": "Which sentence means *You must not tell anyone*?", "options": ["Du musst es niemandem sagen.", "Du darfst es niemandem sagen.", "Du brauchst es niemandem zu sagen.", "Du willst es niemandem sagen.", "Du kannst es niemandem sagen."], "answer": 1, "explain": "A prohibition is *nicht/niemandem + dürfen*. *Du musst es niemandem sagen* means 'you don't have to tell anyone' (B1)."}, {"q": "Which sentence means *I don't have to work tomorrow*?", "options": ["Ich darf morgen nicht arbeiten.", "Ich soll morgen nicht arbeiten.", "Ich will morgen nicht arbeiten.", "Ich brauche morgen nicht zu arbeiten.", "Ich kann morgen nicht arbeiten."], "answer": 3, "explain": "*nicht brauchen zu* = *nicht müssen*, no obligation. *darf nicht* would mean it is not allowed (B1)."}, {"q": "Ich *___* nach Hause. (= I have to go home.)", "options": ["muss", "muss gehen zu", "muss zu", "müsse", "musse"], "answer": 0, "explain": "With direction phrases the infinitive *gehen/fahren* is often left out: *Ich muss nach Hause* (B1)."}, {"q": "*___* Sie Deutsch? – Ja, ein bisschen.", "options": ["Kannst", "Könnt", "Kann", "Können", "Konnten"], "answer": 3, "explain": "*Sie* (formal) takes the plural form *können*; *Deutsch können* = to speak German (A2)."}, {"q": "Wir *___* einen Tisch für vier Personen reservieren.", "options": ["möchte", "möchtet", "möchten", "mögten", "mochten"], "answer": 2, "explain": "*wir möchten*: plural of *möchten*, the polite 'would like' (A2)."}, {"q": "Hier *___* man parken. Das Schild sagt: Parken erlaubt.", "options": ["muss", "soll", "will", "mag", "darf"], "answer": 4, "explain": "Permission = *dürfen*; Ukrainian *тут можна паркуватися* (A2)."}, {"q": "Er sagt, er *___* morgen nicht kommen, weil er krank ist.", "options": ["kann", "kannt", "könnt", "kannst", "können"], "answer": 0, "explain": "*er kann* with no ending, also inside reported statements (A2)."}], "title": "Modal verbs quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('crumb').textContent = data.title;
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>
