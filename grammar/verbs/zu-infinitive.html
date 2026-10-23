@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="12d92a4067fe">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">zu + infinitive</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="53c724d48f43" class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">zu + infinitive</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>zu + infinitive</h1><p class="sub">When a second verb takes zu, where zu goes in separable verbs, um/ohne/statt ... zu, and the verbs that never take zu.</p></header>
@@ -319,18 +325,17 @@ body { margin: 0; }
 </table></div>
 <p>With the same subject <em>damit</em> is also possible (<em>Ich spare, damit ich ein Auto kaufe</em>), but <em>um ... zu</em> sounds more natural. With different subjects only <em>damit</em> works.</p>
 <aside class="callout hack"><p class="callout-title">One person, one zu</p><p>If the person who does the goal is the same as the subject, use <em>um ... zu</em>. If someone else does it, you need a new subject, and a new subject needs a full clause with <em>damit</em>.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">щоб does both jobs</p><p>Ukrainian uses one word for both cases and changes the verb form: <em>Я вчу німецьку, <strong>щоб працювати</strong> у Відні</em> (same subject, infinitive) = <em>um ... zu</em>; <em>Я пояснюю, <strong>щоб</strong> ти <strong>зрозумів</strong></em> (different subject, past form) = <em>damit du es verstehst</em>. So: <em>щоб</em> + infinitive → <em>um ... zu</em>, <em>щоб</em> + person → <em>damit</em>.</p></aside>
 <aside class="callout fact"><p class="callout-title">zu and to are the same old word</p><p>German <em>zu</em> and English <em>to</em> come from the same West Germanic preposition meaning "towards". Originally it stood before a verbal noun: "towards doing". Dutch has the same construction with <em>te</em>: <em>Het is moeilijk <strong>te</strong> zeggen.</em></p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: sein/haben + zu and the past zu-infinitive</p><p><em>Das Formular <strong>ist</strong> bis Freitag <strong>auszufüllen</strong></em> = must be filled in. <em>Ich <strong>habe</strong> noch viel <strong>zu tun</strong></em> = I still have a lot to do (this one you can use now). Past form: <em>Er behauptet, mich <strong>gesehen zu haben</strong></em>.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
-<li><a href="../../grammar/verbs/separable-verbs.html">Separable verbs</a></li>
-<li><a href="../../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a></li>
+<li><a data-quiz="f7e33196feac" href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a data-quiz="e0444fc26071" href="../../grammar/verbs/separable-verbs.html">Separable verbs</a></li>
+<li><a data-quiz="71e3f53b0a44" href="../../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a></li>
 <li><a href="../../docs/connectors.html">Connectors reference</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="dative-verbs.html">← Dative verbs</a><a class="btn" href="separable-verbs.html">Separable verbs →</a></nav>
+<nav class="pager"><a data-quiz="dec4bebe93e3" class="btn" href="dative-verbs.html">← Dative verbs</a><a data-quiz="e0444fc26071" class="btn" href="separable-verbs.html">Separable verbs →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -348,12 +353,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich versuche, jeden Tag Deutsch *___*.", "options": ["sprechen", "zu sprechen", "gesprochen", "spreche", "zum sprechen"], "answer": 1, "explain": "*versuchen* needs *zu* + infinitive at the end (A2)."}, {"q": "Ich muss morgen früh *___*.", "options": ["zu aufstehen", "aufzustehen", "aufstehen", "stehe auf", "aufgestanden"], "answer": 2, "explain": "After a modal verb there is no *zu*: *ich muss aufstehen* (A2)."}, {"q": "Es ist schwer, eine Wohnung in München *___*.", "options": ["zu finden", "finden", "gefunden", "findet", "zu gefunden"], "answer": 0, "explain": "*Es ist + adjective, ... zu + infinitive* (A2)."}, {"q": "Hast du Lust, heute Abend *___*?", "options": ["mitkommen", "zu mitkommen", "mit zukommen", "kommst mit", "mitzukommen"], "answer": 4, "explain": "Separable verb: *zu* goes between prefix and stem, written as one word: *mitzukommen* (A2)."}, {"q": "Ich habe vergessen, dich *___*.", "options": ["anrufen", "zu anrufen", "angerufen", "anzurufen", "anruft"], "answer": 3, "explain": "*vergessen* takes *zu*; *anrufen* is separable, so *anzurufen* (A2)."}, {"q": "Es hat angefangen *___*.", "options": ["regnen", "geregnet", "zu regnen", "regnet", "zu geregnet"], "answer": 2, "explain": "*anfangen* takes a *zu*-infinitive (A2)."}, {"q": "Ich habe keine Zeit, das Buch *___*.", "options": ["zu lesen", "lesen", "lese", "gelesen", "zum lesen"], "answer": 0, "explain": "After nouns like *Zeit, Lust, Angst* the infinitive takes *zu* (A2)."}, {"q": "Wir gehen am Samstag *___*.", "options": ["zu einkaufen", "einzukaufen", "kaufen ein", "einkaufen", "eingekauft"], "answer": 3, "explain": "*gehen* + infinitive: no *zu*. *Wir gehen einkaufen* (A2)."}, {"q": "Ich plane, meine Eltern in Kyjiw *___*.", "options": ["besuchen", "zu besuchen", "bezusuchen", "zubesuchen", "besucht"], "answer": 1, "explain": "*be-* is inseparable, so *zu* stays in front as a separate word: *zu besuchen* (B1)."}, {"q": "Ich höre die Nachbarn jeden Abend *___*.", "options": ["zu streiten", "streiten", "gestritten", "streitet", "zum streiten"], "answer": 1, "explain": "After *hören* and *sehen* the second verb has no *zu* (B1)."}, {"q": "Ich lasse meine Haare kurz *___*.", "options": ["zu schneiden", "geschnitten", "schneide", "schneidet", "schneiden"], "answer": 4, "explain": "*lassen* never takes *zu*: *Ich lasse mir die Haare schneiden* (B1)."}, {"q": "Du brauchst nicht *___*. Ich schaffe das allein.", "options": ["zu geholfen", "geholfen", "zu helfen", "hilfst", "hilf"], "answer": 2, "explain": "*nicht brauchen* replaces *nicht müssen* but needs *zu* (B1)."}, {"q": "Ich lerne Deutsch, *___* in Deutschland zu studieren.", "options": ["damit", "dass", "für", "um", "weil"], "answer": 3, "explain": "Goal + same subject + *zu*-infinitive = *um ... zu* (B1)."}, {"q": "Ich erkläre es dir noch einmal, *___* du es verstehst.", "options": ["um", "damit", "zu", "ohne", "statt"], "answer": 1, "explain": "Different subjects (*ich* explains, *du* understands) → *damit* + full clause. Like Ukrainian *щоб ти зрозумів* (B1)."}, {"q": "Er ist einfach gegangen, *___* Tschüss zu sagen. Wie unhöflich!", "options": ["weil", "damit", "obwohl", "ohne", "dass"], "answer": 3, "explain": "*ohne ... zu* = without doing; English uses *-ing*, German uses *zu* + infinitive (B1)."}, {"q": "*___* zu lernen, sieht er den ganzen Abend fern.", "options": ["Statt", "Wenn", "Damit", "Dass", "Weil"], "answer": 0, "explain": "*statt ... zu* = instead of doing something (B1)."}, {"q": "Sie hat mein Handy genommen, ohne *___*.", "options": ["fragen", "gefragt", "zu gefragt", "fragt", "zu fragen"], "answer": 4, "explain": "*ohne* + *zu* + infinitive = without asking (B1)."}, {"q": "Ich stehe früh auf, um den Bus nicht *___*.", "options": ["verpassen", "verzupassen", "zuverpassen", "verpasst", "zu verpassen"], "answer": 4, "explain": "*ver-* is inseparable, so *zu verpassen*; *nicht* comes before the infinitive group (B1)."}, {"q": "Ich spare Geld, *___* meine Tochter studieren kann.", "options": ["um", "zu", "damit", "ohne", "statt"], "answer": 2, "explain": "The subject changes (*ich* saves, *meine Tochter* studies), so only *damit* works (B1)."}, {"q": "Which sentence is correct?", "options": ["Ich gehe zum Bahnhof, um meine Mutter abholen.", "Ich gehe zum Bahnhof, um meine Mutter abzuholen.", "Ich gehe zum Bahnhof, um meine Mutter zu abholen.", "Ich gehe zum Bahnhof, damit meine Mutter abzuholen.", "Ich gehe zum Bahnhof, um zu meine Mutter abholen."], "answer": 1, "explain": "*um ... zu* with a separable verb: *abzuholen* at the end (B1)."}, {"q": "Es ist toll, Deutsch sprechen *___*.", "options": ["können", "zu kann", "kann", "zu können", "gekonnt"], "answer": 3, "explain": "With a modal in the *zu*-group, *zu* goes before the modal: *sprechen zu können* (B1)."}, {"q": "Er wird morgen *___*.", "options": ["zu kommen", "kommt", "gekommen", "kommen", "kam"], "answer": 3, "explain": "Future with *werden* + bare infinitive, no *zu* (A2)."}, {"q": "Vergiss nicht, die Fenster *___*!", "options": ["zuzumachen", "zu zumachen", "zumachen", "zugemacht", "zugemachen"], "answer": 0, "explain": "*zumachen* is separable with the prefix *zu*, so the form is *zu-zu-machen*: *zuzumachen* (B1)."}, {"q": "Ich habe noch viel *___*.", "options": ["tun", "getan", "zu tun", "tue", "zum tun"], "answer": 2, "explain": "*viel zu tun haben* = to have a lot to do (B1)."}], "title": "zu + infinitive quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich versuche, jeden Tag Deutsch *___*.", "options": ["sprechen", "zu sprechen", "gesprochen", "spreche", "zum sprechen"], "answer": 1, "explain": "*versuchen* needs *zu* + infinitive at the end (A2)."}, {"q": "Ich muss morgen früh *___*.", "options": ["zu aufstehen", "aufzustehen", "aufstehen", "stehe auf", "aufgestanden"], "answer": 2, "explain": "After a modal verb there is no *zu*: *ich muss aufstehen* (A2)."}, {"q": "Es ist schwer, eine Wohnung in München *___*.", "options": ["zu finden", "finden", "gefunden", "findet", "zu gefunden"], "answer": 0, "explain": "*Es ist + adjective, ... zu + infinitive* (A2)."}, {"q": "Hast du Lust, heute Abend *___*?", "options": ["mitkommen", "zu mitkommen", "mit zukommen", "kommst mit", "mitzukommen"], "answer": 4, "explain": "Separable verb: *zu* goes between prefix and stem, written as one word: *mitzukommen* (A2)."}, {"q": "Ich habe vergessen, dich *___*.", "options": ["anrufen", "zu anrufen", "angerufen", "anzurufen", "anruft"], "answer": 3, "explain": "*vergessen* takes *zu*; *anrufen* is separable, so *anzurufen* (A2)."}, {"q": "Es hat angefangen *___*.", "options": ["regnen", "geregnet", "zu regnen", "regnet", "zu geregnet"], "answer": 2, "explain": "*anfangen* takes a *zu*-infinitive (A2)."}, {"q": "Ich habe keine Zeit, das Buch *___*.", "options": ["zu lesen", "lesen", "lese", "gelesen", "zum lesen"], "answer": 0, "explain": "After nouns like *Zeit, Lust, Angst* the infinitive takes *zu* (A2)."}, {"q": "Wir gehen am Samstag *___*.", "options": ["zu einkaufen", "einzukaufen", "kaufen ein", "einkaufen", "eingekauft"], "answer": 3, "explain": "*gehen* + infinitive: no *zu*. *Wir gehen einkaufen* (A2)."}, {"q": "Ich plane, meine Eltern in Kyjiw *___*.", "options": ["besuchen", "zu besuchen", "bezusuchen", "zubesuchen", "besucht"], "answer": 1, "explain": "*be-* is inseparable, so *zu* stays in front as a separate word: *zu besuchen* (B1)."}, {"q": "Ich höre die Nachbarn jeden Abend *___*.", "options": ["zu streiten", "streiten", "gestritten", "streitet", "zum streiten"], "answer": 1, "explain": "After *hören* and *sehen* the second verb has no *zu* (B1)."}, {"q": "Ich lasse meine Haare kurz *___*.", "options": ["zu schneiden", "geschnitten", "schneide", "schneidet", "schneiden"], "answer": 4, "explain": "*lassen* never takes *zu*: *Ich lasse mir die Haare schneiden* (B1)."}, {"q": "Du brauchst nicht *___*. Ich schaffe das allein.", "options": ["zu geholfen", "geholfen", "zu helfen", "hilfst", "hilf"], "answer": 2, "explain": "*nicht brauchen* replaces *nicht müssen* but needs *zu* (B1)."}, {"q": "Ich lerne Deutsch, *___* in Deutschland zu studieren.", "options": ["damit", "dass", "für", "um", "weil"], "answer": 3, "explain": "Goal + same subject + *zu*-infinitive = *um ... zu* (B1)."}, {"q": "Ich erkläre es dir noch einmal, *___* du es verstehst.", "options": ["um", "damit", "zu", "ohne", "statt"], "answer": 1, "explain": "Different subjects (*ich* explains, *du* understands) → *damit* + full clause (B1)."}, {"q": "Er ist einfach gegangen, *___* Tschüss zu sagen. Wie unhöflich!", "options": ["weil", "damit", "obwohl", "ohne", "dass"], "answer": 3, "explain": "*ohne ... zu* = without doing; English uses *-ing*, German uses *zu* + infinitive (B1)."}, {"q": "*___* zu lernen, sieht er den ganzen Abend fern.", "options": ["Statt", "Wenn", "Damit", "Dass", "Weil"], "answer": 0, "explain": "*statt ... zu* = instead of doing something (B1)."}, {"q": "Sie hat mein Handy genommen, ohne *___*.", "options": ["fragen", "gefragt", "zu gefragt", "fragt", "zu fragen"], "answer": 4, "explain": "*ohne* + *zu* + infinitive = without asking (B1)."}, {"q": "Ich stehe früh auf, um den Bus nicht *___*.", "options": ["verpassen", "verzupassen", "zuverpassen", "verpasst", "zu verpassen"], "answer": 4, "explain": "*ver-* is inseparable, so *zu verpassen*; *nicht* comes before the infinitive group (B1)."}, {"q": "Ich spare Geld, *___* meine Tochter studieren kann.", "options": ["um", "zu", "damit", "ohne", "statt"], "answer": 2, "explain": "The subject changes (*ich* saves, *meine Tochter* studies), so only *damit* works (B1)."}, {"q": "Which sentence is correct?", "options": ["Ich gehe zum Bahnhof, um meine Mutter abholen.", "Ich gehe zum Bahnhof, um meine Mutter abzuholen.", "Ich gehe zum Bahnhof, um meine Mutter zu abholen.", "Ich gehe zum Bahnhof, damit meine Mutter abzuholen.", "Ich gehe zum Bahnhof, um zu meine Mutter abholen."], "answer": 1, "explain": "*um ... zu* with a separable verb: *abzuholen* at the end (B1)."}, {"q": "Es ist toll, Deutsch sprechen *___*.", "options": ["können", "zu kann", "kann", "zu können", "gekonnt"], "answer": 3, "explain": "With a modal in the *zu*-group, *zu* goes before the modal: *sprechen zu können* (B1)."}, {"q": "Er wird morgen *___*.", "options": ["zu kommen", "kommt", "gekommen", "kommen", "kam"], "answer": 3, "explain": "Future with *werden* + bare infinitive, no *zu* (A2)."}, {"q": "Vergiss nicht, die Fenster *___*!", "options": ["zuzumachen", "zu zumachen", "zumachen", "zugemacht", "zugemachen"], "answer": 0, "explain": "*zumachen* is separable with the prefix *zu*, so the form is *zu-zu-machen*: *zuzumachen* (B1)."}, {"q": "Ich habe noch viel *___*.", "options": ["tun", "getan", "zu tun", "tue", "zum tun"], "answer": 2, "explain": "*viel zu tun haben* = to have a lot to do (B1)."}], "title": "zu + infinitive quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -365,18 +374,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -391,14 +414,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -410,7 +433,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -419,14 +442,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -434,23 +457,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

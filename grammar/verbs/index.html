@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="53c724d48f43">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,11 +194,11 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Verbs</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Verbs</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Verbs</h1><p class="sub">The verb families of German, what makes each one special and which page to open when a sentence goes wrong.</p></header>
-<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a class="home-card card" href="sein-haben-werden.html"><span class="t">sein, haben, werden</span><span class="d">The three most important German verbs, their present and Präteritum forms, their jobs as helper verbs and the everyday phrases built on them.</span><span class="k">A2</span></a><a class="home-card card" href="modal-verbs.html"><span class="t">Modal verbs</span><span class="d">können, müssen, dürfen, sollen, wollen, mögen and möchten: their forms, the sentence frame they build and the meaning traps.</span><span class="k">A2–B1</span></a><a class="home-card card" href="reflexive-verbs.html"><span class="t">Reflexive verbs</span><span class="d">Verbs with mich, mir, sich and friends: when the pronoun is accusative or dative, which verbs always need it and how it compares with Ukrainian -ся.</span><span class="k">A2–B1</span></a><a class="home-card card" href="verbs-with-prepositions.html"><span class="t">Verbs with prepositions</span><span class="d">The 30 most useful verb + preposition pairs with their case, plus the da- and wo- words that replace them.</span><span class="k">A2–B1</span></a><a class="home-card card" href="dative-verbs.html"><span class="t">Dative verbs</span><span class="d">Verbs whose object is in the dative (helfen, gefallen, gehören...), the &quot;мені подобається&quot; structure and the word order of two objects.</span><span class="k">A2–B1</span></a><a class="home-card card" href="zu-infinitive.html"><span class="t">zu + infinitive</span><span class="d">When a second verb takes zu, where zu goes in separable verbs, um/ohne/statt ... zu, and the verbs that never take zu.</span><span class="k">A2–B1</span></a><a class="home-card card" href="separable-verbs.html"><span class="t">Separable verbs</span><span class="d">Which prefixes break away from the verb, where they go in main clauses, subordinate clauses and the Perfekt.</span><span class="k">A2–B1</span></a></div></section>
+<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a data-quiz="f8cd2a606b21" class="home-card card" href="sein-haben-werden.html"><span class="t">sein, haben, werden</span><span class="d">The three most important German verbs, their present and Präteritum forms, their jobs as helper verbs and the everyday phrases built on them.</span><span class="k">A2</span></a><a data-quiz="f7e33196feac" class="home-card card" href="modal-verbs.html"><span class="t">Modal verbs</span><span class="d">können, müssen, dürfen, sollen, wollen, mögen and möchten: their forms, the sentence frame they build and the meaning traps.</span><span class="k">A2–B1</span></a><a data-quiz="d6157bf64e54" class="home-card card" href="reflexive-verbs.html"><span class="t">Reflexive verbs</span><span class="d">Verbs with mich, mir, sich and friends: when the pronoun is accusative or dative, and which verbs always need it.</span><span class="k">A2–B1</span></a><a data-quiz="1f9efa8beb88" class="home-card card" href="verbs-with-prepositions.html"><span class="t">Verbs with prepositions</span><span class="d">The 30 most useful verb + preposition pairs with their case, plus the da- and wo- words that replace them.</span><span class="k">A2–B1</span></a><a data-quiz="dec4bebe93e3" class="home-card card" href="dative-verbs.html"><span class="t">Dative verbs</span><span class="d">Verbs whose object is in the dative (helfen, gefallen, gehören...), the &quot;it pleases me&quot; structure and the word order of two objects.</span><span class="k">A2–B1</span></a><a data-quiz="12d92a4067fe" class="home-card card" href="zu-infinitive.html"><span class="t">zu + infinitive</span><span class="d">When a second verb takes zu, where zu goes in separable verbs, um/ohne/statt ... zu, and the verbs that never take zu.</span><span class="k">A2–B1</span></a><a data-quiz="e0444fc26071" class="home-card card" href="separable-verbs.html"><span class="t">Separable verbs</span><span class="d">Which prefixes break away from the verb, where they go in main clauses, subordinate clauses and the Perfekt.</span><span class="k">A2–B1</span></a></div></section>
 <article class="prose card">
 <p>German verbs are where most sentence mistakes come from. The endings are the easy part. The harder part is what the verb <em>demands</em> from the rest of the sentence: a helper verb, a case, a preposition, a reflexive pronoun, an infinitive at the end or a prefix that moves away. This section groups verbs by that behaviour.</p>
 <h2>Verb types at a glance</h2>
@@ -210,43 +216,43 @@ body { margin: 0; }
 <td>sein, haben, werden</td>
 <td>irregular, also used as helper verbs</td>
 <td><em>Ich <strong>habe</strong> Hunger. Es <strong>wird</strong> kalt.</em></td>
-<td><a href="../../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></td>
+<td><a data-quiz="f8cd2a606b21" href="../../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></td>
 </tr>
 <tr>
 <td>Modal verbs</td>
 <td>no ending in <em>ich/er</em>, second verb goes to the end as an infinitive</td>
 <td><em>Ich <strong>kann</strong> heute nicht <strong>kommen</strong>.</em></td>
-<td><a href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></td>
+<td><a data-quiz="f7e33196feac" href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></td>
 </tr>
 <tr>
 <td>Reflexive verbs</td>
 <td>need <em>mich/mir, dich/dir, sich</em></td>
 <td><em>Ich <strong>freue mich</strong>.</em></td>
-<td><a href="../../grammar/verbs/reflexive-verbs.html">Reflexive verbs</a></td>
+<td><a data-quiz="d6157bf64e54" href="../../grammar/verbs/reflexive-verbs.html">Reflexive verbs</a></td>
 </tr>
 <tr>
 <td>Verbs + preposition</td>
 <td>fixed preposition with a fixed case</td>
 <td><em>Ich warte <strong>auf den</strong> Bus.</em></td>
-<td><a href="../../grammar/verbs/verbs-with-prepositions.html">Verbs with prepositions</a></td>
+<td><a data-quiz="1f9efa8beb88" href="../../grammar/verbs/verbs-with-prepositions.html">Verbs with prepositions</a></td>
 </tr>
 <tr>
 <td>Dative verbs</td>
 <td>the object is dative, not accusative</td>
 <td><em>Ich helfe <strong>dir</strong>.</em></td>
-<td><a href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></td>
+<td><a data-quiz="dec4bebe93e3" href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></td>
 </tr>
 <tr>
 <td>zu + infinitive</td>
 <td>a second verb with <em>zu</em> at the end</td>
 <td><em>Es ist schwer, Deutsch <strong>zu lernen</strong>.</em></td>
-<td><a href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></td>
+<td><a data-quiz="12d92a4067fe" href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></td>
 </tr>
 <tr>
 <td>Separable verbs</td>
 <td>prefix jumps to the end of the clause</td>
 <td><em>Ich <strong>rufe</strong> dich morgen <strong>an</strong>.</em></td>
-<td><a href="../../grammar/verbs/separable-verbs.html">Separable verbs</a></td>
+<td><a data-quiz="e0444fc26071" href="../../grammar/verbs/separable-verbs.html">Separable verbs</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -265,13 +271,13 @@ body { margin: 0; }
 <aside class="callout fact"><p class="callout-title">Almost every German verb ends in -en</p><p>The infinitive ending <em>-en</em> (or <em>-n</em> in <em>tun, sein, ändern</em>) is a leftover of an old Germanic ending that English lost completely: Old English still had <em>singan</em> for "to sing". That is why English needs the little word <em>to</em> and German does not.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
-<li><a href="../../grammar/tenses/past.html">Past tenses</a></li>
+<li><a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Past tenses</a></li>
 <li><a href="../../docs/irregular-verbs.html">Irregular verbs table</a></li>
 <li><a href="../../docs/word-order.html">Word order</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="../passive.html">← Passive</a><a class="btn" href="../cases/index.html">Cases →</a></nav>
+<nav class="pager"><a data-quiz="903a62b09fb0" class="btn" href="../passive.html">← Passive</a><a data-quiz="d221fc543f6b" class="btn" href="../cases/index.html">Cases →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -289,12 +295,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich *___* heute keine Zeit.", "options": ["bin", "werde", "habe", "hast", "hat"], "answer": 2, "explain": "*Zeit haben* uses *haben*, and *ich* takes *habe* (A2)."}, {"q": "Er *___* nicht schwimmen.", "options": ["kann", "kannt", "könnt", "kannst", "können"], "answer": 0, "explain": "Modal verbs have no ending in *ich* and *er/sie/es*: *er kann* (A2)."}, {"q": "Ich möchte morgen ins Kino *___*.", "options": ["zu gehen", "gehe", "gegangen", "geht", "gehen"], "answer": 4, "explain": "After a modal verb the second verb is a bare infinitive at the end, without *zu* (A2)."}, {"q": "Wir freuen *___* auf den Urlaub.", "options": ["sich", "uns", "euch", "wir", "unser"], "answer": 1, "explain": "The reflexive pronoun matches the subject: *wir freuen uns*, like Ukrainian *ми тішимося*, where *-ся* does the same job (A2)."}, {"q": "Kannst du *___* bitte helfen?", "options": ["mich", "ich", "mein", "mir", "meiner"], "answer": 3, "explain": "*helfen* takes the dative: *jemandem helfen*, just like Ukrainian *допомагати комусь* (A2)."}, {"q": "Ich warte *___* den Bus.", "options": ["für", "an", "auf", "nach", "zu"], "answer": 2, "explain": "The fixed pair is *warten auf + Akk*; *für* is a typical English-based mistake (A2)."}, {"q": "Der Film fängt um acht Uhr *___*.", "options": ["ab", "auf", "los", "mit", "an"], "answer": 4, "explain": "*anfangen* is separable: in a main clause the prefix *an* goes to the end (A2)."}, {"q": "Es ist schwer, früh *___*.", "options": ["aufzustehen", "zu aufstehen", "aufstehen", "aufgestanden", "auf zu stehen"], "answer": 0, "explain": "With a separable verb *zu* goes between prefix and stem: *aufzustehen* (B1)."}, {"q": "Wem *___* das Auto? – Es ist meins.", "options": ["hat", "gefällt", "passt", "gehört", "fehlt"], "answer": 3, "explain": "*gehören + Dat* means 'to belong to': *Das Auto gehört mir*. The owner is in the dative, like Ukrainian *належить мені* (A2)."}, {"q": "Es *___* langsam dunkel.", "options": ["werdet", "wird", "hat", "geht", "wirst"], "answer": 1, "explain": "*werden* means 'to become, get': *es wird dunkel* = it is getting dark, Ukrainian *стає темно* (A2)."}, {"q": "Hier *___* man nicht rauchen. Das ist verboten.", "options": ["darf", "muss", "will", "mag", "möchte"], "answer": 0, "explain": "Something forbidden is *nicht dürfen*; *nicht müssen* would mean 'you don't have to' (B1)."}, {"q": "Ich lerne Deutsch, *___* in Berlin zu arbeiten.", "options": ["damit", "dass", "um", "weil", "für"], "answer": 2, "explain": "*um ... zu* expresses a goal when the subject stays the same (B1)."}, {"q": "*___* denkst du? – An meine Prüfung.", "options": ["Was", "Woran", "Wovon", "Wofür", "Worüber"], "answer": 1, "explain": "*denken an* gives the question word *wo(r) + an = woran* (B1)."}, {"q": "Er hat mich gestern *___*.", "options": ["anrufen", "angeruft", "geanrufen", "angerufen", "anzurufen"], "answer": 3, "explain": "In the Perfekt of separable verbs *ge-* goes between prefix and stem: *angerufen* (A2)."}, {"q": "Ich *___* mir die Hände.", "options": ["wasche", "wascht", "wäscht", "waschen", "gewaschen"], "answer": 0, "explain": "*ich wasche*; the vowel change *ä* only happens in *du wäschst, er wäscht* (A2)."}, {"q": "Ich gebe *___* das Buch.", "options": ["meinen Bruder", "mein Bruder", "meinem Bruder", "meines Bruders", "meine Bruder"], "answer": 2, "explain": "*geben* takes a dative person and an accusative thing: *jemandem etwas geben* (A2)."}, {"q": "Gestern *___* ich krank.", "options": ["hatte", "warst", "bin", "war", "habe"], "answer": 3, "explain": "The Präteritum of *sein* is *war*; in speech this form is used far more than *bin gewesen* (A2)."}, {"q": "Wir haben keine Lust, heute *___*.", "options": ["kochen", "zu kochen", "gekocht", "kochen zu", "zum kochen"], "answer": 1, "explain": "After the noun phrase *Lust haben* the infinitive takes *zu* (B1)."}], "title": "Verbs quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich *___* heute keine Zeit.", "options": ["bin", "werde", "habe", "hast", "hat"], "answer": 2, "explain": "*Zeit haben* uses *haben*, and *ich* takes *habe* (A2)."}, {"q": "Er *___* nicht schwimmen.", "options": ["kann", "kannt", "könnt", "kannst", "können"], "answer": 0, "explain": "Modal verbs have no ending in *ich* and *er/sie/es*: *er kann* (A2)."}, {"q": "Ich möchte morgen ins Kino *___*.", "options": ["zu gehen", "gehe", "gegangen", "geht", "gehen"], "answer": 4, "explain": "After a modal verb the second verb is a bare infinitive at the end, without *zu* (A2)."}, {"q": "Wir freuen *___* auf den Urlaub.", "options": ["sich", "uns", "euch", "wir", "unser"], "answer": 1, "explain": "The reflexive pronoun matches the subject: *wir freuen uns* (A2)."}, {"q": "Kannst du *___* bitte helfen?", "options": ["mich", "ich", "mein", "mir", "meiner"], "answer": 3, "explain": "*helfen* takes the dative: *jemandem helfen* (A2)."}, {"q": "Ich warte *___* den Bus.", "options": ["für", "an", "auf", "nach", "zu"], "answer": 2, "explain": "The fixed pair is *warten auf + Akk*; *für* is a typical English-based mistake (A2)."}, {"q": "Der Film fängt um acht Uhr *___*.", "options": ["ab", "auf", "los", "mit", "an"], "answer": 4, "explain": "*anfangen* is separable: in a main clause the prefix *an* goes to the end (A2)."}, {"q": "Es ist schwer, früh *___*.", "options": ["aufzustehen", "zu aufstehen", "aufstehen", "aufgestanden", "auf zu stehen"], "answer": 0, "explain": "With a separable verb *zu* goes between prefix and stem: *aufzustehen* (B1)."}, {"q": "Wem *___* das Auto? – Es ist meins.", "options": ["hat", "gefällt", "passt", "gehört", "fehlt"], "answer": 3, "explain": "*gehören + Dat* means 'to belong to': *Das Auto gehört mir*. The owner is in the dative (A2)."}, {"q": "Es *___* langsam dunkel.", "options": ["werdet", "wird", "hat", "geht", "wirst"], "answer": 1, "explain": "*werden* means 'to become, get': *es wird dunkel* = it is getting dark (A2)."}, {"q": "Hier *___* man nicht rauchen. Das ist verboten.", "options": ["darf", "muss", "will", "mag", "möchte"], "answer": 0, "explain": "Something forbidden is *nicht dürfen*; *nicht müssen* would mean 'you don't have to' (B1)."}, {"q": "Ich lerne Deutsch, *___* in Berlin zu arbeiten.", "options": ["damit", "dass", "um", "weil", "für"], "answer": 2, "explain": "*um ... zu* expresses a goal when the subject stays the same (B1)."}, {"q": "*___* denkst du? – An meine Prüfung.", "options": ["Was", "Woran", "Wovon", "Wofür", "Worüber"], "answer": 1, "explain": "*denken an* gives the question word *wo(r) + an = woran* (B1)."}, {"q": "Er hat mich gestern *___*.", "options": ["anrufen", "angeruft", "geanrufen", "angerufen", "anzurufen"], "answer": 3, "explain": "In the Perfekt of separable verbs *ge-* goes between prefix and stem: *angerufen* (A2)."}, {"q": "Ich *___* mir die Hände.", "options": ["wasche", "wascht", "wäscht", "waschen", "gewaschen"], "answer": 0, "explain": "*ich wasche*; the vowel change *ä* only happens in *du wäschst, er wäscht* (A2)."}, {"q": "Ich gebe *___* das Buch.", "options": ["meinen Bruder", "mein Bruder", "meinem Bruder", "meines Bruders", "meine Bruder"], "answer": 2, "explain": "*geben* takes a dative person and an accusative thing: *jemandem etwas geben* (A2)."}, {"q": "Gestern *___* ich krank.", "options": ["hatte", "warst", "bin", "war", "habe"], "answer": 3, "explain": "The Präteritum of *sein* is *war*; in speech this form is used far more than *bin gewesen* (A2)."}, {"q": "Wir haben keine Lust, heute *___*.", "options": ["kochen", "zu kochen", "gekocht", "kochen zu", "zum kochen"], "answer": 1, "explain": "After the noun phrase *Lust haben* the infinitive takes *zu* (B1)."}], "title": "Verbs quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -306,18 +316,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -332,14 +356,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -351,7 +375,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -360,14 +384,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -375,23 +399,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

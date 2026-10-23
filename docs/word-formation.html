@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="46c9d35d7d48">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -195,7 +201,7 @@ body { margin: 0; }
 <article class="prose card">
 <p>One German root plus a handful of suffixes gives you a whole word family, and the suffix usually tells you the gender for free.</p>
 <h2>Word families</h2>
-<p>Learn a root once and you can guess a dozen words from it: prefixes shift the meaning, suffixes set the word class and gender, and strong verbs often change their vowel inside the family (sprechen → Spruch, nehmen → Ausnahme; see <a href="../docs/prefixes.html">Prefixes and vowel changes</a>). Ukrainian works the same way (писати → підпис → опис), so lean on that instinct.</p>
+<p>Learn a root once and you can guess a dozen words from it: prefixes shift the meaning, suffixes set the word class and gender, and strong verbs often change their vowel inside the family (sprechen → Spruch, nehmen → Ausnahme; see <a href="../docs/prefixes.html">Prefixes and vowel changes</a>).</p>
 <h3>fahren: to drive, travel (fuhr, ist gefahren)</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -356,7 +362,7 @@ body { margin: 0; }
 <tr>
 <td>der Zug, Züge</td>
 <td>train; pull; move (in a game)</td>
-<td>Ukrainian поїзд, but also тяга</td>
+<td></td>
 </tr>
 <tr>
 <td>umziehen / der Umzug</td>
@@ -428,12 +434,12 @@ body { margin: 0; }
 <tr>
 <td>der Zustand, Zustände</td>
 <td>condition, state</td>
-<td>Ukrainian стан</td>
+<td></td>
 </tr>
 <tr>
 <td>der Abstand, Abstände</td>
 <td>distance, gap</td>
-<td>Ukrainian від-стань = ab-stand, same build</td>
+<td></td>
 </tr>
 <tr>
 <td>verstehen / der Verstand</td>
@@ -510,12 +516,12 @@ body { margin: 0; }
 <tr>
 <td>der Eingang / der Ausgang</td>
 <td>entrance / exit</td>
-<td>Ukrainian вхід / вихід, same logic</td>
+<td></td>
 </tr>
 <tr>
 <td>der Übergang</td>
 <td>crossing, transition</td>
-<td>Ukrainian перехід</td>
+<td></td>
 </tr>
 <tr>
 <td>der Zugang</td>
@@ -577,12 +583,12 @@ body { margin: 0; }
 <tr>
 <td>unterschreiben / die Unterschrift</td>
 <td>to sign / signature</td>
-<td>Ukrainian під-пис = unter-schrift</td>
+<td></td>
 </tr>
 <tr>
 <td>beschreiben / die Beschreibung</td>
 <td>to describe / description</td>
-<td>Ukrainian опис</td>
+<td></td>
 </tr>
 <tr>
 <td>die Zeitschrift, -en</td>
@@ -592,7 +598,7 @@ body { margin: 0; }
 <tr>
 <td>die Vorschrift, -en</td>
 <td>rule, regulation</td>
-<td>Ukrainian припис</td>
+<td></td>
 </tr>
 <tr>
 <td>die Anschrift</td>
@@ -825,12 +831,12 @@ body { margin: 0; }
 <tr>
 <td>die Aufgabe, -n / aufgeben</td>
 <td>task / to give up; to post</td>
-<td>Ukrainian завдання</td>
+<td></td>
 </tr>
 <tr>
 <td>die Ausgabe, -n / ausgeben</td>
 <td>expense, edition / to spend</td>
-<td>Ukrainian ви-дання = Aus-gabe</td>
+<td></td>
 </tr>
 <tr>
 <td>die Angabe, -n / angeben</td>
@@ -964,7 +970,7 @@ body { margin: 0; }
 <tr>
 <td>erleben / das Erlebnis, -se</td>
 <td>to experience / an experience (event)</td>
-<td>Ukrainian переживати / пригода</td>
+<td></td>
 </tr>
 <tr>
 <td>überleben</td>
@@ -979,7 +985,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>Erfahrung vs Erlebnis: Erfahrung = know-how gained over time (досвід); Erlebnis = one thing that happened to you (враження, пригода).</li>
+<li>Erfahrung vs Erlebnis: Erfahrung = know-how gained over time; Erlebnis = one thing that happened to you.</li>
 </ul>
 <h3>wohnen: to live, reside</h3>
 <div class="table-wrap"><table>
@@ -1058,7 +1064,7 @@ body { margin: 0; }
 <tr>
 <td>-heit</td>
 <td>die Freiheit, die Gesundheit, die Kindheit, die Sicherheit, die Wahrheit, die Schönheit, die Gelegenheit</td>
-<td>abstract quality or state, from adjectives and nouns; Ukrainian often -ість or -ство (Kindheit = дитинство)</td>
+<td></td>
 </tr>
 <tr>
 <td>-keit</td>
@@ -1078,7 +1084,7 @@ body { margin: 0; }
 <tr>
 <td>-tät</td>
 <td>die Universität, die Qualität, die Realität, die Nationalität, die Aktivität, die Identität</td>
-<td>= English -ity, Ukrainian -ітет (університет) but always die</td>
+<td></td>
 </tr>
 <tr>
 <td>-ei</td>
@@ -1120,7 +1126,7 @@ body { margin: 0; }
 <tr>
 <td>-ismus</td>
 <td>der Tourismus, der Journalismus, der Optimismus, der Kapitalismus, der Rassismus</td>
-<td>always der; Ukrainian -ізм, also masculine</td>
+<td></td>
 </tr>
 <tr>
 <td>-er (agent or device from a verb)</td>
@@ -1208,7 +1214,7 @@ body { margin: 0; }
 <li>Shortcut: when you hear a new word ending in -ung, -heit, -keit, -schaft, say die without thinking. These four alone cover thousands of nouns.</li>
 </ul>
 <h2>People: -er, -erin, -ent, -ist</h2>
-<p>To name a person who does something, add -er to the verb stem (lehren → der Lehrer); for a woman add -in on top (die Lehrerin, plural Lehrerinnen). Latin-style suffixes -ent, -ant, -ist, -or work like their Ukrainian twins (студент, журналіст, автор).</p>
+<p>To name a person who does something, add -er to the verb stem (lehren → der Lehrer); for a woman add -in on top (die Lehrerin, plural Lehrerinnen).</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1253,7 +1259,7 @@ body { margin: 0; }
 <td>-er (place)</td>
 <td>der Berliner / die Berlinerin; der Schweizer / die Schweizerin</td>
 <td>person from Berlin / Switzerland</td>
-<td>Ukrainian киянин / киянка</td>
+<td></td>
 </tr>
 <tr>
 <td>-ler</td>
@@ -1315,10 +1321,9 @@ body { margin: 0; }
 <li>Umlaut in the feminine for some short words: der Arzt → die Ärztin, der Koch → die Köchin, der Bauer → die Bäuerin.</li>
 <li>Weak nouns (-ent, -ant, -ist, many -e) add -(e)n in every case except nominative singular: Ich frage den Studenten. Ich helfe dem Touristen.</li>
 <li>Gender-fair plurals you will see in writing: Lehrer*innen, Lehrer:innen, or a participle like die Studierenden (those studying).</li>
-<li>Ukrainian -ник / -ниця (працівник / працівниця) is the closest match to -er / -erin.</li>
 </ul>
 <h2>Adjective suffixes</h2>
-<p>Each adjective suffix carries a meaning: -bar = can be done (-able), -los = without, -voll = full of, -sam = tending to; -lich, -ig and -isch mostly just mean "having to do with". Ukrainian does the same job with -ний, -ський and без-.</p>
+<p>Each adjective suffix carries a meaning: -bar = can be done (-able), -los = without, -voll = full of, -sam = tending to; -lich, -ig and -isch mostly just mean "having to do with".</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1356,8 +1361,8 @@ body { margin: 0; }
 <tr>
 <td>-isch</td>
 <td>typisch, praktisch, politisch, elektrisch, deutsch, ukrainisch, englisch</td>
-<td>typical, practical, political, electric, German, Ukrainian, English</td>
-<td>Ukrainian -ський / -чний (типовий, практичний)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>-bar</td>
@@ -1369,7 +1374,7 @@ body { margin: 0; }
 <td>-los</td>
 <td>arbeitslos, kostenlos, hoffnungslos, sprachlos, endlos, ahnungslos, obdachlos</td>
 <td>unemployed, free of charge, hopeless, speechless, endless, clueless, homeless</td>
-<td>= English -less, Ukrainian без- (безробітний)</td>
+<td></td>
 </tr>
 <tr>
 <td>-voll</td>
@@ -1423,12 +1428,12 @@ body { margin: 0; }
 <tr>
 <td>telefonieren</td>
 <td>to phone</td>
-<td>Ukrainian телефонувати</td>
+<td></td>
 </tr>
 <tr>
 <td>fotografieren</td>
 <td>to photograph</td>
-<td>фотографувати</td>
+<td></td>
 </tr>
 <tr>
 <td>studieren</td>
@@ -1438,17 +1443,17 @@ body { margin: 0; }
 <tr>
 <td>reparieren</td>
 <td>to repair</td>
-<td>ремонтувати</td>
+<td></td>
 </tr>
 <tr>
 <td>organisieren</td>
 <td>to organise</td>
-<td>організовувати</td>
+<td></td>
 </tr>
 <tr>
 <td>diskutieren</td>
 <td>to discuss</td>
-<td>дискутувати</td>
+<td></td>
 </tr>
 <tr>
 <td>funktionieren</td>
@@ -1479,7 +1484,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>No ge- in the participle: Ich habe telefoniert, studiert, repariert. Stress is always on -ie-.</li>
-<li>Ukrainian -увати is a near-perfect match: if an international Ukrainian verb ends in -увати, the German one usually ends in -ieren.</li>
 </ul>
 <h3>Noun + -en</h3>
 <div class="table-wrap"><table>
@@ -1685,7 +1689,7 @@ body { margin: 0; }
 <td>besser</td>
 <td>verbessern</td>
 <td>to improve</td>
-<td>Ukrainian покращувати</td>
+<td></td>
 </tr>
 <tr>
 <td>leer / trocken / klar</td>
@@ -1701,11 +1705,8 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li>Ukrainian builds the same way with a prefix: короткий → скорочувати (verkürzen), сильний → посилювати (verstärken).</li>
-</ul>
 <h2>Nominalisation</h2>
-<p>Any infinitive becomes a neuter noun with a capital letter (lesen → das Lesen), and any adjective or participle becomes a noun that keeps adjective endings (bekannt → der/die Bekannte). Ukrainian has both: читання = das Lesen, знайомий / знайома = der / die Bekannte.</p>
+<p>Any infinitive becomes a neuter noun with a capital letter (lesen → das Lesen), and any adjective or participle becomes a noun that keeps adjective endings (bekannt → der/die Bekannte).</p>
 <h3>Infinitive → das + noun</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -1984,7 +1985,6 @@ body { margin: 0; }
 <li>Verb + noun: drop -en from the infinitive: der Schreibtisch, die Waschmaschine, das Esszimmer, die Fahrkarte, der Parkplatz, das Schlafzimmer; some add -e: das Wartezimmer.</li>
 <li>Adjective + noun: die Großstadt, das Kleingeld, das Hochhaus, der Rotwein, die Altstadt.</li>
 <li>When you read a long word, split it from the end: Straßen + bahn + halte + stelle = tram stop.</li>
-<li>Ukrainian usually uses adjective + noun where German uses one compound: Kinderzimmer = дитяча кімната, Arbeitszimmer = робочий кабінет, Straßenbahnhaltestelle = трамвайна зупинка.</li>
 </ul>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
 <p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
@@ -2121,7 +2121,6 @@ body { margin: 0; }
 <ul>
 <li>Sentence adverbs judge the whole statement: Glücklicherweise hat es nicht geregnet = luckily, it didn't rain. Compare manner: Er hat glücklich gelächelt = he smiled happily.</li>
 <li>The noun type can also stand before a noun that names an action: ein schrittweiser Abbau, eine teilweise Zerstörung. The adjective type never can (not: ein glücklicherweiser Zufall).</li>
-<li>Ukrainian: на щастя = glücklicherweise, частково = teilweise, наприклад = beispielsweise, винятково = ausnahmsweise.</li>
 </ul>
 <h3>Adjective suffixes at B2</h3>
 <p>These suffixes work like half-words with a clear meaning; most attach to a noun, with a linking -s- or -(e)n- where that noun needs one.</p>
@@ -2358,9 +2357,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Nominalstil in letters and reports</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/word-formation.html">Word formation quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="465546a2d9b8" href="../quizzes/word-formation.html">Word formation quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="bba65b8e16e2">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Connectors and sentence starters</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="71e3f53b0a44" href="../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a>.</p></aside>
 <p>Every German connector belongs to one of three groups, and the group decides where the verb goes: right after the connector's slot, after the subject, or at the end.</p>
 <h2>The three groups at a glance</h2>
 <p>Same idea, three word orders: the connector's group, not its meaning, decides where the verb goes.</p>
@@ -235,7 +241,6 @@ body { margin: 0; }
 <tr>
 <th>Connector</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -244,35 +249,30 @@ body { margin: 0; }
 <tr>
 <td>und</td>
 <td>and</td>
-<td>і, та</td>
 <td>Ich koche, <strong>und</strong> du deckst den Tisch.</td>
 <td>I'll cook and you set the table.</td>
 </tr>
 <tr>
 <td>aber</td>
 <td>but</td>
-<td>але</td>
 <td>Das Hotel ist teuer, <strong>aber</strong> es ist sehr schön.</td>
 <td>The hotel is expensive, but it's very nice.</td>
 </tr>
 <tr>
 <td>oder</td>
 <td>or</td>
-<td>або, чи</td>
 <td>Kommst du mit, <strong>oder</strong> bleibst du hier?</td>
 <td>Are you coming along or staying here?</td>
 </tr>
 <tr>
 <td>denn</td>
 <td>because (since)</td>
-<td>бо</td>
 <td>Ich bleibe zu Hause, <strong>denn</strong> ich bin krank.</td>
 <td>I'm staying home, because I'm ill.</td>
 </tr>
 <tr>
 <td>sondern</td>
 <td>but (rather), after a negation</td>
-<td>а</td>
 <td>Ich komme nicht heute, <strong>sondern</strong> morgen.</td>
 <td>I'm not coming today but tomorrow.</td>
 </tr>
@@ -322,7 +322,6 @@ body { margin: 0; }
 <tr>
 <th>Adverb</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -333,26 +332,22 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>deshalb, deswegen, darum</td>
 <td>that's why, therefore</td>
-<td>тому, через це</td>
 <td>Es regnet, <strong>deshalb bleiben wir</strong> zu Hause.</td>
 <td>It's raining, so we're staying home.</td>
 </tr>
 <tr>
 <td>also</td>
 <td>so, therefore</td>
-<td>отже, тож</td>
 <td>Ich habe kein Auto, <strong>also fahre ich</strong> mit dem Bus.</td>
 <td>I don't have a car, so I take the bus.</td>
 </tr>
 <tr>
 <td>sonst</td>
 <td>otherwise</td>
-<td>інакше</td>
 <td>Beeil dich, <strong>sonst verpassen wir</strong> den Zug.</td>
 <td>Hurry up, otherwise we'll miss the train.</td>
 </tr>
@@ -361,47 +356,40 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>trotzdem</td>
 <td>anyway, nevertheless</td>
-<td>все одно, попри це</td>
 <td>Es regnet, <strong>trotzdem gehen wir</strong> spazieren.</td>
 <td>It's raining, but we're going for a walk anyway.</td>
 </tr>
 <tr>
 <td>dennoch</td>
 <td>nevertheless (formal)</td>
-<td>проте, все ж</td>
 <td>Die Aufgabe war schwer, <strong>dennoch hat er</strong> sie gelöst.</td>
 <td>The task was hard; nevertheless he solved it.</td>
 </tr>
 <tr>
 <td>jedoch</td>
 <td>however</td>
-<td>однак, проте</td>
 <td>Das Angebot klingt gut, <strong>jedoch ist es</strong> zu teuer.</td>
 <td>The offer sounds good; however, it's too expensive.</td>
 </tr>
 <tr>
 <td>allerdings</td>
 <td>though, admittedly</td>
-<td>щоправда, але</td>
 <td>Die Wohnung ist schön, <strong>allerdings ist sie</strong> sehr klein.</td>
 <td>The flat is nice, though it's very small.</td>
 </tr>
 <tr>
 <td>stattdessen</td>
 <td>instead</td>
-<td>натомість</td>
 <td>Ich wollte joggen, <strong>stattdessen habe ich</strong> geschlafen.</td>
 <td>I wanted to go jogging; instead I slept.</td>
 </tr>
 <tr>
 <td>im Gegenteil</td>
 <td>on the contrary</td>
-<td>навпаки</td>
 <td>Er ist nicht faul. <strong>Im Gegenteil, er arbeitet</strong> sehr viel.</td>
 <td>He isn't lazy. On the contrary, he works a lot.</td>
 </tr>
@@ -410,40 +398,34 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>zuerst</td>
 <td>first</td>
-<td>спочатку</td>
 <td><strong>Zuerst muss ich</strong> das Formular ausfüllen.</td>
 <td>First I have to fill in the form.</td>
 </tr>
 <tr>
 <td>dann</td>
 <td>then</td>
-<td>потім, тоді</td>
 <td>Ich frühstücke, <strong>dann gehe ich</strong> zur Arbeit.</td>
 <td>I have breakfast, then I go to work.</td>
 </tr>
 <tr>
 <td>danach</td>
 <td>afterwards</td>
-<td>після цього</td>
 <td>Wir waren im Kino, <strong>danach sind wir</strong> essen gegangen.</td>
 <td>We were at the cinema; afterwards we went out to eat.</td>
 </tr>
 <tr>
 <td>inzwischen</td>
 <td>meanwhile, by now</td>
-<td>тим часом, вже</td>
 <td><strong>Inzwischen spreche ich</strong> ganz gut Deutsch.</td>
 <td>By now I speak German quite well.</td>
 </tr>
 <tr>
 <td>schließlich</td>
 <td>finally; after all</td>
-<td>зрештою, нарешті</td>
 <td><strong>Schließlich haben wir</strong> eine Wohnung gefunden.</td>
 <td>Finally we found a flat.</td>
 </tr>
@@ -452,54 +434,46 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>außerdem</td>
 <td>besides, also</td>
-<td>крім того</td>
 <td>Die Wohnung ist zentral, <strong>außerdem ist sie</strong> günstig.</td>
 <td>The flat is central; besides, it's cheap.</td>
 </tr>
 <tr>
 <td>zum Beispiel</td>
 <td>for example</td>
-<td>наприклад</td>
 <td><strong>Zum Beispiel kann man</strong> mit dem Rad fahren.</td>
 <td>For example, you can go by bike.</td>
 </tr>
 <tr>
 <td>übrigens</td>
 <td>by the way</td>
-<td>до речі</td>
 <td><strong>Übrigens habe ich</strong> gestern Anna gesehen.</td>
 <td>By the way, I saw Anna yesterday.</td>
 </tr>
 <tr>
 <td>eigentlich</td>
 <td>actually, really</td>
-<td>взагалі-то, власне</td>
 <td><strong>Eigentlich wollte ich</strong> heute früh schlafen gehen.</td>
 <td>Actually I wanted to go to bed early today.</td>
 </tr>
 <tr>
 <td>leider</td>
 <td>unfortunately</td>
-<td>на жаль</td>
 <td><strong>Leider kann ich</strong> morgen nicht kommen.</td>
 <td>Unfortunately I can't come tomorrow.</td>
 </tr>
 <tr>
 <td>zum Glück</td>
 <td>luckily</td>
-<td>на щастя</td>
 <td><strong>Zum Glück hat es</strong> nicht geregnet.</td>
 <td>Luckily it didn't rain.</td>
 </tr>
 <tr>
 <td>ehrlich gesagt</td>
 <td>to be honest</td>
-<td>чесно кажучи</td>
 <td><strong>Ehrlich gesagt finde ich</strong> den Film langweilig.</td>
 <td>To be honest, I find the film boring.</td>
 </tr>
@@ -520,7 +494,6 @@ body { margin: 0; }
 <tr>
 <th>Conjunction</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -531,26 +504,22 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>weil</td>
 <td>because</td>
-<td>бо, тому що</td>
 <td>Ich lerne Deutsch, <strong>weil</strong> ich in Berlin <strong>arbeite</strong>.</td>
 <td>I'm learning German because I work in Berlin.</td>
 </tr>
 <tr>
 <td>da</td>
 <td>since, as (known reason)</td>
-<td>оскільки, так як</td>
 <td><strong>Da</strong> es schon spät <strong>ist</strong>, fahren wir nach Hause.</td>
 <td>Since it's already late, we're going home.</td>
 </tr>
 <tr>
 <td>sodass / so dass</td>
 <td>so that (result)</td>
-<td>так що</td>
 <td>Es hat stark geregnet, <strong>sodass</strong> das Spiel ausfallen <strong>musste</strong>.</td>
 <td>It rained heavily, so the match had to be cancelled.</td>
 </tr>
@@ -559,26 +528,22 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>obwohl</td>
 <td>although</td>
-<td>хоча</td>
 <td><strong>Obwohl</strong> er krank <strong>ist</strong>, geht er zur Arbeit.</td>
 <td>Although he's ill, he goes to work.</td>
 </tr>
 <tr>
 <td>wenn</td>
 <td>if; whenever</td>
-<td>якщо; коли</td>
 <td><strong>Wenn</strong> du Zeit <strong>hast</strong>, ruf mich an.</td>
 <td>If you have time, call me.</td>
 </tr>
 <tr>
 <td>falls</td>
 <td>in case, if</td>
-<td>якщо раптом</td>
 <td>Nimm einen Schirm mit, <strong>falls</strong> es <strong>regnet</strong>.</td>
 <td>Take an umbrella in case it rains.</td>
 </tr>
@@ -587,12 +552,10 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>damit</td>
 <td>so that (purpose)</td>
-<td>щоб</td>
 <td>Ich erkläre es noch einmal, <strong>damit</strong> du es <strong>verstehst</strong>.</td>
 <td>I'll explain it again so that you understand.</td>
 </tr>
@@ -601,19 +564,16 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>dass</td>
 <td>that</td>
-<td>що</td>
 <td>Ich weiß, <strong>dass</strong> du recht <strong>hast</strong>.</td>
 <td>I know (that) you're right.</td>
 </tr>
 <tr>
 <td>ob</td>
 <td>whether, if</td>
-<td>чи</td>
 <td>Ich frage ihn, <strong>ob</strong> er morgen <strong>kommt</strong>.</td>
 <td>I'll ask him whether he's coming tomorrow.</td>
 </tr>
@@ -622,61 +582,52 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>als</td>
 <td>when (one past event)</td>
-<td>коли</td>
 <td><strong>Als</strong> ich klein <strong>war</strong>, hatte ich einen Hund.</td>
 <td>When I was little, I had a dog.</td>
 </tr>
 <tr>
 <td>während</td>
 <td>while; whereas</td>
-<td>поки, тоді як</td>
 <td><strong>Während</strong> ich <strong>koche</strong>, deckst du den Tisch.</td>
 <td>While I cook, you set the table.</td>
 </tr>
 <tr>
 <td>bevor</td>
 <td>before</td>
-<td>перш ніж</td>
 <td><strong>Bevor</strong> wir <strong>gehen</strong>, müssen wir aufräumen.</td>
 <td>Before we leave, we have to tidy up.</td>
 </tr>
 <tr>
 <td>nachdem</td>
 <td>after</td>
-<td>після того як</td>
 <td><strong>Nachdem</strong> ich die Prüfung bestanden <strong>hatte</strong>, habe ich gefeiert.</td>
 <td>After I had passed the exam, I celebrated.</td>
 </tr>
 <tr>
 <td>seit / seitdem</td>
 <td>since (ongoing)</td>
-<td>відтоді як</td>
 <td><strong>Seitdem</strong> ich hier <strong>wohne</strong>, fahre ich mehr Rad.</td>
 <td>Since I've lived here, I cycle more.</td>
 </tr>
 <tr>
 <td>bis</td>
 <td>until</td>
-<td>доки не</td>
 <td>Ich warte, <strong>bis</strong> du <strong>kommst</strong>.</td>
 <td>I'll wait until you come.</td>
 </tr>
 <tr>
 <td>sobald</td>
 <td>as soon as</td>
-<td>щойно, як тільки</td>
 <td>Ich rufe dich an, <strong>sobald</strong> ich zu Hause <strong>bin</strong>.</td>
 <td>I'll call you as soon as I'm home.</td>
 </tr>
 <tr>
 <td>solange</td>
 <td>as long as</td>
-<td>поки</td>
 <td><strong>Solange</strong> es <strong>regnet</strong>, bleiben wir drinnen.</td>
 <td>As long as it rains, we're staying inside.</td>
 </tr>
@@ -686,7 +637,6 @@ body { margin: 0; }
 <li>Wrong: ~~…, weil ich arbeite in Berlin.~~ You will hear it in casual speech, but in exams and writing the verb must go last.</li>
 <li>A comma always separates the subordinate clause from the main clause, front or back.</li>
 <li>Several verbs at the end (see <a href="../docs/word-order.html">Word order</a>): conjugated verb last, <em>…, weil ich morgen früh aufstehen <strong>muss</strong>.</em></li>
-<li>Ukrainian: <em>бо</em>, <em>хоча</em>, <em>щоб</em> do not change word order; German <em>weil</em>, <em>obwohl</em>, <em>damit</em> do.</li>
 </ul>
 <h2>Two-part connectors</h2>
 <p>Two-part connectors frame two items or two clauses; most just link words, and only <em>je…desto</em> and the clause versions of <em>entweder…oder</em> and <em>zwar…aber</em> change word order.</p>
@@ -695,7 +645,6 @@ body { margin: 0; }
 <tr>
 <th>Connector</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -704,42 +653,36 @@ body { margin: 0; }
 <tr>
 <td>sowohl … als auch</td>
 <td>both … and</td>
-<td>як … так і</td>
 <td>Ich spreche <strong>sowohl</strong> Englisch <strong>als auch</strong> Ukrainisch.</td>
-<td>I speak both English and Ukrainian.</td>
+<td></td>
 </tr>
 <tr>
 <td>weder … noch</td>
 <td>neither … nor</td>
-<td>ні … ні</td>
 <td>Ich habe <strong>weder</strong> Zeit <strong>noch</strong> Geld.</td>
 <td>I have neither time nor money.</td>
 </tr>
 <tr>
 <td>entweder … oder</td>
 <td>either … or</td>
-<td>або … або</td>
 <td><strong>Entweder</strong> kommst du mit, <strong>oder</strong> du bleibst hier.</td>
 <td>Either you come along or you stay here.</td>
 </tr>
 <tr>
 <td>nicht nur … sondern auch</td>
 <td>not only … but also</td>
-<td>не лише … а й</td>
 <td>Er spricht <strong>nicht nur</strong> Deutsch, <strong>sondern auch</strong> Französisch.</td>
 <td>He speaks not only German but also French.</td>
 </tr>
 <tr>
 <td>zwar … aber</td>
 <td>admittedly … but</td>
-<td>хоч і … але</td>
 <td>Das Auto ist <strong>zwar</strong> alt, <strong>aber</strong> es fährt noch gut.</td>
 <td>The car is old, it's true, but it still runs well.</td>
 </tr>
 <tr>
 <td>je … desto / umso</td>
 <td>the more … the more</td>
-<td>чим … тим</td>
 <td><strong>Je</strong> mehr ich übe, <strong>desto</strong> besser spreche ich.</td>
 <td>The more I practise, the better I speak.</td>
 </tr>
@@ -759,7 +702,6 @@ body { margin: 0; }
 <thead>
 <tr>
 <th>Starter</th>
-<th>Ukrainian</th>
 <th>Order after it</th>
 <th>Example</th>
 <th>English</th>
@@ -771,46 +713,39 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Meiner Meinung nach</td>
-<td>на мою думку</td>
 <td>verb next</td>
 <td><strong>Meiner Meinung nach ist</strong> das zu teuer.</td>
 <td>In my opinion that's too expensive.</td>
 </tr>
 <tr>
 <td>Ich finde, dass …</td>
-<td>я вважаю, що</td>
 <td>verb last</td>
 <td>Ich finde, dass wir mehr Sport machen <strong>sollten</strong>.</td>
 <td>I think we should do more sport.</td>
 </tr>
 <tr>
 <td>Ich finde, … (no dass)</td>
-<td>я вважаю</td>
 <td>normal main clause</td>
 <td>Ich finde, wir <strong>sollten</strong> mehr Sport machen.</td>
 <td>I think we should do more sport.</td>
 </tr>
 <tr>
 <td>Ich bin der Meinung, dass …</td>
-<td>я дотримуюсь думки, що</td>
 <td>verb last</td>
 <td>Ich bin der Meinung, dass Rauchen verboten werden <strong>sollte</strong>.</td>
 <td>I'm of the opinion that smoking should be banned.</td>
 </tr>
 <tr>
 <td>Was mich betrifft, …</td>
-<td>що стосується мене</td>
 <td>verb next</td>
 <td><strong>Was mich betrifft, bin ich</strong> dagegen.</td>
 <td>As far as I'm concerned, I'm against it.</td>
 </tr>
 <tr>
 <td>Ehrlich gesagt</td>
-<td>чесно кажучи</td>
 <td>verb next</td>
 <td><strong>Ehrlich gesagt habe ich</strong> keine Lust.</td>
 <td>To be honest, I don't feel like it.</td>
@@ -820,18 +755,15 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Auf der einen Seite … auf der anderen Seite</td>
-<td>з одного боку … з іншого боку</td>
 <td>verb next (both)</td>
 <td><strong>Auf der einen Seite ist</strong> Berlin teuer, <strong>auf der anderen Seite gibt es</strong> dort viele Jobs.</td>
 <td>On the one hand Berlin is expensive; on the other, there are lots of jobs there.</td>
 </tr>
 <tr>
 <td>Einerseits … andererseits</td>
-<td>з одного боку … з іншого</td>
 <td>verb next (both)</td>
 <td><strong>Einerseits möchte ich</strong> reisen, <strong>andererseits muss ich</strong> sparen.</td>
 <td>On the one hand I'd like to travel; on the other I need to save.</td>
@@ -841,25 +773,21 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Am Ende</td>
-<td>зрештою, у підсумку</td>
 <td>verb next</td>
 <td><strong>Am Ende haben wir</strong> das kleinere Auto gekauft.</td>
 <td>In the end we bought the smaller car.</td>
 </tr>
 <tr>
 <td>Zum Schluss</td>
-<td>наостанок</td>
 <td>verb next</td>
 <td><strong>Zum Schluss möchte ich</strong> mich bedanken.</td>
 <td>Finally, I'd like to say thank you.</td>
 </tr>
 <tr>
 <td>Kurz gesagt</td>
-<td>коротше кажучи</td>
 <td>verb next, or colon + normal</td>
 <td><strong>Kurz gesagt war</strong> der Urlaub super. / Kurz gesagt: Der Urlaub war super.</td>
 <td>In short, the holiday was great.</td>
@@ -869,18 +797,15 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Übrigens</td>
-<td>до речі</td>
 <td>verb next</td>
 <td><strong>Übrigens hat</strong> Max angerufen.</td>
 <td>By the way, Max called.</td>
 </tr>
 <tr>
 <td>Apropos …</td>
-<td>до речі про</td>
 <td>+ noun, then colon</td>
 <td><strong>Apropos Urlaub:</strong> Wohin fahrt ihr dieses Jahr?</td>
 <td>Speaking of holidays, where are you going this year?</td>
@@ -890,25 +815,21 @@ body { margin: 0; }
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>Na ja, …</td>
-<td>ну…</td>
 <td>comma + normal order</td>
 <td>Na ja, so schlimm <strong>war</strong> es nicht.</td>
 <td>Well, it wasn't that bad.</td>
 </tr>
 <tr>
 <td>Also, …</td>
-<td>так от, отже</td>
 <td>comma + normal order</td>
 <td>Also, ich <strong>finde</strong> die Idee gut.</td>
 <td>So, I like the idea.</td>
 </tr>
 <tr>
 <td>Ach so!</td>
-<td>а, зрозуміло!</td>
 <td>standalone</td>
 <td>Ach so, jetzt verstehe ich das.</td>
 <td>Oh, I see, now I get it.</td>
@@ -921,7 +842,6 @@ body { margin: 0; }
 <li>For B1 letters and opinion texts, a solid frame is: <em>Meiner Meinung nach… Einerseits… andererseits… Außerdem… Zum Schluss möchte ich sagen, dass…</em></li>
 </ul>
 <h2>Nuance notes</h2>
-<p>The pairs below are the ones learners mix up most; the Ukrainian parallel often solves them directly.</p>
 <p><strong>weil vs denn vs da</strong> (all "because")</p>
 <div class="table-wrap"><table>
 <thead>
@@ -972,7 +892,6 @@ body { margin: 0; }
 <tr>
 <th>Word</th>
 <th>Use</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -981,28 +900,25 @@ body { margin: 0; }
 <tr>
 <td>als</td>
 <td>one event or period in the past</td>
-<td>коли (один раз у минулому)</td>
 <td><strong>Als</strong> ich in Kyjiw <strong>war</strong>, habe ich Olena getroffen.</td>
 <td>When I was in Kyiv, I met Olena.</td>
 </tr>
 <tr>
 <td>wenn</td>
 <td>present / future; repeated in the past; condition</td>
-<td>коли (завжди), якщо</td>
 <td><strong>Wenn</strong> ich in Kyjiw <strong>war</strong>, habe ich immer Olena getroffen.</td>
 <td>Whenever I was in Kyiv, I always met Olena.</td>
 </tr>
 <tr>
 <td>ob</td>
 <td>whether (yes/no indirect question)</td>
-<td>чи</td>
 <td>Ich weiß nicht, <strong>ob</strong> sie in Kyjiw <strong>ist</strong>.</td>
 <td>I don't know if (whether) she's in Kyiv.</td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li>Test for <em>ob</em>: if English "if" can be replaced by "whether", use <em>ob</em>. Ukrainian makes it easy: <em>чи</em> = <em>ob</em>, <em>якщо</em> = <em>wenn</em>.</li>
+<li>Test for <em>ob</em>: if English "if" can be replaced by "whether", use <em>ob</em>.</li>
 </ul>
 <p><strong>nachdem: one tense step back</strong></p>
 <div class="table-wrap"><table>
@@ -1036,14 +952,12 @@ body { margin: 0; }
 <ul>
 <li>Same subject in both parts: <em>um…zu</em> is preferred. <em>Ich lerne viel, <strong>um</strong> die Prüfung <strong>zu bestehen</strong>.</em> (I study a lot to pass the exam.)</li>
 <li>Different subjects: only <em>damit</em>. <em>Ich erkläre es langsam, <strong>damit</strong> du es <strong>verstehst</strong>.</em> (I explain it slowly so that you understand.)</li>
-<li>Ukrainian <em>щоб</em> covers both; ask "same person?" to choose.</li>
 <li>Do not confuse with the adverb <em>damit</em> = "with it": <em>Was machst du <strong>damit</strong>?</em> (What are you doing with it?)</li>
 </ul>
 <p><strong>sondern vs aber</strong> (both "but")</p>
 <ul>
 <li><em>sondern</em> corrects a negation (not X, but Y instead): <em>Er ist nicht arm, <strong>sondern</strong> reich.</em> (He isn't poor, but rich.)</li>
 <li><em>aber</em> adds a contrast and keeps both: <em>Er ist nicht reich, <strong>aber</strong> glücklich.</em> (He isn't rich, but he's happy.)</li>
-<li>Exact Ukrainian parallel: <em>не сьогодні, <strong>а</strong> завтра</em> = <em>sondern</em>; <em>не багатий, <strong>але</strong> щасливий</em> = <em>aber</em>.</li>
 </ul>
 <p><strong>weil vs deshalb</strong> (same logic, opposite direction): <em>weil</em> introduces the reason, <em>deshalb</em> the consequence. <em>Ich bin müde, <strong>weil</strong> ich wenig geschlafen <strong>habe</strong>.</em> = <em>Ich habe wenig geschlafen, <strong>deshalb bin ich</strong> müde.</em></p>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
@@ -1055,7 +969,6 @@ body { margin: 0; }
 <tr>
 <th>Conjunction</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -1064,70 +977,60 @@ body { margin: 0; }
 <tr>
 <td>indem</td>
 <td>by (doing)</td>
-<td>тим, що; завдяки тому, що</td>
 <td>Man lernt eine Sprache am besten, <strong>indem</strong> man viel spricht.</td>
 <td>You learn a language best by speaking a lot.</td>
 </tr>
 <tr>
 <td>sofern</td>
 <td>provided that</td>
-<td>за умови, що; якщо</td>
 <td><strong>Sofern</strong> nichts dazwischenkommt, sind wir um acht da.</td>
 <td>Provided nothing comes up, we'll be there at eight.</td>
 </tr>
 <tr>
 <td>soweit</td>
 <td>as far as</td>
-<td>наскільки</td>
 <td><strong>Soweit</strong> ich weiß, ist das Büro heute geschlossen.</td>
 <td>As far as I know, the office is closed today.</td>
 </tr>
 <tr>
 <td>insofern ... als</td>
 <td>in that, insofar as</td>
-<td>в тому сенсі, що</td>
 <td>Der Plan ist <strong>insofern</strong> gut, <strong>als</strong> er wenig kostet.</td>
 <td>The plan is good in that it costs little.</td>
 </tr>
 <tr>
 <td>wohingegen</td>
 <td>whereas</td>
-<td>тоді як</td>
 <td>Mein Bruder ist sehr ordentlich, <strong>wohingegen</strong> ich eher chaotisch bin.</td>
 <td>My brother is very tidy, whereas I am rather chaotic.</td>
 </tr>
 <tr>
 <td>zumal</td>
 <td>especially since</td>
-<td>тим більше що</td>
 <td>Ich bleibe heute zu Hause, <strong>zumal</strong> ich noch erkältet bin.</td>
 <td>I'm staying home today, especially since I still have a cold.</td>
 </tr>
 <tr>
 <td>ohne dass</td>
 <td>without (someone) doing</td>
-<td>так, що ... не</td>
 <td>Er ist gegangen, <strong>ohne dass</strong> ich es gemerkt habe.</td>
 <td>He left without my noticing.</td>
 </tr>
 <tr>
 <td>anstatt dass</td>
 <td>instead of (someone) doing</td>
-<td>замість того щоб</td>
 <td><strong>Anstatt dass</strong> die Firma neue Leute einstellt, müssen wir Überstunden machen.</td>
 <td>Instead of the company hiring new people, we have to work overtime.</td>
 </tr>
 <tr>
 <td>als dass</td>
 <td>(too ...) for / to</td>
-<td>щоб (після занадто)</td>
 <td>Das Problem ist zu kompliziert, <strong>als dass</strong> wir es heute lösen könnten.</td>
 <td>The problem is too complicated for us to solve today.</td>
 </tr>
 <tr>
 <td>je nachdem, ob / wie</td>
 <td>depending on whether / how</td>
-<td>залежно від того, чи / як</td>
 <td>Wir fahren mit dem Rad oder mit dem Bus, <strong>je nachdem, wie</strong> das Wetter ist.</td>
 <td>We'll go by bike or by bus, depending on the weather.</td>
 </tr>
@@ -1147,7 +1050,6 @@ body { margin: 0; }
 <tr>
 <th>Adverb</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 <th>English</th>
 </tr>
@@ -1156,70 +1058,60 @@ body { margin: 0; }
 <tr>
 <td>folglich</td>
 <td>consequently</td>
-<td>отже, відтак</td>
 <td>Die Nachfrage ist gesunken, <strong>folglich</strong> sind die Preise gefallen.</td>
 <td>Demand has dropped; consequently prices have fallen.</td>
 </tr>
 <tr>
 <td>somit</td>
 <td>thus</td>
-<td>таким чином</td>
 <td>Alle haben zugestimmt, <strong>somit</strong> ist der Vorschlag angenommen.</td>
 <td>Everyone agreed, so the proposal is accepted.</td>
 </tr>
 <tr>
 <td>demnach</td>
 <td>according to that, so</td>
-<td>відповідно, отже</td>
 <td>Laut Wetterbericht kommt am Abend ein Gewitter. <strong>Demnach</strong> sollten wir früher zurückfahren.</td>
 <td>The forecast says a storm is coming tonight, so we should head back earlier.</td>
 </tr>
 <tr>
 <td>infolgedessen</td>
 <td>as a result</td>
-<td>внаслідок цього</td>
 <td>Es hat tagelang geregnet, <strong>infolgedessen</strong> sind viele Straßen überflutet.</td>
 <td>It rained for days; as a result many roads are flooded.</td>
 </tr>
 <tr>
 <td>nichtsdestotrotz</td>
 <td>nonetheless</td>
-<td>попри все</td>
 <td>Die Kritik war hart, <strong>nichtsdestotrotz</strong> hat sie weitergemacht.</td>
 <td>The criticism was harsh; nonetheless she carried on.</td>
 </tr>
 <tr>
 <td>zudem</td>
 <td>moreover</td>
-<td>до того ж</td>
 <td>Die Wohnung ist zu teuer, <strong>zudem</strong> liegt sie weit vom Zentrum entfernt.</td>
 <td>The flat is too expensive; moreover it is far from the centre.</td>
 </tr>
 <tr>
 <td>darüber hinaus</td>
 <td>furthermore</td>
-<td>понад те</td>
 <td><strong>Darüber hinaus</strong> bietet die Firma flexible Arbeitszeiten.</td>
 <td>Furthermore, the company offers flexible hours.</td>
 </tr>
 <tr>
 <td>ebenso</td>
 <td>likewise, just as</td>
-<td>так само</td>
 <td>Gute Noten sind wichtig. <strong>Ebenso</strong> wichtig ist praktische Erfahrung.</td>
 <td>Good grades matter. Practical experience is just as important.</td>
 </tr>
 <tr>
 <td>hingegen</td>
 <td>by contrast</td>
-<td>натомість</td>
 <td>Im Norden regnet es, im Süden <strong>hingegen</strong> scheint die Sonne.</td>
 <td>It's raining in the north; in the south, by contrast, the sun is shining.</td>
 </tr>
 <tr>
 <td>vielmehr</td>
 <td>rather</td>
-<td>радше, скоріше</td>
 <td>Es geht nicht um Geld, <strong>vielmehr</strong> geht es um Respekt.</td>
 <td>It's not about money; rather, it's about respect.</td>
 </tr>
@@ -1245,13 +1137,13 @@ body { margin: 0; }
 <td>es sei denn</td>
 <td>comma + normal main clause, or + dass + verb last</td>
 <td>Wir treffen uns um acht, <strong>es sei denn</strong>, es regnet. / ..., es sei denn, dass es regnet.</td>
-<td>... unless it rains. (хіба що)</td>
+<td>... unless it rains.</td>
 </tr>
 <tr>
 <td>geschweige denn</td>
 <td>after a negative clause, usually + a word or phrase</td>
 <td>Ich spreche kaum Englisch, <strong>geschweige denn</strong> Chinesisch.</td>
-<td>... let alone Chinese. (не кажучи вже про)</td>
+<td>... let alone Chinese.</td>
 </tr>
 <tr>
 <td>geschweige denn</td>
@@ -1432,9 +1324,22 @@ body { margin: 0; }
 <li><a href="../docs/particles-expressions.html">Particles, expressions and everyday German</a>: spoken fillers and reactions beyond na ja and ach so</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/connectors.html">Connectors quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="142eb68723f1" href="../quizzes/connectors.html">Connectors quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

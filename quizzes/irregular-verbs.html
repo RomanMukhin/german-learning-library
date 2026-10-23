@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="38a574efb4f1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "irregular-verbs", "title": "Irregular verbs quiz", "level": "B1", "doc": {"title": "Irregular verbs", "url": "../docs/irregular-verbs.html"}, "questions": [{"q": "Wir *___* letzten Sommer drei Tage in Prag. (bleiben, Präteritum)", "options": ["blieben", "bleibten", "blieb", "geblieben", "bliebten"], "answer": 0, "explain": "*bleiben* is strong (pattern ei – ie – ie): blieb, ist geblieben. Strong verbs take no -te, so wir *blieben*."}, {"q": "Hast du ihm schon *___*? (schreiben)", "options": ["geschreibt", "geschrieben", "geschriebt", "schrieb", "geschreiben"], "answer": 1, "explain": "ei – ie – ie: schreiben – schrieb – hat *geschrieben*. Strong participles end in -en and carry the new vowel."}, {"q": "Which verb follows the same vowel pattern (i – a – u) as trinken – trank – getrunken?", "options": ["beginnen", "schwimmen", "finden", "bitten", "sitzen"], "answer": 2, "explain": "*finden – fand – gefunden* is i – a – u. beginnen and schwimmen are i – a – o (before -nn/-mm); bitten (bat, gebeten) and sitzen (saß, gesessen) belong elsewhere."}, {"q": "Er *___* immer den Bus um acht. (nehmen)", "options": ["nehmt", "nemmt", "nimt", "nimmt", "nahmt"], "answer": 3, "explain": "*nehmen* changes e → i in du/er and also its consonants: du nimmst, er *nimmt*. *nehmt* is the ihr-form."}, {"q": "Letztes Jahr *___* sie nach Italien. (fahren, Präteritum)", "options": ["fahrte", "fuhrte", "fährte", "fahr", "fuhr"], "answer": 4, "explain": "a – u – a: fahren – fährt – *fuhr* – ist gefahren. Strong Präteritum has no -te and no ending in ich/er/sie."}, {"q": "Gestern *___* ich den ganzen Tag zu Hause geblieben.", "options": ["bin", "habe", "hat", "ist", "hatte"], "answer": 0, "explain": "*bleiben* is one of the exceptions that take sein although nothing moves: ich *bin* geblieben."}, {"q": "Ich habe lange darüber *___*. (nachdenken)", "options": ["gedenkt", "gedacht", "gedachen", "gedunken", "gedankt"], "answer": 1, "explain": "denken is a mixed verb: new stem + weak -t: dachte, *gedacht* (like English think – thought). *gedankt* comes from danken."}, {"q": "Er *___* mir gestern Blumen. (bringen, Präteritum)", "options": ["bringte", "brang", "brachte", "brung", "bracht"], "answer": 2, "explain": "Mixed verb: vowel and consonant change plus weak -te: bringen – *brachte* – gebracht (bring – brought)."}, {"q": "Ich habe gestern leider nicht kommen *___*.", "options": ["gekonnt", "könnte", "gekönnt", "können", "konnte"], "answer": 3, "explain": "A modal with another verb forms its Perfekt with a double infinitive: hat … kommen *können*. *gekonnt* is used only when the modal stands alone."}, {"q": "Ich *___* noch nie in Japan gewesen.", "options": ["habe", "hat", "hatte", "wurde", "bin"], "answer": 4, "explain": "*sein* forms its Perfekt with sein: ich *bin* gewesen. In speech *Ich war noch nie in Japan* is even more common."}, {"q": "Wir *___* letztes Jahr nach Hamburg gezogen.", "options": ["sind", "haben", "hat", "ist", "seid"], "answer": 0, "explain": "*ziehen* without an object means 'move house' and takes sein: wir *sind* gezogen. With an object (den Wagen) it is hat gezogen."}, {"q": "Ich *___* mir beim Skifahren das Bein gebrochen.", "options": ["bin", "habe", "ist", "wurde", "war"], "answer": 1, "explain": "*brechen* takes haben when it has an accusative object (das Bein): Ich *habe* mir das Bein gebrochen. Without one: Das Eis *ist* gebrochen."}, {"q": "Ich *___* das Buch auf den Tisch.", "options": ["liege", "lag", "lege", "gelegen", "liegt"], "answer": 2, "explain": "Putting something somewhere = weak transitive *legen* + Akkusativ: Ich *lege* das Buch auf den Tisch. *liegen* (lag, gelegen) = be lying there."}, {"q": "Das Bild hat jahrelang an der Wand *___*.", "options": ["gehängt", "hängt", "gehängen", "gehangen", "hing"], "answer": 3, "explain": "Strong *hängen* (hing, *gehangen*) = be hanging, with Dativ (an der Wand), like Ukrainian *висіти*. Weak gehängt = hung it up (вішати)."}, {"q": "Ich habe die Prüfung *___*! (I passed / managed it)", "options": ["geschaffen", "schuf", "geschaffte", "geschafen", "geschafft"], "answer": 4, "explain": "Weak *schaffen* (schaffte, *geschafft*) = manage, pass. Strong schaffen (schuf, geschaffen) = create."}, {"q": "What does *Ich soll dich von Anna grüßen* mean?", "options": ["Anna asked me to say hi to you.", "I want to greet Anna.", "I must greet you instead of Anna.", "I'm allowed to say hi to Anna.", "I should have said hi from Anna."], "answer": 0, "explain": "*sollen* = someone else's will (Ukrainian *мати зробити*): Anna wants me to pass on her greetings."}, {"q": "Der Film *___* mir gut *___*.", "options": ["ist … gefallen", "hat … gefallen", "hat … gefällt", "ist … gefällt", "hat … gefiel"], "answer": 1, "explain": "*gefallen* (gefällt – gefiel – hat gefallen) means 'please' and takes haben. *ist gefallen* comes from fallen: 'has fallen'."}, {"q": "Would you know where the station is? *___* du, wo der Bahnhof ist?", "options": ["Wusstest", "Wisstest", "Wüsstest", "Wüsst", "Weißtest"], "answer": 2, "explain": "Konjunktiv II of mixed verbs = Präteritum + umlaut: wusste → *wüsste*, du *wüsstest*. *Wusstest* is the plain past: 'Did you know'."}, {"q": "Er hat sich beim Kochen in den Finger *___*. (schneiden)", "options": ["geschneidet", "geschnieden", "geschnittet", "geschnitten", "schnitt"], "answer": 3, "explain": "ei – i – i (short i, double consonant): schneiden – schnitt – hat *geschnitten*, like reiten – ritt – geritten."}, {"q": "Ich habe meinen Schlüssel *___*. (verlieren)", "options": ["verliert", "geverloren", "verlort", "verlieren", "verloren"], "answer": 4, "explain": "ie – o – o: verlieren – verlor – hat *verloren*. The inseparable prefix ver- blocks ge-."}, {"q": "Wer hat das Spiel *___*? (gewinnen)", "options": ["gewonnen", "gewinnt", "gewunnen", "gewannen", "gegewonnen"], "answer": 0, "explain": "Before -nn / -mm the pattern is i – a – o: gewinnen – gewann – hat *gewonnen* (not -u- as in getrunken)."}, {"q": "Der Kellner *___* uns den Fisch. (empfehlen, Präteritum)", "options": ["empfiehl", "empfahl", "empfehlte", "empfohl", "empfiehlte"], "answer": 1, "explain": "e – a – o: empfehlen – empfiehlt – *empfahl* – hat empfohlen. The present e → ie does not carry into the Präteritum."}, {"q": "Habt ihr schon *___*? (essen)", "options": ["geessen", "gessen", "gegessen", "gegesst", "geesst"], "answer": 2, "explain": "essen is e – a – e with an extra g in the participle: ge-g-essen = *gegessen*."}, {"q": "Wie *___* dein Großvater? (heißen, Präteritum)", "options": ["heißte", "hießte", "geheißen", "hieß", "hiß"], "answer": 3, "explain": "heißen belongs to the -ie- Präteritum group (like rufen – rief): heißen – *hieß* – hat geheißen. Strong, so no -te."}, {"q": "Sie *___* an dem Abend ein rotes Kleid. (tragen, Präteritum)", "options": ["tragte", "trägte", "trugte", "tragt", "trug"], "answer": 4, "explain": "a – u – a: tragen – trägt – *trug* – hat getragen, like fahren – fuhr."}, {"q": "Was hast du am Wochenende *___*? (tun)", "options": ["getan", "getut", "getunt", "getat", "getann"], "answer": 0, "explain": "tun is one of a kind: tun – tut – tat – hat *getan*."}, {"q": "Er *___* lange vor der Tür. (stehen, Präteritum)", "options": ["stehte", "stand", "standete", "stande", "gestanden"], "answer": 1, "explain": "stehen is one of a kind: stehen – *stand* – hat gestanden (in the south: ist gestanden). Same for verstehen – verstand."}, {"q": "Ich *___* ihn schon als Kind. (kennen, Präteritum)", "options": ["kennte", "konnte", "kannte", "kennt", "kante"], "answer": 2, "explain": "kennen is a mixed verb: vowel change plus weak -te: *kannte*, hat gekannt. *konnte* comes from können."}, {"q": "Er ist zum Bus *___*. (rennen)", "options": ["gerennt", "gerunnen", "gerennen", "gerannt", "rannte"], "answer": 3, "explain": "rennen is mixed like kennen and nennen: rannte – ist *gerannt*. Movement, so sein."}, {"q": "Das habe ich nicht *___*. (wollen, no other verb)", "options": ["wollen", "gewillt", "gewolt", "wollte", "gewollt"], "answer": 4, "explain": "A modal standing alone forms a normal ge-participle: Das habe ich nicht *gewollt*. With another verb it would be an infinitive (hat … kommen wollen)."}, {"q": "To a friend: *Don't be afraid!*", "options": ["Hab keine Angst!", "Sei keine Angst!", "Hast keine Angst!", "Habst keine Angst!", "Hab nicht Angst!"], "answer": 0, "explain": "du-imperative of haben is *hab(e)*, and *Angst haben* is negated with kein: *Hab keine Angst!* Ukrainian *не бійся* uses a different verb."}, {"q": "Er *___* den Ball ins Tor getreten.", "options": ["ist", "hat", "wird", "bist", "habe"], "answer": 1, "explain": "*treten* takes haben with an accusative object (den Ball = kick); without one it takes sein (Er ist auf die Straße getreten)."}, {"q": "Ich *___* mich aufs Sofa. (I sit down on the sofa.)", "options": ["sitze", "sitzte", "setze", "setzt", "saß"], "answer": 2, "explain": "Putting yourself somewhere = weak transitive *setzen* + Akkusativ: Ich *setze* mich aufs Sofa. sitzen (saß, gesessen) = be sitting."}, {"q": "Translate: *You scared me!*", "options": ["Du hast mich erschrocken!", "Du bist mich erschrocken!", "Du hast mir erschreckt!", "Du hast mich erschreckt!", "Du bist mir erschreckt!"], "answer": 3, "explain": "Scaring someone = weak transitive *erschrecken*: hat *erschreckt* + Akkusativ. Strong ist erschrocken = I got a fright (Ich bin erschrocken)."}]}
+{"id": "irregular-verbs", "title": "Irregular verbs quiz", "level": "B1", "doc": {"title": "Irregular verbs", "url": "../docs/irregular-verbs.html"}, "questions": [{"q": "Wir *___* letzten Sommer drei Tage in Prag. (bleiben, Präteritum)", "options": ["blieben", "bleibten", "blieb", "geblieben", "bliebten"], "answer": 0, "explain": "*bleiben* is strong (pattern ei – ie – ie): blieb, ist geblieben. Strong verbs take no -te, so wir *blieben*."}, {"q": "Hast du ihm schon *___*? (schreiben)", "options": ["geschreibt", "geschrieben", "geschriebt", "schrieb", "geschreiben"], "answer": 1, "explain": "ei – ie – ie: schreiben – schrieb – hat *geschrieben*. Strong participles end in -en and carry the new vowel."}, {"q": "Which verb follows the same vowel pattern (i – a – u) as trinken – trank – getrunken?", "options": ["beginnen", "schwimmen", "finden", "bitten", "sitzen"], "answer": 2, "explain": "*finden – fand – gefunden* is i – a – u. beginnen and schwimmen are i – a – o (before -nn/-mm); bitten (bat, gebeten) and sitzen (saß, gesessen) belong elsewhere."}, {"q": "Er *___* immer den Bus um acht. (nehmen)", "options": ["nehmt", "nemmt", "nimt", "nimmt", "nahmt"], "answer": 3, "explain": "*nehmen* changes e → i in du/er and also its consonants: du nimmst, er *nimmt*. *nehmt* is the ihr-form."}, {"q": "Letztes Jahr *___* sie nach Italien. (fahren, Präteritum)", "options": ["fahrte", "fuhrte", "fährte", "fahr", "fuhr"], "answer": 4, "explain": "a – u – a: fahren – fährt – *fuhr* – ist gefahren. Strong Präteritum has no -te and no ending in ich/er/sie."}, {"q": "Gestern *___* ich den ganzen Tag zu Hause geblieben.", "options": ["bin", "habe", "hat", "ist", "hatte"], "answer": 0, "explain": "*bleiben* is one of the exceptions that take sein although nothing moves: ich *bin* geblieben."}, {"q": "Ich habe lange darüber *___*. (nachdenken)", "options": ["gedenkt", "gedacht", "gedachen", "gedunken", "gedankt"], "answer": 1, "explain": "denken is a mixed verb: new stem + weak -t: dachte, *gedacht* (like English think – thought). *gedankt* comes from danken."}, {"q": "Er *___* mir gestern Blumen. (bringen, Präteritum)", "options": ["bringte", "brang", "brachte", "brung", "bracht"], "answer": 2, "explain": "Mixed verb: vowel and consonant change plus weak -te: bringen – *brachte* – gebracht (bring – brought)."}, {"q": "Ich habe gestern leider nicht kommen *___*.", "options": ["gekonnt", "könnte", "gekönnt", "können", "konnte"], "answer": 3, "explain": "A modal with another verb forms its Perfekt with a double infinitive: hat … kommen *können*. *gekonnt* is used only when the modal stands alone."}, {"q": "Ich *___* noch nie in Japan gewesen.", "options": ["habe", "hat", "hatte", "wurde", "bin"], "answer": 4, "explain": "*sein* forms its Perfekt with sein: ich *bin* gewesen. In speech *Ich war noch nie in Japan* is even more common."}, {"q": "Wir *___* letztes Jahr nach Hamburg gezogen.", "options": ["sind", "haben", "hat", "ist", "seid"], "answer": 0, "explain": "*ziehen* without an object means 'move house' and takes sein: wir *sind* gezogen. With an object (den Wagen) it is hat gezogen."}, {"q": "Ich *___* mir beim Skifahren das Bein gebrochen.", "options": ["bin", "habe", "ist", "wurde", "war"], "answer": 1, "explain": "*brechen* takes haben when it has an accusative object (das Bein): Ich *habe* mir das Bein gebrochen. Without one: Das Eis *ist* gebrochen."}, {"q": "Ich *___* das Buch auf den Tisch.", "options": ["liege", "lag", "lege", "gelegen", "liegt"], "answer": 2, "explain": "Putting something somewhere = weak transitive *legen* + Akkusativ: Ich *lege* das Buch auf den Tisch. *liegen* (lag, gelegen) = be lying there."}, {"q": "Das Bild hat jahrelang an der Wand *___*.", "options": ["gehängt", "hängt", "gehängen", "gehangen", "hing"], "answer": 3, "explain": "Weak gehängt = hung it up."}, {"q": "Ich habe die Prüfung *___*! (I passed / managed it)", "options": ["geschaffen", "schuf", "geschaffte", "geschafen", "geschafft"], "answer": 4, "explain": "Weak *schaffen* (schaffte, *geschafft*) = manage, pass. Strong schaffen (schuf, geschaffen) = create."}, {"q": "What does *Ich soll dich von Anna grüßen* mean?", "options": ["Anna asked me to say hi to you.", "I want to greet Anna.", "I must greet you instead of Anna.", "I'm allowed to say hi to Anna.", "I should have said hi from Anna."], "answer": 0, "explain": "*sollen* = someone else's will: Anna wants me to pass on her greetings."}, {"q": "Der Film *___* mir gut *___*.", "options": ["ist … gefallen", "hat … gefallen", "hat … gefällt", "ist … gefällt", "hat … gefiel"], "answer": 1, "explain": "*gefallen* (gefällt – gefiel – hat gefallen) means 'please' and takes haben. *ist gefallen* comes from fallen: 'has fallen'."}, {"q": "Would you know where the station is? *___* du, wo der Bahnhof ist?", "options": ["Wusstest", "Wisstest", "Wüsstest", "Wüsst", "Weißtest"], "answer": 2, "explain": "Konjunktiv II of mixed verbs = Präteritum + umlaut: wusste → *wüsste*, du *wüsstest*. *Wusstest* is the plain past: 'Did you know'."}, {"q": "Er hat sich beim Kochen in den Finger *___*. (schneiden)", "options": ["geschneidet", "geschnieden", "geschnittet", "geschnitten", "schnitt"], "answer": 3, "explain": "ei – i – i (short i, double consonant): schneiden – schnitt – hat *geschnitten*, like reiten – ritt – geritten."}, {"q": "Ich habe meinen Schlüssel *___*. (verlieren)", "options": ["verliert", "geverloren", "verlort", "verlieren", "verloren"], "answer": 4, "explain": "ie – o – o: verlieren – verlor – hat *verloren*. The inseparable prefix ver- blocks ge-."}, {"q": "Wer hat das Spiel *___*? (gewinnen)", "options": ["gewonnen", "gewinnt", "gewunnen", "gewannen", "gegewonnen"], "answer": 0, "explain": "Before -nn / -mm the pattern is i – a – o: gewinnen – gewann – hat *gewonnen* (not -u- as in getrunken)."}, {"q": "Der Kellner *___* uns den Fisch. (empfehlen, Präteritum)", "options": ["empfiehl", "empfahl", "empfehlte", "empfohl", "empfiehlte"], "answer": 1, "explain": "e – a – o: empfehlen – empfiehlt – *empfahl* – hat empfohlen. The present e → ie does not carry into the Präteritum."}, {"q": "Habt ihr schon *___*? (essen)", "options": ["geessen", "gessen", "gegessen", "gegesst", "geesst"], "answer": 2, "explain": "essen is e – a – e with an extra g in the participle: ge-g-essen = *gegessen*."}, {"q": "Wie *___* dein Großvater? (heißen, Präteritum)", "options": ["heißte", "hießte", "geheißen", "hieß", "hiß"], "answer": 3, "explain": "heißen belongs to the -ie- Präteritum group (like rufen – rief): heißen – *hieß* – hat geheißen. Strong, so no -te."}, {"q": "Sie *___* an dem Abend ein rotes Kleid. (tragen, Präteritum)", "options": ["tragte", "trägte", "trugte", "tragt", "trug"], "answer": 4, "explain": "a – u – a: tragen – trägt – *trug* – hat getragen, like fahren – fuhr."}, {"q": "Was hast du am Wochenende *___*? (tun)", "options": ["getan", "getut", "getunt", "getat", "getann"], "answer": 0, "explain": "tun is one of a kind: tun – tut – tat – hat *getan*."}, {"q": "Er *___* lange vor der Tür. (stehen, Präteritum)", "options": ["stehte", "stand", "standete", "stande", "gestanden"], "answer": 1, "explain": "stehen is one of a kind: stehen – *stand* – hat gestanden (in the south: ist gestanden). Same for verstehen – verstand."}, {"q": "Ich *___* ihn schon als Kind. (kennen, Präteritum)", "options": ["kennte", "konnte", "kannte", "kennt", "kante"], "answer": 2, "explain": "kennen is a mixed verb: vowel change plus weak -te: *kannte*, hat gekannt. *konnte* comes from können."}, {"q": "Er ist zum Bus *___*. (rennen)", "options": ["gerennt", "gerunnen", "gerennen", "gerannt", "rannte"], "answer": 3, "explain": "rennen is mixed like kennen and nennen: rannte – ist *gerannt*. Movement, so sein."}, {"q": "Das habe ich nicht *___*. (wollen, no other verb)", "options": ["wollen", "gewillt", "gewolt", "wollte", "gewollt"], "answer": 4, "explain": "A modal standing alone forms a normal ge-participle: Das habe ich nicht *gewollt*. With another verb it would be an infinitive (hat … kommen wollen)."}, {"q": "To a friend: *Don't be afraid!*", "options": ["Hab keine Angst!", "Sei keine Angst!", "Hast keine Angst!", "Habst keine Angst!", "Hab nicht Angst!"], "answer": 0, "explain": "du-imperative of haben is *hab(e)*, and *Angst haben* is negated with kein: *Hab keine Angst!*"}, {"q": "Er *___* den Ball ins Tor getreten.", "options": ["ist", "hat", "wird", "bist", "habe"], "answer": 1, "explain": "*treten* takes haben with an accusative object (den Ball = kick); without one it takes sein (Er ist auf die Straße getreten)."}, {"q": "Ich *___* mich aufs Sofa. (I sit down on the sofa.)", "options": ["sitze", "sitzte", "setze", "setzt", "saß"], "answer": 2, "explain": "Putting yourself somewhere = weak transitive *setzen* + Akkusativ: Ich *setze* mich aufs Sofa. sitzen (saß, gesessen) = be sitting."}, {"q": "Translate: *You scared me!*", "options": ["Du hast mich erschrocken!", "Du bist mich erschrocken!", "Du hast mir erschreckt!", "Du hast mich erschreckt!", "Du bist mir erschreckt!"], "answer": 3, "explain": "Scaring someone = weak transitive *erschrecken*: hat *erschreckt* + Akkusativ. Strong ist erschrocken = I got a fright (Ich bin erschrocken)."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

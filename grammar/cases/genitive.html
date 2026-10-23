@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="50797f39ef5f">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Cases</a><span class="sep">/</span><span class="cur">Genitive</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="d221fc543f6b" class="hide-sm" href="index.html">Cases</a><span class="sep">/</span><span class="cur">Genitive</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1</span><h1>Genitive</h1><p class="sub">The case of ownership and &quot;of&quot;: forms with -s/-es, des and der, the genitive prepositions and why speech prefers von.</p></header>
@@ -240,7 +246,7 @@ body { margin: 0; }
 </table></div>
 <p>Only masculine and neuter nouns get an ending, <strong>-s</strong> or <strong>-es</strong>. Feminine and plural nouns stay unchanged.</p>
 <ul>
-<li>das Auto <strong>meines Vaters</strong> — <em>my father's car</em> (машина мого батька)</li>
+<li>das Auto <strong>meines Vaters</strong> — <em>my father's car</em></li>
 <li>die Farbe <strong>des Hauses</strong> — <em>the colour of the house</em></li>
 <li>das Ende <strong>der Geschichte</strong> — <em>the end of the story</em></li>
 <li>die Zimmer <strong>der Kinder</strong> — <em>the children's rooms</em></li>
@@ -312,22 +318,21 @@ body { margin: 0; }
 <li><em>Anna~~'~~s Buch</em> — the standard spelling has no apostrophe: <em>Annas Buch</em>. Shop signs like <em>Anna's Café</em> are tolerated, but don't copy them.</li>
 <li><em>das Auto ~~des Vater~~</em> — masculine needs the -s: <em>des Vaters</em>.</li>
 <li><em>die Farbe ~~der Hauses~~</em> — neuter takes <em>des</em>, not <em>der</em>: <em>des Hauses</em>.</li>
-<li>Weak nouns take <strong>-n</strong>, not -s: <em>des Studenten, des Kollegen, des Herrn</em>. See <a href="../../grammar/cases/n-declension.html">N-declension</a>.</li>
+<li>Weak nouns take <strong>-n</strong>, not -s: <em>des Studenten, des Kollegen, des Herrn</em>. See <a data-quiz="ffdeac067259" href="../../grammar/cases/n-declension.html">N-declension</a>.</li>
 <li><em>wegen ~~der Wetter~~</em> — <em>das Wetter</em> is neuter: <em>wegen des Wetters</em> (or in speech <em>wegen dem Wetter</em>).</li>
 </ul></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>The Ukrainian родовий (<em>книга брата, кінець фільму</em>) has the same job, and in the same position: after the noun. <em>Книга мого брата</em> = <em>das Buch meines Bruders</em>. But Ukrainian also uses the родовий for quantities and negation (<em>багато людей, немає часу</em>), and German does not: <em>viele Leute, keine Zeit</em>.</p></aside>
 <aside class="callout fact"><p class="callout-title">&quot;Der Dativ ist dem Genitiv sein Tod&quot;</p><p>In 2004 the journalist Bastian Sick published a book with this title, a collection of his Spiegel Online column "Zwiebelfisch" about German usage. It became one of the bestselling German non-fiction books of the decade and grew into a series. The title is a joke: <em>dem Genitiv sein Tod</em> ("to the genitive his death") is a colloquial dative construction replacing <em>der Tod des Genitivs</em>, so the sentence demonstrates exactly what it complains about.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: genitive in formal writing</p><p>In formal texts you will also see genitive objects of a few verbs (<em>Wir gedenken der Opfer</em>), genitive adverbs (<em>eines Tages, meines Erachtens</em>) and long genitive chains: <em>die Ergebnisse der Untersuchung des Ministeriums</em>. Recognise them; don't build them yet. See <a href="../../docs/b2-formal-german.html">Formal German</a>.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/cases/index.html">Cases overview</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative</a></li>
-<li><a href="../../grammar/cases/n-declension.html">N-declension</a></li>
+<li><a data-quiz="d221fc543f6b" href="../../grammar/cases/index.html">Cases overview</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative</a></li>
+<li><a data-quiz="ffdeac067259" href="../../grammar/cases/n-declension.html">N-declension</a></li>
 <li><a href="../../docs/prepositions.html">Prepositions</a></li>
 <li><a href="../../docs/articles.html">Articles</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="dative.html">← Dative</a><a class="btn" href="n-declension.html">N-declension →</a></nav>
+<nav class="pager"><a data-quiz="68fbbfc373da" class="btn" href="dative.html">← Dative</a><a data-quiz="ffdeac067259" class="btn" href="n-declension.html">N-declension →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -345,12 +350,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Das ist das Auto *___* Vaters.", "options": ["meinem", "meinen", "meiner", "mein", "meines"], "answer": 4, "explain": "Masculine genitive: *meines Vaters*, with *-s* on the noun too (A2)."}, {"q": "Das ist *___* Bruder.", "options": ["Anna", "Annas'", "von Annas", "Annas", "der Annas"], "answer": 3, "explain": "Names take *-s* without an apostrophe in standard German: *Annas Bruder* (A2)."}, {"q": "Die Farbe *___* Hauses gefällt mir.", "options": ["der", "des", "dem", "den", "das"], "answer": 1, "explain": "*das Haus* is neuter, so the genitive article is *des*: *des Hauses* (A2)."}, {"q": "Das Ende *___* Geschichte war traurig.", "options": ["der", "des", "die", "dem", "den"], "answer": 0, "explain": "Feminine genitive is *der*, and the noun takes no ending: *der Geschichte* (A2)."}, {"q": "Die Zimmer *___* Kinder sind oben.", "options": ["der", "den", "die", "des", "dem"], "answer": 0, "explain": "Plural genitive is *der*: *die Zimmer der Kinder* (A2)."}, {"q": "Which question word asks for the genitive?", "options": ["wem?", "wen?", "woher?", "wer?", "wessen?"], "answer": 4, "explain": "*wessen?* means whose?, like Ukrainian *чий?* (A2)."}, {"q": "der Name des *___*", "options": ["Hotel", "Hotels", "Hoteles", "Hoteln", "Hotelen"], "answer": 1, "explain": "Masculine and neuter nouns add *-s* in the genitive; longer nouns take *-s*, not *-es* (A2)."}, {"q": "die Länge des *___*", "options": ["Tisch", "Tisches", "Tischen", "Tischer", "Tische"], "answer": 1, "explain": "After *-sch* the genitive ending is *-es*: *des Tisches* (B1)."}, {"q": "*___* des Regens bleiben wir zu Hause.", "options": ["Mit", "Für", "Wegen", "Seit", "Ohne"], "answer": 2, "explain": "Only *wegen* (because of) takes the genitive and fits the meaning; *mit, seit* are dative, *für, ohne* accusative (B1)."}, {"q": "Trotz *___* Kälte gehen wir spazieren.", "options": ["die", "dem", "der", "des", "den"], "answer": 2, "explain": "*trotz* takes the genitive; feminine *die Kälte* becomes *der Kälte* (B1)."}, {"q": "Während *___* Urlaubs habe ich viel gelesen.", "options": ["der", "dem", "den", "des", "das"], "answer": 3, "explain": "*während* + genitive; masculine *der Urlaub* becomes *des Urlaubs* (B1)."}, {"q": "Statt *___* Autos kaufe ich ein Fahrrad.", "options": ["einem", "einen", "einer", "ein", "eines"], "answer": 4, "explain": "*statt* takes the genitive; neuter *ein Auto* becomes *eines Autos* (B1)."}, {"q": "Spoken German: *das Haus ___ meinem Bruder*", "options": ["des", "aus", "zu", "von", "mit"], "answer": 3, "explain": "In speech the genitive is often replaced by *von* + dative: *das Haus von meinem Bruder* (B1)."}, {"q": "Which is the correct formal (written) form?", "options": ["wegen des Wetters", "wegen dem Wetter", "wegen der Wetter", "wegen das Wetter", "wegen den Wetters"], "answer": 0, "explain": "Formal German uses the genitive after *wegen*; *wegen dem Wetter* is colloquial (B1)."}, {"q": "die Meinung des *___*", "options": ["Students", "Studentes", "Student", "Studenten", "Studenter"], "answer": 3, "explain": "*der Student* is a weak noun, so its genitive is *des Studenten*, not *-s* (B1)."}, {"q": "*___* kannst du gehen. (because of me / I don't mind)", "options": ["Meinetwegen", "Wegen mich", "Wegen meines", "Mich wegen", "Meinwegen"], "answer": 0, "explain": "With pronouns German uses *meinetwegen*, which also means \"fine by me\" (B1)."}, {"q": "The genitive normally comes...", "options": ["before every noun", "at the end of the sentence", "after the noun it describes", "only after verbs", "only in questions"], "answer": 2, "explain": "*die Hauptstadt der Ukraine*: the genitive follows, like Ukrainian *столиця України*. Only names go in front (B1)."}, {"q": "Innerhalb *___* Woche muss ich antworten.", "options": ["eine", "einer", "einem", "einen", "eines"], "answer": 1, "explain": "*innerhalb* takes the genitive; feminine *eine Woche* becomes *einer Woche* (B1)."}, {"q": "Who wrote *Der Dativ ist dem Genitiv sein Tod* (2004)?", "options": ["Goethe", "Bastian Sick", "Martin Luther", "Konrad Duden", "the Brothers Grimm"], "answer": 1, "explain": "The journalist Bastian Sick, based on his Spiegel Online column \"Zwiebelfisch\" (B1)."}, {"q": "Ukrainian *немає часу* (родовий) in German is...", "options": ["Ich habe keiner Zeit.", "Es gibt keines Zeit.", "Ich habe Zeit nicht.", "Ich habe keine Zeit.", "Ich habe keinen Zeit."], "answer": 3, "explain": "German does not use the genitive for negation: *keine Zeit* is accusative (*die Zeit*, feminine) (B1)."}, {"q": "das Auto *___*", "options": ["Klauses", "Klaus's", "von Klaus", "des Klaus'", "dem Klaus"], "answer": 2, "explain": "With names ending in *-s* speech uses *von*: *das Auto von Klaus*; in writing *Klaus' Auto* (B1)."}, {"q": "die Hauptstadt *___*", "options": ["Deutschland", "des Deutschland", "Deutschlanden", "der Deutschland", "Deutschlands"], "answer": 4, "explain": "Country names take *-s* in the genitive with no apostrophe: *Deutschlands* (A2)."}, {"q": "Das ist die Wohnung *___* Eltern.", "options": ["meinen", "meines", "meiner", "meine", "meinem"], "answer": 2, "explain": "Plural genitive of *meine* is *meiner*: *die Wohnung meiner Eltern* (B1)."}, {"q": "der Anfang *___* Films", "options": ["des", "der", "dem", "den", "die"], "answer": 0, "explain": "*der Film* is masculine: genitive *des Films* (A2)."}], "title": "Genitive quiz", "level": "B1"}
+{"questions": [{"q": "Das ist das Auto *___* Vaters.", "options": ["meinem", "meinen", "meiner", "mein", "meines"], "answer": 4, "explain": "Masculine genitive: *meines Vaters*, with *-s* on the noun too (A2)."}, {"q": "Das ist *___* Bruder.", "options": ["Anna", "Annas'", "von Annas", "Annas", "der Annas"], "answer": 3, "explain": "Names take *-s* without an apostrophe in standard German: *Annas Bruder* (A2)."}, {"q": "Die Farbe *___* Hauses gefällt mir.", "options": ["der", "des", "dem", "den", "das"], "answer": 1, "explain": "*das Haus* is neuter, so the genitive article is *des*: *des Hauses* (A2)."}, {"q": "Das Ende *___* Geschichte war traurig.", "options": ["der", "des", "die", "dem", "den"], "answer": 0, "explain": "Feminine genitive is *der*, and the noun takes no ending: *der Geschichte* (A2)."}, {"q": "Die Zimmer *___* Kinder sind oben.", "options": ["der", "den", "die", "des", "dem"], "answer": 0, "explain": "Plural genitive is *der*: *die Zimmer der Kinder* (A2)."}, {"q": "Which question word asks for the genitive?", "options": ["wem?", "wen?", "woher?", "wer?", "wessen?"], "answer": 4, "explain": "*wessen?* means whose? (A2)."}, {"q": "der Name des *___*", "options": ["Hotel", "Hotels", "Hoteles", "Hoteln", "Hotelen"], "answer": 1, "explain": "Masculine and neuter nouns add *-s* in the genitive; longer nouns take *-s*, not *-es* (A2)."}, {"q": "die Länge des *___*", "options": ["Tisch", "Tisches", "Tischen", "Tischer", "Tische"], "answer": 1, "explain": "After *-sch* the genitive ending is *-es*: *des Tisches* (B1)."}, {"q": "*___* des Regens bleiben wir zu Hause.", "options": ["Mit", "Für", "Wegen", "Seit", "Ohne"], "answer": 2, "explain": "Only *wegen* (because of) takes the genitive and fits the meaning; *mit, seit* are dative, *für, ohne* accusative (B1)."}, {"q": "Trotz *___* Kälte gehen wir spazieren.", "options": ["die", "dem", "der", "des", "den"], "answer": 2, "explain": "*trotz* takes the genitive; feminine *die Kälte* becomes *der Kälte* (B1)."}, {"q": "Während *___* Urlaubs habe ich viel gelesen.", "options": ["der", "dem", "den", "des", "das"], "answer": 3, "explain": "*während* + genitive; masculine *der Urlaub* becomes *des Urlaubs* (B1)."}, {"q": "Statt *___* Autos kaufe ich ein Fahrrad.", "options": ["einem", "einen", "einer", "ein", "eines"], "answer": 4, "explain": "*statt* takes the genitive; neuter *ein Auto* becomes *eines Autos* (B1)."}, {"q": "Spoken German: *das Haus ___ meinem Bruder*", "options": ["des", "aus", "zu", "von", "mit"], "answer": 3, "explain": "In speech the genitive is often replaced by *von* + dative: *das Haus von meinem Bruder* (B1)."}, {"q": "Which is the correct formal (written) form?", "options": ["wegen des Wetters", "wegen dem Wetter", "wegen der Wetter", "wegen das Wetter", "wegen den Wetters"], "answer": 0, "explain": "Formal German uses the genitive after *wegen*; *wegen dem Wetter* is colloquial (B1)."}, {"q": "die Meinung des *___*", "options": ["Students", "Studentes", "Student", "Studenten", "Studenter"], "answer": 3, "explain": "*der Student* is a weak noun, so its genitive is *des Studenten*, not *-s* (B1)."}, {"q": "*___* kannst du gehen. (because of me / I don't mind)", "options": ["Meinetwegen", "Wegen mich", "Wegen meines", "Mich wegen", "Meinwegen"], "answer": 0, "explain": "With pronouns German uses *meinetwegen*, which also means \"fine by me\" (B1)."}, {"q": "The genitive normally comes...", "options": ["before every noun", "at the end of the sentence", "after the noun it describes", "only after verbs", "only in questions"], "answer": 2, "explain": "Only names go in front (B1)."}, {"q": "Innerhalb *___* Woche muss ich antworten.", "options": ["eine", "einer", "einem", "einen", "eines"], "answer": 1, "explain": "*innerhalb* takes the genitive; feminine *eine Woche* becomes *einer Woche* (B1)."}, {"q": "Who wrote *Der Dativ ist dem Genitiv sein Tod* (2004)?", "options": ["Goethe", "Bastian Sick", "Martin Luther", "Konrad Duden", "the Brothers Grimm"], "answer": 1, "explain": "The journalist Bastian Sick, based on his Spiegel Online column \"Zwiebelfisch\" (B1)."}, {"q": "das Auto *___*", "options": ["Klauses", "Klaus's", "von Klaus", "des Klaus'", "dem Klaus"], "answer": 2, "explain": "With names ending in *-s* speech uses *von*: *das Auto von Klaus*; in writing *Klaus' Auto* (B1)."}, {"q": "die Hauptstadt *___*", "options": ["Deutschland", "des Deutschland", "Deutschlanden", "der Deutschland", "Deutschlands"], "answer": 4, "explain": "Country names take *-s* in the genitive with no apostrophe: *Deutschlands* (A2)."}, {"q": "Das ist die Wohnung *___* Eltern.", "options": ["meinen", "meines", "meiner", "meine", "meinem"], "answer": 2, "explain": "Plural genitive of *meine* is *meiner*: *die Wohnung meiner Eltern* (B1)."}, {"q": "der Anfang *___* Films", "options": ["des", "der", "dem", "den", "die"], "answer": 0, "explain": "*der Film* is masculine: genitive *des Films* (A2)."}], "title": "Genitive quiz", "level": "B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -362,18 +371,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -388,14 +411,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -407,7 +430,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -416,14 +439,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -431,23 +454,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

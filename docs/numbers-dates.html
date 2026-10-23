@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="aecdbb707b2e">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Numbers, dates, time and money</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../everyday/clock-and-time.html">Clock and time</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="714084ebb430" href="../everyday/clock-and-time.html">Clock and time</a>.</p></aside>
 <p>German numbers read the units before the tens (21 = einundzwanzig), use a comma for decimals and a dot for thousands, and "halb drei" means 2:30, not 3:30.</p>
 <h2>Cardinal numbers</h2>
 <p>From 21 to 99, German says the unit first, then "und", then the ten: 21 = einundzwanzig ("one-and-twenty"), written as one word.</p>
@@ -278,7 +284,7 @@ body { margin: 0; }
 <ul>
 <li>40 vierzig, 50 fünfzig, 80 achtzig, 90 neunzig.</li>
 <li>22 zweiundzwanzig, 35 fünfunddreißig, 47 siebenundvierzig, 68 achtundsechzig.</li>
-<li>Listen for the unit first: "dreiundsiebzig" = 3 + 70 = 73. In Ukrainian (сімдесят три) and English (seventy-three) the order is the opposite, so this is the classic trap with phone numbers and prices.</li>
+<li>Listen for the unit first: "dreiundsiebzig" = 3 + 70 = 73.</li>
 </ul>
 <h3>eins, ein, eine</h3>
 <div class="table-wrap"><table>
@@ -339,7 +345,6 @@ body { margin: 0; }
 <th>Value</th>
 <th>German</th>
 <th>English</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
@@ -347,19 +352,16 @@ body { margin: 0; }
 <td>10^6</td>
 <td>eine Million (pl. Millionen)</td>
 <td>a million</td>
-<td>мільйон</td>
 </tr>
 <tr>
 <td>10^9</td>
 <td>eine Milliarde (pl. Milliarden)</td>
 <td>a billion</td>
-<td>мільярд</td>
 </tr>
 <tr>
 <td>10^12</td>
 <td>eine Billion (pl. Billionen)</td>
 <td>a trillion</td>
-<td>трильйон</td>
 </tr>
 </tbody>
 </table></div>
@@ -367,7 +369,6 @@ body { margin: 0; }
 <li>Million, Milliarde and Billion are feminine nouns: written separately, capitalised, with a plural: zwei Millionen Einwohner, drei Milliarden Euro.</li>
 <li>1.500.000 = eine Million fünfhunderttausend; 2,5 Mio. = zweieinhalb Millionen.</li>
 <li>Abbreviations: Mio. (Million), Mrd. (Milliarde), Tsd. (Tausend).</li>
-<li>Good news for Ukrainian speakers: Ukrainian uses the same system (мільярд = Milliarde), so think in Ukrainian here, not English.</li>
 </ul>
 <h3>Writing: dot and comma swap roles</h3>
 <div class="table-wrap"><table>
@@ -408,7 +409,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>After the comma, read digits one by one: 3,14 = drei Komma eins vier (not vierzehn).</li>
-<li>Ukrainian also uses the decimal comma (3,5 = три кома п'ять), so only English habits need unlearning.</li>
 <li>1,5 is usually said "anderthalb" or "eineinhalb" in everyday speech (see Fractions).</li>
 </ul>
 <h2>Ordinal numbers</h2>
@@ -532,7 +532,6 @@ body { margin: 0; }
 <li>Also for floors and ranks: im 2. Stock (im zweiten Stock), der 1. Platz.</li>
 <li>Kings and centuries: Ludwig XIV. (der Vierzehnte), im 21. Jahrhundert (im einundzwanzigsten Jahrhundert).</li>
 <li>Adverbs for lists: erstens, zweitens, drittens (firstly, secondly, thirdly).</li>
-<li>Ukrainian comparison: like перший / перша / перше, the ordinal agrees with the noun in gender and case.</li>
 </ul>
 <h2>Dates</h2>
 <p>A date is an ordinal with "der" (what date it is) or "am" + -en (when something happens): Heute ist der dritte Mai, but Ich komme am dritten Mai.</p>
@@ -569,7 +568,6 @@ body { margin: 0; }
 </table></div>
 <h3>Writing a date</h3>
 <ul>
-<li>Order is day.month.year, like Ukrainian: 03.05.2026 = 3 May 2026 (not 5 March).</li>
 <li>Spoken: der dritte fünfte zweitausendsechsundzwanzig, or more often der dritte Mai.</li>
 <li>Letters: Berlin, den 3. Mai 2026 or Berlin, 03.05.2026.</li>
 <li>With a weekday: am Montag, dem 4. Mai (am Montag, den 4. Mai is also common).</li>
@@ -614,7 +612,6 @@ body { margin: 0; }
 <li>Before 2000, say the hundreds: neunzehnhundert (never "tausendneunhundert").</li>
 <li>From 2000, say the thousand: zweitausendzwanzig (not "zwanzig zwanzig").</li>
 <li>"In 2020" is an anglicism that standard German avoids. Say either just the year or im Jahr 2020: Ich bin 2020 nach Deutschland gekommen. / Im Jahr 2020 bin ich nach Deutschland gekommen.</li>
-<li>Ukrainian comparison: у 2020 році = im Jahr 2020 or simply 2020, never "in 2020".</li>
 </ul>
 <h2>Days, months, seasons</h2>
 <p>All days, months and seasons are masculine (der); use "am" for days and parts of the day, "im" for months and seasons (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</p>
@@ -664,7 +661,6 @@ body { margin: 0; }
 <li>Tip: say "Juno" for Juni and "Julei" for Juli on the phone to avoid confusion.</li>
 <li>Austria uses "Jänner" for January.</li>
 <li>"Das Wochenende" is neuter, but still am Wochenende.</li>
-<li>Ukrainian comparison: у понеділок = am Montag; у травні = im Mai; взимку = im Winter.</li>
 </ul>
 <h3>Regular habits: -s adverbs</h3>
 <div class="table-wrap"><table>
@@ -710,64 +706,52 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>vorgestern</td>
 <td>the day before yesterday</td>
-<td>позавчора</td>
 </tr>
 <tr>
 <td>gestern</td>
 <td>yesterday</td>
-<td>вчора</td>
 </tr>
 <tr>
 <td>heute</td>
 <td>today</td>
-<td>сьогодні</td>
 </tr>
 <tr>
 <td>morgen</td>
 <td>tomorrow</td>
-<td>завтра</td>
 </tr>
 <tr>
 <td>übermorgen</td>
 <td>the day after tomorrow</td>
-<td>післязавтра</td>
 </tr>
 <tr>
 <td>heute Morgen / heute Abend</td>
 <td>this morning / this evening</td>
-<td>сьогодні вранці / ввечері</td>
 </tr>
 <tr>
 <td>morgen früh</td>
 <td>tomorrow morning</td>
-<td>завтра вранці</td>
 </tr>
 <tr>
 <td>gestern Abend</td>
 <td>last night (evening)</td>
-<td>вчора ввечері</td>
 </tr>
 <tr>
 <td>letzte Woche / nächste Woche</td>
 <td>last week / next week</td>
-<td>минулого / наступного тижня</td>
 </tr>
 <tr>
 <td>vor zwei Tagen</td>
 <td>two days ago</td>
-<td>два дні тому</td>
 </tr>
 <tr>
 <td>in zwei Tagen</td>
 <td>in two days</td>
-<td>через два дні</td>
 </tr>
 </tbody>
 </table></div>
@@ -859,7 +843,7 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Written: 14:30 Uhr or 14.30 Uhr. Spoken: vierzehn Uhr dreißig (Uhr comes BEFORE the minutes).</li>
-<li>Ukrainian has the same logic: пів на третю = halb drei = 2:30. English "half three" (= 3:30) is the false friend.</li>
+<li>English "half three" (= 3:30) is the false friend.</li>
 <li>Regional: in the east and south "Viertel drei" = 2:15 and "drei viertel drei" = 2:45; just recognise it.</li>
 <li>Informal times need context: um halb acht (morgens / abends), or add "früh" or "abends".</li>
 </ul>
@@ -949,7 +933,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>"Drei Uhr" never takes a plural: Es ist drei Uhr, but drei Stunden (duration).</li>
-<li>Ukrainian comparison: Uhr = година as time of day (о третій годині); Stunde = година as duration (три години).</li>
 </ul>
 <h2>Money and prices</h2>
 <p>After a number, currency units stay singular (zwei Euro, fünfzig Cent), and a price is said as "Euro" in the middle: 3,50 € = drei Euro fünfzig.</p>
@@ -994,7 +977,7 @@ body { margin: 0; }
 <ul>
 <li>der Euro (pl. die Euros, only for coins: Ich habe nur noch drei Euros im Portemonnaie, colloquial), der Cent (pl. die Cents, same idea).</li>
 <li>The symbol comes after the number in German: 3,50 € (also written EUR 3,50 or 3,50 EUR).</li>
-<li>Other currencies: der Dollar, das Pfund, der Franken (Swiss), die Hrywnja (Ukrainian hryvnia, UAH), der Zloty.</li>
+<li>Other currencies: der Dollar, das Pfund, der Franken (Swiss), die Hrywnja, der Zloty.</li>
 <li>Money words: das Geld (only singular), das Bargeld (cash), das Kleingeld (change, coins), der Schein (note), die Münze (coin), das Wechselgeld (change given back), das Trinkgeld (tip).</li>
 </ul>
 <h3>Phrases for prices and paying</h3>
@@ -1042,7 +1025,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>"kosten" agrees with the thing: Das Brot kostet ..., die Brötchen kosten ...</li>
-<li>Ukrainian comparison: скільки це коштує? = Was kostet das?; готівкою = bar; карткою = mit Karte.</li>
 </ul>
 <h2>Fractions, percentages, Mal and arithmetic</h2>
 <p>Fractions add -tel (up to 19) or -stel (from 20) to the number and are neuter nouns: das Drittel, das Viertel, das Zwanzigstel; only 1/2 is special.</p>
@@ -1120,44 +1102,36 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>einmal</td>
 <td>once</td>
-<td>один раз</td>
 </tr>
 <tr>
 <td>zweimal</td>
 <td>twice</td>
-<td>двічі</td>
 </tr>
 <tr>
 <td>dreimal, zehnmal</td>
 <td>three times, ten times</td>
-<td>тричі, десять разів</td>
 </tr>
 <tr>
 <td>zweimal pro Woche / zweimal die Woche</td>
 <td>twice a week</td>
-<td>двічі на тиждень</td>
 </tr>
 <tr>
 <td>das erste Mal / zum ersten Mal</td>
 <td>the first time / for the first time</td>
-<td>вперше</td>
 </tr>
 <tr>
 <td>das letzte Mal / beim nächsten Mal</td>
 <td>the last time / next time</td>
-<td>востаннє / наступного разу</td>
 </tr>
 <tr>
 <td>jedes Mal / manchmal</td>
 <td>every time / sometimes</td>
-<td>щоразу / іноді</td>
 </tr>
 </tbody>
 </table></div>
@@ -1294,7 +1268,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>No "of" between the unit and the thing: ein Kilo Tomaten (Ukrainian: кілограм помідорів uses the genitive; German does not).</li>
+<li>No "of" between the unit and the thing: ein Kilo Tomaten.</li>
 <li>Size questions: Wie groß bist du? Ich bin 1,80 (eins achtzig). Wie viel wiegst du? Wie weit ist es? Es sind 5 Kilometer.</li>
 <li>Dimensions: 2 mal 3 Meter (2 × 3 m).</li>
 </ul>
@@ -1330,7 +1304,6 @@ body { margin: 0; }
 <li>Phrases: Wie warm ist es? / Wie viel Grad haben wir? Es sind 25 Grad. Ich habe 38,5 Fieber (achtunddreißig fünf / Komma fünf).</li>
 </ul>
 <h2>Age and decades</h2>
-<p>Age uses "sein", not "haben": Ich bin 30 (Jahre alt), unlike Ukrainian мені 30 років.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1378,7 +1351,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>Never "Ich habe 30 Jahre": that is the Spanish/French "have years" pattern and sounds wrong. (Ukrainian uses the dative, мені 30 років, but German uses sein.)</li>
+<li>Never "Ich habe 30 Jahre": that is the Spanish/French "have years" pattern and sounds wrong.</li>
 </ul>
 <h3>Decades</h3>
 <div class="table-wrap"><table>
@@ -1537,9 +1510,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li>Ukrainian comparison: удвох, втрьох = zu zweit, zu dritt; п'ятірка (a 5 grade or a 5-hryvnia note) works like die Fünf / der Fünfer, but remember the German scale is upside down: eine Fünf is bad.</li>
-</ul>
 <h3>Formal dates in letters and documents</h3>
 <p>The classic date line of a letter is "Ort, den + date" in the Akkusativ (Berlin, den 23. Oktober 2026); the DIN 5008 business standard today prefers it without "den" or in numbers.</p>
 <div class="table-wrap"><table>
@@ -1607,7 +1577,7 @@ body { margin: 0; }
 <li>In numbers, the month can be spoken as an ordinal: der 23.10. = der dreiundzwanzigste Zehnte.</li>
 <li>Frist words for official letters: die Frist (deadline), fristgerecht (on time), die Frist läuft am ... ab, innerhalb von 14 Tagen, umgehend (without delay).</li>
 <li>Vague dates in reports: Anfang / Mitte / Ende November, im ersten Quartal (Q1), im Vorjahr, im Laufe des Jahres, im Vorjahreszeitraum.</li>
-<li>Ukrainian comparison: Київ, 23 жовтня 2026 р. has no word like "den"; German keeps it as a frozen Akkusativ, so never write "der 23. Oktober" in the date line.</li>
+<li>Oktober" in the date line.</li>
 </ul>
 <h3>Approximate amounts and large quantities</h3>
 <p>News and reports rarely give exact numbers: knapp means just under, gut means a bit over, and rund / etwa mean roughly.</p>
@@ -1720,7 +1690,6 @@ body { margin: 0; }
 <ul>
 <li>Both Hunderte / hunderte and Tausende / tausende are correct Duden spellings; capitals are the safer choice in exams.</li>
 <li>knapp can also mean narrowly: knapp gewonnen (narrowly won), knapp verpasst (just missed).</li>
-<li>Ukrainian comparison: майже = fast; близько / приблизно = etwa; сотні людей = Hunderte (von) Menschen.</li>
 </ul>
 <h3>Multiplicatives, ordinal adverbs and -mal vs Mal</h3>
 <p>Number + -fach means "-fold" (dreifach), number + -erlei means "kinds of" (zweierlei), and -mal is joined to a number but Mal is a separate noun after an adjective.</p>
@@ -1814,7 +1783,6 @@ body { margin: 0; }
 <ul>
 <li>Rule: a number word or a short adverb fuses with -mal; an adjective or article in front makes Mal a capitalised noun.</li>
 <li>noch einmal = noch mal = nochmal (spoken): Kannst du das nochmal sagen?</li>
-<li>Ukrainian comparison: вдвічі більше = doppelt so viel; подвійний = doppelt; вперше = zum ersten Mal / erstmals.</li>
 </ul>
 <h3>Describing statistics and charts</h3>
 <p>B2 exams (Goethe, telc, ÖSD) often ask you to describe a Grafik; the one rule to master is um = by (the difference) and auf = to (the new value).</p>
@@ -1910,7 +1878,6 @@ body { margin: 0; }
 <li>Ranking: An erster Stelle steht ..., gefolgt von ... Den größten Anteil haben ... mit 40 Prozent. Schlusslicht ist ...</li>
 <li>Comment: Auffällig ist, dass ... Zusammenfassend lässt sich sagen, dass ...</li>
 <li>Agreement: Die Mehrheit der Befragten ist dagegen (singular is standard); 20 Prozent der Befragten gaben an, dass ... (plural is usual).</li>
-<li>Ukrainian comparison: зрости на 5 % = um 5 % steigen; зрости до 5 % = auf 5 % steigen. Ukrainian на matches German um, not auf: the classic trap.</li>
 </ul>
 <h3>Money and finance</h3>
 <p>These are the words of bank letters, payslips, rent contracts and invoices; brutto (gross) and netto (net) are the first two to learn.</p>
@@ -2055,7 +2022,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Phrases: Das Geld ist noch nicht eingegangen. (has not arrived yet) Die Preise verstehen sich inklusive MwSt. (prices include VAT) Bitte überweisen Sie den Betrag bis zum ... auf folgendes Konto.</li>
-<li>Ukrainian comparison: рахунок = das Konto (account) and also die Rechnung (bill), so check which one you mean; виписка = der Kontoauszug.</li>
 </ul>
 <h2>See also</h2>
 <ul>
@@ -2067,9 +2033,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: formal letters with the date line and deadlines</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/numbers-dates.html">Numbers, dates and time quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="e4be3db0a617" href="../quizzes/numbers-dates.html">Numbers, dates and time quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

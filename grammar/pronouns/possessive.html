@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="8f8aa84beb74">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,12 +194,12 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Possessive</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="c0540e70c480" class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Possessive</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Possessive pronouns</h1><p class="sub">mein, dein, sein, ihr, unser, euer, Ihr: how to say whose something is, with the right endings.</p></header>
 <article class="prose card">
-<p>Possessives (<em>mein, dein, sein...</em>) tell you whose something is: <em>mein Bruder, deine Wohnung, unser Auto</em>. They take the same endings as <em>ein / kein</em>, so if you know the indefinite article, you already know half of this page. The hard part for a Ukrainian speaker is choosing between <em>sein</em> and <em>ihr</em>, because German has no <em>свій</em>.</p>
+<p>Possessives (<em>mein, dein, sein...</em>) tell you whose something is: <em>mein Bruder, deine Wohnung, unser Auto</em>. They take the same endings as <em>ein / kein</em>, so if you know the indefinite article, you already know half of this page. The hard part is choosing between <em>sein</em> and <em>ihr</em>.</p>
 <h2>A2 core</h2>
 <h3>Which word for which owner</h3>
 <div class="table-wrap"><table>
@@ -201,49 +207,40 @@ body { margin: 0; }
 <tr>
 <th>Owner</th>
 <th>Possessive</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ich</td>
 <td><strong>mein</strong></td>
-<td>мій</td>
 </tr>
 <tr>
 <td>du</td>
 <td><strong>dein</strong></td>
-<td>твій</td>
 </tr>
 <tr>
 <td>er / es</td>
 <td><strong>sein</strong></td>
-<td>його</td>
 </tr>
 <tr>
 <td>sie (she)</td>
 <td><strong>ihr</strong></td>
-<td>її</td>
 </tr>
 <tr>
 <td>wir</td>
 <td><strong>unser</strong></td>
-<td>наш</td>
 </tr>
 <tr>
 <td>ihr</td>
 <td><strong>euer</strong></td>
-<td>ваш</td>
 </tr>
 <tr>
 <td>sie (they)</td>
 <td><strong>ihr</strong></td>
-<td>їхній</td>
 </tr>
 <tr>
 <td>Sie (polite)</td>
 <td><strong>Ihr</strong></td>
-<td>Ваш</td>
 </tr>
 </tbody>
 </table></div>
@@ -301,16 +298,15 @@ body { margin: 0; }
 </ul>
 <aside class="callout hack"><p class="callout-title">Owner chooses the word, noun chooses the ending</p><p>Ask two separate questions. 1) Whose? <em>Anna's</em> → <strong>ihr-</strong>. 2) What gender and case is the thing? <em>der Hund, accusative</em> → <strong>-en</strong>. Result: <em>Anna sucht <strong>ihren</strong> Hund</em>. Never let the owner's gender decide the ending.</p></aside>
 <h2>B1</h2>
-<h3>sein vs ihr, and the missing свій</h3>
-<p>Ukrainian has a reflexive possessive <em>свій</em>: <em>Петро взяв свою книжку</em> / <em>Петро взяв його книжку</em> mean different things. German has <strong>no</strong> reflexive possessive. It only looks at the owner's gender and number:</p>
+<h3>sein vs ihr</h3>
+<p>German has <strong>no</strong> reflexive possessive. It only looks at the owner's gender and number:</p>
 <ul>
-<li><em>Peter nimmt <strong>sein</strong> Buch.</em> – Peter takes his (own) book. (свою)</li>
-<li><em>Anna nimmt <strong>ihr</strong> Buch.</em> – Anna takes her (own) book. (свою)</li>
-<li><em>Peter und Anna nehmen <strong>ihre</strong> Bücher.</em> – they take their books. (свої)</li>
-<li><em>Ich nehme <strong>mein</strong> Buch. Du nimmst <strong>dein</strong> Buch.</em> – (свою) every time.</li>
+<li><em>Peter nimmt <strong>sein</strong> Buch.</em> – Peter takes his (own) book.</li>
+<li><em>Anna nimmt <strong>ihr</strong> Buch.</em> – Anna takes her (own) book.</li>
+<li><em>Peter und Anna nehmen <strong>ihre</strong> Bücher.</em> – they take their books.</li>
+<li><em>Ich nehme <strong>mein</strong> Buch. Du nimmst <strong>dein</strong> Buch.</em> – I take my book. You take your book.</li>
 </ul>
-<p>So <em>свій</em> becomes <em>mein / dein / sein / ihr / unser / euer / ihr</em>, depending on <strong>who</strong> the subject is. If the meaning is unclear (<em>Peter nimmt sein Buch</em> could in theory be another man's book), German adds a word: <em>sein eigenes Buch</em> ("his own book").</p>
-<aside class="callout ukbox"><p class="callout-title">Translating свій</p><p>Do not look for one German word for <em>свій</em>. Replace it with the possessive that matches the subject: <em>Я люблю свою роботу</em> → <em>Ich liebe <strong>meine</strong> Arbeit</em>; <em>Вона любить свою роботу</em> → <em>Sie liebt <strong>ihre</strong> Arbeit</em>; <em>Ми любимо свою роботу</em> → <em>Wir lieben <strong>unsere</strong> Arbeit</em>.</p></aside>
+<p>So "own" is expressed by <em>mein / dein / sein / ihr / unser / euer / ihr</em>, depending on <strong>who</strong> the subject is. If the meaning is unclear (<em>Peter nimmt sein Buch</em> could in theory be another man's book), German adds a word: <em>sein eigenes Buch</em> ("his own book").</p>
 <h3>euer loses an e</h3>
 <p>When <em>euer</em> gets an ending, the second <em>e</em> normally drops: <strong>euer</strong> Haus, but <strong>eure</strong> Wohnung, <strong>euren</strong> Hund, <strong>eurem</strong> Garten. <em>unser</em> normally keeps its <em>e</em>: <em>unsere, unseren</em>.</p>
 <h3>Possessives standing alone</h3>
@@ -330,13 +326,13 @@ body { margin: 0; }
 <aside class="callout b2box"><p class="callout-title">Later: dessen and deren</p><p>In written German, <em>dessen</em> and <em>deren</em> can replace <em>sein/ihr</em> to avoid ambiguity: <em>Peter traf Paul und dessen Frau</em> clearly means Paul's wife, not Peter's.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/pronouns/personal.html">Personal pronouns</a></li>
+<li><a data-quiz="94e63021296d" href="../../grammar/pronouns/personal.html">Personal pronouns</a></li>
 <li><a href="../../docs/articles.html">Articles</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative</a></li>
-<li><a href="../../grammar/cases/genitive.html">Genitive</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative</a></li>
+<li><a data-quiz="50797f39ef5f" href="../../grammar/cases/genitive.html">Genitive</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="personal.html">← Personal</a><a class="btn" href="indefinite.html">Indefinite →</a></nav>
+<nav class="pager"><a data-quiz="94e63021296d" class="btn" href="personal.html">← Personal</a><a data-quiz="2cb8b6e747de" class="btn" href="indefinite.html">Indefinite →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -354,12 +350,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Das ist *___* Schwester. (my)", "options": ["mein", "meine", "meinen", "meinem", "meiner"], "answer": 1, "explain": "*die Schwester* is feminine nominative: *meine* (A2)."}, {"q": "Hast du *___* Schlüssel? (your, du)", "options": ["dein", "deine", "deinem", "deinen", "deiner"], "answer": 3, "explain": "*der Schlüssel*, accusative after *haben*: *deinen* (A2)."}, {"q": "Anna sucht *___* Hund. (her)", "options": ["seinen", "ihren", "ihr", "sein", "ihre"], "answer": 1, "explain": "Owner Anna → *ihr-*; *der Hund* in the accusative → *ihren* (A2)."}, {"q": "Peter besucht *___* Oma. (his)", "options": ["seine", "ihre", "sein", "seinen", "seiner"], "answer": 0, "explain": "Owner Peter → *sein-*; *die Oma* is feminine → *seine* (A2)."}, {"q": "Wie ist *___* Name? (polite)", "options": ["dein", "ihr", "euer", "Ihr", "Ihre"], "answer": 3, "explain": "Polite \"your\" is capitalised *Ihr*; *der Name* nominative, no ending (A2)."}, {"q": "Wir fahren mit *___* Auto.", "options": ["unser", "unsere", "unseren", "unserer", "unserem"], "answer": 4, "explain": "*mit* + dative; *das Auto* neuter → *unserem* (A2)."}, {"q": "Ich wohne bei *___* Eltern.", "options": ["meine", "meinen", "meinem", "meiner", "mein"], "answer": 1, "explain": "*bei* + dative plural → *meinen Eltern* (A2)."}, {"q": "Das Kind spielt mit *___* Ball. (its)", "options": ["seinen", "sein", "seinem", "seine", "ihrem"], "answer": 2, "explain": "*das Kind* → *sein-*; *mit dem Ball* (dative masculine) → *seinem* (A2)."}, {"q": "Die Kinder spielen mit *___* Freunden. (their)", "options": ["ihren", "seinen", "ihre", "ihrem", "ihr"], "answer": 0, "explain": "Owner = the children (plural) → *ihr-*; dative plural → *ihren* (B1)."}, {"q": "Я люблю свою роботу. → Ich liebe *___* Arbeit.", "options": ["seine", "ihre", "meine", "deine", "eigene"], "answer": 2, "explain": "German has no *свій*: use the possessive of the subject, here *ich* → *meine* (B1)."}, {"q": "Вона забула свій телефон. → Sie hat *___* Handy vergessen.", "options": ["sein", "ihren", "seine", "ihr", "ihre"], "answer": 3, "explain": "*свій* → owner *sie* → *ihr*; *das Handy* accusative, no ending (B1)."}, {"q": "Ми продали свою квартиру. → Wir haben *___* Wohnung verkauft.", "options": ["unsere", "seine", "ihre", "eure", "unser"], "answer": 0, "explain": "Subject *wir* → *unser-*; *die Wohnung* → *unsere* (B1)."}, {"q": "Wo ist *___* Haus? (your, ihr)", "options": ["eure", "euer", "eures", "euren", "eurem"], "answer": 1, "explain": "Neuter nominative has no ending: *euer Haus* (B1)."}, {"q": "Wo sind *___* Kinder? (your, ihr)", "options": ["euer", "eures", "euren", "eure", "eurer"], "answer": 3, "explain": "With an ending *euer* drops its *e*: *eure Kinder* (B1)."}, {"q": "Wir haben mit *___* Lehrer gesprochen. (your, ihr)", "options": ["eurem", "eures", "euren", "eurer", "euer"], "answer": 0, "explain": "*mit* + dative masculine → *eurem* (the e drops) (B1)."}, {"q": "Ist das dein Stift? – Ja, das ist *___*.", "options": ["mein", "meins", "meine", "meinen", "meiner"], "answer": 4, "explain": "Alone, the possessive shows the gender: *der Stift* → *meiner* (B1)."}, {"q": "Wessen Handy ist das? – Das ist *___*.", "options": ["meiner", "meine", "meins", "meinem", "mein"], "answer": 2, "explain": "Alone, neuter *das Handy* → *meins* (B1)."}, {"q": "Ist das deine Tasche? – Nein, *___* ist schwarz.", "options": ["meiner", "mein", "meins", "meine", "meinen"], "answer": 3, "explain": "Alone, feminine *die Tasche* → *meine* (B1)."}, {"q": "Anna liebt *___* Mann. (her)", "options": ["seinen", "ihren", "ihrem", "sein", "seiner"], "answer": 1, "explain": "The owner is Anna, so *ihr-*, never *sein-*; *den Mann* → *ihren* (B1)."}, {"q": "Herr Klein, ist das *___* Mantel? (your)", "options": ["ihr", "sein", "Ihr", "Ihren", "dein"], "answer": 2, "explain": "You speak to Herr Klein politely, so capital *Ihr*; nominative masculine, no ending (B1)."}, {"q": "Er hat das Geschenk *___* Freundin gegeben. (his)", "options": ["seiner", "seine", "seinem", "seinen", "ihrer"], "answer": 0, "explain": "The receiver is dative; *die Freundin* → *seiner* (B1)."}, {"q": "Die Firma hat *___* Mitarbeitern gekündigt. (its)", "options": ["seinen", "ihre", "ihr", "ihren", "seine"], "answer": 3, "explain": "*die Firma* is feminine, so \"its\" = *ihr-*; *kündigen* + dative plural → *ihren* (B1)."}], "title": "Possessive pronouns quiz", "level": "A2–B1"}
+{"questions": [{"q": "Das ist *___* Schwester. (my)", "options": ["mein", "meine", "meinen", "meinem", "meiner"], "answer": 1, "explain": "*die Schwester* is feminine nominative: *meine* (A2)."}, {"q": "Hast du *___* Schlüssel? (your, du)", "options": ["dein", "deine", "deinem", "deinen", "deiner"], "answer": 3, "explain": "*der Schlüssel*, accusative after *haben*: *deinen* (A2)."}, {"q": "Anna sucht *___* Hund. (her)", "options": ["seinen", "ihren", "ihr", "sein", "ihre"], "answer": 1, "explain": "Owner Anna → *ihr-*; *der Hund* in the accusative → *ihren* (A2)."}, {"q": "Peter besucht *___* Oma. (his)", "options": ["seine", "ihre", "sein", "seinen", "seiner"], "answer": 0, "explain": "Owner Peter → *sein-*; *die Oma* is feminine → *seine* (A2)."}, {"q": "Wie ist *___* Name? (polite)", "options": ["dein", "ihr", "euer", "Ihr", "Ihre"], "answer": 3, "explain": "Polite \"your\" is capitalised *Ihr*; *der Name* nominative, no ending (A2)."}, {"q": "Wir fahren mit *___* Auto.", "options": ["unser", "unsere", "unseren", "unserer", "unserem"], "answer": 4, "explain": "*mit* + dative; *das Auto* neuter → *unserem* (A2)."}, {"q": "Ich wohne bei *___* Eltern.", "options": ["meine", "meinen", "meinem", "meiner", "mein"], "answer": 1, "explain": "*bei* + dative plural → *meinen Eltern* (A2)."}, {"q": "Das Kind spielt mit *___* Ball. (its)", "options": ["seinen", "sein", "seinem", "seine", "ihrem"], "answer": 2, "explain": "*das Kind* → *sein-*; *mit dem Ball* (dative masculine) → *seinem* (A2)."}, {"q": "Die Kinder spielen mit *___* Freunden. (their)", "options": ["ihren", "seinen", "ihre", "ihrem", "ihr"], "answer": 0, "explain": "Owner = the children (plural) → *ihr-*; dative plural → *ihren* (B1)."}, {"q": "I love my job. → Ich liebe *___* Arbeit.", "options": ["seine", "ihre", "meine", "deine", "eigene"], "answer": 2, "explain": "Use the possessive that matches the subject, here *ich* → *meine*; *die Arbeit* is feminine (B1)."}, {"q": "She forgot her phone. → Sie hat *___* Handy vergessen.", "options": ["sein", "ihren", "seine", "ihr", "ihre"], "answer": 3, "explain": "Owner *sie* → *ihr*; *das Handy* accusative, no ending (B1)."}, {"q": "We sold our flat. → Wir haben *___* Wohnung verkauft.", "options": ["unsere", "seine", "ihre", "eure", "unser"], "answer": 0, "explain": "Subject *wir* → *unser-*; *die Wohnung* → *unsere* (B1)."}, {"q": "Wo ist *___* Haus? (your, ihr)", "options": ["eure", "euer", "eures", "euren", "eurem"], "answer": 1, "explain": "Neuter nominative has no ending: *euer Haus* (B1)."}, {"q": "Wo sind *___* Kinder? (your, ihr)", "options": ["euer", "eures", "euren", "eure", "eurer"], "answer": 3, "explain": "With an ending *euer* drops its *e*: *eure Kinder* (B1)."}, {"q": "Wir haben mit *___* Lehrer gesprochen. (your, ihr)", "options": ["eurem", "eures", "euren", "eurer", "euer"], "answer": 0, "explain": "*mit* + dative masculine → *eurem* (the e drops) (B1)."}, {"q": "Ist das dein Stift? – Ja, das ist *___*.", "options": ["mein", "meins", "meine", "meinen", "meiner"], "answer": 4, "explain": "Alone, the possessive shows the gender: *der Stift* → *meiner* (B1)."}, {"q": "Wessen Handy ist das? – Das ist *___*.", "options": ["meiner", "meine", "meins", "meinem", "mein"], "answer": 2, "explain": "Alone, neuter *das Handy* → *meins* (B1)."}, {"q": "Ist das deine Tasche? – Nein, *___* ist schwarz.", "options": ["meiner", "mein", "meins", "meine", "meinen"], "answer": 3, "explain": "Alone, feminine *die Tasche* → *meine* (B1)."}, {"q": "Anna liebt *___* Mann. (her)", "options": ["seinen", "ihren", "ihrem", "sein", "seiner"], "answer": 1, "explain": "The owner is Anna, so *ihr-*, never *sein-*; *den Mann* → *ihren* (B1)."}, {"q": "Herr Klein, ist das *___* Mantel? (your)", "options": ["ihr", "sein", "Ihr", "Ihren", "dein"], "answer": 2, "explain": "You speak to Herr Klein politely, so capital *Ihr*; nominative masculine, no ending (B1)."}, {"q": "Er hat das Geschenk *___* Freundin gegeben. (his)", "options": ["seiner", "seine", "seinem", "seinen", "ihrer"], "answer": 0, "explain": "The receiver is dative; *die Freundin* → *seiner* (B1)."}, {"q": "Die Firma hat *___* Mitarbeitern gekündigt. (its)", "options": ["seinen", "ihre", "ihr", "ihren", "seine"], "answer": 3, "explain": "*die Firma* is feminine, so \"its\" = *ihr-*; *kündigen* + dative plural → *ihren* (B1)."}], "title": "Possessive pronouns quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -371,18 +371,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -397,14 +411,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -416,7 +430,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -425,14 +439,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -440,23 +454,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

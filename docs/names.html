@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="4beddaa918ea">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -232,7 +238,6 @@ body { margin: 0; }
 <li>Feminine endings to spot: -ei (Türkei, Slowakei, Mongolei) and "die ... Republik".</li>
 <li>Iran and Irak are often used without an article in news today (in Iran, aus Irak); with the article is still the safe standard.</li>
 <li>Neuter countries get "das" once an adjective comes in: das heutige Deutschland, das schöne Italien, im modernen China (see <a href="../docs/articles.html">German article tables (B1)</a>).</li>
-<li>Ukrainian comparison: Ukrainian has no articles, so "die" in "die Ukraine" is pure memorisation; think of it as part of the name, like "the" in "the Netherlands".</li>
 <li>Note: "die Ukraine" (not "Ukraine") is still the standard German form; you hear "in der Ukraine" every day in the news.</li>
 </ul>
 <h2>Prepositions with countries and cities</h2>
@@ -290,7 +295,6 @@ body { margin: 0; }
 <li>Never "nach der Ukraine": once there is an article, "nach" is out.</li>
 <li>Going home is special: nach Hause (to home), zu Hause (at home).</li>
 <li>Islands and regions: auf Mallorca, auf Rügen (islands use auf); in Bayern, ins Ruhrgebiet, im Ruhrgebiet.</li>
-<li>Ukrainian comparison: в Україну / в Україні / з України mirror in die / in der / aus der Ukraine: direction vs location changes the case in both languages.</li>
 </ul>
 <h2>Countries, nationalities and languages</h2>
 <p>Nationality nouns come in three types: -er / -erin (normal), -e / -in (n-Deklination: den Polen, dem Franzosen), and "Deutsche" (an adjective used as a noun).</p>
@@ -568,7 +572,7 @@ body { margin: 0; }
 </table></div>
 <h3>How to use them</h3>
 <ul>
-<li>No article after "sein": Ich bin Ukrainer. Sie ist Ukrainerin. (Ukrainian: Я українець / українка.)</li>
+<li>No article after "sein": Ich bin Ukrainer. Sie ist Ukrainerin.</li>
 <li>Adjectives are lowercase, languages are capitalised: ukrainisches Essen, but Ich spreche Ukrainisch.</li>
 <li>Plural: Ukrainer (no ending), Ukrainerinnen; Polen, Franzosen (n); die Deutschen.</li>
 <li>(n) = n-Deklination: every form except Nominativ singular ends in -n: Ich kenne einen Franzosen. Ich spreche mit dem Polen.</li>
@@ -617,7 +621,6 @@ body { margin: 0; }
 </ul>
 <h3>Kyjiw vs Kiew</h3>
 <ul>
-<li>Kyjiw is the transliteration from Ukrainian (Київ) and is used by the German Foreign Office and a growing number of media, such as Deutsche Welle.</li>
 <li>Kiew is the older German form, based on Russian; many newspapers and TV news still use it, so expect both.</li>
 <li>Same shift for other cities: Charkiw (not Charkow), Odesa / Odessa, Lwiw (also Lemberg), Dnipro.</li>
 <li>Residents: der Kyjiwer / Kiewer, die Kyjiwerin / Kiewerin.</li>
@@ -658,7 +661,6 @@ body { margin: 0; }
 <ul>
 <li>Location on a river: an + Dativ: an der Donau, am Rhein (am = an dem).</li>
 <li>Direction: an + Akkusativ: Wir fahren an die Elbe / an den Rhein.</li>
-<li>Exonyms: die Donau = Danube = Дунай (masculine in Ukrainian!), die Weichsel = Vistula = Вісла, der Dnipro = Дніпро.</li>
 <li>Compounds: der Rheinfall, das Elbufer, die Donauwelle, das Mainufer.</li>
 </ul>
 <h2>Seas, lakes and oceans</h2>
@@ -706,7 +708,6 @@ body { margin: 0; }
 <th>Name</th>
 <th>Gender</th>
 <th>English</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
@@ -714,73 +715,61 @@ body { margin: 0; }
 <td>die Nordsee</td>
 <td>f</td>
 <td>North Sea</td>
-<td>Північне море</td>
 </tr>
 <tr>
 <td>die Ostsee</td>
 <td>f</td>
 <td>Baltic Sea</td>
-<td>Балтійське море</td>
 </tr>
 <tr>
 <td>das Schwarze Meer</td>
 <td>n</td>
 <td>Black Sea</td>
-<td>Чорне море</td>
 </tr>
 <tr>
 <td>das Asowsche Meer</td>
 <td>n</td>
 <td>Sea of Azov</td>
-<td>Азовське море</td>
 </tr>
 <tr>
 <td>das Mittelmeer</td>
 <td>n</td>
 <td>Mediterranean</td>
-<td>Середземне море</td>
 </tr>
 <tr>
 <td>das Rote Meer</td>
 <td>n</td>
 <td>Red Sea</td>
-<td>Червоне море</td>
 </tr>
 <tr>
 <td>der Atlantik</td>
 <td>m</td>
 <td>Atlantic</td>
-<td>Атлантичний океан</td>
 </tr>
 <tr>
 <td>der Pazifik</td>
 <td>m</td>
 <td>Pacific</td>
-<td>Тихий океан</td>
 </tr>
 <tr>
 <td>der Indische Ozean</td>
 <td>m</td>
 <td>Indian Ocean</td>
-<td>Індійський океан</td>
 </tr>
 <tr>
 <td>der Bodensee</td>
 <td>m</td>
 <td>Lake Constance</td>
-<td>Боденське озеро</td>
 </tr>
 <tr>
 <td>der Chiemsee</td>
 <td>m</td>
 <td>Lake Chiem</td>
-<td>Кімзее</td>
 </tr>
 <tr>
 <td>der Genfer See</td>
 <td>m</td>
 <td>Lake Geneva</td>
-<td>Женевське озеро</td>
 </tr>
 </tbody>
 </table></div>
@@ -788,7 +777,6 @@ body { margin: 0; }
 <li>Compound rule: -see names follow the last part: die Nordsee (sea), der Bodensee (lake).</li>
 <li>Adjective names inflect: am Schwarzen Meer, ans Schwarze Meer, im Mittelmeer.</li>
 <li>Prepositions: an die / an der Ostsee (coast, beach); in der Nordsee (in the water); auf dem Meer / auf See (on the water, at sea).</li>
-<li>Ukrainian comparison: море is neuter like das Meer, but озеро (neuter) becomes der See.</li>
 </ul>
 <h2>Mountains, regions and federal states</h2>
 <p>Mountains and ranges always take an article (der Harz, die Alpen); federal states and most regions work like countries, without one (Bayern, Sachsen), except names built on a noun (das Ruhrgebiet).</p>
@@ -810,7 +798,7 @@ body { margin: 0; }
 <tr>
 <td>die Karpaten</td>
 <td>plural</td>
-<td>Carpathians (Карпати)</td>
+<td>Carpathians</td>
 </tr>
 <tr>
 <td>der Harz</td>
@@ -1293,7 +1281,6 @@ body { margin: 0; }
 <li>Regions and one country work the same way: Schweizer Käse, der Schweizer Franken, Thüringer Rostbratwurst, Schwarzwälder Kirschtorte, Allgäuer Käse.</li>
 <li>Food named after cities: das Wiener Würstchen (in Vienna itself: Frankfurter), der Hamburger, der Berliner (a doughnut in many regions; in Berlin itself: Pfannkuchen).</li>
 <li>Kennedy's "Ich bin ein Berliner" (1963) was correct German for "I am a Berliner"; the doughnut joke is a myth.</li>
-<li>Ukrainian comparison: Ukrainian makes a declined adjective (київський, львівська); German freezes the -er form, so think of it as part of a name.</li>
 </ul>
 <h3>History and politics: names you will read</h3>
 <p>Historical and political names (states, eras, events) always take an article, like die Ukraine: in der DDR, im Kaiserreich, nach der Wende.</p>
@@ -1386,7 +1373,6 @@ body { margin: 0; }
 <li>"Die ehemalige DDR" (the former GDR) is the usual way to refer to it now; adjective: ostdeutsch, DDR-Bürger, DDR-Zeit.</li>
 <li>Ossi / Wessi (East / West German) are colloquial and can be mildly pejorative; Ostdeutsche / Westdeutsche is neutral.</li>
 <li>"Die Wende" can also mean any turning point; with the article and no context it means 1989.</li>
-<li>Ukrainian comparison: like УРСР / СРСР, these are names of a past state; German simply adds the article: in der DDR = в НДР.</li>
 </ul>
 <h3>Austrian and Swiss German</h3>
 <p>German has three national standards: Austrian and Swiss words below are correct standard German in their country, not dialect, and you will meet them in texts, menus and exams.</p>
@@ -1515,7 +1501,6 @@ body { margin: 0; }
 <li>Gender can differ: die E-Mail (Germany) but often das E-Mail (Austria, Switzerland); die Tram vs das Tram.</li>
 <li>Austrian school grades run 1 (Sehr gut) to 5 (Nicht genügend); Switzerland runs the other way, 6 best and 4 a pass.</li>
 <li>Grüezi and Hoi are Swiss German (dialect) greetings used by everyone, also when speaking standard German.</li>
-<li>Ukrainian comparison: think of a western Ukrainian word like файно, regional but understood everywhere; the difference is that Austrian words like Jänner and Matura are official, used in law and on forms.</li>
 </ul>
 <h3>Genitive of names</h3>
 <p>Names without an article add -s (Deutschlands, Berlins); names with an article show the case on the article, so feminine and plural names add nothing (der Ukraine, der USA).</p>
@@ -1569,7 +1554,6 @@ body { margin: 0; }
 <li>Name first or second: Berlins Museen (more literary) = die Museen Berlins (neutral) = die Museen von Berlin (spoken).</li>
 <li>With a person's name the same rule applies: Merkels Politik, Goethes Werke; never with an apostrophe ("Goethe's" is an English habit and counts as a mistake), except after s / x / z: Marx' Theorie.</li>
 <li>Spoken German replaces the genitive with von + Dativ almost everywhere; in B2 writing (letters, essays, Grafikbeschreibung) the genitive looks better: die Bevölkerung Deutschlands, not die Bevölkerung von Deutschland.</li>
-<li>Ukrainian comparison: історія України = die Geschichte der Ukraine: Ukrainian changes the noun, German changes the article.</li>
 </ul>
 <h3>Institutions, parties and media</h3>
 <p>The acronym rule from above still decides the gender (die Partei, das Amt, die Kammer), and these are the names a B2 reader meets in news, forms and daily life in Germany.</p>
@@ -1854,9 +1838,22 @@ body { margin: 0; }
 <li><a href="../docs/gotchas.html">Gotchas and false friends</a>: evtl. and Handy-type traps</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/names.html">Names quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="9ef85921a4ca" href="../quizzes/names.html">Names quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

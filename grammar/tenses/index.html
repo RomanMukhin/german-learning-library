@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="a977aec84862">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,11 +194,11 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Tenses</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Tenses</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>German tenses</h1><p class="sub">All six German tenses on one timeline, and which ones people actually use when speaking and writing.</p></header>
-<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a class="home-card card" href="present.html"><span class="t">Present tense (Präsens)</span><span class="d">How to conjugate verbs in the present, the stem-vowel changes, and the present used for the future and with seit.</span><span class="k">A2–B1</span></a><a class="home-card card" href="past.html"><span class="t">Past tenses</span><span class="d">Perfekt for speaking, Präteritum for writing and for sein, haben and modals, and the Plusquamperfekt for &quot;had done&quot;.</span><span class="k">A2–B1</span></a><a class="home-card card" href="future.html"><span class="t">Future tenses</span><span class="d">Futur I with werden, why Germans usually just use the present, the three jobs of werden, and Futur I for guesses.</span><span class="k">A2–B1</span></a></div></section>
+<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a data-quiz="1479bf2d1bae" class="home-card card" href="present.html"><span class="t">Present tense (Präsens)</span><span class="d">How to conjugate verbs in the present, the stem-vowel changes, and the present used for the future and with seit.</span><span class="k">A2–B1</span></a><a data-quiz="9e39b1fb4433" class="home-card card" href="past.html"><span class="t">Past tenses</span><span class="d">Perfekt for speaking, Präteritum for writing and for sein, haben and modals, and the Plusquamperfekt for &quot;had done&quot;.</span><span class="k">A2–B1</span></a><a data-quiz="d45cc36e950a" class="home-card card" href="future.html"><span class="t">Future tenses</span><span class="d">Futur I with werden, why Germans usually just use the present, the three jobs of werden, and Futur I for guesses.</span><span class="k">A2–B1</span></a></div></section>
 <article class="prose card">
 <p>German has six tenses on paper, but in everyday speech you need about three: the present, the Perfekt, and the Präteritum of a handful of verbs. This page puts them all on one timeline and tells you which to use where.</p>
 <h2>The timeline</h2>
@@ -260,25 +266,24 @@ body { margin: 0; }
 </table></div>
 <h2>Which one when</h2>
 <ul>
-<li><strong>Talking about now, habits and most of the future:</strong> <a href="../../grammar/tenses/present.html">present</a>. <em>Morgen fahre ich nach Berlin.</em></li>
-<li><strong>Telling a friend what happened:</strong> <a href="../../grammar/tenses/past.html">Perfekt</a>. <em>Ich habe gestern lange gearbeitet.</em></li>
+<li><strong>Talking about now, habits and most of the future:</strong> <a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">present</a>. <em>Morgen fahre ich nach Berlin.</em></li>
+<li><strong>Telling a friend what happened:</strong> <a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Perfekt</a>. <em>Ich habe gestern lange gearbeitet.</em></li>
 <li><strong>With <em>sein</em>, <em>haben</em> and modal verbs, even in speech:</strong> Präteritum. <em>Ich war müde, ich musste schlafen.</em></li>
 <li><strong>Writing a story, report or news text:</strong> Präteritum for everything.</li>
-<li><strong>Promises, predictions, guesses:</strong> <a href="../../grammar/tenses/future.html">Futur I</a>. <em>Das wird schon klappen.</em></li>
+<li><strong>Promises, predictions, guesses:</strong> <a data-quiz="d45cc36e950a" href="../../grammar/tenses/future.html">Futur I</a>. <em>Das wird schon klappen.</em></li>
 </ul>
 <aside class="callout hack"><p class="callout-title">Three tenses cover 95% of speech</p><p>If you master <em>ich mache</em>, <em>ich habe gemacht</em> and the five Präteritum forms <em>war, hatte, konnte, musste, wollte</em>, you can talk about almost anything. Everything else is for reading and writing.</p></aside>
 <aside class="callout fact"><p class="callout-title">The tense that never left the south</p><p>In Bavaria, Austria and Switzerland the spoken Präteritum disappeared centuries ago: people often say <em>ich bin gewesen</em> where northerners say <em>ich war</em>. Linguists call this loss <em>Präteritumschwund</em>. Swiss German dialects have no simple past at all, apart from a few relics.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Fewer tenses than it looks</p><p>Ukrainian has one past tense and uses aspect (<em>робив / зробив</em>) to show completion. German has no aspect: <em>ich habe gemacht</em> covers both <em>я робив</em> and <em>я зробив</em>. Context, or words like <em>schon</em> and <em>fertig</em>, do the job of the perfective.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
-<li><a href="../../grammar/tenses/past.html">Past tenses</a></li>
-<li><a href="../../grammar/tenses/future.html">Future tenses</a></li>
-<li><a href="../../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></li>
+<li><a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Past tenses</a></li>
+<li><a data-quiz="d45cc36e950a" href="../../grammar/tenses/future.html">Future tenses</a></li>
+<li><a data-quiz="f8cd2a606b21" href="../../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></li>
 <li><a href="../../docs/irregular-verbs.html">Irregular verbs</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="../moods/index.html">Moods →</a></nav>
+<nav class="pager"><a data-quiz="a8f4f1cc4fb5" class="btn" href="../moods/index.html">Moods →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -296,12 +301,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Er *___* jeden Tag Zeitung.", "options": ["lest", "liest", "lesst", "lies", "gelesen"], "answer": 1, "explain": "*lesen* changes e→ie in the present for du and er/sie/es: *er liest* (A2)."}, {"q": "Wir *___* letzte Woche nach Wien gefahren.", "options": ["haben", "hatten", "werden", "sind", "seid"], "answer": 3, "explain": "*fahren* is movement, so the Perfekt uses *sein*: *wir sind gefahren* (A2)."}, {"q": "Ich *___* gestern sehr müde.", "options": ["war", "bin", "habe", "warst", "hatte"], "answer": 0, "explain": "With *sein*, even spoken German prefers the Präteritum: *ich war müde* (A2)."}, {"q": "Morgen *___* ich meinen Bruder.", "options": ["besuchte", "besucht", "besuche", "besuchst", "besuchen"], "answer": 2, "explain": "The present with a time word like *morgen* is the normal way to talk about the future (A2)."}, {"q": "Ich *___* dir morgen helfen.", "options": ["wurde", "werde", "wird", "werdest", "worden"], "answer": 1, "explain": "Futur I = *werden* + infinitive; for *ich* the form is *werde* (A2)."}, {"q": "Als ich ankam, *___* der Zug schon abgefahren.", "options": ["ist", "hat", "hatte", "wurde", "war"], "answer": 4, "explain": "Plusquamperfekt for something earlier than another past event; *abfahren* takes *sein*, so *war abgefahren* (B1)."}, {"q": "Ich *___* gestern Abend nicht kommen, ich war krank.", "options": ["konnte", "kann", "könne", "gekonnt", "konnten"], "answer": 0, "explain": "Modal verbs in the past normally use the Präteritum, even in speech: *ich konnte nicht kommen* (B1)."}, {"q": "Ich lerne *___* zwei Jahren Deutsch.", "options": ["vor", "für", "seit", "ab", "nach"], "answer": 2, "explain": "*seit* + present for something that started in the past and still continues, like Ukrainian *вчу вже два роки* (B1)."}, {"q": "Which tense is typical for a fairy tale or a news report?", "options": ["Perfekt", "Futur I", "Präsens", "Präteritum", "Plusquamperfekt"], "answer": 3, "explain": "Written narrative uses the Präteritum: *Es war einmal ein König...* (B1)."}, {"q": "Er ist nicht da. Er *___* wohl krank sein.", "options": ["wird", "ist", "wurde", "hat", "werdet"], "answer": 0, "explain": "*werden* + infinitive + *wohl* expresses a guess about the present: *Er wird wohl krank sein* (B1)."}, {"q": "Wir haben die Wohnung *___*.", "options": ["geverkauft", "verkaufen", "verkauften", "verkauft", "gekauften"], "answer": 3, "explain": "Verbs with the prefix *ver-* take no *ge-*: *verkauft* (B1)."}, {"q": "Sie hat lange in Berlin *___*.", "options": ["gewohnen", "gewohnt", "wohnte", "wohnt", "gewöhnt"], "answer": 1, "explain": "*wohnen* is regular: *ge-* + stem + *-t* = *gewohnt*. (*gewöhnt* is a different verb, *to get used to*.) (A2)"}, {"q": "Ich habe den Film schon *___*.", "options": ["gesieht", "sah", "gesehen", "gesah", "gesehnt"], "answer": 2, "explain": "*sehen* is strong: Partizip II *gesehen* with *-en* (A2)."}, {"q": "Das Kind *___* schnell groß.", "options": ["wird", "werdet", "wirdt", "werd", "werdt"], "answer": 0, "explain": "*werden* alone means *to become*; *er/sie/es wird* is irregular (B1)."}, {"q": "Which sentence is most natural when telling a friend about yesterday?", "options": ["Ich aß Pizza und sah einen Film.", "Ich esse gestern Pizza.", "Ich werde Pizza gegessen haben.", "Ich hatte Pizza gegessen.", "Ich habe Pizza gegessen und einen Film gesehen."], "answer": 4, "explain": "Spoken German uses the Perfekt for most verbs; *ich aß* sounds bookish in conversation (B1)."}], "title": "German tenses quiz", "level": "A2–B1"}
+{"questions": [{"q": "Er *___* jeden Tag Zeitung.", "options": ["lest", "liest", "lesst", "lies", "gelesen"], "answer": 1, "explain": "*lesen* changes e→ie in the present for du and er/sie/es: *er liest* (A2)."}, {"q": "Wir *___* letzte Woche nach Wien gefahren.", "options": ["haben", "hatten", "werden", "sind", "seid"], "answer": 3, "explain": "*fahren* is movement, so the Perfekt uses *sein*: *wir sind gefahren* (A2)."}, {"q": "Ich *___* gestern sehr müde.", "options": ["war", "bin", "habe", "warst", "hatte"], "answer": 0, "explain": "With *sein*, even spoken German prefers the Präteritum: *ich war müde* (A2)."}, {"q": "Morgen *___* ich meinen Bruder.", "options": ["besuchte", "besucht", "besuche", "besuchst", "besuchen"], "answer": 2, "explain": "The present with a time word like *morgen* is the normal way to talk about the future (A2)."}, {"q": "Ich *___* dir morgen helfen.", "options": ["wurde", "werde", "wird", "werdest", "worden"], "answer": 1, "explain": "Futur I = *werden* + infinitive; for *ich* the form is *werde* (A2)."}, {"q": "Als ich ankam, *___* der Zug schon abgefahren.", "options": ["ist", "hat", "hatte", "wurde", "war"], "answer": 4, "explain": "Plusquamperfekt for something earlier than another past event; *abfahren* takes *sein*, so *war abgefahren* (B1)."}, {"q": "Ich *___* gestern Abend nicht kommen, ich war krank.", "options": ["konnte", "kann", "könne", "gekonnt", "konnten"], "answer": 0, "explain": "Modal verbs in the past normally use the Präteritum, even in speech: *ich konnte nicht kommen* (B1)."}, {"q": "Ich lerne *___* zwei Jahren Deutsch.", "options": ["vor", "für", "seit", "ab", "nach"], "answer": 2, "explain": "*seit* + present for something that started in the past and still continues: *Ich lerne seit zwei Jahren Deutsch* = I have been learning German for two years (B1)."}, {"q": "Which tense is typical for a fairy tale or a news report?", "options": ["Perfekt", "Futur I", "Präsens", "Präteritum", "Plusquamperfekt"], "answer": 3, "explain": "Written narrative uses the Präteritum: *Es war einmal ein König...* (B1)."}, {"q": "Er ist nicht da. Er *___* wohl krank sein.", "options": ["wird", "ist", "wurde", "hat", "werdet"], "answer": 0, "explain": "*werden* + infinitive + *wohl* expresses a guess about the present: *Er wird wohl krank sein* (B1)."}, {"q": "Wir haben die Wohnung *___*.", "options": ["geverkauft", "verkaufen", "verkauften", "verkauft", "gekauften"], "answer": 3, "explain": "Verbs with the prefix *ver-* take no *ge-*: *verkauft* (B1)."}, {"q": "Sie hat lange in Berlin *___*.", "options": ["gewohnen", "gewohnt", "wohnte", "wohnt", "gewöhnt"], "answer": 1, "explain": "*wohnen* is regular: *ge-* + stem + *-t* = *gewohnt*. (*gewöhnt* is a different verb, *to get used to*.) (A2)"}, {"q": "Ich habe den Film schon *___*.", "options": ["gesieht", "sah", "gesehen", "gesah", "gesehnt"], "answer": 2, "explain": "*sehen* is strong: Partizip II *gesehen* with *-en* (A2)."}, {"q": "Das Kind *___* schnell groß.", "options": ["wird", "werdet", "wirdt", "werd", "werdt"], "answer": 0, "explain": "*werden* alone means *to become*; *er/sie/es wird* is irregular (B1)."}, {"q": "Which sentence is most natural when telling a friend about yesterday?", "options": ["Ich aß Pizza und sah einen Film.", "Ich esse gestern Pizza.", "Ich werde Pizza gegessen haben.", "Ich hatte Pizza gegessen.", "Ich habe Pizza gegessen und einen Film gesehen."], "answer": 4, "explain": "Spoken German uses the Perfekt for most verbs; *ich aß* sounds bookish in conversation (B1)."}], "title": "German tenses quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -313,18 +322,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -339,14 +362,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -358,7 +381,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -367,14 +390,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -382,23 +405,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

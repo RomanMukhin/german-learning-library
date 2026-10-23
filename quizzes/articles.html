@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="e9523cfc3ad2">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "articles", "title": "Articles quiz", "level": "B1", "doc": {"title": "German article tables (B1)", "url": "../docs/articles.html"}, "questions": [{"q": "Ich sehe *___* Hund im Garten.", "options": ["den", "der", "dem", "des", "die"], "answer": 0, "explain": "Masculine changes in the Akkusativ: *der* becomes *den* for a direct object (бачу собаку, знахідний)."}, {"q": "Wir spielen mit den *___*.", "options": ["Kinder", "Kindes", "Kinds", "Kinde", "Kindern"], "answer": 4, "explain": "Dativ plural adds *-n* to the noun if it does not already end in -n or -s: *mit den Kindern* (but *den Autos*)."}, {"q": "Das ist das Auto *___* Vaters.", "options": ["der", "des", "dem", "den", "die"], "answer": 1, "explain": "Genitiv masculine is *des*, and the noun adds -s: *des Vaters* (машина батька, родовий)."}, {"q": "Ich habe *___* Bruder und zwei Schwestern.", "options": ["ein", "einen", "einem", "einer", "eines"], "answer": 1, "explain": "*haben* takes the Akkusativ, and masculine *ein* becomes *einen*."}, {"q": "Ich wohne mit *___* Freundin zusammen.", "options": ["meine", "meinem", "meiner", "meinen", "meines"], "answer": 2, "explain": "*mit* always takes Dativ; feminine Dativ is *-er*: *mit meiner Freundin* (possessives end like *kein*)."}, {"q": "Which sentence is correct?", "options": ["Wir haben keinen Kinder.", "Wir haben keine Kinder.", "Wir haben kein Kinder.", "Wir haben keiner Kinder.", "Wir haben keinem Kinder."], "answer": 1, "explain": "*Ein* has no plural, but *kein* does: Nom/Akk plural is *keine*. *keinen* is only for masculine Akk or Dativ plural (*mit keinen Kindern*)."}, {"q": "Anna liebt *___* Bruder sehr. (her brother)", "options": ["ihren", "seinen", "ihr", "ihrem", "seine"], "answer": 0, "explain": "The owner is Anna (she), so the possessive is *ihr*; Bruder is masculine Akk, so *ihren*. German has no *свій*: the owner's gender picks sein or ihr."}, {"q": "Kinder, wo wohnen *___* Eltern? (you all)", "options": ["eure", "euer", "euren", "eurer", "euch"], "answer": 0, "explain": "*euer* drops its second e when it takes an ending: *eure Eltern* (Nom plural, like *keine*)."}, {"q": "Kennst du den *___* Mann dort?", "options": ["alte", "alter", "alten", "altes", "altem"], "answer": 2, "explain": "After *der/den/dem*, the article shows the case, so the adjective is lazy: masculine Akk takes *-en* (only Nom singular and fem/neut Akk take -e)."}, {"q": "Das ist ein *___* Mann.", "options": ["alter", "alte", "alten", "altes", "altem"], "answer": 0, "explain": "Masculine Nom *ein* has no ending, so the adjective carries the signal itself: *ein alter Mann*."}, {"q": "Wir kaufen ein *___* Haus.", "options": ["alte", "alten", "altes", "alter", "altem"], "answer": 2, "explain": "Neuter Akk *ein* has no ending, so the adjective shows the neuter signal *-es*: *ein altes Haus*."}, {"q": "Morgens trinke ich gern *___* Kaffee.", "options": ["schwarzer", "schwarzes", "schwarze", "schwarzen", "schwarzem"], "answer": 3, "explain": "No article, so the adjective takes the der-ending itself; masculine Akk (*den*) gives *schwarzen Kaffee*."}, {"q": "Er hat die Arbeit mit *___* Freude gemacht.", "options": ["große", "großen", "großem", "großes", "großer"], "answer": 4, "explain": "No article after *mit* (Dativ): the adjective takes the feminine Dativ der-ending *-er* (like *der Frau*)."}, {"q": "Ich gebe *___* Mann das Buch.", "options": ["den", "der", "des", "dem", "das"], "answer": 3, "explain": "*geben* takes Dativ for the person and Akk for the thing: *dem Mann das Buch* (даю чоловікові)."}, {"q": "Ich bin gerade in *___* Stadt.", "options": ["die", "den", "dem", "der", "das"], "answer": 3, "explain": "*in* is a two-way preposition: location (wo?) takes Dativ, and Stadt is feminine, so *in der Stadt* (у місті, місцевий)."}, {"q": "Wir bleiben wegen *___* Wetters zu Hause.", "options": ["dem", "des", "das", "der", "den"], "answer": 1, "explain": "*wegen* takes the Genitiv in writing; neuter Genitiv is *des* + noun -s: *wegen des Wetters*."}, {"q": "Ich gehe heute *___* Arzt.", "options": ["zur", "ins", "zum", "im", "beim"], "answer": 2, "explain": "*zu* + *dem* contracts to *zum*; *zur* is only for feminine (zu der), and *beim* is location, not movement."}, {"q": "Ich fahre jeden Tag mit *___* Bus zur Arbeit.", "options": ["den", "der", "das", "des", "dem"], "answer": 4, "explain": "German has no instrumental: *автобусом* becomes *mit* + Dativ, and der Bus gives *mit dem Bus*."}, {"q": "Ich kaufe *___* Pullover hier.", "options": ["dieser", "diesem", "dieses", "diesen", "diese"], "answer": 3, "explain": "*dieser* takes the same endings as *der*; masculine Akk *den* gives *diesen Pullover*."}, {"q": "Das ist die Tasche *___* Freundin.", "options": ["meine", "meinem", "meines", "meinen", "meiner"], "answer": 4, "explain": "Feminine Genitiv is *der* → *einer/meiner*: *die Tasche meiner Freundin* (сумка моєї подруги)."}, {"q": "Peter ruft *___* Mutter an.", "options": ["ihre", "seine", "seinen", "seiner", "ihr"], "answer": 1, "explain": "The owner is Peter (he), so *sein*; Mutter is feminine Akk, so *seine*. Ukrainian *свою* has no German match."}, {"q": "Frau Schmidt, ist das *___* Schlüssel?", "options": ["Ihr", "Ihre", "Ihren", "Ihrem", "Ihres"], "answer": 0, "explain": "Formal *Ihr* works like *kein*; masculine Nominativ (*das ist …*) has no ending: *Ihr Schlüssel*."}, {"q": "Wir besuchen morgen *___* Großeltern.", "options": ["unser", "unserer", "unsere", "unseren", "unserem"], "answer": 2, "explain": "Possessives take *kein*-endings; plural Akkusativ is *-e*: *unsere Großeltern* (like *keine*)."}, {"q": "Ich wohne in einem *___* Haus.", "options": ["kleines", "kleine", "kleinem", "kleinen", "kleiner"], "answer": 3, "explain": "*einem* already shows neuter Dativ, so the adjective takes the lazy *-en*: *in einem kleinen Haus*."}, {"q": "Die *___* Lehrerin ist sehr nett.", "options": ["neuen", "neuer", "neues", "neuem", "neue"], "answer": 4, "explain": "After *die* in the Nominativ singular the adjective takes *-e*: *die neue Lehrerin*."}, {"q": "*___* Wasser ist gesund.", "options": ["Kaltes", "Kalter", "Kalte", "Kalten", "Kaltem"], "answer": 0, "explain": "No article, so the adjective carries the der-word signal; neuter Nominativ (*das*) gives *kaltes Wasser*."}, {"q": "Ich koche gern mit *___* Tomaten.", "options": ["frische", "frischen", "frischer", "frischem", "frisches"], "answer": 1, "explain": "No article after *mit* (Dativ plural *den*), so the adjective takes *-en*: *mit frischen Tomaten*."}, {"q": "Ich danke *___* Lehrer für die Hilfe.", "options": ["den", "der", "dem", "des", "die"], "answer": 2, "explain": "*danken* takes a Dativ object (дякувати кому), masculine: *dem Lehrer*."}, {"q": "Ich habe ein Geschenk für *___* Vater.", "options": ["meinem", "mein", "meiner", "meinen", "meines"], "answer": 3, "explain": "*für* always takes Akkusativ; masculine *mein* becomes *meinen*: *für meinen Vater*."}, {"q": "Am Abend gehen wir *___* Kino.", "options": ["im", "in den", "in dem", "aufs", "ins"], "answer": 4, "explain": "*gehen* is movement (wohin?), so *in* + Akk, neuter: *in das* → *ins Kino*; *im* is location (in dem)."}]}
+{"id": "articles", "title": "Articles quiz", "level": "B1", "doc": {"title": "German article tables (B1)", "url": "../docs/articles.html"}, "questions": [{"q": "Ich sehe *___* Hund im Garten.", "options": ["den", "der", "dem", "des", "die"], "answer": 0, "explain": "Masculine changes in the Akkusativ: *der* becomes *den* for a direct object."}, {"q": "Wir spielen mit den *___*.", "options": ["Kinder", "Kindes", "Kinds", "Kinde", "Kindern"], "answer": 4, "explain": "Dativ plural adds *-n* to the noun if it does not already end in -n or -s: *mit den Kindern* (but *den Autos*)."}, {"q": "Das ist das Auto *___* Vaters.", "options": ["der", "des", "dem", "den", "die"], "answer": 1, "explain": "Genitiv masculine is *des*, and the noun adds -s: *des Vaters*."}, {"q": "Ich habe *___* Bruder und zwei Schwestern.", "options": ["ein", "einen", "einem", "einer", "eines"], "answer": 1, "explain": "*haben* takes the Akkusativ, and masculine *ein* becomes *einen*."}, {"q": "Ich wohne mit *___* Freundin zusammen.", "options": ["meine", "meinem", "meiner", "meinen", "meines"], "answer": 2, "explain": "*mit* always takes Dativ; feminine Dativ is *-er*: *mit meiner Freundin* (possessives end like *kein*)."}, {"q": "Which sentence is correct?", "options": ["Wir haben keinen Kinder.", "Wir haben keine Kinder.", "Wir haben kein Kinder.", "Wir haben keiner Kinder.", "Wir haben keinem Kinder."], "answer": 1, "explain": "*Ein* has no plural, but *kein* does: Nom/Akk plural is *keine*. *keinen* is only for masculine Akk or Dativ plural (*mit keinen Kindern*)."}, {"q": "Anna liebt *___* Bruder sehr. (her brother)", "options": ["ihren", "seinen", "ihr", "ihrem", "seine"], "answer": 0, "explain": "The owner is Anna (she), so the possessive is *ihr*; Bruder is masculine Akk, so *ihren*. The owner's gender, not the object's, picks sein or ihr."}, {"q": "Kinder, wo wohnen *___* Eltern? (you all)", "options": ["eure", "euer", "euren", "eurer", "euch"], "answer": 0, "explain": "*euer* drops its second e when it takes an ending: *eure Eltern* (Nom plural, like *keine*)."}, {"q": "Kennst du den *___* Mann dort?", "options": ["alte", "alter", "alten", "altes", "altem"], "answer": 2, "explain": "After *der/den/dem*, the article shows the case, so the adjective is lazy: masculine Akk takes *-en* (only Nom singular and fem/neut Akk take -e)."}, {"q": "Das ist ein *___* Mann.", "options": ["alter", "alte", "alten", "altes", "altem"], "answer": 0, "explain": "Masculine Nom *ein* has no ending, so the adjective carries the signal itself: *ein alter Mann*."}, {"q": "Wir kaufen ein *___* Haus.", "options": ["alte", "alten", "altes", "alter", "altem"], "answer": 2, "explain": "Neuter Akk *ein* has no ending, so the adjective shows the neuter signal *-es*: *ein altes Haus*."}, {"q": "Morgens trinke ich gern *___* Kaffee.", "options": ["schwarzer", "schwarzes", "schwarze", "schwarzen", "schwarzem"], "answer": 3, "explain": "No article, so the adjective takes the der-ending itself; masculine Akk (*den*) gives *schwarzen Kaffee*."}, {"q": "Er hat die Arbeit mit *___* Freude gemacht.", "options": ["große", "großen", "großem", "großes", "großer"], "answer": 4, "explain": "No article after *mit* (Dativ): the adjective takes the feminine Dativ der-ending *-er* (like *der Frau*)."}, {"q": "Ich gebe *___* Mann das Buch.", "options": ["den", "der", "des", "dem", "das"], "answer": 3, "explain": "*geben* takes Dativ for the person and Akk for the thing: *dem Mann das Buch*."}, {"q": "Ich bin gerade in *___* Stadt.", "options": ["die", "den", "dem", "der", "das"], "answer": 3, "explain": "*in* is a two-way preposition: location (wo?) takes Dativ, and Stadt is feminine, so *in der Stadt*."}, {"q": "Wir bleiben wegen *___* Wetters zu Hause.", "options": ["dem", "des", "das", "der", "den"], "answer": 1, "explain": "*wegen* takes the Genitiv in writing; neuter Genitiv is *des* + noun -s: *wegen des Wetters*."}, {"q": "Ich gehe heute *___* Arzt.", "options": ["zur", "ins", "zum", "im", "beim"], "answer": 2, "explain": "*zu* + *dem* contracts to *zum*; *zur* is only for feminine (zu der), and *beim* is location, not movement."}, {"q": "Ich fahre jeden Tag mit *___* Bus zur Arbeit.", "options": ["den", "der", "das", "des", "dem"], "answer": 4, "explain": "Means of transport take *mit* + Dativ, and der Bus gives *mit dem Bus*."}, {"q": "Ich kaufe *___* Pullover hier.", "options": ["dieser", "diesem", "dieses", "diesen", "diese"], "answer": 3, "explain": "*dieser* takes the same endings as *der*; masculine Akk *den* gives *diesen Pullover*."}, {"q": "Das ist die Tasche *___* Freundin.", "options": ["meine", "meinem", "meines", "meinen", "meiner"], "answer": 4, "explain": "Feminine Genitiv is *der* → *einer/meiner*: *die Tasche meiner Freundin*."}, {"q": "Peter ruft *___* Mutter an.", "options": ["ihre", "seine", "seinen", "seiner", "ihr"], "answer": 1, "explain": "The owner is Peter (he), so *sein*; Mutter is feminine Akk, so *seine*. The owner, not the object, picks sein or ihr."}, {"q": "Frau Schmidt, ist das *___* Schlüssel?", "options": ["Ihr", "Ihre", "Ihren", "Ihrem", "Ihres"], "answer": 0, "explain": "Formal *Ihr* works like *kein*; masculine Nominativ (*das ist …*) has no ending: *Ihr Schlüssel*."}, {"q": "Wir besuchen morgen *___* Großeltern.", "options": ["unser", "unserer", "unsere", "unseren", "unserem"], "answer": 2, "explain": "Possessives take *kein*-endings; plural Akkusativ is *-e*: *unsere Großeltern* (like *keine*)."}, {"q": "Ich wohne in einem *___* Haus.", "options": ["kleines", "kleine", "kleinem", "kleinen", "kleiner"], "answer": 3, "explain": "*einem* already shows neuter Dativ, so the adjective takes the lazy *-en*: *in einem kleinen Haus*."}, {"q": "Die *___* Lehrerin ist sehr nett.", "options": ["neuen", "neuer", "neues", "neuem", "neue"], "answer": 4, "explain": "After *die* in the Nominativ singular the adjective takes *-e*: *die neue Lehrerin*."}, {"q": "*___* Wasser ist gesund.", "options": ["Kaltes", "Kalter", "Kalte", "Kalten", "Kaltem"], "answer": 0, "explain": "No article, so the adjective carries the der-word signal; neuter Nominativ (*das*) gives *kaltes Wasser*."}, {"q": "Ich koche gern mit *___* Tomaten.", "options": ["frische", "frischen", "frischer", "frischem", "frisches"], "answer": 1, "explain": "No article after *mit* (Dativ plural *den*), so the adjective takes *-en*: *mit frischen Tomaten*."}, {"q": "Ich danke *___* Lehrer für die Hilfe.", "options": ["den", "der", "dem", "des", "die"], "answer": 2, "explain": "*danken* takes a Dativ object, masculine: *dem Lehrer*."}, {"q": "Ich habe ein Geschenk für *___* Vater.", "options": ["meinem", "mein", "meiner", "meinen", "meines"], "answer": 3, "explain": "*für* always takes Akkusativ; masculine *mein* becomes *meinen*: *für meinen Vater*."}, {"q": "Am Abend gehen wir *___* Kino.", "options": ["im", "in den", "in dem", "aufs", "ins"], "answer": 4, "explain": "*gehen* is movement (wohin?), so *in* + Akk, neuter: *in das* → *ins Kino*; *im* is location (in dem)."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

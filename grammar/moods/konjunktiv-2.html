@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="20b42c5f8e14">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Konjunktiv II</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="a8f4f1cc4fb5" class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Konjunktiv II</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Konjunktiv II</h1><p class="sub">The &quot;would&quot; mood: polite requests, wishes, advice and unreal if-clauses with würde, hätte, wäre and könnte.</p></header>
@@ -294,7 +300,7 @@ body { margin: 0; }
 <ul>
 <li><em>Ich hätte gern mehr Zeit.</em> — <em>I'd like more time.</em></li>
 <li><em>Ich wäre jetzt gern am Strand.</em> — <em>I'd love to be on the beach now.</em></li>
-<li><em>Wenn ich doch nur mehr Geld hätte!</em> — <em>If only I had more money!</em> — <em>Якби ж у мене було більше грошей!</em></li>
+<li><em>Wenn ich doch nur mehr Geld hätte!</em> — <em>If only I had more money!</em></li>
 </ul>
 <aside class="callout hack"><p class="callout-title">The umlaut is the signal</p><p><em>hatte</em> (had) → <strong>hätte</strong> (would have), <em>war</em> → <strong>wäre</strong>, <em>konnte</em> → <strong>könnte</strong>, <em>musste</em> → <strong>müsste</strong>. Take the simple past and add umlaut dots. Only <em>sollte</em> and <em>wollte</em> look the same as the past; context tells you which.</p></aside>
 <h2>B1</h2>
@@ -361,11 +367,6 @@ body { margin: 0; }
 <li><em>Wenn ich das gewusst hätte, wäre ich früher gekommen.</em> — <em>If I had known that, I would have come earlier.</em></li>
 <li><em>Du hättest mich anrufen sollen!</em> — <em>You should have called me!</em> (with a modal: two infinitives at the end)</li>
 </ul>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian би vs German Konjunktiv II</p><p>Ukrainian has one tool for all of this: past-tense verb + <strong>би</strong> (<em>якби</em> in the if-clause): <em>Якби я мав час, я б прийшов.</em> German says <em>Wenn ich Zeit hätte, würde ich kommen.</em> Two differences:</p>
-<ul>
-<li>Ukrainian uses the same <em>би</em>-form for present and past (<em>я б прийшов</em> = I would come / would have come). German must choose: <em>würde kommen</em> (now) vs <strong>wäre gekommen</strong> (in the past).</li>
-<li>In Ukrainian <em>би</em> appears once in each half; in German <strong>both verbs</strong> change form.</li>
-</ul></aside>
 <aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
 <li><em>würde</em> in both halves is fine in speech, but avoid it with <em>sein</em> and <em>haben</em>: ~~Wenn ich reich sein würde~~ sounds clumsy → <strong>Wenn ich reich wäre</strong>.</li>
 <li>Mixing tenses: ~~Wenn ich Zeit hätte, komme ich.~~ → <em>..., würde ich kommen / käme ich.</em></li>
@@ -377,14 +378,14 @@ body { margin: 0; }
 <aside class="callout b2box"><p class="callout-title">Later: the old one-word forms</p><p>Many strong verbs have their own Konjunktiv II, built from the Präteritum: <em>ginge, käme, wüsste, bliebe, gäbe, fände</em>. In speech only a few are common (<em>käme, wüsste, gäbe es, ließe</em>); others like <em>hülfe</em> or <em>stürbe</em> sound archaic. You will meet them in literature and newspapers.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/moods/index.html">Moods overview</a></li>
-<li><a href="../../grammar/moods/imperative.html">Imperative</a></li>
+<li><a data-quiz="a8f4f1cc4fb5" href="../../grammar/moods/index.html">Moods overview</a></li>
+<li><a data-quiz="707095ae9a39" href="../../grammar/moods/imperative.html">Imperative</a></li>
 <li><a href="../../grammar/moods/konjunktiv-1.html">Konjunktiv I</a></li>
-<li><a href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
-<li><a href="../../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a></li>
+<li><a data-quiz="f7e33196feac" href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a data-quiz="71e3f53b0a44" href="../../grammar/sentences/subordinate-clauses.html">Subordinate clauses</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="imperative.html">← Imperative</a><a class="btn" href="konjunktiv-1.html">Konjunktiv I →</a></nav>
+<nav class="pager"><a data-quiz="707095ae9a39" class="btn" href="imperative.html">← Imperative</a><a class="btn" href="konjunktiv-1.html">Konjunktiv I →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -402,12 +403,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich *___* gern einen Kaffee, bitte.", "options": ["hatte", "hast", "hätte", "hätten", "haben"], "answer": 2, "explain": "*Ich hätte gern...* is the standard polite way to order. *hatte* without umlaut is simple past (A2)"}, {"q": "*___* Sie mir bitte helfen?", "options": ["Könnten", "Konnten", "Könntet", "Könntest", "Kannst"], "answer": 0, "explain": "*Könnten Sie...?* is Konjunktiv II and sounds more polite than *Können Sie...?* (A2)"}, {"q": "Wenn ich reich *___*, würde ich um die Welt reisen.", "options": ["war", "bin", "wärst", "wäre", "sei"], "answer": 3, "explain": "Unreal condition: Konjunktiv II of *sein* = *wäre*, like Ukrainian *якби я був* (A2)"}, {"q": "Ich *___* jetzt gern am Meer.", "options": ["war", "wäre", "wären", "würde", "hätte"], "answer": 1, "explain": "A wish about being somewhere: *Ich wäre gern...* (A2)"}, {"q": "*___* du mir das Salz geben?", "options": ["Würde", "Wurdest", "Würdet", "Würden", "Würdest"], "answer": 4, "explain": "*würde* + infinitive for a polite request; du-form = *würdest* (A2)"}, {"q": "Du *___* mehr schlafen. Du siehst müde aus.", "options": ["solle", "solltet", "solltest", "sollten", "sollte"], "answer": 2, "explain": "Advice: *Du solltest...* = you should. du-form of *sollte* (A2)"}, {"q": "Wenn ich Zeit *___*, würde ich mitkommen.", "options": ["hätte", "habe", "hatte", "hätten", "hättest"], "answer": 0, "explain": "Unreal *wenn*-clause: *hätte*. The indicative *habe* would mean a real possibility (A2)"}, {"q": "Es *___* schön, wenn du kommen könntest.", "options": ["ist", "war", "würde", "wäre", "sei"], "answer": 3, "explain": "*Es wäre schön* = it would be nice; Konjunktiv II because it is hypothetical (A2)"}, {"q": "Wir *___* gern ein Doppelzimmer.", "options": ["hatten", "hätten", "hätte", "habt", "hättet"], "answer": 1, "explain": "Polite wish in a hotel: *Wir hätten gern...*, wir-form *hätten* (A2)"}, {"q": "Ich *___* das nicht machen. Das ist zu gefährlich.", "options": ["wurde", "wären", "wäre", "wird", "würde"], "answer": 4, "explain": "*Ich würde das nicht machen* = I wouldn't do that. *wurde* without umlaut is past tense (A2)"}, {"q": "An deiner Stelle *___* ich zum Arzt gehen.", "options": ["würdest", "wurde", "würde", "wäre", "hätte"], "answer": 2, "explain": "Advice pattern: *An deiner Stelle würde ich...* (B1)"}, {"q": "Wenn ich du *___*, würde ich das Angebot annehmen.", "options": ["wäre", "bin", "würde", "war", "hätte"], "answer": 0, "explain": "*Wenn ich du wäre...* = if I were you. Konjunktiv II of *sein* (B1)"}, {"q": "Wenn es nicht so kalt *___*, könnten wir draußen essen.", "options": ["ist", "sei", "war", "wäre", "wären"], "answer": 3, "explain": "Both halves of an unreal condition take Konjunktiv II: *wäre ... könnten* (B1)"}, {"q": "Which sentence is a REAL condition?", "options": ["Wenn es regnen würde, bliebe ich zu Hause.", "Wenn es regnet, bleibe ich zu Hause.", "Wenn es regnete, würde ich zu Hause bleiben.", "Würde es regnen, bliebe ich zu Hause.", "Wenn es doch nur regnen würde!"], "answer": 1, "explain": "Indicative in both halves = a real possibility; all the others use Konjunktiv II (B1)"}, {"q": "*___* ich mehr Geld, würde ich ein Auto kaufen.", "options": ["Würde", "Habe", "Hatte", "Hättest", "Hätte"], "answer": 4, "explain": "Without *wenn* the verb comes first: *Hätte ich mehr Geld, ...* (B1)"}, {"q": "Wenn ich doch nur mehr Zeit *___*!", "options": ["habe", "hatte", "hätte", "hättest", "hätten"], "answer": 2, "explain": "A wish with *Wenn ... doch nur* takes Konjunktiv II, verb at the end: *Wenn ich doch nur mehr Zeit hätte!* (B1)"}, {"q": "Er tut so, als ob er alles *___*.", "options": ["wüsste", "wüsstest", "wissen", "gewusst", "weißt"], "answer": 0, "explain": "*als ob* + Konjunktiv II: *als ob er alles wüsste* = as if he knew everything (B1)"}, {"q": "Sie sieht aus, als ob sie krank *___*.", "options": ["wärst", "wären", "sein", "wäre", "hätte"], "answer": 3, "explain": "*als ob* + Konjunktiv II, verb at the end: *als ob sie krank wäre* (B1)"}, {"q": "Wenn ich das gewusst hätte, *___* ich dir geholfen.", "options": ["wäre", "hätte", "würde", "habe", "hatte"], "answer": 1, "explain": "Past Konjunktiv II: *helfen* takes *haben* in the Perfekt, so *hätte geholfen* (B1)"}, {"q": "Wenn der Bus pünktlich gewesen wäre, *___* ich nicht zu spät gekommen.", "options": ["hätte", "würde", "bin", "war", "wäre"], "answer": 4, "explain": "*kommen* takes *sein* in the Perfekt, so past Konjunktiv II is *wäre gekommen* (B1)"}, {"q": "Ohne den Streik *___* ich gestern nach Berlin gefahren.", "options": ["hätte", "würde", "wäre", "wärst", "hatte"], "answer": 2, "explain": "*fahren* (movement) takes *sein*, so the unreal past is *wäre gefahren*: I would have gone, but I didn't (B1)"}, {"q": "Du *___* mich anrufen sollen!", "options": ["hättest", "wärst", "würdest", "müsstest", "solltest"], "answer": 0, "explain": "*You should have called*: *hättest* + infinitive + *sollen* (double infinitive) (B1)"}, {"q": "Wir *___* das früher machen müssen.", "options": ["wären", "hättet", "hättest", "hätten", "müssten"], "answer": 3, "explain": "*We would have had to*: *hätten ... machen müssen*; modals take *haben* (B1)"}, {"q": "How do you say *Якби я знав, я б прийшов* (about the past)?", "options": ["Wenn ich es wüsste, käme ich.", "Wenn ich es gewusst hätte, wäre ich gekommen.", "Wenn ich es wusste, bin ich gekommen.", "Wenn ich es weiß, komme ich.", "Wenn ich es gewusst habe, wäre ich gekommen."], "answer": 1, "explain": "Ukrainian *би* covers present and past; German must choose. For the past: *hätte gewusst ... wäre gekommen* (B1)"}, {"q": "Ich *___* morgen kommen, aber ich bin nicht sicher. (= could)", "options": ["konnte", "könntest", "könne", "könnten", "könnte"], "answer": 4, "explain": "*könnte* = could (possibility). *konnte* without umlaut means \"was able to\" (B1)"}], "title": "Konjunktiv II quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich *___* gern einen Kaffee, bitte.", "options": ["hatte", "hast", "hätte", "hätten", "haben"], "answer": 2, "explain": "*Ich hätte gern...* is the standard polite way to order. *hatte* without umlaut is simple past (A2)"}, {"q": "*___* Sie mir bitte helfen?", "options": ["Könnten", "Konnten", "Könntet", "Könntest", "Kannst"], "answer": 0, "explain": "*Könnten Sie...?* is Konjunktiv II and sounds more polite than *Können Sie...?* (A2)"}, {"q": "Wenn ich reich *___*, würde ich um die Welt reisen.", "options": ["war", "bin", "wärst", "wäre", "sei"], "answer": 3, "explain": "Unreal condition: Konjunktiv II of *sein* = *wäre* (A2)"}, {"q": "Ich *___* jetzt gern am Meer.", "options": ["war", "wäre", "wären", "würde", "hätte"], "answer": 1, "explain": "A wish about being somewhere: *Ich wäre gern...* (A2)"}, {"q": "*___* du mir das Salz geben?", "options": ["Würde", "Wurdest", "Würdet", "Würden", "Würdest"], "answer": 4, "explain": "*würde* + infinitive for a polite request; du-form = *würdest* (A2)"}, {"q": "Du *___* mehr schlafen. Du siehst müde aus.", "options": ["solle", "solltet", "solltest", "sollten", "sollte"], "answer": 2, "explain": "Advice: *Du solltest...* = you should. du-form of *sollte* (A2)"}, {"q": "Wenn ich Zeit *___*, würde ich mitkommen.", "options": ["hätte", "habe", "hatte", "hätten", "hättest"], "answer": 0, "explain": "Unreal *wenn*-clause: *hätte*. The indicative *habe* would mean a real possibility (A2)"}, {"q": "Es *___* schön, wenn du kommen könntest.", "options": ["ist", "war", "würde", "wäre", "sei"], "answer": 3, "explain": "*Es wäre schön* = it would be nice; Konjunktiv II because it is hypothetical (A2)"}, {"q": "Wir *___* gern ein Doppelzimmer.", "options": ["hatten", "hätten", "hätte", "habt", "hättet"], "answer": 1, "explain": "Polite wish in a hotel: *Wir hätten gern...*, wir-form *hätten* (A2)"}, {"q": "Ich *___* das nicht machen. Das ist zu gefährlich.", "options": ["wurde", "wären", "wäre", "wird", "würde"], "answer": 4, "explain": "*Ich würde das nicht machen* = I wouldn't do that. *wurde* without umlaut is past tense (A2)"}, {"q": "An deiner Stelle *___* ich zum Arzt gehen.", "options": ["würdest", "wurde", "würde", "wäre", "hätte"], "answer": 2, "explain": "Advice pattern: *An deiner Stelle würde ich...* (B1)"}, {"q": "Wenn ich du *___*, würde ich das Angebot annehmen.", "options": ["wäre", "bin", "würde", "war", "hätte"], "answer": 0, "explain": "*Wenn ich du wäre...* = if I were you. Konjunktiv II of *sein* (B1)"}, {"q": "Wenn es nicht so kalt *___*, könnten wir draußen essen.", "options": ["ist", "sei", "war", "wäre", "wären"], "answer": 3, "explain": "Both halves of an unreal condition take Konjunktiv II: *wäre ... könnten* (B1)"}, {"q": "Which sentence is a REAL condition?", "options": ["Wenn es regnen würde, bliebe ich zu Hause.", "Wenn es regnet, bleibe ich zu Hause.", "Wenn es regnete, würde ich zu Hause bleiben.", "Würde es regnen, bliebe ich zu Hause.", "Wenn es doch nur regnen würde!"], "answer": 1, "explain": "Indicative in both halves = a real possibility; all the others use Konjunktiv II (B1)"}, {"q": "*___* ich mehr Geld, würde ich ein Auto kaufen.", "options": ["Würde", "Habe", "Hatte", "Hättest", "Hätte"], "answer": 4, "explain": "Without *wenn* the verb comes first: *Hätte ich mehr Geld, ...* (B1)"}, {"q": "Wenn ich doch nur mehr Zeit *___*!", "options": ["habe", "hatte", "hätte", "hättest", "hätten"], "answer": 2, "explain": "A wish with *Wenn ... doch nur* takes Konjunktiv II, verb at the end: *Wenn ich doch nur mehr Zeit hätte!* (B1)"}, {"q": "Er tut so, als ob er alles *___*.", "options": ["wüsste", "wüsstest", "wissen", "gewusst", "weißt"], "answer": 0, "explain": "*als ob* + Konjunktiv II: *als ob er alles wüsste* = as if he knew everything (B1)"}, {"q": "Sie sieht aus, als ob sie krank *___*.", "options": ["wärst", "wären", "sein", "wäre", "hätte"], "answer": 3, "explain": "*als ob* + Konjunktiv II, verb at the end: *als ob sie krank wäre* (B1)"}, {"q": "Wenn ich das gewusst hätte, *___* ich dir geholfen.", "options": ["wäre", "hätte", "würde", "habe", "hatte"], "answer": 1, "explain": "Past Konjunktiv II: *helfen* takes *haben* in the Perfekt, so *hätte geholfen* (B1)"}, {"q": "Wenn der Bus pünktlich gewesen wäre, *___* ich nicht zu spät gekommen.", "options": ["hätte", "würde", "bin", "war", "wäre"], "answer": 4, "explain": "*kommen* takes *sein* in the Perfekt, so past Konjunktiv II is *wäre gekommen* (B1)"}, {"q": "Ohne den Streik *___* ich gestern nach Berlin gefahren.", "options": ["hätte", "würde", "wäre", "wärst", "hatte"], "answer": 2, "explain": "*fahren* (movement) takes *sein*, so the unreal past is *wäre gefahren*: I would have gone, but I didn't (B1)"}, {"q": "Du *___* mich anrufen sollen!", "options": ["hättest", "wärst", "würdest", "müsstest", "solltest"], "answer": 0, "explain": "*You should have called*: *hättest* + infinitive + *sollen* (double infinitive) (B1)"}, {"q": "Wir *___* das früher machen müssen.", "options": ["wären", "hättet", "hättest", "hätten", "müssten"], "answer": 3, "explain": "*We would have had to*: *hätten ... machen müssen*; modals take *haben* (B1)"}, {"q": "How do you say *If I had known, I would have come*?", "options": ["Wenn ich es wüsste, käme ich.", "Wenn ich es gewusst hätte, wäre ich gekommen.", "Wenn ich es wusste, bin ich gekommen.", "Wenn ich es weiß, komme ich.", "Wenn ich es gewusst habe, wäre ich gekommen."], "answer": 1, "explain": "An unreal past takes past Konjunktiv II in both halves: *hätte gewusst ... wäre gekommen*. *würde* is for the present (B1)"}, {"q": "Ich *___* morgen kommen, aber ich bin nicht sicher. (= could)", "options": ["konnte", "könntest", "könne", "könnten", "könnte"], "answer": 4, "explain": "*könnte* = could (possibility). *konnte* without umlaut means \"was able to\" (B1)"}], "title": "Konjunktiv II quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -419,18 +424,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -445,14 +464,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -464,7 +483,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -473,14 +492,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -488,23 +507,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

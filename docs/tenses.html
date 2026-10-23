@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="e61ce2c478e9">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Tenses, moods and the passive</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/tenses/index.html">Tenses</a>, <a href="../grammar/moods/index.html">Moods</a>, <a href="../grammar/passive.html">Passive</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="a977aec84862" href="../grammar/tenses/index.html">Tenses</a>, <a data-quiz="a8f4f1cc4fb5" href="../grammar/moods/index.html">Moods</a>, <a data-quiz="903a62b09fb0" href="../grammar/passive.html">Passive</a>.</p></aside>
 <p>German builds most of its time system from three helpers (haben, sein, werden) plus two participle-free core forms (Präsens, Präteritum); in speech you mainly need Präsens, Perfekt and Konjunktiv II.</p>
 <h2>Präsens (present)</h2>
 <p>Präsens covers present, ongoing and, with a time word, future actions: German has no separate "I am doing" form, so <em>ich arbeite</em> = I work / I am working / I'll work.</p>
@@ -228,10 +234,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li><strong>seit + Präsens</strong> is a classic trap for English speakers (<em>I have lived</em>), but natural for Ukrainian: Я живу тут три роки also uses the present.</li>
-<li>Like Ukrainian Завтра я їду до Києва, the present + time word is the normal way to talk about plans.</li>
-</ul>
 <h3>Regular endings</h3>
 <p>Stem + ending: <em>mach-en</em> → stem <em>mach-</em>.</p>
 <div class="table-wrap"><table>
@@ -491,7 +493,7 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li><strong>seid</strong> (ihr seid) vs <strong>seit</strong> (since): same sound, different words.</li>
-<li><strong>wissen</strong> = know a fact (<em>Ich weiß, dass…</em>), <strong>kennen</strong> = be familiar with a person/place (<em>Ich kenne Anna</em>). Same split as Ukrainian знати vs бути знайомим / French savoir vs connaître.</li>
+<li><strong>wissen</strong> = know a fact (<em>Ich weiß, dass…</em>), <strong>kennen</strong> = be familiar with a person/place (<em>Ich kenne Anna</em>).</li>
 </ul>
 <h3>Modal verbs</h3>
 <p>Modals have a different vowel in the singular and <strong>no ending in ich and er/sie/es</strong> (ich kann, er kann).</p>
@@ -573,7 +575,7 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>The modal is in position 2, the infinitive goes to the <strong>end</strong>: <em>Ich kann heute nicht kommen.</em> (I can't come today.)</li>
-<li><strong>nicht müssen</strong> = don't have to (не мусиш), <strong>nicht dürfen</strong> = must not (не можна): <em>Du musst nicht kommen</em> (you needn't) vs <em>Du darfst nicht rauchen</em> (you mustn't).</li>
+<li><strong>nicht müssen</strong> = don't have to, <strong>nicht dürfen</strong> = must not: <em>Du musst nicht kommen</em> (you needn't) vs <em>Du darfst nicht rauchen</em> (you mustn't).</li>
 <li><strong>ich will</strong> = I want, never "I will": <em>Ich will nach Hause.</em> = I want to go home.</li>
 </ul>
 <h2>Perfekt (spoken past)</h2>
@@ -957,7 +959,6 @@ body { margin: 0; }
 <li><em>Nachdem ich gegessen <strong>hatte</strong>, ging ich spazieren.</em> — After I had eaten, I went for a walk.</li>
 <li>haben vs sein follows the same rules as Perfekt.</li>
 <li><strong>nachdem</strong> wants a tense shift: Plusquamperfekt in the nachdem-clause + Präteritum/Perfekt in the main clause (or Perfekt + Präsens).</li>
-<li>Ukrainian has no separate form here (зробив / було зроблено), so think English <em>had done</em>.</li>
 </ul>
 <h2>Futur I and the three jobs of werden</h2>
 <p>Futur I = <strong>werden</strong> + infinitive at the end, but Germans use it far less than English <em>will</em>: Präsens + a time word is the normal way to speak about the future.</p>
@@ -1033,7 +1034,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Everyday: <em>Ich rufe dich morgen an.</em> (not <em>Ich werde dich morgen anrufen</em>, which sounds weighty).</li>
-<li>Ukrainian parallel: я <strong>буду</strong> працювати = <em>ich werde arbeiten</em>, built the same way (helper + infinitive).</li>
 </ul>
 <h3>werden: three jobs</h3>
 <div class="table-wrap"><table>
@@ -1069,11 +1069,10 @@ body { margin: 0; }
 <ul>
 <li>Look at the end of the clause: infinitive → future, Partizip II → passive, nothing verbal → become.</li>
 <li>Perfekt of job 1 is <em>ist geworden</em>; in the passive it shrinks to <em>worden</em>: <em>Er ist Arzt geworden</em> vs <em>Das Haus ist gebaut worden</em>.</li>
-<li>Ukrainian ставати = job 1: <em>Він став лікарем</em> = <em>Er ist Arzt geworden</em>.</li>
 </ul>
 <h2>Konjunktiv II (would / could / if)</h2>
 <p>Konjunktiv II expresses the unreal, the hypothetical and the polite; for most verbs use <strong>würde + infinitive</strong>, but for sein, haben and the modals use their own one-word forms.</p>
-<p>Ukrainian does this with one particle: я <strong>б</strong> зробив, якби в мене <strong>був</strong> час. German needs the special verb form instead.</p>
+<p>German needs the special verb form instead.</p>
 <h3>The forms</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -1246,7 +1245,6 @@ body { margin: 0; }
 <ul>
 <li><em>Er tut so, als ob er alles wüsste.</em> — He acts as if he knew everything.</li>
 <li><em>Du siehst aus, als ob du müde wärst.</em> = <em>Du siehst aus, als wärst du müde.</em> — You look as if you were tired.</li>
-<li>Ukrainian: ніби / наче (би).</li>
 </ul>
 <h3>Konjunktiv II past: hätte / wäre + Partizip II</h3>
 <p>For unreal past events (regret, missed chances), use <strong>hätte</strong> or <strong>wäre</strong> + Partizip II; haben vs sein follows the Perfekt rules.</p>
@@ -1282,7 +1280,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Modal + past: <strong>hätte + infinitive + modal infinitive</strong> (double infinitive): <em>Ich hätte das wissen müssen.</em> — I should have known that.</li>
-<li>Ukrainian uses the same б-form for present and past (я б прийшов = I would come / would have come); German separates them, so check the time: <em>ich würde kommen</em> vs <em>ich wäre gekommen</em>.</li>
 </ul>
 <h2>Imperativ (commands)</h2>
 <p>The imperative has three main forms (du, ihr, Sie) plus a "let's" form with wir; the verb comes first and du / ihr drop the pronoun.</p>
@@ -1395,11 +1392,9 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>Ukrainian parallel: <em>зроби ну</em> / <em>зроби, будь ласка</em> ≈ <em>mach mal</em> / <em>mach bitte</em>.</li>
 <li>For strangers, Konjunktiv II is politer than any imperative: <em>Könnten Sie…?</em></li>
 </ul>
 <h2>Passiv (passive)</h2>
-<p>The process passive (Vorgangspassiv) = <strong>werden + Partizip II</strong>: the focus moves from who does it to what happens, just as in Ukrainian <em>будинок будують / будується</em>.</p>
 <ul>
 <li>Active: <em>Der Mechaniker repariert das Auto.</em> — The mechanic repairs the car.</li>
 <li>Passive: <em>Das Auto wird (vom Mechaniker) repariert.</em> — The car is being repaired (by the mechanic).</li>
@@ -1526,11 +1521,9 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>Ukrainian parallel: <em>двері зачиняють</em> (process) vs <em>двері зачинені</em> (state).</li>
 <li>Past state: <em>Der Laden war geschlossen.</em> — The shop was closed (it was shut when we came).</li>
 </ul>
 <h3>man: the everyday alternative</h3>
-<p><strong>man</strong> + active verb (3rd person singular) often replaces the passive in speech, like Ukrainian impersonal <em>кажуть, тут не курять</em>.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1560,46 +1553,37 @@ body { margin: 0; }
 <ul>
 <li><strong>man</strong> takes the er-form: <em>man kann, man muss, man weiß</em>; its accusative is <em>einen</em>, dative <em>einem</em>.</li>
 </ul>
-<h2>No aspect: from робив / зробив to German</h2>
-<p>German verbs have no grammatical aspect: one Perfekt form covers both Ukrainian imperfective and perfective, so <em>ich habe gelesen</em> = я читав <strong>and</strong> я прочитав; context and small words do the work.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Ukrainian</th>
 <th>German</th>
 <th>English</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Я читав книжку (process)</td>
 <td>Ich habe ein Buch gelesen.</td>
 <td>I was reading / I read a book.</td>
 </tr>
 <tr>
-<td>Я прочитав книжку (result)</td>
 <td>Ich habe das Buch (zu Ende) gelesen.</td>
 <td>I've read (finished) the book.</td>
 </tr>
 <tr>
-<td>Я роблю (now)</td>
 <td>Ich mache das gerade.</td>
 <td>I'm doing it right now.</td>
 </tr>
 <tr>
-<td>Я зроблю (future, result)</td>
 <td>Ich mache das (morgen).</td>
 <td>I'll do it (tomorrow).</td>
 </tr>
 <tr>
-<td>Я буду робити (future, process)</td>
 <td>Ich werde das machen. / Ich mache das.</td>
 <td>I'll be doing it.</td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li>The Ukrainian future pair зроблю / буду робити collapses into Präsens or Futur I: no difference in form.</li>
 <li>English progressive (<em>I was doing</em>) also has no German equivalent; don't look for one.</li>
 </ul>
 <h3>Tools for aspect-like meaning</h3>
@@ -1609,7 +1593,6 @@ body { margin: 0; }
 <th>Meaning</th>
 <th>German tool</th>
 <th>Example</th>
-<th>Translation</th>
 </tr>
 </thead>
 <tbody>
@@ -1617,72 +1600,61 @@ body { margin: 0; }
 <td>In progress right now</td>
 <td><strong>gerade</strong></td>
 <td><em>Ich koche gerade.</em></td>
-<td>I'm cooking right now (я саме готую).</td>
 </tr>
 <tr>
 <td>In progress, "in the middle of"</td>
 <td><strong>dabei sein, … zu + Inf.</strong></td>
 <td><em>Ich bin dabei, die Koffer zu packen.</em></td>
-<td>I'm busy packing the cases.</td>
 </tr>
 <tr>
 <td>In progress (colloquial, regional)</td>
 <td><strong>am + Inf. + sein</strong></td>
 <td><em>Ich bin am Arbeiten.</em></td>
-<td>I'm working (just now).</td>
 </tr>
 <tr>
 <td>Process over time</td>
 <td><strong>lange, stundenlang, die ganze Zeit</strong></td>
 <td><em>Ich habe stundenlang gewartet.</em></td>
-<td>I waited for hours (чекав).</td>
 </tr>
 <tr>
 <td>Completed, result</td>
 <td><strong>schon</strong></td>
 <td><em>Ich habe schon gegessen.</em></td>
-<td>I've already eaten (вже поїв).</td>
 </tr>
 <tr>
 <td>Completed, done</td>
 <td><strong>fertig sein (mit)</strong></td>
 <td><em>Ich bin mit der Arbeit fertig.</em></td>
-<td>I've finished the work.</td>
 </tr>
 <tr>
 <td>To the end</td>
 <td><strong>zu Ende + verb</strong>, <strong>aus-</strong></td>
 <td><em>Ich habe das Buch zu Ende gelesen. Ich habe den Kaffee ausgetrunken.</em></td>
-<td>I read the book to the end. I finished my coffee (допив).</td>
 </tr>
 <tr>
 <td>Not yet</td>
 <td><strong>noch nicht</strong></td>
 <td><em>Ich habe das noch nicht gemacht.</em></td>
-<td>I haven't done it yet (ще не зробив).</td>
 </tr>
 <tr>
 <td>Start</td>
 <td><strong>anfangen / beginnen zu</strong></td>
 <td><em>Es fängt an zu regnen.</em></td>
-<td>It's starting to rain (задощило).</td>
 </tr>
 <tr>
 <td>Single short act</td>
 <td><strong>mal, kurz</strong></td>
 <td><em>Ich rufe dich kurz an.</em></td>
-<td>I'll give you a quick call (подзвоню).</td>
 </tr>
 <tr>
 <td>Repeated / habitual</td>
 <td><strong>immer, oft, jeden Tag, meistens</strong></td>
 <td><em>Früher bin ich jeden Tag gelaufen.</em></td>
-<td>I used to run every day (бігав).</td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li>Prefixes such as <strong>aus-, auf-, ver-, er-, zer-</strong> often add a sense of completion, roughly like Ukrainian ви-, з-, до-, роз-: <em>trinken</em> → <em>austrinken</em> (випити до кінця), <em>essen</em> → <em>aufessen</em> (з'їсти все), <em>brennen</em> → <em>verbrennen</em> (згоріти). These are separate vocabulary items, not a grammar system.</li>
+<li>These are separate vocabulary items, not a grammar system.</li>
 <li>Used to = <em>früher</em> + past: <em>Früher habe ich in Lwiw gewohnt.</em> — I used to live in Lviv.</li>
 </ul>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
@@ -1735,7 +1707,6 @@ body { margin: 0; }
 <li><strong>Subordinate clause:</strong> hätte does not go to the very end; it stands <em>before</em> the two infinitives: <em>…, dass ich das hätte wissen müssen.</em> Not <em>… wissen müssen hätte</em>.</li>
 <li><strong>Passive on top:</strong> <em>Das hätte längst repariert werden müssen.</em> — That should have been repaired long ago.</li>
 <li><strong>Unreal past vs guess about the past.</strong> <em>Er hätte den Zug verpassen können</em> = he could have missed it (but did not). <em>Er könnte den Zug verpasst haben</em> = maybe he missed it (we don't know). <em>Er muss den Zug verpasst haben</em> = he must have missed it.</li>
-<li><strong>Ukrainian:</strong> <em>треба було подзвонити</em> / <em>ти мав би подзвонити</em> = <em>Du hättest anrufen sollen</em>. Ukrainian marks the past on було / мав; German marks it only on hätte.</li>
 </ul>
 <h3>Passive with modals in every tense</h3>
 <p>The B1 table above stops at <em>muss / musste repariert werden</em>. In the compound tenses the <strong>modal</strong> is the verb that gets conjugated, so the auxiliary is <strong>haben</strong>, not sein, and the modal appears as an infinitive at the very end.</p>
@@ -1862,7 +1833,6 @@ body { margin: 0; }
 <ul>
 <li>Common in speech and the press; <em>kriegen</em> is colloquial.</li>
 <li>Works only where a dative receiver exists: schenken, schicken, erklären, zeigen, entziehen, erstatten (<em>Ich bekomme die Kosten erstattet</em>).</li>
-<li><strong>Ukrainian:</strong> <em>цього тут не роблять</em> or <em>тут не курять</em> (3rd person plural, no subject) is the usual match for the subjectless passive.</li>
 </ul>
 <h3>One-word Konjunktiv II in written style</h3>
 <p>In good written German, and in careful speech, the one-word forms of frequent strong and mixed verbs replace <em>würde + infinitive</em>, especially in the <strong>wenn-clause</strong>. Form: Präteritum stem + umlaut where possible + <strong>-e</strong> (kam → käme).</p>
@@ -2002,7 +1972,7 @@ body { margin: 0; }
 <ul>
 <li><strong>Doppelperfekt</strong> (<em>Ich habe es schon vergessen gehabt</em>) is common in southern speech but non-standard; don't write it.</li>
 <li>In a written narrative, keep Präteritum and use Plusquamperfekt for what happened earlier; switching to Perfekt mid-story sounds like speech.</li>
-<li><strong>Ukrainian</strong> has one past tense, so the southern habit (Perfekt for everything in speech) is the easier one to copy. For reading and writing, learn the Präteritum of every strong verb anyway.</li>
+<li>For reading and writing, learn the Präteritum of every strong verb anyway.</li>
 </ul>
 <h3>Futur II, Konjunktiv I and passive alternatives (in the B2+ docs)</h3>
 <p>These belong to this topic but have their own B2+ docs; here is the short version.</p>
@@ -2055,9 +2025,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: tense, passive and Konjunktiv choices in formal texts</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/tenses.html">Tenses quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="85d907f82c06" href="../quizzes/tenses.html">Tenses quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

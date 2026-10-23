@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="d83521f1c945">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Irregular verbs</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/verbs/index.html">Verbs</a>, <a href="../grammar/verbs/modal-verbs.html">Modal verbs</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="53c724d48f43" href="../grammar/verbs/index.html">Verbs</a>, <a data-quiz="f7e33196feac" href="../grammar/verbs/modal-verbs.html">Modal verbs</a>.</p></aside>
 <p>Learn every irregular verb as four forms (infinitive, er-present, Präteritum, Perfekt with hat/ist); most of them follow a dozen vowel patterns, so learn the pattern, not the single verb.</p>
 <h2>Why "strong": Ablaut</h2>
 <p>Strong verbs form their past by changing the <strong>stem vowel</strong> (Ablaut), not by adding -te; their Partizip II ends in <strong>-en</strong>. Weak verbs keep the vowel and add -te / -t (see <a href="../docs/prefixes.html">Prefixes and vowel changes</a>).</p>
@@ -233,7 +239,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>English has the same system, inherited from the same Germanic ancestor: <em>sing – sang – sung</em> = <em>singen – sang – gesungen</em>, <em>drink – drank – drunk</em> = <em>trinken – trank – getrunken</em>. If the English verb is irregular, the German one usually is too.</li>
-<li>Ukrainian also shows old vowel alternations (<em>брати – беру</em>, <em>збирати – зібрати</em>), but German uses them systematically for tense.</li>
 <li>There are only about 170 strong verbs in modern German, and around 80 cover nearly everything at A2–B1. New verbs (<em>googeln, chatten, mailen</em>) are always weak.</li>
 <li>Compounds conjugate like their base verb: <em>kommen → bekommen, ankommen, mitkommen</em>; <em>stehen → verstehen, aufstehen</em>. Learn the base once.</li>
 <li>Present-tense vowel change (e→i/ie, a→ä) happens only in du and er/sie/es, and only in some strong verbs: that is why the tables list the er-form.</li>
@@ -1999,7 +2004,6 @@ body { margin: 0; }
 <tr>
 <th>Modal</th>
 <th>Core meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -2007,43 +2011,36 @@ body { margin: 0; }
 <tr>
 <td>können</td>
 <td>can, be able, possibility</td>
-<td>могти, вміти</td>
 <td><em>Ich kann schwimmen.</em> — I can swim.</td>
 </tr>
 <tr>
 <td>müssen</td>
 <td>must, have to (necessity)</td>
-<td>мусити</td>
 <td><em>Ich muss los.</em> — I have to go.</td>
 </tr>
 <tr>
 <td>dürfen</td>
 <td>may, be allowed</td>
-<td>мати право, можна</td>
 <td><em>Darf ich reinkommen?</em> — May I come in?</td>
 </tr>
 <tr>
 <td>wollen</td>
 <td>want, intend</td>
-<td>хотіти</td>
 <td><em>Wir wollen heiraten.</em> — We want to get married.</td>
 </tr>
 <tr>
 <td>sollen</td>
 <td>be supposed to (someone else's will)</td>
-<td>мати (зробити), слід</td>
 <td><em>Ich soll dich grüßen.</em> — Someone asked me to say hi to you.</td>
 </tr>
 <tr>
 <td>mögen</td>
 <td>like (mostly with nouns)</td>
-<td>любити, подобатися</td>
 <td><em>Ich mag Kaffee.</em> — I like coffee.</td>
 </tr>
 <tr>
 <td>möchte</td>
 <td>would like</td>
-<td>хотів би</td>
 <td><em>Ich möchte bezahlen.</em> — I'd like to pay.</td>
 </tr>
 </tbody>
@@ -2148,8 +2145,6 @@ body { margin: 0; }
 <li>In speech, Präteritum <em>war / hatte</em> replaces Perfekt <em>bin gewesen / habe gehabt</em> almost always: <em>Ich war krank</em> sounds more natural than <em>Ich bin krank gewesen</em>.</li>
 <li><strong>werden</strong> in the passive Perfekt is <strong>worden</strong> (no ge-): <em>Das ist gemacht worden.</em></li>
 <li><em>Hab keine Angst!</em> — Don't be afraid! <em>Werd bald gesund!</em> — Get well soon!</li>
-<li>Ukrainian often drops "be" in the present (<em>Він лікар</em>); German never does: <em>Er ist Arzt.</em></li>
-<li>Ukrainian <em>у мене є</em> = German <em>ich habe</em>: the owner is the subject. <em>Ich habe einen Bruder.</em> — У мене є брат.</li>
 </ul>
 <h2>Verbs that switch between hat and ist</h2>
 <p>A motion verb takes <strong>ist</strong> when the subject itself moves, and <strong>hat</strong> when it moves something else (an accusative object); some verbs also change meaning between the two.</p>
@@ -2298,7 +2293,7 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li><strong>schaffen</strong> and wiegen break the intransitive rule: both versions take an object, and the meaning decides (create vs manage, weigh vs rock). At A2–B1 you need almost only <em>geschafft</em>.</li>
-<li>Ukrainian parallel for hängen: <em>висіти</em> (strong, where it is) vs <em>вішати / повісити</em> (weak, put it there). Same logic as liegen/legen, stehen/stellen.</li>
+<li>Same logic as liegen/legen, stehen/stellen.</li>
 <li>Weak hängen goes with Akkusativ (<em>an die Wand</em>), strong hängen with Dativ (<em>an der Wand</em>).</li>
 </ul>
 <h2>Memory tips</h2>
@@ -2537,7 +2532,6 @@ body { margin: 0; }
 <li><strong>sich schleichen</strong> takes haben: <em>Er hat sich aus dem Haus geschlichen.</em> Without sich it takes sein.</li>
 <li><strong>verderben</strong> works like fahren: with an object hat, without one ist.</li>
 <li><strong>staubsaugen</strong> is weak: <em>Ich habe gestaubsaugt</em> (also <em>staubgesaugt</em>).</li>
-<li><strong>Ukrainian:</strong> <em>вибачити</em> = verzeihen, <em>уникати</em> = vermeiden, <em>доводити</em> = beweisen, <em>присягатися</em> = schwören.</li>
 </ul>
 <h3>B2 verbs already in the master table: how they are used</h3>
 <p>gelingen, gelten, geschehen, genießen, gießen, schieben and verschwinden are in the master table above. Their forms are easy; their sentence patterns are where B2 mistakes happen.</p>
@@ -2555,7 +2549,7 @@ body { margin: 0; }
 <td>gelingen</td>
 <td>es gelingt + Dativ (+ zu-Inf.)</td>
 <td><em>Es ist mir gelungen, ihn zu überzeugen.</em> — I managed to convince him.</td>
-<td>Not <em>Ich bin gelungen</em>. Same shape as Ukrainian <em>мені вдалося</em>.</td>
+<td>Not <em>Ich bin gelungen</em>.</td>
 </tr>
 <tr>
 <td>gelten</td>
@@ -2978,9 +2972,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: where Präteritum and one-word Konjunktiv II forms belong</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/irregular-verbs.html">Irregular verbs quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="38a574efb4f1" href="../quizzes/irregular-verbs.html">Irregular verbs quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

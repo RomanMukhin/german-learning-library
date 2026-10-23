@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="0027239e8a1b">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "prefixes", "title": "Prefixes quiz", "level": "B1", "doc": {"title": "Prefixes and vowel changes", "url": "../docs/prefixes.html"}, "questions": [{"q": "Which sentence is correct?", "options": ["Der Zug ankommt um 8 Uhr.", "Der Zug kommt um 8 Uhr an.", "Der Zug an kommt um 8 Uhr.", "Der Zug kommt um 8 Uhr ankommen.", "Der Zug um 8 Uhr ankommt."], "answer": 1, "explain": "In a main clause the separable prefix jumps to the end: *Der Zug kommt um 8 Uhr an*."}, {"q": "Ich bin um sechs Uhr *___*.", "options": ["aufgestanden", "geaufstanden", "aufgesteht", "aufstanden", "aufgestehen"], "answer": 0, "explain": "Separable verbs put *-ge-* between prefix and stem: *aufgestanden*, angekommen, eingekauft."}, {"q": "…, weil ich um sechs Uhr *___*.", "options": ["stehe auf", "auf stehe", "aufstehe", "aufzustehen", "aufstehen"], "answer": 2, "explain": "In a subordinate clause the verb goes to the end and the prefix joins it again as one word: *weil ich aufstehe*."}, {"q": "Ich habe vergessen, dich *___*.", "options": ["zu anrufen", "anrufen zu", "zuanrufen", "anzurufen", "angezurufen"], "answer": 3, "explain": "With separable verbs *zu* goes between prefix and stem, all one word: *anzurufen*, aufzustehen. Inseparable verbs keep zu in front: zu verstehen."}, {"q": "Ich habe gestern meine Oma *___*.", "options": ["gebesucht", "begesucht", "besuchte", "gesucht", "besucht"], "answer": 4, "explain": "Inseparable prefixes (be-, ver-, er-, ent-, zer- …) take no ge-: *besucht*. *gesucht* is the participle of suchen (to look for)."}, {"q": "What does *das Unwetter* mean?", "options": ["severe storm, very bad weather", "no weather at all", "good weather", "weather forecast", "unusual but pleasant weather"], "answer": 0, "explain": "*un-* on nouns often means bad or negative: *das Unwetter* = very bad weather, like das Unglück (disaster) and der Unfall (accident)."}, {"q": "Wir haben uns im Wald *___* (got lost on foot).", "options": ["verfahren", "verlaufen", "vergangen", "verlassen", "verschlafen"], "answer": 1, "explain": "*ver-* can mean doing it wrong: *sich verlaufen* = get lost on foot, *sich verfahren* = get lost driving, verschlafen = oversleep."}, {"q": "Können Sie mir ein gutes Restaurant *___*?", "options": ["empfangen", "empfinden", "empfehlen", "entfehlen", "befehlen"], "answer": 2, "explain": "*empfehlen* = to recommend (emp- is ent- before f). *empfangen* = receive, welcome; *empfinden* = feel; *befehlen* = to order, command."}, {"q": "Which sentence is correct?", "options": ["Ich beantworte auf die Frage.", "Ich antworte die Frage.", "Ich beantworte der Frage.", "Ich beantworte die Frage.", "Ich antworte auf der Frage."], "answer": 3, "explain": "*be-* makes a verb take a direct Akkusativ object: *antworten auf* + Akk becomes *eine Frage beantworten*, with no preposition."}, {"q": "Die Tasse ist *___*.", "options": ["zerbrochen", "gezerbrochen", "zergebrochen", "zerbrecht", "zerbrach"], "answer": 0, "explain": "*zer-* = to pieces, and as an inseparable prefix it takes no ge-: *ist zerbrochen*."}, {"q": "Ich habe den Brief ins Deutsche *___*.", "options": ["übergesetzt", "geübersetzt", "übersetzt", "überzusetzt", "übersetzen"], "answer": 2, "explain": "*überSETzen* (stress on the verb) = to translate, inseparable, no ge-: *übersetzt*. *ÜBERsetzen* (übergesetzt) = to ferry across. Like Ukrainian перекласти."}, {"q": "Er hat das Schild mit dem Auto *___* (knocked it down).", "options": ["umfahren", "umgefahren", "geumfahren", "umfährt", "umgefährt"], "answer": 1, "explain": "*UMfahren* (stressed prefix) = knock down, separable: *umgefahren*. *umFAHren* = to drive around, bypass (hat umfahren)."}, {"q": "Der Lehrer hat die Frage *___* (repeated it).", "options": ["wiedergeholt", "gewiederholt", "wiedergeholen", "wiederzuholt", "wiederholt"], "answer": 4, "explain": "*wiederholen* (to repeat) is the only verb where wieder- is inseparable: *hat wiederholt*. *wiedergeholt* = fetched back."}, {"q": "What does *Ich bin durchgefallen* usually mean?", "options": ["I failed (the exam).", "I passed (the exam).", "I fell through the floor.", "I dropped out of school.", "I went straight through without stopping."], "answer": 0, "explain": "*durchfallen* = to fail an exam, a very common sentence. Its opposite: *Ich habe bestanden*."}, {"q": "*___* Arzt. (I'm becoming a doctor.)", "options": ["Ich bekomme", "Ich komme", "Ich bekam", "Ich werde", "Ich wurde"], "answer": 3, "explain": "False friend: *bekommen* = to get, receive, never to become. To become = *werden*: *Ich werde Arzt*."}, {"q": "I can imagine that. =", "options": ["Ich kann mich das vorstellen.", "Ich kann mir das vorgestellt.", "Ich kann mir das vorstellen.", "Ich kann mich vorstellen das.", "Ich kann das vorstellen mir."], "answer": 2, "explain": "*sich (Dat) etwas vorstellen* = to imagine: *Ich kann mir das vorstellen*. With Akk (*Ich stelle mich vor*) it means to introduce oneself."}, {"q": "Which noun comes from *schließen – schloss – geschlossen*?", "options": ["der Schlag", "der Schlüssel", "der Schluck", "die Schlange", "der Schlaf"], "answer": 1, "explain": "Ablaut: the vowels of the strong verb come back in its nouns: *der Schlüssel*, das Schloss, der Schluss. Schlag comes from schlagen, Schluck from schlucken."}, {"q": "Ich *___* das Buch auf den Tisch.", "options": ["liege", "liegt", "lag", "lagen", "lege"], "answer": 4, "explain": "*legen* = to put flat (action, Akk object); *liegen* = to lie (state). Like Ukrainian класти / лежати."}, {"q": "Make a noun from *warm*.", "options": ["die Warmheit", "die Warme", "die Wärmheit", "die Wärme", "die Wärmung"], "answer": 3, "explain": "Short adjective + umlaut + -e = feminine quality noun: warm → *die Wärme*, groß → die Größe, kalt → die Kälte."}, {"q": "Ich habe den Brief *___*. (= я написав листа)", "options": ["beschrieben", "unterschrieben", "verschrieben", "aufgeschrieben", "geschrieben"], "answer": 4, "explain": "German has no aspect: *schreiben* covers both писати and написати, and the Perfekt shows it is done: *geschrieben*. A prefix changes the meaning: unterschreiben = to sign."}, {"q": "Morgen ist Samstag, da kann ich endlich *___* (sleep in).", "options": ["einschlafen", "verschlafen", "ausschlafen", "aufschlafen", "abschlafen"], "answer": 2, "explain": "*ausschlafen* = to sleep in (aus- = to the end). einschlafen = fall asleep; verschlafen = oversleep (by mistake)."}, {"q": "Ich rufe bei ihm an, aber niemand *___*.", "options": ["nimmt zu", "nimmt ab", "nimmt weg", "nimmt auf", "nimmt mit"], "answer": 1, "explain": "*abnehmen* also means to answer the phone: *Niemand nimmt ab*. With weight it means to lose (Ich habe drei Kilo abgenommen)."}, {"q": "Kolumbus hat 1492 Amerika *___*.", "options": ["gedeckt", "bedeckt", "aufgedeckt", "entdeckt", "verdeckt"], "answer": 3, "explain": "*ent-* = removing, undoing: *entdecken* = to discover, literally to un-cover. Inseparable, so no ge-: *hat entdeckt*."}, {"q": "Wir haben in einem kleinen Hotel *___* (stayed overnight).", "options": ["übernachtet", "übergenachtet", "genachtet", "übernachten", "geübernachtet"], "answer": 0, "explain": "*übernachten* is always inseparable (stress on -nach-), so no ge-: *hat übernachtet*."}, {"q": "Ich bin in Köln *___* (changed trains).", "options": ["umstiegen", "geumstiegen", "umsteigt", "umgesteigt", "umgestiegen"], "answer": 4, "explain": "*umsteigen* exists only as a separable verb: -ge- goes between prefix and stem, *ist umgestiegen* (Ukrainian пересісти)."}, {"q": "Das kommt mir bekannt *___*. (That seems familiar.)", "options": ["an", "vor", "mit", "aus", "um"], "answer": 1, "explain": "*vorkommen* = to seem (also to happen): *Das kommt mir bekannt vor*. ankommen = arrive, auskommen = get by, umkommen = die in an accident."}, {"q": "Which verb means *to produce* (Die Firma … Autos …)?", "options": ["vorstellen", "feststellen", "einstellen", "herstellen", "abstellen"], "answer": 3, "explain": "*herstellen* = to produce: *Die Firma stellt Autos her* (der Hersteller = manufacturer). einstellen = hire or adjust; feststellen = find out; abstellen = put down, park."}, {"q": "Das geht dich nichts *___*! (None of your business!)", "options": ["an", "aus", "auf", "vor", "um"], "answer": 0, "explain": "*angehen* = to concern: *Das geht dich nichts an!* ausgehen = go out, aufgehen = rise (sun), vorgehen = be fast (clock)."}, {"q": "Er hat einfach *___* (hung up the phone).", "options": ["abgelegt", "eingelegt", "angelegt", "hingelegt", "aufgelegt"], "answer": 4, "explain": "*auflegen* = to hang up the phone: *Er hat einfach aufgelegt*. ablegen = take off (a coat), take (an exam); einlegen = insert; anlegen = invest, create."}, {"q": "The mother of your grandmother is …", "options": ["die Großgroßmutter", "die Vorgroßmutter", "die Urgroßmutter", "die Erzgroßmutter", "die Altgroßmutter"], "answer": 2, "explain": "*ur-* = one generation further: *die Urgroßmutter*, der Urenkel, like Ukrainian пра- (прабабуся)."}, {"q": "Which noun comes from *fliegen – flog – geflogen*?", "options": ["der Flug", "der Fluch", "die Flucht", "der Flur", "die Flasche"], "answer": 0, "explain": "Ablaut: the o/u vowel of the strong verb returns in its nouns: *der Flug*, das Flugzeug, der Flügel. die Flucht comes from fliehen, der Fluch from fluchen."}, {"q": "Ich will mein altes Auto *___* (sell it).", "options": ["kaufen", "verkaufen", "einkaufen", "abkaufen", "zerkaufen"], "answer": 1, "explain": "*ver-* here means giving away: *verkaufen* = to sell. A German prefix changes the meaning instead of the aspect: kaufen = buy, einkaufen = go shopping."}]}
+{"id": "prefixes", "title": "Prefixes quiz", "level": "B1", "doc": {"title": "Prefixes and vowel changes", "url": "../docs/prefixes.html"}, "questions": [{"q": "Which sentence is correct?", "options": ["Der Zug ankommt um 8 Uhr.", "Der Zug kommt um 8 Uhr an.", "Der Zug an kommt um 8 Uhr.", "Der Zug kommt um 8 Uhr ankommen.", "Der Zug um 8 Uhr ankommt."], "answer": 1, "explain": "In a main clause the separable prefix jumps to the end: *Der Zug kommt um 8 Uhr an*."}, {"q": "Ich bin um sechs Uhr *___*.", "options": ["aufgestanden", "geaufstanden", "aufgesteht", "aufstanden", "aufgestehen"], "answer": 0, "explain": "Separable verbs put *-ge-* between prefix and stem: *aufgestanden*, angekommen, eingekauft."}, {"q": "…, weil ich um sechs Uhr *___*.", "options": ["stehe auf", "auf stehe", "aufstehe", "aufzustehen", "aufstehen"], "answer": 2, "explain": "In a subordinate clause the verb goes to the end and the prefix joins it again as one word: *weil ich aufstehe*."}, {"q": "Ich habe vergessen, dich *___*.", "options": ["zu anrufen", "anrufen zu", "zuanrufen", "anzurufen", "angezurufen"], "answer": 3, "explain": "With separable verbs *zu* goes between prefix and stem, all one word: *anzurufen*, aufzustehen. Inseparable verbs keep zu in front: zu verstehen."}, {"q": "Ich habe gestern meine Oma *___*.", "options": ["gebesucht", "begesucht", "besuchte", "gesucht", "besucht"], "answer": 4, "explain": "Inseparable prefixes (be-, ver-, er-, ent-, zer- …) take no ge-: *besucht*. *gesucht* is the participle of suchen (to look for)."}, {"q": "What does *das Unwetter* mean?", "options": ["severe storm, very bad weather", "no weather at all", "good weather", "weather forecast", "unusual but pleasant weather"], "answer": 0, "explain": "*un-* on nouns often means bad or negative: *das Unwetter* = very bad weather, like das Unglück (disaster) and der Unfall (accident)."}, {"q": "Wir haben uns im Wald *___* (got lost on foot).", "options": ["verfahren", "verlaufen", "vergangen", "verlassen", "verschlafen"], "answer": 1, "explain": "*ver-* can mean doing it wrong: *sich verlaufen* = get lost on foot, *sich verfahren* = get lost driving, verschlafen = oversleep."}, {"q": "Können Sie mir ein gutes Restaurant *___*?", "options": ["empfangen", "empfinden", "empfehlen", "entfehlen", "befehlen"], "answer": 2, "explain": "*empfehlen* = to recommend (emp- is ent- before f). *empfangen* = receive, welcome; *empfinden* = feel; *befehlen* = to order, command."}, {"q": "Which sentence is correct?", "options": ["Ich beantworte auf die Frage.", "Ich antworte die Frage.", "Ich beantworte der Frage.", "Ich beantworte die Frage.", "Ich antworte auf der Frage."], "answer": 3, "explain": "*be-* makes a verb take a direct Akkusativ object: *antworten auf* + Akk becomes *eine Frage beantworten*, with no preposition."}, {"q": "Die Tasse ist *___*.", "options": ["zerbrochen", "gezerbrochen", "zergebrochen", "zerbrecht", "zerbrach"], "answer": 0, "explain": "*zer-* = to pieces, and as an inseparable prefix it takes no ge-: *ist zerbrochen*."}, {"q": "Ich habe den Brief ins Deutsche *___*.", "options": ["übergesetzt", "geübersetzt", "übersetzt", "überzusetzt", "übersetzen"], "answer": 2, "explain": "*überSETzen* (stress on the verb) = to translate, inseparable, no ge-: *übersetzt*. *ÜBERsetzen* (übergesetzt) = to ferry across."}, {"q": "Er hat das Schild mit dem Auto *___* (knocked it down).", "options": ["umfahren", "umgefahren", "geumfahren", "umfährt", "umgefährt"], "answer": 1, "explain": "*UMfahren* (stressed prefix) = knock down, separable: *umgefahren*. *umFAHren* = to drive around, bypass (hat umfahren)."}, {"q": "Der Lehrer hat die Frage *___* (repeated it).", "options": ["wiedergeholt", "gewiederholt", "wiedergeholen", "wiederzuholt", "wiederholt"], "answer": 4, "explain": "*wiederholen* (to repeat) is the only verb where wieder- is inseparable: *hat wiederholt*. *wiedergeholt* = fetched back."}, {"q": "What does *Ich bin durchgefallen* usually mean?", "options": ["I failed (the exam).", "I passed (the exam).", "I fell through the floor.", "I dropped out of school.", "I went straight through without stopping."], "answer": 0, "explain": "*durchfallen* = to fail an exam, a very common sentence. Its opposite: *Ich habe bestanden*."}, {"q": "*___* Arzt. (I'm becoming a doctor.)", "options": ["Ich bekomme", "Ich komme", "Ich bekam", "Ich werde", "Ich wurde"], "answer": 3, "explain": "False friend: *bekommen* = to get, receive, never to become. To become = *werden*: *Ich werde Arzt*."}, {"q": "I can imagine that. =", "options": ["Ich kann mich das vorstellen.", "Ich kann mir das vorgestellt.", "Ich kann mir das vorstellen.", "Ich kann mich vorstellen das.", "Ich kann das vorstellen mir."], "answer": 2, "explain": "*sich (Dat) etwas vorstellen* = to imagine: *Ich kann mir das vorstellen*. With Akk (*Ich stelle mich vor*) it means to introduce oneself."}, {"q": "Which noun comes from *schließen – schloss – geschlossen*?", "options": ["der Schlag", "der Schlüssel", "der Schluck", "die Schlange", "der Schlaf"], "answer": 1, "explain": "Ablaut: the vowels of the strong verb come back in its nouns: *der Schlüssel*, das Schloss, der Schluss. Schlag comes from schlagen, Schluck from schlucken."}, {"q": "Ich *___* das Buch auf den Tisch.", "options": ["liege", "liegt", "lag", "lagen", "lege"], "answer": 4, "explain": "*legen* = to put flat (action, Akk object); *liegen* = to lie (state)."}, {"q": "Make a noun from *warm*.", "options": ["die Warmheit", "die Warme", "die Wärmheit", "die Wärme", "die Wärmung"], "answer": 3, "explain": "Short adjective + umlaut + -e = feminine quality noun: warm → *die Wärme*, groß → die Größe, kalt → die Kälte."}, {"q": "Morgen ist Samstag, da kann ich endlich *___* (sleep in).", "options": ["einschlafen", "verschlafen", "ausschlafen", "aufschlafen", "abschlafen"], "answer": 2, "explain": "*ausschlafen* = to sleep in (aus- = to the end). einschlafen = fall asleep; verschlafen = oversleep (by mistake)."}, {"q": "Ich rufe bei ihm an, aber niemand *___*.", "options": ["nimmt zu", "nimmt ab", "nimmt weg", "nimmt auf", "nimmt mit"], "answer": 1, "explain": "*abnehmen* also means to answer the phone: *Niemand nimmt ab*. With weight it means to lose (Ich habe drei Kilo abgenommen)."}, {"q": "Kolumbus hat 1492 Amerika *___*.", "options": ["gedeckt", "bedeckt", "aufgedeckt", "entdeckt", "verdeckt"], "answer": 3, "explain": "*ent-* = removing, undoing: *entdecken* = to discover, literally to un-cover. Inseparable, so no ge-: *hat entdeckt*."}, {"q": "Wir haben in einem kleinen Hotel *___* (stayed overnight).", "options": ["übernachtet", "übergenachtet", "genachtet", "übernachten", "geübernachtet"], "answer": 0, "explain": "*übernachten* is always inseparable (stress on -nach-), so no ge-: *hat übernachtet*."}, {"q": "Ich bin in Köln *___* (changed trains).", "options": ["umstiegen", "geumstiegen", "umsteigt", "umgesteigt", "umgestiegen"], "answer": 4, "explain": "*umsteigen* exists only as a separable verb: -ge- goes between prefix and stem, *ist umgestiegen*."}, {"q": "Das kommt mir bekannt *___*. (That seems familiar.)", "options": ["an", "vor", "mit", "aus", "um"], "answer": 1, "explain": "*vorkommen* = to seem (also to happen): *Das kommt mir bekannt vor*. ankommen = arrive, auskommen = get by, umkommen = die in an accident."}, {"q": "Which verb means *to produce* (Die Firma … Autos …)?", "options": ["vorstellen", "feststellen", "einstellen", "herstellen", "abstellen"], "answer": 3, "explain": "*herstellen* = to produce: *Die Firma stellt Autos her* (der Hersteller = manufacturer). einstellen = hire or adjust; feststellen = find out; abstellen = put down, park."}, {"q": "Das geht dich nichts *___*! (None of your business!)", "options": ["an", "aus", "auf", "vor", "um"], "answer": 0, "explain": "*angehen* = to concern: *Das geht dich nichts an!* ausgehen = go out, aufgehen = rise (sun), vorgehen = be fast (clock)."}, {"q": "Er hat einfach *___* (hung up the phone).", "options": ["abgelegt", "eingelegt", "angelegt", "hingelegt", "aufgelegt"], "answer": 4, "explain": "*auflegen* = to hang up the phone: *Er hat einfach aufgelegt*. ablegen = take off (a coat), take (an exam); einlegen = insert; anlegen = invest, create."}, {"q": "The mother of your grandmother is …", "options": ["die Großgroßmutter", "die Vorgroßmutter", "die Urgroßmutter", "die Erzgroßmutter", "die Altgroßmutter"], "answer": 2, "explain": "*ur-* = one generation further: *die Urgroßmutter*, der Urenkel."}, {"q": "Which noun comes from *fliegen – flog – geflogen*?", "options": ["der Flug", "der Fluch", "die Flucht", "der Flur", "die Flasche"], "answer": 0, "explain": "Ablaut: the o/u vowel of the strong verb returns in its nouns: *der Flug*, das Flugzeug, der Flügel. die Flucht comes from fliehen, der Fluch from fluchen."}, {"q": "Ich will mein altes Auto *___* (sell it).", "options": ["kaufen", "verkaufen", "einkaufen", "abkaufen", "zerkaufen"], "answer": 1, "explain": "*ver-* here means giving away: *verkaufen* = to sell. A German prefix changes the meaning instead of the aspect: kaufen = buy, einkaufen = go shopping."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

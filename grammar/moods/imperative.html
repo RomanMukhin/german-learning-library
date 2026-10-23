@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="707095ae9a39">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Imperative</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="a8f4f1cc4fb5" class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Imperative</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>The imperative</h1><p class="sub">How to tell, ask and invite people to do things: du, ihr, Sie and wir forms, plus the little words that make an order sound friendly.</p></header>
@@ -243,7 +249,7 @@ body { margin: 0; }
 <li><em>Mach bitte das Fenster zu!</em> — <em>Please close the window!</em> (to a friend)</li>
 <li><em>Kommt rein, Kinder!</em> — <em>Come in, kids!</em></li>
 <li><em>Nehmen Sie Platz.</em> — <em>Take a seat.</em> (formal)</li>
-<li><em>Gehen wir!</em> — <em>Let's go!</em> — <em>Ходімо!</em></li>
+<li><em>Gehen wir!</em> — <em>Let's go!</em></li>
 <li><em>Ruf mich morgen an!</em> — <em>Call me tomorrow!</em> (the prefix goes to the end, as usual)</li>
 </ul>
 <h3>e → i verbs keep the vowel change</h3>
@@ -321,7 +327,6 @@ body { margin: 0; }
 </ul>
 <p>Note the spelling: <strong>seid</strong> (imperative and <em>ihr seid</em>) vs <strong>seit</strong> (since).</p>
 <aside class="callout hack"><p class="callout-title">The du-form shortcut</p><p>Say the du-form, chop off <em>du</em> and <em>-st</em>: <em>du liest</em> → <strong>Lies</strong>, <em>du gibst</em> → <strong>Gib</strong>, <em>du fährst</em> → <em>Fahr</em> (then remove the umlaut). If the result is hard to pronounce (<em>wart</em>, <em>red</em>), add <em>-e</em>: <strong>Warte, Rede</strong>.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian also has a separate imperative: <em>читай! / читайте! / читаймо!</em> German maps neatly: <strong>Lies!</strong> = <em>читай!</em>, <strong>Lest!</strong> or <strong>Lesen Sie!</strong> = <em>читайте!</em>, <strong>Lesen wir!</strong> = <em>читаймо!</em> The difference: German needs the pronoun <em>Sie</em> or <em>wir</em> after the verb, and German has no aspect, so <em>Lies!</em> covers both <em>читай</em> and <em>прочитай</em>.</p></aside>
 <h2>B1</h2>
 <h3>Softeners: mal, doch, bitte</h3>
 <p>A bare German imperative can sound sharp. Native speakers almost always add a particle:</p>
@@ -384,14 +389,14 @@ body { margin: 0; }
 <aside class="callout b2box"><p class="callout-title">Later: lassen and the &quot;Lass uns&quot; form</p><p>Instead of <em>Gehen wir!</em> people often say <strong>Lass uns gehen!</strong> (to one friend) or <strong>Lasst uns gehen!</strong> (to a group). It works just like English "let's" and is very common in speech.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a> for polite questions</li>
-<li><a href="../../grammar/moods/index.html">Moods overview</a></li>
+<li><a data-quiz="20b42c5f8e14" href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a> for polite questions</li>
+<li><a data-quiz="a8f4f1cc4fb5" href="../../grammar/moods/index.html">Moods overview</a></li>
 <li><a href="../../docs/particles-expressions.html">Particles and expressions</a></li>
 <li><a href="../../docs/irregular-verbs.html">Irregular verbs</a></li>
-<li><a href="../../everyday/formal-informal.html">Formal and informal</a></li>
+<li><a data-quiz="8629e05185d9" href="../../everyday/formal-informal.html">Formal and informal</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="konjunktiv-2.html">Konjunktiv II →</a></nav>
+<nav class="pager"><a data-quiz="20b42c5f8e14" class="btn" href="konjunktiv-2.html">Konjunktiv II →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -409,12 +414,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "*___* bitte das Fenster zu! (du, zumachen)", "options": ["Machst", "Mach", "Macht", "Machen", "Mächst"], "answer": 1, "explain": "The du imperative is the du-form minus *du* and *-st*: *du machst* → *Mach!* (A2)"}, {"q": "*___* mir bitte das Buch! (du, geben)", "options": ["Gebe", "Gibst", "Geb", "Gibt", "Gib"], "answer": 4, "explain": "*geben* changes e → i in the du-form (*du gibst*), and the imperative keeps it: *Gib!* (A2)"}, {"q": "*___* den Text laut! (du, lesen)", "options": ["Les", "Lese", "Lies", "Liest", "Lest"], "answer": 2, "explain": "*du liest* → drop *-st* → *Lies!* The e → ie change stays in the imperative (A2)"}, {"q": "*___* langsamer! (du, fahren)", "options": ["Fahr", "Fähr", "Fährst", "Fahrt", "Fähre"], "answer": 0, "explain": "The a → ä change of *du fährst* does NOT go into the imperative: *Fahr!* (A2)"}, {"q": "Kinder, *___* bitte leise! (sein)", "options": ["seit", "sind", "seien", "seid", "sei"], "answer": 3, "explain": "The ihr imperative of *sein* is *Seid!* Don't confuse it with *seit* (since) (A2)"}, {"q": "Herr Weber, *___* Sie bitte vorsichtig! (sein)", "options": ["sind", "seien", "seid", "sei", "sein"], "answer": 1, "explain": "The Sie imperative of *sein* is irregular: *Seien Sie...!* (A2)"}, {"q": "*___* Sie bitte Platz! (nehmen)", "options": ["Nimm", "Nehmt", "Nimmst", "Nehme", "Nehmen"], "answer": 4, "explain": "The Sie form is the infinitive form + *Sie*: *Nehmen Sie Platz!* The e → i change only affects the du form (B1)"}, {"q": "Peter, *___* ruhig! (sein)", "options": ["seid", "bist", "sei", "seien", "sein"], "answer": 2, "explain": "The du imperative of *sein* is *Sei!* (A2)"}, {"q": "*___* doch mal einen Moment! (du, warten)", "options": ["Warte", "Wartst", "Wartest", "Wartet", "Warten"], "answer": 0, "explain": "Stems ending in *-t* keep an *-e* so the word is pronounceable: *Warte!* (B1)"}, {"q": "Ihr habt Hunger? Dann *___* doch! (essen)", "options": ["isst", "iss", "essen", "esst", "esse"], "answer": 3, "explain": "The ihr imperative is the ihr-form without *ihr*: *ihr esst* → *Esst!* (A2)"}, {"q": "*___* mir bitte! Ich schaffe das nicht allein. (du, helfen)", "options": ["Helf", "Hilf", "Helfe", "Hilfst", "Hilft"], "answer": 1, "explain": "*du hilfst* → *Hilf!* e → i verbs keep the vowel change in the du imperative (B1)"}, {"q": "*___* wir! Der Zug fährt gleich. (gehen)", "options": ["Geht", "Geh", "Gehe", "Gingen", "Gehen"], "answer": 4, "explain": "The wir imperative (\"let's\") is the wir-form with the verb first: *Gehen wir!*, like Ukrainian *ходімо!* (B1)"}, {"q": "*___* deinen Schlüssel nicht! (du, vergessen)", "options": ["Vergess", "Vergesse", "Vergiss", "Vergisst", "Vergesst"], "answer": 2, "explain": "*du vergisst* → *Vergiss!* (B1)"}, {"q": "Ruf mich morgen *___*!", "options": ["an", "ab", "zu", "mit", "um"], "answer": 0, "explain": "Separable verbs split in the imperative too: *anrufen* → *Ruf ... an!* (A2)"}, {"q": "Which sounds friendliest to a friend? (come along)", "options": ["Mitkommen!", "Du kommst mit!", "Kommst mit!", "Komm doch mit!", "Komm du mit!"], "answer": 3, "explain": "*doch* turns an order into a friendly invitation: *Komm doch mit!* = \"Why don't you come along!\" (B1)"}, {"q": "Komm *___* her, ich zeig dir was! (casual \"just\")", "options": ["schon", "mal", "noch", "denn", "ja"], "answer": 1, "explain": "*mal* softens a request and makes it casual: *Komm mal her!* (B1)"}, {"q": "Most polite way to ask a stranger for help:", "options": ["Helfen Sie mir!", "Hilf mir bitte!", "Sie helfen mir.", "Helfen mir bitte!", "Könnten Sie mir bitte helfen?"], "answer": 4, "explain": "A Konjunktiv II question (*Könnten Sie...?*) sounds much softer than any imperative (B1)"}, {"q": "*___* Sie bitte das Formular aus! (ausfüllen)", "options": ["Füll", "Füllt", "Füllen", "Füllst", "Fülle"], "answer": 2, "explain": "Sie imperative = infinitive form + *Sie*, prefix at the end: *Füllen Sie ... aus!* (A2)"}, {"q": "*___* lauter, ich höre dich nicht! (du, sprechen)", "options": ["Sprich", "Sprech", "Spreche", "Sprichst", "Sprecht"], "answer": 0, "explain": "*du sprichst* → *Sprich!* (B1)"}, {"q": "Which sentence is correct?", "options": ["Nehm das!", "Nehme das!", "Nimmst das!", "Nimm das!", "Nimmt das!"], "answer": 3, "explain": "*nehmen* → *du nimmst* → *Nimm!* Learners often say *Nehm!*, but the vowel must change (B1)"}, {"q": "A sign in a train: Bitte nicht *___*.", "options": ["raucht", "rauchen", "rauch", "rauchst", "geraucht"], "answer": 1, "explain": "Signs and instructions often use the bare infinitive at the end: *Bitte nicht rauchen.* (B1)"}, {"q": "*___* gut, bis morgen! (du, schlafen)", "options": ["Schläf", "Schläfst", "Schlaft", "Schläfe", "Schlaf"], "answer": 4, "explain": "No umlaut in the imperative: *du schläfst* → *Schlaf!* (B1)"}, {"q": "*___* euch die Hände! (waschen, ihr)", "options": ["Wäscht", "Wasch", "Wascht", "Waschen", "Wäsche"], "answer": 2, "explain": "ihr-form without *ihr*: *ihr wascht* → *Wascht euch die Hände!* The reflexive pronoun stays (B1)"}, {"q": "Which is NOT a polite request?", "options": ["Geben Sie mir das!", "Würden Sie mir das geben?", "Könnten Sie mir das geben?", "Geben Sie mir das bitte.", "Wären Sie so nett, mir das zu geben?"], "answer": 0, "explain": "A bare Sie imperative without *bitte* sounds like a command; the others are softened with *bitte* or Konjunktiv II (B1)"}, {"q": "*___* Sie mich bitte morgen an! (anrufen)", "options": ["Ruf", "Ruft", "Rufe", "Rufen", "Rufst"], "answer": 3, "explain": "Sie imperative: *Rufen Sie mich an!* The prefix *an* goes to the end (A2)"}], "title": "The imperative quiz", "level": "A2–B1"}
+{"questions": [{"q": "*___* bitte das Fenster zu! (du, zumachen)", "options": ["Machst", "Mach", "Macht", "Machen", "Mächst"], "answer": 1, "explain": "The du imperative is the du-form minus *du* and *-st*: *du machst* → *Mach!* (A2)"}, {"q": "*___* mir bitte das Buch! (du, geben)", "options": ["Gebe", "Gibst", "Geb", "Gibt", "Gib"], "answer": 4, "explain": "*geben* changes e → i in the du-form (*du gibst*), and the imperative keeps it: *Gib!* (A2)"}, {"q": "*___* den Text laut! (du, lesen)", "options": ["Les", "Lese", "Lies", "Liest", "Lest"], "answer": 2, "explain": "*du liest* → drop *-st* → *Lies!* The e → ie change stays in the imperative (A2)"}, {"q": "*___* langsamer! (du, fahren)", "options": ["Fahr", "Fähr", "Fährst", "Fahrt", "Fähre"], "answer": 0, "explain": "The a → ä change of *du fährst* does NOT go into the imperative: *Fahr!* (A2)"}, {"q": "Kinder, *___* bitte leise! (sein)", "options": ["seit", "sind", "seien", "seid", "sei"], "answer": 3, "explain": "The ihr imperative of *sein* is *Seid!* Don't confuse it with *seit* (since) (A2)"}, {"q": "Herr Weber, *___* Sie bitte vorsichtig! (sein)", "options": ["sind", "seien", "seid", "sei", "sein"], "answer": 1, "explain": "The Sie imperative of *sein* is irregular: *Seien Sie...!* (A2)"}, {"q": "*___* Sie bitte Platz! (nehmen)", "options": ["Nimm", "Nehmt", "Nimmst", "Nehme", "Nehmen"], "answer": 4, "explain": "The Sie form is the infinitive form + *Sie*: *Nehmen Sie Platz!* The e → i change only affects the du form (B1)"}, {"q": "Peter, *___* ruhig! (sein)", "options": ["seid", "bist", "sei", "seien", "sein"], "answer": 2, "explain": "The du imperative of *sein* is *Sei!* (A2)"}, {"q": "*___* doch mal einen Moment! (du, warten)", "options": ["Warte", "Wartst", "Wartest", "Wartet", "Warten"], "answer": 0, "explain": "Stems ending in *-t* keep an *-e* so the word is pronounceable: *Warte!* (B1)"}, {"q": "Ihr habt Hunger? Dann *___* doch! (essen)", "options": ["isst", "iss", "essen", "esst", "esse"], "answer": 3, "explain": "The ihr imperative is the ihr-form without *ihr*: *ihr esst* → *Esst!* (A2)"}, {"q": "*___* mir bitte! Ich schaffe das nicht allein. (du, helfen)", "options": ["Helf", "Hilf", "Helfe", "Hilfst", "Hilft"], "answer": 1, "explain": "*du hilfst* → *Hilf!* e → i verbs keep the vowel change in the du imperative (B1)"}, {"q": "*___* wir! Der Zug fährt gleich. (gehen)", "options": ["Geht", "Geh", "Gehe", "Gingen", "Gehen"], "answer": 4, "explain": "The wir imperative (\"let's\") is the wir-form with the verb first: *Gehen wir!* (B1)"}, {"q": "*___* deinen Schlüssel nicht! (du, vergessen)", "options": ["Vergess", "Vergesse", "Vergiss", "Vergisst", "Vergesst"], "answer": 2, "explain": "*du vergisst* → *Vergiss!* (B1)"}, {"q": "Ruf mich morgen *___*!", "options": ["an", "ab", "zu", "mit", "um"], "answer": 0, "explain": "Separable verbs split in the imperative too: *anrufen* → *Ruf ... an!* (A2)"}, {"q": "Which sounds friendliest to a friend? (come along)", "options": ["Mitkommen!", "Du kommst mit!", "Kommst mit!", "Komm doch mit!", "Komm du mit!"], "answer": 3, "explain": "*doch* turns an order into a friendly invitation: *Komm doch mit!* = \"Why don't you come along!\" (B1)"}, {"q": "Komm *___* her, ich zeig dir was! (casual \"just\")", "options": ["schon", "mal", "noch", "denn", "ja"], "answer": 1, "explain": "*mal* softens a request and makes it casual: *Komm mal her!* (B1)"}, {"q": "Most polite way to ask a stranger for help:", "options": ["Helfen Sie mir!", "Hilf mir bitte!", "Sie helfen mir.", "Helfen mir bitte!", "Könnten Sie mir bitte helfen?"], "answer": 4, "explain": "A Konjunktiv II question (*Könnten Sie...?*) sounds much softer than any imperative (B1)"}, {"q": "*___* Sie bitte das Formular aus! (ausfüllen)", "options": ["Füll", "Füllt", "Füllen", "Füllst", "Fülle"], "answer": 2, "explain": "Sie imperative = infinitive form + *Sie*, prefix at the end: *Füllen Sie ... aus!* (A2)"}, {"q": "*___* lauter, ich höre dich nicht! (du, sprechen)", "options": ["Sprich", "Sprech", "Spreche", "Sprichst", "Sprecht"], "answer": 0, "explain": "*du sprichst* → *Sprich!* (B1)"}, {"q": "Which sentence is correct?", "options": ["Nehm das!", "Nehme das!", "Nimmst das!", "Nimm das!", "Nimmt das!"], "answer": 3, "explain": "*nehmen* → *du nimmst* → *Nimm!* Learners often say *Nehm!*, but the vowel must change (B1)"}, {"q": "A sign in a train: Bitte nicht *___*.", "options": ["raucht", "rauchen", "rauch", "rauchst", "geraucht"], "answer": 1, "explain": "Signs and instructions often use the bare infinitive at the end: *Bitte nicht rauchen.* (B1)"}, {"q": "*___* gut, bis morgen! (du, schlafen)", "options": ["Schläf", "Schläfst", "Schlaft", "Schläfe", "Schlaf"], "answer": 4, "explain": "No umlaut in the imperative: *du schläfst* → *Schlaf!* (B1)"}, {"q": "*___* euch die Hände! (waschen, ihr)", "options": ["Wäscht", "Wasch", "Wascht", "Waschen", "Wäsche"], "answer": 2, "explain": "ihr-form without *ihr*: *ihr wascht* → *Wascht euch die Hände!* The reflexive pronoun stays (B1)"}, {"q": "Which is NOT a polite request?", "options": ["Geben Sie mir das!", "Würden Sie mir das geben?", "Könnten Sie mir das geben?", "Geben Sie mir das bitte.", "Wären Sie so nett, mir das zu geben?"], "answer": 0, "explain": "A bare Sie imperative without *bitte* sounds like a command; the others are softened with *bitte* or Konjunktiv II (B1)"}, {"q": "*___* Sie mich bitte morgen an! (anrufen)", "options": ["Ruf", "Ruft", "Rufe", "Rufen", "Rufst"], "answer": 3, "explain": "Sie imperative: *Rufen Sie mich an!* The prefix *an* goes to the end (A2)"}], "title": "The imperative quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -426,18 +435,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -452,14 +475,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -471,7 +494,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -480,14 +503,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -495,23 +518,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

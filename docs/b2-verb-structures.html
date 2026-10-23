@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="21351bc0a30d">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -252,7 +258,7 @@ body { margin: 0; }
 <li>With an infinitive → double infinitive: <em>Ich <strong>habe</strong> das Auto <strong>reparieren lassen</strong>.</em> (not <em>gelassen</em>)</li>
 <li>Without an infinitive → normal Partizip II: <em>Ich <strong>habe</strong> die Tür offen <strong>gelassen</strong>.</em></li>
 </ul>
-<p><strong>Ukrainian comparison.</strong> Ukrainian often says <em>Я відремонтував машину</em> or <em>Я постригся</em> even when a mechanic or hairdresser did the work. German speakers hear <em>Ich habe das Auto repariert</em> as "I did it myself", so use <em>lassen</em>: <em>Ich habe das Auto reparieren lassen</em>, <em>Ich habe mir die Haare schneiden lassen</em>. The "let's" form <em>Lass uns …</em> = Ukrainian <em>Давай …</em>.</p>
+<p>German speakers hear <em>Ich habe das Auto repariert</em> as "I did it myself", so use <em>lassen</em>: <em>Ich habe das Auto reparieren lassen</em>, <em>Ich habe mir die Haare schneiden lassen</em>.</p>
 <h2>The double infinitive (Ersatzinfinitiv)</h2>
 <p>When a modal verb, <em>lassen</em>, or (optionally) <em>sehen/hören</em> has an infinitive with it, its Perfekt uses the infinitive instead of the Partizip II. Two infinitives stand side by side at the end, and the auxiliary is always <em>haben</em>.</p>
 <div class="table-wrap"><table>
@@ -311,7 +317,6 @@ body { margin: 0; }
 <th>Form</th>
 <th>Example</th>
 <th>How sure / whose claim</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
@@ -319,55 +324,46 @@ body { margin: 0; }
 <td>muss</td>
 <td>Er <strong>muss</strong> krank <strong>sein</strong>.</td>
 <td>almost certain</td>
-<td>мабуть, напевно</td>
 </tr>
 <tr>
 <td>dürfte</td>
 <td>Er <strong>dürfte</strong> schon zu Hause <strong>sein</strong>.</td>
 <td>probable</td>
-<td>ймовірно</td>
 </tr>
 <tr>
 <td>wird (+ wohl)</td>
 <td>Er <strong>wird</strong> wohl zu Hause <strong>sein</strong>.</td>
 <td>probable</td>
-<td>мабуть</td>
 </tr>
 <tr>
 <td>kann</td>
 <td>Das <strong>kann</strong> stimmen.</td>
 <td>possible</td>
-<td>може бути</td>
 </tr>
 <tr>
 <td>könnte</td>
 <td>Sie <strong>könnte</strong> recht <strong>haben</strong>.</td>
 <td>possible, less sure</td>
-<td>можливо</td>
 </tr>
 <tr>
 <td>mag</td>
 <td>Er <strong>mag</strong> 40 <strong>sein</strong>. / Das <strong>mag</strong> sein, aber …</td>
 <td>may well be (concession)</td>
-<td>може, й так</td>
 </tr>
 <tr>
 <td>kann nicht</td>
 <td>Das <strong>kann</strong> nicht <strong>sein</strong>.</td>
 <td>impossible</td>
-<td>не може бути</td>
 </tr>
 <tr>
 <td>soll</td>
 <td>Er <strong>soll</strong> sehr reich <strong>sein</strong>.</td>
 <td>others say so</td>
-<td>кажуть, що</td>
 </tr>
 <tr>
 <td>will</td>
 <td>Er <strong>will</strong> den Täter <strong>gesehen haben</strong>.</td>
 <td>he himself claims (doubtful)</td>
-<td>стверджує, що нібито</td>
 </tr>
 </tbody>
 </table></div>
@@ -444,7 +440,6 @@ body { margin: 0; }
 <li>The <em>bekommen</em>-passive works with verbs that have a dative person + an object: <em>schenken, schicken, geben, erklären, zeigen, empfehlen</em>. The dative person becomes the subject. Colloquial: <em>kriegen</em> (<em>Ich hab's geschenkt gekriegt</em>).</li>
 <li><em>sich lassen</em> and <em>-bar</em> mean "can"; <em>sein + zu</em> means "can" or "must" depending on context (see the next section).</li>
 </ul>
-<p>Ukrainian uses <em>-ний/-тий</em> participles, <em>-ся</em> verbs and <em>можна</em> + infinitive for the same job: <em>це можна вирішити</em> = das lässt sich lösen; <em>тут розмовляють українською</em> (no subject) = man spricht hier Ukrainisch.</p>
 <h2>haben + zu and sein + zu</h2>
 <p>Both replace a modal verb. <em>haben + zu</em> is active (the subject must do it); <em>sein + zu</em> is passive (something must or can be done).</p>
 <div class="table-wrap"><table>
@@ -500,7 +495,6 @@ body { margin: 0; }
 <li>Both are typical of rules, instructions and official texts; in conversation <em>muss</em> and <em>kann</em> are more common.</li>
 <li>The same idea before a noun becomes <em>zu</em> + Partizip I: <em>die zu bezahlende Rechnung</em> (the bill that must be paid).</li>
 </ul>
-<p><strong>Ukrainian comparison.</strong> <em>haben + zu</em> matches Ukrainian <em>мати</em> + infinitive almost exactly: <em>Я маю багато працювати</em> = Ich habe viel zu arbeiten; <em>Ви маєте виконувати інструкції</em> = Sie haben die Anweisungen zu befolgen.</p>
 <h2>Partizip I and II as adjectives and adverbs</h2>
 <p>Partizip I = infinitive + <em>-d</em> (schlafen → schlafen<strong>d</strong>): active, happening at the same time. Partizip II (gekocht, geschlossen) = passive or completed. Before a noun both take normal adjective endings; as adverbs they take none.</p>
 <div class="table-wrap"><table>
@@ -550,7 +544,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <p>Nouns from participles decline like adjectives: <em>der Angestellte</em>, but <em>ein Angestellt<strong>er</strong></em>, <em>mit dem Reisend<strong>en</strong></em>.</p>
-<p><strong>Ukrainian comparison.</strong> Partizip I as an adjective = <em>дієприкметник</em> (<em>спляча дитина</em>, though Ukrainian prefers <em>дитина, яка спить</em>); Partizip I as an adverb = <em>дієприслівник</em>: <em>Вона ввійшла, сміючись</em> = <em>Sie kam lachend herein</em>. German needs no comma and no reflexive here.</p>
+<p>German needs no comma and no reflexive here.</p>
 <h2>Case patterns: genitive verbs and reflexive dative</h2>
 <p><strong>Verbs with a genitive object</strong> are few and formal, but they appear in news, law and literature. Most have a modern alternative.</p>
 <div class="table-wrap"><table>
@@ -642,7 +636,6 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <p>Always dative (they always have an object): <em>sich etwas vorstellen</em> (Ich stelle <strong>mir</strong> das vor), <em>sich etwas merken</em>, <em>sich etwas leisten</em>, <em>sich etwas wünschen</em>, <em>sich etwas überlegen</em>, <em>sich etwas ansehen</em>, <em>sich Sorgen machen</em> (Ich mache <strong>mir</strong> Sorgen).</p>
-<p>Ukrainian says <em>Я мию руки</em> with no pronoun at all, so German <em>mir</em> is easy to forget: <em>Ich wasche <strong>mir</strong> die Hände</em>, not <em>Ich wasche meine Hände</em> (possible, but unusual).</p>
 <h2>Verbs + infinitive without zu</h2>
 <p>Besides the modal verbs, a small group takes a bare infinitive. Everything else needs <em>zu</em>.</p>
 <div class="table-wrap"><table>
@@ -692,7 +685,6 @@ body { margin: 0; }
 <li><em>brauchen</em> in the negative officially needs <em>zu</em> (<em>Du brauchst nicht zu kommen</em>); in speech <em>zu</em> is often dropped.</li>
 <li>Fixed meanings: <em>sitzen bleiben</em> (also: repeat a school year), <em>kennenlernen</em> (get to know, written as one word), <em>spazieren gehen</em>, <em>verloren gehen</em> (get lost).</li>
 </ul>
-<p>Compare English: <em>I see him come</em>, <em>Let me go</em> also use the bare infinitive, so this group is easy to remember; Ukrainian uses a clause instead (<em>бачу, як він іде</em>).</p>
 <h2>See also</h2>
 <ul>
 <li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: modal verbs, Perfekt and the <em>werden</em>-passive</li>
@@ -703,9 +695,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: extended participles and passive style in writing</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/b2-verb-structures.html">Verb structures quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="9dd8b44ceb1c" href="../quizzes/b2-verb-structures.html">Verb structures quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="e677a60f7406">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Konjunktiv I</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="a8f4f1cc4fb5" class="hide-sm" href="index.html">Moods</a><span class="sep">/</span><span class="cur">Konjunktiv I</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · B2+</span><h1>Konjunktiv I</h1><p class="sub">The reported-speech mood of newspapers and news broadcasts: recognise er sei, er habe, er komme, but you do not need to produce it yet.</p></header>
@@ -249,17 +255,29 @@ body { margin: 0; }
 <p><strong>In speech</strong> people simply say <em>Er hat gesagt, dass er keine Zeit hat</em> or <em>..., er hätte keine Zeit.</em> Both are fine.</p></aside>
 <aside class="callout hack"><p class="callout-title">Spot it by the missing -t</p><p><em>er sei, er habe, er komme</em>: if a third-person verb ends in <strong>-e</strong> instead of <strong>-t</strong>, and someone is being quoted, it is Konjunktiv I. Translate it as a normal "he says that ...".</p></aside>
 <aside class="callout fact"><p class="callout-title">Gott sei Dank</p><p>You already use Konjunktiv I without knowing it: <em>Gott sei Dank</em> literally means "thanks be to God". The same old wish-form survives in <em>Es lebe...!</em> and in recipes from older cookbooks: <em>Man nehme drei Eier</em> ("take three eggs").</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian has no special form</p><p>Ukrainian marks reported speech with words, not a verb form: <em>Він сказав, що нібито не знав.</em> The German Konjunktiv I does the job of <em>нібито / мовляв</em>: it signals "this is his claim".</p></aside>
 <h2>See also</h2>
 <ul>
 <li><a href="../../docs/b2-reported-speech.html">Reported speech (B2)</a></li>
-<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
-<li><a href="../../grammar/moods/index.html">Moods overview</a></li>
+<li><a data-quiz="20b42c5f8e14" href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
+<li><a data-quiz="a8f4f1cc4fb5" href="../../grammar/moods/index.html">Moods overview</a></li>
 <li><a href="../../docs/b2-formal-german.html">Formal German (B2)</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="konjunktiv-2.html">← Konjunktiv II</a></nav>
+<nav class="pager"><a data-quiz="20b42c5f8e14" class="btn" href="konjunktiv-2.html">← Konjunktiv II</a></nav>
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

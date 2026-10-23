@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="9d811ffb6cdd">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,12 +194,12 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Place and direction</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="ad4f1730c7d6" class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Place and direction</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Place and direction</h1><p class="sub">nach, zu or in for going somewhere; aus or von for coming from; bei for being there; am Meer, auf dem Markt, im Kino.</p></header>
 <article class="prose card">
-<p>"Going to" is one preposition in English and Ukrainian (<em>до</em>, <em>в</em>), but German has three: <em>nach</em>, <em>zu</em> and <em>in</em>. And each "going to" has a partner for "being there" and "coming from". This page gives you the system so you can say where you go, where you are and where you come from without guessing.</p>
+<p>"Going to" is one preposition in English, but German has three: <em>nach</em>, <em>zu</em> and <em>in</em>. And each "going to" has a partner for "being there" and "coming from". This page gives you the system so you can say where you go, where you are and where you come from without guessing.</p>
 <h2>A2 core</h2>
 <h3>The three-column system</h3>
 <div class="table-wrap"><table>
@@ -254,8 +260,8 @@ body { margin: 0; }
 <p>Examples:
 - <em>Morgen fahre ich <strong>nach</strong> Wien.</em> — <em>Tomorrow I'm going to Vienna.</em>
 - <em>Wir fliegen im Sommer <strong>in die</strong> Türkei.</em> — <em>We are flying to Turkey in summer.</em>
-- <em>Ich muss heute <strong>zum</strong> Arzt.</em> — <em>I have to go to the doctor today.</em> (<em>до лікаря</em>)
-- <em>Ich war gestern <strong>beim</strong> Arzt.</em> — <em>I was at the doctor's yesterday.</em> (<em>у лікаря</em>)
+- <em>Ich muss heute <strong>zum</strong> Arzt.</em> — <em>I have to go to the doctor today.</em>
+- <em>Ich war gestern <strong>beim</strong> Arzt.</em> — <em>I was at the doctor's yesterday.</em>
 - <em>Ich komme <strong>aus der</strong> Ukraine.</em> — <em>I'm from Ukraine.</em>
 - <em>Ich gehe jetzt <strong>nach Hause</strong>. Bist du heute Abend <strong>zu Hause</strong>?</em> — <em>I'm going home now. Are you at home tonight?</em></p>
 <aside class="callout hack"><p class="callout-title">The zu-bei-von triangle</p><p>For people and shops named after people, use <strong>zu → bei → von</strong>: <em>zum Bäcker, beim Bäcker, vom Bäcker</em>. All three take the dative, so the forms are always <em>zum, beim, vom</em> (masc./neut.) or <em>zur, bei der, von der</em> (fem.). If you are unsure whether to say <em>in</em> or <em>zu</em> for a place, <em>zu</em> is rarely wrong for "going to".</p></aside>
@@ -264,7 +270,6 @@ body { margin: 0; }
 <li><strong>bei</strong> = at someone's place / at a company: <em>Ich wohne <strong>bei</strong> meinen Eltern. Er arbeitet <strong>bei</strong> Siemens.</em></li>
 <li><strong>mit</strong> = together with / by means of: <em>Ich fahre <strong>mit</strong> meinen Eltern in den Urlaub. Ich fahre <strong>mit dem</strong> Bus.</em></li>
 </ul>
-<p>Ukrainian <em>у батьків</em> is <em>bei den Eltern</em>, <em>з батьками</em> is <em>mit den Eltern</em>.</p>
 <h3>aus vs von</h3>
 <ul>
 <li><strong>aus</strong> = out of something (origin, building, country): <em>aus Polen, aus dem Haus, aus dem Zug</em>.</li>
@@ -318,18 +323,17 @@ body { margin: 0; }
 <li><em>Ich komme ~~von~~ Deutschland</em> → <em><strong>aus</strong> Deutschland.</em> Origin is <em>aus</em>.</li>
 </ul></aside>
 <aside class="callout fact"><p class="callout-title">Why &quot;zu Hause&quot; has an extra -e</p><p><em>Hause</em> is an old dative form: in older German, many masculine and neuter nouns took <strong>-e</strong> in the dative (<em>dem Hause, dem Tage, dem Manne</em>). The ending has almost disappeared, but it survives in fixed phrases: <em>zu Hause, nach Hause, im Jahre 1990, zu Tode</em>. In Austria and Switzerland people even write it as one word: <em>zuhause</em>, which is also allowed in Germany today.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian <em>до</em> covers German <em>nach</em>, <em>zu</em> and <em>in</em>: <em>до Берліна</em> = <em>nach Berlin</em>, <em>до лікаря</em> = <em>zum Arzt</em>, <em>до кіно</em> = <em>ins Kino</em>. Ukrainian <em>у</em> + genitive for "at someone's" (<em>у бабусі</em>) is German <em>bei</em> (<em>bei der Oma</em>). And <em>з</em> + genitive (<em>з України</em>) is <em>aus</em> (<em>aus der Ukraine</em>).</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: gen, hin, her</p><p>In stylish or old-fashioned German you will meet <em>gen Süden</em> (towards the south), and the direction prefixes <em>hin-</em> (away from the speaker) and <em>her-</em> (towards the speaker): <em>Wo gehst du <strong>hin</strong>? Wo kommst du <strong>her</strong>?</em> These split <em>wohin</em> and <em>woher</em> into two parts.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/prepositions/two-way.html">Two-way prepositions</a></li>
-<li><a href="../../grammar/prepositions/time.html">Prepositions of time</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative case</a></li>
+<li><a data-quiz="77c5237e159c" href="../../grammar/prepositions/two-way.html">Two-way prepositions</a></li>
+<li><a data-quiz="63f1d4b289f5" href="../../grammar/prepositions/time.html">Prepositions of time</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative case</a></li>
 <li><a href="../../docs/prepositions.html">Prepositions reference</a></li>
 <li><a href="../../docs/gotchas.html">Gotchas</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="time.html">← Time</a></nav>
+<nav class="pager"><a data-quiz="63f1d4b289f5" class="btn" href="time.html">← Time</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -347,12 +351,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich fahre morgen *___* Berlin.", "options": ["zu", "zum", "nach", "bei", "an"], "answer": 2, "explain": "Cities and countries without an article take *nach* for direction (A2)."}, {"q": "Wir fliegen *___* Schweiz.", "options": ["in die", "nach", "nach der", "zu der", "in der"], "answer": 0, "explain": "*die Schweiz* has an article, so direction is *in* + accusative: *in die Schweiz* (A2)."}, {"q": "Ich muss heute *___* Arzt.", "options": ["nach", "beim", "zu", "zum", "im"], "answer": 3, "explain": "Going to a person or profession: *zu* + dative, *zu dem = zum Arzt*, Ukrainian *до лікаря* (A2)."}, {"q": "Ich war gestern *___* Arzt.", "options": ["zum", "beim", "bei", "nach", "am"], "answer": 1, "explain": "Being at a person's place or practice: *bei dem = beim Arzt*, Ukrainian *у лікаря* (A2)."}, {"q": "Ich komme *___* der Ukraine.", "options": ["von", "nach", "zu", "in", "aus"], "answer": 4, "explain": "Origin from a country or city: *aus*, Ukrainian *з України* (A2)."}, {"q": "Ich komme gerade *___* Arzt.", "options": ["aus dem", "vom", "beim", "zum", "nach dem"], "answer": 1, "explain": "Coming from a person: *von* + dative, *vom Arzt*. *aus* is for buildings and countries (B1)."}, {"q": "Ich gehe jetzt *___*.", "options": ["zu Hause", "nach dem Haus", "ins Hause", "nach Hause", "im Hause"], "answer": 3, "explain": "Going home is the fixed phrase *nach Hause* (direction) (A2)."}, {"q": "Am Wochenende bleibe ich *___*.", "options": ["zu Hause", "nach Hause", "in Hause", "bei Hause", "zum Haus"], "answer": 0, "explain": "Being at home (location) is *zu Hause*; *nach Hause* is only for going there (A2)."}, {"q": "Im Sommer fahren wir *___* Meer.", "options": ["am", "im", "an dem", "nach dem", "ans"], "answer": 4, "explain": "The sea is an *an* place (*am Meer*), and direction takes the accusative: *an das = ans Meer* (B1)."}, {"q": "Wir waren im Urlaub *___* Meer.", "options": ["ans", "an den", "am", "nach dem", "zum"], "answer": 2, "explain": "Location at the sea: *an* + dative, *am Meer* (A2)."}, {"q": "Ich kaufe Gemüse *___* Markt.", "options": ["an den", "in den", "auf dem", "zum", "auf den"], "answer": 2, "explain": "A market is an open surface, an *auf* place; buying there is location: *auf dem Markt* (B1)."}, {"q": "Wir gehen heute *___* Party.", "options": ["auf eine", "in eine", "zu eine", "an eine", "bei einer"], "answer": 0, "explain": "Events take *auf*: *auf eine Party* (direction, accusative). *zu* would need the dative *zu einer* (B1)."}, {"q": "Ich wohne noch *___* meinen Eltern.", "options": ["nach", "zu", "von", "bei", "an"], "answer": 3, "explain": "Living at someone's home: *bei*, Ukrainian *у батьків* (A2)."}, {"q": "Ich fahre *___* dem Bus zur Arbeit.", "options": ["bei", "mit", "von", "nach", "auf"], "answer": 1, "explain": "Means of transport: *mit* + dative, *mit dem Bus* (A2)."}, {"q": "Der Brief ist *___* meiner Oma.", "options": ["aus", "für", "mit", "nach", "von"], "answer": 4, "explain": "From a person: *von*. *aus* is for places of origin (B1)."}, {"q": "Er arbeitet *___* Siemens.", "options": ["in", "bei", "an", "zu", "von"], "answer": 1, "explain": "Working for a company: *bei* + company name (B1)."}, {"q": "Wir fahren im Juli *___* USA.", "options": ["nach", "nach den", "zu den", "in die", "in den"], "answer": 3, "explain": "*die USA* is plural with an article: direction *in die USA*; *in den USA* is location (B1)."}, {"q": "Ich gehe heute Abend *___* meiner Freundin.", "options": ["zu", "nach", "bei", "an", "in"], "answer": 0, "explain": "Going to a person: *zu* + dative (A2)."}, {"q": "Ich bin heute Abend *___* meiner Freundin.", "options": ["zu", "an", "von", "nach", "bei"], "answer": 4, "explain": "Being at a person's place: *bei* + dative (B1)."}, {"q": "Sie studiert *___* der Universität Wien.", "options": ["in", "bei", "an", "nach", "zu"], "answer": 2, "explain": "Studying at a university or school of higher education: *an der Uni* (B1)."}, {"q": "Wo ist Oma? – Sie ist *___* Garten.", "options": ["in den", "auf dem", "im", "ins", "in der"], "answer": 2, "explain": "The garden is an enclosed area and *wo?* asks for location: *im Garten* (B1)."}, {"q": "Wir fahren am Wochenende *___* Berge.", "options": ["in die", "nach den", "nach die", "zu den", "an die"], "answer": 0, "explain": "Mountains as a region: *in den Bergen* (wo) / *in die Berge* (wohin) (B1)."}, {"q": "Ich steige *___* dem Zug aus.", "options": ["von", "nach", "zu", "aus", "bei"], "answer": 3, "explain": "Getting out of a vehicle: *aus* + dative, matching the prefix of *aussteigen* (B1)."}], "title": "Place and direction quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich fahre morgen *___* Berlin.", "options": ["zu", "zum", "nach", "bei", "an"], "answer": 2, "explain": "Cities and countries without an article take *nach* for direction (A2)."}, {"q": "Wir fliegen *___* Schweiz.", "options": ["in die", "nach", "nach der", "zu der", "in der"], "answer": 0, "explain": "*die Schweiz* has an article, so direction is *in* + accusative: *in die Schweiz* (A2)."}, {"q": "Ich muss heute *___* Arzt.", "options": ["nach", "beim", "zu", "zum", "im"], "answer": 3, "explain": "Going to a person or profession: *zu* + dative, *zu dem = zum Arzt* (A2)."}, {"q": "Ich war gestern *___* Arzt.", "options": ["zum", "beim", "bei", "nach", "am"], "answer": 1, "explain": "Being at a person's place or practice: *bei dem = beim Arzt* (A2)."}, {"q": "Ich komme *___* der Ukraine.", "options": ["von", "nach", "zu", "in", "aus"], "answer": 4, "explain": "Origin from a country or city: *aus* (A2)."}, {"q": "Ich komme gerade *___* Arzt.", "options": ["aus dem", "vom", "beim", "zum", "nach dem"], "answer": 1, "explain": "Coming from a person: *von* + dative, *vom Arzt*. *aus* is for buildings and countries (B1)."}, {"q": "Ich gehe jetzt *___*.", "options": ["zu Hause", "nach dem Haus", "ins Hause", "nach Hause", "im Hause"], "answer": 3, "explain": "Going home is the fixed phrase *nach Hause* (direction) (A2)."}, {"q": "Am Wochenende bleibe ich *___*.", "options": ["zu Hause", "nach Hause", "in Hause", "bei Hause", "zum Haus"], "answer": 0, "explain": "Being at home (location) is *zu Hause*; *nach Hause* is only for going there (A2)."}, {"q": "Im Sommer fahren wir *___* Meer.", "options": ["am", "im", "an dem", "nach dem", "ans"], "answer": 4, "explain": "The sea is an *an* place (*am Meer*), and direction takes the accusative: *an das = ans Meer* (B1)."}, {"q": "Wir waren im Urlaub *___* Meer.", "options": ["ans", "an den", "am", "nach dem", "zum"], "answer": 2, "explain": "Location at the sea: *an* + dative, *am Meer* (A2)."}, {"q": "Ich kaufe Gemüse *___* Markt.", "options": ["an den", "in den", "auf dem", "zum", "auf den"], "answer": 2, "explain": "A market is an open surface, an *auf* place; buying there is location: *auf dem Markt* (B1)."}, {"q": "Wir gehen heute *___* Party.", "options": ["auf eine", "in eine", "zu eine", "an eine", "bei einer"], "answer": 0, "explain": "Events take *auf*: *auf eine Party* (direction, accusative). *zu* would need the dative *zu einer* (B1)."}, {"q": "Ich wohne noch *___* meinen Eltern.", "options": ["nach", "zu", "von", "bei", "an"], "answer": 3, "explain": "Living at someone's home: *bei* (A2)."}, {"q": "Ich fahre *___* dem Bus zur Arbeit.", "options": ["bei", "mit", "von", "nach", "auf"], "answer": 1, "explain": "Means of transport: *mit* + dative, *mit dem Bus* (A2)."}, {"q": "Der Brief ist *___* meiner Oma.", "options": ["aus", "für", "mit", "nach", "von"], "answer": 4, "explain": "From a person: *von*. *aus* is for places of origin (B1)."}, {"q": "Er arbeitet *___* Siemens.", "options": ["in", "bei", "an", "zu", "von"], "answer": 1, "explain": "Working for a company: *bei* + company name (B1)."}, {"q": "Wir fahren im Juli *___* USA.", "options": ["nach", "nach den", "zu den", "in die", "in den"], "answer": 3, "explain": "*die USA* is plural with an article: direction *in die USA*; *in den USA* is location (B1)."}, {"q": "Ich gehe heute Abend *___* meiner Freundin.", "options": ["zu", "nach", "bei", "an", "in"], "answer": 0, "explain": "Going to a person: *zu* + dative (A2)."}, {"q": "Ich bin heute Abend *___* meiner Freundin.", "options": ["zu", "an", "von", "nach", "bei"], "answer": 4, "explain": "Being at a person's place: *bei* + dative (B1)."}, {"q": "Sie studiert *___* der Universität Wien.", "options": ["in", "bei", "an", "nach", "zu"], "answer": 2, "explain": "Studying at a university or school of higher education: *an der Uni* (B1)."}, {"q": "Wo ist Oma? – Sie ist *___* Garten.", "options": ["in den", "auf dem", "im", "ins", "in der"], "answer": 2, "explain": "The garden is an enclosed area and *wo?* asks for location: *im Garten* (B1)."}, {"q": "Wir fahren am Wochenende *___* Berge.", "options": ["in die", "nach den", "nach die", "zu den", "an die"], "answer": 0, "explain": "Mountains as a region: *in den Bergen* (wo) / *in die Berge* (wohin) (B1)."}, {"q": "Ich steige *___* dem Zug aus.", "options": ["von", "nach", "zu", "aus", "bei"], "answer": 3, "explain": "Getting out of a vehicle: *aus* + dative, matching the prefix of *aussteigen* (B1)."}], "title": "Place and direction quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -364,18 +372,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -390,14 +412,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -409,7 +431,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -418,14 +440,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -433,23 +455,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

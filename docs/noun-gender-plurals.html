@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="d1fad6e0b8aa">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -868,17 +874,14 @@ body { margin: 0; }
 <ul>
 <li>Every noun in the Dativ plural adds -n if the plural does not already end in -n or -s: die Kinder → mit den Kindern; die Freunde → mit den Freunden; die Bücher → in den Büchern.</li>
 <li>Already -n or -s, nothing added: mit den Frauen, mit den Autos.</li>
-<li>Ukrainian comparison: like the instrumental -ами (з дітьми, з друзями), the case shows on the noun itself.</li>
 </ul>
 <h2>Plural-only and singular-only nouns</h2>
-<p>Some nouns exist only in the plural (die Leute, die Eltern) and take a plural verb; others are only singular (das Obst, die Polizei) and take a singular verb, even when the English or Ukrainian word is plural.</p>
 <h3>Only plural</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Ukrainian</th>
 <th>Note</th>
 </tr>
 </thead>
@@ -886,61 +889,51 @@ body { margin: 0; }
 <tr>
 <td>die Leute</td>
 <td>people</td>
-<td>люди</td>
 <td>Die Leute sind nett. (one person: ein Mensch, eine Person)</td>
 </tr>
 <tr>
 <td>die Eltern</td>
 <td>parents</td>
-<td>батьки</td>
 <td>one parent: ein Elternteil (der)</td>
 </tr>
 <tr>
 <td>die Geschwister</td>
 <td>siblings</td>
-<td>брати і сестри</td>
 <td>Hast du Geschwister?</td>
 </tr>
 <tr>
 <td>die Ferien</td>
 <td>holidays (school, uni)</td>
-<td>канікули</td>
 <td>in den Ferien</td>
 </tr>
 <tr>
 <td>die Kosten</td>
 <td>costs</td>
-<td>витрати</td>
 <td>Die Kosten sind hoch.</td>
 </tr>
 <tr>
 <td>die Möbel</td>
 <td>furniture</td>
-<td>меблі</td>
 <td>Die Möbel sind neu. One piece: ein Möbelstück</td>
 </tr>
 <tr>
 <td>die Lebensmittel</td>
 <td>groceries</td>
-<td>продукти</td>
 <td>(das Lebensmittel exists, but the plural is normal)</td>
 </tr>
 <tr>
 <td>die Jeans</td>
 <td>jeans</td>
-<td>джинси</td>
 <td>also singular: eine Jeans</td>
 </tr>
 <tr>
 <td>die Alpen, die USA</td>
 <td>the Alps, the USA</td>
-<td>Альпи, США</td>
 <td>names</td>
 </tr>
 <tr>
 <td>die Shorts, die Masern</td>
 <td>shorts, measles</td>
-<td>шорти, кір</td>
 <td></td>
 </tr>
 </tbody>
@@ -951,7 +944,6 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Ukrainian</th>
 <th>Note</th>
 </tr>
 </thead>
@@ -959,61 +951,51 @@ body { margin: 0; }
 <tr>
 <td>das Obst</td>
 <td>fruit</td>
-<td>фрукти</td>
 <td>Das Obst ist frisch. One piece: eine Frucht, ein Stück Obst</td>
 </tr>
 <tr>
 <td>das Gemüse</td>
 <td>vegetables</td>
-<td>овочі</td>
 <td>Gemüse ist gesund. Types: die Gemüsesorten</td>
 </tr>
 <tr>
 <td>die Polizei</td>
 <td>the police</td>
-<td>поліція</td>
 <td>Die Polizei kommt. (English: the police are coming)</td>
 </tr>
 <tr>
 <td>die Milch</td>
 <td>milk</td>
-<td>молоко</td>
 <td></td>
 </tr>
 <tr>
 <td>das Geld</td>
 <td>money</td>
-<td>гроші</td>
-<td>Das Geld ist weg. (plural in Ukrainian)</td>
+<td>Das Geld ist weg.</td>
 </tr>
 <tr>
 <td>das Wetter</td>
 <td>weather</td>
-<td>погода</td>
 <td></td>
 </tr>
 <tr>
 <td>der Zucker, das Mehl, der Reis</td>
 <td>sugar, flour, rice</td>
-<td>цукор, борошно, рис</td>
 <td>kinds: Zuckersorten, Reissorten</td>
 </tr>
 <tr>
 <td>das Gepäck</td>
 <td>luggage</td>
-<td>багаж</td>
 <td>one piece: ein Gepäckstück</td>
 </tr>
 <tr>
 <td>die Hilfe</td>
 <td>help</td>
-<td>допомога</td>
 <td></td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li>Trap: "die Möbel" and "die Kosten" are plural, while English furniture is singular; "das Geld" is singular, while Ukrainian гроші is plural.</li>
 <li>Trap: "die Information" is countable in German, unlike English information.</li>
 </ul>
 <h2>Adjectival nouns</h2>
@@ -1137,105 +1119,84 @@ body { margin: 0; }
 <li>Abstract neuter: das Gute, etwas Neues, nichts Besonderes, alles Gute (with etwas / nichts: capital and -es).</li>
 <li>Exception: der Beamte works the same way (ein Beamter), but the woman is die Beamtin (a normal noun).</li>
 </ul>
-<h2>Ukrainian comparison and how to learn nouns</h2>
-<p>Ukrainian also has three genders, but they match German only by chance, so never transfer the Ukrainian gender; learn article + noun + plural as one unit.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>German</th>
-<th>Ukrainian</th>
 <th>Match?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>die Sonne</td>
-<td>сонце (n)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>der Mond</td>
-<td>місяць (m)</td>
 <td>yes, by chance</td>
 </tr>
 <tr>
 <td>das Mädchen</td>
-<td>дівчина (f)</td>
 <td>no: grammar beats meaning (-chen)</td>
 </tr>
 <tr>
 <td>das Kind</td>
-<td>дитина (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>das Buch</td>
-<td>книга (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>das Wasser</td>
-<td>вода (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>die Milch</td>
-<td>молоко (n)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>das Messer</td>
-<td>ніж (m)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>der Löffel</td>
-<td>ложка (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>die Zeit</td>
-<td>час (m)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>die Stadt</td>
-<td>місто (n)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>das Land</td>
-<td>країна (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>der Kaffee</td>
-<td>кава (f)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>der Wein</td>
-<td>вино (n)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>die Tür</td>
-<td>двері (plural only)</td>
 <td>no</td>
 </tr>
 <tr>
 <td>das Fenster</td>
-<td>вікно (n)</td>
 <td>yes, by chance</td>
 </tr>
 <tr>
 <td>das Meer</td>
-<td>море (n)</td>
 <td>yes, by chance</td>
 </tr>
 <tr>
 <td>die Nacht</td>
-<td>ніч (f)</td>
 <td>yes, by chance</td>
 </tr>
 </tbody>
@@ -1340,10 +1301,9 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Dativ plural adds nothing to these: in den Museen, mit den Visa, auf den Konten.</li>
-<li>Ukrainian keeps none of this (музеї, теми, фірми), so the German forms must be learned one by one.</li>
 </ul>
 <h3>Plurals that change the meaning</h3>
-<p>A few nouns have two plurals, and each plural belongs to a different meaning. Ukrainian knows the idea: листи (letters) vs листя (leaves).</p>
+<p>A few nouns have two plurals, and each plural belongs to a different meaning.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1780,9 +1740,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv and nominal style in writing</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/noun-gender-plurals.html">Noun gender and plurals quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="7e3e298b9f8f" href="../quizzes/noun-gender-plurals.html">Noun gender and plurals quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

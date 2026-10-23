@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="cf35babf25e3">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Prepositions: in, an, auf, vor and the rest</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/prepositions/index.html">Prepositions</a>, <a href="../grammar/verbs/verbs-with-prepositions.html">Verbs with prepositions</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="ad4f1730c7d6" href="../grammar/prepositions/index.html">Prepositions</a>, <a data-quiz="1f9efa8beb88" href="../grammar/verbs/verbs-with-prepositions.html">Verbs with prepositions</a>.</p></aside>
 <p>Every German preposition fixes the case of the noun after it; the two-way ones switch between Akkusativ (movement, wohin?) and Dativ (location, wo?).</p>
 <h2>Fixed-case prepositions</h2>
 <p>These prepositions always take the same case, no matter whether there is movement or not. Learn them as lists; the classic mnemonics are below.</p>
@@ -264,7 +270,7 @@ body { margin: 0; }
 <tr>
 <td>Ich wohne <strong>bei meinen</strong> Eltern.</td>
 <td>I live with my parents.</td>
-<td>bei = at someone's place; укр. у батьків</td>
+<td></td>
 </tr>
 <tr>
 <td>Ich fahre <strong>mit dem</strong> Bus.</td>
@@ -413,7 +419,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p><strong>Ukrainian parallel.</strong> Ukrainian does the same thing: в місто (знахідний, where to) vs в місті (місцевий, where); на стіл vs на столі; під ліжко vs під ліжком. German Akkusativ = your знахідний, German Dativ here = your місцевий / орудний.</p>
 <h3>Verb pairs: put (Akk) vs be there (Dat)</h3>
 <p>The "put" verb is regular and takes Akk; the "be there" verb is irregular (strong) and takes Dat (see <a href="../docs/irregular-verbs.html">Irregular verbs</a>).</p>
 <div class="table-wrap"><table>
@@ -500,7 +505,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Movement inside a place is Dativ: Ich laufe <strong>im</strong> Park. (I run around in the park, I stay in it.) Ich laufe <strong>in den</strong> Park. (I run into the park.)</li>
-<li>German uses stehen/liegen where English and Ukrainian just say "is": Das Buch liegt auf dem Tisch. Книга лежить на столі works the same way, so trust your Ukrainian instinct here.</li>
 <li>ankommen is location: Ich komme <strong>in der</strong> Stadt an (Dat), even though you are moving.</li>
 </ul>
 <h2>Going places and being places</h2>
@@ -611,8 +615,7 @@ body { margin: 0; }
 </ul>
 <h3>Gotchas</h3>
 <ul>
-<li>bei never means movement: Ich gehe zu Anna (to Anna's), Ich bin bei Anna (at Anna's). Укр.: до Анни / у Анни.</li>
-<li>Ukrainian can say both в Київ and до Києва; German has only one option for cities: nach Berlin. Never "in Berlin fahren".</li>
+<li>Never "in Berlin fahren".</li>
 <li>Islands: <strong>auf</strong> Mallorca, <strong>nach</strong> Mallorca (no article). Mountains: <strong>in die</strong> Berge, <strong>in den</strong> Bergen.</li>
 <li>auf die Toilette gehen, auf der Toilette sein: toilet uses auf, a fixed idiom.</li>
 <li>Bank and Post: <strong>zur</strong> Bank / <strong>auf die</strong> Bank (both common), location <strong>bei der</strong> or <strong>auf der</strong> Bank.</li>
@@ -669,7 +672,7 @@ body { margin: 0; }
 <ul>
 <li>Could the object fall off if the surface were tilted? Horizontal surface: auf. Hanging on a wall or touching a side: an.</li>
 <li>Are you inside walls or borders? in.</li>
-<li>Languages always use auf: Wie sagt man das <strong>auf</strong> Deutsch? Ukrainian helps here: на українській = auf Ukrainisch (на = auf). English "in German" misleads.</li>
+<li>Languages always use auf: Wie sagt man das <strong>auf</strong> Deutsch? English "in German" misleads.</li>
 <li>an der Uni vs auf der Uni: both are heard; an der Uni (studieren) is standard.</li>
 <li>English "on the street" is usually <strong>auf der</strong> Straße; "I live on Main Street" is <strong>in der</strong> Hauptstraße.</li>
 </ul>
@@ -711,7 +714,7 @@ body { margin: 0; }
 <tr>
 <td>Ich habe Angst <strong>vor dem</strong> Hund.</td>
 <td>I am afraid of the dog.</td>
-<td>fixed, Dat; укр. боюся собаки</td>
+<td></td>
 </tr>
 <tr>
 <td>Er zittert <strong>vor</strong> Kälte.</td>
@@ -870,12 +873,12 @@ body { margin: 0; }
 <tr>
 <td>Ich lerne <strong>seit</strong> zwei Jahren Deutsch.</td>
 <td>I have been learning German for two years.</td>
-<td>still going: present tense; укр. вже два роки</td>
+<td></td>
 </tr>
 <tr>
 <td>Ich habe <strong>vor</strong> zwei Jahren angefangen.</td>
 <td>I started two years ago.</td>
-<td>point in the past; укр. два роки тому</td>
+<td></td>
 </tr>
 <tr>
 <td>Ich war <strong>zwei Wochen</strong> in Wien.</td>
@@ -1001,174 +1004,140 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Case / Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>warten auf</strong> den Bus</td>
 <td>wait for the bus</td>
-<td>Akk; чекати <strong>на</strong> автобус (same logic!)</td>
 </tr>
 <tr>
 <td><strong>denken an</strong> meine Mutter</td>
 <td>think of my mother</td>
-<td>Akk; думати про</td>
 </tr>
 <tr>
 <td>sich <strong>erinnern an</strong> den Urlaub</td>
 <td>remember the holiday</td>
-<td>Akk; згадувати про</td>
 </tr>
 <tr>
 <td>sich <strong>freuen auf</strong> das Wochenende</td>
 <td>look forward to the weekend</td>
-<td>Akk; something in the future</td>
 </tr>
 <tr>
 <td>sich <strong>freuen über</strong> das Geschenk</td>
 <td>be happy about the present</td>
-<td>Akk; something now or past</td>
 </tr>
 <tr>
 <td>sich <strong>interessieren für</strong> Musik</td>
 <td>be interested in music</td>
-<td>Akk; цікавитися (орудний)</td>
 </tr>
 <tr>
 <td><strong>Angst haben vor</strong> dem Hund</td>
 <td>be afraid of the dog</td>
-<td>Dat; боятися (родовий)</td>
 </tr>
 <tr>
 <td>sich <strong>fürchten vor</strong> der Prüfung</td>
 <td>be afraid of the exam</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>teilnehmen an</strong> dem Kurs (am Kurs)</td>
 <td>take part in the course</td>
-<td>Dat; брати участь <strong>у</strong></td>
 </tr>
 <tr>
 <td><strong>abhängen von</strong> dem Wetter (vom Wetter)</td>
 <td>depend on the weather</td>
-<td>Dat; залежати <strong>від</strong> (same!)</td>
 </tr>
 <tr>
 <td><strong>träumen von</strong> einem Haus</td>
 <td>dream of a house</td>
-<td>Dat; мріяти про</td>
 </tr>
 <tr>
 <td>sich <strong>kümmern um</strong> die Kinder</td>
 <td>look after the children</td>
-<td>Akk; дбати про</td>
 </tr>
 <tr>
 <td>sich <strong>bewerben um</strong> eine Stelle <strong>bei</strong> einer Firma</td>
 <td>apply for a job at a company</td>
-<td>um + Akk, bei + Dat</td>
 </tr>
 <tr>
 <td>sich <strong>ärgern über</strong> den Lärm</td>
 <td>be annoyed about the noise</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>sprechen über</strong> das Problem <strong>mit</strong> dem Chef</td>
 <td>talk about the problem with the boss</td>
-<td>über + Akk, mit + Dat</td>
 </tr>
 <tr>
 <td>sich <strong>unterhalten mit</strong> Freunden</td>
 <td>chat with friends</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>fragen nach</strong> dem Weg</td>
 <td>ask for directions</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>suchen nach</strong> einer Lösung</td>
 <td>look for a solution</td>
-<td>Dat; also plain suchen + Akk</td>
 </tr>
 <tr>
 <td>sich <strong>entschuldigen bei</strong> dir <strong>für</strong> den Fehler</td>
 <td>apologise to you for the mistake</td>
-<td>bei + Dat (person), für + Akk (reason)</td>
 </tr>
 <tr>
 <td>sich <strong>bedanken bei</strong> ihr <strong>für</strong> die Hilfe</td>
 <td>thank her for the help</td>
-<td>bei + Dat, für + Akk</td>
 </tr>
 <tr>
 <td><strong>helfen bei</strong> der Arbeit</td>
 <td>help with the work</td>
-<td>Dat; helfen + Dat person: Ich helfe dir bei der Arbeit.</td>
 </tr>
 <tr>
 <td>sich <strong>gewöhnen an</strong> das Wetter</td>
 <td>get used to the weather</td>
-<td>Akk; звикати до</td>
 </tr>
 <tr>
 <td><strong>glauben an</strong> Gott</td>
 <td>believe in God</td>
-<td>Akk; вірити <strong>в</strong></td>
 </tr>
 <tr>
 <td>sich <strong>verlieben in</strong> einen Mann</td>
 <td>fall in love with a man</td>
-<td>Akk; закохатися <strong>в</strong></td>
 </tr>
 <tr>
 <td>sich <strong>konzentrieren auf</strong> die Arbeit</td>
 <td>concentrate on work</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td>sich <strong>verlassen auf</strong> dich</td>
 <td>rely on you</td>
-<td>Akk; покладатися <strong>на</strong></td>
 </tr>
 <tr>
 <td>sich <strong>vorbereiten auf</strong> die Prüfung</td>
 <td>prepare for the exam</td>
-<td>Akk; готуватися <strong>до</strong></td>
 </tr>
 <tr>
 <td><strong>reagieren auf</strong> die Nachricht</td>
 <td>react to the news</td>
-<td>Akk; реагувати <strong>на</strong></td>
 </tr>
 <tr>
 <td><strong>bestehen aus</strong> drei Teilen</td>
 <td>consist of three parts</td>
-<td>Dat; складатися <strong>з</strong></td>
 </tr>
 <tr>
 <td><strong>anfangen mit</strong> / <strong>aufhören mit</strong> dem Rauchen</td>
 <td>start / stop smoking</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>gehören zu</strong> der Familie (zur Familie)</td>
 <td>be part of the family</td>
-<td>Dat; gehören + Dat alone = belong to: Das gehört mir.</td>
 </tr>
 <tr>
 <td><strong>einladen zu</strong> einer Party</td>
 <td>invite to a party</td>
-<td>Akk object + zu + Dat</td>
 </tr>
 <tr>
 <td>sich <strong>beschweren über</strong> das Essen <strong>bei</strong> dem Kellner</td>
 <td>complain about the food to the waiter</td>
-<td>über + Akk, bei + Dat</td>
 </tr>
 </tbody>
 </table></div>
@@ -1178,64 +1147,52 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Case / Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>stolz auf</strong> meinen Sohn</td>
 <td>proud of my son</td>
-<td>Akk; пишатися (орудний)</td>
 </tr>
 <tr>
 <td><strong>zufrieden mit</strong> dem Ergebnis</td>
 <td>satisfied with the result</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>verheiratet mit</strong> einer Ärztin</td>
 <td>married to a doctor</td>
-<td>Dat; not "zu"</td>
 </tr>
 <tr>
 <td><strong>interessiert an</strong> Politik</td>
 <td>interested in politics</td>
-<td>Dat (vs sich interessieren für + Akk)</td>
 </tr>
 <tr>
 <td><strong>abhängig von</strong> den Eltern</td>
 <td>dependent on the parents</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>bekannt für</strong> gutes Bier</td>
 <td>known for good beer</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>verantwortlich für</strong> das Projekt</td>
 <td>responsible for the project</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>gespannt auf</strong> das Ende</td>
 <td>eager to see the ending</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>froh über</strong> die Nachricht</td>
 <td>glad about the news</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>fertig mit</strong> der Arbeit</td>
 <td>finished with the work</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>neidisch auf</strong> meinen Bruder</td>
 <td>jealous of my brother</td>
-<td>Akk</td>
 </tr>
 </tbody>
 </table></div>
@@ -1293,7 +1250,6 @@ body { margin: 0; }
 </table></div>
 <ul>
 <li>Do not translate from English: "wait for" is not warten für; "married to" is not verheiratet zu; "interested in" is not interessiert in.</li>
-<li>Ukrainian often matches: чекати на = warten auf, залежати від = abhängen von, реагувати на = reagieren auf, вірити в = glauben an. Where Ukrainian uses a bare case (боятися собаки, пишатися сином), German needs a preposition.</li>
 <li>freuen auf (future) vs freuen über (present/past) is a classic exam point.</li>
 </ul>
 <h2>da- and wo-compounds</h2>
@@ -1455,19 +1411,17 @@ body { margin: 0; }
 <ul>
 <li>"Auf es" and "an das" are wrong for "on it / of it" with things: use darauf, daran.</li>
 <li>In speech, wo-questions often become "auf was?", "an was?", "über was?". Understand them, but write worauf, woran, worüber.</li>
-<li>Ukrainian has nothing like this: на це, про це, про що? are two words. Think of darauf as one word for на це.</li>
 </ul>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
 <p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
 <h3>Genitiv prepositions of written German</h3>
-<p>News, official letters and B2/C1 exams use a large set of Genitiv prepositions; the B1 ones (wegen, trotz, während, statt, innerhalb, außerhalb) are above. Most of them map onto Ukrainian prepositions with родовий, which makes the case easy to remember.</p>
+<p>News, official letters and B2/C1 exams use a large set of Genitiv prepositions; the B1 ones (wegen, trotz, während, statt, innerhalb, außerhalb) are above.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Preposition</th>
 <th>Meaning</th>
 <th>Example</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
@@ -1475,121 +1429,101 @@ body { margin: 0; }
 <td><strong>angesichts</strong></td>
 <td>in view of</td>
 <td>angesichts der hohen Preise</td>
-<td>з огляду на</td>
 </tr>
 <tr>
 <td><strong>aufgrund</strong> (auf Grund)</td>
 <td>due to</td>
 <td>aufgrund des Streiks</td>
-<td>через, у зв'язку з</td>
 </tr>
 <tr>
 <td><strong>infolge</strong></td>
 <td>as a result of</td>
 <td>infolge des Unfalls</td>
-<td>внаслідок + род.</td>
 </tr>
 <tr>
 <td><strong>bezüglich, hinsichtlich</strong></td>
 <td>regarding</td>
 <td>bezüglich Ihrer Anfrage, hinsichtlich der Kosten</td>
-<td>щодо + род.</td>
 </tr>
 <tr>
 <td><strong>mithilfe</strong> (mit Hilfe)</td>
 <td>with the help of</td>
 <td>mithilfe eines Wörterbuchs</td>
-<td>за допомогою + род.</td>
 </tr>
 <tr>
 <td><strong>anhand</strong></td>
 <td>on the basis of, using</td>
 <td>anhand eines Beispiels</td>
-<td>на основі</td>
 </tr>
 <tr>
 <td><strong>mittels</strong></td>
 <td>by means of</td>
 <td>mittels eines Schlüssels</td>
-<td>за допомогою</td>
 </tr>
 <tr>
 <td><strong>anstelle</strong> (an Stelle)</td>
 <td>instead of</td>
 <td>anstelle des Chefs</td>
-<td>замість + род.</td>
 </tr>
 <tr>
 <td><strong>anlässlich</strong></td>
 <td>on the occasion of</td>
 <td>anlässlich seines 60. Geburtstags</td>
-<td>з нагоди</td>
 </tr>
 <tr>
 <td><strong>seitens</strong></td>
 <td>on the part of</td>
 <td>seitens der Behörden</td>
-<td>з боку</td>
 </tr>
 <tr>
 <td><strong>zugunsten</strong></td>
 <td>in favour of</td>
 <td>zugunsten der Opfer</td>
-<td>на користь</td>
 </tr>
 <tr>
 <td><strong>ungeachtet</strong></td>
 <td>regardless of</td>
 <td>ungeachtet der Kritik</td>
-<td>незважаючи на</td>
 </tr>
 <tr>
 <td><strong>mangels</strong></td>
 <td>for lack of</td>
 <td>mangels Beweisen (plural, no article: Dativ)</td>
-<td>за браком</td>
 </tr>
 <tr>
 <td><strong>zwecks</strong></td>
 <td>for the purpose of</td>
 <td>zwecks Klärung (officialese, no article)</td>
-<td>з метою</td>
 </tr>
 <tr>
 <td><strong>oberhalb / unterhalb</strong></td>
 <td>above / below</td>
 <td>oberhalb des Dorfes, unterhalb der Brücke</td>
-<td>вище / нижче</td>
 </tr>
 <tr>
 <td><strong>diesseits / jenseits</strong></td>
 <td>on this side of / beyond</td>
 <td>jenseits der Grenze</td>
-<td>по той бік</td>
 </tr>
 <tr>
 <td><strong>inmitten</strong></td>
 <td>in the middle of</td>
 <td>inmitten der Altstadt</td>
-<td>посеред</td>
 </tr>
 <tr>
 <td><strong>unweit, abseits</strong></td>
 <td>not far from, away from</td>
 <td>unweit des Bahnhofs, abseits der Hauptstraße</td>
-<td>неподалік від</td>
 </tr>
 <tr>
 <td><strong>dank</strong></td>
 <td>thanks to</td>
 <td>dank deiner Hilfe; Gen or Dat</td>
-<td>завдяки + дав.</td>
 </tr>
 <tr>
 <td><strong>laut</strong></td>
 <td>according to</td>
 <td>laut Gesetz, laut dem Bericht / laut des Berichts</td>
-<td>згідно з</td>
 </tr>
 </tbody>
 </table></div>
@@ -1696,9 +1630,7 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>Ukrainian has a close parallel in задля миру (um des Friedens willen) and на мою думку (meiner Meinung nach), but the word order differs: German puts nach after the noun.</p>
 <h3>Look-alike pairs: bei vs mit, über vs von, aus vs vor, durch vs von</h3>
-<p>Each pair often comes out as the same English or Ukrainian word, but German splits the meaning.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1745,7 +1677,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>Ukrainian helps with aus/vor: зі страху covers both, so ask yourself whether the action was chosen (aus) or simply happened to you (vor).</p>
 <h3>One verb, several prepositions</h3>
 <p>At B2 the same verb returns with a different preposition and a different meaning. Learn these as sets.</p>
 <div class="table-wrap"><table>
@@ -1847,124 +1778,100 @@ body { margin: 0; }
 <tr>
 <th>German</th>
 <th>English</th>
-<th>Case / Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>sich <strong>beschäftigen mit</strong> dem Thema</td>
 <td>deal with, be busy with</td>
-<td>Dat; займатися (орудн.)</td>
 </tr>
 <tr>
 <td>sich <strong>auseinandersetzen mit</strong> der Kritik</td>
 <td>engage with, tackle</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>beziehen auf</strong> den Vertrag</td>
 <td>refer to</td>
-<td>Akk; посилатися <strong>на</strong></td>
 </tr>
 <tr>
 <td><strong>verzichten auf</strong> Zucker</td>
 <td>do without, give up</td>
-<td>Akk; відмовлятися <strong>від</strong></td>
 </tr>
 <tr>
 <td><strong>achten auf</strong> die Details</td>
 <td>pay attention to</td>
-<td>Akk; звертати увагу <strong>на</strong></td>
 </tr>
 <tr>
 <td><strong>hinweisen auf</strong> einen Fehler</td>
 <td>point out</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td>sich <strong>beschränken auf</strong> das Wichtigste</td>
 <td>limit oneself to</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>verfügen über</strong> viel Erfahrung</td>
 <td>have at one's disposal</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td>sich <strong>wenden an</strong> den Kundenservice</td>
 <td>contact, turn to</td>
-<td>Akk; звертатися <strong>до</strong></td>
 </tr>
 <tr>
 <td><strong>zweifeln an</strong> der Aussage</td>
 <td>doubt</td>
-<td>Dat; сумніватися <strong>в</strong></td>
 </tr>
 <tr>
 <td>sich <strong>beteiligen an</strong> dem Projekt</td>
 <td>take part in</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>einsetzen für</strong> die Umwelt</td>
 <td>stand up for, campaign for</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td>sich <strong>entscheiden für / gegen</strong> den Plan</td>
 <td>decide for / against</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td>sich <strong>bemühen um</strong> eine Lösung</td>
 <td>try hard to get</td>
-<td>Akk</td>
 </tr>
 <tr>
 <td><strong>es handelt sich um</strong> ein Missverständnis</td>
 <td>it is (a matter of)</td>
-<td>Akk; fixed, no other subject</td>
 </tr>
 <tr>
 <td>sich <strong>sehnen nach</strong> der Heimat</td>
 <td>long for</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>erkundigen nach</strong> dem Preis</td>
 <td>enquire about</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>warnen vor</strong> / <strong>schützen vor</strong> der Gefahr</td>
 <td>warn / protect against</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>beitragen zu</strong> / <strong>führen zu</strong> einem Erfolg</td>
 <td>contribute to / lead to</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td><strong>neigen zu</strong> Übertreibungen</td>
 <td>tend to</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>abfinden mit</strong> der Situation</td>
 <td>come to terms with</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>verabschieden von</strong> den Gästen</td>
 <td>say goodbye to</td>
-<td>Dat</td>
 </tr>
 <tr>
 <td>sich <strong>wundern über</strong> die Antwort</td>
 <td>be surprised at</td>
-<td>Akk</td>
 </tr>
 </tbody>
 </table></div>
@@ -2150,7 +2057,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <h3>da-compounds before dass, ob and zu-clauses</h3>
-<p>The da-compound is a placeholder: it carries the preposition and announces the clause that follows. Ukrainian does exactly the same with той + що: Я радію <strong>тому, що</strong> …, Все залежить <strong>від того, чи</strong> … The question at B2 is when the placeholder is required.</p>
+<p>The da-compound is a placeholder: it carries the preposition and announces the clause that follows.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -2234,9 +2141,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv prepositions and noun-verb phrases in formal style</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/prepositions.html">Prepositions quiz</a> has 40 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="c71053de0a15" href="../quizzes/prepositions.html">Prepositions quiz</a> has 40 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

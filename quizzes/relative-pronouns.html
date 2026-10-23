@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="6f48da687e78">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "relative-pronouns", "title": "Relative pronouns quiz", "level": "B1", "doc": {"title": "Relative and demonstrative pronouns: der, denen, dessen", "url": "../docs/relative-pronouns.html"}, "questions": [{"q": "Der Mann, *___* dort steht, ist mein Chef.", "options": ["den", "dem", "dessen", "der", "die"], "answer": 3, "explain": "In the clause he is the subject (*Der Mann steht dort*), so masculine Nominativ: *der*."}, {"q": "Der Film, *___* ich gestern gesehen habe, war gut.", "options": ["den", "der", "dem", "das", "dessen"], "answer": 0, "explain": "Inside the clause the film is the object (*Ich habe den Film gesehen*), so masculine Akk: *den* (якого я бачив)."}, {"q": "Die Frau, *___* ich helfe, ist meine Nachbarin.", "options": ["die", "der", "den", "dem", "deren"], "answer": 1, "explain": "*helfen* takes the Dativ, and feminine Dativ is *der* (жінка, якій я допомагаю)."}, {"q": "Die Kollegen, *___* ich vertraue, sind sehr nett.", "options": ["den", "denen", "die", "deren", "dem"], "answer": 1, "explain": "*vertrauen* takes Dativ; the Dativ plural relative pronoun is *denen*, not *den* like the article."}, {"q": "Das Buch, *___* ich gerade lese, ist spannend. (standard written German)", "options": ["dass", "was", "dem", "das", "der"], "answer": 3, "explain": "After a real neuter noun the relative pronoun is *das* with one s. *dass* is the conjunction; *was* after a noun is colloquial and marked wrong."}, {"q": "Das ist der Freund, *___* ich nach Wien fahre.", "options": ["mit den", "mit der", "dem mit", "den", "mit dem"], "answer": 4, "explain": "The preposition goes first, and it sets the case: *mit* + Dativ, masculine = *mit dem* (друг, з яким)."}, {"q": "Die Stadt, *___* ich wohne, ist klein.", "options": ["in die", "in den", "der", "in denen", "in der"], "answer": 4, "explain": "Living somewhere is location (wo?), so *in* + Dativ; Stadt is feminine: *in der* (місто, в якому)."}, {"q": "Das sind die Leute, *___* ich dir erzählt habe.", "options": ["von den", "von die", "von denen", "von deren", "über denen"], "answer": 2, "explain": "*erzählen von* + Dativ, plural: *von denen*. *über* would need Akk (*über die*)."}, {"q": "Der Mann, *___* Auto vor der Tür steht, ist mein Nachbar.", "options": ["deren", "dessen", "der", "dem", "den"], "answer": 1, "explain": "\"Whose\" for a masculine or neuter owner is *dessen*: *Der Mann ... sein Auto* → *dessen Auto*."}, {"q": "Die Frau, *___* Sohn in Kyjiw studiert, ist Lehrerin.", "options": ["dessen", "die", "der", "ihr", "deren"], "answer": 4, "explain": "The owner (die Frau) is feminine, so *deren*, even though Sohn is masculine. Think *ihr Sohn* → *deren Sohn* (син якої)."}, {"q": "Der Autor, *___* Bücher ich liebe, kommt nach Berlin.", "options": ["deren", "die", "dessen", "den", "denen"], "answer": 2, "explain": "dessen/deren agree with the owner (der Autor), not with *Bücher*. Ukrainian *чиї* agrees with the books; translate through *якого* instead."}, {"q": "Which sentence is correct?", "options": ["Das ist die Firma, deren der Chef ich kenne.", "Das ist die Firma, dessen Chef ich kenne.", "Das ist die Firma, deren Chef ich kenne.", "Das ist die Firma, die Chef ich kenne.", "Das ist die Firma, deren Chef kenne ich."], "answer": 2, "explain": "Owner *die Firma* is feminine, so *deren*; no article follows *deren*, and the verb goes to the end of the clause."}, {"q": "Das ist alles, *___* ich darüber weiß.", "options": ["was", "das", "der", "wo", "dass"], "answer": 0, "explain": "After *alles, nichts, etwas* there is no real noun, so the relative pronoun is *was* (все, що я знаю)."}, {"q": "Er kommt heute nicht, *___* mich ärgert.", "options": ["was", "das", "der", "dass", "wo"], "answer": 0, "explain": "When the relative clause refers to the whole previous clause, not to a noun, use *was*."}, {"q": "*___* mir hilft, dem helfe ich auch.", "options": ["Der", "Wer", "Wen", "Wem", "Was"], "answer": 1, "explain": "With no noun before it, *wer* means \"whoever\"; here it is the subject, so Nominativ *wer* (хто допомагає мені, тому...)."}, {"q": "Kennst du Tom? – Ja, *___* kenne ich gut.", "options": ["der", "dem", "dessen", "den", "denen"], "answer": 3, "explain": "Demonstrative *der* replaces *er* in speech with the same forms as the relative pronoun; as the object of *kennen* it is Akk: *den* (= ihn)."}, {"q": "Wir wohnen seit Jahren in *___* Haus wie deine Eltern. (the very same building)", "options": ["derselben", "denselben", "demselben", "dasselbe", "desselben"], "answer": 2, "explain": "Both parts of *derselbe* decline; *in* + Dativ (location), neuter: *demselben* (= im selben Haus)."}, {"q": "Which sentence is correct?", "options": ["Das ist der Film, den ich gestern gesehen habe.", "Das ist der Film, den ich habe gestern gesehen.", "Das ist der Film, ich gestern gesehen habe.", "Das ist der Film den ich gestern gesehen habe.", "Das ist der Film, was ich gestern gesehen habe."], "answer": 0, "explain": "A relative clause needs its pronoun (*den*), a comma before it, and the conjugated verb at the end."}, {"q": "Die Frau, *___* ich gerade anrufe, ist Ärztin.", "options": ["die", "der", "den", "deren", "das"], "answer": 0, "explain": "*anrufen* takes Akk (*Ich rufe die Frau an*), and feminine Akk is *die*."}, {"q": "Die Kinder, *___* im Garten spielen, sind laut.", "options": ["denen", "die", "deren", "der", "den"], "answer": 1, "explain": "The children are the subject inside the clause (*Die Kinder spielen*), so plural Nominativ: *die*."}, {"q": "Das ist das Thema, *___* wir gestern gesprochen haben.", "options": ["über dem", "über den", "über das", "von das", "über die"], "answer": 2, "explain": "*sprechen über* + Akk, and Thema is neuter: *über das* (informal: *worüber*)."}, {"q": "Das ist der Bus, *___* ich jeden Morgen warte.", "options": ["auf dem", "für den", "auf der", "auf den", "den"], "answer": 3, "explain": "*warten auf* + Akk carries into the clause, preposition first: masculine *auf den* (автобус, на який я чекаю)."}, {"q": "Die Nachbarn, *___* Hund immer bellt, sind eigentlich nett.", "options": ["dessen", "denen", "die", "ihren", "deren"], "answer": 4, "explain": "\"Whose\" agrees with the owner; *die Nachbarn* are plural, so *deren* (собака яких)."}, {"q": "Das ist das Beste, *___* ich je gegessen habe.", "options": ["was", "das", "dass", "der", "wo"], "answer": 0, "explain": "After a superlative used as a neuter noun (*das Beste*) the relative pronoun is *was*."}, {"q": "Kyjiw, *___* ich komme, ist eine schöne Stadt.", "options": ["wo", "woher", "wohin", "was", "wer"], "answer": 1, "explain": "After a city name, *wo / woher / wohin* is standard; coming from a place is *woher* (звідки)."}, {"q": "*___* ich einlade, den kennst du nicht.", "options": ["Wer", "Wem", "Wen", "Den", "Was"], "answer": 2, "explain": "With no noun before it, *wer* means whoever; *einladen* takes Akk, so *wen* (кого я запрошую)."}, {"q": "Der Vertrag, *___* gestern unterschrieben wurde, ist gültig. (formal written style)", "options": ["welchen", "welches", "welchem", "welcher", "was"], "answer": 3, "explain": "*welcher* is the formal variant of *der* and declines like *dieser*; the contract is the subject, masculine Nom: *welcher*."}, {"q": "Deine Nachbarn? *___* glaube ich kein Wort.", "options": ["Den", "Die", "Deren", "Denen", "Dem"], "answer": 3, "explain": "Demonstrative *der* has the relative forms; *glauben* + Dativ, plural: *denen* (= ihnen), with the verb second."}, {"q": "Ich helfe gern *___*, die Hilfe brauchen.", "options": ["diejenigen", "derjenigen", "demjenigen", "denjenige", "denjenigen"], "answer": 4, "explain": "Both parts of *derjenige* decline; *helfen* + Dativ plural gives *den* + *-jenigen*: *denjenigen*."}, {"q": "Das ist die Frau, mit *___* Sohn mein Kind spielt.", "options": ["dessen", "derer", "der", "dem", "deren"], "answer": 4, "explain": "The preposition goes first, then *deren* for a feminine owner; *deren* does not change for *mit* (з сином якої)."}]}
+{"id": "relative-pronouns", "title": "Relative pronouns quiz", "level": "B1", "doc": {"title": "Relative and demonstrative pronouns: der, denen, dessen", "url": "../docs/relative-pronouns.html"}, "questions": [{"q": "Der Mann, *___* dort steht, ist mein Chef.", "options": ["den", "dem", "dessen", "der", "die"], "answer": 3, "explain": "In the clause he is the subject (*Der Mann steht dort*), so masculine Nominativ: *der*."}, {"q": "Der Film, *___* ich gestern gesehen habe, war gut.", "options": ["den", "der", "dem", "das", "dessen"], "answer": 0, "explain": "Inside the clause the film is the object (*Ich habe den Film gesehen*), so masculine Akk: *den*."}, {"q": "Die Frau, *___* ich helfe, ist meine Nachbarin.", "options": ["die", "der", "den", "dem", "deren"], "answer": 1, "explain": "*helfen* takes the Dativ, and feminine Dativ is *der*."}, {"q": "Die Kollegen, *___* ich vertraue, sind sehr nett.", "options": ["den", "denen", "die", "deren", "dem"], "answer": 1, "explain": "*vertrauen* takes Dativ; the Dativ plural relative pronoun is *denen*, not *den* like the article."}, {"q": "Das Buch, *___* ich gerade lese, ist spannend. (standard written German)", "options": ["dass", "was", "dem", "das", "der"], "answer": 3, "explain": "After a real neuter noun the relative pronoun is *das* with one s. *dass* is the conjunction; *was* after a noun is colloquial and marked wrong."}, {"q": "Das ist der Freund, *___* ich nach Wien fahre.", "options": ["mit den", "mit der", "dem mit", "den", "mit dem"], "answer": 4, "explain": "The preposition goes first, and it sets the case: *mit* + Dativ, masculine = *mit dem*."}, {"q": "Die Stadt, *___* ich wohne, ist klein.", "options": ["in die", "in den", "der", "in denen", "in der"], "answer": 4, "explain": "Living somewhere is location (wo?), so *in* + Dativ; Stadt is feminine: *in der*."}, {"q": "Das sind die Leute, *___* ich dir erzählt habe.", "options": ["von den", "von die", "von denen", "von deren", "über denen"], "answer": 2, "explain": "*erzählen von* + Dativ, plural: *von denen*. *über* would need Akk (*über die*)."}, {"q": "Der Mann, *___* Auto vor der Tür steht, ist mein Nachbar.", "options": ["deren", "dessen", "der", "dem", "den"], "answer": 1, "explain": "\"Whose\" for a masculine or neuter owner is *dessen*: *Der Mann ... sein Auto* → *dessen Auto*."}, {"q": "Die Frau, *___* Sohn in Kyjiw studiert, ist Lehrerin.", "options": ["dessen", "die", "der", "ihr", "deren"], "answer": 4, "explain": "The owner (die Frau) is feminine, so *deren*, even though Sohn is masculine. Think *ihr Sohn* → *deren Sohn*."}, {"q": "Der Autor, *___* Bücher ich liebe, kommt nach Berlin.", "options": ["deren", "die", "dessen", "den", "denen"], "answer": 2, "explain": "dessen/deren agree with the owner (der Autor), not with *Bücher*."}, {"q": "Which sentence is correct?", "options": ["Das ist die Firma, deren der Chef ich kenne.", "Das ist die Firma, dessen Chef ich kenne.", "Das ist die Firma, deren Chef ich kenne.", "Das ist die Firma, die Chef ich kenne.", "Das ist die Firma, deren Chef kenne ich."], "answer": 2, "explain": "Owner *die Firma* is feminine, so *deren*; no article follows *deren*, and the verb goes to the end of the clause."}, {"q": "Das ist alles, *___* ich darüber weiß.", "options": ["was", "das", "der", "wo", "dass"], "answer": 0, "explain": "After *alles, nichts, etwas* there is no real noun, so the relative pronoun is *was*."}, {"q": "Er kommt heute nicht, *___* mich ärgert.", "options": ["was", "das", "der", "dass", "wo"], "answer": 0, "explain": "When the relative clause refers to the whole previous clause, not to a noun, use *was*."}, {"q": "*___* mir hilft, dem helfe ich auch.", "options": ["Der", "Wer", "Wen", "Wem", "Was"], "answer": 1, "explain": "With no noun before it, *wer* means \"whoever\"; here it is the subject, so Nominativ *wer*."}, {"q": "Kennst du Tom? – Ja, *___* kenne ich gut.", "options": ["der", "dem", "dessen", "den", "denen"], "answer": 3, "explain": "Demonstrative *der* replaces *er* in speech with the same forms as the relative pronoun; as the object of *kennen* it is Akk: *den* (= ihn)."}, {"q": "Wir wohnen seit Jahren in *___* Haus wie deine Eltern. (the very same building)", "options": ["derselben", "denselben", "demselben", "dasselbe", "desselben"], "answer": 2, "explain": "Both parts of *derselbe* decline; *in* + Dativ (location), neuter: *demselben* (= im selben Haus)."}, {"q": "Which sentence is correct?", "options": ["Das ist der Film, den ich gestern gesehen habe.", "Das ist der Film, den ich habe gestern gesehen.", "Das ist der Film, ich gestern gesehen habe.", "Das ist der Film den ich gestern gesehen habe.", "Das ist der Film, was ich gestern gesehen habe."], "answer": 0, "explain": "A relative clause needs its pronoun (*den*), a comma before it, and the conjugated verb at the end."}, {"q": "Die Frau, *___* ich gerade anrufe, ist Ärztin.", "options": ["die", "der", "den", "deren", "das"], "answer": 0, "explain": "*anrufen* takes Akk (*Ich rufe die Frau an*), and feminine Akk is *die*."}, {"q": "Die Kinder, *___* im Garten spielen, sind laut.", "options": ["denen", "die", "deren", "der", "den"], "answer": 1, "explain": "The children are the subject inside the clause (*Die Kinder spielen*), so plural Nominativ: *die*."}, {"q": "Das ist das Thema, *___* wir gestern gesprochen haben.", "options": ["über dem", "über den", "über das", "von das", "über die"], "answer": 2, "explain": "*sprechen über* + Akk, and Thema is neuter: *über das* (informal: *worüber*)."}, {"q": "Das ist der Bus, *___* ich jeden Morgen warte.", "options": ["auf dem", "für den", "auf der", "auf den", "den"], "answer": 3, "explain": "*warten auf* + Akk carries into the clause, preposition first: masculine *auf den*."}, {"q": "Die Nachbarn, *___* Hund immer bellt, sind eigentlich nett.", "options": ["dessen", "denen", "die", "ihren", "deren"], "answer": 4, "explain": "\"Whose\" agrees with the owner; *die Nachbarn* are plural, so *deren*."}, {"q": "Das ist das Beste, *___* ich je gegessen habe.", "options": ["was", "das", "dass", "der", "wo"], "answer": 0, "explain": "After a superlative used as a neuter noun (*das Beste*) the relative pronoun is *was*."}, {"q": "Kyjiw, *___* ich komme, ist eine schöne Stadt.", "options": ["wo", "woher", "wohin", "was", "wer"], "answer": 1, "explain": "After a city name, *wo / woher / wohin* is standard; coming from a place is *woher*."}, {"q": "*___* ich einlade, den kennst du nicht.", "options": ["Wer", "Wem", "Wen", "Den", "Was"], "answer": 2, "explain": "With no noun before it, *wer* means whoever; *einladen* takes Akk, so *wen*."}, {"q": "Der Vertrag, *___* gestern unterschrieben wurde, ist gültig. (formal written style)", "options": ["welchen", "welches", "welchem", "welcher", "was"], "answer": 3, "explain": "*welcher* is the formal variant of *der* and declines like *dieser*; the contract is the subject, masculine Nom: *welcher*."}, {"q": "Deine Nachbarn? *___* glaube ich kein Wort.", "options": ["Den", "Die", "Deren", "Denen", "Dem"], "answer": 3, "explain": "Demonstrative *der* has the relative forms; *glauben* + Dativ, plural: *denen* (= ihnen), with the verb second."}, {"q": "Ich helfe gern *___*, die Hilfe brauchen.", "options": ["diejenigen", "derjenigen", "demjenigen", "denjenige", "denjenigen"], "answer": 4, "explain": "Both parts of *derjenige* decline; *helfen* + Dativ plural gives *den* + *-jenigen*: *denjenigen*."}, {"q": "Das ist die Frau, mit *___* Sohn mein Kind spielt.", "options": ["dessen", "derer", "der", "dem", "deren"], "answer": 4, "explain": "The preposition goes first, then *deren* for a feminine owner; *deren* does not change for *mit*."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

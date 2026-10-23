@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="f416c849d8a6">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -399,7 +405,6 @@ body { margin: 0; }
 <li><em>solle</em> = a plain command or instruction; <em>möge</em> = a polite wish or request (formal, written).</li>
 <li>Verbs that introduce reported speech: sagen, erklären, behaupten, betonen, meinen, berichten, mitteilen, fragen, wissen wollen, bitten, auffordern.</li>
 </ul>
-<p><strong>Ukrainian comparison.</strong> Ukrainian keeps the indicative and the original tense: <em>Він сказав, що він хворий.</em> German spoken style does the same (<em>Er hat gesagt, dass er krank ist</em>). Written German marks the report with <em>sei</em>: <em>Er sagte, er sei krank.</em> Unlike English (<em>he said he <strong>was</strong> ill</em>), neither German nor Ukrainian shifts the tense back. For commands, Ukrainian is close to German <em>solle</em>: <em>Він сказав, щоб я почекав</em> = <em>Er sagte, ich solle warten.</em> And the distance that Konjunktiv I signals is what Ukrainian adds with <em>нібито</em>, <em>начебто</em> or <em>мовляв</em>.</p>
 <h2>Past and future in reported speech</h2>
 <p>Konjunktiv I has only three time levels. All past tenses of the original (Präteritum, Perfekt, Plusquamperfekt) collapse into one form: <em>habe/sei</em> + Partizip II.</p>
 <div class="table-wrap"><table>
@@ -463,7 +468,7 @@ body { margin: 0; }
 <li>Choose the time level from the original sentence, never from <em>sagte</em>.</li>
 </ul>
 <h2>Shifting pronouns, places and time words</h2>
-<p>Reported speech is told from the reporter's point of view, so persons, possessives, places and time words change (as in English and Ukrainian).</p>
+<p>Reported speech is told from the reporter's point of view, so persons, possessives, places and time words change.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -624,7 +629,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <h2>Konjunktiv I in fixed phrases</h2>
-<p>Outside reported speech, Konjunktiv I survives as a wish or instruction form (like Ukrainian <em>хай</em> + verb: <em>Хай живе …</em>).</p>
+<p>Outside reported speech, Konjunktiv I survives as a wish or instruction form.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -695,9 +700,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: <em>soll</em> and <em>will</em> for reported claims</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/b2-reported-speech.html">Reported speech quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="e2316ab11919" href="../quizzes/b2-reported-speech.html">Reported speech quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

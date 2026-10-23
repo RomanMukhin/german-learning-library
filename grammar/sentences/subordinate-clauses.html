@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="71e3f53b0a44">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Sentences</a><span class="sep">/</span><span class="cur">Subordinate clauses</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="e037129c01f7" class="hide-sm" href="index.html">Sentences</a><span class="sep">/</span><span class="cur">Subordinate clauses</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Subordinate clauses</h1><p class="sub">dass, weil, wenn, als, ob, obwohl, damit, bevor, nachdem, während: verb at the end, commas, and verb, verb.</p></header>
@@ -217,7 +223,6 @@ body { margin: 0; }
 <tr>
 <th>Conjunction</th>
 <th>Meaning</th>
-<th>Ukrainian</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -225,61 +230,51 @@ body { margin: 0; }
 <tr>
 <td>dass</td>
 <td>that</td>
-<td>що</td>
 <td>Ich hoffe, dass du kommst.</td>
 </tr>
 <tr>
 <td>weil</td>
 <td>because</td>
-<td>тому що, бо</td>
 <td>..., weil ich müde bin.</td>
 </tr>
 <tr>
 <td>wenn</td>
 <td>if; whenever; when (present/future)</td>
-<td>якщо, коли</td>
 <td>Wenn ich Zeit habe, ...</td>
 </tr>
 <tr>
 <td>als</td>
 <td>when (once, in the past)</td>
-<td>коли</td>
 <td>Als ich klein war, ...</td>
 </tr>
 <tr>
 <td>ob</td>
 <td>whether, if</td>
-<td>чи</td>
 <td>Ich weiß nicht, ob er kommt.</td>
 </tr>
 <tr>
 <td>obwohl</td>
 <td>although</td>
-<td>хоча</td>
 <td>..., obwohl es regnet.</td>
 </tr>
 <tr>
 <td>damit</td>
 <td>so that</td>
-<td>щоб</td>
 <td>..., damit du es verstehst.</td>
 </tr>
 <tr>
 <td>bevor</td>
 <td>before</td>
-<td>перед тим як</td>
 <td>Bevor ich gehe, ...</td>
 </tr>
 <tr>
 <td>nachdem</td>
 <td>after</td>
-<td>після того як</td>
 <td>Nachdem ich gegessen hatte, ...</td>
 </tr>
 <tr>
 <td>während</td>
 <td>while</td>
-<td>поки, тоді як</td>
 <td>..., während ich koche.</td>
 </tr>
 </tbody>
@@ -310,7 +305,6 @@ body { margin: 0; }
 <li><em>Ich weiß nicht, wenn er kommt</em> → <strong>ob</strong> er kommt.</li>
 <li>Missing comma: <em>Ich glaube dass ...</em> → <strong>Ich glaube, dass ...</strong></li>
 </ul></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian has the same conjunctions (<em>що, бо, якщо, коли, чи, хоча, щоб</em>), but keeps normal word order after them: <em>бо я втомився</em>. German moves the verb: <em>weil ich müde <strong>bin</strong></em>. Ukrainian <em>коли</em> splits into <strong>als</strong> (once, past) and <strong>wenn</strong> (repeated, present, future), and <em>щоб</em> splits into <strong>damit</strong> and <strong>um ... zu</strong>.</p></aside>
 <aside class="callout fact"><p class="callout-title">weil with verb second</p><p>In everyday spoken German you will often hear <em>weil</em> with main-clause order: <em>Ich komme nicht, weil ich bin krank.</em> Linguists have documented this for decades and it is now very common in speech, but it is still considered wrong in writing and in exams. Use verb-last.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: more conjunctions</p><p>B2 adds <em>sobald</em> (as soon as), <em>solange</em> (as long as), <em>seitdem</em> (since), <em>indem</em> (by doing), <em>sodass</em> (so that, result), <em>falls</em> (in case). Same rule: verb at the end. See <a href="../../docs/connectors.html">Connectors</a>.</p></aside>
 <p>Relative clauses (<em>der Mann, <strong>der</strong> dort steht</em>) follow the same verb-last rule, see <a href="../../docs/relative-pronouns.html">Relative pronouns</a>.</p>
@@ -318,12 +312,12 @@ body { margin: 0; }
 <ul>
 <li><a href="../../docs/connectors.html">Connectors</a></li>
 <li><a href="../../docs/relative-pronouns.html">Relative pronouns</a></li>
-<li><a href="../../grammar/sentences/word-order.html">Word order</a></li>
-<li><a href="../../grammar/sentences/questions.html">Questions</a></li>
-<li><a href="../../grammar/verbs/zu-infinitive.html">zu-infinitive</a></li>
+<li><a data-quiz="bd3572acc655" href="../../grammar/sentences/word-order.html">Word order</a></li>
+<li><a data-quiz="6caf6e1f41c2" href="../../grammar/sentences/questions.html">Questions</a></li>
+<li><a data-quiz="12d92a4067fe" href="../../grammar/verbs/zu-infinitive.html">zu-infinitive</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="word-order.html">← Word order</a></nav>
+<nav class="pager"><a data-quiz="bd3572acc655" class="btn" href="word-order.html">← Word order</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -341,12 +335,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich bleibe zu Hause, weil ich müde *___*.", "options": ["bist", "bin", "sein", "ist", "seid"], "answer": 1, "explain": "*weil* sends the conjugated verb to the end (A2)."}, {"q": "Ich glaube, *___* er recht hat.", "options": ["dass", "das", "ob", "wenn", "was"], "answer": 0, "explain": "\"I think that ...\" → *dass* with double *s* (*das* is an article/pronoun) (A2)."}, {"q": "*___* es morgen regnet, bleiben wir zu Hause.", "options": ["Als", "Ob", "Wann", "Wenn", "Dass"], "answer": 3, "explain": "Condition in the future → *wenn* (якщо) (A2)."}, {"q": "Ich komme mit, wenn ich Zeit *___*.", "options": ["hast", "hat", "haben", "gehabt", "habe"], "answer": 4, "explain": "Verb at the end of the *wenn* clause (A2)."}, {"q": "Ich lerne Deutsch, weil ich in Deutschland arbeiten *___*.", "options": ["will", "wollen", "willst", "möchtest", "gewollt"], "answer": 0, "explain": "Modal + infinitive: the conjugated modal is the very last word (A2)."}, {"q": "Ich weiß, dass er gestern *___*.", "options": ["hat angerufen", "angerufen hat", "anrief hat", "angerufen", "hat anrufen"], "answer": 1, "explain": "Perfekt in a subordinate clause: participle, then *hat* at the end (A2)."}, {"q": "Er kommt nicht, weil der Film um acht *___*.", "options": ["fängt an", "an fängt", "anfangen", "fängt", "anfängt"], "answer": 4, "explain": "Separable verbs join up at the end of a subordinate clause: *anfängt* (A2)."}, {"q": "*___* ich ein Kind war, wohnten wir in Odesa.", "options": ["Wenn", "Als", "Wann", "Ob", "Dass"], "answer": 1, "explain": "One period in the past → *als* (B1)."}, {"q": "Immer *___* ich in Berlin war, habe ich Anna besucht.", "options": ["als", "ob", "wann", "wenn", "dass"], "answer": 3, "explain": "Repeated events, even in the past → *wenn* (B1)."}, {"q": "Ich weiß nicht, *___* ich morgen kommen kann.", "options": ["wenn", "ob", "als", "dass", "weil"], "answer": 1, "explain": "\"if\" = \"whether\" → *ob* (чи) (B1)."}, {"q": "*___* es regnet, gehen wir spazieren.", "options": ["Obwohl", "Denn", "Damit", "Ob", "Trotzdem"], "answer": 0, "explain": "Contrast (walking despite rain) → *obwohl* (хоча) (B1)."}, {"q": "Ich spreche langsam, *___* du mich verstehst.", "options": ["um", "ob", "damit", "denn", "trotzdem"], "answer": 2, "explain": "Purpose with a different subject → *damit* (щоб) (B1)."}, {"q": "Ich lerne viel, *___* die Prüfung zu bestehen.", "options": ["damit", "dass", "weil", "um", "für"], "answer": 3, "explain": "Same subject, infinitive with *zu* → *um ... zu* (B1)."}, {"q": "Wenn ich Zeit habe, *___* mit.", "options": ["ich komme", "komme ich", "kommen ich", "ich kommen", "kommt ich"], "answer": 1, "explain": "Verb, verb: after the subordinate clause the main clause starts with its verb, *komme ich mit* (B1)."}, {"q": "Weil es regnet, *___* zu Hause.", "options": ["wir bleiben", "bleibt wir", "wir bleibt", "bleiben uns", "bleiben wir"], "answer": 4, "explain": "Subordinate clause in position 1 → verb next, then subject (B1)."}, {"q": "Obwohl er krank ist, *___* zur Arbeit.", "options": ["er geht", "gehen er", "geht er", "er gehen", "geht"], "answer": 2, "explain": "Verb, verb: *ist, geht er* (B1)."}, {"q": "*___* ich zur Arbeit gehe, trinke ich zu Hause einen Kaffee.", "options": ["Nachdem", "Damit", "Als", "Bevor", "Ob"], "answer": 3, "explain": "Coffee first, then work → *bevor* (перед тим як) (B1)."}, {"q": "Nachdem ich gegessen *___*, ging ich spazieren.", "options": ["habe", "hätte", "bin", "hatte", "war"], "answer": 3, "explain": "*nachdem* + Plusquamperfekt for a past main clause: *gegessen hatte* (B1)."}, {"q": "*___* ich koche, höre ich gleichzeitig Musik.", "options": ["Bevor", "Nachdem", "Ob", "Damit", "Während"], "answer": 4, "explain": "Two things at the same time → *während* (поки) (B1)."}, {"q": "Where does the comma go? Ich hoffe dass du bald gesund wirst.", "options": ["after hoffe", "after dass", "after du", "no comma", "after bald"], "answer": 0, "explain": "German always puts a comma before a subordinate clause: *Ich hoffe, dass ...* (A2)."}, {"q": "*___* ich gestern Abend nach Hause kam, war niemand da.", "options": ["Wenn", "Ob", "Als", "Wann", "Dass"], "answer": 2, "explain": "A single event in the past → *als* (B1)."}, {"q": "Er sagt, dass er keine Zeit *___*.", "options": ["hat", "habt", "haben", "hast", "gehabt"], "answer": 0, "explain": "*dass* clause: verb at the end (A2)."}, {"q": "Ich gehe früh ins Bett, *___* ich morgen um sechs aufstehen muss.", "options": ["denn", "trotzdem", "ob", "als", "weil"], "answer": 4, "explain": "Reason → *weil* (бо) (B1)."}, {"q": "Kannst du mir sagen, *___* der Kurs beginnt?", "options": ["wenn", "als", "wann", "was", "welche"], "answer": 2, "explain": "Indirect question about time → *wann*; *wenn* is not a question word (B1)."}], "title": "Subordinate clauses quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich bleibe zu Hause, weil ich müde *___*.", "options": ["bist", "bin", "sein", "ist", "seid"], "answer": 1, "explain": "*weil* sends the conjugated verb to the end (A2)."}, {"q": "Ich glaube, *___* er recht hat.", "options": ["dass", "das", "ob", "wenn", "was"], "answer": 0, "explain": "\"I think that ...\" → *dass* with double *s* (*das* is an article/pronoun) (A2)."}, {"q": "*___* es morgen regnet, bleiben wir zu Hause.", "options": ["Als", "Ob", "Wann", "Wenn", "Dass"], "answer": 3, "explain": "Condition in the future → *wenn* (A2)."}, {"q": "Ich komme mit, wenn ich Zeit *___*.", "options": ["hast", "hat", "haben", "gehabt", "habe"], "answer": 4, "explain": "Verb at the end of the *wenn* clause (A2)."}, {"q": "Ich lerne Deutsch, weil ich in Deutschland arbeiten *___*.", "options": ["will", "wollen", "willst", "möchtest", "gewollt"], "answer": 0, "explain": "Modal + infinitive: the conjugated modal is the very last word (A2)."}, {"q": "Ich weiß, dass er gestern *___*.", "options": ["hat angerufen", "angerufen hat", "anrief hat", "angerufen", "hat anrufen"], "answer": 1, "explain": "Perfekt in a subordinate clause: participle, then *hat* at the end (A2)."}, {"q": "Er kommt nicht, weil der Film um acht *___*.", "options": ["fängt an", "an fängt", "anfangen", "fängt", "anfängt"], "answer": 4, "explain": "Separable verbs join up at the end of a subordinate clause: *anfängt* (A2)."}, {"q": "*___* ich ein Kind war, wohnten wir in Odesa.", "options": ["Wenn", "Als", "Wann", "Ob", "Dass"], "answer": 1, "explain": "One period in the past → *als* (B1)."}, {"q": "Immer *___* ich in Berlin war, habe ich Anna besucht.", "options": ["als", "ob", "wann", "wenn", "dass"], "answer": 3, "explain": "Repeated events, even in the past → *wenn* (B1)."}, {"q": "Ich weiß nicht, *___* ich morgen kommen kann.", "options": ["wenn", "ob", "als", "dass", "weil"], "answer": 1, "explain": "\"if\" = \"whether\" → *ob* (B1)."}, {"q": "*___* es regnet, gehen wir spazieren.", "options": ["Obwohl", "Denn", "Damit", "Ob", "Trotzdem"], "answer": 0, "explain": "Contrast (walking despite rain) → *obwohl* (B1)."}, {"q": "Ich spreche langsam, *___* du mich verstehst.", "options": ["um", "ob", "damit", "denn", "trotzdem"], "answer": 2, "explain": "Purpose with a different subject → *damit* (B1)."}, {"q": "Ich lerne viel, *___* die Prüfung zu bestehen.", "options": ["damit", "dass", "weil", "um", "für"], "answer": 3, "explain": "Same subject, infinitive with *zu* → *um ... zu* (B1)."}, {"q": "Wenn ich Zeit habe, *___* mit.", "options": ["ich komme", "komme ich", "kommen ich", "ich kommen", "kommt ich"], "answer": 1, "explain": "Verb, verb: after the subordinate clause the main clause starts with its verb, *komme ich mit* (B1)."}, {"q": "Weil es regnet, *___* zu Hause.", "options": ["wir bleiben", "bleibt wir", "wir bleibt", "bleiben uns", "bleiben wir"], "answer": 4, "explain": "Subordinate clause in position 1 → verb next, then subject (B1)."}, {"q": "Obwohl er krank ist, *___* zur Arbeit.", "options": ["er geht", "gehen er", "geht er", "er gehen", "geht"], "answer": 2, "explain": "Verb, verb: *ist, geht er* (B1)."}, {"q": "*___* ich zur Arbeit gehe, trinke ich zu Hause einen Kaffee.", "options": ["Nachdem", "Damit", "Als", "Bevor", "Ob"], "answer": 3, "explain": "Coffee first, then work → *bevor* (B1)."}, {"q": "Nachdem ich gegessen *___*, ging ich spazieren.", "options": ["habe", "hätte", "bin", "hatte", "war"], "answer": 3, "explain": "*nachdem* + Plusquamperfekt for a past main clause: *gegessen hatte* (B1)."}, {"q": "*___* ich koche, höre ich gleichzeitig Musik.", "options": ["Bevor", "Nachdem", "Ob", "Damit", "Während"], "answer": 4, "explain": "Two things at the same time → *während* (B1)."}, {"q": "Where does the comma go? Ich hoffe dass du bald gesund wirst.", "options": ["after hoffe", "after dass", "after du", "no comma", "after bald"], "answer": 0, "explain": "German always puts a comma before a subordinate clause: *Ich hoffe, dass ...* (A2)."}, {"q": "*___* ich gestern Abend nach Hause kam, war niemand da.", "options": ["Wenn", "Ob", "Als", "Wann", "Dass"], "answer": 2, "explain": "A single event in the past → *als* (B1)."}, {"q": "Er sagt, dass er keine Zeit *___*.", "options": ["hat", "habt", "haben", "hast", "gehabt"], "answer": 0, "explain": "*dass* clause: verb at the end (A2)."}, {"q": "Ich gehe früh ins Bett, *___* ich morgen um sechs aufstehen muss.", "options": ["denn", "trotzdem", "ob", "als", "weil"], "answer": 4, "explain": "Reason → *weil* (B1)."}, {"q": "Kannst du mir sagen, *___* der Kurs beginnt?", "options": ["wenn", "als", "wann", "was", "welche"], "answer": 2, "explain": "Indirect question about time → *wann*; *wenn* is not a question word (B1)."}], "title": "Subordinate clauses quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -358,18 +356,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -384,14 +396,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -403,7 +415,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -412,14 +424,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -427,23 +439,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

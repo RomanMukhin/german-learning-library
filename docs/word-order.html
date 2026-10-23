@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="2d7756af252e">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Word order</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/sentences/index.html">Sentences</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="e037129c01f7" href="../grammar/sentences/index.html">Sentences</a>.</p></aside>
 <p>German word order is built around fixed verb slots: the conjugated verb sits in position 2 in main clauses, at the very end in subordinate clauses, and everything else moves around it.</p>
 <h2>V2 rule: the verb is always second</h2>
 <p>In a main clause the conjugated verb is the second element. Position 1 can hold almost anything (subject, time, place, object, even a whole subordinate clause); if it is not the subject, the subject moves to right after the verb (inversion).</p>
@@ -451,7 +457,7 @@ body { margin: 0; }
 <ul>
 <li>A preposition stays glued to its question word in position 1: <em>Mit wem…?</em>, <em>Für wen…?</em>, <em>Seit wann…?</em> Never ~~Wem fährst du mit?~~</li>
 <li>For things, use a <em>wo(r)-</em> word: <em>Worüber sprecht ihr?</em> (What are you talking about?), <em>Woran denkst du?</em></li>
-<li>No <em>do</em>-support: <em>Wohnst du hier?</em>, never a helper verb like English "Do you live here?". Same as Ukrainian <em>Ти тут живеш?</em> — except German must move the verb to the front, while Ukrainian often keeps the order and uses intonation or <em>чи</em>.</li>
+<li>No <em>do</em>-support: <em>Wohnst du hier?</em>, never a helper verb like English "Do you live here?".</li>
 </ul>
 <h2>Subordinate clauses: verb last</h2>
 <p>In a subordinate clause the conjunction takes the front, the subject usually comes right after it, and the conjugated verb goes to the very end. A comma always separates it from the main clause.</p>
@@ -672,7 +678,6 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <ul>
-<li>Wrong: ~~Wenn ich Zeit habe, ich komme.~~ This is the most common mistake for English and Ukrainian speakers, because both languages put the subject first here.</li>
 <li>Same rule for zu-clauses at the start: <em>Um Geld zu sparen, <strong>fahre</strong> ich mit dem Rad.</em></li>
 </ul>
 <p><strong>The "two verbs collide" effect</strong></p>
@@ -754,7 +759,7 @@ body { margin: 0; }
 <li>General tendency: known information (pronouns, definite nouns) early, new or important information late, close to the end verb.</li>
 </ul>
 <h2>Position of nicht, and kein vs nicht</h2>
-<p>To negate the whole sentence, <em>nicht</em> goes as late as possible in the middle field: after the objects and time words, but before the end verb, separable prefix, adjectives after <em>sein</em>, places/directions and prepositional objects. Ukrainian <em>не</em> sits before the verb; German <em>nicht</em> usually does not.</p>
+<p>To negate the whole sentence, <em>nicht</em> goes as late as possible in the middle field: after the objects and time words, but before the end verb, separable prefix, adjectives after <em>sein</em>, places/directions and prepositional objects.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1020,54 +1025,39 @@ body { margin: 0; }
 <li>"Let's…" has two forms: <em>Gehen wir!</em> or <em>Lass uns gehen!</em> (to one person) / <em>Lasst uns gehen!</em> (to several).</li>
 <li>Softeners <em>doch, mal</em> go right after the verb or pronoun: <em>Komm <strong>doch mal</strong> vorbei!</em> (Do drop by!)</li>
 </ul>
-<h2>Ukrainian comparison</h2>
-<p>Ukrainian word order is free and the verb can stand almost anywhere; German is free only around fixed verb slots. Both languages use case endings, so German, like Ukrainian, can put the object first without confusion: only the verb position is locked.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Idea</th>
-<th>Ukrainian</th>
 <th>German</th>
-<th>Note</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Today I'm going to the cinema.</td>
-<td>Сьогодні я йду в кіно.</td>
 <td>Heute <strong>gehe</strong> ich ins Kino.</td>
-<td>Ukrainian keeps я before the verb; German inverts.</td>
 </tr>
 <tr>
 <td>I bought this book yesterday.</td>
-<td>Цю книжку я купив вчора.</td>
 <td>Dieses Buch <strong>habe</strong> ich gestern <strong>gekauft</strong>.</td>
-<td>Object first works in both; German adds the bracket.</td>
 </tr>
 <tr>
 <td>…because I'm ill.</td>
-<td>…бо я хворий.</td>
 <td>…, weil ich krank <strong>bin</strong>.</td>
-<td>Ukrainian keeps normal order after бо/тому що; German sends the verb to the end.</td>
 </tr>
 <tr>
 <td>If I have time, I'll come.</td>
-<td>Якщо в мене буде час, я прийду.</td>
 <td>Wenn ich Zeit habe, <strong>komme</strong> ich.</td>
-<td>Verb directly after the comma in German.</td>
 </tr>
 <tr>
 <td>I don't know him.</td>
-<td>Я його <strong>не</strong> знаю.</td>
 <td>Ich kenne ihn <strong>nicht</strong>.</td>
-<td>не before the verb vs nicht near the end.</td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li><strong>Emphasis</strong>: Ukrainian moves words around freely and uses stress (<em>Вчора я це зробив</em> / <em>Я це зробив вчора</em>). German mainly uses <strong>position 1</strong> for the topic or emphasis and the <strong>end of the middle field</strong> for new information.</li>
-<li><strong>Pronoun clusters</strong>: Ukrainian also likes short pronouns early (<em>Я йому це дав</em>), which matches German <em>Ich habe es ihm gegeben</em>.</li>
-<li><strong>Practical habit</strong>: when you build a German sentence, first place the verb(s), then fill the slots. Ukrainian instinct is fine for the middle field; it fails only at the verb slots.</li>
+<li>German mainly uses <strong>position 1</strong> for the topic or emphasis and the <strong>end of the middle field</strong> for new information.</li>
+<li><strong>Practical habit</strong>: when you build a German sentence, first place the verb(s), then fill the slots.</li>
 </ul>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
 <p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
@@ -1349,11 +1339,11 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>Du musst nicht kommen.</td>
-<td>you don't have to come (= не мусиш)</td>
+<td>you don't have to come</td>
 </tr>
 <tr>
 <td>Du darfst nicht kommen.</td>
-<td>you must not come (= не можна)</td>
+<td>you must not come</td>
 </tr>
 <tr>
 <td>Das ist kein Fehler, sondern Absicht.</td>
@@ -1431,9 +1421,22 @@ body { margin: 0; }
 <li><a href="../docs/particles-expressions.html">Particles, expressions and everyday German</a>: where doch, mal and ja sit in the middle field</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/word-order.html">Word order quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="1a38ec8b227b" href="../quizzes/word-order.html">Word order quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

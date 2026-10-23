@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="e2316ab11919">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "b2-reported-speech", "title": "Reported speech quiz", "level": "B2", "doc": {"title": "B2+: Reported speech and Konjunktiv I", "url": "../docs/b2-reported-speech.html"}, "questions": [{"q": "What is the Konjunktiv I form of *wissen* for *er*?", "options": ["er wisse", "er weiß", "er wüsste", "er wisst", "er wissen"], "answer": 0, "explain": "Konjunktiv I = infinitive stem *wiss-* + *-e*, with no vowel change: *er wisse*. *Wüsste* is Konjunktiv II."}, {"q": "News report, Konjunktiv I: Der Sprecher sagte, die Firma ___ keine Pläne für Entlassungen.", "options": ["hat", "haben", "habe", "habt", "hatte"], "answer": 2, "explain": "For er/sie/es, Konjunktiv I is clearly different from the indicative: *die Firma habe* (not *hat*). This is the neutral news form."}, {"q": "„Wir haben kein Geld.“ → Die Studenten sagten, sie ___ kein Geld. (written German)", "options": ["haben", "habe", "hättet", "seien", "hätten"], "answer": 4, "explain": "Konjunktiv I *sie haben* looks like the indicative, so written German switches to Konjunktiv II: *sie hätten*."}, {"q": "„Ich habe den Bericht gelesen.“ → Sie sagte, sie ___ den Bericht gelesen.", "options": ["hat", "habe", "wurde", "sei", "würde"], "answer": 1, "explain": "All past tenses collapse into *habe/sei + Partizip II*. *Lesen* takes *haben*, so: *sie habe gelesen*."}, {"q": "„Ich ging früh nach Hause.“ → Er sagte, er ___ früh nach Hause gegangen.", "options": ["habe", "ist", "würde", "sei", "werde"], "answer": 3, "explain": "Präteritum *ging* becomes *sei + Partizip II*, because *gehen* forms its Perfekt with *sein*."}, {"q": "„Kommst du morgen?“ → Sie fragte, ___ ich am nächsten Tag käme.", "options": ["dass", "wenn", "als", "ob", "falls"], "answer": 3, "explain": "A yes/no question is reported with *ob* (Ukrainian *чи*), and the verb goes to the end."}, {"q": "Pick the correct written report of „Warte hier!“", "options": ["Er sagte, ich soll warte hier.", "Er sagte, ich solle hier warten.", "Er sagte, ich warten solle hier.", "Er sagte, dass ich solle hier warten.", "Er sagte, ich solle hier zu warten."], "answer": 1, "explain": "Commands are reported with *solle* + infinitive (no *zu*). Without *dass* the verb is 2nd; with *dass* it would be *dass ich hier warten solle*. Ukrainian: *щоб я почекав*."}, {"q": "*Sie bat, er möge hereinkommen.* What does *möge* signal here?", "options": ["a strict order", "a doubt about the claim", "a past action", "a future plan", "a polite, formal request"], "answer": 4, "explain": "*Möge* (Konjunktiv I of *mögen*) reports a polite wish or request; *solle* reports a plain command."}, {"q": "A week later you report Max's words „Ich komme morgen.“: Max sagte, er komme ___.", "options": ["morgen", "am Vortag", "am nächsten Tag", "heute", "gestern"], "answer": 2, "explain": "Time words shift to the reporter's point of view: *morgen* → *am nächsten Tag / am folgenden Tag*. Keep *morgen* only when reporting on the same day."}, {"q": "Anna said to you: „Ich helfe dir.“ You report: Anna sagte, sie helfe ___.", "options": ["mir", "dir", "ihr", "sich", "ihm"], "answer": 0, "explain": "Pronouns shift to the reporter's view: Anna's *dir* (= you, the listener) becomes *mir* when you tell it."}, {"q": "„Wir werden kommen.“ → Sie sagten, sie ___ kommen. (written German)", "options": ["werden", "würden", "werde", "wurden", "würde"], "answer": 1, "explain": "Konjunktiv I *sie werden* = indicative, so use Konjunktiv II *würden* (plural to match *sie*)."}, {"q": "„Das Haus wurde gebaut.“ → Es heißt, das Haus ___.", "options": ["werde gebaut", "sei gebaut geworden", "habe gebaut worden", "sei gebaut worden", "wurde gebaut worden"], "answer": 3, "explain": "Past passive in reported speech: *sei + Partizip II + worden*. In the passive it is *worden*, never *geworden*."}, {"q": "„Ich musste gehen.“ → Er sagte, er ___.", "options": ["habe gehen müssen", "habe gehen gemusst", "sei gehen müssen", "müsse gegangen", "habe müssen gehen"], "answer": 0, "explain": "Past of a modal with an infinitive: *habe* + double infinitive (*gehen müssen*). The auxiliary is always *haben*."}, {"q": "Which sentence is most natural in everyday spoken German?", "options": ["Er hat gesagt, dass er ist krank.", "Er hat gesagt, er krank ist.", "Er hat gesagt, dass er krank sein.", "Er hat gesagt, er sei krank war.", "Er hat gesagt, dass er krank ist."], "answer": 4, "explain": "In speech people use *dass* + indicative with the verb last. Ukrainian does the same: *Він сказав, що він хворий*."}, {"q": "___ Bericht zufolge ist die Zahl der Arbeitslosen gestiegen.", "options": ["Des", "Den", "Dem", "Der", "Das"], "answer": 2, "explain": "*Zufolge* stands after the noun and takes the dative: *dem Bericht zufolge* = according to the report."}, {"q": "*Wir fahren morgen ans Meer, es sei denn, es regnet.* What does *es sei denn* mean?", "options": ["because", "although", "unless", "as long as", "even if"], "answer": 2, "explain": "*Es sei denn* is a fixed Konjunktiv I phrase meaning \"unless\": we go, unless it rains."}, {"q": "___ Sie bitte pünktlich!", "options": ["Sind", "Seid", "Sei", "Seiet", "Seien"], "answer": 4, "explain": "The Sie-imperative of *sein* uses Konjunktiv I: *Seien Sie …!* (*seid* is the ihr-form, *sei* the du-form)."}, {"q": "„Ich kann nicht kommen.“ → Er sagte, er ___ nicht kommen. (neutral Konjunktiv I)", "options": ["könne", "kann", "konnte", "können", "gekonnt"], "answer": 0, "explain": "Konjunktiv I = stem *könn-* + *-e*, no umlaut change from the infinitive: *er könne*. It differs from the indicative *kann*, so Konjunktiv I is used."}, {"q": "„Sie arbeiten viel.“ → Er sagt, ___. (written German)", "options": ["sie arbeiten viel", "sie würden viel arbeiten", "sie arbeiteten viel", "sie arbeite viel", "sie hätten viel arbeiten"], "answer": 1, "explain": "Konjunktiv I *sie arbeiten* = indicative, and Konjunktiv II *arbeiteten* = Präteritum, so neither is recognisable: use *würden* + infinitive."}, {"q": "„Wann fährt der Zug?“ → Sie fragte, wann der Zug ___. (written German)", "options": ["fahrt", "fähre", "fahren", "fahre", "gefahren"], "answer": 3, "explain": "W-questions keep the W-word and put the verb last. Konjunktiv I *der Zug fahre* (no umlaut) differs from *fährt*, so it is used."}, {"q": "„Ruf mich an!“ → Sie bat mich, ___.", "options": ["sie anzurufen", "mich anzurufen", "sie anrufen", "sie zu anrufen", "ihr anzurufen"], "answer": 0, "explain": "After *bitten* a command becomes *zu* + infinitive, with *zu* inside the separable verb (*anzurufen*). *Mich* shifts to *sie* (= her), and *anrufen* takes the accusative."}, {"q": "Tom: „Das ist mein Auto.“ → Tom sagte, das sei ___ Auto.", "options": ["mein", "sein", "ihr", "dein", "sich"], "answer": 1, "explain": "Possessives shift to the reporter's view: Tom's *mein* becomes *sein* (his). Ukrainian does the same: *його машина*."}, {"q": "A week later you report „Ich war gestern krank.“: Sie sagte, sie sei ___ krank gewesen.", "options": ["gestern", "am nächsten Tag", "am Vortag", "in der folgenden Woche", "heute"], "answer": 2, "explain": "Seen from a later day, *gestern* becomes *am Vortag* (or *am Tag zuvor*)."}, {"q": "„Ich bin krank.“ → Er sagte gestern, er ___ krank.", "options": ["sei gewesen", "habe", "war", "sei", "werde"], "answer": 3, "explain": "The time level comes from the original sentence, not from *sagte*. The original is present tense, so it stays present: *er sei krank*."}, {"q": "In a written text: *Er behauptet, er hätte nichts gewusst.* What can *hätte* (instead of *habe*) suggest?", "options": ["The writer confirms the claim.", "The action is in the future.", "It is a polite request.", "It is a command.", "The writer doubts the claim."], "answer": 4, "explain": "In writing, Konjunktiv II where Konjunktiv I (*habe*) was possible often adds extra doubt, like Ukrainian *нібито*."}, {"q": "News style, Konjunktiv I: Laut Polizei ___ der Fahrer die Kontrolle über den Wagen verloren.", "options": ["habe", "sei", "haben", "werde", "hast"], "answer": 0, "explain": "Past in reported speech = *habe/sei* + Partizip II; *verlieren* takes *haben*, and *der Fahrer* is singular: *habe … verloren*."}, {"q": "nach Angaben ___ Ministeriums", "options": ["dem", "des", "das", "den", "der"], "answer": 1, "explain": "*nach Angaben* is followed by a genitive: *des Ministeriums* (= according to the ministry's data)."}, {"q": "*Er räumte ein, Fehler gemacht zu haben.* What does *einräumen* mean here?", "options": ["claim", "deny", "admit", "stress", "announce"], "answer": 2, "explain": "*einräumen* (= *zugeben*) means to admit or concede something."}, {"q": "Recipe style: Man ___ 200 g Mehl.", "options": ["nimmt", "nähme", "nehmt", "nehme", "nimm"], "answer": 3, "explain": "Instructions in recipes use Konjunktiv I with *man*: *man nehme* (stem *nehm-* + *-e*, no vowel change)."}, {"q": "*Wie dem auch sei, wir müssen anfangen.* What does *wie dem auch sei* mean?", "options": ["as it should be", "if it is true", "as it was before", "as soon as possible", "be that as it may"], "answer": 4, "explain": "*Wie dem auch sei* is a fixed Konjunktiv I phrase: be that as it may (Ukrainian *хай там як*)."}]}
+{"id": "b2-reported-speech", "title": "Reported speech quiz", "level": "B2", "doc": {"title": "B2+: Reported speech and Konjunktiv I", "url": "../docs/b2-reported-speech.html"}, "questions": [{"q": "What is the Konjunktiv I form of *wissen* for *er*?", "options": ["er wisse", "er weiß", "er wüsste", "er wisst", "er wissen"], "answer": 0, "explain": "Konjunktiv I = infinitive stem *wiss-* + *-e*, with no vowel change: *er wisse*. *Wüsste* is Konjunktiv II."}, {"q": "News report, Konjunktiv I: Der Sprecher sagte, die Firma ___ keine Pläne für Entlassungen.", "options": ["hat", "haben", "habe", "habt", "hatte"], "answer": 2, "explain": "For er/sie/es, Konjunktiv I is clearly different from the indicative: *die Firma habe* (not *hat*). This is the neutral news form."}, {"q": "„Wir haben kein Geld.“ → Die Studenten sagten, sie ___ kein Geld. (written German)", "options": ["haben", "habe", "hättet", "seien", "hätten"], "answer": 4, "explain": "Konjunktiv I *sie haben* looks like the indicative, so written German switches to Konjunktiv II: *sie hätten*."}, {"q": "„Ich habe den Bericht gelesen.“ → Sie sagte, sie ___ den Bericht gelesen.", "options": ["hat", "habe", "wurde", "sei", "würde"], "answer": 1, "explain": "All past tenses collapse into *habe/sei + Partizip II*. *Lesen* takes *haben*, so: *sie habe gelesen*."}, {"q": "„Ich ging früh nach Hause.“ → Er sagte, er ___ früh nach Hause gegangen.", "options": ["habe", "ist", "würde", "sei", "werde"], "answer": 3, "explain": "Präteritum *ging* becomes *sei + Partizip II*, because *gehen* forms its Perfekt with *sein*."}, {"q": "„Kommst du morgen?“ → Sie fragte, ___ ich am nächsten Tag käme.", "options": ["dass", "wenn", "als", "ob", "falls"], "answer": 3, "explain": "A yes/no question is reported with *ob*, and the verb goes to the end."}, {"q": "Pick the correct written report of „Warte hier!“", "options": ["Er sagte, ich soll warte hier.", "Er sagte, ich solle hier warten.", "Er sagte, ich warten solle hier.", "Er sagte, dass ich solle hier warten.", "Er sagte, ich solle hier zu warten."], "answer": 1, "explain": "Commands are reported with *solle* + infinitive (no *zu*). Without *dass* the verb is 2nd; with *dass* it would be *dass ich hier warten solle*."}, {"q": "*Sie bat, er möge hereinkommen.* What does *möge* signal here?", "options": ["a strict order", "a doubt about the claim", "a past action", "a future plan", "a polite, formal request"], "answer": 4, "explain": "*Möge* (Konjunktiv I of *mögen*) reports a polite wish or request; *solle* reports a plain command."}, {"q": "A week later you report Max's words „Ich komme morgen.“: Max sagte, er komme ___.", "options": ["morgen", "am Vortag", "am nächsten Tag", "heute", "gestern"], "answer": 2, "explain": "Time words shift to the reporter's point of view: *morgen* → *am nächsten Tag / am folgenden Tag*. Keep *morgen* only when reporting on the same day."}, {"q": "Anna said to you: „Ich helfe dir.“ You report: Anna sagte, sie helfe ___.", "options": ["mir", "dir", "ihr", "sich", "ihm"], "answer": 0, "explain": "Pronouns shift to the reporter's view: Anna's *dir* (= you, the listener) becomes *mir* when you tell it."}, {"q": "„Wir werden kommen.“ → Sie sagten, sie ___ kommen. (written German)", "options": ["werden", "würden", "werde", "wurden", "würde"], "answer": 1, "explain": "Konjunktiv I *sie werden* = indicative, so use Konjunktiv II *würden* (plural to match *sie*)."}, {"q": "„Das Haus wurde gebaut.“ → Es heißt, das Haus ___.", "options": ["werde gebaut", "sei gebaut geworden", "habe gebaut worden", "sei gebaut worden", "wurde gebaut worden"], "answer": 3, "explain": "Past passive in reported speech: *sei + Partizip II + worden*. In the passive it is *worden*, never *geworden*."}, {"q": "„Ich musste gehen.“ → Er sagte, er ___.", "options": ["habe gehen müssen", "habe gehen gemusst", "sei gehen müssen", "müsse gegangen", "habe müssen gehen"], "answer": 0, "explain": "Past of a modal with an infinitive: *habe* + double infinitive (*gehen müssen*). The auxiliary is always *haben*."}, {"q": "Which sentence is most natural in everyday spoken German?", "options": ["Er hat gesagt, dass er ist krank.", "Er hat gesagt, er krank ist.", "Er hat gesagt, dass er krank sein.", "Er hat gesagt, er sei krank war.", "Er hat gesagt, dass er krank ist."], "answer": 4, "explain": "In speech people use *dass* + indicative with the verb last."}, {"q": "___ Bericht zufolge ist die Zahl der Arbeitslosen gestiegen.", "options": ["Des", "Den", "Dem", "Der", "Das"], "answer": 2, "explain": "*Zufolge* stands after the noun and takes the dative: *dem Bericht zufolge* = according to the report."}, {"q": "*Wir fahren morgen ans Meer, es sei denn, es regnet.* What does *es sei denn* mean?", "options": ["because", "although", "unless", "as long as", "even if"], "answer": 2, "explain": "*Es sei denn* is a fixed Konjunktiv I phrase meaning \"unless\": we go, unless it rains."}, {"q": "___ Sie bitte pünktlich!", "options": ["Sind", "Seid", "Sei", "Seiet", "Seien"], "answer": 4, "explain": "The Sie-imperative of *sein* uses Konjunktiv I: *Seien Sie …!* (*seid* is the ihr-form, *sei* the du-form)."}, {"q": "„Ich kann nicht kommen.“ → Er sagte, er ___ nicht kommen. (neutral Konjunktiv I)", "options": ["könne", "kann", "konnte", "können", "gekonnt"], "answer": 0, "explain": "Konjunktiv I = stem *könn-* + *-e*, no umlaut change from the infinitive: *er könne*. It differs from the indicative *kann*, so Konjunktiv I is used."}, {"q": "„Sie arbeiten viel.“ → Er sagt, ___. (written German)", "options": ["sie arbeiten viel", "sie würden viel arbeiten", "sie arbeiteten viel", "sie arbeite viel", "sie hätten viel arbeiten"], "answer": 1, "explain": "Konjunktiv I *sie arbeiten* = indicative, and Konjunktiv II *arbeiteten* = Präteritum, so neither is recognisable: use *würden* + infinitive."}, {"q": "„Wann fährt der Zug?“ → Sie fragte, wann der Zug ___. (written German)", "options": ["fahrt", "fähre", "fahren", "fahre", "gefahren"], "answer": 3, "explain": "W-questions keep the W-word and put the verb last. Konjunktiv I *der Zug fahre* (no umlaut) differs from *fährt*, so it is used."}, {"q": "„Ruf mich an!“ → Sie bat mich, ___.", "options": ["sie anzurufen", "mich anzurufen", "sie anrufen", "sie zu anrufen", "ihr anzurufen"], "answer": 0, "explain": "After *bitten* a command becomes *zu* + infinitive, with *zu* inside the separable verb (*anzurufen*). *Mich* shifts to *sie* (= her), and *anrufen* takes the accusative."}, {"q": "Tom: „Das ist mein Auto.“ → Tom sagte, das sei ___ Auto.", "options": ["mein", "sein", "ihr", "dein", "sich"], "answer": 1, "explain": "Possessives shift to the reporter's view: Tom's *mein* becomes *sein* (his)."}, {"q": "A week later you report „Ich war gestern krank.“: Sie sagte, sie sei ___ krank gewesen.", "options": ["gestern", "am nächsten Tag", "am Vortag", "in der folgenden Woche", "heute"], "answer": 2, "explain": "Seen from a later day, *gestern* becomes *am Vortag* (or *am Tag zuvor*)."}, {"q": "„Ich bin krank.“ → Er sagte gestern, er ___ krank.", "options": ["sei gewesen", "habe", "war", "sei", "werde"], "answer": 3, "explain": "The time level comes from the original sentence, not from *sagte*. The original is present tense, so it stays present: *er sei krank*."}, {"q": "In a written text: *Er behauptet, er hätte nichts gewusst.* What can *hätte* (instead of *habe*) suggest?", "options": ["The writer confirms the claim.", "The action is in the future.", "It is a polite request.", "It is a command.", "The writer doubts the claim."], "answer": 4, "explain": "In writing, Konjunktiv II where Konjunktiv I (*habe*) was possible often adds extra doubt."}, {"q": "News style, Konjunktiv I: Laut Polizei ___ der Fahrer die Kontrolle über den Wagen verloren.", "options": ["habe", "sei", "haben", "werde", "hast"], "answer": 0, "explain": "Past in reported speech = *habe/sei* + Partizip II; *verlieren* takes *haben*, and *der Fahrer* is singular: *habe … verloren*."}, {"q": "nach Angaben ___ Ministeriums", "options": ["dem", "des", "das", "den", "der"], "answer": 1, "explain": "*nach Angaben* is followed by a genitive: *des Ministeriums* (= according to the ministry's data)."}, {"q": "*Er räumte ein, Fehler gemacht zu haben.* What does *einräumen* mean here?", "options": ["claim", "deny", "admit", "stress", "announce"], "answer": 2, "explain": "*einräumen* (= *zugeben*) means to admit or concede something."}, {"q": "Recipe style: Man ___ 200 g Mehl.", "options": ["nimmt", "nähme", "nehmt", "nehme", "nimm"], "answer": 3, "explain": "Instructions in recipes use Konjunktiv I with *man*: *man nehme* (stem *nehm-* + *-e*, no vowel change)."}, {"q": "*Wie dem auch sei, wir müssen anfangen.* What does *wie dem auch sei* mean?", "options": ["as it should be", "if it is true", "as it was before", "as soon as possible", "be that as it may"], "answer": 4, "explain": "*Wie dem auch sei* is a fixed Konjunktiv I phrase: be that as it may."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

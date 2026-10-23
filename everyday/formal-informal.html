@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="8629e05185d9">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="index.html">Everyday</a><span class="sep">/</span><span class="cur">Formal and informal</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="3614e978f2ee" class="hide-sm" href="index.html">Everyday</a><span class="sep">/</span><span class="cur">Formal and informal</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Everyday · A2–B1</span><h1>Formal and informal address</h1><p class="sub">du, ihr and Sie, who uses which, how to offer du, and how to open and close emails and letters.</p></header>
@@ -346,20 +352,19 @@ body { margin: 0; }
 <li><em>~~Frau Anna~~</em> → <em>Frau Schmidt</em> or just <em>Anna</em> (with du).</li>
 <li>Saying <em>du</em> to a police officer can be treated as an insult; in Germany it has even led to fines.</li>
 </ul></aside>
-<aside class="callout fact"><p class="callout-title">From Ihrzen to Sie</p><p>German has changed its polite "you" several times. In the early Middle Ages people addressed a single superior with the plural <strong>Ihr</strong> (<em>Ihrzen</em>), a "plural of respect", probably copied from the Latin habit of addressing the Roman emperor with <em>vos</em>. In the 17th century a new form, <strong>Er / Sie</strong> (3rd person singular, <em>Erzen</em>), appeared: "Hat Er das gemacht?" Friedrich II of Prussia was known for using it to his subordinates. Then the <strong>3rd person plural Sie</strong> spread, and by the 18th century it was the standard polite form, with <em>Er</em> and <em>Ihr</em> pushed down to address servants and lower ranks. Old <em>Ihr</em> lives on in fairy tales and fantasy films (<em>Was wünscht Ihr, Herr?</em>).</p>
+<aside class="callout fact"><p class="callout-title">From Ihrzen to Sie</p><p>German has changed its polite "you" several times. In the early Middle Ages people addressed a single superior with the plural <strong>Ihr</strong> (<em>Ihrzen</em>), a "plural of respect", probably copied from the Latin habit of addressing the Roman emperor with <em>vos</em>. In the 17th century a new form, <strong>Er / Sie</strong> (3rd person singular, <em>Erzen</em>), appeared: "Hat Er das gemacht?" Friedrich II of Prussia was known for using it to his subordinates. Then the <strong>3rd person plural Sie</strong> spread, and by the 18th century it was the standard polite form, with <em>Er</em> and <em>Ihr</em> pushed down to address servants and lower ranks. Old <em>Ihr</em> lives on in fairy tales and fantasy films (<em>Was wünscht Ihr, Herr?</em>). English went through the same first step and then took a different turn: <em>you</em> was once the plural and polite form (like <em>Ihr</em>) and <em>thou</em> the informal singular (like <em>du</em>), until <em>you</em> pushed <em>thou</em> out completely. German kept both, which is why it still has a choice to make.</p>
 <p>The 20th century pushed the other way. The <strong>1968 student movement</strong> used <em>du</em> everywhere as an anti-authoritarian sign, and it has been normal among students ever since. <strong>IKEA</strong> brought the Swedish habit to German advertising with its <em>du</em> slogan <em>Wohnst du noch oder lebst du schon?</em> ("Do you still just reside, or do you already live?", used since the early 2000s), and many brands followed.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian <em>ти</em> = <em>du</em>, <em>Ви</em> = <em>Sie</em>, and both languages write the polite form with a capital in letters. But the grammar differs: Ukrainian <em>Ви</em> is the <strong>2nd person plural</strong> (<em>Ви знаєте</em>), exactly like medieval German <em>Ihrzen</em> (<em>Ihr wisst</em>). Modern German moved one step further to the <strong>3rd person plural</strong>: <em>Sie wissen</em> ("they know"). So the German verb with <em>Sie</em> is always the "they" form. Also, Ukrainians use name + patronymic (<em>Олено Петрівно</em>) with <em>Ви</em>; Germans use <em>Frau + surname</em>.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: the Hamburger Sie and Münchner Du</p><p>Two regional mixes: the <strong>Hamburger Sie</strong> is first name + <em>Sie</em> (<em>Anna, können Sie mir helfen?</em>), common among colleagues; the <strong>Münchner Du</strong> is <em>du</em> + surname (<em>Müller, kannst du mal kommen?</em>), heard in workshops and some workplaces. Both are informal hybrids; do not start them yourself.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../everyday/index.html">Everyday German</a></li>
-<li><a href="../grammar/pronouns/personal.html">Personal pronouns</a></li>
-<li><a href="../grammar/pronouns/possessive.html">Possessive pronouns</a></li>
-<li><a href="../grammar/moods/imperative.html">Imperative</a></li>
+<li><a data-quiz="3614e978f2ee" href="../everyday/index.html">Everyday German</a></li>
+<li><a data-quiz="94e63021296d" href="../grammar/pronouns/personal.html">Personal pronouns</a></li>
+<li><a data-quiz="8f8aa84beb74" href="../grammar/pronouns/possessive.html">Possessive pronouns</a></li>
+<li><a data-quiz="707095ae9a39" href="../grammar/moods/imperative.html">Imperative</a></li>
 <li><a href="../docs/b2-formal-german.html">Formal German (B2)</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="clock-and-time.html">Clock and time →</a></nav>
+<nav class="pager"><a data-quiz="714084ebb430" class="btn" href="clock-and-time.html">Clock and time →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -377,12 +382,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Entschuldigung, können *___* mir helfen? (to a stranger)", "options": ["du", "ihr", "Sie", "sie", "Ihnen"], "answer": 2, "explain": "Strangers get *Sie*, with a capital. Lowercase *sie* would mean 'they' (A2)."}, {"q": "Wie heißen *___*? (formal)", "options": ["Sie", "Ihnen", "Ihr", "du", "dich"], "answer": 0, "explain": "*heißen* (3rd person plural) + formal subject *Sie* (A2)."}, {"q": "Das ist für *___*, Frau Schmidt.", "options": ["Ihnen", "Ihr", "dich", "Sie", "Ihre"], "answer": 3, "explain": "*für* takes the accusative, and formal accusative is *Sie* (A2)."}, {"q": "Ich danke *___*, Herr Klein.", "options": ["Sie", "Ihnen", "Ihr", "Ihre", "dich"], "answer": 1, "explain": "*danken* takes the dative: formal *Ihnen*, with a capital (B1)."}, {"q": "Ist das *___* Koffer, Herr Braun?", "options": ["Ihre", "Sie", "Ihnen", "Ihren", "Ihr"], "answer": 4, "explain": "Formal possessive for masculine *der Koffer* (nominative): *Ihr Koffer* (B1)."}, {"q": "Kinder, habt *___* Hunger?", "options": ["du", "ihr", "Sie", "euch", "dich"], "answer": 1, "explain": "Several people you say *du* to = *ihr*, verb *habt* (A2)."}, {"q": "Woher *___* Sie?", "options": ["kommt", "kommst", "komme", "kommen", "kam"], "answer": 3, "explain": "*Sie* always takes the 3rd person plural form: *kommen*, even for one person (A2)."}, {"q": "Offering to switch to du: Wollen wir uns *___*?", "options": ["duzen", "dusen", "du sagen", "dutzen", "duzt"], "answer": 0, "explain": "The verb is *duzen* (to say du), reflexive with *uns*. The opposite is *siezen* (B1)."}, {"q": "You are 25, your colleague is 55. Who traditionally offers the du?", "options": ["you", "whoever speaks first", "nobody, it is forbidden at work", "the boss of the company", "the colleague"], "answer": 4, "explain": "The older (or higher-ranking) person offers *du*; the younger one waits (B1)."}, {"q": "Formal letter: *___* Herr Dr. Müller,", "options": ["Sehr geehrte", "Sehr geehrt", "Sehr geehrter", "Sehr geehrten", "Sehr geehrtes"], "answer": 2, "explain": "Formal opening to a man: *Sehr geehrter* (masculine *-er*), then *Herr Dr.* + surname (B1)."}, {"q": "Email to a friend: Viele *___*, Anna", "options": ["Grüßen", "Gruß", "Grüße", "Grüßes", "gegrüßt"], "answer": 2, "explain": "Standalone plural *viele Grüße*; *Grüßen* only after *mit* (A2)."}, {"q": "In a message, LG means:", "options": ["Liebe Grüße", "Langer Gruß", "Leider gut", "Lass gehen", "Letzte Gelegenheit"], "answer": 0, "explain": "*LG* = *Liebe Grüße*, an informal closing for friends (A2)."}, {"q": "Sehr geehrte Frau Weber, vielen Dank für *___* E-Mail.", "options": ["Ihrer", "deine", "Ihr", "Ihre", "Ihren"], "answer": 3, "explain": "*für* + accusative, feminine *die E-Mail*, formal: *Ihre*. Lowercase *ihre* would mean 'her' (B1)."}, {"q": "Medieval Ihrzen means addressing one person with:", "options": ["er / sie (3rd person singular)", "ihr (2nd person plural)", "Sie (3rd person plural)", "du", "man"], "answer": 1, "explain": "*Ihrzen* used the plural *Ihr* for one respected person, a 'plural of respect' (B1)."}, {"q": "Erzen (17th century) means addressing someone with:", "options": ["Ihr (2nd person plural)", "Sie (3rd person plural)", "du", "wir", "Er / Sie (3rd person singular)"], "answer": 4, "explain": "*Erzen* used *Er* or *Sie* in the singular: *Hat Er das gemacht?* (B1)."}, {"q": "When did Sie (3rd person plural) become the standard polite form?", "options": ["9th century", "17th–18th century", "after 1968", "after 1945", "13th century"], "answer": 1, "explain": "*Sie* spread in the 17th century and was standard by the 18th, pushing *Er* and *Ihr* down (B1)."}, {"q": "Ukrainian Ви is grammatically closest to:", "options": ["modern Sie (3rd person plural)", "Erzen (3rd person singular)", "du", "medieval Ihrzen (2nd person plural)", "man"], "answer": 3, "explain": "*Ви знаєте* is 2nd person plural, like old *Ihr wisst*; modern German uses 'they': *Sie wissen* (B1)."}, {"q": "The correct formal way to address Anna Schmidt:", "options": ["Frau Schmidt", "Frau Anna", "Fräulein Anna", "Schmidt", "Mrs Schmidt"], "answer": 0, "explain": "Formal address = *Frau* + surname. *Fräulein* is outdated (A2)."}, {"q": "Herr und Frau Becker, kommen *___* auch mit?", "options": ["ihr", "du", "Ihnen", "euch", "Sie"], "answer": 4, "explain": "Herr/Frau + surname is formal, and the verb *kommen* matches *Sie*; *Sie* also covers several people (B1)."}, {"q": "Meine Damen und Herren, vielen Dank für *___* Aufmerksamkeit.", "options": ["eure", "deine", "Ihre", "Ihren", "Ihrer"], "answer": 2, "explain": "*Meine Damen und Herren* is formal: *für* + accusative feminine *Ihre* (B1)."}, {"q": "In Switzerland, compared with Germany, du at work is:", "options": ["forbidden", "only used by managers", "more common", "much rarer", "only used in emails"], "answer": 2, "explain": "Swiss workplaces switch to *du* more often and earlier than German ones (B1)."}, {"q": "IKEA's German slogan: *___* du noch oder lebst du schon?", "options": ["Wohnst", "Wohnt", "Wohnen", "Wohne", "Gewohnt"], "answer": 0, "explain": "With *du* the verb ends in *-st*: *wohnst*. IKEA famously uses *du* in its ads (A2)."}, {"q": "In Vienna, to Dr. Anna Huber: Guten Tag, Frau *___*!", "options": ["Doktorin Anna", "Huber Doktor", "Anna", "Doktor Huber", "Doktor Anna"], "answer": 3, "explain": "Title + surname: *Frau Doktor Huber*. In Austria titles are used in speech much more than in Germany (B1)."}], "title": "Formal and informal address quiz", "level": "A2–B1"}
+{"questions": [{"q": "Entschuldigung, können *___* mir helfen? (to a stranger)", "options": ["du", "ihr", "Sie", "sie", "Ihnen"], "answer": 2, "explain": "Strangers get *Sie*, with a capital. Lowercase *sie* would mean 'they' (A2)."}, {"q": "Wie heißen *___*? (formal)", "options": ["Sie", "Ihnen", "Ihr", "du", "dich"], "answer": 0, "explain": "*heißen* (3rd person plural) + formal subject *Sie* (A2)."}, {"q": "Das ist für *___*, Frau Schmidt.", "options": ["Ihnen", "Ihr", "dich", "Sie", "Ihre"], "answer": 3, "explain": "*für* takes the accusative, and formal accusative is *Sie* (A2)."}, {"q": "Ich danke *___*, Herr Klein.", "options": ["Sie", "Ihnen", "Ihr", "Ihre", "dich"], "answer": 1, "explain": "*danken* takes the dative: formal *Ihnen*, with a capital (B1)."}, {"q": "Ist das *___* Koffer, Herr Braun?", "options": ["Ihre", "Sie", "Ihnen", "Ihren", "Ihr"], "answer": 4, "explain": "Formal possessive for masculine *der Koffer* (nominative): *Ihr Koffer* (B1)."}, {"q": "Kinder, habt *___* Hunger?", "options": ["du", "ihr", "Sie", "euch", "dich"], "answer": 1, "explain": "Several people you say *du* to = *ihr*, verb *habt* (A2)."}, {"q": "Woher *___* Sie?", "options": ["kommt", "kommst", "komme", "kommen", "kam"], "answer": 3, "explain": "*Sie* always takes the 3rd person plural form: *kommen*, even for one person (A2)."}, {"q": "Offering to switch to du: Wollen wir uns *___*?", "options": ["duzen", "dusen", "du sagen", "dutzen", "duzt"], "answer": 0, "explain": "The verb is *duzen* (to say du), reflexive with *uns*. The opposite is *siezen* (B1)."}, {"q": "You are 25, your colleague is 55. Who traditionally offers the du?", "options": ["you", "whoever speaks first", "nobody, it is forbidden at work", "the boss of the company", "the colleague"], "answer": 4, "explain": "The older (or higher-ranking) person offers *du*; the younger one waits (B1)."}, {"q": "Formal letter: *___* Herr Dr. Müller,", "options": ["Sehr geehrte", "Sehr geehrt", "Sehr geehrter", "Sehr geehrten", "Sehr geehrtes"], "answer": 2, "explain": "Formal opening to a man: *Sehr geehrter* (masculine *-er*), then *Herr Dr.* + surname (B1)."}, {"q": "Email to a friend: Viele *___*, Anna", "options": ["Grüßen", "Gruß", "Grüße", "Grüßes", "gegrüßt"], "answer": 2, "explain": "Standalone plural *viele Grüße*; *Grüßen* only after *mit* (A2)."}, {"q": "In a message, LG means:", "options": ["Liebe Grüße", "Langer Gruß", "Leider gut", "Lass gehen", "Letzte Gelegenheit"], "answer": 0, "explain": "*LG* = *Liebe Grüße*, an informal closing for friends (A2)."}, {"q": "Sehr geehrte Frau Weber, vielen Dank für *___* E-Mail.", "options": ["Ihrer", "deine", "Ihr", "Ihre", "Ihren"], "answer": 3, "explain": "*für* + accusative, feminine *die E-Mail*, formal: *Ihre*. Lowercase *ihre* would mean 'her' (B1)."}, {"q": "Medieval Ihrzen means addressing one person with:", "options": ["er / sie (3rd person singular)", "ihr (2nd person plural)", "Sie (3rd person plural)", "du", "man"], "answer": 1, "explain": "*Ihrzen* used the plural *Ihr* for one respected person, a 'plural of respect' (B1)."}, {"q": "Erzen (17th century) means addressing someone with:", "options": ["Ihr (2nd person plural)", "Sie (3rd person plural)", "du", "wir", "Er / Sie (3rd person singular)"], "answer": 4, "explain": "*Erzen* used *Er* or *Sie* in the singular: *Hat Er das gemacht?* (B1)."}, {"q": "When did Sie (3rd person plural) become the standard polite form?", "options": ["9th century", "17th–18th century", "after 1968", "after 1945", "13th century"], "answer": 1, "explain": "*Sie* spread in the 17th century and was standard by the 18th, pushing *Er* and *Ihr* down (B1)."}, {"q": "Old English *thou* (informal, one person) matches the German pronoun:", "options": ["Sie", "ihr", "Er", "du", "Ihnen"], "answer": 3, "explain": "*thou* was the informal singular, like *du*; *you* was the plural and polite form, like old *Ihr*. English later dropped *thou*, German kept *du* (B1)."}, {"q": "The correct formal way to address Anna Schmidt:", "options": ["Frau Schmidt", "Frau Anna", "Fräulein Anna", "Schmidt", "Mrs Schmidt"], "answer": 0, "explain": "Formal address = *Frau* + surname. *Fräulein* is outdated (A2)."}, {"q": "Herr und Frau Becker, kommen *___* auch mit?", "options": ["ihr", "du", "Ihnen", "euch", "Sie"], "answer": 4, "explain": "Herr/Frau + surname is formal, and the verb *kommen* matches *Sie*; *Sie* also covers several people (B1)."}, {"q": "Meine Damen und Herren, vielen Dank für *___* Aufmerksamkeit.", "options": ["eure", "deine", "Ihre", "Ihren", "Ihrer"], "answer": 2, "explain": "*Meine Damen und Herren* is formal: *für* + accusative feminine *Ihre* (B1)."}, {"q": "In Switzerland, compared with Germany, du at work is:", "options": ["forbidden", "only used by managers", "more common", "much rarer", "only used in emails"], "answer": 2, "explain": "Swiss workplaces switch to *du* more often and earlier than German ones (B1)."}, {"q": "IKEA's German slogan: *___* du noch oder lebst du schon?", "options": ["Wohnst", "Wohnt", "Wohnen", "Wohne", "Gewohnt"], "answer": 0, "explain": "With *du* the verb ends in *-st*: *wohnst*. IKEA famously uses *du* in its ads (A2)."}, {"q": "In Vienna, to Dr. Anna Huber: Guten Tag, Frau *___*!", "options": ["Doktorin Anna", "Huber Doktor", "Anna", "Doktor Huber", "Doktor Anna"], "answer": 3, "explain": "Title + surname: *Frau Doktor Huber*. In Austria titles are used in speech much more than in Germany (B1)."}], "title": "Formal and informal address quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -394,18 +403,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -420,14 +443,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -439,7 +462,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -448,14 +471,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -463,23 +486,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

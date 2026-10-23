@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="68fbbfc373da">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Cases</a><span class="sep">/</span><span class="cur">Dative</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="d221fc543f6b" class="hide-sm" href="index.html">Cases</a><span class="sep">/</span><span class="cur">Dative</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Dative</h1><p class="sub">The indirect object, the dative prepositions, the plural -n, dative verbs and contractions like zum and beim.</p></header>
@@ -196,9 +202,9 @@ body { margin: 0; }
 <p>The dative is the case of the receiver: the person who gets something, to whom something is given, shown or explained. It is also the case after the most common prepositions (<em>mit, bei, zu, von, nach</em>), so you use it all the time, even in very simple sentences like <em>Ich fahre mit dem Bus</em>.</p>
 <h2>A2 core</h2>
 <h3>The indirect object</h3>
-<p>With verbs like <em>geben, schenken, zeigen, erklären, schicken</em>, the thing is in the accusative and the person who receives it is in the dative. The question is <strong>wem?</strong> (<em>кому?</em>).</p>
+<p>With verbs like <em>geben, schenken, zeigen, erklären, schicken</em>, the thing is in the accusative and the person who receives it is in the dative. The question is <strong>wem?</strong>.</p>
 <ul>
-<li>Ich gebe <strong>dem Kind</strong> einen Apfel. — <em>I give the child an apple.</em> (Я даю дитині яблуко.)</li>
+<li>Ich gebe <strong>dem Kind</strong> einen Apfel. — <em>I give the child an apple.</em></li>
 <li>Sie schenkt <strong>ihrer Mutter</strong> Blumen. — <em>She gives her mother flowers.</em></li>
 <li>Kannst du <strong>mir</strong> das erklären? — <em>Can you explain that to me?</em></li>
 <li>Der Lehrer zeigt <strong>den Schülern</strong> ein Video. — <em>The teacher shows the pupils a video.</em></li>
@@ -362,31 +368,30 @@ body { margin: 0; }
 <p>A small group of verbs takes only a dative object: <em>helfen, danken, gefallen, gehören, gratulieren, antworten, glauben (jemandem), schmecken, passen, fehlen</em>.</p>
 <ul>
 <li>Ich helfe <strong>dir</strong>. — <em>I'm helping you.</em></li>
-<li>Das Kleid gefällt <strong>mir</strong>. — <em>I like the dress.</em> (Мені подобається сукня.)</li>
+<li>Das Kleid gefällt <strong>mir</strong>. — <em>I like the dress.</em></li>
 <li>Wem gehört das Handy? — <em>Whose phone is it?</em></li>
 </ul>
-<p>The full list and practice are on <a href="../../grammar/verbs/dative-verbs.html">Dative verbs</a>.</p>
+<p>The full list and practice are on <a data-quiz="dec4bebe93e3" href="../../grammar/verbs/dative-verbs.html">Dative verbs</a>.</p>
 <h3>Order of two objects</h3>
 <p>With two nouns: dative before accusative (<em>Ich gebe dem Kind den Ball</em>). With a pronoun in the accusative, it moves first: <em>Ich gebe ihn dem Kind. Ich gebe ihn ihm.</em></p>
 <aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
-<li><em>Ich helfe ~~dich~~</em> — <em>helfen</em> is a dative verb: <em>Ich helfe dir</em> (like Ukrainian <em>допомагаю тобі</em>).</li>
+<li><em>Ich helfe ~~dich~~</em> — <em>helfen</em> is a dative verb: <em>Ich helfe dir</em>.</li>
 <li><em>mit ~~die~~ Kinder</em> — after <em>mit</em> you need the dative plural with -n: <em>mit den Kindern</em>.</li>
 <li><em>Ich gehe ~~zu~~ Hause</em> means nothing: <em>nach Hause</em> (going home), <em>zu Hause</em> (at home).</li>
 <li><em>seit</em> + present tense: <em>Ich wohne seit zwei Jahren hier</em>, not ~~ich habe gewohnt~~.</li>
 <li><em>nach</em> for cities and most countries, <em>zu</em> for people and buildings: <em>nach Wien</em>, <em>zum Bäcker</em>, <em>in die Schweiz</em>.</li>
 </ul></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>The German dative covers three Ukrainian cases. Давальний: <em>дати мамі</em> = <em>der Mama geben</em>. Орудний: <em>з друзями</em> = <em>mit den Freunden</em>. Місцевий: <em>у банку</em> = <em>in der Bank</em>. Even <em>Мені холодно</em> has a German twin in the dative: <em>Mir ist kalt</em>.</p></aside>
 <aside class="callout fact"><p class="callout-title">The fossil dative -e in &quot;zu Hause&quot;</p><p>Older German added <strong>-e</strong> to many masculine and neuter nouns in the dative singular: <em>dem Manne, dem Hause, dem Tage</em>. Goethe and Schiller still wrote like that. Today it sounds old-fashioned, but it survives in fixed phrases you use every day: <em>zu Hause, nach Hause, im Grunde, im Jahre 1990, auf dem Lande</em>. So the -e in <em>zu Hause</em> is an old dative ending.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></li>
-<li><a href="../../grammar/cases/nominative-accusative.html">Nominative and accusative</a></li>
-<li><a href="../../grammar/cases/genitive.html">Genitive</a></li>
+<li><a data-quiz="dec4bebe93e3" href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></li>
+<li><a data-quiz="f2303e45fe7c" href="../../grammar/cases/nominative-accusative.html">Nominative and accusative</a></li>
+<li><a data-quiz="50797f39ef5f" href="../../grammar/cases/genitive.html">Genitive</a></li>
 <li><a href="../../docs/prepositions.html">Prepositions</a></li>
 <li><a href="../../docs/articles.html">Articles</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="nominative-accusative.html">← Nom &amp; Akk</a><a class="btn" href="genitive.html">Genitive →</a></nav>
+<nav class="pager"><a data-quiz="f2303e45fe7c" class="btn" href="nominative-accusative.html">← Nom &amp; Akk</a><a data-quiz="50797f39ef5f" class="btn" href="genitive.html">Genitive →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -404,12 +409,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich gebe *___* Kind einen Apfel.", "options": ["das", "den", "dem", "der", "des"], "answer": 2, "explain": "The child receives the apple (wem?), so neuter *das Kind* becomes *dem Kind* (A2)."}, {"q": "Sie schenkt *___* Mutter Blumen.", "options": ["ihre", "ihren", "ihrer", "ihrem", "ihr"], "answer": 2, "explain": "The mother is the receiver; feminine dative ends in *-r*: *ihrer Mutter* (A2)."}, {"q": "Kannst du *___* helfen? (ich)", "options": ["mich", "mir", "ich", "mein", "meiner"], "answer": 1, "explain": "*helfen* takes the dative: *mir*, like Ukrainian *допоможи мені* (A2)."}, {"q": "Ich fahre mit *___* Zug.", "options": ["dem", "den", "der", "das", "die"], "answer": 0, "explain": "*mit* is always dative; *der Zug* becomes *dem Zug* (A2)."}, {"q": "Ich komme aus *___* Ukraine.", "options": ["die", "dem", "den", "der", "des"], "answer": 3, "explain": "*aus* takes the dative; *die Ukraine* becomes *der Ukraine* (A2)."}, {"q": "Ich spiele mit den *___*.", "options": ["Kinder", "Kind", "Kindern", "Kindes", "Kinds"], "answer": 2, "explain": "Dative plural adds *-n* to the noun: *mit den Kindern* (A2)."}, {"q": "Ich gehe heute *___* Arzt.", "options": ["zur", "zu der", "beim", "nach", "zum"], "answer": 4, "explain": "*zu* + *dem Arzt* contracts to *zum Arzt*; you go to people with *zu* (A2)."}, {"q": "Sie fährt *___* Arbeit.", "options": ["zum", "nach", "zu die", "zur", "beim"], "answer": 3, "explain": "*die Arbeit* is feminine, so *zu der* contracts to *zur* (A2)."}, {"q": "Wir fahren morgen *___* Berlin.", "options": ["nach", "zu", "zum", "bei", "auf"], "answer": 0, "explain": "Cities and most countries take *nach*: *nach Berlin* (A2)."}, {"q": "Das Buch gehört *___*. (er)", "options": ["ihn", "ihm", "er", "sein", "ihr"], "answer": 1, "explain": "*gehören* is a dative verb; the dative of *er* is *ihm* (B1)."}, {"q": "Ich wohne *___* zwei Jahren in Wien.", "options": ["vor", "für", "ab", "von", "seit"], "answer": 4, "explain": "*seit* + dative expresses a time that started in the past and continues now, with the present tense (B1)."}, {"q": "Er ist gerade *___* Arzt.", "options": ["zur", "bei der", "vom", "beim", "am"], "answer": 3, "explain": "Being at someone's place is *bei*; *bei dem Arzt* contracts to *beim Arzt* (B1)."}, {"q": "*___* Kochen höre ich immer Musik.", "options": ["Im", "Vom", "Bei", "Beim", "Mit"], "answer": 3, "explain": "*beim* + infinitive as a noun means \"while doing\": *beim Kochen* (B1)."}, {"q": "Ich komme gerade *___* Training.", "options": ["vom", "von der", "von das", "zur", "beim"], "answer": 0, "explain": "*das Training* is neuter; *von dem* contracts to *vom* (B1)."}, {"q": "Das Kleid gefällt *___* sehr. (sie, singular)", "options": ["sie", "ihnen", "ihr", "ihm", "ihre"], "answer": 2, "explain": "*gefallen* takes the dative; *sie* (she) becomes *ihr*, like *їй подобається* (B1)."}, {"q": "Ich danke *___* für die Hilfe. (Sie, formal)", "options": ["Sie", "Ihnen", "Ihr", "Ihren", "Ihrem"], "answer": 1, "explain": "*danken* is a dative verb; formal *Sie* becomes *Ihnen* (B1)."}, {"q": "Die Apotheke ist dem Bahnhof *___*.", "options": ["gegenüber", "gegen", "um", "durch", "entlang"], "answer": 0, "explain": "*gegenüber* (opposite) takes the dative and often comes after the noun (B1)."}, {"q": "Der Lehrer erklärt *___* die Regel.", "options": ["die Schüler", "den Schülern", "den Schüler", "der Schüler", "dem Schülern"], "answer": 1, "explain": "The pupils receive the explanation: dative plural *den Schülern*, with *-n* on the noun (B1)."}, {"q": "Ich war gestern bei *___* Freundin.", "options": ["meine", "meinem", "meinen", "mein", "meiner"], "answer": 4, "explain": "*bei* is dative; feminine *meine Freundin* becomes *meiner Freundin* (A2)."}, {"q": "Which word does NOT add -n in the dative plural?", "options": ["den Kindern", "den Freunden", "den Leuten", "den Autos", "den Tischen"], "answer": 3, "explain": "Plurals in *-s* (and in *-n*) add nothing: *den Autos*, *den Frauen* (B1)."}, {"q": "Ich gehe jetzt nach *___*.", "options": ["Hause", "Haus", "dem Haus", "Häuser", "zu Hause"], "answer": 0, "explain": "Going home is the fixed phrase *nach Hause*; *zu Hause* means at home (A2)."}, {"q": "Antworte *___* bitte schnell! (wir)", "options": ["unser", "wir", "unserem", "unseren", "uns"], "answer": 4, "explain": "*antworten* takes the dative; *wir* becomes *uns* (B1)."}, {"q": "Das Geschenk ist von *___* Großvater.", "options": ["meinen", "mein", "meiner", "meines", "meinem"], "answer": 4, "explain": "*von* always takes the dative; masculine *mein* becomes *meinem* (A2)."}, {"q": "Ich gebe ihn *___*. (der Ball, to my brother)", "options": ["meinen Bruder", "mein Bruder", "meinem Bruder", "meines Bruders", "meiner Bruder"], "answer": 2, "explain": "The receiver is dative: *meinem Bruder*. An accusative pronoun (*ihn*) goes before the dative noun (B1)."}, {"q": "*Мені холодно* in German is...", "options": ["Mich ist kalt.", "Mir ist kalt.", "Ich bin kalt.", "Mein ist kalt.", "Ich habe kalt."], "answer": 1, "explain": "German also uses the dative here: *Mir ist kalt*. *Ich bin kalt* means you are a cold person (B1)."}, {"q": "Nach *___* Unterricht gehen wir ins Café.", "options": ["dem", "den", "der", "das", "des"], "answer": 0, "explain": "*nach* (after) takes the dative; *der Unterricht* becomes *dem Unterricht* (A2)."}], "title": "Dative quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich gebe *___* Kind einen Apfel.", "options": ["das", "den", "dem", "der", "des"], "answer": 2, "explain": "The child receives the apple (wem?), so neuter *das Kind* becomes *dem Kind* (A2)."}, {"q": "Sie schenkt *___* Mutter Blumen.", "options": ["ihre", "ihren", "ihrer", "ihrem", "ihr"], "answer": 2, "explain": "The mother is the receiver; feminine dative ends in *-r*: *ihrer Mutter* (A2)."}, {"q": "Kannst du *___* helfen? (ich)", "options": ["mich", "mir", "ich", "mein", "meiner"], "answer": 1, "explain": "*helfen* takes the dative: *mir* (A2)."}, {"q": "Ich fahre mit *___* Zug.", "options": ["dem", "den", "der", "das", "die"], "answer": 0, "explain": "*mit* is always dative; *der Zug* becomes *dem Zug* (A2)."}, {"q": "Ich komme aus *___* Ukraine.", "options": ["die", "dem", "den", "der", "des"], "answer": 3, "explain": "*aus* takes the dative; *die Ukraine* becomes *der Ukraine* (A2)."}, {"q": "Ich spiele mit den *___*.", "options": ["Kinder", "Kind", "Kindern", "Kindes", "Kinds"], "answer": 2, "explain": "Dative plural adds *-n* to the noun: *mit den Kindern* (A2)."}, {"q": "Ich gehe heute *___* Arzt.", "options": ["zur", "zu der", "beim", "nach", "zum"], "answer": 4, "explain": "*zu* + *dem Arzt* contracts to *zum Arzt*; you go to people with *zu* (A2)."}, {"q": "Sie fährt *___* Arbeit.", "options": ["zum", "nach", "zu die", "zur", "beim"], "answer": 3, "explain": "*die Arbeit* is feminine, so *zu der* contracts to *zur* (A2)."}, {"q": "Wir fahren morgen *___* Berlin.", "options": ["nach", "zu", "zum", "bei", "auf"], "answer": 0, "explain": "Cities and most countries take *nach*: *nach Berlin* (A2)."}, {"q": "Das Buch gehört *___*. (er)", "options": ["ihn", "ihm", "er", "sein", "ihr"], "answer": 1, "explain": "*gehören* is a dative verb; the dative of *er* is *ihm* (B1)."}, {"q": "Ich wohne *___* zwei Jahren in Wien.", "options": ["vor", "für", "ab", "von", "seit"], "answer": 4, "explain": "*seit* + dative expresses a time that started in the past and continues now, with the present tense (B1)."}, {"q": "Er ist gerade *___* Arzt.", "options": ["zur", "bei der", "vom", "beim", "am"], "answer": 3, "explain": "Being at someone's place is *bei*; *bei dem Arzt* contracts to *beim Arzt* (B1)."}, {"q": "*___* Kochen höre ich immer Musik.", "options": ["Im", "Vom", "Bei", "Beim", "Mit"], "answer": 3, "explain": "*beim* + infinitive as a noun means \"while doing\": *beim Kochen* (B1)."}, {"q": "Ich komme gerade *___* Training.", "options": ["vom", "von der", "von das", "zur", "beim"], "answer": 0, "explain": "*das Training* is neuter; *von dem* contracts to *vom* (B1)."}, {"q": "Das Kleid gefällt *___* sehr. (sie, singular)", "options": ["sie", "ihnen", "ihr", "ihm", "ihre"], "answer": 2, "explain": "*gefallen* takes the dative; *sie* (she) becomes *ihr*."}, {"q": "Ich danke *___* für die Hilfe. (Sie, formal)", "options": ["Sie", "Ihnen", "Ihr", "Ihren", "Ihrem"], "answer": 1, "explain": "*danken* is a dative verb; formal *Sie* becomes *Ihnen* (B1)."}, {"q": "Die Apotheke ist dem Bahnhof *___*.", "options": ["gegenüber", "gegen", "um", "durch", "entlang"], "answer": 0, "explain": "*gegenüber* (opposite) takes the dative and often comes after the noun (B1)."}, {"q": "Der Lehrer erklärt *___* die Regel.", "options": ["die Schüler", "den Schülern", "den Schüler", "der Schüler", "dem Schülern"], "answer": 1, "explain": "The pupils receive the explanation: dative plural *den Schülern*, with *-n* on the noun (B1)."}, {"q": "Ich war gestern bei *___* Freundin.", "options": ["meine", "meinem", "meinen", "mein", "meiner"], "answer": 4, "explain": "*bei* is dative; feminine *meine Freundin* becomes *meiner Freundin* (A2)."}, {"q": "Which word does NOT add -n in the dative plural?", "options": ["den Kindern", "den Freunden", "den Leuten", "den Autos", "den Tischen"], "answer": 3, "explain": "Plurals in *-s* (and in *-n*) add nothing: *den Autos*, *den Frauen* (B1)."}, {"q": "Ich gehe jetzt nach *___*.", "options": ["Hause", "Haus", "dem Haus", "Häuser", "zu Hause"], "answer": 0, "explain": "Going home is the fixed phrase *nach Hause*; *zu Hause* means at home (A2)."}, {"q": "Antworte *___* bitte schnell! (wir)", "options": ["unser", "wir", "unserem", "unseren", "uns"], "answer": 4, "explain": "*antworten* takes the dative; *wir* becomes *uns* (B1)."}, {"q": "Das Geschenk ist von *___* Großvater.", "options": ["meinen", "mein", "meiner", "meines", "meinem"], "answer": 4, "explain": "*von* always takes the dative; masculine *mein* becomes *meinem* (A2)."}, {"q": "Ich gebe ihn *___*. (der Ball, to my brother)", "options": ["meinen Bruder", "mein Bruder", "meinem Bruder", "meines Bruders", "meiner Bruder"], "answer": 2, "explain": "The receiver is dative: *meinem Bruder*. An accusative pronoun (*ihn*) goes before the dative noun (B1)."}, {"q": "Nach *___* Unterricht gehen wir ins Café.", "options": ["dem", "den", "der", "das", "des"], "answer": 0, "explain": "*nach* (after) takes the dative; *der Unterricht* becomes *dem Unterricht* (A2)."}], "title": "Dative quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -421,18 +430,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -447,14 +470,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -466,7 +489,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -475,14 +498,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -490,23 +513,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

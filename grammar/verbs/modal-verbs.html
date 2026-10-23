@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="f7e33196feac">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Modal verbs</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="53c724d48f43" class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Modal verbs</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Modal verbs</h1><p class="sub">können, müssen, dürfen, sollen, wollen, mögen and möchten: their forms, the sentence frame they build and the meaning traps.</p></header>
@@ -332,7 +338,7 @@ body { margin: 0; }
 <li>Ich weiß, dass du gut Deutsch <strong>sprechen kannst</strong>. – <em>I know that you can speak German well.</em></li>
 </ul>
 <aside class="callout hack"><p class="callout-title">Modal = no &quot;zu&quot;, no ending</p><p>Two quick checks after you write a modal sentence: the modal has no <em>-t</em> with <em>er</em> (<em>er kann</em>, never <em>er kannt</em>), and the second verb has no <em>zu</em> (<em>ich muss arbeiten</em>, never <em>ich muss zu arbeiten</em>).</p></aside>
-<aside class="callout trap"><p class="callout-title">nicht müssen ≠ must not</p><p><em>Du musst nicht kommen</em> means <strong>you don't have to come</strong>. "You must not" is <em>Du darfst nicht kommen</em>. English speakers fall into this every day. Ukrainian is closer: <em>не мусиш</em> (no need) vs <em>не можна</em> (forbidden). Instead of <em>nicht müssen</em> you can also say <em>nicht brauchen zu</em>: <em>Du brauchst nicht zu kommen.</em></p></aside>
+<aside class="callout trap"><p class="callout-title">nicht müssen ≠ must not</p><p><em>Du musst nicht kommen</em> means <strong>you don't have to come</strong>. "You must not" is <em>Du darfst nicht kommen</em>. English speakers fall into this every day. Instead of <em>nicht müssen</em> you can also say <em>nicht brauchen zu</em>: <em>Du brauchst nicht zu kommen.</em></p></aside>
 <h2>B1</h2>
 <h3>möchten vs wollen</h3>
 <p>Both mean "want", but the tone differs:</p>
@@ -395,18 +401,17 @@ body { margin: 0; }
 <aside class="callout hack"><p class="callout-title">The Präteritum looks like a weak verb</p><p>Take the infinitive, drop the umlaut, add <em>-te</em>: <em>dürfen → durfte, müssen → musste, können → konnte</em>. Only <em>mögen → mochte</em> changes the consonant too.</p></aside>
 <h3>Modals without a second verb</h3>
 <p>When the meaning is obvious, the infinitive can disappear: <em>Ich <strong>kann</strong> Deutsch</em> (speak), <em>Ich <strong>muss</strong> nach Hause</em> (go), <em>Das <strong>darfst</strong> du nicht</em> (do).</p>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian has the same idea, different tools</p><p><em>можу</em> = <em>kann</em>, <em>мушу/треба</em> = <em>muss</em>, <em>можна</em> = <em>darf</em>, <em>хочу</em> = <em>will</em>, <em>хотів би</em> = <em>möchte</em>. Note that Ukrainian <em>можна</em> (it is allowed) is <em>man darf</em>, not <em>man kann</em>: <em>Тут можна палити? – Darf man hier rauchen?</em></p></aside>
 <aside class="callout fact"><p class="callout-title">möchte is a past form in disguise</p><p><em>möchte</em> is historically the Konjunktiv II of <em>mögen</em> ("would like"), which is why it looks like a past tense. <em>mögen</em> once meant "to be able", like English <em>may</em> and <em>might</em>, which come from the same root. The noun <em>die Macht</em> (power) is related too.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: modal verbs in the Perfekt</p><p>When a modal has another verb, its Perfekt uses a double infinitive: <em>Ich <strong>habe</strong> nicht <strong>kommen können</strong>.</em> In a subordinate clause <em>haben</em> comes before both infinitives: <em>..., weil ich nicht <strong>habe kommen können</strong>.</em> In daily speech just use the Präteritum: <em>Ich konnte nicht kommen.</em></p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
-<li><a href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></li>
-<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
+<li><a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a data-quiz="12d92a4067fe" href="../../grammar/verbs/zu-infinitive.html">zu + infinitive</a></li>
+<li><a data-quiz="20b42c5f8e14" href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
 <li><a href="../../docs/word-order.html">Word order</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="sein-haben-werden.html">← sein, haben, werden</a><a class="btn" href="reflexive-verbs.html">Reflexive verbs →</a></nav>
+<nav class="pager"><a data-quiz="f8cd2a606b21" class="btn" href="sein-haben-werden.html">← sein, haben, werden</a><a data-quiz="d6157bf64e54" class="btn" href="reflexive-verbs.html">Reflexive verbs →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -424,12 +429,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Er *___* sehr gut Gitarre spielen.", "options": ["könnt", "kannt", "kann", "kannst", "können"], "answer": 2, "explain": "Modal verbs have no ending with *er/sie/es*: *er kann* (A2)."}, {"q": "*___* du mir bitte helfen?", "options": ["Kannst", "Kann", "Könnst", "Kanst", "Könnt"], "answer": 0, "explain": "*du kannst*; the *-st* ending is normal, only *ich* and *er* have none (A2)."}, {"q": "Ich muss heute lange *___*.", "options": ["zu arbeiten", "arbeite", "gearbeitet", "arbeiten", "arbeitet"], "answer": 3, "explain": "After a modal the second verb is a bare infinitive at the end, without *zu* (A2)."}, {"q": "Im Museum *___* man nicht fotografieren. Das ist verboten.", "options": ["muss", "darf", "will", "möchte", "mag"], "answer": 1, "explain": "Forbidden = *nicht dürfen*, like Ukrainian *не можна* (A2)."}, {"q": "Du *___* nicht kommen, wenn du keine Zeit hast. Es ist kein Problem.", "options": ["darfst", "sollst", "kannst", "willst", "musst"], "answer": 4, "explain": "*nicht müssen* = there is no need. *nicht dürfen* would mean it is forbidden (B1)."}, {"q": "Guten Tag, ich *___* bitte zwei Brötchen.", "options": ["möchtest", "mag", "möchte", "muss", "möchten"], "answer": 2, "explain": "*möchte* is the polite way to order; with *ich* it has no *-st* or *-n* ending (A2)."}, {"q": "Ich *___* keine Tomaten. Sie schmecken mir nicht.", "options": ["mag", "mögen", "mage", "mögt", "magst"], "answer": 0, "explain": "*mögen* + noun = to like in general; *ich mag* has no ending (A2)."}, {"q": "Wir *___* nächstes Jahr ein Haus kaufen. Das ist unser Plan.", "options": ["wollt", "will", "willen", "wollen", "wolle"], "answer": 3, "explain": "*wir wollen*; plural forms of modals are regular (A2)."}, {"q": "Ihr *___* jetzt nach Hause gehen. Es ist spät.", "options": ["müssen", "müsst", "musst", "muss", "müssten"], "answer": 1, "explain": "*ihr müsst*; the plural keeps the umlaut (A2)."}, {"q": "Mein Arzt sagt, ich *___* mehr Sport machen.", "options": ["will", "sollst", "mag", "soll", "möchte"], "answer": 3, "explain": "*sollen* reports what another person wants you to do (B1)."}, {"q": "*___* ich das Fenster aufmachen? Es ist so warm hier.", "options": ["Musst", "Wollt", "Magst", "Sollst", "Soll"], "answer": 4, "explain": "*Soll ich ...?* offers help: 'Shall I ...?' The other options are *du/ihr* forms and do not fit *ich* (B1)."}, {"q": "Ich weiß, dass du gut Deutsch *___*.", "options": ["sprechen kannst", "kannst sprechen", "sprichst können", "kannst zu sprechen", "kann sprechen"], "answer": 0, "explain": "In a subordinate clause the modal goes to the very end, after the infinitive (B1)."}, {"q": "Gestern *___* ich nicht schlafen.", "options": ["kann", "könnte", "konnte", "konnt", "gekonnt"], "answer": 2, "explain": "Präteritum: drop the umlaut, add *-te*: *konnte*. *könnte* is Konjunktiv II ('could, would be able') (B1)."}, {"q": "Als Kind *___* ich jeden Tag um sieben Uhr ins Bett gehen.", "options": ["musste", "müsste", "muss", "musstet", "mussten"], "answer": 0, "explain": "*ich musste*: Präteritum without umlaut (B1)."}, {"q": "Früher *___* wir nicht so lange fernsehen.", "options": ["dürfen", "durften", "dürften", "durftet", "darften"], "answer": 1, "explain": "Präteritum of *dürfen*: *wir durften* (B1)."}, {"q": "Ich *___* dich gestern anrufen, aber ich hatte keine Zeit.", "options": ["möchte", "möchtete", "mochte", "wollte", "will"], "answer": 3, "explain": "*möchten* has no past form, so the past of 'want to' is *wollte* (B1)."}, {"q": "Als Kind *___* er keinen Spinat.", "options": ["mag", "mögte", "möchte", "magte", "mochte"], "answer": 4, "explain": "*mögen* changes the consonant in the Präteritum: *mochte* (B1)."}, {"q": "Which sentence means *You must not tell anyone*?", "options": ["Du musst es niemandem sagen.", "Du darfst es niemandem sagen.", "Du brauchst es niemandem zu sagen.", "Du willst es niemandem sagen.", "Du kannst es niemandem sagen."], "answer": 1, "explain": "A prohibition is *nicht/niemandem + dürfen*. *Du musst es niemandem sagen* means 'you don't have to tell anyone' (B1)."}, {"q": "Which sentence means *I don't have to work tomorrow*?", "options": ["Ich darf morgen nicht arbeiten.", "Ich soll morgen nicht arbeiten.", "Ich will morgen nicht arbeiten.", "Ich brauche morgen nicht zu arbeiten.", "Ich kann morgen nicht arbeiten."], "answer": 3, "explain": "*nicht brauchen zu* = *nicht müssen*, no obligation. *darf nicht* would mean it is not allowed (B1)."}, {"q": "Ich *___* nach Hause. (= I have to go home.)", "options": ["muss", "musst", "müssen", "müsse", "musse"], "answer": 0, "explain": "With direction phrases the infinitive *gehen/fahren* is often left out: *Ich muss nach Hause* (B1)."}, {"q": "*___* Sie Deutsch? – Ja, ein bisschen.", "options": ["Kannst", "Könnt", "Kann", "Können", "Könnst"], "answer": 3, "explain": "*Sie* (formal) takes the plural form *können*; *Deutsch können* = to speak German (A2)."}, {"q": "Wir *___* einen Tisch für vier Personen reservieren.", "options": ["möchte", "möchtet", "möchten", "mögten", "mochten"], "answer": 2, "explain": "*wir möchten*: plural of *möchten*, the polite 'would like' (A2)."}, {"q": "Hier *___* man parken. Das Schild sagt: Parken erlaubt.", "options": ["muss", "soll", "will", "mag", "darf"], "answer": 4, "explain": "Permission = *dürfen*; Ukrainian *тут можна паркуватися* (A2)."}, {"q": "Er sagt, er *___* morgen nicht kommen, weil er krank ist.", "options": ["kann", "kannt", "könnt", "kannst", "können"], "answer": 0, "explain": "*er kann* with no ending, also inside reported statements (A2)."}], "title": "Modal verbs quiz", "level": "A2–B1"}
+{"questions": [{"q": "Er *___* sehr gut Gitarre spielen.", "options": ["könnt", "kannt", "kann", "kannst", "können"], "answer": 2, "explain": "Modal verbs have no ending with *er/sie/es*: *er kann* (A2)."}, {"q": "*___* du mir bitte helfen?", "options": ["Kannst", "Kann", "Könnst", "Kanst", "Könnt"], "answer": 0, "explain": "*du kannst*; the *-st* ending is normal, only *ich* and *er* have none (A2)."}, {"q": "Ich muss heute lange *___*.", "options": ["zu arbeiten", "arbeite", "gearbeitet", "arbeiten", "arbeitet"], "answer": 3, "explain": "After a modal the second verb is a bare infinitive at the end, without *zu* (A2)."}, {"q": "Im Museum *___* man nicht fotografieren. Das ist verboten.", "options": ["muss", "darf", "will", "möchte", "mag"], "answer": 1, "explain": "Forbidden = *nicht dürfen* (A2)."}, {"q": "Du *___* nicht kommen, wenn du keine Zeit hast. Es ist kein Problem.", "options": ["darfst", "sollst", "kannst", "willst", "musst"], "answer": 4, "explain": "*nicht müssen* = there is no need. *nicht dürfen* would mean it is forbidden (B1)."}, {"q": "Guten Tag, ich *___* bitte zwei Brötchen.", "options": ["möchtest", "mag", "möchte", "muss", "möchten"], "answer": 2, "explain": "*möchte* is the polite way to order; with *ich* it has no *-st* or *-n* ending (A2)."}, {"q": "Ich *___* keine Tomaten. Sie schmecken mir nicht.", "options": ["mag", "mögen", "mage", "mögt", "magst"], "answer": 0, "explain": "*mögen* + noun = to like in general; *ich mag* has no ending (A2)."}, {"q": "Wir *___* nächstes Jahr ein Haus kaufen. Das ist unser Plan.", "options": ["wollt", "will", "willen", "wollen", "wolle"], "answer": 3, "explain": "*wir wollen*; plural forms of modals are regular (A2)."}, {"q": "Ihr *___* jetzt nach Hause gehen. Es ist spät.", "options": ["müssen", "müsst", "musst", "muss", "müssten"], "answer": 1, "explain": "*ihr müsst*; the plural keeps the umlaut (A2)."}, {"q": "Mein Arzt sagt, ich *___* mehr Sport machen.", "options": ["will", "sollst", "mag", "soll", "möchte"], "answer": 3, "explain": "*sollen* reports what another person wants you to do (B1)."}, {"q": "*___* ich das Fenster aufmachen? Es ist so warm hier.", "options": ["Musst", "Wollt", "Magst", "Sollst", "Soll"], "answer": 4, "explain": "*Soll ich ...?* offers help: 'Shall I ...?' The other options are *du/ihr* forms and do not fit *ich* (B1)."}, {"q": "Ich weiß, dass du gut Deutsch *___*.", "options": ["sprechen kannst", "kannst sprechen", "sprichst können", "kannst zu sprechen", "kann sprechen"], "answer": 0, "explain": "In a subordinate clause the modal goes to the very end, after the infinitive (B1)."}, {"q": "Gestern *___* ich nicht schlafen.", "options": ["kann", "könnte", "konnte", "konnt", "gekonnt"], "answer": 2, "explain": "Präteritum: drop the umlaut, add *-te*: *konnte*. *könnte* is Konjunktiv II ('could, would be able') (B1)."}, {"q": "Als Kind *___* ich jeden Tag um sieben Uhr ins Bett gehen.", "options": ["musste", "müsste", "muss", "musstet", "mussten"], "answer": 0, "explain": "*ich musste*: Präteritum without umlaut (B1)."}, {"q": "Früher *___* wir nicht so lange fernsehen.", "options": ["dürfen", "durften", "dürften", "durftet", "darften"], "answer": 1, "explain": "Präteritum of *dürfen*: *wir durften* (B1)."}, {"q": "Ich *___* dich gestern anrufen, aber ich hatte keine Zeit.", "options": ["möchte", "möchtete", "mochte", "wollte", "will"], "answer": 3, "explain": "*möchten* has no past form, so the past of 'want to' is *wollte* (B1)."}, {"q": "Als Kind *___* er keinen Spinat.", "options": ["mag", "mögte", "möchte", "magte", "mochte"], "answer": 4, "explain": "*mögen* changes the consonant in the Präteritum: *mochte* (B1)."}, {"q": "Which sentence means *You must not tell anyone*?", "options": ["Du musst es niemandem sagen.", "Du darfst es niemandem sagen.", "Du brauchst es niemandem zu sagen.", "Du willst es niemandem sagen.", "Du kannst es niemandem sagen."], "answer": 1, "explain": "A prohibition is *nicht/niemandem + dürfen*. *Du musst es niemandem sagen* means 'you don't have to tell anyone' (B1)."}, {"q": "Which sentence means *I don't have to work tomorrow*?", "options": ["Ich darf morgen nicht arbeiten.", "Ich soll morgen nicht arbeiten.", "Ich will morgen nicht arbeiten.", "Ich brauche morgen nicht zu arbeiten.", "Ich kann morgen nicht arbeiten."], "answer": 3, "explain": "*nicht brauchen zu* = *nicht müssen*, no obligation. *darf nicht* would mean it is not allowed (B1)."}, {"q": "Ich *___* nach Hause. (= I have to go home.)", "options": ["muss", "musst", "müssen", "müsse", "musse"], "answer": 0, "explain": "With direction phrases the infinitive *gehen/fahren* is often left out: *Ich muss nach Hause* (B1)."}, {"q": "*___* Sie Deutsch? – Ja, ein bisschen.", "options": ["Kannst", "Könnt", "Kann", "Können", "Könnst"], "answer": 3, "explain": "*Sie* (formal) takes the plural form *können*; *Deutsch können* = to speak German (A2)."}, {"q": "Wir *___* einen Tisch für vier Personen reservieren.", "options": ["möchte", "möchtet", "möchten", "mögten", "mochten"], "answer": 2, "explain": "*wir möchten*: plural of *möchten*, the polite 'would like' (A2)."}, {"q": "Hier *___* man parken. Das Schild sagt: Parken erlaubt.", "options": ["muss", "soll", "will", "mag", "darf"], "answer": 4, "explain": "Permission = *dürfen*: *Hier darf man parken* (A2)."}, {"q": "Er sagt, er *___* morgen nicht kommen, weil er krank ist.", "options": ["kann", "kannt", "könnt", "kannst", "können"], "answer": 0, "explain": "*er kann* with no ending, also inside reported statements (A2)."}], "title": "Modal verbs quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -441,18 +450,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -467,14 +490,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -486,7 +509,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -495,14 +518,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -510,23 +533,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

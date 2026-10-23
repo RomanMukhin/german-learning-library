@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="3352b0a395c3">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -984,7 +990,7 @@ body { margin: 0; }
 <td>un- (adjectives)</td>
 <td>not</td>
 <td>unglücklich, unmöglich, unbekannt, ungesund, unfreundlich, unhöflich, unklar, unabhängig</td>
-<td>Ukrainian не-: неможливий = unmöglich</td>
+<td></td>
 </tr>
 <tr>
 <td>un- (nouns)</td>
@@ -996,7 +1002,7 @@ body { margin: 0; }
 <td>ur-</td>
 <td>original, very old, one generation further</td>
 <td>der Ursprung (origin), ursprünglich (originally), die Ursache (cause), der Urwald (primeval forest), uralt (ancient), die Urgroßmutter (great-grandmother), der Urenkel (great-grandson)</td>
-<td>Ukrainian пра-: прабабуся = Urgroßmutter; der Urlaub (holiday) is an old ur- word, now opaque</td>
+<td></td>
 </tr>
 <tr>
 <td>miss-</td>
@@ -1008,7 +1014,7 @@ body { margin: 0; }
 <td>Haupt-</td>
 <td>main, chief</td>
 <td>der Hauptbahnhof (Hbf, main station), die Hauptstadt (capital), die Hauptsache (main thing), das Hauptgericht (main course), der Haupteingang (main entrance)</td>
-<td>hauptsächlich = mainly; Ukrainian головний, same image (Haupt = head)</td>
+<td></td>
 </tr>
 <tr>
 <td>Lieblings-</td>
@@ -1179,9 +1185,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li>Ukrainian has the same kind of state / action pair (сидіти / садити, лежати / класти), and the e/o ablaut of нести / носити, везти / возити is the same ancient system as German Ablaut.</li>
-</ul>
 <h3>Umlaut in families</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -1258,114 +1261,91 @@ body { margin: 0; }
 <li>Pattern to remember: short adjective + Umlaut + -e = feminine noun of the quality (die Größe, die Wärme, die Kälte, die Nähe). Not every adjective does it: breit → die Breite, tief → die Tiefe (no vowel to umlaut).</li>
 <li>When you meet an unknown word with ä, ö, ü, äu, take the Umlaut off and look for the base: Kälte → kalt, Flügel → Flug.</li>
 </ul>
-<h2>Ukrainian vs German prefixes</h2>
-<p>A Ukrainian prefix usually makes a verb perfective, often without changing its meaning (писати → написати); a German prefix always changes the meaning and never marks aspect (schreiben → unterschreiben = to sign). German has no aspect: schreiben covers both писати and написати.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Ukrainian</th>
 <th>German</th>
 <th>Note</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>писати / написати</td>
 <td>schreiben</td>
 <td>one German verb for both aspects</td>
 </tr>
 <tr>
-<td>читати / прочитати</td>
 <td>lesen (durchlesen, zu Ende lesen)</td>
 <td>add durch- or zu Ende only to stress "all of it"</td>
 </tr>
 <tr>
-<td>їсти / з'їсти</td>
 <td>essen / aufessen</td>
 <td>auf- = eat it all up</td>
 </tr>
 <tr>
-<td>пити / випити</td>
 <td>trinken / austrinken</td>
 <td>aus- = drink it all</td>
 </tr>
 <tr>
-<td>робити / зробити</td>
 <td>machen (fertig machen)</td>
 <td></td>
 </tr>
 <tr>
-<td>підписати</td>
 <td>unterschreiben</td>
-<td>під- = unter-, same image</td>
+<td></td>
 </tr>
 <tr>
-<td>записати</td>
 <td>aufschreiben</td>
-<td>за- here = auf-</td>
+<td></td>
 </tr>
 <tr>
-<td>описати</td>
 <td>beschreiben</td>
-<td>о- often = be-</td>
+<td></td>
 </tr>
 <tr>
-<td>перекласти</td>
 <td>übersetzen</td>
-<td>пере- = über-, same image</td>
+<td></td>
 </tr>
 <tr>
-<td>переїхати (на нову квартиру)</td>
 <td>umziehen</td>
-<td>пере- = um- (change)</td>
+<td></td>
 </tr>
 <tr>
-<td>пересісти</td>
 <td>umsteigen</td>
 <td></td>
 </tr>
 <tr>
-<td>приїхати, прийти</td>
 <td>ankommen</td>
-<td>при- = an- (arrival)</td>
+<td></td>
 </tr>
 <tr>
-<td>від’їжджати</td>
 <td>abfahren</td>
-<td>від- = ab- (away)</td>
+<td></td>
 </tr>
 <tr>
-<td>відкрити / закрити</td>
 <td>aufmachen / zumachen</td>
 <td></td>
 </tr>
 <tr>
-<td>вийти, висісти</td>
 <td>ausgehen, aussteigen</td>
-<td>ви- = aus- (out)</td>
+<td></td>
 </tr>
 <tr>
-<td>вимкнути / увімкнути</td>
 <td>ausmachen / anmachen</td>
 <td></td>
 </tr>
 <tr>
-<td>витратити (гроші)</td>
 <td>ausgeben</td>
 <td></td>
 </tr>
 <tr>
-<td>заснути</td>
 <td>einschlafen</td>
-<td>за- (start) = ein- here</td>
+<td></td>
 </tr>
 <tr>
-<td>розбити, розірвати</td>
 <td>zerbrechen, zerreißen</td>
-<td>роз- = zer- (to pieces)</td>
+<td></td>
 </tr>
 <tr>
-<td>розповісти</td>
 <td>erzählen</td>
 <td>no prefix match</td>
 </tr>
@@ -1373,11 +1353,11 @@ body { margin: 0; }
 </table></div>
 <h3>How German shows "finished" instead</h3>
 <ul>
-<li>Tense: Ich habe den Brief geschrieben = I wrote / have written the letter (написав).</li>
+<li>Tense: Ich habe den Brief geschrieben = I wrote / have written the letter.</li>
 <li>Adverbs: schon (already), gerade (just now / right now), fertig: Ich bin fertig mit dem Buch.</li>
 <li>A few result prefixes: aufessen, austrinken, durchlesen, aufräumen.</li>
-<li>Ongoing action: gerade or am + infinitive (colloquial): Ich schreibe gerade einen Brief. / Ich bin am Schreiben. (я саме пишу)</li>
-<li>Trap for Ukrainian speakers: do not look for a German prefix to make a verb "perfective". Adding one almost always gives a different verb: kaufen (buy) vs verkaufen (sell) vs einkaufen (shop).</li>
+<li>Ongoing action: gerade or am + infinitive (colloquial): Ich schreibe gerade einen Brief. / Ich bin am Schreiben.</li>
+<li>Adding one almost always gives a different verb: kaufen (buy) vs verkaufen (sell) vs einkaufen (shop).</li>
 </ul>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
 <p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
@@ -1440,7 +1420,7 @@ body { margin: 0; }
 <tr>
 <td>übersetzen</td>
 <td>ÜBERsetzen: to ferry across</td>
-<td>überSETzen: to translate; figurative from "carry across", like Ukrainian перекласти</td>
+<td></td>
 </tr>
 </tbody>
 </table></div>
@@ -1664,9 +1644,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li>Ukrainian роз- often matches zer-: розбити = zerschlagen, розірвати = zerreißen, розібрати = zerlegen.</li>
-</ul>
 <h3>The stellen family at B2</h3>
 <p>The B1 table gave stellen's everyday prefixes; at B2 the same verbs gain abstract meanings, and a second set appears in formal writing.</p>
 <div class="table-wrap"><table>
@@ -1912,9 +1889,22 @@ body { margin: 0; }
 <li><a href="../docs/gotchas.html">Gotchas and false friends</a>: bekommen, merkwürdig and other traps</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/prefixes.html">Prefixes quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="0027239e8a1b" href="../quizzes/prefixes.html">Prefixes quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

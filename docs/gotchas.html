@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="f5866450d3f8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,6 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Everyday · A2–B1</span><h1>Gotchas and false friends</h1></header>
 <article class="prose card">
-<p>Most learner mistakes at A2–B1 come from a short list of look-alike words, confusable pairs and literal translations from English or Ukrainian; this sheet lists them with the correct German.</p>
 <h2>False friends for English speakers</h2>
 <p>These German words look like English ones but mean something else; the third column gives the German you actually want for the English meaning.</p>
 <div class="table-wrap"><table>
@@ -457,14 +462,11 @@ body { margin: 0; }
 <ul>
 <li>Pseudo-English words exist too: das Handy, der Beamer, das Public Viewing, der Shootingstar; native English speakers won't understand them.</li>
 </ul>
-<h2>False friends and traps for Ukrainian speakers</h2>
-<p>Many international words exist in both languages with a shifted meaning; trust the German meaning, not the Ukrainian echo.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>German</th>
 <th>Real meaning</th>
-<th>Ukrainian look-alike in German</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -472,142 +474,116 @@ body { margin: 0; }
 <tr>
 <td>die Familie</td>
 <td>family</td>
-<td>фамілія (surname) = der Nachname, der Familienname</td>
 <td>Wie ist Ihr Nachname?</td>
 </tr>
 <tr>
 <td>der Akademiker</td>
 <td>university graduate</td>
-<td>академік (academician) = das Mitglied der Akademie der Wissenschaften</td>
 <td>Sie ist Akademikerin, sie hat Jura studiert.</td>
 </tr>
 <tr>
 <td>das Kabinett</td>
 <td>(government) cabinet; small exhibition room</td>
-<td>кабінет = das Büro, das Arbeitszimmer; doctor's: das Sprechzimmer; school: der Fachraum</td>
 <td>Bitte warten Sie, Sie werden ins Sprechzimmer gerufen.</td>
 </tr>
 <tr>
 <td>das Magazin</td>
 <td>magazine; storeroom; gun magazine</td>
-<td>магазин (shop) = das Geschäft, der Laden</td>
 <td>Ich gehe in den Laden.</td>
 </tr>
 <tr>
 <td>die Dose</td>
 <td>can, tin; (power) socket = Steckdose</td>
-<td>доза (dose) = die Dosis</td>
 <td>eine Dose Cola / die richtige Dosis</td>
 </tr>
 <tr>
 <td>die Bilanz</td>
 <td>balance sheet; taking stock</td>
-<td>баланс (phone, account) = das Guthaben, der Kontostand; equilibrium = das Gleichgewicht</td>
 <td>Mein Guthaben ist leer. / Bilanz ziehen – take stock</td>
 </tr>
 <tr>
 <td>der Artist / die Artistin</td>
 <td>circus performer, acrobat</td>
-<td>артист (actor, performer) = der Schauspieler, der Künstler</td>
 <td>Er ist Schauspieler am Theater.</td>
 </tr>
 <tr>
 <td>die Anekdote</td>
 <td>anecdote, a (true) funny story</td>
-<td>анекдот (joke) = der Witz</td>
 <td>Erzähl mal einen Witz!</td>
 </tr>
 <tr>
 <td>der Konkurs</td>
 <td>bankruptcy</td>
-<td>конкурс (contest) = der Wettbewerb</td>
 <td>Die Firma ist in Konkurs gegangen.</td>
 </tr>
 <tr>
 <td>der Termin</td>
 <td>appointment</td>
-<td>термін (deadline) = die Frist; (word, term) = der Begriff</td>
 <td>Ich habe einen Termin beim Arzt. / Die Frist endet am Freitag.</td>
 </tr>
 <tr>
 <td>der Prospekt</td>
 <td>brochure, leaflet</td>
-<td>проспект (avenue) = die Allee, die breite Straße</td>
 <td></td>
 </tr>
 <tr>
 <td>der Kran</td>
 <td>crane (machine)</td>
-<td>кран (tap) = der Wasserhahn</td>
 <td>Der Wasserhahn tropft.</td>
 </tr>
 <tr>
 <td>die Pension</td>
 <td>guesthouse; pension (for civil servants)</td>
-<td>пенсія (old-age) = die Rente</td>
 <td>Meine Oma ist in Rente.</td>
 </tr>
 <tr>
 <td>das Kostüm</td>
 <td>costume; women's skirt suit</td>
-<td>костюм (men's suit) = der Anzug</td>
 <td>Er trägt einen Anzug.</td>
 </tr>
 <tr>
 <td>das Butterbrot</td>
 <td>bread with butter (only)</td>
-<td>бутерброд (any open sandwich) = das belegte Brot, das (belegte) Brötchen</td>
 <td>Ein Käsebrot, bitte.</td>
 </tr>
 <tr>
 <td>akkurat</td>
 <td>careful, precise, also neat (partial false friend: the meanings overlap a lot)</td>
-<td>акуратний (neat, tidy): ordentlich is the everyday word; akkurat sounds more formal</td>
 <td>Sein Zimmer ist immer ordentlich.</td>
 </tr>
 <tr>
 <td>die Kompetenz</td>
 <td>skill; area of authority</td>
-<td>(fine, but компетентний person = kompetent, fachkundig)</td>
 <td></td>
 </tr>
 <tr>
 <td>das Gymnasium</td>
 <td>academic secondary school, grades 5–12/13</td>
-<td>гімназія is close, but sport hall = die Turnhalle</td>
 <td></td>
 </tr>
 <tr>
 <td>die Akademie</td>
 <td>academy, often a college or training institute</td>
-<td>академія is broader; university = die Universität, die Hochschule</td>
 <td></td>
 </tr>
 <tr>
 <td>der Student</td>
 <td>university student only</td>
-<td>учень (school pupil) = der Schüler</td>
 <td>Mein Sohn ist Schüler, meine Tochter Studentin.</td>
 </tr>
 <tr>
 <td>die Klasse</td>
 <td>school class; grade; "great!" (Klasse!)</td>
-<td>клас room = das Klassenzimmer</td>
 <td></td>
 </tr>
 </tbody>
 </table></div>
-<ul>
-<li>Ukrainian habits that also transfer badly: у мене є = Ich habe (never "bei mir ist"); дзвонити тобі = dich anrufen (accusative).</li>
-</ul>
 <h2>Confusing pairs</h2>
-<p>Each row splits one English or Ukrainian idea into several German words; pick by the rule in the middle column.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Words</th>
 <th>Which one when</th>
-<th>Ukrainian / English hint</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -615,193 +591,161 @@ body { margin: 0; }
 <tr>
 <td>kennen / wissen / können</td>
 <td>kennen = be familiar with a person, place, thing; wissen = know a fact (often + dass/ob/wer); können = know how to, be able</td>
-<td>знати (когось) / знати (що) / вміти</td>
 <td>Ich kenne Berlin. / Ich weiß, wo er wohnt. / Ich kann schwimmen. Ich kann Deutsch.</td>
 </tr>
 <tr>
 <td>lernen / lehren / studieren</td>
 <td>lernen = learn, study for school; lehren = teach (formal, usually unterrichten); studieren = study at university</td>
-<td>вчити / викладати / навчатися в університеті</td>
 <td>Ich lerne für die Prüfung. / Sie unterrichtet Mathe. / Er studiert Informatik.</td>
 </tr>
 <tr>
 <td>wer / wo / wohin / woher</td>
 <td>wer = who; wo = where (location); wohin = where to; woher = where from</td>
-<td>хто / де / куди / звідки; English "where" covers three</td>
 <td>Wo wohnst du? Wohin fährst du? Woher kommst du? Wer ist das?</td>
 </tr>
 <tr>
 <td>seit / seid</td>
 <td>seit = since, for (time); seid = (ihr) are</td>
-<td></td>
 <td>Ich wohne seit 2023 hier. / Seid ihr müde?</td>
 </tr>
 <tr>
 <td>das / dass</td>
 <td>das = the, that (article, pronoun, relative); dass = conjunction "that"</td>
-<td>той / що</td>
 <td>Das Buch, das ich lese. / Ich denke, dass es regnet.</td>
 </tr>
 <tr>
 <td>wenn / als / ob</td>
 <td>als = one past event; wenn = whenever (repeated) or if/when (now, future); ob = whether</td>
-<td>коли (одноразово) / коли, якщо / чи</td>
 <td>Als ich klein war, ... / Wenn es regnet, bleibe ich hier. / Ich weiß nicht, ob er kommt.</td>
 </tr>
 <tr>
 <td>fragen / bitten / beten</td>
 <td>fragen = ask a question; bitten (um) = ask for, request; beten = pray</td>
-<td>питати / просити / молитися</td>
 <td>Ich frage ihn nach dem Weg. / Ich bitte dich um Hilfe.</td>
 </tr>
 <tr>
 <td>leihen / borgen / ausleihen</td>
 <td>leihen and borgen = lend or borrow (jemandem etwas = lend; sich etwas = borrow); ausleihen = borrow, esp. from a library</td>
-<td>позичати / позичити</td>
 <td>Kannst du mir 10 Euro leihen? / Ich leihe mir ein Buch aus.</td>
 </tr>
 <tr>
 <td>legen / liegen</td>
 <td>legen = put down flat (action, + Akk, regular: legte); liegen = lie, be lying (state, + Dat, lag, gelegen)</td>
-<td>класти / лежати</td>
 <td>Ich lege das Buch auf den Tisch. Das Buch liegt auf dem Tisch.</td>
 </tr>
 <tr>
 <td>stellen / stehen</td>
 <td>stellen = put upright (action, Akk); stehen = stand (state, Dat)</td>
-<td>ставити / стояти</td>
 <td>Ich stelle die Flasche in den Kühlschrank. Sie steht im Kühlschrank.</td>
 </tr>
 <tr>
 <td>setzen / sitzen</td>
 <td>sich setzen = sit down (action, Akk); sitzen = be sitting (state, Dat)</td>
-<td>сідати / сидіти</td>
 <td>Setz dich auf das Sofa! Ich sitze auf dem Sofa.</td>
 </tr>
 <tr>
 <td>hängen (hängte) / hängen (hing)</td>
 <td>Same verb, action = hängte (Akk); state = hing (Dat)</td>
-<td>вішати / висіти</td>
 <td>Ich hängte das Bild an die Wand. Das Bild hing an der Wand.</td>
 </tr>
 <tr>
 <td>mögen / möchten / gefallen / gern</td>
 <td>mögen = like in general (+ noun); möchten = would like (polite wish); gefallen = appeal to (Dat, looks, impressions); gern = like doing (with a verb)</td>
-<td>любити / хотіти б / подобатися / любити + inf</td>
 <td>Ich mag Kaffee. / Ich möchte einen Kaffee. / Die Jacke gefällt mir. / Ich trinke gern Kaffee.</td>
 </tr>
 <tr>
 <td>sondern / aber</td>
 <td>sondern = "but rather" after a negative, replacing it; aber = but (contrast, both true)</td>
-<td>а / але (Ukrainian makes the same split)</td>
 <td>Nicht heute, sondern morgen. / Es ist teuer, aber gut.</td>
 </tr>
 <tr>
 <td>schon / noch / erst</td>
 <td>schon = already; noch = still, yet; erst = only (so far, later than expected), not until</td>
-<td>вже / ще / лише (тільки що)</td>
 <td>Es ist schon 10 Uhr. / Er schläft noch. / Er kommt erst morgen. Ich bin erst 20.</td>
 </tr>
 <tr>
 <td>nicht mehr / noch nicht</td>
 <td>nicht mehr = no longer; noch nicht = not yet. Answers: schon ↔ noch nicht; noch ↔ nicht mehr</td>
-<td>вже не / ще не</td>
 <td>Ich rauche nicht mehr. / Ich bin noch nicht fertig.</td>
 </tr>
 <tr>
 <td>nur / erst</td>
 <td>nur = only (amount, final); erst = only so far, more may come</td>
-<td>тільки / лише ще</td>
 <td>Ich habe nur 5 Euro. / Ich habe erst drei Seiten gelesen.</td>
 </tr>
 <tr>
 <td>Uhr / Stunde / Mal / Zeit</td>
 <td>die Uhr = clock, o'clock; die Stunde = hour, lesson; das Mal = time (occurrence); die Zeit = time (in general)</td>
-<td>годинник, о ... / година / раз / час</td>
 <td>Um 3 Uhr. / Zwei Stunden. / Das erste Mal. / Ich habe keine Zeit.</td>
 </tr>
 <tr>
 <td>spät / später / zu spät</td>
 <td>spät = late; später = later; zu spät = too late (for something)</td>
-<td></td>
 <td>Es ist spät. / Bis später! / Ich komme zu spät.</td>
 </tr>
 <tr>
 <td>Wie spät ist es?</td>
 <td>What time is it? (= Wie viel Uhr ist es?), not "how late"</td>
-<td>Котра година?</td>
 <td></td>
 </tr>
 <tr>
 <td>sehr / viel</td>
 <td>sehr = very (+ adjective, + verb); viel = much, a lot (+ noun, + verb)</td>
-<td>дуже / багато</td>
 <td>sehr gut / Danke sehr! / viel Geld / Ich arbeite viel. / Ich mag dich sehr.</td>
 </tr>
 <tr>
 <td>man / Mann</td>
 <td>man = one, people, you (pronoun, one n, lowercase); der Mann = man, husband</td>
-<td>неозначено-особове (кажуть, тут не палять)</td>
 <td>Hier darf man nicht rauchen. / Mein Mann kocht.</td>
 </tr>
 <tr>
 <td>zu / nach / in</td>
 <td>nach = towns, countries without article, nach Hause; zu = people, shops, places, events; in = into a building or a country with article</td>
-<td>до / в</td>
 <td>Ich fahre nach Wien, zu meiner Tante, in die Schweiz, zum Arzt.</td>
 </tr>
 <tr>
 <td>zu Hause / nach Hause</td>
 <td>zu Hause = at home (location); nach Hause = home (direction)</td>
-<td>вдома / додому</td>
 <td>Ich bin zu Hause. Ich gehe nach Hause.</td>
 </tr>
 <tr>
 <td>ziemlich</td>
 <td>quite, rather (fairly strong, not "pretty" as in beautiful)</td>
-<td>досить</td>
 <td>Das ist ziemlich teuer.</td>
 </tr>
 <tr>
 <td>eventuell / endlich / schließlich</td>
 <td>eventuell = maybe; endlich = finally (at last, relief); schließlich = in the end, after all</td>
-<td>можливо / нарешті / зрештою</td>
 <td>Endlich Wochenende! / Schließlich hat er Ja gesagt.</td>
 </tr>
 <tr>
 <td>das Ende / zu Ende / am Ende</td>
 <td>das Ende = the end; zu Ende = finished, over; am Ende = at the end, in the end</td>
-<td></td>
 <td>Der Film ist zu Ende. / Am Ende hat er gewonnen.</td>
 </tr>
 <tr>
 <td>denken / glauben / meinen</td>
 <td>denken = think (about = an + Akk); glauben = believe, guess; meinen = have an opinion, mean</td>
-<td></td>
 <td>Ich denke an dich. / Ich glaube, er kommt. / Was meinst du?</td>
 </tr>
 <tr>
 <td>sagen / sprechen / reden / erzählen</td>
 <td>sagen = say (words, + Dat); sprechen = speak (language, to someone); reden = talk, chat; erzählen = tell (a story)</td>
-<td>казати / говорити / розмовляти / розповідати</td>
 <td>Er sagt nichts. / Ich spreche Deutsch. / Wir reden über Politik. / Erzähl mal!</td>
 </tr>
 <tr>
 <td>gehen / fahren</td>
 <td>gehen = walk, go on foot (also general "go"); fahren = go by vehicle</td>
-<td>йти / їхати (same split as Ukrainian)</td>
 <td>Ich fahre mit dem Bus zur Arbeit.</td>
 </tr>
 <tr>
 <td>bringen / nehmen / holen</td>
 <td>bringen = bring, take to; nehmen = take; holen = fetch, go and get</td>
-<td>приносити / брати / приносити (за чимось сходивши)</td>
 <td>Ich hole Brötchen.</td>
 </tr>
 <tr>
 <td>warten / erwarten</td>
 <td>warten auf = wait for; erwarten = expect</td>
-<td>чекати на / очікувати</td>
 <td>Ich warte auf den Bus. / Ich erwarte ein Kind.</td>
 </tr>
 </tbody>
@@ -813,7 +757,6 @@ body { margin: 0; }
 <tr>
 <th>Trap</th>
 <th>Rule</th>
-<th>Ukrainian / English hint</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -821,163 +764,136 @@ body { margin: 0; }
 <tr>
 <td>ei vs ie</td>
 <td>ei = "ai" [aɪ]; ie = long "i" [iː]. Say the second letter in English</td>
-<td>ei ≈ ай, ie ≈ іі</td>
 <td>mein, Wein, drei / Liebe, vier, Brief, sieben</td>
 </tr>
 <tr>
 <td>eu / äu</td>
 <td>Both = "oi" [ɔʏ]</td>
-<td>≈ ой</td>
 <td>neu, heute, Leute, Häuser</td>
 </tr>
 <tr>
 <td>ß vs ss</td>
 <td>ß after a long vowel or diphthong; ss after a short vowel</td>
-<td></td>
 <td>Straße, groß, weiß, Fuß / Wasser, Klasse, muss, dass</td>
 </tr>
 <tr>
 <td>ß in Switzerland</td>
 <td>Swiss German writes ss everywhere</td>
-<td></td>
 <td>Strasse</td>
 </tr>
 <tr>
 <td>Capital nouns</td>
 <td>Every noun and nominalisation is capitalised</td>
-<td></td>
 <td>das Haus, die Liebe, beim Essen, etwas Gutes</td>
 </tr>
 <tr>
 <td>Sie vs sie</td>
 <td>Sie = formal you (always capitalised); sie = she, they; verb shows which</td>
-<td></td>
 <td>Kommen Sie? (you) / Sie kommt. (she) / Sie kommen. (they or you)</td>
 </tr>
 <tr>
 <td>du / dein in letters</td>
 <td>Lowercase is standard; capital Du allowed in letters and messages</td>
-<td></td>
 <td>Wie geht es dir / Dir?</td>
 </tr>
 <tr>
 <td>v = f</td>
 <td>v is usually [f] in German words; [v] in loanwords</td>
-<td>ф</td>
 <td>Vater, viel, vier / Vase, Video, Klavier</td>
 </tr>
 <tr>
 <td>w = v</td>
 <td>w is always [v]</td>
-<td>в</td>
 <td>Wasser, wie, Wien</td>
 </tr>
 <tr>
 <td>z = ts</td>
 <td>z (and tz) = [ts]</td>
-<td>ц</td>
 <td>Zeit, zehn, Katze, Pizza</td>
 </tr>
 <tr>
 <td>s before a vowel</td>
 <td>s at the start of a syllable before a vowel = [z] (voiced)</td>
-<td>з</td>
 <td>Sonne, sie, Hose</td>
 </tr>
 <tr>
 <td>st / sp at the start</td>
 <td>st- and sp- at the beginning of a word or stem = "scht", "schp"</td>
-<td>шт / шп</td>
 <td>Stadt, Straße, versteht, sprechen, Sport / but: Fenster, Wespe (middle)</td>
 </tr>
 <tr>
 <td>sch</td>
 <td>[ʃ] like sh</td>
-<td>ш</td>
 <td>Schule, schnell</td>
 </tr>
 <tr>
 <td>ch after a, o, u, au</td>
-<td>Throaty [x], like Ukrainian х</td>
-<td>х</td>
+<td></td>
 <td>Bach, Buch, auch, noch</td>
 </tr>
 <tr>
 <td>ch after e, i, ä, ö, ü, consonants, -chen</td>
-<td>Soft [ç], х said with the tongue high, "hissing"</td>
-<td>хь (м'яке)</td>
+<td></td>
 <td>ich, nicht, Mädchen, München, durch, Märchen</td>
 </tr>
 <tr>
 <td>-ig at the end</td>
 <td>Pronounced like -ich in standard German</td>
-<td></td>
 <td>billig, zwanzig, König</td>
 </tr>
 <tr>
 <td>j</td>
 <td>[j] like y in yes</td>
-<td>й</td>
 <td>ja, Jahr, jung</td>
 </tr>
 <tr>
 <td>r</td>
 <td>Usually throaty [ʁ]; after a vowel at the end almost an "a"</td>
-<td></td>
 <td>rot, Brot / Vater, hier, der</td>
 </tr>
 <tr>
 <td>h after a vowel</td>
 <td>Silent; marks a long vowel</td>
-<td></td>
 <td>gehen, Uhr, Sohn, fahren</td>
 </tr>
 <tr>
 <td>Final devoicing</td>
 <td>b, d, g, s at the end of a syllable sound p, t, k, s</td>
-<td>Standard Ukrainian keeps voiced endings (дуб ends in a real б); German devoices them</td>
 <td>Hund [t], Tag [k], gelb [p], Kind [t], ab [p]</td>
 </tr>
 <tr>
 <td>Long vowel signs</td>
 <td>Doubled vowel, vowel + h, or ie: long</td>
-<td></td>
 <td>Meer, Boot, Zahn, Bier</td>
 </tr>
 <tr>
 <td>Short vowel signs</td>
 <td>Vowel + double consonant or two consonants: short</td>
-<td></td>
 <td>Bett, kommen, Mutter, Kind</td>
 </tr>
 <tr>
 <td>Minimal pairs</td>
 <td>Length changes meaning</td>
-<td></td>
 <td>Staat / Stadt, bieten / bitten, Miete / Mitte, Ofen / offen</td>
 </tr>
 <tr>
 <td>Umlaut ä, ö, ü</td>
 <td>ä ≈ open e; ö = e with rounded lips; ü = i with rounded lips; never drop the dots</td>
-<td>ü ≈ ю without the й</td>
 <td>schön vs schon, würde vs wurde, Brüder vs Bruder</td>
 </tr>
 <tr>
 <td>ae, oe, ue</td>
 <td>Replace ä, ö, ü when the keyboard has none</td>
-<td></td>
 <td>Mueller = Müller</td>
 </tr>
 <tr>
 <td>Glottal stop</td>
 <td>Words starting with a vowel get a tiny break, no linking</td>
-<td></td>
 <td>am Abend (am + tiny break + Abend), not "a-ma-bend"</td>
 </tr>
 </tbody>
 </table></div>
 <h2>Gender traps</h2>
-<p>German grammatical gender often ignores real-world sex and rarely matches Ukrainian; learn every noun with its article (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>), and watch the words whose meaning changes with the article.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -991,13 +907,13 @@ body { margin: 0; }
 <tr>
 <td>das Mädchen</td>
 <td>neuter: girl</td>
-<td>-chen makes every noun neuter (дівчина is feminine)</td>
+<td>-chen makes every noun neuter</td>
 <td>Das Mädchen spielt. (pronoun in speech: es or, increasingly, sie)</td>
 </tr>
 <tr>
 <td>das Kind</td>
 <td>neuter: child</td>
-<td>дитина is feminine</td>
+<td></td>
 <td>Das Kind schläft.</td>
 </tr>
 <tr>
@@ -1021,7 +937,7 @@ body { margin: 0; }
 <tr>
 <td>die Butter</td>
 <td>feminine: butter</td>
-<td>масло is neuter</td>
+<td></td>
 <td>Die Butter ist im Kühlschrank.</td>
 </tr>
 <tr>
@@ -1051,31 +967,31 @@ body { margin: 0; }
 <tr>
 <td>die Sonne / der Mond</td>
 <td>sun is feminine, moon masculine</td>
-<td>сонце n, місяць m; Sonne differs from Ukrainian; Mond happens to match (masculine)</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>das Problem, das Thema, das System, das Programm</td>
 <td>neuter</td>
-<td>Greek -a/-em words: feminine in Ukrainian (проблема, тема, система, програма)</td>
+<td></td>
 <td>Kein Problem!</td>
 </tr>
 <tr>
 <td>die Milch</td>
 <td>feminine</td>
-<td>молоко is neuter</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>der Tee, der Kaffee</td>
 <td>masculine</td>
-<td>кава feminine</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>das Bier, das Wasser</td>
 <td>neuter</td>
-<td>вода feminine</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -1129,7 +1045,6 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <h2>Grammar traps</h2>
-<p>These are the literal translations from Ukrainian or English that Germans notice at once; the right column is what a native speaker says.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1156,7 +1071,7 @@ body { margin: 0; }
 <td>Double negation</td>
 <td>Ich habe nicht nichts gesagt. / Niemand nicht kommt.</td>
 <td>Ich habe nichts gesagt. / Niemand kommt.</td>
-<td>Ukrainian ніхто не / нічого не doubles; German uses one negative only</td>
+<td></td>
 </tr>
 <tr>
 <td>mögen without object</td>
@@ -1168,7 +1083,7 @@ body { margin: 0; }
 <td>Being cold, hot, bored</td>
 <td>Ich bin kalt. / Ich bin heiß. / Ich bin langweilig.</td>
 <td>Mir ist kalt. / Mir ist heiß. / Mir ist langweilig.</td>
-<td>Ich bin kalt = I am cold-hearted; ich bin heiß = I'm sexually excited (slang); ich bin langweilig = I'm boring (like мені холодно)</td>
+<td>Ich bin kalt = I am cold-hearted; ich bin heiß = I'm sexually excited (slang); ich bin langweilig = I'm boring</td>
 </tr>
 <tr>
 <td>Asking a name</td>
@@ -1198,7 +1113,7 @@ body { margin: 0; }
 <td>Having something</td>
 <td>Bei mir ist ein Auto.</td>
 <td>Ich habe ein Auto.</td>
-<td>у мене є = haben</td>
+<td></td>
 </tr>
 <tr>
 <td>seit + tense</td>
@@ -1222,19 +1137,19 @@ body { margin: 0; }
 <td>anrufen + case</td>
 <td>Ich rufe dir an.</td>
 <td>Ich rufe dich an.</td>
-<td>дзвонити тобі is dative; anrufen takes accusative</td>
+<td></td>
 </tr>
 <tr>
 <td>fragen + case</td>
 <td>Ich frage dir.</td>
 <td>Ich frage dich.</td>
-<td>Accusative, like питати тебе</td>
+<td></td>
 </tr>
 <tr>
 <td>helfen, danken, gratulieren</td>
 <td>Ich helfe dich.</td>
 <td>Ich helfe dir. / Ich danke dir. / Ich gratuliere dir.</td>
-<td>Dative verbs, like допомагати тобі</td>
+<td></td>
 </tr>
 <tr>
 <td>heiraten</td>
@@ -1294,7 +1209,7 @@ body { margin: 0; }
 <td>"I'm right"</td>
 <td>Ich bin richtig.</td>
 <td>Ich habe recht. / Du hast recht.</td>
-<td>recht haben, like твоя правда = du hast recht</td>
+<td></td>
 </tr>
 <tr>
 <td>"I agree"</td>
@@ -1312,13 +1227,13 @@ body { margin: 0; }
 <td>"I miss you"</td>
 <td>Ich fehle dich.</td>
 <td>Ich vermisse dich. / Du fehlst mir.</td>
-<td>fehlen reverses subject and object, like мені тебе бракує</td>
+<td></td>
 </tr>
 <tr>
 <td>"Make a photo"</td>
 <td>Ich mache ein Foto.</td>
 <td>Correct! Ich mache ein Foto.</td>
-<td>German is like Ukrainian (зробити фото), not English take</td>
+<td></td>
 </tr>
 <tr>
 <td>"Take a decision"</td>
@@ -1343,7 +1258,6 @@ body { margin: 0; }
 <tr>
 <th>Words</th>
 <th>Which one when</th>
-<th>Ukrainian / English hint</th>
 <th>Example</th>
 </tr>
 </thead>
@@ -1351,91 +1265,76 @@ body { margin: 0; }
 <tr>
 <td>scheinbar / anscheinend</td>
 <td>scheinbar = only seemingly, but in fact not; anscheinend = apparently, it looks like it is true</td>
-<td>удавано, на перший погляд / мабуть, схоже</td>
 <td>Er ist nur scheinbar ruhig, innerlich kocht er. / Er ist anscheinend krank, er ist nicht gekommen.</td>
 </tr>
 <tr>
 <td>wohl / wahrscheinlich / vermutlich</td>
 <td>wohl = unstressed particle for the speaker's guess, mid-sentence only; wahrscheinlich = probably, can start the sentence or be a one-word answer; vermutlich = presumably, more formal</td>
-<td>мабуть / ймовірно / певно</td>
 <td>Er hat wohl den Zug verpasst. / Kommt er? – Wahrscheinlich. (not: Wohl.)</td>
 </tr>
 <tr>
 <td>sich erinnern an / jdn erinnern an / sich merken / merken</td>
 <td>sich erinnern an + Akk = remember; jdn an etw erinnern = remind someone; sich (Dat) etw merken = memorise, keep in mind; merken = notice</td>
-<td>пам'ятати / нагадувати / запам'ятати / помічати</td>
 <td>Ich erinnere mich an den Urlaub. / Erinnerst du mich an den Termin? / Ich merke mir deine Nummer. / Ich habe nicht gemerkt, dass er weg war.</td>
 </tr>
 <tr>
 <td>nicht müssen / nicht brauchen zu / nicht dürfen</td>
 <td>nicht müssen = no obligation; nicht brauchen + zu = the same, more idiomatic; nicht dürfen = must not</td>
-<td>не треба / не можна</td>
 <td>Du musst nicht kommen. = Du brauchst nicht zu kommen. / Du darfst nicht kommen. (forbidden)</td>
 </tr>
 <tr>
 <td>brauchen + zu (positive)</td>
 <td>Only with nur or erst: you only need to</td>
-<td>досить лише</td>
 <td>Du brauchst nur anzurufen. / Perfect: Du hättest nicht zu kommen brauchen.</td>
 </tr>
 <tr>
 <td>ändern / verändern / wechseln</td>
 <td>ändern = modify, adjust; verändern = change deeply (character, appearance, the world); wechseln = swap one thing for another</td>
-<td>змінювати / змінюватися докорінно / міняти</td>
 <td>Ich habe meine Meinung geändert. / Du hast dich verändert. / Ich wechsle den Job, Geld, das Thema.</td>
 </tr>
 <tr>
 <td>"change" elsewhere</td>
 <td>change trains = umsteigen; change clothes = sich umziehen; move house = umziehen</td>
-<td>пересідати / переодягатися / переїжджати</td>
 <td>In Köln müssen Sie umsteigen. / Ich ziehe mich schnell um.</td>
 </tr>
 <tr>
 <td>lehnen / ablehnen / leihen</td>
 <td>lehnen = lean; ablehnen = reject, decline; leihen = lend, borrow</td>
-<td>ставити, спирати / відхиляти / позичати</td>
 <td>Er lehnt sich an die Wand. / Sie hat das Angebot abgelehnt. / Leihst du mir dein Rad?</td>
 </tr>
 <tr>
 <td>lassen / verlassen / weggehen</td>
 <td>lassen = leave something somewhere, let; verlassen = leave a place or person (+ Akk); weggehen = leave, go away (no object)</td>
-<td>залишати / покидати / йти</td>
 <td>Ich habe den Schirm im Zug liegen lassen. / Er hat das Büro um 5 verlassen. / Ich gehe jetzt weg.</td>
 </tr>
 <tr>
 <td>bitten um / fragen nach / eine Frage stellen</td>
 <td>bitten um + Akk = ask for (a favour, a thing); fragen nach + Dat = ask about, ask after; a question is gestellt, not gemacht</td>
-<td>просити про / питати про</td>
 <td>Ich bitte Sie um Geduld. / Er fragt nach dem Preis. / Sie hat nach dir gefragt. / Darf ich eine Frage stellen?</td>
 </tr>
 <tr>
 <td>der Gewinn / der Gewinner / verdienen</td>
 <td>der Gewinn = profit, prize, winnings; der Gewinner = winner; verdienen = earn, deserve (gewinnen = win only)</td>
-<td>прибуток, виграш / переможець / заробляти</td>
 <td>Die Firma macht Gewinn. / Wer ist der Gewinner? / Ich verdiene 3.000 Euro.</td>
 </tr>
 <tr>
 <td>die Kritik / der Kritiker</td>
 <td>die Kritik = criticism, also a review (Filmkritik); der Kritiker = the critic (person)</td>
-<td>критика / критик; English critique = Kritik, critic = Kritiker</td>
 <td>Die Kritik war hart. / Er ist Filmkritiker. / Sie übt Kritik an der Regierung.</td>
 </tr>
 <tr>
 <td>sensibel / sensitiv / empfindlich</td>
 <td>sensibel = sensitive (people, topics, data); sensitiv = highly perceptive, rare; empfindlich = touchy, delicate (skin, devices)</td>
-<td>чутливий / вразливий</td>
 <td>ein sensibles Thema, sensible Daten / empfindliche Haut / Sei nicht so empfindlich!</td>
 </tr>
 <tr>
 <td>konsequent / folgerichtig / folglich</td>
 <td>konsequent = consistent, firm, rigorous; folgerichtig = logical, following logically; folglich = consequently</td>
-<td>послідовний / логічний / отже</td>
 <td>Eltern müssen konsequent sein. / Die Entscheidung war folgerichtig. / Er war krank, folglich fehlte er.</td>
 </tr>
 <tr>
 <td>effektiv / effizient / wirksam</td>
 <td>effektiv = effective, it works (colloquially also "in real terms"); effizient = efficient, little waste; wirksam = effective (medicine, measures)</td>
-<td>ефективний covers both: split it</td>
 <td>Die Methode ist effektiv. / Er arbeitet effizient. / Das Mittel ist sehr wirksam.</td>
 </tr>
 </tbody>
@@ -1534,13 +1433,13 @@ body { margin: 0; }
 <tr>
 <td>die Kanzlei</td>
 <td>law firm, chancellery</td>
-<td>канцелярія (stationery) = die Schreibwaren, der Bürobedarf</td>
+<td></td>
 <td>Sie arbeitet in einer Kanzlei.</td>
 </tr>
 <tr>
 <td>die Charakteristik</td>
 <td>typical feature (of a thing)</td>
-<td>характеристика з місця роботи = das Arbeitszeugnis; reference letter = das Empfehlungsschreiben</td>
+<td></td>
 <td>Ich brauche ein Arbeitszeugnis von meinem alten Arbeitgeber.</td>
 </tr>
 <tr>
@@ -1552,7 +1451,7 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <h3>Verb + preposition traps</h3>
-<p>Many verbs take a fixed preposition with a fixed case, and it is rarely the one English or Ukrainian suggests; learn the verb, the preposition and the case as one unit. For hypotheticals with Konjunktiv II (Wenn ich Zeit hätte, würde ich ...) and the werden passive, see <a href="../docs/tenses.html">Tenses, moods and the passive</a>.</p>
+<p>For hypotheticals with Konjunktiv II (Wenn ich Zeit hätte, würde ich...) and the werden passive, see <a href="../docs/tenses.html">Tenses, moods and the passive</a>.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1573,7 +1472,7 @@ body { margin: 0; }
 <td>Angst haben vor + Dat</td>
 <td>Ich habe Angst von Hunden.</td>
 <td>Ich habe Angst vor Hunden.</td>
-<td>боятися (від) does not transfer</td>
+<td></td>
 </tr>
 <tr>
 <td>warten auf + Akk</td>
@@ -1591,7 +1490,7 @@ body { margin: 0; }
 <td>teilnehmen an + Dat</td>
 <td>Ich nehme in dem Kurs teil.</td>
 <td>Ich nehme an dem Kurs teil.</td>
-<td>брати участь у = an</td>
+<td></td>
 </tr>
 <tr>
 <td>abhängen von + Dat</td>
@@ -1651,7 +1550,7 @@ body { margin: 0; }
 </table></div>
 <p>Questions and pointers: for things use wo(r)- and da(r)- (Worauf wartest du? – Darauf, dass er anruft.); for people use preposition + pronoun (Auf wen wartest du? – Auf ihn.), never Worauf for a person.</p>
 <h3>Comma rules</h3>
-<p>German commas follow grammar, not breathing: every subordinate clause is fenced off by commas, even short ones, so many more commas appear than in English. Ukrainian works much the same way (що, який, тому що always take a comma).</p>
+<p>German commas follow grammar, not breathing: every subordinate clause is fenced off by commas, even short ones, so many more commas appear than in English.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1866,9 +1765,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: more verb patterns beyond brauchen zu and fixed prepositions</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/gotchas.html">Gotchas quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="cd35ba76c61e" href="../quizzes/gotchas.html">Gotchas quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="517d558a8245">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>German article tables (B1)</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/cases/index.html">Cases</a>, <a href="../grammar/adjectives/endings.html">Adjective endings</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="d221fc543f6b" href="../grammar/cases/index.html">Cases</a>, <a data-quiz="7b53bb3bac1d" href="../grammar/adjectives/endings.html">Adjective endings</a>.</p></aside>
 <h2>Definite article: der, die, das</h2>
 <p>Only masculine changes in the Akkusativ. The red flags to remember are <strong>den</strong> (masculine Akk and plural Dat) and <strong>dem</strong> (masculine and neuter Dat).</p>
 <div class="table-wrap"><table>
@@ -293,53 +299,44 @@ body { margin: 0; }
 <tr>
 <th>Person</th>
 <th>Possessive</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ich</td>
 <td>mein</td>
-<td>мій</td>
 </tr>
 <tr>
 <td>du</td>
 <td>dein</td>
-<td>твій</td>
 </tr>
 <tr>
 <td>er / es</td>
 <td>sein</td>
-<td>його</td>
 </tr>
 <tr>
 <td>sie (she)</td>
 <td>ihr</td>
-<td>її</td>
 </tr>
 <tr>
 <td>wir</td>
 <td>unser</td>
-<td>наш</td>
 </tr>
 <tr>
 <td>ihr (you all)</td>
 <td>euer (eur<strong>e</strong>, eur<strong>en</strong>…)</td>
-<td>ваш</td>
 </tr>
 <tr>
 <td>sie (they)</td>
 <td>ihr</td>
-<td>їхній</td>
 </tr>
 <tr>
 <td>Sie (formal)</td>
 <td>Ihr</td>
-<td>Ваш</td>
 </tr>
 </tbody>
 </table></div>
-<p>German possessives change ending for case like Ukrainian ones do (<em>мій брат → мого брата</em>). The difference is that <em>sein</em> and <em>ihr</em> depend on the owner's gender, like English <em>his/her</em>. Ukrainian <em>свій</em> has no German equivalent, so <em>Er liebt seine Frau</em> covers both <em>свою</em> and <em>його</em>.</p>
+<p>The difference is that <em>sein</em> and <em>ihr</em> depend on the owner's gender, like English <em>his/her</em>.</p>
 <h2>Adjective endings</h2>
 <p>The rule behind all three tables: <strong>the gender and case signal has to appear once.</strong> If the article already shows it, the adjective takes a lazy <em>-e</em> or <em>-en</em>. If the article doesn't, the adjective carries the signal itself.</p>
 <h3>After der / die / das (and dieser, jeder, welcher)</h3>
@@ -472,7 +469,7 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>Compare Ukrainian: there the adjective always carries the full ending (<em>стар<strong>ий</strong> чоловік, стар<strong>ого</strong> чоловіка</em>). German shares that work out between the article and the adjective.</p>
+<p>German shares that work out between the article and the adjective.</p>
 <h2>Which case when</h2>
 <p>The tables only help once you know the case. Most B1 errors come from the trigger, not the ending (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</p>
 <div class="table-wrap"><table>
@@ -526,13 +523,9 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>Ukrainian comparisons that help:</p>
 <ul>
-<li><strong>Akk</strong> ≈ знахідний (бачу <strong>собаку</strong>). <strong>Dat</strong> ≈ давальний (даю <strong>чоловікові</strong>). <strong>Gen</strong> ≈ родовий for possession (книга <strong>батька</strong> = das Buch <strong>des Vaters</strong>).</li>
-<li>German has no instrumental. <em>з другом</em> and <em>автобусом</em> both become <strong>mit + Dat</strong>: <em>mit dem Freund, mit dem Bus</em>.</li>
-<li>German has no locative either. <em>У місті</em> becomes <strong>in + Dat</strong>: <em>in der Stadt</em>.</li>
-<li>The two-way prepositions work like Ukrainian <em>в місто</em> vs <em>в місті</em>. Direction takes Akk, as in Ukrainian, and location takes Dat.</li>
-<li>Many verbs match Ukrainian: <em>дякувати кому</em> = <strong>danken + Dat</strong>, <em>допомагати кому</em> = <strong>helfen + Dat</strong>, <em>питати кого</em> = <strong>fragen + Akk</strong>.</li>
+<li>German has no instrumental.</li>
+<li>German has no locative either.</li>
 </ul>
 <p>Useful contractions: an dem = <strong>am</strong>, in dem = <strong>im</strong>, zu dem = <strong>zum</strong>, zu der = <strong>zur</strong>, von dem = <strong>vom</strong>, bei dem = <strong>beim</strong>, in das = <strong>ins</strong>, an das = <strong>ans</strong>.</p>
 <h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
@@ -626,7 +619,7 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>You will also hear "dem Vater sein Auto" (Dativ + possessive). It is regional and very colloquial: understand it, never write it. Ukrainian родовий (книга батька) works like the written Genitiv and has no von-style alternative, so the case itself will feel natural; only the endings need drilling.</p>
+<p>You will also hear "dem Vater sein Auto" (Dativ + possessive). It is regional and very colloquial: understand it, never write it.</p>
 <h3>Adjective endings after alle, beide, viele, einige and other quantifiers</h3>
 <p>Plural quantifiers fall into two groups. Words that act like <strong>die</strong> show the plural signal themselves, so the adjective goes weak (<strong>-en</strong>). Words that act like numbers leave the signal to the adjective, so it goes strong, as with no article.</p>
 <div class="table-wrap"><table>
@@ -670,9 +663,9 @@ body { margin: 0; }
 <li><strong>folgende</strong> is strong on its own and weak after die: folgend<strong>e</strong> neu<strong>e</strong> Regeln, die folgend<strong>en</strong> neu<strong>en</strong> Regeln.</li>
 <li>Singular <strong>viel, wenig, mehr</strong> usually stay uninflected, and the adjective is strong: viel frisch<strong>es</strong> Obst, mit wenig kalt<strong>em</strong> Wasser, mehr frei<strong>e</strong> Zeit.</li>
 </ul>
-<p>Ukrainian trap: after багато the noun goes into родовий (багато нових колег). German viele does not change the case: <strong>Viele neue Kollegen sind da</strong> stays Nominativ.</p>
+<p>German viele does not change the case: <strong>Viele neue Kollegen sind da</strong> stays Nominativ.</p>
 <h3>Apposition, titles and adjectives in a row</h3>
-<p>An apposition (a second noun phrase that renames the first) copies its case, exactly as in Ukrainian: з паном Мюллером, моїм шефом. Commas go on both sides.</p>
+<p>Commas go on both sides.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -738,7 +731,6 @@ body { margin: 0; }
 <p><strong>Several adjectives in a row</strong> all take the same ending: ein groß<strong>er</strong>, schwer<strong>er</strong> Koffer; der groß<strong>e</strong>, schwer<strong>e</strong> Koffer; bei schön<strong>em</strong>, warm<strong>em</strong> Wetter.</p>
 <p><strong>Personal pronoun + adjective.</strong> After wir and ihr the adjective is usually weak: wir jung<strong>en</strong> Leute (wir jung<strong>e</strong> Leute is also heard), wir Deutsch<strong>en</strong> or wir Deutsch<strong>e</strong>. After singular ich and du it is strong, as with no article: ich dumm<strong>er</strong> Mensch, du arm<strong>es</strong> Kind.</p>
 <h3>Zero article and the extra article</h3>
-<p>Ukrainian has no articles, so both directions are traps: German drops the article where English has "a", and adds one where Ukrainian and English have none.</p>
 <p><strong>No article</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -781,7 +773,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p><strong>An article where Ukrainian and English have none</strong></p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -858,7 +849,6 @@ body { margin: 0; }
 <p><strong>Neuter after etwas, nichts, viel, wenig, mehr.</strong> The adjective becomes a neuter noun with the strong ending <strong>-es</strong>: etwas Neues, nichts Besonderes, viel Gutes, wenig Interessantes. Dativ: mit etwas Neu<strong>em</strong>.</p>
 <p><strong>After alles</strong> (a der-word) the ending is weak: alles Gute, alles Neue, mit allem Nötig<strong>en</strong>. With das: das Gute, das Beste, das Wichtigste ist …</p>
 <p><strong>Exception:</strong> andere usually stays lowercase (capitals are also allowed): etwas anderes, nichts anderes, alles andere.</p>
-<p>Ukrainian works the same way (щось нове, нічого особливого); German just adds the capital letter.</p>
 <h2>See also</h2>
 <ul>
 <li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: which case each preposition takes, contractions, Genitiv prepositions</li>
@@ -868,9 +858,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv chains and noun style in writing</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/articles.html">Articles quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="e9523cfc3ad2" href="../quizzes/articles.html">Articles quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

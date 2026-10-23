@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="9c147038182f">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 
 body { margin: 0; }
@@ -165,12 +171,16 @@ body { margin: 0; }
   <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"id": "articles-1", "title": "Articles and cases, test 1", "level": "B1", "doc": {"title": "German article tables (B1)", "url": "../docs/articles.html"}, "questions": [{"q": "Ich gebe *___* Mann das Buch.", "options": ["der", "den", "dem", "des", "die"], "answer": 2, "explain": "The person you give something *to* is Dativ. Masculine Dativ is *dem*. Like Ukrainian даю *чоловікові*."}, {"q": "Wir fahren heute mit *___* Bus.", "options": ["der", "den", "dem", "des", "die"], "answer": 2, "explain": "*mit* always takes Dativ, and der Bus is masculine, so *dem Bus*. Ukrainian would use the instrumental (автобусом); German has no instrumental and uses mit + Dativ."}, {"q": "Das ist das Auto *___* Lehrerin.", "options": ["der", "die", "den", "des", "dem"], "answer": 0, "explain": "Possession is Genitiv. Feminine Genitiv is *der*: das Auto der Lehrerin = машина вчительки."}, {"q": "Ich habe *___* Bruder und zwei Schwestern.", "options": ["ein", "einen", "einem", "eines", "einer"], "answer": 1, "explain": "*haben* takes an Akkusativ object. Only masculine changes in the Akkusativ: ein → *einen*."}, {"q": "Im Sommer trinke ich gern kalt*___* Wasser.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 3, "explain": "No article, so the adjective carries the signal itself. das Wasser is neuter Akkusativ, so the ending is *-es*: kaltes Wasser."}, {"q": "Das ist ein neu*___* Computer.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 2, "explain": "*ein* shows no gender in the masculine Nominativ, so the adjective has to: ein neu*er* Computer."}, {"q": "Ich treffe mich mit dem alt*___* Freund.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 1, "explain": "After *dem* the article already shows Dativ, so the adjective takes the lazy *-en*. Every Dativ after der/ein-words ends in -en."}, {"q": "Ich gehe jetzt in *___* Küche.", "options": ["der", "die", "den", "dem", "das"], "answer": 1, "explain": "*in* is a two-way preposition. Movement (wohin?) takes Akkusativ: in *die* Küche. Location (wo?) would be in *der* Küche. Compare в кухню / в кухні."}, {"q": "Die Kinder spielen mit *___* Hunden.", "options": ["den", "dem", "die", "der", "denen"], "answer": 0, "explain": "Dativ plural is *den*, and the noun adds -n: mit den Hunde*n*. *denen* is a relative pronoun, not an article."}, {"q": "Anna hilft *___* Mutter im Garten.", "options": ["ihre", "ihrer", "ihren", "ihrem", "ihres"], "answer": 1, "explain": "*helfen* takes Dativ (like допомагати *кому*). die Mutter is feminine, and possessives take the ein-endings: Dativ feminine *ihrer*."}]}
+{"id": "articles-1", "title": "Articles and cases, test 1", "level": "B1", "doc": {"title": "German article tables (B1)", "url": "../docs/articles.html"}, "questions": [{"q": "Ich gebe *___* Mann das Buch.", "options": ["der", "den", "dem", "des", "die"], "answer": 2, "explain": "The person you give something *to* is Dativ. Masculine Dativ is *dem*."}, {"q": "Wir fahren heute mit *___* Bus.", "options": ["der", "den", "dem", "des", "die"], "answer": 2, "explain": "*mit* always takes Dativ, and der Bus is masculine, so *dem Bus*."}, {"q": "Das ist das Auto *___* Lehrerin.", "options": ["der", "die", "den", "des", "dem"], "answer": 0, "explain": "Possession is Genitiv. Feminine Genitiv is *der*: das Auto der Lehrerin = the teacher's car."}, {"q": "Ich habe *___* Bruder und zwei Schwestern.", "options": ["ein", "einen", "einem", "eines", "einer"], "answer": 1, "explain": "*haben* takes an Akkusativ object. Only masculine changes in the Akkusativ: ein → *einen*."}, {"q": "Im Sommer trinke ich gern kalt*___* Wasser.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 3, "explain": "No article, so the adjective carries the signal itself. das Wasser is neuter Akkusativ, so the ending is *-es*: kaltes Wasser."}, {"q": "Das ist ein neu*___* Computer.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 2, "explain": "*ein* shows no gender in the masculine Nominativ, so the adjective has to: ein neu*er* Computer."}, {"q": "Ich treffe mich mit dem alt*___* Freund.", "options": ["-e", "-en", "-er", "-es", "-em"], "answer": 1, "explain": "After *dem* the article already shows Dativ, so the adjective takes the lazy *-en*. Every Dativ after der/ein-words ends in -en."}, {"q": "Ich gehe jetzt in *___* Küche.", "options": ["der", "die", "den", "dem", "das"], "answer": 1, "explain": "*in* is a two-way preposition. Movement (wohin?) takes Akkusativ: in *die* Küche. Location (wo?) would be in *der* Küche."}, {"q": "Die Kinder spielen mit *___* Hunden.", "options": ["den", "dem", "die", "der", "denen"], "answer": 0, "explain": "Dativ plural is *den*, and the noun adds -n: mit den Hunde*n*. *denen* is a relative pronoun, not an article."}, {"q": "Anna hilft *___* Mutter im Garten.", "options": ["ihre", "ihrer", "ihren", "ihrem", "ihres"], "answer": 1, "explain": "*helfen* takes Dativ. die Mutter is feminine, and possessives take the ein-endings: Dativ feminine *ihrer*."}]}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -182,18 +192,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -208,14 +232,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -227,7 +251,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -236,14 +260,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -251,18 +275,18 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();

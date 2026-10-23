@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="903a62b09fb0">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="index.html">Grammar</a><span class="sep">/</span><span class="cur">Passive</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="index.html">Grammar</a><span class="sep">/</span><span class="cur">Passive</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>The passive</h1><p class="sub">werden + Partizip II for &quot;is done&quot;, sein + Partizip II for &quot;is finished&quot;, and the everyday alternatives with man.</p></header>
@@ -278,13 +284,6 @@ body { margin: 0; }
 </table></div>
 <p>In the Perfekt passive, <em>werden</em> becomes <strong>worden</strong>, not <em>geworden</em>. <em>Geworden</em> means "become": <em>Er ist Arzt geworden.</em> Most people prefer the Präteritum for passive in the past: <em>wurde gebaut</em> is shorter than <em>ist gebaut worden</em>.</p>
 <aside class="callout hack"><p class="callout-title">Who did it? Ask &quot;von&quot;</p><p>Want to mention the doer? Add <strong>von + Dativ</strong>: <em>Das Bild wurde von Picasso gemalt.</em> If you cannot answer "von wem?", leave it out. Most German passive sentences have no doer at all.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian has several passive tools: <em>-ся</em> verbs (<em>будинок будується</em>), short forms in <em>-но/-то</em> (<em>зроблено</em>, <em>відкрито</em>) and the participle (<em>будинок збудований</em>). German maps roughly like this:</p>
-<ul>
-<li><em>Будинок будується.</em> → <em>Das Haus <strong>wird</strong> gebaut.</em> (process: werden-passive)</li>
-<li><em>Магазин відкрито.</em> / <em>Магазин відкритий.</em> → <em>Das Geschäft <strong>ist</strong> geöffnet.</em> (state: sein-passive)</li>
-<li><em>Тут не курять.</em> → <em>Hier wird nicht geraucht.</em> / <em>Hier raucht man nicht.</em></li>
-</ul>
-<p>Careful: German reflexive <em>sich</em> is <strong>not</strong> a passive. <em>Das Haus baut sich</em> is nonsense; Ukrainian <em>-ся</em> becomes <em>werden</em> + Partizip.</p></aside>
 <h2>B1</h2>
 <h3>von vs durch</h3>
 <ul>
@@ -357,14 +356,14 @@ body { margin: 0; }
 </ul></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></li>
-<li><a href="../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
-<li><a href="../grammar/tenses/past.html">Past tenses</a></li>
-<li><a href="../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></li>
+<li><a data-quiz="f8cd2a606b21" href="../grammar/verbs/sein-haben-werden.html">sein, haben, werden</a></li>
+<li><a data-quiz="f7e33196feac" href="../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a data-quiz="9e39b1fb4433" href="../grammar/tenses/past.html">Past tenses</a></li>
+<li><a data-quiz="076084ff1a75" href="../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></li>
 <li><a href="../docs/b2-formal-german.html">Formal German (B2)</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="moods/index.html">← Moods</a><a class="btn" href="verbs/index.html">Verbs →</a></nav>
+<nav class="pager"><a data-quiz="a8f4f1cc4fb5" class="btn" href="moods/index.html">← Moods</a><a data-quiz="53c724d48f43" class="btn" href="verbs/index.html">Verbs →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -382,12 +381,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Das Auto *___* gerade repariert.", "options": ["sind", "hat", "werden", "wird", "wirst"], "answer": 3, "explain": "*gerade* = right now, a process: werden-passive, *wird repariert* (A2)"}, {"q": "Hier *___* Deutsch gesprochen.", "options": ["werden", "wird", "ist", "hat", "wurden"], "answer": 1, "explain": "Classic passive: *Hier wird Deutsch gesprochen* = German is spoken here. *Deutsch* is singular, so *wird* (A2)"}, {"q": "Die Briefe *___* morgen verschickt.", "options": ["wird", "seid", "haben", "werdet", "werden"], "answer": 4, "explain": "*Die Briefe* is plural, so *werden* + Partizip II (A2)"}, {"q": "Das Haus wurde 1900 *___*.", "options": ["bauen", "baute", "gebaut", "gebaute", "bauend"], "answer": 2, "explain": "The passive needs the Partizip II at the end: *wurde gebaut* (A2)"}, {"q": "Die Kinder werden *___* der Oma abgeholt.", "options": ["von", "durch", "zu", "für", "aus"], "answer": 0, "explain": "The person who does the action is introduced with *von* + Dativ (A2)"}, {"q": "Ich *___* morgen vom Bahnhof abgeholt.", "options": ["wird", "bin", "habe", "werde", "wirst"], "answer": 3, "explain": "ich-form of *werden* + Partizip II: *Ich werde abgeholt* = I'm being picked up (A2)"}, {"q": "Das Museum *___* gestern um 10 Uhr geöffnet.", "options": ["wird", "wurde", "werde", "wurden", "worden"], "answer": 1, "explain": "*gestern* = past, so Präteritum passive: *wurde geöffnet* (A2)"}, {"q": "Wie *___* das Wort geschrieben?", "options": ["werdet", "hat", "werden", "wirst", "wird"], "answer": 4, "explain": "Question with the passive: *Wie wird das Wort geschrieben?* = How is it spelled? (A2)"}, {"q": "*Das Bild wurde von Picasso gemalt.* Who painted it?", "options": ["nobody knows", "the speaker", "Picasso", "a museum", "it is not said"], "answer": 2, "explain": "*von* + person names the doer of a passive action (A2)"}, {"q": "Which sentence is passive?", "options": ["Der Kuchen wird gebacken.", "Der Kuchen wird bald fertig.", "Ich werde einen Kuchen backen.", "Er backt einen Kuchen.", "Der Kuchen wird groß."], "answer": 0, "explain": "werden + Partizip II = passive. werden + infinitive = future, werden + adjective = become (A2)"}, {"q": "Das Haus ist 1900 gebaut *___*.", "options": ["geworden", "würde", "werden", "worden", "wurde"], "answer": 3, "explain": "In the Perfekt passive *werden* becomes *worden*, not *geworden* (B1)"}, {"q": "Er ist Arzt *___*.", "options": ["worden", "geworden", "gewerdet", "werden", "wurde"], "answer": 1, "explain": "Here *werden* means \"become\", so the Partizip is the full *geworden* (B1)"}, {"q": "Das muss heute noch gemacht *___*.", "options": ["worden", "wird", "wurde", "geworden", "werden"], "answer": 4, "explain": "Modal + Partizip II + *werden* (infinitive): *muss gemacht werden* (B1)"}, {"q": "Der Antrag kann online *___* werden.", "options": ["stellen", "stellt", "gestellt", "gestellen", "zu stellen"], "answer": 2, "explain": "Modal passive: *kann* + Partizip II + *werden* (B1)"}, {"q": "Hier darf nicht *___*.", "options": ["geparkt werden", "parken werden", "geparkt worden", "parken wird", "geparkt wird"], "answer": 0, "explain": "Impersonal passive with a modal: *darf nicht geparkt werden* = parking is not allowed (B1)"}, {"q": "Die Stadt wurde *___* ein Erdbeben zerstört.", "options": ["von", "mit", "bei", "durch", "aus"], "answer": 3, "explain": "A cause or event (not a person) takes *durch* + Akkusativ (B1)"}, {"q": "Ich wurde *___* einen Kollegen informiert. (= through a colleague, as an intermediary)", "options": ["von", "durch", "mit", "zu", "aus"], "answer": 1, "explain": "*durch* marks the intermediary or means: informed *through* someone (B1)"}, {"q": "Die Tür *___* geschlossen. Man kann jetzt nicht rein. (state)", "options": ["wird", "wurde", "hat", "werden", "ist"], "answer": 4, "explain": "A resulting state = Zustandspassiv: *sein* + Partizip II (B1)"}, {"q": "Der Tisch *___* gerade gedeckt. Gleich können wir essen. (process)", "options": ["ist", "war", "wird", "hat", "sind"], "answer": 2, "explain": "*gerade* = it is happening now: Vorgangspassiv with *werden* (B1)"}, {"q": "Sonntags *___* nicht gearbeitet.", "options": ["wird", "werden", "ist", "hat", "wurden"], "answer": 0, "explain": "Impersonal passive has no subject, so the verb is always 3rd person singular: *wird* (B1)"}, {"q": "*Es wird viel gelacht.* What does it mean?", "options": ["It is laughing a lot.", "It will laugh a lot.", "He laughs a lot.", "There's a lot of laughing.", "It was a lot of laughter."], "answer": 3, "explain": "Impersonal passive describes an activity in general; *es* only fills the first position (B1)"}, {"q": "*___* wird geholfen. (ich)", "options": ["Ich", "Mir", "Mich", "Mein", "Meiner"], "answer": 1, "explain": "*helfen* takes the dative, and the dative stays in the passive: *Mir wird geholfen* (B1)"}, {"q": "Which sentence means the same as *Man spricht hier Englisch*?", "options": ["Hier ist Englisch gesprochen worden.", "Hier spricht sich Englisch.", "Hier wird Englisch sprechen.", "Hier hat man Englisch gesprochen.", "Hier wird Englisch gesprochen."], "answer": 4, "explain": "*man* + active is the everyday alternative to the werden-passive (B1)"}, {"q": "*Будинок будується.* In German:", "options": ["Das Haus baut sich.", "Das Haus ist bauen.", "Das Haus wird gebaut.", "Das Haus baut.", "Das Haus hat gebaut."], "answer": 2, "explain": "Ukrainian *-ся* passive becomes *werden* + Partizip II; German *sich* is not a passive (B1)"}, {"q": "Das Problem *___* gestern schnell gelöst werden.", "options": ["konnte", "kann", "wurde", "ist", "hat"], "answer": 0, "explain": "Modal passive in the past: Präteritum of the modal + Partizip II + *werden*: *konnte gelöst werden* (B1)"}], "title": "The passive quiz", "level": "A2–B1"}
+{"questions": [{"q": "Das Auto *___* gerade repariert.", "options": ["sind", "hat", "werden", "wird", "wirst"], "answer": 3, "explain": "*gerade* = right now, a process: werden-passive, *wird repariert* (A2)"}, {"q": "Hier *___* Deutsch gesprochen.", "options": ["werden", "wird", "ist", "hat", "wurden"], "answer": 1, "explain": "Classic passive: *Hier wird Deutsch gesprochen* = German is spoken here. *Deutsch* is singular, so *wird* (A2)"}, {"q": "Die Briefe *___* morgen verschickt.", "options": ["wird", "seid", "haben", "werdet", "werden"], "answer": 4, "explain": "*Die Briefe* is plural, so *werden* + Partizip II (A2)"}, {"q": "Das Haus wurde 1900 *___*.", "options": ["bauen", "baute", "gebaut", "gebaute", "bauend"], "answer": 2, "explain": "The passive needs the Partizip II at the end: *wurde gebaut* (A2)"}, {"q": "Die Kinder werden *___* der Oma abgeholt.", "options": ["von", "durch", "zu", "für", "aus"], "answer": 0, "explain": "The person who does the action is introduced with *von* + Dativ (A2)"}, {"q": "Ich *___* morgen vom Bahnhof abgeholt.", "options": ["wird", "bin", "habe", "werde", "wirst"], "answer": 3, "explain": "ich-form of *werden* + Partizip II: *Ich werde abgeholt* = I'm being picked up (A2)"}, {"q": "Das Museum *___* gestern um 10 Uhr geöffnet.", "options": ["wird", "wurde", "werde", "wurden", "worden"], "answer": 1, "explain": "*gestern* = past, so Präteritum passive: *wurde geöffnet* (A2)"}, {"q": "Wie *___* das Wort geschrieben?", "options": ["werdet", "hat", "werden", "wirst", "wird"], "answer": 4, "explain": "Question with the passive: *Wie wird das Wort geschrieben?* = How is it spelled? (A2)"}, {"q": "*Das Bild wurde von Picasso gemalt.* Who painted it?", "options": ["nobody knows", "the speaker", "Picasso", "a museum", "it is not said"], "answer": 2, "explain": "*von* + person names the doer of a passive action (A2)"}, {"q": "Which sentence is passive?", "options": ["Der Kuchen wird gebacken.", "Der Kuchen wird bald fertig.", "Ich werde einen Kuchen backen.", "Er backt einen Kuchen.", "Der Kuchen wird groß."], "answer": 0, "explain": "werden + Partizip II = passive. werden + infinitive = future, werden + adjective = become (A2)"}, {"q": "Das Haus ist 1900 gebaut *___*.", "options": ["geworden", "würde", "werden", "worden", "wurde"], "answer": 3, "explain": "In the Perfekt passive *werden* becomes *worden*, not *geworden* (B1)"}, {"q": "Er ist Arzt *___*.", "options": ["worden", "geworden", "gewerdet", "werden", "wurde"], "answer": 1, "explain": "Here *werden* means \"become\", so the Partizip is the full *geworden* (B1)"}, {"q": "Das muss heute noch gemacht *___*.", "options": ["worden", "wird", "wurde", "geworden", "werden"], "answer": 4, "explain": "Modal + Partizip II + *werden* (infinitive): *muss gemacht werden* (B1)"}, {"q": "Der Antrag kann online *___* werden.", "options": ["stellen", "stellt", "gestellt", "gestellen", "zu stellen"], "answer": 2, "explain": "Modal passive: *kann* + Partizip II + *werden* (B1)"}, {"q": "Hier darf nicht *___*.", "options": ["geparkt werden", "parken werden", "geparkt worden", "parken wird", "geparkt wird"], "answer": 0, "explain": "Impersonal passive with a modal: *darf nicht geparkt werden* = parking is not allowed (B1)"}, {"q": "Die Stadt wurde *___* ein Erdbeben zerstört.", "options": ["von", "mit", "bei", "durch", "aus"], "answer": 3, "explain": "A cause or event (not a person) takes *durch* + Akkusativ (B1)"}, {"q": "Ich wurde *___* einen Kollegen informiert. (= through a colleague, as an intermediary)", "options": ["von", "durch", "mit", "zu", "aus"], "answer": 1, "explain": "*durch* marks the intermediary or means: informed *through* someone (B1)"}, {"q": "Die Tür *___* geschlossen. Man kann jetzt nicht rein. (state)", "options": ["wird", "wurde", "hat", "werden", "ist"], "answer": 4, "explain": "A resulting state = Zustandspassiv: *sein* + Partizip II (B1)"}, {"q": "Der Tisch *___* gerade gedeckt. Gleich können wir essen. (process)", "options": ["ist", "war", "wird", "hat", "sind"], "answer": 2, "explain": "*gerade* = it is happening now: Vorgangspassiv with *werden* (B1)"}, {"q": "Sonntags *___* nicht gearbeitet.", "options": ["wird", "werden", "ist", "hat", "wurden"], "answer": 0, "explain": "Impersonal passive has no subject, so the verb is always 3rd person singular: *wird* (B1)"}, {"q": "*Es wird viel gelacht.* What does it mean?", "options": ["It is laughing a lot.", "It will laugh a lot.", "He laughs a lot.", "There's a lot of laughing.", "It was a lot of laughter."], "answer": 3, "explain": "Impersonal passive describes an activity in general; *es* only fills the first position (B1)"}, {"q": "*___* wird geholfen. (ich)", "options": ["Ich", "Mir", "Mich", "Mein", "Meiner"], "answer": 1, "explain": "*helfen* takes the dative, and the dative stays in the passive: *Mir wird geholfen* (B1)"}, {"q": "Which sentence means the same as *Man spricht hier Englisch*?", "options": ["Hier ist Englisch gesprochen worden.", "Hier spricht sich Englisch.", "Hier wird Englisch sprechen.", "Hier hat man Englisch gesprochen.", "Hier wird Englisch gesprochen."], "answer": 4, "explain": "*man* + active is the everyday alternative to the werden-passive (B1)"}, {"q": "*The house is being built.* In German:", "options": ["Das Haus baut sich.", "Das Haus ist bauen.", "Das Haus wird gebaut.", "Das Haus baut.", "Das Haus hat gebaut."], "answer": 2, "explain": "A process in the passive is *werden* + Partizip II. German *sich* is not a passive: *Das Haus baut sich* is wrong (B1)"}, {"q": "Das Problem *___* gestern schnell gelöst werden.", "options": ["konnte", "kann", "wurde", "ist", "hat"], "answer": 0, "explain": "Modal passive in the past: Präteritum of the modal + Partizip II + *werden*: *konnte gelöst werden* (B1)"}], "title": "The passive quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -399,18 +402,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -425,14 +442,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -444,7 +461,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -453,14 +470,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -468,23 +485,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

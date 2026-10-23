@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="2652d098be4f">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Relative and demonstrative pronouns: der, denen, dessen</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../grammar/pronouns/index.html">Pronouns</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="c0540e70c480" href="../grammar/pronouns/index.html">Pronouns</a>.</p></aside>
 <p>A German relative pronoun takes its gender and number from the noun it refers to and its case from its job inside the relative clause; the clause is set off by commas and its verb goes to the end.</p>
 <h2>The full table</h2>
 <p>The relative pronoun looks like the definite article in 11 of 16 slots; the five that differ are <strong>dessen, deren</strong> (Genitiv), <strong>denen</strong> (Dativ plural) and <strong>deren</strong> (Genitiv plural).</p>
@@ -775,111 +781,75 @@ body { margin: 0; }
 <li><strong>derselbe</strong> is written as one word; <strong>der gleiche</strong> as two words.</li>
 <li>Strictly, derselbe = the very same one, der gleiche = one of the same kind. In speech the two are often mixed.</li>
 </ul>
-<h2>Ukrainian comparison: який and чий</h2>
-<p>German der/die/das works exactly like Ukrainian <strong>який / яка / яке / які</strong>: gender and number from the noun, case from the role in the clause. The one trap is "whose": Ukrainian <strong>чий</strong> agrees with the thing owned, German dessen/deren with the owner.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Ukrainian</th>
 <th>German</th>
-<th>Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>чоловік, <strong>який</strong> там стоїть</td>
 <td>der Mann, <strong>der</strong> dort steht</td>
-<td>Nom</td>
 </tr>
 <tr>
-<td>чоловік, <strong>якого</strong> я бачив</td>
 <td>der Mann, <strong>den</strong> ich gesehen habe</td>
-<td>Akk (знахідний)</td>
 </tr>
 <tr>
-<td>жінка, <strong>якій</strong> я допомагаю</td>
 <td>die Frau, <strong>der</strong> ich helfe</td>
-<td>Dat (давальний)</td>
 </tr>
 <tr>
-<td>люди, <strong>яким</strong> я вірю</td>
 <td>die Leute, <strong>denen</strong> ich glaube</td>
-<td>Dat pl</td>
 </tr>
 <tr>
-<td>місто, <strong>в якому</strong> я живу</td>
 <td>die Stadt, <strong>in der</strong> ich wohne</td>
-<td>preposition first in both languages</td>
 </tr>
 <tr>
-<td>друг, <strong>з яким</strong> я їду</td>
 <td>der Freund, <strong>mit dem</strong> ich fahre</td>
-<td></td>
 </tr>
 <tr>
-<td>чоловік, машина <strong>якого</strong> стоїть тут</td>
 <td>der Mann, <strong>dessen</strong> Auto hier steht</td>
-<td>Gen of the owner: якого = dessen</td>
 </tr>
 <tr>
-<td>жінка, син <strong>якої</strong> студіює</td>
 <td>die Frau, <strong>deren</strong> Sohn studiert</td>
-<td>якої = deren</td>
 </tr>
 <tr>
-<td>сусіди, собака <strong>яких</strong> гавкає</td>
 <td>die Nachbarn, <strong>deren</strong> Hund bellt</td>
-<td>яких = deren</td>
 </tr>
 <tr>
-<td>все, <strong>що</strong> я знаю</td>
 <td>alles, <strong>was</strong> ich weiß</td>
-<td>що = was</td>
 </tr>
 <tr>
-<td>те, <strong>що</strong> ти кажеш</td>
 <td>das, <strong>was</strong> du sagst</td>
-<td></td>
 </tr>
 <tr>
-<td><strong>хто</strong> запізнюється, (той) платить</td>
 <td><strong>wer</strong> zu spät kommt, (der) zahlt</td>
-<td>той, хто = derjenige, der</td>
 </tr>
 <tr>
-<td>місто, <strong>де</strong> я живу</td>
 <td>die Stadt, <strong>wo</strong> ich wohne</td>
-<td>де = wo</td>
 </tr>
 </tbody>
 </table></div>
-<h3>The чий trap</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Ukrainian (agrees with the owned thing)</th>
 <th>German (agrees with the owner)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>чоловік, <strong>чия</strong> машина (машина = f)</td>
 <td>der Mann, <strong>dessen</strong> Auto (Mann = m)</td>
 </tr>
 <tr>
-<td>жінка, <strong>чий</strong> син (син = m)</td>
 <td>die Frau, <strong>deren</strong> Sohn (Frau = f)</td>
 </tr>
 <tr>
-<td>автор, <strong>чиї</strong> книжки (pl)</td>
 <td>der Autor, <strong>dessen</strong> Bücher (Autor = m)</td>
 </tr>
 </tbody>
 </table></div>
 <ul>
-<li>Easiest bridge: translate <strong>dessen / deren</strong> through <strong>якого / якої / яких</strong>, not through чий. Both point back to the owner.</li>
-<li>Ukrainian allows що for people in speech (хлопець, що там стоїть). German never uses was for a person: der Junge, <strong>der</strong> dort steht.</li>
-<li>Ukrainian commas before який match German commas exactly: always a comma before and after the relative clause.</li>
+<li>Both point back to the owner.</li>
+<li>German never uses was for a person: der Junge, <strong>der</strong> dort steht.</li>
 </ul>
 <h2>Common mistakes</h2>
 <p>Most errors come from taking the case from the main clause instead of the relative clause, or from copying English word order.</p>
@@ -1020,7 +990,6 @@ body { margin: 0; }
 <ul>
 <li>The preposition always comes first: mit dessen Hilfe, never dessen mit Hilfe.</li>
 <li>As a relative pronoun, only deren is standard for feminine and plural Genitiv: mit deren Hilfe, never mit derer Hilfe. derer has a different job (see below).</li>
-<li>Ukrainian works the same way: колега, з допомогою якого ... = der Kollege, mit dessen Hilfe ...</li>
 </ul>
 <h3>Which noun does it refer to? Genitiv chains</h3>
 <p>After a noun with a Genitiv attribute, the relative pronoun can point to either noun; German gender usually tells you which, where English stays ambiguous.</p>
@@ -1153,7 +1122,6 @@ body { margin: 0; }
 </tr>
 </tbody>
 </table></div>
-<p>Ukrainian bridge: все, про що ми говорили = alles, worüber wir gesprochen haben. A preposition + що maps onto wo(r)-.</p>
 <h3>derjenige, derjenige welcher, and derer vs deren</h3>
 <p><strong>derjenige</strong> sharpens "the one who" in formal text and avoids the clumsy die, die. It can also stand before a noun; adjectives after it take the weak ending.</p>
 <div class="table-wrap"><table>
@@ -1300,7 +1268,7 @@ body { margin: 0; }
 <ul>
 <li>Partizip II works only for verbs with an object (passive meaning) or sein-verbs: das eingeschlafene Kind is fine, der gearbeitete Mann is wrong.</li>
 <li>The participle takes normal adjective endings: der steigende Preis, die steigenden Preise, mit steigenden Preisen.</li>
-<li>Ukrainian has a close cousin, the дієприкметниковий зворот: лист, надісланий учора. German puts the whole phrase before the noun: der gestern geschickte Brief.</li>
+<li>German puts the whole phrase before the noun: der gestern geschickte Brief.</li>
 <li>More on nominal style: <a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>.</li>
 </ul>
 <h2>See also</h2>
@@ -1312,9 +1280,22 @@ body { margin: 0; }
 <li><a href="../docs/connectors.html">Connectors and sentence starters</a>: the other verb-last clauses (weil, dass, obwohl)</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/relative-pronouns.html">Relative pronouns quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="6f48da687e78" href="../quizzes/relative-pronouns.html">Relative pronouns quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

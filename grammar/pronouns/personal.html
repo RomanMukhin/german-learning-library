@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="94e63021296d">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,12 +194,12 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Personal</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="c0540e70c480" class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Personal</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Personal pronouns</h1><p class="sub">ich, mich, mir and friends in every case, the dummy subject es, and the order of pronouns in a sentence.</p></header>
 <article class="prose card">
-<p>Personal pronouns (<em>ich, du, er...</em>) replace a person or a thing you have already mentioned. In German they change their form with the case, exactly like Ukrainian <em>я – мене – мені</em>. You need them in every sentence, so the table below is worth knowing by heart.</p>
+<p>Personal pronouns (<em>ich, du, er...</em>) replace a person or a thing you have already mentioned. In German they change their form with the case. You need them in every sentence, so the table below is worth knowing by heart.</p>
 <h2>A2 core</h2>
 <h3>The full table</h3>
 <div class="table-wrap"><table>
@@ -203,7 +209,6 @@ body { margin: 0; }
 <th>Nominative</th>
 <th>Accusative</th>
 <th>Dative</th>
-<th>Ukrainian</th>
 </tr>
 </thead>
 <tbody>
@@ -212,63 +217,54 @@ body { margin: 0; }
 <td>ich</td>
 <td>mich</td>
 <td>mir</td>
-<td>я / мене / мені</td>
 </tr>
 <tr>
 <td>you (du)</td>
 <td>du</td>
 <td>dich</td>
 <td>dir</td>
-<td>ти / тебе / тобі</td>
 </tr>
 <tr>
 <td>he / it (der-word)</td>
 <td>er</td>
 <td>ihn</td>
 <td>ihm</td>
-<td>він / його / йому</td>
 </tr>
 <tr>
 <td>she / it (die-word)</td>
 <td>sie</td>
 <td>sie</td>
 <td>ihr</td>
-<td>вона / її / їй</td>
 </tr>
 <tr>
 <td>it (das-word)</td>
 <td>es</td>
 <td>es</td>
 <td>ihm</td>
-<td>воно / його / йому</td>
 </tr>
 <tr>
 <td>we</td>
 <td>wir</td>
 <td>uns</td>
 <td>uns</td>
-<td>ми / нас / нам</td>
 </tr>
 <tr>
 <td>you (ihr)</td>
 <td>ihr</td>
 <td>euch</td>
 <td>euch</td>
-<td>ви / вас / вам</td>
 </tr>
 <tr>
 <td>they</td>
 <td>sie</td>
 <td>sie</td>
 <td>ihnen</td>
-<td>вони / їх / їм</td>
 </tr>
 <tr>
 <td>you (polite)</td>
 <td>Sie</td>
 <td>Sie</td>
 <td>Ihnen</td>
-<td>Ви / Вас / Вам</td>
 </tr>
 </tbody>
 </table></div>
@@ -276,27 +272,27 @@ body { margin: 0; }
 <h3>Examples</h3>
 <ul>
 <li><strong>Ich</strong> sehe <strong>dich</strong> morgen. – <em>I'll see you tomorrow.</em></li>
-<li>Kannst du <strong>mir</strong> helfen? – <em>Can you help me?</em> (helfen + dative, like <em>допомогти мені</em>)</li>
+<li>Kannst du <strong>mir</strong> helfen? – <em>Can you help me?</em> (helfen + dative)</li>
 <li>Wo ist der Schlüssel? – <strong>Er</strong> liegt auf dem Tisch. – <em>Where is the key? – It is on the table.</em></li>
 <li>Ich rufe <strong>ihn</strong> an. – <em>I'll call him.</em></li>
-<li>Das Buch gefällt <strong>ihr</strong>. – <em>She likes the book.</em> (literally: the book pleases her, <em>книжка їй подобається</em>)</li>
+<li>Das Buch gefällt <strong>ihr</strong>. – <em>She likes the book.</em> (literally: the book pleases her)</li>
 <li>Wir besuchen <strong>euch</strong> am Samstag. – <em>We'll visit you on Saturday.</em></li>
 <li>Ich danke <strong>Ihnen</strong>! – <em>Thank you!</em> (polite)</li>
 </ul>
-<aside class="callout trap"><p class="callout-title">&quot;er&quot; and &quot;sie&quot; are not only for people</p><p>German pronouns follow <strong>grammatical gender</strong>: <em>der Tisch → er</em>, <em>die Lampe → sie</em>, <em>das Auto → es</em>. English says "it" for all three, so English speakers write <em>Der Tisch ... es ist kaputt</em>. Wrong: it is <em>er ist kaputt</em>. Ukrainian works just like German here (<em>стіл – він</em>), so trust your Ukrainian instinct.</p></aside>
+<aside class="callout trap"><p class="callout-title">&quot;er&quot; and &quot;sie&quot; are not only for people</p><p>German pronouns follow <strong>grammatical gender</strong>: <em>der Tisch → er</em>, <em>die Lampe → sie</em>, <em>das Auto → es</em>. English says "it" for all three, so English speakers write <em>Der Tisch ... es ist kaputt</em>. Wrong: it is <em>er ist kaputt</em>.</p></aside>
 <aside class="callout hack"><p class="callout-title">Learn three columns as three tiny chants</p><p>Read the rows downwards: <strong>mich dich ihn sie es uns euch sie</strong> (accusative) and <strong>mir dir ihm ihr ihm uns euch ihnen</strong> (dative). Notice that <em>uns</em> and <em>euch</em> never change between accusative and dative, and <em>sie/Sie</em> are the same in nominative and accusative. That leaves only a handful of forms to really memorise.</p></aside>
 <h2>B1</h2>
 <h3>es as a dummy subject</h3>
 <p>German needs a subject in almost every sentence, even when nothing "does" anything. Then <strong>es</strong> fills the gap:</p>
 <ul>
-<li><strong>Es regnet / es schneit / es ist kalt.</strong> – <em>It's raining / snowing / cold.</em> (Ukrainian: <em>дощить</em>, no subject at all)</li>
+<li><strong>Es regnet / es schneit / es ist kalt.</strong> – <em>It's raining / snowing / cold.</em></li>
 <li><strong>Es gibt</strong> hier ein gutes Café. – <em>There is a good café here.</em> (<em>es gibt</em> + accusative: <em>Es gibt keinen Zucker.</em>)</li>
 <li>Wie <strong>geht es</strong> dir? – <strong>Es geht mir gut.</strong> – <em>How are you? – I'm fine.</em> (literally: it goes to me well)</li>
 <li><strong>Es ist</strong> spät. <strong>Es ist</strong> zehn Uhr. – <em>It's late. It's ten o'clock.</em></li>
 <li><strong>Es klingelt.</strong> – <em>Someone is ringing the doorbell.</em></li>
 </ul>
 <p>When another word takes position 1, the dummy <em>es</em> in <em>es gibt</em> and weather verbs stays: <em>Heute regnet es. Hier gibt es kein WLAN.</em> With <em>es geht</em> too: <em>Mir geht es gut.</em></p>
-<aside class="callout hack"><p class="callout-title">&quot;es gibt&quot; = &quot;є&quot;</p><p>Whenever Ukrainian says <em>є</em> or <em>немає</em> about existence ("in the fridge there is milk"), German says <strong>es gibt</strong> + accusative: <em>Es gibt keinen Käse mehr</em>. <em>Im Kühlschrank ist Milch</em> is also correct when you talk about a specific place, but <em>es gibt</em> is the safe default.</p></aside>
+<aside class="callout hack"><p class="callout-title">&quot;es gibt&quot; = &quot;there is&quot;</p><p>Whenever English says <em>there is</em> or <em>there isn't</em> about existence ("in the fridge there is milk"), German says <strong>es gibt</strong> + accusative: <em>Es gibt keinen Käse mehr</em>. <em>Im Kühlschrank ist Milch</em> is also correct when you talk about a specific place, but <em>es gibt</em> is the safe default.</p></aside>
 <h3>Word order of pronouns</h3>
 <p>With two objects, the order depends on whether they are nouns or pronouns:</p>
 <div class="table-wrap"><table>
@@ -334,18 +330,17 @@ body { margin: 0; }
 <li><em>Wie geht es du?</em> → <strong>Wie geht es dir?</strong> (dative).</li>
 <li><em>Ist kalt.</em> → <strong>Es ist kalt.</strong> Never drop <em>es</em>.</li>
 </ul></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian drops subject pronouns freely (<em>Читаю книжку</em>) because the verb ending shows the person. German verb endings overlap (<em>sie/Sie spielen</em>, <em>er/ihr spielt</em>), so the pronoun is compulsory: <strong>Ich lese ein Buch.</strong> Also, Ukrainian <em>його</em> covers both "him" (accusative) and "his", while German splits them: <strong>ihn</strong> (him) vs <strong>sein</strong> (his).</p></aside>
 <aside class="callout fact"><p class="callout-title">Where &quot;Sie&quot; came from</p><p>Before the 18th century, Germans addressed superiors with <em>Ihr</em> (plural "you"), then with <em>Er/Sie</em> in the third person singular ("Hat Er gegessen?"). The modern polite <em>Sie</em>, borrowed from the plural "they", won around the 18th century and is still capitalised to distinguish it from <em>sie</em> "they".</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: es as a placeholder</p><p>In formal German <em>es</em> can open a sentence only to push the real subject back: <em>Es kamen viele Leute</em> ("Many people came"). The <em>es</em> disappears when something else comes first: <em>Gestern kamen viele Leute.</em></p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/pronouns/possessive.html">Possessive pronouns</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative</a></li>
-<li><a href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></li>
+<li><a data-quiz="8f8aa84beb74" href="../../grammar/pronouns/possessive.html">Possessive pronouns</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative</a></li>
+<li><a data-quiz="dec4bebe93e3" href="../../grammar/verbs/dative-verbs.html">Dative verbs</a></li>
 <li><a href="../../docs/word-order.html">Word order</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="possessive.html">Possessive →</a></nav>
+<nav class="pager"><a data-quiz="8f8aa84beb74" class="btn" href="possessive.html">Possessive →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -363,12 +358,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Kannst du *___* helfen? (me)", "options": ["mich", "ich", "mir", "mein", "meiner"], "answer": 2, "explain": "*helfen* takes the dative: *mir*, like *допомогти мені* (A2)."}, {"q": "Ich liebe *___*. (you, du)", "options": ["dich", "dir", "du", "dein", "deiner"], "answer": 0, "explain": "*lieben* takes a direct object in the accusative: *dich* (A2)."}, {"q": "Wo ist der Schlüssel? – *___* liegt auf dem Tisch.", "options": ["Es", "Sie", "Ihn", "Er", "Ihm"], "answer": 3, "explain": "*der Schlüssel* is masculine, so the pronoun is *er* even for a thing (A2)."}, {"q": "Die Lampe ist neu. *___* war nicht teuer.", "options": ["Er", "Sie", "Es", "Ihr", "Ihn"], "answer": 1, "explain": "*die Lampe* → *sie*; German follows grammatical gender, like Ukrainian *лампа – вона* (A2)."}, {"q": "Ich rufe *___* morgen an. (him)", "options": ["ihm", "er", "sein", "ihnen", "ihn"], "answer": 4, "explain": "*anrufen* takes the accusative: *ihn* (A2)."}, {"q": "Das Kleid gefällt *___*. (her)", "options": ["sie", "ihr", "ihre", "ihn", "ihnen"], "answer": 1, "explain": "*gefallen* takes the dative; feminine dative is *ihr* (*їй подобається*) (A2)."}, {"q": "Wir besuchen *___* am Wochenende. (you, ihr)", "options": ["ihr", "euer", "euch", "eure", "Ihnen"], "answer": 2, "explain": "Accusative of *ihr* is *euch* (same as dative) (A2)."}, {"q": "Ich danke *___*, Frau Müller!", "options": ["Sie", "Ihr", "Ihren", "Ihnen", "sie"], "answer": 3, "explain": "*danken* takes the dative; the polite dative is *Ihnen* (A2)."}, {"q": "Die Kinder spielen. Ich gebe *___* Schokolade.", "options": ["ihnen", "sie", "ihr", "ihren", "Ihnen"], "answer": 0, "explain": "Dative plural of *sie* is *ihnen* (lowercase, because it means \"them\") (A2)."}, {"q": "Wie geht es *___*? (du)", "options": ["du", "dich", "deine", "dein", "dir"], "answer": 4, "explain": "*Wie geht es dir?* uses the dative (literally \"how does it go to you\") (A2)."}, {"q": "*___* schneit schon seit gestern.", "options": ["Er", "Es", "Das", "Sie", "Man"], "answer": 1, "explain": "Weather verbs have the dummy subject *es*: *es schneit* (B1)."}, {"q": "Heute regnet *___* den ganzen Tag.", "options": ["er", "sie", "das", "es", "man"], "answer": 3, "explain": "With another word in position 1, *es* moves after the verb but stays: *Heute regnet es* (B1)."}, {"q": "In dieser Stadt *___* viele Museen.", "options": ["gibt es", "es gibt", "sind es", "gibt", "geben es"], "answer": 0, "explain": "*es gibt* + accusative = there is/are; *gibt* stays singular even with a plural object; after *In dieser Stadt* the verb comes second: *gibt es* (B1)."}, {"q": "Es gibt hier *___* Supermarkt.", "options": ["kein", "keiner", "keinen", "keinem", "keine"], "answer": 2, "explain": "*es gibt* takes the accusative: masculine *keinen Supermarkt* (B1)."}, {"q": "Mir *___* gut, danke.", "options": ["bin", "geht es", "es geht", "gehe", "ist es"], "answer": 1, "explain": "*Es geht mir gut* → with *mir* in position 1: *Mir geht es gut* (B1)."}, {"q": "Hast du das Buch? – Ja, ich gebe *___* morgen.", "options": ["ihm es", "dir es", "es ihn", "es dir", "dich es"], "answer": 3, "explain": "Two pronouns: accusative (*es*) before dative (*dir*) (B1)."}, {"q": "Ich schenke *___* Blumen. (my mother)", "options": ["meiner Mutter", "meine Mutter", "meinen Mutter", "meinem Mutter", "meines Mutter"], "answer": 0, "explain": "The person receiving is dative: *meiner Mutter* (B1)."}, {"q": "Ich zeige *___*. (the photo to the woman)", "options": ["der Frau es", "es der Frau", "die Frau es", "es die Frau", "es zu der Frau"], "answer": 1, "explain": "A pronoun comes before a noun: *Ich zeige es der Frau* (B1)."}, {"q": "Gestern hat *___* mein Bruder angerufen.", "options": ["mir", "ich", "mich", "mein", "meiner"], "answer": 2, "explain": "*anrufen* + accusative: *mich*; pronouns like to stand right after the verb, even before the subject (B1)."}, {"q": "Das Auto ist kaputt. Ich muss *___* reparieren lassen.", "options": ["ihn", "er", "sie", "ihm", "es"], "answer": 4, "explain": "*das Auto* is neuter; accusative *es* (B1)."}, {"q": "Gehört der Rucksack *___*? (you, du)", "options": ["dich", "du", "dein", "dir", "deiner"], "answer": 3, "explain": "*gehören* takes the dative: *Gehört er dir?* (B1)."}, {"q": "Wir haben *___* lange nicht gesehen. (you, polite)", "options": ["Ihnen", "Sie", "Ihr", "Ihre", "euch"], "answer": 1, "explain": "*sehen* + accusative; the polite accusative is *Sie*, the same as the nominative (B1)."}], "title": "Personal pronouns quiz", "level": "A2–B1"}
+{"questions": [{"q": "Kannst du *___* helfen? (me)", "options": ["mich", "ich", "mir", "mein", "meiner"], "answer": 2, "explain": "*helfen* takes the dative: *mir* (A2)."}, {"q": "Ich liebe *___*. (you, du)", "options": ["dich", "dir", "du", "dein", "deiner"], "answer": 0, "explain": "*lieben* takes a direct object in the accusative: *dich* (A2)."}, {"q": "Wo ist der Schlüssel? – *___* liegt auf dem Tisch.", "options": ["Es", "Sie", "Ihn", "Er", "Ihm"], "answer": 3, "explain": "*der Schlüssel* is masculine, so the pronoun is *er* even for a thing (A2)."}, {"q": "Die Lampe ist neu. *___* war nicht teuer.", "options": ["Er", "Sie", "Es", "Ihr", "Ihn"], "answer": 1, "explain": "*die Lampe* → *sie*; German follows grammatical gender (A2)."}, {"q": "Ich rufe *___* morgen an. (him)", "options": ["ihm", "er", "sein", "ihnen", "ihn"], "answer": 4, "explain": "*anrufen* takes the accusative: *ihn* (A2)."}, {"q": "Das Kleid gefällt *___*. (her)", "options": ["sie", "ihr", "ihre", "ihn", "ihnen"], "answer": 1, "explain": "*gefallen* takes the dative; feminine dative is *ihr* (A2)."}, {"q": "Wir besuchen *___* am Wochenende. (you, ihr)", "options": ["ihr", "euer", "euch", "eure", "Ihnen"], "answer": 2, "explain": "Accusative of *ihr* is *euch* (same as dative) (A2)."}, {"q": "Ich danke *___*, Frau Müller!", "options": ["Sie", "Ihr", "Ihren", "Ihnen", "sie"], "answer": 3, "explain": "*danken* takes the dative; the polite dative is *Ihnen* (A2)."}, {"q": "Die Kinder spielen. Ich gebe *___* Schokolade.", "options": ["ihnen", "sie", "ihr", "ihren", "Ihnen"], "answer": 0, "explain": "Dative plural of *sie* is *ihnen* (lowercase, because it means \"them\") (A2)."}, {"q": "Wie geht es *___*? (du)", "options": ["du", "dich", "deine", "dein", "dir"], "answer": 4, "explain": "*Wie geht es dir?* uses the dative (literally \"how does it go to you\") (A2)."}, {"q": "*___* schneit schon seit gestern.", "options": ["Er", "Es", "Das", "Sie", "Man"], "answer": 1, "explain": "Weather verbs have the dummy subject *es*: *es schneit* (B1)."}, {"q": "Heute regnet *___* den ganzen Tag.", "options": ["er", "sie", "das", "es", "man"], "answer": 3, "explain": "With another word in position 1, *es* moves after the verb but stays: *Heute regnet es* (B1)."}, {"q": "In dieser Stadt *___* viele Museen.", "options": ["gibt es", "es gibt", "sind es", "gibt", "geben es"], "answer": 0, "explain": "*es gibt* + accusative = there is/are; *gibt* stays singular even with a plural object; after *In dieser Stadt* the verb comes second: *gibt es* (B1)."}, {"q": "Es gibt hier *___* Supermarkt.", "options": ["kein", "keiner", "keinen", "keinem", "keine"], "answer": 2, "explain": "*es gibt* takes the accusative: masculine *keinen Supermarkt* (B1)."}, {"q": "Mir *___* gut, danke.", "options": ["bin", "geht es", "es geht", "gehe", "ist es"], "answer": 1, "explain": "*Es geht mir gut* → with *mir* in position 1: *Mir geht es gut* (B1)."}, {"q": "Hast du das Buch? – Ja, ich gebe *___* morgen.", "options": ["ihm es", "dir es", "es ihn", "es dir", "dich es"], "answer": 3, "explain": "Two pronouns: accusative (*es*) before dative (*dir*) (B1)."}, {"q": "Ich schenke *___* Blumen. (my mother)", "options": ["meiner Mutter", "meine Mutter", "meinen Mutter", "meinem Mutter", "meines Mutter"], "answer": 0, "explain": "The person receiving is dative: *meiner Mutter* (B1)."}, {"q": "Ich zeige *___*. (the photo to the woman)", "options": ["der Frau es", "es der Frau", "die Frau es", "es die Frau", "es zu der Frau"], "answer": 1, "explain": "A pronoun comes before a noun: *Ich zeige es der Frau* (B1)."}, {"q": "Gestern hat *___* mein Bruder angerufen.", "options": ["mir", "ich", "mich", "mein", "meiner"], "answer": 2, "explain": "*anrufen* + accusative: *mich*; pronouns like to stand right after the verb, even before the subject (B1)."}, {"q": "Das Auto ist kaputt. Ich muss *___* reparieren lassen.", "options": ["ihn", "er", "sie", "ihm", "es"], "answer": 4, "explain": "*das Auto* is neuter; accusative *es* (B1)."}, {"q": "Gehört der Rucksack *___*? (you, du)", "options": ["dich", "du", "dein", "dir", "deiner"], "answer": 3, "explain": "*gehören* takes the dative: *Gehört er dir?* (B1)."}, {"q": "Wir haben *___* lange nicht gesehen. (you, polite)", "options": ["Ihnen", "Sie", "Ihr", "Ihre", "euch"], "answer": 1, "explain": "*sehen* + accusative; the polite accusative is *Sie*, the same as the nominative (B1)."}], "title": "Personal pronouns quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -380,18 +379,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -406,14 +419,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -425,7 +438,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -434,14 +447,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -449,23 +462,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

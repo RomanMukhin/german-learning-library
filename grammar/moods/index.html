@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="a8f4f1cc4fb5">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,11 +194,11 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Moods</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Moods</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B2</span><h1>Moods</h1><p class="sub">Indicative, imperative and the two Konjunktivs: how German marks facts, commands, wishes and reported words.</p></header>
-<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a class="home-card card" href="imperative.html"><span class="t">The imperative</span><span class="d">How to tell, ask and invite people to do things: du, ihr, Sie and wir forms, plus the little words that make an order sound friendly.</span><span class="k">A2–B1</span></a><a class="home-card card" href="konjunktiv-2.html"><span class="t">Konjunktiv II</span><span class="d">The &quot;would&quot; mood: polite requests, wishes, advice and unreal if-clauses with würde, hätte, wäre and könnte.</span><span class="k">A2–B1</span></a><a class="home-card card" href="konjunktiv-1.html"><span class="t">Konjunktiv I</span><span class="d">The reported-speech mood of newspapers and news broadcasts: recognise er sei, er habe, er komme, but you do not need to produce it yet.</span><span class="k">B2+</span></a></div></section>
+<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a data-quiz="707095ae9a39" class="home-card card" href="imperative.html"><span class="t">The imperative</span><span class="d">How to tell, ask and invite people to do things: du, ihr, Sie and wir forms, plus the little words that make an order sound friendly.</span><span class="k">A2–B1</span></a><a data-quiz="20b42c5f8e14" class="home-card card" href="konjunktiv-2.html"><span class="t">Konjunktiv II</span><span class="d">The &quot;would&quot; mood: polite requests, wishes, advice and unreal if-clauses with würde, hätte, wäre and könnte.</span><span class="k">A2–B1</span></a><a class="home-card card" href="konjunktiv-1.html"><span class="t">Konjunktiv I</span><span class="d">The reported-speech mood of newspapers and news broadcasts: recognise er sei, er habe, er komme, but you do not need to produce it yet.</span><span class="k">B2+</span></a></div></section>
 <article class="prose card">
 <p>A verb's <em>mood</em> tells you how the speaker relates to what they say: is it a fact, an order, a wish or a dream, or something someone else said? German has four moods you will meet. Two you use every day from A2, one you need for polite and hypothetical German at B1, and one you mostly read in the news.</p>
 <h2>The four moods at a glance</h2>
@@ -235,24 +241,23 @@ body { margin: 0; }
 <h2>Which one when</h2>
 <ul>
 <li>You state something you believe is real: <strong>Indikativ</strong>. <em>Wenn ich Zeit habe, komme ich.</em> (a real possibility)</li>
-<li>You tell someone to do something: <strong><a href="../../grammar/moods/imperative.html">Imperativ</a></strong>. <em>Gib mir bitte das Salz!</em></li>
-<li>You talk about something that is not real, not yet real, or you want to sound polite: <strong><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></strong>. <em>Wenn ich Zeit hätte, käme ich.</em> / <em>Könnten Sie mir helfen?</em></li>
+<li>You tell someone to do something: <strong><a data-quiz="707095ae9a39" href="../../grammar/moods/imperative.html">Imperativ</a></strong>. <em>Gib mir bitte das Salz!</em></li>
+<li>You talk about something that is not real, not yet real, or you want to sound polite: <strong><a data-quiz="20b42c5f8e14" href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></strong>. <em>Wenn ich Zeit hätte, käme ich.</em> / <em>Könnten Sie mir helfen?</em></li>
 <li>You report what someone else said and want to keep your distance from it: <strong><a href="../../grammar/moods/konjunktiv-1.html">Konjunktiv I</a></strong>. <em>Der Minister sagte, er sei nicht informiert gewesen.</em> In speech, people usually just use the indicative or Konjunktiv II instead.</li>
 </ul>
 <p>The quickest test between Indikativ and Konjunktiv II: is the "if" realistic? <em>Wenn es morgen regnet, bleibe ich zu Hause</em> (it might rain) vs <em>Wenn ich Millionär wäre, würde ich nicht arbeiten</em> (I am not).</p>
 <aside class="callout hack"><p class="callout-title">One word unlocks most of Konjunktiv II</p><p>For almost any verb you can say <strong>würde + infinitive</strong>: <em>ich würde gehen, ich würde kaufen</em>. Learn only <em>wäre, hätte, könnte, müsste, sollte</em> by heart and use <em>würde</em> for everything else. That covers 95% of spoken German.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian has one particle for what German does with a whole mood</p><p>Ukrainian builds the hypothetical with past tense + <strong>би</strong>: <em>я пішов би</em>. German changes the verb itself (<em>ich ginge</em>) or adds <em>würde</em> (<em>ich würde gehen</em>). Wherever you would say <strong>би</strong> in Ukrainian, German wants Konjunktiv II.</p></aside>
 <aside class="callout fact"><p class="callout-title">Why &quot;Konjunktiv&quot;</p><p>The name comes from the Latin <em>modus coniunctivus</em>, the "joining" mood, because Latin used it mainly in clauses joined to a main clause. German grammar books still use the Latin names: <em>Indikativ</em>, <em>Imperativ</em>, <em>Konjunktiv</em>.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/moods/imperative.html">Imperative</a></li>
-<li><a href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
+<li><a data-quiz="707095ae9a39" href="../../grammar/moods/imperative.html">Imperative</a></li>
+<li><a data-quiz="20b42c5f8e14" href="../../grammar/moods/konjunktiv-2.html">Konjunktiv II</a></li>
 <li><a href="../../grammar/moods/konjunktiv-1.html">Konjunktiv I</a></li>
-<li><a href="../../grammar/tenses/index.html">Tenses</a></li>
+<li><a data-quiz="a977aec84862" href="../../grammar/tenses/index.html">Tenses</a></li>
 <li><a href="../../docs/b2-reported-speech.html">Reported speech (B2)</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="../tenses/index.html">← Tenses</a><a class="btn" href="../passive.html">Passive →</a></nav>
+<nav class="pager"><a data-quiz="a977aec84862" class="btn" href="../tenses/index.html">← Tenses</a><a data-quiz="903a62b09fb0" class="btn" href="../passive.html">Passive →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -270,12 +275,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "*___* mir bitte den Schlüssel! (du, geben)", "options": ["Gebe", "Gibst", "Geb", "Gibt", "Gib"], "answer": 4, "explain": "du imperative keeps the e → i change: *du gibst* → *Gib!* (A2)"}, {"q": "*___* Sie bitte pünktlich! (sein)", "options": ["Sind", "Seid", "Seien", "Sei", "Sein"], "answer": 2, "explain": "The Sie imperative of *sein* is *Seien Sie!* (A2)"}, {"q": "Kinder, *___* bitte ruhig! (sein)", "options": ["seid", "seit", "sind", "sei", "seien"], "answer": 0, "explain": "ihr imperative of *sein*: *Seid!* (A2)"}, {"q": "*___* langsam, die Straße ist nass! (du, fahren)", "options": ["Fähr", "Fährst", "Fahrt", "Fahr", "Fähre"], "answer": 3, "explain": "No umlaut in the du imperative: *Fahr!* (A2)"}, {"q": "Ich *___* gern ein Glas Wasser.", "options": ["hatte", "hätte", "hast", "hätten", "haben"], "answer": 1, "explain": "Polite ordering: *Ich hätte gern...*, Konjunktiv II of *haben* (A2)"}, {"q": "*___* Sie mir bitte sagen, wie spät es ist?", "options": ["Konnten", "Könntest", "Kannst", "Konntet", "Könnten"], "answer": 4, "explain": "*Könnten Sie...?* is the polite Konjunktiv II question (A2)"}, {"q": "Which mood? *Wenn ich Zeit habe, komme ich.*", "options": ["Konjunktiv II", "Imperativ", "Indikativ (real condition)", "Konjunktiv I", "Passive"], "answer": 2, "explain": "Indicative verbs (*habe, komme*) = a real possibility (A2)"}, {"q": "Wenn ich Millionär *___*, würde ich nicht arbeiten.", "options": ["wäre", "bin", "war", "sei", "werde"], "answer": 0, "explain": "Unreal condition: Konjunktiv II *wäre* (B1)"}, {"q": "An deiner Stelle *___* ich das Angebot annehmen.", "options": ["wären", "wurde", "wäre", "würde", "würdest"], "answer": 3, "explain": "Advice: *An deiner Stelle würde ich...* (B1)"}, {"q": "Er tut so, als ob er krank *___*.", "options": ["wärst", "wäre", "wären", "sein", "hätte"], "answer": 1, "explain": "*als ob* + Konjunktiv II, verb at the end (B1)"}, {"q": "Wenn ich das gewusst hätte, *___* ich früher gekommen.", "options": ["hätte", "würde", "bin", "habe", "wäre"], "answer": 4, "explain": "Past Konjunktiv II: *kommen* takes *sein*, so *wäre gekommen* (B1)"}, {"q": "*___* ich mehr Geld, würde ich reisen.", "options": ["Habe", "Hatte", "Hätte", "Würde", "Hättest"], "answer": 2, "explain": "Without *wenn* the Konjunktiv II verb comes first (B1)"}, {"q": "Which form is Konjunktiv I, typical of the news?", "options": ["er sei", "er wäre", "er ist", "sei!", "er war"], "answer": 0, "explain": "Konjunktiv I of *sein* is *er sei*: *Der Minister sagte, er sei krank* (B1)"}, {"q": "Komm *___* mit! (friendly invitation, \"why don't you\")", "options": ["denn", "noch", "etwa", "doch", "ja"], "answer": 3, "explain": "*doch* in an imperative makes it an encouraging invitation (B1)"}, {"q": "Which sentence is the most polite?", "options": ["Schließen Sie das Fenster!", "Würden Sie bitte das Fenster schließen?", "Schließ das Fenster!", "Das Fenster schließen!", "Sie schließen das Fenster."], "answer": 1, "explain": "A Konjunktiv II question with *bitte* is the softest form of a request (B1)"}, {"q": "*Я б допоміг, якби мав час.* In German:", "options": ["Ich helfe, wenn ich Zeit habe.", "Ich half, wenn ich Zeit hatte.", "Ich werde helfen, wenn ich Zeit habe.", "Hilf, wenn du Zeit hast!", "Ich würde helfen, wenn ich Zeit hätte."], "answer": 4, "explain": "Ukrainian *би/якби* = German Konjunktiv II in both halves (B1)"}, {"q": "*___* wir! Es ist schon spät. (gehen)", "options": ["Geht", "Geh", "Gehen", "Gingen", "Gehe"], "answer": 2, "explain": "\"Let's\" = wir imperative: *Gehen wir!*, like Ukrainian *ходімо!* (B1)"}, {"q": "Du *___* mehr Wasser trinken. (advice)", "options": ["solltest", "sollest", "sollte", "solltet", "sollten"], "answer": 0, "explain": "Advice with Konjunktiv II of *sollen*: *Du solltest...* (B1)"}], "title": "Moods quiz", "level": "A2–B2"}
+{"questions": [{"q": "*___* mir bitte den Schlüssel! (du, geben)", "options": ["Gebe", "Gibst", "Geb", "Gibt", "Gib"], "answer": 4, "explain": "du imperative keeps the e → i change: *du gibst* → *Gib!* (A2)"}, {"q": "*___* Sie bitte pünktlich! (sein)", "options": ["Sind", "Seid", "Seien", "Sei", "Sein"], "answer": 2, "explain": "The Sie imperative of *sein* is *Seien Sie!* (A2)"}, {"q": "Kinder, *___* bitte ruhig! (sein)", "options": ["seid", "seit", "sind", "sei", "seien"], "answer": 0, "explain": "ihr imperative of *sein*: *Seid!* (A2)"}, {"q": "*___* langsam, die Straße ist nass! (du, fahren)", "options": ["Fähr", "Fährst", "Fahrt", "Fahr", "Fähre"], "answer": 3, "explain": "No umlaut in the du imperative: *Fahr!* (A2)"}, {"q": "Ich *___* gern ein Glas Wasser.", "options": ["hatte", "hätte", "hast", "hätten", "haben"], "answer": 1, "explain": "Polite ordering: *Ich hätte gern...*, Konjunktiv II of *haben* (A2)"}, {"q": "*___* Sie mir bitte sagen, wie spät es ist?", "options": ["Konnten", "Könntest", "Kannst", "Konntet", "Könnten"], "answer": 4, "explain": "*Könnten Sie...?* is the polite Konjunktiv II question (A2)"}, {"q": "Which mood? *Wenn ich Zeit habe, komme ich.*", "options": ["Konjunktiv II", "Imperativ", "Indikativ (real condition)", "Konjunktiv I", "Passive"], "answer": 2, "explain": "Indicative verbs (*habe, komme*) = a real possibility (A2)"}, {"q": "Wenn ich Millionär *___*, würde ich nicht arbeiten.", "options": ["wäre", "bin", "war", "sei", "werde"], "answer": 0, "explain": "Unreal condition: Konjunktiv II *wäre* (B1)"}, {"q": "An deiner Stelle *___* ich das Angebot annehmen.", "options": ["wären", "wurde", "wäre", "würde", "würdest"], "answer": 3, "explain": "Advice: *An deiner Stelle würde ich...* (B1)"}, {"q": "Er tut so, als ob er krank *___*.", "options": ["wärst", "wäre", "wären", "sein", "hätte"], "answer": 1, "explain": "*als ob* + Konjunktiv II, verb at the end (B1)"}, {"q": "Wenn ich das gewusst hätte, *___* ich früher gekommen.", "options": ["hätte", "würde", "bin", "habe", "wäre"], "answer": 4, "explain": "Past Konjunktiv II: *kommen* takes *sein*, so *wäre gekommen* (B1)"}, {"q": "*___* ich mehr Geld, würde ich reisen.", "options": ["Habe", "Hatte", "Hätte", "Würde", "Hättest"], "answer": 2, "explain": "Without *wenn* the Konjunktiv II verb comes first (B1)"}, {"q": "Which form is Konjunktiv I, typical of the news?", "options": ["er sei", "er wäre", "er ist", "sei!", "er war"], "answer": 0, "explain": "Konjunktiv I of *sein* is *er sei*: *Der Minister sagte, er sei krank* (B1)"}, {"q": "Komm *___* mit! (friendly invitation, \"why don't you\")", "options": ["denn", "noch", "etwa", "doch", "ja"], "answer": 3, "explain": "*doch* in an imperative makes it an encouraging invitation (B1)"}, {"q": "Which sentence is the most polite?", "options": ["Schließen Sie das Fenster!", "Würden Sie bitte das Fenster schließen?", "Schließ das Fenster!", "Das Fenster schließen!", "Sie schließen das Fenster."], "answer": 1, "explain": "A Konjunktiv II question with *bitte* is the softest form of a request (B1)"}, {"q": "*I would help if I had time.* In German:", "options": ["Ich helfe, wenn ich Zeit habe.", "Ich half, wenn ich Zeit hatte.", "Ich werde helfen, wenn ich Zeit habe.", "Hilf, wenn du Zeit hast!", "Ich würde helfen, wenn ich Zeit hätte."], "answer": 4, "explain": "An unreal condition takes Konjunktiv II in both halves: *Ich würde helfen, wenn ich Zeit hätte* (B1)"}, {"q": "*___* wir! Es ist schon spät. (gehen)", "options": ["Geht", "Geh", "Gehen", "Gingen", "Gehe"], "answer": 2, "explain": "\"Let's\" = wir imperative: *Gehen wir!* (B1)"}, {"q": "Du *___* mehr Wasser trinken. (advice)", "options": ["solltest", "sollest", "sollte", "solltet", "sollten"], "answer": 0, "explain": "Advice with Konjunktiv II of *sollen*: *Du solltest...* (B1)"}], "title": "Moods quiz", "level": "A2–B2"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -287,18 +296,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -313,14 +336,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -332,7 +355,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -341,14 +364,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -356,23 +379,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="273a7d98ef17">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,11 +194,11 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Adjectives</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Adjectives</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Adjectives</h1><p class="sub">Adjective endings, comparison, adjectives used as nouns and participles used as adjectives.</p></header>
-<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a class="home-card card" href="endings.html"><span class="t">Adjective endings</span><span class="d">When an adjective takes no ending, and the three ending tables after der, after ein and with no article, made simple.</span><span class="k">A2–B1</span></a><a class="home-card card" href="comparison.html"><span class="t">Comparison of adjectives</span><span class="d">größer, am größten, the irregular forms, als versus wie, je ... desto and immer größer.</span><span class="k">A2–B1</span></a><a class="home-card card" href="adjectives-as-nouns.html"><span class="t">Adjectives as nouns</span><span class="d">der Deutsche, ein Bekannter, etwas Neues, das Gute: adjectives that become nouns but keep adjective endings.</span><span class="k">B1</span></a><a class="home-card card" href="participles-as-adjectives.html"><span class="t">Participles as adjectives</span><span class="d">die geschlossene Tür and das lachende Kind: using Partizip I and II as adjectives, and what each one means.</span><span class="k">B1</span></a></div></section>
+<section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a data-quiz="7b53bb3bac1d" class="home-card card" href="endings.html"><span class="t">Adjective endings</span><span class="d">When an adjective takes no ending, and the three ending tables after der, after ein and with no article, made simple.</span><span class="k">A2–B1</span></a><a data-quiz="df7b8b8a2af5" class="home-card card" href="comparison.html"><span class="t">Comparison of adjectives</span><span class="d">größer, am größten, the irregular forms, als versus wie, je ... desto and immer größer.</span><span class="k">A2–B1</span></a><a data-quiz="31b4628b3679" class="home-card card" href="adjectives-as-nouns.html"><span class="t">Adjectives as nouns</span><span class="d">der Deutsche, ein Bekannter, etwas Neues, das Gute: adjectives that become nouns but keep adjective endings.</span><span class="k">B1</span></a><a data-quiz="076084ff1a75" class="home-card card" href="participles-as-adjectives.html"><span class="t">Participles as adjectives</span><span class="d">die geschlossene Tür and das lachende Kind: using Partizip I and II as adjectives, and what each one means.</span><span class="k">B1</span></a></div></section>
 <article class="prose card">
 <p>An adjective in German can stand after the verb with no ending at all (<em>Das Auto ist neu</em>) or in front of a noun, where it takes an ending that depends on the article, gender and case (<em>ein neues Auto</em>). The endings are the part everybody fears, but they follow a small system. Once you have it, the other adjective topics (comparison, nouns made from adjectives, participles) reuse the same endings.</p>
 <h2>Overview</h2>
@@ -207,25 +213,25 @@ body { margin: 0; }
 </thead>
 <tbody>
 <tr>
-<td><a href="../../grammar/adjectives/endings.html">Endings</a></td>
+<td><a data-quiz="7b53bb3bac1d" href="../../grammar/adjectives/endings.html">Endings</a></td>
 <td>the ending in front of a noun</td>
 <td>ein <strong>alter</strong> Mann, mit <strong>kaltem</strong> Wasser</td>
 <td>A2–B1</td>
 </tr>
 <tr>
-<td><a href="../../grammar/adjectives/comparison.html">Comparison</a></td>
+<td><a data-quiz="df7b8b8a2af5" href="../../grammar/adjectives/comparison.html">Comparison</a></td>
 <td>bigger, the biggest; als vs wie</td>
 <td><strong>größer als</strong>, <strong>am größten</strong></td>
 <td>A2–B1</td>
 </tr>
 <tr>
-<td><a href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a></td>
+<td><a data-quiz="31b4628b3679" href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a></td>
 <td>an adjective becomes a noun</td>
 <td><strong>der Deutsche</strong>, <strong>etwas Neues</strong></td>
 <td>B1</td>
 </tr>
 <tr>
-<td><a href="../../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></td>
+<td><a data-quiz="076084ff1a75" href="../../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></td>
 <td>verb forms used as adjectives</td>
 <td>die <strong>geschlossene</strong> Tür, das <strong>lachende</strong> Kind</td>
 <td>B1</td>
@@ -235,22 +241,21 @@ body { margin: 0; }
 <h2>Which one when</h2>
 <ul>
 <li><strong>After <em>sein, werden, bleiben</em>:</strong> no ending. <em>Der Kaffee ist heiß.</em> That is also how you use most adverbs: <em>Er fährt schnell.</em></li>
-<li><strong>In front of a noun:</strong> always an ending. Start with <a href="../../grammar/adjectives/endings.html">Endings</a> and the article tables in <a href="../../docs/articles.html">Articles</a>.</li>
-<li><strong>Comparing things:</strong> <em>größer als</em>, <em>so groß wie</em>, <em>am größten</em> — see <a href="../../grammar/adjectives/comparison.html">Comparison</a>.</li>
+<li><strong>In front of a noun:</strong> always an ending. Start with <a data-quiz="7b53bb3bac1d" href="../../grammar/adjectives/endings.html">Endings</a> and the article tables in <a href="../../docs/articles.html">Articles</a>.</li>
+<li><strong>Comparing things:</strong> <em>größer als</em>, <em>so groß wie</em>, <em>am größten</em> — see <a data-quiz="df7b8b8a2af5" href="../../grammar/adjectives/comparison.html">Comparison</a>.</li>
 <li><strong>No noun after it:</strong> the adjective becomes the noun and is capitalised, but keeps its adjective ending: <em>ein Bekannter, die Kranken</em>.</li>
 <li><strong>A verb used to describe something:</strong> <em>gekocht, geöffnet, schlafend</em> behave just like normal adjectives.</li>
 </ul>
 <aside class="callout hack"><p class="callout-title">The &quot;show the gender once&quot; principle</p><p>German wants the gender and case to be visible <strong>once</strong> before the noun. If the article already shows it (<em>der, dem, des</em>), the adjective relaxes to <strong>-e</strong> or <strong>-en</strong>. If the article shows nothing (<em>ein</em>, or no article at all), the adjective takes over the job and gets the "loud" ending: <em>der alt<strong>e</strong> Mann</em> but <em>ein alt<strong>er</strong> Mann</em>. This one idea explains most of the tables.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian adjectives always agree with the noun (<em>новий дім, нова книга, нове авто</em>), even after <em>бути</em>: <em>Дім новий</em>. German drops the ending after the verb: <em>Das Haus ist neu</em>. In front of a noun, German agrees too, but the ending also depends on the article, which Ukrainian doesn't have.</p></aside>
 <aside class="callout fact"><p class="callout-title">English had this too</p><p>Old English had strong and weak adjective endings almost exactly like modern German: <em>gōd mann</em> (a good man) but <em>se gōda mann</em> (the good man). English lost them during the Middle English period. German kept the system, and the terms "strong" and "weak" adjective come from Jacob Grimm.</p></aside>
 <h2>See also</h2>
 <ul>
 <li><a href="../../docs/articles.html">Articles</a></li>
-<li><a href="../../grammar/cases/index.html">Cases</a></li>
+<li><a data-quiz="d221fc543f6b" href="../../grammar/cases/index.html">Cases</a></li>
 <li><a href="../../docs/word-formation.html">Word formation</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="../cases/index.html">← Cases</a><a class="btn" href="../pronouns/index.html">Pronouns →</a></nav>
+<nav class="pager"><a data-quiz="d221fc543f6b" class="btn" href="../cases/index.html">← Cases</a><a data-quiz="c0540e70c480" class="btn" href="../pronouns/index.html">Pronouns →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -274,6 +279,10 @@ body { margin: 0; }
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -285,18 +294,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -311,14 +334,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -330,7 +353,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -339,14 +362,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -354,23 +377,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

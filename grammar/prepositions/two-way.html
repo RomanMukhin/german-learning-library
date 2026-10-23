@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="77c5237e159c">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Two-way</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="ad4f1730c7d6" class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Two-way</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Two-way prepositions</h1><p class="sub">Nine prepositions take the dative for location (wo?) and the accusative for direction (wohin?).</p></header>
@@ -353,8 +359,8 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <p>Examples:
-- <em>Das Buch liegt <strong>auf dem</strong> Tisch.</em> — <em>The book is lying on the table.</em> (<em>на столі</em>)
-- <em>Ich lege das Buch <strong>auf den</strong> Tisch.</em> — <em>I put the book onto the table.</em> (<em>на стіл</em>)
+- <em>Das Buch liegt <strong>auf dem</strong> Tisch.</em> — <em>The book is lying on the table.</em>
+- <em>Ich lege das Buch <strong>auf den</strong> Tisch.</em> — <em>I put the book onto the table.</em>
 - <em>Wir sind <strong>im</strong> Kino.</em> — <em>We are at the cinema.</em>
 - <em>Wir gehen <strong>ins</strong> Kino.</em> — <em>We are going to the cinema.</em>
 - <em>Die Katze schläft <strong>unter dem</strong> Bett.</em> — <em>The cat sleeps under the bed.</em>
@@ -403,26 +409,25 @@ body { margin: 0; }
 <li><em>Schreib das <strong>an die</strong> Tafel.</em> — <em>Write that on the board.</em></li>
 <li><em>Ich fahre das Auto <strong>in die</strong> Garage. Jetzt steht es <strong>in der</strong> Garage.</em></li>
 </ul>
-<p>Two-way prepositions are not always about space. In fixed phrases with verbs the case is fixed and must be learned: <em>denken <strong>an</strong> + Akk</em>, <em>warten <strong>auf</strong> + Akk</em>, <em>Angst haben <strong>vor</strong> + Dat</em>, <em>teilnehmen <strong>an</strong> + Dat</em>. See <a href="../../grammar/verbs/verbs-with-prepositions.html">verbs with prepositions</a>. In time expressions, <em>an, in, vor</em> always take the dative: <em>am Montag, im Mai, vor einer Woche</em> (see <a href="../../grammar/prepositions/time.html">time</a>).</p>
+<p>Two-way prepositions are not always about space. In fixed phrases with verbs the case is fixed and must be learned: <em>denken <strong>an</strong> + Akk</em>, <em>warten <strong>auf</strong> + Akk</em>, <em>Angst haben <strong>vor</strong> + Dat</em>, <em>teilnehmen <strong>an</strong> + Dat</em>. See <a data-quiz="1f9efa8beb88" href="../../grammar/verbs/verbs-with-prepositions.html">verbs with prepositions</a>. In time expressions, <em>an, in, vor</em> always take the dative: <em>am Montag, im Mai, vor einer Woche</em> (see <a data-quiz="63f1d4b289f5" href="../../grammar/prepositions/time.html">time</a>).</p>
 <aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
 <li><em>Ich bin ~~in den~~ Park</em> → <em>Ich bin <strong>im</strong> Park.</em> "Being" is never direction.</li>
 <li><em>Das Buch ~~legt~~ auf dem Tisch</em> → <em>Das Buch <strong>liegt</strong> auf dem Tisch.</em> Putting: <em>legen</em>. Being: <em>liegen</em>.</li>
 <li><em>Das Bild ~~hängte~~ an der Wand</em> → <em>Das Bild <strong>hing</strong> an der Wand.</em></li>
 <li>Movement inside one place is still dative: <em>Wir tanzen <strong>auf der</strong> Party</em>, <em>Er schwimmt <strong>im</strong> See</em>.</li>
 </ul></aside>
-<aside class="callout fact"><p class="callout-title">Latin had the same rule</p><p>The idea is old: in Latin, <em>in</em> + accusative meant "into" (<em>in urbem</em>, into the city) and <em>in</em> + ablative meant "in" (<em>in urbe</em>, in the city). German, Latin and Ukrainian all inherited this Indo-European habit of marking direction with the accusative.</p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>You already know this logic. <em>Я йду <strong>в школу</strong></em> (знахідний, where to) vs <em>Я <strong>в школі</strong></em> (місцевий, where) is exactly <em>Ich gehe <strong>in die</strong> Schule</em> vs <em>Ich bin <strong>in der</strong> Schule</em>. Also <em>на стіл</em> vs <em>на столі</em> = <em>auf den Tisch</em> vs <em>auf dem Tisch</em>. Ukrainian locative → German dative, Ukrainian accusative → German accusative.</p></aside>
+<aside class="callout fact"><p class="callout-title">Latin had the same rule</p><p>The idea is old: in Latin, <em>in</em> + accusative meant "into" (<em>in urbem</em>, into the city) and <em>in</em> + ablative meant "in" (<em>in urbe</em>, in the city). German and Latin both inherited this Indo-European habit of marking direction with the accusative.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: wo and wohin as one word</p><p>At B2 you will meet the pronoun forms <em>darauf, darin, darunter</em> (on it, in it, under it) and the direction words <em>hinein, heraus, hinauf</em> (<em>Komm herein! Geh hinaus!</em>), which replace a whole two-way phrase.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/prepositions/index.html">Prepositions hub</a></li>
-<li><a href="../../grammar/prepositions/place-and-direction.html">Place and direction</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative case</a></li>
-<li><a href="../../grammar/cases/nominative-accusative.html">Nominative and accusative</a></li>
+<li><a data-quiz="ad4f1730c7d6" href="../../grammar/prepositions/index.html">Prepositions hub</a></li>
+<li><a data-quiz="9d811ffb6cdd" href="../../grammar/prepositions/place-and-direction.html">Place and direction</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative case</a></li>
+<li><a data-quiz="f2303e45fe7c" href="../../grammar/cases/nominative-accusative.html">Nominative and accusative</a></li>
 <li><a href="../../docs/prepositions.html">Prepositions reference</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="time.html">Time →</a></nav>
+<nav class="pager"><a data-quiz="63f1d4b289f5" class="btn" href="time.html">Time →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -440,12 +445,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Ich lege das Buch auf *___* Tisch.", "options": ["dem", "der", "den", "das", "des"], "answer": 2, "explain": "*legen* = put, a movement to a new place (wohin?), so accusative: *den Tisch* (A2)."}, {"q": "Das Buch liegt auf *___* Tisch.", "options": ["dem", "den", "der", "das", "des"], "answer": 0, "explain": "*liegen* = be lying there (wo?), so dative: *dem Tisch*, like Ukrainian *на столі* (A2)."}, {"q": "Wir gehen heute *___* Kino.", "options": ["im", "in den", "am", "ins", "ans"], "answer": 3, "explain": "Going into the cinema is direction: *in das = ins Kino*. *Kino* is neuter, so not *in den* (A2)."}, {"q": "Wir sind gerade *___* Kino.", "options": ["ins", "im", "in das", "ans", "zum"], "answer": 1, "explain": "*sein* is location (wo?): *in dem = im Kino* (A2)."}, {"q": "*___* stellst du die Flasche? – Auf den Tisch.", "options": ["Wo", "Woher", "Wann", "Wie", "Wohin"], "answer": 4, "explain": "*stellen* is a putting verb, so the question is *wohin?* (and the answer takes the accusative) (A2)."}, {"q": "Die Lampe hängt über *___* Tisch.", "options": ["den", "dem", "die", "der", "das"], "answer": 1, "explain": "The lamp is already hanging there (wo?): *über* + dative, *dem Tisch* (A2)."}, {"q": "Ich hänge die Lampe über *___* Tisch.", "options": ["dem", "der", "das", "den", "des"], "answer": 3, "explain": "*Ich hänge* with an object = I put it there (wohin?): accusative *den Tisch* (B1)."}, {"q": "Das Bild *___* an der Wand.", "options": ["hängt", "hängte", "legt", "stellt", "setzt"], "answer": 0, "explain": "Location with the dative needs the static verb: *Das Bild hängt*. *hängte* is the past of the putting verb and needs an object (B1)."}, {"q": "Ich habe das Bild an die Wand *___*.", "options": ["gehangen", "hängen", "gehingt", "hing", "gehängt"], "answer": 4, "explain": "Putting something somewhere is the weak verb: *hängen, hängte, gehängt* (B1)."}, {"q": "Das Bild hat lange an der Wand *___*.", "options": ["gehängt", "gehingt", "gehangen", "hängte", "hangen"], "answer": 2, "explain": "Being in a place is the strong verb: *hängen, hing, gehangen* (B1)."}, {"q": "Setz dich bitte neben *___*!", "options": ["mir", "ich", "mich", "meinen", "meiner"], "answer": 2, "explain": "*sich setzen* = to sit down (wohin?), so accusative: *neben mich*. Compare *Du sitzt neben mir* (B1)."}, {"q": "Sie sitzt neben *___* Mann.", "options": ["ihrem", "ihren", "ihr", "ihres", "ihre"], "answer": 0, "explain": "*sitzen* is location (wo?): dative masculine *ihrem Mann* (A2)."}, {"q": "Die Katze springt vom Boden auf *___* Sofa.", "options": ["dem", "der", "den", "das", "des"], "answer": 3, "explain": "Jumping onto the sofa is a change of place: accusative, neuter *das Sofa* (B1)."}, {"q": "Die Katze schläft unter *___* Bett.", "options": ["das", "dem", "den", "der", "die"], "answer": 1, "explain": "Sleeping is location (wo?): dative *dem Bett* (A2)."}, {"q": "Stell die Vase bitte *___* Fenster.", "options": ["am", "an dem", "an den", "an der", "ans"], "answer": 4, "explain": "*stellen* = put (wohin?), so accusative: *an das = ans Fenster* (B1)."}, {"q": "Der Bus hält vor *___* Post.", "options": ["die", "der", "den", "dem", "das"], "answer": 1, "explain": "*halten* (stop) is not a movement to a new place in German logic: wo? → dative *der Post* (B1)."}, {"q": "Ich fahre das Auto in *___* Garage.", "options": ["der", "dem", "den", "die", "das"], "answer": 3, "explain": "Driving into the garage is direction: accusative feminine *die Garage* (B1)."}, {"q": "Das Auto steht in *___* Garage.", "options": ["der", "die", "den", "das", "dem"], "answer": 0, "explain": "*stehen* is location (wo?): dative feminine *der Garage* (A2)."}, {"q": "Zwischen *___* Häusern ist ein kleiner Park.", "options": ["die", "der", "dem", "des", "den"], "answer": 4, "explain": "Location (wo?) with a plural noun: dative plural *den Häusern*, with the extra *-n* (B1)."}, {"q": "Er *___* die Teller auf den Tisch.", "options": ["steht", "liegt", "stellt", "sitzt", "hängt"], "answer": 2, "explain": "An object (*die Teller*) plus accusative needs a putting verb: *stellen*. *stehen, liegen, sitzen* cannot take an object (B1)."}, {"q": "Die Kinder *___* schon im Bett.", "options": ["legen", "stellen", "liegen", "setzen", "hängen"], "answer": 2, "explain": "*im Bett* is dative (location), so the static verb *liegen* (A2)."}, {"q": "Ich habe mich auf den Stuhl *___*.", "options": ["gesetzt", "gesessen", "gesitzt", "gesetzen", "geliegt"], "answer": 0, "explain": "*sich setzen* (put yourself, + Akk) has the weak participle *gesetzt*; *gesessen* belongs to *sitzen* + Dat (B1)."}, {"q": "Schreib das bitte *___* Tafel!", "options": ["an den", "auf den", "in der", "an die", "am"], "answer": 3, "explain": "Writing something onto the board puts it in a new place: *an* + accusative, *an die Tafel* (B1)."}], "title": "Two-way prepositions quiz", "level": "A2–B1"}
+{"questions": [{"q": "Ich lege das Buch auf *___* Tisch.", "options": ["dem", "der", "den", "das", "des"], "answer": 2, "explain": "*legen* = put, a movement to a new place (wohin?), so accusative: *den Tisch* (A2)."}, {"q": "Das Buch liegt auf *___* Tisch.", "options": ["dem", "den", "der", "das", "des"], "answer": 0, "explain": "*liegen* = be lying there (wo?), so dative: *dem Tisch* (A2)."}, {"q": "Wir gehen heute *___* Kino.", "options": ["im", "in den", "am", "ins", "ans"], "answer": 3, "explain": "Going into the cinema is direction: *in das = ins Kino*. *Kino* is neuter, so not *in den* (A2)."}, {"q": "Wir sind gerade *___* Kino.", "options": ["ins", "im", "in das", "ans", "zum"], "answer": 1, "explain": "*sein* is location (wo?): *in dem = im Kino* (A2)."}, {"q": "*___* stellst du die Flasche? – Auf den Tisch.", "options": ["Wo", "Woher", "Wann", "Wie", "Wohin"], "answer": 4, "explain": "*stellen* is a putting verb, so the question is *wohin?* (and the answer takes the accusative) (A2)."}, {"q": "Die Lampe hängt über *___* Tisch.", "options": ["den", "dem", "die", "der", "das"], "answer": 1, "explain": "The lamp is already hanging there (wo?): *über* + dative, *dem Tisch* (A2)."}, {"q": "Ich hänge die Lampe über *___* Tisch.", "options": ["dem", "der", "das", "den", "des"], "answer": 3, "explain": "*Ich hänge* with an object = I put it there (wohin?): accusative *den Tisch* (B1)."}, {"q": "Das Bild *___* an der Wand.", "options": ["hängt", "hängte", "legt", "stellt", "setzt"], "answer": 0, "explain": "Location with the dative needs the static verb: *Das Bild hängt*. *hängte* is the past of the putting verb and needs an object (B1)."}, {"q": "Ich habe das Bild an die Wand *___*.", "options": ["gehangen", "hängen", "gehingt", "hing", "gehängt"], "answer": 4, "explain": "Putting something somewhere is the weak verb: *hängen, hängte, gehängt* (B1)."}, {"q": "Das Bild hat lange an der Wand *___*.", "options": ["gehängt", "gehingt", "gehangen", "hängte", "hangen"], "answer": 2, "explain": "Being in a place is the strong verb: *hängen, hing, gehangen* (B1)."}, {"q": "Setz dich bitte neben *___*!", "options": ["mir", "ich", "mich", "meinen", "meiner"], "answer": 2, "explain": "*sich setzen* = to sit down (wohin?), so accusative: *neben mich*. Compare *Du sitzt neben mir* (B1)."}, {"q": "Sie sitzt neben *___* Mann.", "options": ["ihrem", "ihren", "ihr", "ihres", "ihre"], "answer": 0, "explain": "*sitzen* is location (wo?): dative masculine *ihrem Mann* (A2)."}, {"q": "Die Katze springt vom Boden auf *___* Sofa.", "options": ["dem", "der", "den", "das", "des"], "answer": 3, "explain": "Jumping onto the sofa is a change of place: accusative, neuter *das Sofa* (B1)."}, {"q": "Die Katze schläft unter *___* Bett.", "options": ["das", "dem", "den", "der", "die"], "answer": 1, "explain": "Sleeping is location (wo?): dative *dem Bett* (A2)."}, {"q": "Stell die Vase bitte *___* Fenster.", "options": ["am", "an dem", "an den", "an der", "ans"], "answer": 4, "explain": "*stellen* = put (wohin?), so accusative: *an das = ans Fenster* (B1)."}, {"q": "Der Bus hält vor *___* Post.", "options": ["die", "der", "den", "dem", "das"], "answer": 1, "explain": "*halten* (stop) is not a movement to a new place in German logic: wo? → dative *der Post* (B1)."}, {"q": "Ich fahre das Auto in *___* Garage.", "options": ["der", "dem", "den", "die", "das"], "answer": 3, "explain": "Driving into the garage is direction: accusative feminine *die Garage* (B1)."}, {"q": "Das Auto steht in *___* Garage.", "options": ["der", "die", "den", "das", "dem"], "answer": 0, "explain": "*stehen* is location (wo?): dative feminine *der Garage* (A2)."}, {"q": "Zwischen *___* Häusern ist ein kleiner Park.", "options": ["die", "der", "dem", "des", "den"], "answer": 4, "explain": "Location (wo?) with a plural noun: dative plural *den Häusern*, with the extra *-n* (B1)."}, {"q": "Er *___* die Teller auf den Tisch.", "options": ["steht", "liegt", "stellt", "sitzt", "hängt"], "answer": 2, "explain": "An object (*die Teller*) plus accusative needs a putting verb: *stellen*. *stehen, liegen, sitzen* cannot take an object (B1)."}, {"q": "Die Kinder *___* schon im Bett.", "options": ["legen", "stellen", "liegen", "setzen", "hängen"], "answer": 2, "explain": "*im Bett* is dative (location), so the static verb *liegen* (A2)."}, {"q": "Ich habe mich auf den Stuhl *___*.", "options": ["gesetzt", "gesessen", "gesitzt", "gesetzen", "geliegt"], "answer": 0, "explain": "*sich setzen* (put yourself, + Akk) has the weak participle *gesetzt*; *gesessen* belongs to *sitzen* + Dat (B1)."}, {"q": "Schreib das bitte *___* Tafel!", "options": ["an den", "auf den", "in der", "an die", "am"], "answer": 3, "explain": "Writing something onto the board puts it in a new place: *an* + accusative, *an die Tafel* (B1)."}], "title": "Two-way prepositions quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -457,18 +466,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -483,14 +506,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -502,7 +525,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -511,14 +534,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -526,23 +549,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

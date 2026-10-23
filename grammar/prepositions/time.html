@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="63f1d4b289f5">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -188,7 +194,7 @@ body { margin: 0; }
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
-  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Time</span></div>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="ad4f1730c7d6" class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Time</span></div>
 </div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Prepositions of time</h1><p class="sub">am Montag, um acht, im Mai, seit, vor, in, bis and während, plus years without a preposition.</p></header>
@@ -273,14 +279,14 @@ body { margin: 0; }
 <p>Examples:
 - <em>Wir treffen uns <strong>am</strong> Freitag <strong>um</strong> sieben.</em> — <em>We are meeting on Friday at seven.</em>
 - <em><strong>Im</strong> Sommer fahren wir ans Meer.</em> — <em>In summer we go to the seaside.</em>
-- <em>Ich lerne <strong>seit</strong> zwei Jahren Deutsch.</em> — <em>I have been learning German for two years.</em> (<em>Я вивчаю німецьку вже два роки.</em>)
+- <em>Ich lerne <strong>seit</strong> zwei Jahren Deutsch.</em> — <em>I have been learning German for two years.</em>
 - <em>Ich war <strong>vor</strong> einer Woche beim Arzt.</em> — <em>I was at the doctor's a week ago.</em>
 - <em>Mein Bruder wurde 1998 geboren.</em> — <em>My brother was born in 1998.</em>
 - <em>Das Geschäft ist <strong>von</strong> 9 <strong>bis</strong> 18 Uhr geöffnet.</em> — <em>The shop is open from 9 to 6.</em></p>
 <aside class="callout hack"><p class="callout-title">Big, medium, small: im, am, um</p><p>Go from the biggest to the smallest unit: <strong>im</strong> (months, seasons) → <strong>am</strong> (days) → <strong>um</strong> (minutes). The vowels even go in a chain: <em>i, a, u</em>. Days are the "a" in the middle: <strong>a</strong>m <strong>M</strong>ontag, <strong>a</strong>m <strong>A</strong>bend, <strong>a</strong>m <strong>3.</strong> <strong>M</strong>ai.</p></aside>
 <aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
 <li><em>~~In~~ 2019</em> → just <em>2019</em>, or <em>im Jahr 2019</em>. "In 2019" is an anglicism.</li>
-<li><em>Ich ~~habe~~ seit drei Jahren hier ~~gewohnt~~</em> → <em>Ich wohne seit drei Jahren hier.</em> With <em>seit</em>, German uses the present tense, like Ukrainian.</li>
+<li><em>Ich ~~habe~~ seit drei Jahren hier ~~gewohnt~~</em> → <em>Ich wohne seit drei Jahren hier.</em> With <em>seit</em>, German uses the present tense.</li>
 <li><em>~~Für~~ drei Jahren wohne ich hier</em> → <em>Seit drei Jahren...</em> Use <em>für</em> only for a planned period: <em>Ich fahre <strong>für</strong> zwei Wochen nach Spanien.</em></li>
 <li><em>~~Am~~ Nacht</em> → <em>in der Nacht</em>.</li>
 </ul></aside>
@@ -361,20 +367,18 @@ body { margin: 0; }
 <li><em>Bitte antworten Sie <strong>innerhalb einer</strong> Woche.</em></li>
 </ul>
 <p>Note: <em>vor</em> has two meanings that look the same: <em>vor dem Essen</em> (before the meal) and <em>vor einem Jahr</em> (a year ago). Both take the dative.</p>
-<aside class="callout hack"><p class="callout-title">seit = &quot;Ukrainian вже&quot;</p><p>If in Ukrainian you would say <em>вже</em> with the present tense (<em>я тут вже три роки</em>), German uses <em>seit</em> + present: <em>Ich bin seit drei Jahren hier.</em> If the action is finished and you would say <em>тому</em> (<em>три роки тому</em>), use <em>vor</em>: <em>vor drei Jahren</em>.</p></aside>
 <aside class="callout fact"><p class="callout-title">&quot;Zwischen den Jahren&quot;</p><p>Germans call the quiet days between Christmas and New Year <em>zwischen den Jahren</em> ("between the years"). The phrase probably goes back to old calendar conflicts: for centuries the year was started on different dates (25 December, 1 January, 6 January) in different places, so these days seemed to belong to neither year. Many offices close then, and an email reply often says <em>Ich bin zwischen den Jahren nicht erreichbar.</em></p></aside>
-<aside class="callout ukbox"><p class="callout-title">Ukrainian vs German</p><p>Ukrainian is closer to German here than English is: <em>у понеділок</em> has no "on", and German <em>am Montag</em> also feels like "in/at". Ukrainian <em>о восьмій</em> = <em>um acht</em>, <em>у травні</em> = <em>im Mai</em>, <em>через десять хвилин</em> = <em>in zehn Minuten</em>, <em>три роки тому</em> = <em>vor drei Jahren</em>.</p></aside>
 <aside class="callout b2box"><p class="callout-title">Later: formal time words</p><p>In formal texts you will see <em>binnen</em> (within), <em>seitens</em> (on the part of, not time), <em>zeit seines Lebens</em> (all his life) and <em>anlässlich</em> (on the occasion of). For now, <em>innerhalb</em> and <em>während</em> are enough.</p></aside>
 <h2>See also</h2>
 <ul>
-<li><a href="../../grammar/prepositions/index.html">Prepositions hub</a></li>
-<li><a href="../../everyday/clock-and-time.html">Clock and time</a></li>
+<li><a data-quiz="ad4f1730c7d6" href="../../grammar/prepositions/index.html">Prepositions hub</a></li>
+<li><a data-quiz="714084ebb430" href="../../everyday/clock-and-time.html">Clock and time</a></li>
 <li><a href="../../docs/numbers-dates.html">Numbers and dates</a></li>
-<li><a href="../../grammar/tenses/present.html">Present tense</a></li>
-<li><a href="../../grammar/cases/dative.html">Dative case</a></li>
+<li><a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">Present tense</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative case</a></li>
 </ul>
 </article>
-<nav class="pager"><a class="btn" href="two-way.html">← Two-way</a><a class="btn" href="place-and-direction.html">Place and direction →</a></nav>
+<nav class="pager"><a data-quiz="77c5237e159c" class="btn" href="two-way.html">← Two-way</a><a data-quiz="9d811ffb6cdd" class="btn" href="place-and-direction.html">Place and direction →</a></nav>
 <section id="quiz" data-embedded>
   <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
   <div class="qbar card">
@@ -392,12 +396,16 @@ body { margin: 0; }
 <footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
 </div>
 <script type="application/json" id="quiz-data">
-{"questions": [{"q": "Wir treffen uns *___* Montag.", "options": ["im", "um", "am", "an", "in"], "answer": 2, "explain": "Days take *am* (*an dem*): *am Montag*. Ukrainian *у понеділок* has no article either, but German needs the contraction (A2)."}, {"q": "Der Film beginnt *___* 20 Uhr.", "options": ["um", "am", "im", "in", "an"], "answer": 0, "explain": "Clock times always take *um*, like Ukrainian *о восьмій* (A2)."}, {"q": "*___* Juli fahren wir nach Italien.", "options": ["Am", "Um", "In", "Im", "An"], "answer": 3, "explain": "Months and seasons take *im* (*in dem*) (A2)."}, {"q": "Ich wohne *___* drei Jahren in Wien.", "options": ["vor", "seit", "für", "ab", "nach"], "answer": 1, "explain": "Started in the past and still true: *seit* + present tense, like Ukrainian *вже три роки* (B1)."}, {"q": "Ich bin *___* drei Jahren nach Wien gezogen.", "options": ["seit", "in", "ab", "für", "vor"], "answer": 4, "explain": "A finished action in the past = *vor* + dative (ago), Ukrainian *три роки тому* (B1)."}, {"q": "Der Zug kommt *___* zehn Minuten.", "options": ["vor", "in", "seit", "ab", "um"], "answer": 1, "explain": "*in* + dative = from now into the future, Ukrainian *через десять хвилин* (B1)."}, {"q": "Mein Bruder wurde *___* geboren.", "options": ["in 1998", "im 1998", "am 1998", "1998", "an 1998"], "answer": 3, "explain": "Years need no preposition in German: *1998* or *im Jahr 1998*. *in 1998* is an anglicism (A2)."}, {"q": "*___* Winter ist es hier sehr kalt.", "options": ["Im", "Am", "In", "Um", "Zum"], "answer": 0, "explain": "Seasons take *im*: *im Winter, im Sommer* (A2)."}, {"q": "*___* nächster Woche habe ich Urlaub.", "options": ["Seit", "Am", "Um", "Im", "Ab"], "answer": 4, "explain": "*ab* = from ... on, for a start point in the future. *seit* is only for things that started in the past (B1)."}, {"q": "Das Geschäft ist von 9 *___* 18 Uhr geöffnet.", "options": ["zu", "nach", "bis", "an", "um"], "answer": 2, "explain": "The fixed pair is *von ... bis*: from ... to (A2)."}, {"q": "*___* des Essens hat er die ganze Zeit telefoniert.", "options": ["Seit", "Bei", "Während", "Zwischen", "Im"], "answer": 2, "explain": "*während* + genitive = during: *während des Essens* (B1)."}, {"q": "Was machst du *___* Wochenende?", "options": ["am", "im", "um", "an", "in"], "answer": 0, "explain": "The weekend works like a day: *am Wochenende* (A2)."}, {"q": "Nach *___* Unterricht gehen wir Kaffee trinken.", "options": ["den", "der", "des", "dem", "das"], "answer": 3, "explain": "*nach* always takes the dative: *der Unterricht* becomes *dem Unterricht* (B1)."}, {"q": "Wir besuchen euch *___* Weihnachten.", "options": ["am", "zu", "im", "in", "bei"], "answer": 1, "explain": "Holidays take *zu* in the north (*zu Weihnachten, zu Ostern*) and *an* in the south (*an Weihnachten*) (B1)."}, {"q": "Ich habe *___* Montag bis Mittwoch frei.", "options": ["an", "seit", "um", "im", "von"], "answer": 4, "explain": "A period with start and end: *von Montag bis Mittwoch* (A2)."}, {"q": "*___* vier Wochen lerne ich Deutsch.", "options": ["Vor", "Seit", "Ab", "Nach", "Um"], "answer": 1, "explain": "Present tense + a period that is still going on = *seit* (B1)."}, {"q": "Er kommt *___* drei und vier Uhr.", "options": ["von", "bis", "um", "zwischen", "ab"], "answer": 3, "explain": "*und* between the two times shows *zwischen ... und* (between). *von* would need *bis* (B1)."}, {"q": "*___* Abend gehen wir essen.", "options": ["Am", "Im", "Um", "An", "Zum"], "answer": 0, "explain": "Parts of the day take *am*: *am Abend, am Morgen* (but *in der Nacht*) (A2)."}, {"q": "Ich bleibe *___* Freitag in Hamburg, dann fahre ich nach Hause.", "options": ["ab", "seit", "um", "im", "bis"], "answer": 4, "explain": "*dann fahre ich nach Hause* shows the stay ends on Friday: *bis* = until (B1)."}, {"q": "*___* 1. Mai ist in Deutschland ein Feiertag.", "options": ["Im", "Um", "Am", "An", "Zum"], "answer": 2, "explain": "Dates are days, so they take *am*: *am ersten Mai* (A2)."}, {"q": "Ich fahre *___* zwei Wochen nach Spanien.", "options": ["seit", "vor", "für", "ab", "um"], "answer": 2, "explain": "A planned period in the future: *für zwei Wochen*. *seit* is only for something still going on from the past (B1)."}, {"q": "*___* Nacht hat es stark geregnet.", "options": ["In der", "Am", "Im", "Um die", "An der"], "answer": 0, "explain": "*Nacht* is the exception to the *am* rule: *in der Nacht* (B1)."}, {"q": "*___* der Ferien arbeite ich in einem Café.", "options": ["Seit", "Zwischen", "Um", "Während", "Bis"], "answer": 3, "explain": "*während* + genitive plural *der Ferien* = during the holidays (B1)."}], "title": "Prepositions of time quiz", "level": "A2–B1"}
+{"questions": [{"q": "Wir treffen uns *___* Montag.", "options": ["im", "um", "am", "an", "in"], "answer": 2, "explain": "Days take *am* (*an dem*): *am Montag* (A2)."}, {"q": "Der Film beginnt *___* 20 Uhr.", "options": ["um", "am", "im", "in", "an"], "answer": 0, "explain": "Clock times always take *um* (A2)."}, {"q": "*___* Juli fahren wir nach Italien.", "options": ["Am", "Um", "In", "Im", "An"], "answer": 3, "explain": "Months and seasons take *im* (*in dem*) (A2)."}, {"q": "Ich wohne *___* drei Jahren in Wien.", "options": ["vor", "seit", "für", "ab", "nach"], "answer": 1, "explain": "Started in the past and still true: *seit* + present tense (B1)."}, {"q": "Ich bin *___* drei Jahren nach Wien gezogen.", "options": ["seit", "in", "ab", "für", "vor"], "answer": 4, "explain": "A finished action in the past = *vor* + dative (ago) (B1)."}, {"q": "Der Zug kommt *___* zehn Minuten.", "options": ["vor", "in", "seit", "ab", "um"], "answer": 1, "explain": "*in* + dative = from now into the future (B1)."}, {"q": "Mein Bruder wurde *___* geboren.", "options": ["in 1998", "im 1998", "am 1998", "1998", "an 1998"], "answer": 3, "explain": "Years need no preposition in German: *1998* or *im Jahr 1998*. *in 1998* is an anglicism (A2)."}, {"q": "*___* Winter ist es hier sehr kalt.", "options": ["Im", "Am", "In", "Um", "Zum"], "answer": 0, "explain": "Seasons take *im*: *im Winter, im Sommer* (A2)."}, {"q": "*___* nächster Woche habe ich Urlaub.", "options": ["Seit", "Am", "Um", "Im", "Ab"], "answer": 4, "explain": "*ab* = from ... on, for a start point in the future. *seit* is only for things that started in the past (B1)."}, {"q": "Das Geschäft ist von 9 *___* 18 Uhr geöffnet.", "options": ["zu", "nach", "bis", "an", "um"], "answer": 2, "explain": "The fixed pair is *von ... bis*: from ... to (A2)."}, {"q": "*___* des Essens hat er die ganze Zeit telefoniert.", "options": ["Seit", "Bei", "Während", "Zwischen", "Im"], "answer": 2, "explain": "*während* + genitive = during: *während des Essens* (B1)."}, {"q": "Was machst du *___* Wochenende?", "options": ["am", "im", "um", "an", "in"], "answer": 0, "explain": "The weekend works like a day: *am Wochenende* (A2)."}, {"q": "Nach *___* Unterricht gehen wir Kaffee trinken.", "options": ["den", "der", "des", "dem", "das"], "answer": 3, "explain": "*nach* always takes the dative: *der Unterricht* becomes *dem Unterricht* (B1)."}, {"q": "Wir besuchen euch *___* Weihnachten.", "options": ["am", "zu", "im", "in", "bei"], "answer": 1, "explain": "Holidays take *zu* in the north (*zu Weihnachten, zu Ostern*) and *an* in the south (*an Weihnachten*) (B1)."}, {"q": "Ich habe *___* Montag bis Mittwoch frei.", "options": ["an", "seit", "um", "im", "von"], "answer": 4, "explain": "A period with start and end: *von Montag bis Mittwoch* (A2)."}, {"q": "*___* vier Wochen lerne ich Deutsch.", "options": ["Vor", "Seit", "Ab", "Nach", "Um"], "answer": 1, "explain": "Present tense + a period that is still going on = *seit* (B1)."}, {"q": "Er kommt *___* drei und vier Uhr.", "options": ["von", "bis", "um", "zwischen", "ab"], "answer": 3, "explain": "*und* between the two times shows *zwischen ... und* (between). *von* would need *bis* (B1)."}, {"q": "*___* Abend gehen wir essen.", "options": ["Am", "Im", "Um", "An", "Zum"], "answer": 0, "explain": "Parts of the day take *am*: *am Abend, am Morgen* (but *in der Nacht*) (A2)."}, {"q": "Ich bleibe *___* Freitag in Hamburg, dann fahre ich nach Hause.", "options": ["ab", "seit", "um", "im", "bis"], "answer": 4, "explain": "*dann fahre ich nach Hause* shows the stay ends on Friday: *bis* = until (B1)."}, {"q": "*___* 1. Mai ist in Deutschland ein Feiertag.", "options": ["Im", "Um", "Am", "An", "Zum"], "answer": 2, "explain": "Dates are days, so they take *am*: *am ersten Mai* (A2)."}, {"q": "Ich fahre *___* zwei Wochen nach Spanien.", "options": ["seit", "vor", "für", "ab", "um"], "answer": 2, "explain": "A planned period in the future: *für zwei Wochen*. *seit* is only for something still going on from the past (B1)."}, {"q": "*___* Nacht hat es stark geregnet.", "options": ["In der", "Am", "Im", "Um die", "An der"], "answer": 0, "explain": "*Nacht* is the exception to the *am* rule: *in der Nacht* (B1)."}, {"q": "*___* der Ferien arbeite ich in einem Café.", "options": ["Seit", "Zwischen", "Um", "Während", "Bis"], "answer": 3, "explain": "*während* + genitive plural *der Ferien* = during the holidays (B1)."}], "title": "Prepositions of time quiz", "level": "A2–B1"}
 </script>
 <script>
 (function () {
   var data = JSON.parse(document.getElementById('quiz-data').textContent);
   var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var UA = window.LANG === 'ua';
+  // Ukrainian fields (q_ua, explain_ua, options_ua, title_ua) win when ?lang=ua
+  function L(o, k) { return (UA && o[k + '_ua'] != null) ? o[k + '_ua'] : o[k]; }
+  function T(en, ua) { return UA ? ua : en; }
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   // Allows *word* in question text to mark the gap or key word
   function rich(node, text) {
@@ -409,18 +417,32 @@ body { margin: 0; }
   }
 
   var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
   // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
   if (document.getElementById('eyebrow')) {
-    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
-    document.getElementById('title').textContent = data.title;
-    document.getElementById('crumb').textContent = data.title;
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + T(' questions', ' питань')));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
     var dl = document.getElementById('doclink');
     if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
     var intro = document.getElementById('intro');
-    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    intro.textContent = T('Answer every question, then press Check answers. Reloading the page starts over.', 'Дайте відповідь на всі питання, потім натисніть «Перевірити». Перезавантаження сторінки починає все спочатку.');
     if (data.doc && data.doc.url) {
-      intro.appendChild(document.createTextNode(' Based on '));
-      var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+      intro.appendChild(document.createTextNode(T(' Based on ', ' За довідником ')));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
       intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
     }
   }
@@ -435,14 +457,14 @@ body { margin: 0; }
       var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
       var head = el('div', 'qhead');
       head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
-      head.appendChild(rich(el('div', 'qtext'), q.q));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
       card.appendChild(head);
       if (state.checked) {
         var ok = state.answers[i] === q.answer;
-        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? T('Correct', 'Правильно') : T('Wrong · answer ', 'Неправильно · відповідь ') + KEYS[q.answer]));
       }
       var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
-      q.options.forEach(function (o, j) {
+      L(q, 'options').forEach(function (o, j) {
         var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
         b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
         b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
@@ -454,7 +476,7 @@ body { margin: 0; }
         }
         opts.appendChild(b);
         // After checking, the explanation sits directly under the correct option
-        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
       });
       card.appendChild(opts);
       qWrap.appendChild(card);
@@ -463,14 +485,14 @@ body { margin: 0; }
     var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
     if (state.checked) {
       var s = score();
-      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Score', 'Результат') + ' <strong>' + s + ' / ' + total + '</strong>';
       meter.style.width = (100 * s / total) + '%';
       res.hidden = false; res.innerHTML = '';
-      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      res.appendChild(el('h3', null, s + T(' of ', ' з ') + total + T(' correct', ' правильно')));
       var pct = s / total;
-      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+      res.appendChild(el('p', null, pct >= 0.9 ? T('Solid. This topic is ready to move on from.', 'Чудово. Можна переходити до наступної теми.') : pct >= 0.7 ? T('Good. Read the explanations under the ones you missed.', 'Добре. Прочитайте пояснення до питань із помилками.') : T('Worth another pass through the topic, then try again.', 'Варто ще раз пройти тему, а потім спробувати знову.')));
     } else {
-      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      prog.innerHTML = T('Answered', 'Відповіли') + ' <strong>' + answered + ' / ' + total + '</strong>';
       meter.style.width = (100 * answered / total) + '%';
       res.hidden = true;
     }
@@ -478,23 +500,36 @@ body { margin: 0; }
     document.getElementById('copy').hidden = !state.checked;
   }
 
-  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
   document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
   document.getElementById('copy').addEventListener('click', function () {
-    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    var lines = [T('Test: ', 'Тест: ') + L(data, 'title') + ' — ' + score() + '/' + total];
     data.questions.forEach(function (q, i) {
       var mine = state.answers[i];
-      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push(T('Q', 'П') + (i + 1) + T(': chose ', ': обрано ') + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + T(', correct ', ', правильно ') + KEYS[q.answer] + ' (' + op[q.answer] + ')');
     });
     var text = lines.join('\n'), note = document.getElementById('copynote');
     function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
     try {
-      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = T('Copied. Paste it anywhere to keep a record of your mistakes.', 'Скопійовано. Вставте будь-куди, щоб зберегти свої помилки.'); }, fallback);
     } catch (e) { fallback(); }
   });
   render();
 })();
 
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
 </script>
 </body>
 </html>

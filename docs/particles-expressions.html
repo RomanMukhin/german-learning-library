@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="41441d698d39">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -195,7 +201,7 @@ body { margin: 0; }
 <article class="prose card">
 <p>Spoken German sounds natural because of small words (doch, mal, halt) and fixed phrases, not grammar; this sheet collects the ones you will hear daily, with register marked.</p>
 <h2>Modal particles</h2>
-<p>Modal particles add tone (impatience, softness, surprise, shared knowledge) without changing the facts; they are unstressed, sit after the verb and the pronouns (see <a href="../docs/word-order.html">Word order</a>), and rarely translate word for word. Ukrainian does the same job with ж, же, таки, ну, хіба, вже.</p>
+<p>Modal particles add tone (impatience, softness, surprise, shared knowledge) without changing the facts; they are unstressed, sit after the verb and the pronouns (see <a href="../docs/word-order.html">Word order</a>), and rarely translate word for word.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -222,7 +228,7 @@ body { margin: 0; }
 <td>doch (reminding)</td>
 <td>"As you know / after all", the listener should know it</td>
 <td>Neutral, slight reproach possible</td>
-<td>Das habe ich dir doch gesagt! – I told you that, didn't I! (Я ж тобі казав!)</td>
+<td>Das habe ich dir doch gesagt! – I told you that, didn't I!</td>
 </tr>
 <tr>
 <td>doch (contradicting / surprise)</td>
@@ -252,7 +258,7 @@ body { margin: 0; }
 <td>halt</td>
 <td>"That's just how it is", resignation</td>
 <td>Colloquial, more south/Austria</td>
-<td>Das ist halt so. – That's just the way it is. (Ну так воно вже є.)</td>
+<td>Das ist halt so. – That's just the way it is.</td>
 </tr>
 <tr>
 <td>eben</td>
@@ -312,7 +318,7 @@ body { margin: 0; }
 <td>etwa</td>
 <td>In yes/no questions: "surely not...?", speaker hopes the answer is no</td>
 <td>Neutral</td>
-<td>Hast du etwa mein Bier getrunken? – You didn't drink my beer, did you? (Ти що, випив...?)</td>
+<td>Hast du etwa mein Bier getrunken? – You didn't drink my beer, did you?</td>
 </tr>
 <tr>
 <td>ruhig</td>
@@ -340,7 +346,6 @@ body { margin: 0; }
 <li>Stress the content word, not the particle: Das ist ja TOLL, not Das ist JA toll (that changes meaning).</li>
 </ul>
 <h2>Greetings, wishes and set phrases</h2>
-<p>Most wishes are fixed formulas, often with no verb (Viel Spaß! = [Ich wünsche dir] viel Spaß); say them as one chunk, like Смачного! or Успіхів!</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -365,7 +370,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>Gute Besserung!</td>
-<td>Get well soon (Одужуй!)</td>
+<td>Get well soon</td>
 <td>Neutral, to anyone who is ill</td>
 <td>Du bist erkältet? Gute Besserung!</td>
 </tr>
@@ -407,7 +412,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>Gesundheit!</td>
-<td>Bless you (after a sneeze) (Будь здоров!)</td>
+<td>Bless you (after a sneeze)</td>
 <td>Neutral; reply: Danke!</td>
 <td>Hatschi! – Gesundheit!</td>
 </tr>
@@ -587,7 +592,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>Ach so!</td>
-<td>Oh, I see / oh, that's why (А, зрозуміло!)</td>
+<td>Oh, I see / oh, that's why</td>
 <td>Neutral</td>
 <td>Er ist krank. – Ach so, deshalb ist er nicht da.</td>
 </tr>
@@ -647,7 +652,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>Na ja.</td>
-<td>Well... (doubt, so-so) (Ну, таке...)</td>
+<td>Well... (doubt, so-so)</td>
 <td>Neutral</td>
 <td>Wie war der Film? – Na ja, geht so.</td>
 </tr>
@@ -889,7 +894,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>die Nase voll haben</td>
-<td>"have the nose full" → be fed up (ситий по горло)</td>
+<td>"have the nose full" → be fed up</td>
 <td>Colloquial</td>
 <td>Ich habe die Nase voll vom Regen.</td>
 </tr>
@@ -919,7 +924,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>die Katze im Sack kaufen</td>
-<td>"buy the cat in the sack" → buy without looking (купити кота в мішку, same in Ukrainian)</td>
+<td>"buy the cat in the sack" → buy without looking</td>
 <td>Neutral</td>
 <td></td>
 </tr>
@@ -955,7 +960,7 @@ body { margin: 0; }
 </tr>
 <tr>
 <td>unter vier Augen</td>
-<td>"under four eyes" → privately, one to one (віч-на-віч)</td>
+<td>"under four eyes" → privately, one to one</td>
 <td>Neutral</td>
 <td>Können wir unter vier Augen sprechen?</td>
 </tr>
@@ -1124,7 +1129,7 @@ body { margin: 0; }
 <li>Slang changes fast; "Jugendwort des Jahres" lists are a fun but unreliable guide to what teens actually say.</li>
 </ul>
 <h2>Polite vs informal register</h2>
-<p>German splits address like Ukrainian ти/Ви: Sie for strangers, officials, older people and most work contacts; du for friends, family, children, students, and many startups or sports clubs. When unsure, start with Sie and let the other person offer du.</p>
+<p>When unsure, start with Sie and let the other person offer du.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1484,7 +1489,7 @@ body { margin: 0; }
 <tr>
 <td>Er ist doch gekommen. (He came, as you know.)</td>
 <td>Er ist DOCH gekommen. (He came after all.)</td>
-<td>DOCH = contrary to expectation, "after all, nevertheless" (Ukrainian таки: він таки прийшов)</td>
+<td>DOCH = contrary to expectation, "after all, nevertheless"</td>
 </tr>
 <tr>
 <td>Du weißt ja, wie er ist. (You know what he's like.)</td>
@@ -1563,7 +1568,7 @@ body { margin: 0; }
 <tr>
 <td>ausgerechnet</td>
 <td>Of all (days, people, things)</td>
-<td>Ausgerechnet heute regnet es! (Як навмисно, саме сьогодні)</td>
+<td>Ausgerechnet heute regnet es!</td>
 </tr>
 <tr>
 <td>nämlich</td>
@@ -1647,7 +1652,7 @@ body { margin: 0; }
 <tr>
 <td>Money</td>
 <td>Geld wie Heu haben</td>
-<td>"have money like hay" → be rolling in money (грошей кури не клюють)</td>
+<td>"have money like hay" → be rolling in money</td>
 <td>Seine Eltern haben Geld wie Heu.</td>
 </tr>
 <tr>
@@ -1659,13 +1664,13 @@ body { margin: 0; }
 <tr>
 <td>Money</td>
 <td>den Gürtel enger schnallen</td>
-<td>tighten your belt (затягнути паски)</td>
+<td>tighten your belt</td>
 <td>Nach der Mieterhöhung müssen wir den Gürtel enger schnallen.</td>
 </tr>
 <tr>
 <td>Money</td>
 <td>jemandem das Fell über die Ohren ziehen</td>
-<td>"pull the fur over someone's ears" → rip someone off (обдерти як липку)</td>
+<td>"pull the fur over someone's ears" → rip someone off</td>
 <td>Der Händler hat dir das Fell über die Ohren gezogen.</td>
 </tr>
 <tr>
@@ -1677,7 +1682,7 @@ body { margin: 0; }
 <tr>
 <td>Emotions</td>
 <td>aus der Haut fahren</td>
-<td>"jump out of your skin" → lose your temper (вийти з себе)</td>
+<td>"jump out of your skin" → lose your temper</td>
 <td>Wenn er zu spät kommt, könnte ich aus der Haut fahren.</td>
 </tr>
 <tr>
@@ -1695,13 +1700,13 @@ body { margin: 0; }
 <tr>
 <td>Emotions</td>
 <td>auf Wolke sieben schweben</td>
-<td>float on cloud seven → be on cloud nine (на сьомому небі)</td>
+<td>float on cloud seven → be on cloud nine</td>
 <td>Seit sie verliebt ist, schwebt sie auf Wolke sieben.</td>
 </tr>
 <tr>
 <td>Emotions</td>
 <td>Mir fällt ein Stein vom Herzen.</td>
-<td>"a stone falls from my heart" → what a relief (як камінь з душі спав)</td>
+<td>"a stone falls from my heart" → what a relief</td>
 <td>Du bist gesund? Mir fällt ein Stein vom Herzen!</td>
 </tr>
 <tr>
@@ -1773,89 +1778,72 @@ body { margin: 0; }
 <tr>
 <th>Sprichwort</th>
 <th>Meaning / English</th>
-<th>Ukrainian equivalent</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Wer A sagt, muss auch B sagen.</td>
 <td>If you start something, you have to see it through; in for a penny, in for a pound</td>
-<td>Взявся за гуж, не кажи, що не дуж.</td>
 </tr>
 <tr>
 <td>Morgenstund hat Gold im Mund.</td>
 <td>The early bird catches the worm</td>
-<td>Хто рано встає, тому Бог дає.</td>
 </tr>
 <tr>
 <td>Übung macht den Meister.</td>
 <td>Practice makes perfect</td>
-<td>Повторення – мати навчання.</td>
 </tr>
 <tr>
 <td>Aller Anfang ist schwer.</td>
 <td>Every beginning is hard</td>
-<td>Лиха біда початок.</td>
 </tr>
 <tr>
 <td>Der Apfel fällt nicht weit vom Stamm.</td>
 <td>Like father, like son</td>
-<td>Яблуко від яблуні недалеко падає.</td>
 </tr>
 <tr>
 <td>Wer zuletzt lacht, lacht am besten.</td>
 <td>He who laughs last laughs best</td>
-<td>Добре сміється той, хто сміється останнім.</td>
 </tr>
 <tr>
 <td>Lügen haben kurze Beine.</td>
 <td>Lies don't get you far</td>
-<td>У брехні короткі ноги.</td>
 </tr>
 <tr>
 <td>Ohne Fleiß kein Preis.</td>
 <td>No pain, no gain</td>
-<td>Щоб рибку з'їсти, треба у воду лізти.</td>
 </tr>
 <tr>
 <td>Wer nicht wagt, der nicht gewinnt.</td>
 <td>Nothing ventured, nothing gained</td>
-<td>Хто не ризикує, той не п'є шампанського.</td>
 </tr>
 <tr>
 <td>Reden ist Silber, Schweigen ist Gold.</td>
 <td>Speech is silver, silence is golden</td>
-<td>Слово – срібло, мовчання – золото.</td>
 </tr>
 <tr>
 <td>Wo gehobelt wird, da fallen Späne.</td>
 <td>You can't make an omelette without breaking eggs</td>
-<td>Ліс рубають – тріски летять.</td>
 </tr>
 <tr>
 <td>Alle guten Dinge sind drei.</td>
 <td>Third time lucky (said before a third try)</td>
-<td>Бог любить трійцю.</td>
 </tr>
 <tr>
 <td>Kleider machen Leute.</td>
 <td>Clothes make the man</td>
-<td>По одежі зустрічають.</td>
 </tr>
 <tr>
 <td>Was Hänschen nicht lernt, lernt Hans nimmermehr.</td>
 <td>You can't teach an old dog new tricks; learn while you're young</td>
-<td>Чого Івась не навчився, того Іван не знатиме.</td>
 </tr>
 <tr>
 <td>Viele Köche verderben den Brei.</td>
 <td>Too many cooks spoil the broth</td>
-<td>–</td>
 </tr>
 <tr>
 <td>Den Letzten beißen die Hunde.</td>
 <td>The last one pays the price (whoever comes last gets the blame)</td>
-<td>–</td>
 </tr>
 </tbody>
 </table></div>
@@ -2104,9 +2092,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: letters, emails and the formal register in depth</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/particles-expressions.html">Particles and expressions quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="8c97863ff824" href="../quizzes/particles-expressions.html">Particles and expressions quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>

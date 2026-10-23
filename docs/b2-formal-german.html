@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="page-id" content="acef7a47732d">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -128,6 +129,11 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--borde
 .wrap > *, section > *, .card { min-width: 0; }
 body { overflow-wrap: break-word; }
 .qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
 
 /* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
 .prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
@@ -193,7 +199,7 @@ body { margin: 0; }
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>B2+ · B2+</span><h1>B2+: Formal and written German</h1></header>
 <article class="prose card">
-<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a href="../everyday/formal-informal.html">Formal and informal</a>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Newer pages on this topic</p><p>This topic now has its own pages with more examples, hacks and a quiz on each page: <a data-quiz="8629e05185d9" href="../everyday/formal-informal.html">Formal and informal</a>.</p></aside>
 <p>B2+ material: skip it until B1 feels solid.</p>
 <h2>Nominalstil vs Verbalstil</h2>
 <p>Formal German packs actions into nouns (Nominalstil); spoken German uses verbs and clauses (Verbalstil). A subordinate clause becomes a preposition + noun phrase, and the subject usually turns into a genitive or a possessive.</p>
@@ -431,9 +437,9 @@ body { margin: 0; }
 </tbody>
 </table></div>
 <p>Examples: <em>Das Gesetz <strong>tritt</strong> am 1. Januar <strong>in Kraft</strong>.</em> · <em>Die Firma <strong>stellt</strong> den Mitarbeitern Laptops <strong>zur Verfügung</strong>.</em> · <em>Die Opposition <strong>übt</strong> scharfe <strong>Kritik an</strong> der Regierung.</em></p>
-<p><strong>Ukrainian comparison.</strong> Ukrainian has the same construction, and several match closely: <em>приймати рішення</em> (but German <em>treffen</em>, not <em>nehmen</em>), <em>набирати чинності</em> = in Kraft treten, <em>ставити питання</em> = eine Frage stellen, <em>брати до уваги</em> = in Betracht ziehen, <em>надавати допомогу</em> = Hilfe leisten. Watch the light verb: it is the part that differs.</p>
+<p>Watch the light verb: it is the part that differs.</p>
 <h2>Partizipialattribute: long phrases before the noun</h2>
-<p>Written German puts a whole relative clause between the article and the noun, as an extended participle. Ukrainian does the same with <em>дієприкметниковий зворот</em>, but usually puts it after the noun (<em>дослідження, опубліковане у 2020 році</em>); German always puts it before.</p>
+<p>Written German puts a whole relative clause between the article and the noun, as an extended participle.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -795,7 +801,6 @@ body { margin: 0; }
 <li><em>Zwar … aber</em>: <em>zwar</em> stands in position 1 or after the verb (*Die Lösung ist zwar teuer, aber …*), and word order stays normal: <em>Zwar ist die Lösung teuer, aber sie wirkt.</em></li>
 <li><em>Meines Erachtens</em> (abbreviated <em>m. E.</em>) is a fixed genitive: "in my estimation".</li>
 </ul>
-<p><strong>Ukrainian comparison.</strong> Ukrainian academic style uses the same impersonal moves: <em>слід зазначити, що …</em> = Es ist darauf hinzuweisen, dass …; <em>у цій статті розглянуто …</em> = Im Folgenden wird … untersucht; <em>можна зробити висновок, що …</em> = Zusammenfassend lässt sich sagen, dass …</p>
 <h2>Passive and impersonal forms in formal style</h2>
 <p>Formal texts hide the person who acts. Besides the <em>werden</em>-passive, there are several common ways to do this, and good writing varies them.</p>
 <div class="table-wrap"><table>
@@ -874,9 +879,22 @@ body { margin: 0; }
 <li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: passive alternatives and participles in depth</li>
 </ul>
 <h2>Quiz</h2>
-<p>Test yourself on this doc: <a href="../quizzes/b2-formal-german.html">Formal German quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+<p>Test yourself on this doc: <a data-quiz="1dc05e63b1f8" href="../quizzes/b2-formal-german.html">Formal German quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
 </article>
 <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
 </div>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>
