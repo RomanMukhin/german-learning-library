@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>B2+: Formal and written German · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">B2+: Formal and written German</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>B2+ · B2+</span><h1>B2+: Formal and written German</h1></header>
+<article class="prose card">
+<p>B2+ material: skip it until B1 feels solid.</p>
+<h2>Nominalstil vs Verbalstil</h2>
+<p>Formal German packs actions into nouns (Nominalstil); spoken German uses verbs and clauses (Verbalstil). A subordinate clause becomes a preposition + noun phrase, and the subject usually turns into a genitive or a possessive.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verbalstil (clause)</th>
+<th>Nominalstil (noun phrase)</th>
+<th>Preposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>weil er krank war</td>
+<td>wegen seiner Krankheit</td>
+<td>wegen + Gen</td>
+</tr>
+<tr>
+<td>obwohl es regnete</td>
+<td>trotz des Regens</td>
+<td>trotz + Gen</td>
+</tr>
+<tr>
+<td>wenn man das Gerät benutzt</td>
+<td>bei der Benutzung des Geräts</td>
+<td>bei + Dat</td>
+</tr>
+<tr>
+<td>nachdem der Vertrag unterschrieben wurde</td>
+<td>nach der Unterzeichnung des Vertrags</td>
+<td>nach + Dat</td>
+</tr>
+<tr>
+<td>bevor die Sitzung beginnt</td>
+<td>vor Beginn der Sitzung</td>
+<td>vor + Dat</td>
+</tr>
+<tr>
+<td>während wir arbeiten</td>
+<td>während der Arbeit</td>
+<td>während + Gen</td>
+</tr>
+<tr>
+<td>damit die Kosten sinken</td>
+<td>zur Senkung der Kosten</td>
+<td>zu + Dat</td>
+</tr>
+<tr>
+<td>um Energie zu sparen</td>
+<td>zum Sparen von Energie / zur Energieeinsparung</td>
+<td>zu + Dat</td>
+</tr>
+<tr>
+<td>indem man die Preise erhöht</td>
+<td>durch die Erhöhung der Preise</td>
+<td>durch + Akk</td>
+</tr>
+<tr>
+<td>wenn kein Strom da ist</td>
+<td>bei Stromausfall / ohne Strom</td>
+<td>bei / ohne</td>
+</tr>
+<tr>
+<td>seit sie umgezogen ist</td>
+<td>seit ihrem Umzug</td>
+<td>seit + Dat</td>
+</tr>
+<tr>
+<td>bis das Projekt beendet ist</td>
+<td>bis zum Abschluss des Projekts</td>
+<td>bis zu + Dat</td>
+</tr>
+</tbody>
+</table></div>
+<p>How to convert:</p>
+<ol>
+<li>Turn the verb into a noun: <em>entscheiden → die Entscheidung</em>, <em>ankommen → die Ankunft</em>, <em>erhöhen → die Erhöhung</em>, <em>beginnen → der Beginn</em>.</li>
+<li>The subject becomes a genitive or possessive: <em>der Minister tritt zurück → der Rücktritt des Ministers</em>; <em>er kommt an → seine Ankunft</em>.</li>
+<li>The object of a transitive verb also becomes a genitive: <em>man reduziert die Kosten → die Reduzierung der Kosten</em>.</li>
+<li>Adverbs become adjectives: <em>er reagierte schnell → seine schnelle Reaktion</em>.</li>
+<li>Pick the preposition that carries the old conjunction's meaning (table above).</li>
+</ol>
+<p>Use it with care: one or two nominal phrases make a text precise; a chain of genitives (<em>die Prüfung der Möglichkeiten der Senkung der Kosten</em>) is bad style even in German. Unpacking works the other way: when reading, turn each noun back into a verb to understand the sentence.</p>
+<h2>Funktionsverbgefüge</h2>
+<p>A Funktionsverbgefüge is a noun + a "light" verb (stellen, stehen, nehmen, bringen, kommen, treffen, finden) that together mean one simple verb. The noun carries the meaning; the verb only carries tense. Learn them as fixed blocks: the noun and preposition cannot be swapped.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Funktionsverbgefüge</th>
+<th>Simple verb</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eine Entscheidung treffen</td>
+<td>entscheiden</td>
+<td>make a decision</td>
+</tr>
+<tr>
+<td>eine Vereinbarung treffen</td>
+<td>vereinbaren</td>
+<td>reach an agreement</td>
+</tr>
+<tr>
+<td>Maßnahmen ergreifen</td>
+<td>handeln</td>
+<td>take measures</td>
+</tr>
+<tr>
+<td>etw. in Frage stellen</td>
+<td>bezweifeln</td>
+<td>call into question</td>
+</tr>
+<tr>
+<td>in Frage kommen</td>
+<td>möglich sein</td>
+<td>be an option</td>
+</tr>
+<tr>
+<td>zur Verfügung stehen</td>
+<td>verfügbar sein</td>
+<td>be available</td>
+</tr>
+<tr>
+<td>etw. zur Verfügung stellen</td>
+<td>bereitstellen</td>
+<td>make available</td>
+</tr>
+<tr>
+<td>in Kraft treten</td>
+<td>gültig werden</td>
+<td>come into force</td>
+</tr>
+<tr>
+<td>etw. zum Ausdruck bringen</td>
+<td>ausdrücken</td>
+<td>express</td>
+</tr>
+<tr>
+<td>etw. zur Sprache bringen</td>
+<td>ansprechen</td>
+<td>raise (a topic)</td>
+</tr>
+<tr>
+<td>etw. zum Abschluss bringen</td>
+<td>abschließen</td>
+<td>complete</td>
+</tr>
+<tr>
+<td>etw. zur Diskussion stellen</td>
+<td>vorschlagen, diskutieren</td>
+<td>put up for discussion</td>
+</tr>
+<tr>
+<td>Kritik üben an + Dat</td>
+<td>kritisieren</td>
+<td>criticise</td>
+</tr>
+<tr>
+<td>eine Frage stellen</td>
+<td>fragen</td>
+<td>ask a question</td>
+</tr>
+<tr>
+<td>einen Antrag stellen</td>
+<td>beantragen</td>
+<td>file an application</td>
+</tr>
+<tr>
+<td>Bezug nehmen auf + Akk</td>
+<td>sich beziehen auf</td>
+<td>refer to</td>
+</tr>
+<tr>
+<td>Einfluss nehmen auf + Akk</td>
+<td>beeinflussen</td>
+<td>influence</td>
+</tr>
+<tr>
+<td>Rücksicht nehmen auf + Akk</td>
+<td>berücksichtigen</td>
+<td>show consideration</td>
+</tr>
+<tr>
+<td>etw. in Anspruch nehmen</td>
+<td>nutzen, beanspruchen</td>
+<td>make use of, take up</td>
+</tr>
+<tr>
+<td>etw. zur Kenntnis nehmen</td>
+<td>bemerken, registrieren</td>
+<td>take note of</td>
+</tr>
+<tr>
+<td>etw. in Betracht ziehen</td>
+<td>erwägen</td>
+<td>consider</td>
+</tr>
+<tr>
+<td>Abschied nehmen von</td>
+<td>sich verabschieden</td>
+<td>say goodbye</td>
+</tr>
+<tr>
+<td>Hilfe leisten</td>
+<td>helfen</td>
+<td>provide help</td>
+</tr>
+<tr>
+<td>Verantwortung tragen für</td>
+<td>verantwortlich sein</td>
+<td>bear responsibility</td>
+</tr>
+<tr>
+<td>Anwendung finden</td>
+<td>angewendet werden</td>
+<td>be applied</td>
+</tr>
+<tr>
+<td>in Erfüllung gehen</td>
+<td>sich erfüllen</td>
+<td>come true</td>
+</tr>
+<tr>
+<td>etw. zur Folge haben</td>
+<td>bewirken</td>
+<td>result in</td>
+</tr>
+<tr>
+<td>eine Rolle spielen</td>
+<td>wichtig sein</td>
+<td>play a role</td>
+</tr>
+</tbody>
+</table></div>
+<p>Examples: <em>Das Gesetz <strong>tritt</strong> am 1. Januar <strong>in Kraft</strong>.</em> · <em>Die Firma <strong>stellt</strong> den Mitarbeitern Laptops <strong>zur Verfügung</strong>.</em> · <em>Die Opposition <strong>übt</strong> scharfe <strong>Kritik an</strong> der Regierung.</em></p>
+<p><strong>Ukrainian comparison.</strong> Ukrainian has the same construction, and several match closely: <em>приймати рішення</em> (but German <em>treffen</em>, not <em>nehmen</em>), <em>набирати чинності</em> = in Kraft treten, <em>ставити питання</em> = eine Frage stellen, <em>брати до уваги</em> = in Betracht ziehen, <em>надавати допомогу</em> = Hilfe leisten. Watch the light verb: it is the part that differs.</p>
+<h2>Partizipialattribute: long phrases before the noun</h2>
+<p>Written German puts a whole relative clause between the article and the noun, as an extended participle. Ukrainian does the same with <em>дієприкметниковий зворот</em>, but usually puts it after the noun (<em>дослідження, опубліковане у 2020 році</em>); German always puts it before.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+<th>Partizipialattribut</th>
+<th>Relative clause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partizip I</td>
+<td>active, happening now</td>
+<td>der seit Jahren in Berlin <strong>lebende</strong> Autor</td>
+<td>der Autor, der seit Jahren in Berlin <strong>lebt</strong></td>
+</tr>
+<tr>
+<td>Partizip I</td>
+<td>active, happening now</td>
+<td>die stark <strong>steigenden</strong> Preise</td>
+<td>die Preise, die stark <strong>steigen</strong></td>
+</tr>
+<tr>
+<td>Partizip II (transitive verb)</td>
+<td>passive</td>
+<td>die im Jahr 2020 <strong>veröffentlichte</strong> Studie</td>
+<td>die Studie, die im Jahr 2020 <strong>veröffentlicht wurde</strong></td>
+</tr>
+<tr>
+<td>Partizip II (transitive verb)</td>
+<td>passive</td>
+<td>die vom Ministerium <strong>geplanten</strong> Maßnahmen</td>
+<td>die Maßnahmen, die vom Ministerium <strong>geplant werden</strong></td>
+</tr>
+<tr>
+<td>Partizip II (sein-verb)</td>
+<td>active, completed</td>
+<td>die gestern <strong>angekommenen</strong> Gäste</td>
+<td>die Gäste, die gestern <strong>angekommen sind</strong></td>
+</tr>
+<tr>
+<td>zu + Partizip I</td>
+<td>must / can be done</td>
+<td>das <strong>zu lösende</strong> Problem</td>
+<td>das Problem, das <strong>gelöst werden muss</strong></td>
+</tr>
+<tr>
+<td>zu + Partizip I</td>
+<td>must be done</td>
+<td>die bis Freitag <strong>einzureichenden</strong> Unterlagen</td>
+<td>die Unterlagen, die bis Freitag <strong>eingereicht werden müssen</strong></td>
+</tr>
+<tr>
+<td>zu + Partizip I, negated</td>
+<td>must not</td>
+<td>ein nicht <strong>zu unterschätzendes</strong> Risiko</td>
+<td>ein Risiko, das man nicht <strong>unterschätzen darf</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>How to unpack one when reading:</p>
+<ol>
+<li>Spot an article (or adjective ending) that is not followed by its noun: <em>die im Jahr 2020 …</em></li>
+<li>Jump forward to the first noun after a participle with an ending: <em>… veröffentlichte <strong>Studie</strong></em>. Article + noun = <em>die Studie</em>.</li>
+<li>Everything in between is the relative clause. Put the participle back as a verb at the end: <em>die Studie, die im Jahr 2020 veröffentlicht wurde</em>.</li>
+<li><em>zu</em> + Partizip I always means <em>muss/kann/soll ... werden</em>. With a separable verb the <em>zu</em> sits inside: <em>ein<strong>zu</strong>reichend</em>, <em>durch<strong>zu</strong>führend</em>.</li>
+</ol>
+<p>The participle takes normal adjective endings: <em>der gelesen<strong>e</strong> Text, ein gelesen<strong>er</strong> Text, mit dem gelesen<strong>en</strong> Text</em>.</p>
+<h2>Formal connectors and Genitiv prepositions</h2>
+<p>In written German, a few formal words replace the everyday <em>aber, also, und, weil</em>. Adverbs (position 1, verb follows) and subordinating conjunctions (verb last) behave differently, so the table marks which is which.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Everyday</th>
+<th>Formal</th>
+<th>Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>also, deshalb</td>
+<td>folglich, somit, demzufolge, infolgedessen</td>
+<td>adverb</td>
+<td><em>Die Kosten stiegen; <strong>folglich</strong> wurde das Projekt gestoppt.</em></td>
+</tr>
+<tr>
+<td>aber, trotzdem</td>
+<td>dennoch, gleichwohl, nichtsdestotrotz</td>
+<td>adverb</td>
+<td><em>Das Risiko ist hoch. <strong>Dennoch</strong> halten wir am Plan fest.</em></td>
+</tr>
+<tr>
+<td>aber (contrast)</td>
+<td>hingegen, jedoch</td>
+<td>adverb</td>
+<td><em>Die Mieten steigen, die Löhne <strong>hingegen</strong> stagnieren.</em></td>
+</tr>
+<tr>
+<td>und, auch</td>
+<td>zudem, ferner, darüber hinaus, des Weiteren</td>
+<td>adverb</td>
+<td><em><strong>Darüber hinaus</strong> ist die Lösung billiger.</em></td>
+</tr>
+<tr>
+<td>während (contrast)</td>
+<td>wohingegen</td>
+<td>verb last</td>
+<td><em>…, <strong>wohingegen</strong> die Opposition dagegen stimmte.</em></td>
+</tr>
+<tr>
+<td>obwohl</td>
+<td>obgleich, wenngleich</td>
+<td>verb last</td>
+<td><em><strong>Wenngleich</strong> die Zahlen gut sind, bleibt Kritik.</em></td>
+</tr>
+<tr>
+<td>weil (extra reason)</td>
+<td>zumal</td>
+<td>verb last</td>
+<td><em>Er sagte ab, <strong>zumal</strong> er ohnehin krank war.</em></td>
+</tr>
+<tr>
+<td>wenn (condition)</td>
+<td>sofern, soweit, falls</td>
+<td>verb last</td>
+<td><em><strong>Sofern</strong> nichts dagegen spricht, beginnen wir im Mai.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Genitiv prepositions are a marker of formal style. In speech, many take the dative (<em>wegen dem Regen</em>), but in writing use the genitive.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aufgrund</td>
+<td>because of</td>
+<td>aufgrund <strong>des</strong> schlechten Wetters</td>
+</tr>
+<tr>
+<td>infolge</td>
+<td>as a result of</td>
+<td>infolge <strong>des</strong> Unfalls</td>
+</tr>
+<tr>
+<td>angesichts</td>
+<td>in view of</td>
+<td>angesichts <strong>der</strong> Lage</td>
+</tr>
+<tr>
+<td>hinsichtlich / bezüglich</td>
+<td>regarding</td>
+<td>hinsichtlich <strong>Ihrer</strong> Anfrage</td>
+</tr>
+<tr>
+<td>anlässlich</td>
+<td>on the occasion of</td>
+<td>anlässlich <strong>des</strong> Jubiläums</td>
+</tr>
+<tr>
+<td>anhand</td>
+<td>on the basis of</td>
+<td>anhand <strong>der</strong> Daten</td>
+</tr>
+<tr>
+<td>mithilfe / mittels</td>
+<td>by means of</td>
+<td>mithilfe <strong>eines</strong> Programms</td>
+</tr>
+<tr>
+<td>zugunsten</td>
+<td>in favour of</td>
+<td>zugunsten <strong>der</strong> Opfer</td>
+</tr>
+<tr>
+<td>seitens</td>
+<td>on the part of</td>
+<td>seitens <strong>der</strong> Behörden</td>
+</tr>
+<tr>
+<td>zwecks</td>
+<td>for the purpose of</td>
+<td>zwecks <strong>Klärung</strong> (often no article)</td>
+</tr>
+<tr>
+<td>ungeachtet</td>
+<td>regardless of</td>
+<td>ungeachtet <strong>der</strong> Kritik</td>
+</tr>
+<tr>
+<td>innerhalb / außerhalb</td>
+<td>within / outside</td>
+<td>innerhalb <strong>eines</strong> Monats</td>
+</tr>
+<tr>
+<td>anstelle / statt</td>
+<td>instead of</td>
+<td>anstelle <strong>des</strong> Ministers</td>
+</tr>
+<tr>
+<td>einschließlich / zuzüglich</td>
+<td>including / plus</td>
+<td>zuzüglich <strong>der</strong> Mehrwertsteuer</td>
+</tr>
+</tbody>
+</table></div>
+<p>Careful: <em>gemäß</em>, <em>entsprechend</em> and <em>zufolge</em> take the dative (<em>gemäß dem Vertrag</em>, <em>dem Bericht zufolge</em>), and <em>im Hinblick auf</em> takes the accusative.</p>
+<h2>Formal letters and emails</h2>
+<p>German formal letters follow a fixed pattern. After the greeting comes a comma, and the first word of the text starts with a small letter (unless it is a noun or <em>Sie</em>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Formal (unknown person)</th>
+<th>Formal (known person)</th>
+<th>Semi-formal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Greeting</td>
+<td>Sehr geehrte Damen und Herren,</td>
+<td>Sehr geehrte Frau Kovalenko, / Sehr geehrter Herr Weber,</td>
+<td>Liebe Frau Weber, / Guten Tag, Herr Weber,</td>
+</tr>
+<tr>
+<td>Closing</td>
+<td>Mit freundlichen Grüßen</td>
+<td>Mit freundlichen Grüßen</td>
+<td>Viele Grüße / Beste Grüße</td>
+</tr>
+</tbody>
+</table></div>
+<p>No comma after the closing line: <em>Mit freundlichen Grüßen</em> then your name on the next line. In the greeting, titles stay: <em>Sehr geehrte Frau Dr. Müller</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Set phrase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reference</td>
+<td>Bezug nehmend auf Ihr Schreiben vom 3. März … / Mit Bezug auf unser Telefonat …</td>
+</tr>
+<tr>
+<td>Reason for writing</td>
+<td>Ich wende mich an Sie, weil … / Hiermit möchte ich …</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Hiermit bewerbe ich mich um die Stelle als …</td>
+</tr>
+<tr>
+<td>Request</td>
+<td>Ich wäre Ihnen dankbar, wenn Sie … / Könnten Sie mir bitte mitteilen, ob …</td>
+</tr>
+<tr>
+<td>Request (very formal)</td>
+<td>Ich bitte Sie, … zu … / Wir bitten um Rückmeldung bis zum …</td>
+</tr>
+<tr>
+<td>Complaint</td>
+<td>Leider muss ich Ihnen mitteilen, dass … / Ich möchte mich über … beschweren.</td>
+</tr>
+<tr>
+<td>Attachment</td>
+<td>Anbei sende ich Ihnen … / Im Anhang finden Sie …</td>
+</tr>
+<tr>
+<td>Thanks</td>
+<td>Vielen Dank für Ihre schnelle Antwort. / Für Ihre Mühe bedanke ich mich im Voraus.</td>
+</tr>
+<tr>
+<td>Apology</td>
+<td>Bitte entschuldigen Sie die Verspätung. / Ich bitte um Ihr Verständnis.</td>
+</tr>
+<tr>
+<td>Offer of more info</td>
+<td>Für Rückfragen stehe ich Ihnen gern zur Verfügung.</td>
+</tr>
+<tr>
+<td>Closing line</td>
+<td>Ich freue mich auf Ihre Antwort. / Ich würde mich über eine baldige Rückmeldung freuen.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The subject line is <em>Betreff</em> (often left out as a word: just the subject in bold). <em>Sie, Ihnen, Ihr</em> are always capitalised; <em>du/dich/dein</em> may be capitalised in letters but need not be.</p>
+<h2>Academic and essay phrases</h2>
+<p>Essays, reports and exam texts (Goethe B2/C1, TELC) reward a small set of impersonal phrases. They avoid <em>ich</em> and keep the focus on the topic.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Phrase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Announce structure</td>
+<td><strong>Im Folgenden wird</strong> … dargestellt / untersucht. · Zunächst …, anschließend …, abschließend …</td>
+</tr>
+<tr>
+<td>Introduce the topic</td>
+<td>Die Frage, ob …, wird seit Jahren kontrovers diskutiert.</td>
+</tr>
+<tr>
+<td>State a finding</td>
+<td><strong>Es ist festzustellen, dass</strong> … · Es zeigt sich, dass …</td>
+</tr>
+<tr>
+<td>Point out</td>
+<td>Es ist darauf hinzuweisen, dass … · Es sei darauf hingewiesen, dass …</td>
+</tr>
+<tr>
+<td>Emphasise</td>
+<td>Hervorzuheben ist, dass … · Besonders wichtig ist …</td>
+</tr>
+<tr>
+<td>Cite a source</td>
+<td>Laut … / Nach Ansicht von … / Wie … betont, …</td>
+</tr>
+<tr>
+<td>Argue for</td>
+<td>Für … spricht, dass … · Ein wichtiges Argument dafür ist …</td>
+</tr>
+<tr>
+<td>Argue against</td>
+<td>Dagegen lässt sich einwenden, dass … · Gegen … spricht …</td>
+</tr>
+<tr>
+<td>Concede</td>
+<td>Zwar …, aber / jedoch … · Es ist nicht zu leugnen, dass …</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Als Beispiel lässt sich … anführen. · Dies zeigt sich etwa an …</td>
+</tr>
+<tr>
+<td>Opinion (careful)</td>
+<td>Meines Erachtens … · Aus meiner Sicht … · Es spricht vieles dafür, dass …</td>
+</tr>
+<tr>
+<td>Conclude</td>
+<td>Zusammenfassend lässt sich sagen, dass … · Abschließend ist festzuhalten, dass …</td>
+</tr>
+</tbody>
+</table></div>
+<p>Grammar inside these phrases:</p>
+<ul>
+<li><em>Es ist festzustellen</em> = sein + zu + Infinitiv ("it must be noted"); see the passive section below.</li>
+<li><em>Zwar … aber</em>: <em>zwar</em> stands in position 1 or after the verb (*Die Lösung ist zwar teuer, aber …*), and word order stays normal: <em>Zwar ist die Lösung teuer, aber sie wirkt.</em></li>
+<li><em>Meines Erachtens</em> (abbreviated <em>m. E.</em>) is a fixed genitive: "in my estimation".</li>
+</ul>
+<p><strong>Ukrainian comparison.</strong> Ukrainian academic style uses the same impersonal moves: <em>слід зазначити, що …</em> = Es ist darauf hinzuweisen, dass …; <em>у цій статті розглянуто …</em> = Im Folgenden wird … untersucht; <em>можна зробити висновок, що …</em> = Zusammenfassend lässt sich sagen, dass …</p>
+<h2>Passive and impersonal forms in formal style</h2>
+<p>Formal texts hide the person who acts. Besides the <em>werden</em>-passive, there are several common ways to do this, and good writing varies them.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>werden-Passiv</td>
+<td>Der Antrag <strong>wird</strong> geprüft.</td>
+<td>is being checked</td>
+</tr>
+<tr>
+<td>werden-Passiv + modal</td>
+<td>Der Antrag <strong>muss</strong> bis Montag <strong>geprüft werden</strong>.</td>
+<td>must be checked</td>
+</tr>
+<tr>
+<td>sein-Passiv (state)</td>
+<td>Der Antrag <strong>ist</strong> geprüft.</td>
+<td>has been checked (result)</td>
+</tr>
+<tr>
+<td>man</td>
+<td><strong>Man</strong> prüft den Antrag.</td>
+<td>one checks / it is checked</td>
+</tr>
+<tr>
+<td>sich lassen + Inf</td>
+<td>Das Problem <strong>lässt sich</strong> leicht <strong>lösen</strong>.</td>
+<td>can be solved</td>
+</tr>
+<tr>
+<td>sein + zu + Inf</td>
+<td>Der Antrag <strong>ist</strong> bis Montag <strong>zu prüfen</strong>.</td>
+<td>must be checked</td>
+</tr>
+<tr>
+<td>sein + zu + Inf</td>
+<td>Das Ergebnis <strong>ist</strong> kaum <strong>zu glauben</strong>.</td>
+<td>can hardly be believed</td>
+</tr>
+<tr>
+<td>-bar adjective</td>
+<td>Das Problem ist <strong>lösbar</strong>.</td>
+<td>can be solved</td>
+</tr>
+<tr>
+<td>Impersonal passive</td>
+<td>Hier <strong>wird</strong> nicht <strong>geraucht</strong>.</td>
+<td>no smoking here</td>
+</tr>
+<tr>
+<td>Reflexive (lexical)</td>
+<td>Die Tür <strong>öffnet sich</strong>.</td>
+<td>opens</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The agent comes with <em>von</em> + Dat (a person): <em>von der Kommission geprüft</em>; <em>durch</em> + Akk (a means or process): <em>durch ein Gutachten bestätigt</em>.</li>
+<li><em>sein + zu</em> is ambiguous between "must" and "can"; context decides. In instructions and rules it means "must": <em>Die Gebühr ist im Voraus zu zahlen.</em></li>
+<li>In an essay, mix forms instead of stacking <em>wird … wird … wird</em>: <em>Zunächst wird die Methode beschrieben. Anschließend lässt sich zeigen, dass … Abschließend ist festzuhalten, dass …</em></li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: the basic <em>werden</em>- and <em>sein</em>-passive</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: the everyday connectors these formal ones replace</li>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: cases after prepositions, incl. genitive ones</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: -ung, -keit, -bar for nominal style</li>
+<li><a href="../docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a>: <em>sei</em> and <em>habe</em> in news and reports</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: passive alternatives and participles in depth</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/b2-formal-german.html">Formal German quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

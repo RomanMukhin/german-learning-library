@@ -1,0 +1,2969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Irregular verbs · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Irregular verbs</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Irregular verbs</h1></header>
+<article class="prose card">
+<p>Learn every irregular verb as four forms (infinitive, er-present, Präteritum, Perfekt with hat/ist); most of them follow a dozen vowel patterns, so learn the pattern, not the single verb.</p>
+<h2>Why "strong": Ablaut</h2>
+<p>Strong verbs form their past by changing the <strong>stem vowel</strong> (Ablaut), not by adding -te; their Partizip II ends in <strong>-en</strong>. Weak verbs keep the vowel and add -te / -t (see <a href="../docs/prefixes.html">Prefixes and vowel changes</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Infinitive</th>
+<th>Präteritum</th>
+<th>Partizip II</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weak</td>
+<td>machen</td>
+<td>mach<strong>te</strong></td>
+<td>ge-mach-<strong>t</strong></td>
+<td>same vowel, -te, -t</td>
+</tr>
+<tr>
+<td>Strong</td>
+<td>singen</td>
+<td>s<strong>a</strong>ng</td>
+<td>ge-s<strong>u</strong>ng-<strong>en</strong></td>
+<td>vowel change, -en</td>
+</tr>
+<tr>
+<td>Mixed</td>
+<td>denken</td>
+<td>d<strong>ach</strong>te</td>
+<td>ge-d<strong>ach</strong>-<strong>t</strong></td>
+<td>vowel change <strong>and</strong> -te, -t</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>English has the same system, inherited from the same Germanic ancestor: <em>sing – sang – sung</em> = <em>singen – sang – gesungen</em>, <em>drink – drank – drunk</em> = <em>trinken – trank – getrunken</em>. If the English verb is irregular, the German one usually is too.</li>
+<li>Ukrainian also shows old vowel alternations (<em>брати – беру</em>, <em>збирати – зібрати</em>), but German uses them systematically for tense.</li>
+<li>There are only about 170 strong verbs in modern German, and around 80 cover nearly everything at A2–B1. New verbs (<em>googeln, chatten, mailen</em>) are always weak.</li>
+<li>Compounds conjugate like their base verb: <em>kommen → bekommen, ankommen, mitkommen</em>; <em>stehen → verstehen, aufstehen</em>. Learn the base once.</li>
+<li>Present-tense vowel change (e→i/ie, a→ä) happens only in du and er/sie/es, and only in some strong verbs: that is why the tables list the er-form.</li>
+</ul>
+<h2>Pattern groups</h2>
+<p>Group verbs by their vowel sequence (infinitive – Präteritum – Partizip II); once you know the group, one verb gives you all the others.</p>
+<h3>ei – ie – ie</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bleiben</td>
+<td>bleibt</td>
+<td>blieb</td>
+<td>ist geblieben</td>
+<td>stay</td>
+</tr>
+<tr>
+<td>schreiben</td>
+<td>schreibt</td>
+<td>schrieb</td>
+<td>hat geschrieben</td>
+<td>write</td>
+</tr>
+<tr>
+<td>steigen</td>
+<td>steigt</td>
+<td>stieg</td>
+<td>ist gestiegen</td>
+<td>climb, rise</td>
+</tr>
+<tr>
+<td>scheinen</td>
+<td>scheint</td>
+<td>schien</td>
+<td>hat geschienen</td>
+<td>shine, seem</td>
+</tr>
+<tr>
+<td>schweigen</td>
+<td>schweigt</td>
+<td>schwieg</td>
+<td>hat geschwiegen</td>
+<td>be silent</td>
+</tr>
+<tr>
+<td>leihen</td>
+<td>leiht</td>
+<td>lieh</td>
+<td>hat geliehen</td>
+<td>lend</td>
+</tr>
+<tr>
+<td>schreien</td>
+<td>schreit</td>
+<td>schrie</td>
+<td>hat geschrien</td>
+<td>scream</td>
+</tr>
+<tr>
+<td>entscheiden</td>
+<td>entscheidet</td>
+<td>entschied</td>
+<td>hat entschieden</td>
+<td>decide</td>
+</tr>
+<tr>
+<td>verzeihen</td>
+<td>verzeiht</td>
+<td>verzieh</td>
+<td>hat verziehen</td>
+<td>forgive</td>
+</tr>
+</tbody>
+</table></div>
+<h3>ei – i – i (short i, often double consonant)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reiten</td>
+<td>reitet</td>
+<td>ritt</td>
+<td>ist / hat geritten</td>
+<td>ride (a horse)</td>
+</tr>
+<tr>
+<td>schneiden</td>
+<td>schneidet</td>
+<td>schnitt</td>
+<td>hat geschnitten</td>
+<td>cut</td>
+</tr>
+<tr>
+<td>greifen</td>
+<td>greift</td>
+<td>griff</td>
+<td>hat gegriffen</td>
+<td>grab</td>
+</tr>
+<tr>
+<td>streiten</td>
+<td>streitet</td>
+<td>stritt</td>
+<td>hat gestritten</td>
+<td>argue</td>
+</tr>
+<tr>
+<td>leiden</td>
+<td>leidet</td>
+<td>litt</td>
+<td>hat gelitten</td>
+<td>suffer</td>
+</tr>
+<tr>
+<td>beißen</td>
+<td>beißt</td>
+<td>biss</td>
+<td>hat gebissen</td>
+<td>bite</td>
+</tr>
+<tr>
+<td>reißen</td>
+<td>reißt</td>
+<td>riss</td>
+<td>hat gerissen</td>
+<td>tear</td>
+</tr>
+<tr>
+<td>pfeifen</td>
+<td>pfeift</td>
+<td>pfiff</td>
+<td>hat gepfiffen</td>
+<td>whistle</td>
+</tr>
+</tbody>
+</table></div>
+<h3>ie – o – o</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fliegen</td>
+<td>fliegt</td>
+<td>flog</td>
+<td>ist geflogen</td>
+<td>fly</td>
+</tr>
+<tr>
+<td>verlieren</td>
+<td>verliert</td>
+<td>verlor</td>
+<td>hat verloren</td>
+<td>lose</td>
+</tr>
+<tr>
+<td>ziehen</td>
+<td>zieht</td>
+<td>zog</td>
+<td>hat / ist gezogen</td>
+<td>pull / move (house)</td>
+</tr>
+<tr>
+<td>schließen</td>
+<td>schließt</td>
+<td>schloss</td>
+<td>hat geschlossen</td>
+<td>close</td>
+</tr>
+<tr>
+<td>bieten</td>
+<td>bietet</td>
+<td>bot</td>
+<td>hat geboten</td>
+<td>offer</td>
+</tr>
+<tr>
+<td>frieren</td>
+<td>friert</td>
+<td>fror</td>
+<td>hat gefroren</td>
+<td>be cold, freeze</td>
+</tr>
+<tr>
+<td>riechen</td>
+<td>riecht</td>
+<td>roch</td>
+<td>hat gerochen</td>
+<td>smell</td>
+</tr>
+<tr>
+<td>schieben</td>
+<td>schiebt</td>
+<td>schob</td>
+<td>hat geschoben</td>
+<td>push</td>
+</tr>
+<tr>
+<td>fließen</td>
+<td>fließt</td>
+<td>floss</td>
+<td>ist geflossen</td>
+<td>flow</td>
+</tr>
+<tr>
+<td>genießen</td>
+<td>genießt</td>
+<td>genoss</td>
+<td>hat genossen</td>
+<td>enjoy</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Same o – o ending: <strong>lügen</strong> – log – hat gelogen (lie, tell a lie); <strong>heben</strong> – hob – hat gehoben (lift).</li>
+</ul>
+<h3>i – a – u</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trinken</td>
+<td>trinkt</td>
+<td>trank</td>
+<td>hat getrunken</td>
+<td>drink</td>
+</tr>
+<tr>
+<td>finden</td>
+<td>findet</td>
+<td>fand</td>
+<td>hat gefunden</td>
+<td>find</td>
+</tr>
+<tr>
+<td>singen</td>
+<td>singt</td>
+<td>sang</td>
+<td>hat gesungen</td>
+<td>sing</td>
+</tr>
+<tr>
+<td>springen</td>
+<td>springt</td>
+<td>sprang</td>
+<td>ist gesprungen</td>
+<td>jump</td>
+</tr>
+<tr>
+<td>sinken</td>
+<td>sinkt</td>
+<td>sank</td>
+<td>ist gesunken</td>
+<td>sink</td>
+</tr>
+<tr>
+<td>binden</td>
+<td>bindet</td>
+<td>band</td>
+<td>hat gebunden</td>
+<td>tie</td>
+</tr>
+<tr>
+<td>verschwinden</td>
+<td>verschwindet</td>
+<td>verschwand</td>
+<td>ist verschwunden</td>
+<td>disappear</td>
+</tr>
+<tr>
+<td>gelingen</td>
+<td>gelingt</td>
+<td>gelang</td>
+<td>ist gelungen</td>
+<td>succeed (es gelingt mir)</td>
+</tr>
+<tr>
+<td>zwingen</td>
+<td>zwingt</td>
+<td>zwang</td>
+<td>hat gezwungen</td>
+<td>force</td>
+</tr>
+</tbody>
+</table></div>
+<h3>i – a – o (before -nn / -mm)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beginnen</td>
+<td>beginnt</td>
+<td>begann</td>
+<td>hat begonnen</td>
+<td>begin</td>
+</tr>
+<tr>
+<td>gewinnen</td>
+<td>gewinnt</td>
+<td>gewann</td>
+<td>hat gewonnen</td>
+<td>win</td>
+</tr>
+<tr>
+<td>schwimmen</td>
+<td>schwimmt</td>
+<td>schwamm</td>
+<td>ist / hat geschwommen</td>
+<td>swim</td>
+</tr>
+</tbody>
+</table></div>
+<h3>e – a – o (present e → i / ie)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sprechen</td>
+<td>spricht</td>
+<td>sprach</td>
+<td>hat gesprochen</td>
+<td>speak</td>
+</tr>
+<tr>
+<td>helfen</td>
+<td>hilft</td>
+<td>half</td>
+<td>hat geholfen</td>
+<td>help</td>
+</tr>
+<tr>
+<td>nehmen</td>
+<td>nimmt</td>
+<td>nahm</td>
+<td>hat genommen</td>
+<td>take</td>
+</tr>
+<tr>
+<td>treffen</td>
+<td>trifft</td>
+<td>traf</td>
+<td>hat getroffen</td>
+<td>meet, hit</td>
+</tr>
+<tr>
+<td>werfen</td>
+<td>wirft</td>
+<td>warf</td>
+<td>hat geworfen</td>
+<td>throw</td>
+</tr>
+<tr>
+<td>brechen</td>
+<td>bricht</td>
+<td>brach</td>
+<td>hat / ist gebrochen</td>
+<td>break</td>
+</tr>
+<tr>
+<td>sterben</td>
+<td>stirbt</td>
+<td>starb</td>
+<td>ist gestorben</td>
+<td>die</td>
+</tr>
+<tr>
+<td>empfehlen</td>
+<td>empfiehlt</td>
+<td>empfahl</td>
+<td>hat empfohlen</td>
+<td>recommend</td>
+</tr>
+<tr>
+<td>stehlen</td>
+<td>stiehlt</td>
+<td>stahl</td>
+<td>hat gestohlen</td>
+<td>steal</td>
+</tr>
+<tr>
+<td>gelten</td>
+<td>gilt</td>
+<td>galt</td>
+<td>hat gegolten</td>
+<td>be valid</td>
+</tr>
+</tbody>
+</table></div>
+<h3>e – a – e (present e → i / ie)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>geben</td>
+<td>gibt</td>
+<td>gab</td>
+<td>hat gegeben</td>
+<td>give</td>
+</tr>
+<tr>
+<td>sehen</td>
+<td>sieht</td>
+<td>sah</td>
+<td>hat gesehen</td>
+<td>see</td>
+</tr>
+<tr>
+<td>lesen</td>
+<td>liest</td>
+<td>las</td>
+<td>hat gelesen</td>
+<td>read</td>
+</tr>
+<tr>
+<td>essen</td>
+<td>isst</td>
+<td>aß</td>
+<td>hat gegessen</td>
+<td>eat</td>
+</tr>
+<tr>
+<td>vergessen</td>
+<td>vergisst</td>
+<td>vergaß</td>
+<td>hat vergessen</td>
+<td>forget</td>
+</tr>
+<tr>
+<td>messen</td>
+<td>misst</td>
+<td>maß</td>
+<td>hat gemessen</td>
+<td>measure</td>
+</tr>
+<tr>
+<td>treten</td>
+<td>tritt</td>
+<td>trat</td>
+<td>ist / hat getreten</td>
+<td>step / kick</td>
+</tr>
+<tr>
+<td>geschehen</td>
+<td>geschieht</td>
+<td>geschah</td>
+<td>ist geschehen</td>
+<td>happen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Close relatives with i/ie in the infinitive: <strong>bitten</strong> – bat – hat gebeten (ask for), <strong>sitzen</strong> – saß – hat gesessen (sit), <strong>liegen</strong> – lag – hat gelegen (lie, be lying).</li>
+<li><em>essen</em> has an extra g: ge-<strong>g</strong>-essen.</li>
+</ul>
+<h3>a – ie – a (and relatives with -ie- in Präteritum)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schlafen</td>
+<td>schläft</td>
+<td>schlief</td>
+<td>hat geschlafen</td>
+<td>sleep</td>
+</tr>
+<tr>
+<td>fallen</td>
+<td>fällt</td>
+<td>fiel</td>
+<td>ist gefallen</td>
+<td>fall</td>
+</tr>
+<tr>
+<td>lassen</td>
+<td>lässt</td>
+<td>ließ</td>
+<td>hat gelassen</td>
+<td>let, leave</td>
+</tr>
+<tr>
+<td>halten</td>
+<td>hält</td>
+<td>hielt</td>
+<td>hat gehalten</td>
+<td>hold, stop</td>
+</tr>
+<tr>
+<td>raten</td>
+<td>rät</td>
+<td>riet</td>
+<td>hat geraten</td>
+<td>guess, advise</td>
+</tr>
+<tr>
+<td>laufen</td>
+<td>läuft</td>
+<td>lief</td>
+<td>ist gelaufen</td>
+<td>run, walk</td>
+</tr>
+<tr>
+<td>heißen</td>
+<td>heißt</td>
+<td>hieß</td>
+<td>hat geheißen</td>
+<td>be called</td>
+</tr>
+<tr>
+<td>rufen</td>
+<td>ruft</td>
+<td>rief</td>
+<td>hat gerufen</td>
+<td>call, shout</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Variant a – i – a: <strong>fangen</strong> – fängt – fing – hat gefangen (catch), <strong>anfangen</strong> – fängt an – fing an – hat angefangen (start), <strong>hängen</strong> – hängt – hing – hat gehangen (hang, be hanging).</li>
+</ul>
+<h3>a – u – a (present a → ä)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fahren</td>
+<td>fährt</td>
+<td>fuhr</td>
+<td>ist / hat gefahren</td>
+<td>go, drive</td>
+</tr>
+<tr>
+<td>tragen</td>
+<td>trägt</td>
+<td>trug</td>
+<td>hat getragen</td>
+<td>carry, wear</td>
+</tr>
+<tr>
+<td>schlagen</td>
+<td>schlägt</td>
+<td>schlug</td>
+<td>hat geschlagen</td>
+<td>hit, beat</td>
+</tr>
+<tr>
+<td>waschen</td>
+<td>wäscht</td>
+<td>wusch</td>
+<td>hat gewaschen</td>
+<td>wash</td>
+</tr>
+<tr>
+<td>(ein)laden</td>
+<td>lädt (ein)</td>
+<td>lud (ein)</td>
+<td>hat (ein)geladen</td>
+<td>load / invite</td>
+</tr>
+<tr>
+<td>wachsen</td>
+<td>wächst</td>
+<td>wuchs</td>
+<td>ist gewachsen</td>
+<td>grow</td>
+</tr>
+</tbody>
+</table></div>
+<h3>One-of-a-kind verbs to learn by heart</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gehen</td>
+<td>geht</td>
+<td>ging</td>
+<td>ist gegangen</td>
+<td>go, walk</td>
+</tr>
+<tr>
+<td>stehen</td>
+<td>steht</td>
+<td>stand</td>
+<td>hat gestanden</td>
+<td>stand</td>
+</tr>
+<tr>
+<td>kommen</td>
+<td>kommt</td>
+<td>kam</td>
+<td>ist gekommen</td>
+<td>come</td>
+</tr>
+<tr>
+<td>tun</td>
+<td>tut</td>
+<td>tat</td>
+<td>hat getan</td>
+<td>do</td>
+</tr>
+<tr>
+<td>sein</td>
+<td>ist</td>
+<td>war</td>
+<td>ist gewesen</td>
+<td>be</td>
+</tr>
+<tr>
+<td>werden</td>
+<td>wird</td>
+<td>wurde</td>
+<td>ist geworden</td>
+<td>become</td>
+</tr>
+<tr>
+<td>haben</td>
+<td>hat</td>
+<td>hatte</td>
+<td>hat gehabt</td>
+<td>have</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Master table: common irregular verbs (A2–B1)</h2>
+<p>These are the irregular verbs you will meet most at A2–B1, alphabetical; <strong>bold</strong> = top priority, "S: ist" = southern German / Austrian / Swiss usage.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>anfangen</strong></td>
+<td>fängt an</td>
+<td>fing an</td>
+<td>hat angefangen</td>
+<td>begin, start</td>
+</tr>
+<tr>
+<td><strong>ankommen</strong></td>
+<td>kommt an</td>
+<td>kam an</td>
+<td>ist angekommen</td>
+<td>arrive</td>
+</tr>
+<tr>
+<td><strong>anrufen</strong></td>
+<td>ruft an</td>
+<td>rief an</td>
+<td>hat angerufen</td>
+<td>phone</td>
+</tr>
+<tr>
+<td><strong>aufstehen</strong></td>
+<td>steht auf</td>
+<td>stand auf</td>
+<td>ist aufgestanden</td>
+<td>get up</td>
+</tr>
+<tr>
+<td><strong>aussehen</strong></td>
+<td>sieht aus</td>
+<td>sah aus</td>
+<td>hat ausgesehen</td>
+<td>look (appear)</td>
+</tr>
+<tr>
+<td>backen</td>
+<td>backt / bäckt</td>
+<td>backte</td>
+<td>hat gebacken</td>
+<td>bake</td>
+</tr>
+<tr>
+<td><strong>beginnen</strong></td>
+<td>beginnt</td>
+<td>begann</td>
+<td>hat begonnen</td>
+<td>begin</td>
+</tr>
+<tr>
+<td><strong>bekommen</strong></td>
+<td>bekommt</td>
+<td>bekam</td>
+<td>hat bekommen</td>
+<td>get, receive</td>
+</tr>
+<tr>
+<td>bewerben (sich)</td>
+<td>bewirbt sich</td>
+<td>bewarb sich</td>
+<td>hat sich beworben</td>
+<td>apply (for a job)</td>
+</tr>
+<tr>
+<td>bieten</td>
+<td>bietet</td>
+<td>bot</td>
+<td>hat geboten</td>
+<td>offer</td>
+</tr>
+<tr>
+<td>bitten</td>
+<td>bittet</td>
+<td>bat</td>
+<td>hat gebeten</td>
+<td>ask, request</td>
+</tr>
+<tr>
+<td><strong>bleiben</strong></td>
+<td>bleibt</td>
+<td>blieb</td>
+<td>ist geblieben</td>
+<td>stay</td>
+</tr>
+<tr>
+<td>braten</td>
+<td>brät</td>
+<td>briet</td>
+<td>hat gebraten</td>
+<td>fry, roast</td>
+</tr>
+<tr>
+<td>brechen</td>
+<td>bricht</td>
+<td>brach</td>
+<td>hat / ist gebrochen</td>
+<td>break</td>
+</tr>
+<tr>
+<td>brennen</td>
+<td>brennt</td>
+<td>brannte</td>
+<td>hat gebrannt</td>
+<td>burn</td>
+</tr>
+<tr>
+<td><strong>bringen</strong></td>
+<td>bringt</td>
+<td>brachte</td>
+<td>hat gebracht</td>
+<td>bring</td>
+</tr>
+<tr>
+<td><strong>denken</strong></td>
+<td>denkt</td>
+<td>dachte</td>
+<td>hat gedacht</td>
+<td>think</td>
+</tr>
+<tr>
+<td><strong>dürfen</strong></td>
+<td>darf</td>
+<td>durfte</td>
+<td>hat gedurft / hat … dürfen</td>
+<td>be allowed to</td>
+</tr>
+<tr>
+<td><strong>einladen</strong></td>
+<td>lädt ein</td>
+<td>lud ein</td>
+<td>hat eingeladen</td>
+<td>invite</td>
+</tr>
+<tr>
+<td>empfehlen</td>
+<td>empfiehlt</td>
+<td>empfahl</td>
+<td>hat empfohlen</td>
+<td>recommend</td>
+</tr>
+<tr>
+<td><strong>entscheiden</strong></td>
+<td>entscheidet</td>
+<td>entschied</td>
+<td>hat entschieden</td>
+<td>decide</td>
+</tr>
+<tr>
+<td><strong>essen</strong></td>
+<td>isst</td>
+<td>aß</td>
+<td>hat gegessen</td>
+<td>eat</td>
+</tr>
+<tr>
+<td><strong>fahren</strong></td>
+<td>fährt</td>
+<td>fuhr</td>
+<td>ist / hat gefahren</td>
+<td>go, drive</td>
+</tr>
+<tr>
+<td><strong>fallen</strong></td>
+<td>fällt</td>
+<td>fiel</td>
+<td>ist gefallen</td>
+<td>fall</td>
+</tr>
+<tr>
+<td>fangen</td>
+<td>fängt</td>
+<td>fing</td>
+<td>hat gefangen</td>
+<td>catch</td>
+</tr>
+<tr>
+<td><strong>finden</strong></td>
+<td>findet</td>
+<td>fand</td>
+<td>hat gefunden</td>
+<td>find</td>
+</tr>
+<tr>
+<td><strong>fliegen</strong></td>
+<td>fliegt</td>
+<td>flog</td>
+<td>ist / hat geflogen</td>
+<td>fly</td>
+</tr>
+<tr>
+<td>fließen</td>
+<td>fließt</td>
+<td>floss</td>
+<td>ist geflossen</td>
+<td>flow</td>
+</tr>
+<tr>
+<td>frieren</td>
+<td>friert</td>
+<td>fror</td>
+<td>hat gefroren</td>
+<td>be cold, freeze</td>
+</tr>
+<tr>
+<td><strong>geben</strong></td>
+<td>gibt</td>
+<td>gab</td>
+<td>hat gegeben</td>
+<td>give</td>
+</tr>
+<tr>
+<td><strong>gefallen</strong></td>
+<td>gefällt</td>
+<td>gefiel</td>
+<td>hat gefallen</td>
+<td>please (es gefällt mir = I like it)</td>
+</tr>
+<tr>
+<td><strong>gehen</strong></td>
+<td>geht</td>
+<td>ging</td>
+<td>ist gegangen</td>
+<td>go, walk</td>
+</tr>
+<tr>
+<td>gelingen</td>
+<td>gelingt</td>
+<td>gelang</td>
+<td>ist gelungen</td>
+<td>succeed</td>
+</tr>
+<tr>
+<td>gelten</td>
+<td>gilt</td>
+<td>galt</td>
+<td>hat gegolten</td>
+<td>be valid</td>
+</tr>
+<tr>
+<td>genießen</td>
+<td>genießt</td>
+<td>genoss</td>
+<td>hat genossen</td>
+<td>enjoy</td>
+</tr>
+<tr>
+<td>geschehen</td>
+<td>geschieht</td>
+<td>geschah</td>
+<td>ist geschehen</td>
+<td>happen</td>
+</tr>
+<tr>
+<td><strong>gewinnen</strong></td>
+<td>gewinnt</td>
+<td>gewann</td>
+<td>hat gewonnen</td>
+<td>win</td>
+</tr>
+<tr>
+<td>gießen</td>
+<td>gießt</td>
+<td>goss</td>
+<td>hat gegossen</td>
+<td>pour, water (plants)</td>
+</tr>
+<tr>
+<td>greifen</td>
+<td>greift</td>
+<td>griff</td>
+<td>hat gegriffen</td>
+<td>grab</td>
+</tr>
+<tr>
+<td><strong>haben</strong></td>
+<td>hat</td>
+<td>hatte</td>
+<td>hat gehabt</td>
+<td>have</td>
+</tr>
+<tr>
+<td><strong>halten</strong></td>
+<td>hält</td>
+<td>hielt</td>
+<td>hat gehalten</td>
+<td>hold, stop</td>
+</tr>
+<tr>
+<td>hängen (intr.)</td>
+<td>hängt</td>
+<td>hing</td>
+<td>hat gehangen (S: ist)</td>
+<td>hang, be hanging</td>
+</tr>
+<tr>
+<td>heben</td>
+<td>hebt</td>
+<td>hob</td>
+<td>hat gehoben</td>
+<td>lift</td>
+</tr>
+<tr>
+<td><strong>heißen</strong></td>
+<td>heißt</td>
+<td>hieß</td>
+<td>hat geheißen</td>
+<td>be called</td>
+</tr>
+<tr>
+<td><strong>helfen</strong></td>
+<td>hilft</td>
+<td>half</td>
+<td>hat geholfen</td>
+<td>help</td>
+</tr>
+<tr>
+<td><strong>kennen</strong></td>
+<td>kennt</td>
+<td>kannte</td>
+<td>hat gekannt</td>
+<td>know (be familiar with)</td>
+</tr>
+<tr>
+<td><strong>kommen</strong></td>
+<td>kommt</td>
+<td>kam</td>
+<td>ist gekommen</td>
+<td>come</td>
+</tr>
+<tr>
+<td><strong>können</strong></td>
+<td>kann</td>
+<td>konnte</td>
+<td>hat gekonnt / hat … können</td>
+<td>can, be able to</td>
+</tr>
+<tr>
+<td><strong>lassen</strong></td>
+<td>lässt</td>
+<td>ließ</td>
+<td>hat gelassen</td>
+<td>let, leave</td>
+</tr>
+<tr>
+<td><strong>laufen</strong></td>
+<td>läuft</td>
+<td>lief</td>
+<td>ist gelaufen</td>
+<td>run, walk</td>
+</tr>
+<tr>
+<td>leiden</td>
+<td>leidet</td>
+<td>litt</td>
+<td>hat gelitten</td>
+<td>suffer</td>
+</tr>
+<tr>
+<td>leihen</td>
+<td>leiht</td>
+<td>lieh</td>
+<td>hat geliehen</td>
+<td>lend</td>
+</tr>
+<tr>
+<td><strong>lesen</strong></td>
+<td>liest</td>
+<td>las</td>
+<td>hat gelesen</td>
+<td>read</td>
+</tr>
+<tr>
+<td><strong>liegen</strong></td>
+<td>liegt</td>
+<td>lag</td>
+<td>hat gelegen (S: ist)</td>
+<td>lie, be lying</td>
+</tr>
+<tr>
+<td>lügen</td>
+<td>lügt</td>
+<td>log</td>
+<td>hat gelogen</td>
+<td>tell a lie</td>
+</tr>
+<tr>
+<td><strong>mögen</strong></td>
+<td>mag</td>
+<td>mochte</td>
+<td>hat gemocht</td>
+<td>like</td>
+</tr>
+<tr>
+<td><strong>müssen</strong></td>
+<td>muss</td>
+<td>musste</td>
+<td>hat gemusst / hat … müssen</td>
+<td>must, have to</td>
+</tr>
+<tr>
+<td><strong>nehmen</strong></td>
+<td>nimmt</td>
+<td>nahm</td>
+<td>hat genommen</td>
+<td>take</td>
+</tr>
+<tr>
+<td>nennen</td>
+<td>nennt</td>
+<td>nannte</td>
+<td>hat genannt</td>
+<td>name, call</td>
+</tr>
+<tr>
+<td>raten</td>
+<td>rät</td>
+<td>riet</td>
+<td>hat geraten</td>
+<td>guess, advise</td>
+</tr>
+<tr>
+<td>rennen</td>
+<td>rennt</td>
+<td>rannte</td>
+<td>ist gerannt</td>
+<td>run, race</td>
+</tr>
+<tr>
+<td>riechen</td>
+<td>riecht</td>
+<td>roch</td>
+<td>hat gerochen</td>
+<td>smell</td>
+</tr>
+<tr>
+<td><strong>rufen</strong></td>
+<td>ruft</td>
+<td>rief</td>
+<td>hat gerufen</td>
+<td>call, shout</td>
+</tr>
+<tr>
+<td>scheinen</td>
+<td>scheint</td>
+<td>schien</td>
+<td>hat geschienen</td>
+<td>shine, seem</td>
+</tr>
+<tr>
+<td>schieben</td>
+<td>schiebt</td>
+<td>schob</td>
+<td>hat geschoben</td>
+<td>push</td>
+</tr>
+<tr>
+<td>schießen</td>
+<td>schießt</td>
+<td>schoss</td>
+<td>hat geschossen</td>
+<td>shoot</td>
+</tr>
+<tr>
+<td><strong>schlafen</strong></td>
+<td>schläft</td>
+<td>schlief</td>
+<td>hat geschlafen</td>
+<td>sleep</td>
+</tr>
+<tr>
+<td>schlagen</td>
+<td>schlägt</td>
+<td>schlug</td>
+<td>hat geschlagen</td>
+<td>hit, beat</td>
+</tr>
+<tr>
+<td><strong>schließen</strong></td>
+<td>schließt</td>
+<td>schloss</td>
+<td>hat geschlossen</td>
+<td>close</td>
+</tr>
+<tr>
+<td>schneiden</td>
+<td>schneidet</td>
+<td>schnitt</td>
+<td>hat geschnitten</td>
+<td>cut</td>
+</tr>
+<tr>
+<td><strong>schreiben</strong></td>
+<td>schreibt</td>
+<td>schrieb</td>
+<td>hat geschrieben</td>
+<td>write</td>
+</tr>
+<tr>
+<td>schreien</td>
+<td>schreit</td>
+<td>schrie</td>
+<td>hat geschrien</td>
+<td>scream</td>
+</tr>
+<tr>
+<td>schweigen</td>
+<td>schweigt</td>
+<td>schwieg</td>
+<td>hat geschwiegen</td>
+<td>be silent</td>
+</tr>
+<tr>
+<td><strong>schwimmen</strong></td>
+<td>schwimmt</td>
+<td>schwamm</td>
+<td>ist / hat geschwommen</td>
+<td>swim</td>
+</tr>
+<tr>
+<td><strong>sehen</strong></td>
+<td>sieht</td>
+<td>sah</td>
+<td>hat gesehen</td>
+<td>see</td>
+</tr>
+<tr>
+<td><strong>sein</strong></td>
+<td>ist</td>
+<td>war</td>
+<td>ist gewesen</td>
+<td>be</td>
+</tr>
+<tr>
+<td>senden</td>
+<td>sendet</td>
+<td>sandte / sendete</td>
+<td>hat gesandt / gesendet</td>
+<td>send / broadcast</td>
+</tr>
+<tr>
+<td><strong>singen</strong></td>
+<td>singt</td>
+<td>sang</td>
+<td>hat gesungen</td>
+<td>sing</td>
+</tr>
+<tr>
+<td>sinken</td>
+<td>sinkt</td>
+<td>sank</td>
+<td>ist gesunken</td>
+<td>sink</td>
+</tr>
+<tr>
+<td><strong>sitzen</strong></td>
+<td>sitzt</td>
+<td>saß</td>
+<td>hat gesessen (S: ist)</td>
+<td>sit, be sitting</td>
+</tr>
+<tr>
+<td><strong>sollen</strong></td>
+<td>soll</td>
+<td>sollte</td>
+<td>hat gesollt / hat … sollen</td>
+<td>be supposed to</td>
+</tr>
+<tr>
+<td><strong>sprechen</strong></td>
+<td>spricht</td>
+<td>sprach</td>
+<td>hat gesprochen</td>
+<td>speak</td>
+</tr>
+<tr>
+<td>springen</td>
+<td>springt</td>
+<td>sprang</td>
+<td>ist gesprungen</td>
+<td>jump</td>
+</tr>
+<tr>
+<td><strong>stehen</strong></td>
+<td>steht</td>
+<td>stand</td>
+<td>hat gestanden (S: ist)</td>
+<td>stand</td>
+</tr>
+<tr>
+<td>stehlen</td>
+<td>stiehlt</td>
+<td>stahl</td>
+<td>hat gestohlen</td>
+<td>steal</td>
+</tr>
+<tr>
+<td>steigen</td>
+<td>steigt</td>
+<td>stieg</td>
+<td>ist gestiegen</td>
+<td>climb, rise</td>
+</tr>
+<tr>
+<td><strong>sterben</strong></td>
+<td>stirbt</td>
+<td>starb</td>
+<td>ist gestorben</td>
+<td>die</td>
+</tr>
+<tr>
+<td>streiten</td>
+<td>streitet</td>
+<td>stritt</td>
+<td>hat gestritten</td>
+<td>argue</td>
+</tr>
+<tr>
+<td><strong>tragen</strong></td>
+<td>trägt</td>
+<td>trug</td>
+<td>hat getragen</td>
+<td>carry, wear</td>
+</tr>
+<tr>
+<td><strong>treffen</strong></td>
+<td>trifft</td>
+<td>traf</td>
+<td>hat getroffen</td>
+<td>meet, hit</td>
+</tr>
+<tr>
+<td>treten</td>
+<td>tritt</td>
+<td>trat</td>
+<td>ist / hat getreten</td>
+<td>step / kick</td>
+</tr>
+<tr>
+<td><strong>trinken</strong></td>
+<td>trinkt</td>
+<td>trank</td>
+<td>hat getrunken</td>
+<td>drink</td>
+</tr>
+<tr>
+<td><strong>tun</strong></td>
+<td>tut</td>
+<td>tat</td>
+<td>hat getan</td>
+<td>do</td>
+</tr>
+<tr>
+<td>verbieten</td>
+<td>verbietet</td>
+<td>verbot</td>
+<td>hat verboten</td>
+<td>forbid</td>
+</tr>
+<tr>
+<td><strong>vergessen</strong></td>
+<td>vergisst</td>
+<td>vergaß</td>
+<td>hat vergessen</td>
+<td>forget</td>
+</tr>
+<tr>
+<td>vergleichen</td>
+<td>vergleicht</td>
+<td>verglich</td>
+<td>hat verglichen</td>
+<td>compare</td>
+</tr>
+<tr>
+<td><strong>verlieren</strong></td>
+<td>verliert</td>
+<td>verlor</td>
+<td>hat verloren</td>
+<td>lose</td>
+</tr>
+<tr>
+<td>verschwinden</td>
+<td>verschwindet</td>
+<td>verschwand</td>
+<td>ist verschwunden</td>
+<td>disappear</td>
+</tr>
+<tr>
+<td><strong>verstehen</strong></td>
+<td>versteht</td>
+<td>verstand</td>
+<td>hat verstanden</td>
+<td>understand</td>
+</tr>
+<tr>
+<td>wachsen</td>
+<td>wächst</td>
+<td>wuchs</td>
+<td>ist gewachsen</td>
+<td>grow</td>
+</tr>
+<tr>
+<td>waschen</td>
+<td>wäscht</td>
+<td>wusch</td>
+<td>hat gewaschen</td>
+<td>wash</td>
+</tr>
+<tr>
+<td><strong>werden</strong></td>
+<td>wird</td>
+<td>wurde</td>
+<td>ist geworden</td>
+<td>become</td>
+</tr>
+<tr>
+<td>werfen</td>
+<td>wirft</td>
+<td>warf</td>
+<td>hat geworfen</td>
+<td>throw</td>
+</tr>
+<tr>
+<td><strong>wissen</strong></td>
+<td>weiß</td>
+<td>wusste</td>
+<td>hat gewusst</td>
+<td>know (a fact)</td>
+</tr>
+<tr>
+<td><strong>wollen</strong></td>
+<td>will</td>
+<td>wollte</td>
+<td>hat gewollt / hat … wollen</td>
+<td>want</td>
+</tr>
+<tr>
+<td><strong>ziehen</strong></td>
+<td>zieht</td>
+<td>zog</td>
+<td>hat / ist gezogen</td>
+<td>pull / move (house)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Modals: <em>hat gekonnt</em> only without another verb (<em>Ich habe das nicht gekonnt</em>); with a verb, use the infinitive: <em>Ich habe nicht kommen können.</em></li>
+<li>backen: both <em>backt</em> and <em>bäckt</em> are correct; <em>backt</em> is now more common.</li>
+</ul>
+<h2>Mixed verbs</h2>
+<p>Mixed verbs change the stem vowel like strong verbs but take the weak endings <strong>-te</strong> and <strong>-t</strong>; there are only a handful, so memorise them as a set.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bringen</td>
+<td>bringt</td>
+<td>brachte</td>
+<td>hat gebracht</td>
+<td>bring</td>
+</tr>
+<tr>
+<td>denken</td>
+<td>denkt</td>
+<td>dachte</td>
+<td>hat gedacht</td>
+<td>think</td>
+</tr>
+<tr>
+<td>kennen</td>
+<td>kennt</td>
+<td>kannte</td>
+<td>hat gekannt</td>
+<td>know (be familiar with)</td>
+</tr>
+<tr>
+<td>nennen</td>
+<td>nennt</td>
+<td>nannte</td>
+<td>hat genannt</td>
+<td>name, call</td>
+</tr>
+<tr>
+<td>rennen</td>
+<td>rennt</td>
+<td>rannte</td>
+<td>ist gerannt</td>
+<td>run, race</td>
+</tr>
+<tr>
+<td>brennen</td>
+<td>brennt</td>
+<td>brannte</td>
+<td>hat gebrannt</td>
+<td>burn</td>
+</tr>
+<tr>
+<td>wissen</td>
+<td>weiß</td>
+<td>wusste</td>
+<td>hat gewusst</td>
+<td>know (a fact)</td>
+</tr>
+<tr>
+<td>senden</td>
+<td>sendet</td>
+<td>sandte / sendete</td>
+<td>hat gesandt / gesendet</td>
+<td>send / broadcast</td>
+</tr>
+<tr>
+<td>wenden</td>
+<td>wendet</td>
+<td>wandte / wendete</td>
+<td>hat gewandt / gewendet</td>
+<td>turn</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>bringen</strong> and <strong>denken</strong> also change consonants: <em>-ing- / -enk-</em> → <em>-ach-</em>. English does the same: <em>bring – brought</em>, <em>think – thought</em>.</li>
+<li><strong>wissen</strong> is the odd one: irregular in the present singular too (<em>ich weiß, du weißt, er weiß</em>).</li>
+<li>Konjunktiv II takes an umlaut: <em>ich brächte, ich dächte, ich wüsste</em>. <em>Wüsstest du, wo…?</em> — Would you know where…?</li>
+<li>Compounds behave the same: <em>mitbringen → hat mitgebracht</em>, <em>nachdenken → hat nachgedacht</em>, <em>erkennen → hat erkannt</em>, <em>verbrennen → hat / ist verbrannt</em>.</li>
+<li>For <em>senden</em>, the -te-forms with <em>a</em> mean "send" (<em>Ich habe dir einen Brief gesandt</em>, formal), the regular forms mean "broadcast" (<em>Das Spiel wurde live gesendet</em>). In everyday speech, <em>geschickt</em> (from schicken) is more common for "sent".</li>
+</ul>
+<h2>Modal verbs</h2>
+<p>Modals change vowel in the present singular, drop the umlaut in Präteritum, regain it in Konjunktiv II (except sollen, wollen), and send the main verb to the end as a bare infinitive.</p>
+<h3>Present</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>wollen</th>
+<th>sollen</th>
+<th>mögen</th>
+<th>möchte(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>kann</td>
+<td>muss</td>
+<td>darf</td>
+<td>will</td>
+<td>soll</td>
+<td>mag</td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>kannst</td>
+<td>musst</td>
+<td>darfst</td>
+<td>willst</td>
+<td>sollst</td>
+<td>magst</td>
+<td>möchtest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>kann</td>
+<td>muss</td>
+<td>darf</td>
+<td>will</td>
+<td>soll</td>
+<td>mag</td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>wollen</td>
+<td>sollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>könnt</td>
+<td>müsst</td>
+<td>dürft</td>
+<td>wollt</td>
+<td>sollt</td>
+<td>mögt</td>
+<td>möchtet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>wollen</td>
+<td>sollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Präteritum</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>wollen</th>
+<th>sollen</th>
+<th>mögen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>konnte</td>
+<td>musste</td>
+<td>durfte</td>
+<td>wollte</td>
+<td>sollte</td>
+<td>mochte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>konntest</td>
+<td>musstest</td>
+<td>durftest</td>
+<td>wolltest</td>
+<td>solltest</td>
+<td>mochtest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>konnte</td>
+<td>musste</td>
+<td>durfte</td>
+<td>wollte</td>
+<td>sollte</td>
+<td>mochte</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>konnten</td>
+<td>mussten</td>
+<td>durften</td>
+<td>wollten</td>
+<td>sollten</td>
+<td>mochten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>konntet</td>
+<td>musstet</td>
+<td>durftet</td>
+<td>wolltet</td>
+<td>solltet</td>
+<td>mochtet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>konnten</td>
+<td>mussten</td>
+<td>durften</td>
+<td>wollten</td>
+<td>sollten</td>
+<td>mochten</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Konjunktiv II (ich / er form)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>wollen</th>
+<th>sollen</th>
+<th>mögen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>könnte</td>
+<td>müsste</td>
+<td>dürfte</td>
+<td>wollte</td>
+<td>sollte</td>
+<td>möchte</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Endings follow Präteritum: <em>du könntest, wir könnten, ihr könntet</em>.</li>
+<li><em>möchte</em> (would like) is this Konjunktiv II of mögen, used as a polite present. Its past is <em>wollte</em>.</li>
+</ul>
+<h3>Perfekt</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Form</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modal alone (no other verb)</td>
+<td>hat + ge-Partizip</td>
+<td><em>Ich habe das nicht gekonnt.</em></td>
+<td>I couldn't do it.</td>
+</tr>
+<tr>
+<td>Modal + verb</td>
+<td>hat + infinitive + modal infinitive</td>
+<td><em>Ich habe gestern arbeiten müssen.</em></td>
+<td>I had to work yesterday.</td>
+</tr>
+<tr>
+<td>Subordinate clause</td>
+<td>hat goes <strong>before</strong> the two infinitives</td>
+<td><em>…, weil ich gestern <strong>habe</strong> arbeiten müssen.</em></td>
+<td>…because I had to work yesterday.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Participles: gekonnt, gemusst, gedurft, gewollt, gesollt, gemocht.</li>
+<li>In speech, Präteritum is simpler and preferred: <em>Ich musste gestern arbeiten.</em></li>
+</ul>
+<h3>Meanings at a glance</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modal</th>
+<th>Core meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>können</td>
+<td>can, be able, possibility</td>
+<td>могти, вміти</td>
+<td><em>Ich kann schwimmen.</em> — I can swim.</td>
+</tr>
+<tr>
+<td>müssen</td>
+<td>must, have to (necessity)</td>
+<td>мусити</td>
+<td><em>Ich muss los.</em> — I have to go.</td>
+</tr>
+<tr>
+<td>dürfen</td>
+<td>may, be allowed</td>
+<td>мати право, можна</td>
+<td><em>Darf ich reinkommen?</em> — May I come in?</td>
+</tr>
+<tr>
+<td>wollen</td>
+<td>want, intend</td>
+<td>хотіти</td>
+<td><em>Wir wollen heiraten.</em> — We want to get married.</td>
+</tr>
+<tr>
+<td>sollen</td>
+<td>be supposed to (someone else's will)</td>
+<td>мати (зробити), слід</td>
+<td><em>Ich soll dich grüßen.</em> — Someone asked me to say hi to you.</td>
+</tr>
+<tr>
+<td>mögen</td>
+<td>like (mostly with nouns)</td>
+<td>любити, подобатися</td>
+<td><em>Ich mag Kaffee.</em> — I like coffee.</td>
+</tr>
+<tr>
+<td>möchte</td>
+<td>would like</td>
+<td>хотів би</td>
+<td><em>Ich möchte bezahlen.</em> — I'd like to pay.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>nicht müssen</strong> = don't have to; <strong>nicht dürfen</strong> = must not. <em>Du musst nicht</em> ≠ <em>Du darfst nicht</em>.</li>
+<li>Modals can drop an obvious verb of motion: <em>Ich muss nach Hause.</em> — I have to go home. <em>Kannst du Deutsch?</em> — Do you speak German?</li>
+</ul>
+<h2>haben, sein, werden</h2>
+<p>These three are both full verbs and helpers (haben/sein for Perfekt, werden for future and passive), and all three are irregular in nearly every form.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>sein</th>
+<th>haben</th>
+<th>werden</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich (present)</td>
+<td>bin</td>
+<td>habe</td>
+<td>werde</td>
+</tr>
+<tr>
+<td>du</td>
+<td>bist</td>
+<td>hast</td>
+<td>wirst</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>ist</td>
+<td>hat</td>
+<td>wird</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>sind</td>
+<td>haben</td>
+<td>werden</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>seid</td>
+<td>habt</td>
+<td>werdet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>sind</td>
+<td>haben</td>
+<td>werden</td>
+</tr>
+<tr>
+<td>ich / er (Präteritum)</td>
+<td>war</td>
+<td>hatte</td>
+<td>wurde</td>
+</tr>
+<tr>
+<td>du (Präteritum)</td>
+<td>warst</td>
+<td>hattest</td>
+<td>wurdest</td>
+</tr>
+<tr>
+<td>wir / sie (Präteritum)</td>
+<td>waren</td>
+<td>hatten</td>
+<td>wurden</td>
+</tr>
+<tr>
+<td>ihr (Präteritum)</td>
+<td>wart</td>
+<td>hattet</td>
+<td>wurdet</td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td>ist gewesen</td>
+<td>hat gehabt</td>
+<td>ist geworden (passive: worden)</td>
+</tr>
+<tr>
+<td>Konjunktiv II (ich / er)</td>
+<td>wäre</td>
+<td>hätte</td>
+<td>würde</td>
+</tr>
+<tr>
+<td>Imperativ du / ihr / Sie</td>
+<td>sei / seid / seien Sie</td>
+<td>hab / habt / haben Sie</td>
+<td>werd(e) / werdet / werden Sie</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>In speech, Präteritum <em>war / hatte</em> replaces Perfekt <em>bin gewesen / habe gehabt</em> almost always: <em>Ich war krank</em> sounds more natural than <em>Ich bin krank gewesen</em>.</li>
+<li><strong>werden</strong> in the passive Perfekt is <strong>worden</strong> (no ge-): <em>Das ist gemacht worden.</em></li>
+<li><em>Hab keine Angst!</em> — Don't be afraid! <em>Werd bald gesund!</em> — Get well soon!</li>
+<li>Ukrainian often drops "be" in the present (<em>Він лікар</em>); German never does: <em>Er ist Arzt.</em></li>
+<li>Ukrainian <em>у мене є</em> = German <em>ich habe</em>: the owner is the subject. <em>Ich habe einen Bruder.</em> — У мене є брат.</li>
+</ul>
+<h2>Verbs that switch between hat and ist</h2>
+<p>A motion verb takes <strong>ist</strong> when the subject itself moves, and <strong>hat</strong> when it moves something else (an accusative object); some verbs also change meaning between the two.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>ist (no object: subject moves / changes)</th>
+<th>hat (with accusative object)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fahren</td>
+<td><em>Ich bin nach Berlin gefahren.</em> — I went/drove to Berlin.</td>
+<td><em>Ich habe das Auto gefahren.</em> — I drove the car. / <em>Er hat mich zum Bahnhof gefahren.</em> — He drove me to the station.</td>
+</tr>
+<tr>
+<td>fliegen</td>
+<td><em>Wir sind nach Rom geflogen.</em> — We flew to Rome.</td>
+<td><em>Der Pilot hat die Maschine geflogen.</em> — The pilot flew the plane.</td>
+</tr>
+<tr>
+<td>ziehen</td>
+<td><em>Wir sind nach Hamburg gezogen.</em> — We moved to Hamburg.</td>
+<td><em>Er hat den Wagen gezogen.</em> — He pulled the cart.</td>
+</tr>
+<tr>
+<td>brechen</td>
+<td><em>Das Eis ist gebrochen.</em> — The ice broke.</td>
+<td><em>Ich habe mir das Bein gebrochen.</em> — I broke my leg.</td>
+</tr>
+<tr>
+<td>treten</td>
+<td><em>Er ist auf die Straße getreten.</em> — He stepped onto the street.</td>
+<td><em>Er hat den Ball getreten.</em> — He kicked the ball.</td>
+</tr>
+<tr>
+<td>verbrennen</td>
+<td><em>Das Holz ist verbrannt.</em> — The wood burned up.</td>
+<td><em>Ich habe die Briefe verbrannt.</em> — I burned the letters.</td>
+</tr>
+<tr>
+<td>reiten</td>
+<td><em>Sie ist durch den Wald geritten.</em> — She rode through the forest.</td>
+<td><em>Sie hat das Pferd geritten.</em> — She rode the horse.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>schwimmen and similar sport verbs</h3>
+<p>Standard German uses <strong>ist</strong> for schwimmen, also without a destination: <em>Ich bin gestern geschwommen.</em> — I went swimming yesterday.</p>
+<ul>
+<li><em>hat geschwommen</em> is heard in parts of northern Germany when only the activity is meant, but <strong>ist</strong> is always correct; use ist.</li>
+<li><strong>laufen, wandern, segeln, rudern, joggen</strong> also take <strong>ist</strong> for the movement: <em>Ich bin 10 km gelaufen.</em></li>
+<li><strong>tanzen</strong> is not a motion verb here and always takes <strong>hat</strong>: <em>Wir haben getanzt.</em></li>
+</ul>
+<h3>stehen, sitzen, liegen</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Perfekt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Northern / central Germany (standard textbooks)</td>
+<td><em>Ich habe gestanden / gesessen / gelegen.</em></td>
+</tr>
+<tr>
+<td>Southern Germany, Austria, Switzerland</td>
+<td><em>Ich bin gestanden / gesessen / gelegen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Both are correct standard German; pick one and be consistent. Most textbooks teach <strong>hat</strong>.</li>
+</ul>
+<h3>Pairs: sein-verb vs haben-verb</h3>
+<p>Some meanings come in two verbs: an intransitive strong one (often with ist) and a transitive weak one (always hat).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Intransitive (where it is / what happens)</th>
+<th>Transitive (what you do to something)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>liegen – lag – hat gelegen (lie)</td>
+<td>legen – legte – hat gelegt (lay, put flat)</td>
+</tr>
+<tr>
+<td>sitzen – saß – hat gesessen (sit)</td>
+<td>setzen – setzte – hat gesetzt (set, seat)</td>
+</tr>
+<tr>
+<td>stehen – stand – hat gestanden (stand)</td>
+<td>stellen – stellte – hat gestellt (put upright)</td>
+</tr>
+<tr>
+<td>fallen – fiel – ist gefallen (fall)</td>
+<td>fällen – fällte – hat gefällt (fell a tree)</td>
+</tr>
+<tr>
+<td>sinken – sank – ist gesunken (sink)</td>
+<td>senken – senkte – hat gesenkt (lower)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Das Buch liegt auf dem Tisch</em> (Dativ, where) vs <em>Ich lege das Buch auf den Tisch</em> (Akkusativ, where to).</li>
+</ul>
+<h2>Strong/weak pairs</h2>
+<p>A few verbs exist in two versions: the strong one is usually intransitive (something happens by itself), the weak one transitive (someone does it to something).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Strong (intransitive)</th>
+<th>Weak (transitive)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hängen</td>
+<td>hängt – hing – hat gehangen: <em>Das Bild hat an der Wand gehangen.</em> — The picture was hanging on the wall.</td>
+<td>hängt – hängte – hat gehängt: <em>Ich habe das Bild an die Wand gehängt.</em> — I hung the picture on the wall.</td>
+</tr>
+<tr>
+<td>erschrecken</td>
+<td>erschrickt – erschrak – ist erschrocken: <em>Ich bin erschrocken.</em> — I got a fright.</td>
+<td>erschreckt – erschreckte – hat erschreckt: <em>Du hast mich erschreckt!</em> — You scared me!</td>
+</tr>
+<tr>
+<td>schaffen</td>
+<td>schafft – schuf – hat geschaffen: <em>Er hat ein Kunstwerk geschaffen.</em> — He created a work of art.</td>
+<td>schafft – schaffte – hat geschafft: <em>Ich habe die Prüfung geschafft!</em> — I passed / managed the exam!</td>
+</tr>
+<tr>
+<td>wiegen</td>
+<td>wiegt – wog – hat gewogen: <em>Ich habe den Koffer gewogen.</em> — I weighed the suitcase.</td>
+<td>wiegt – wiegte – hat gewiegt: <em>Sie hat das Baby gewiegt.</em> — She rocked the baby.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>schaffen</strong> and wiegen break the intransitive rule: both versions take an object, and the meaning decides (create vs manage, weigh vs rock). At A2–B1 you need almost only <em>geschafft</em>.</li>
+<li>Ukrainian parallel for hängen: <em>висіти</em> (strong, where it is) vs <em>вішати / повісити</em> (weak, put it there). Same logic as liegen/legen, stehen/stellen.</li>
+<li>Weak hängen goes with Akkusativ (<em>an die Wand</em>), strong hängen with Dativ (<em>an der Wand</em>).</li>
+</ul>
+<h2>Memory tips</h2>
+<p>Learn each verb as a four-beat chant (<em>sprechen – spricht – sprach – hat gesprochen</em>) and file it under its vowel pattern; the pattern does most of the remembering for you.</p>
+<ul>
+<li><strong>Chant aloud</strong> in the same rhythm every time: <em>fahren, fährt, fuhr, ist gefahren</em>. Rhythm sticks better than lists.</li>
+<li><strong>Learn by group</strong>, not alphabetically: one ei–ie–ie verb (<em>bleiben</em>) gives you <em>schreiben, steigen, schweigen</em>.</li>
+<li><strong>Use English as a hint</strong>: <em>sing/sang/sung, drink/drank/drunk, begin/began/begun, swim/swam/swum, give/gave, come/came, find/found, freeze/froze, fly/flew</em>. Irregular in English usually means irregular in German.</li>
+<li><strong>Mark ist in colour</strong> (or with a symbol) on flashcards: only about 25 common verbs take ist, all movement or change.</li>
+<li><strong>Präteritum matters less in speech</strong>: for conversation, first learn the Perfekt of every verb plus Präteritum of sein, haben, werden, modals, <em>es gab</em>, <em>wusste</em>, <em>dachte</em>, <em>fand</em>, <em>ging</em>, <em>kam</em>.</li>
+<li><strong>Compounds are free</strong>: learn <em>stehen – stand – gestanden</em> and you get <em>verstehen, aufstehen, bestehen, entstehen</em>.</li>
+<li><strong>Make sentences about yourself</strong>: <em>Ich bin um 7 aufgestanden, habe Kaffee getrunken und bin zur Arbeit gefahren.</em> A personal story of your day reuses the top 20 verbs.</li>
+<li><strong>Spaced repetition</strong>: put the master table into Anki or Duolingo-style flashcards with the infinitive on the front and the other three forms on the back.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Less common strong verbs met at B2</h3>
+<p>These turn up in newspapers, novels and B2 exams. Most fit a pattern group above (meiden and vermeiden go like bleiben, werben and verderben like helfen).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>3rd pers. present</th>
+<th>Präteritum</th>
+<th>Perfekt</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>befehlen</td>
+<td>befiehlt</td>
+<td>befahl</td>
+<td>hat befohlen</td>
+<td>order, command</td>
+<td><em>Wer hat dir das befohlen?</em></td>
+</tr>
+<tr>
+<td>bergen</td>
+<td>birgt</td>
+<td>barg</td>
+<td>hat geborgen</td>
+<td>rescue, recover</td>
+<td><em>Die Opfer wurden geborgen.</em></td>
+</tr>
+<tr>
+<td>betrügen</td>
+<td>betrügt</td>
+<td>betrog</td>
+<td>hat betrogen</td>
+<td>cheat, deceive</td>
+<td><em>Er hat seine Kunden betrogen.</em></td>
+</tr>
+<tr>
+<td>beweisen</td>
+<td>beweist</td>
+<td>bewies</td>
+<td>hat bewiesen</td>
+<td>prove</td>
+<td><em>Das beweist gar nichts.</em></td>
+</tr>
+<tr>
+<td>dringen</td>
+<td>dringt</td>
+<td>drang</td>
+<td>ist gedrungen</td>
+<td>force its way, get through</td>
+<td><em>Wasser ist in den Keller gedrungen.</em></td>
+</tr>
+<tr>
+<td>erlöschen</td>
+<td>erlischt</td>
+<td>erlosch</td>
+<td>ist erloschen</td>
+<td>go out (fire), expire</td>
+<td><em>Der Vertrag erlischt Ende Mai.</em></td>
+</tr>
+<tr>
+<td>erwägen</td>
+<td>erwägt</td>
+<td>erwog</td>
+<td>hat erwogen</td>
+<td>consider, weigh up</td>
+<td><em>Wir erwägen einen Umzug.</em></td>
+</tr>
+<tr>
+<td>gebären</td>
+<td>gebärt (formal: gebiert)</td>
+<td>gebar</td>
+<td>hat geboren</td>
+<td>give birth</td>
+<td><em>Sie hat Zwillinge geboren.</em></td>
+</tr>
+<tr>
+<td>gedeihen</td>
+<td>gedeiht</td>
+<td>gedieh</td>
+<td>ist gediehen</td>
+<td>thrive</td>
+<td><em>Die Tomaten gedeihen gut.</em></td>
+</tr>
+<tr>
+<td>gleiten</td>
+<td>gleitet</td>
+<td>glitt</td>
+<td>ist geglitten</td>
+<td>glide, slide</td>
+<td><em>Das Boot glitt über den See.</em></td>
+</tr>
+<tr>
+<td>meiden</td>
+<td>meidet</td>
+<td>mied</td>
+<td>hat gemieden</td>
+<td>shun, keep away from</td>
+<td><em>Er meidet große Menschenmengen.</em></td>
+</tr>
+<tr>
+<td>reiben</td>
+<td>reibt</td>
+<td>rieb</td>
+<td>hat gerieben</td>
+<td>rub, grate</td>
+<td><em>Sie rieb sich die Augen.</em></td>
+</tr>
+<tr>
+<td>ringen</td>
+<td>ringt</td>
+<td>rang</td>
+<td>hat gerungen</td>
+<td>wrestle, struggle</td>
+<td><em>Er rang nach Luft.</em></td>
+</tr>
+<tr>
+<td>saugen</td>
+<td>saugt</td>
+<td>sog / saugte</td>
+<td>hat gesogen / gesaugt</td>
+<td>suck</td>
+<td><em>Der Schwamm hat das Wasser aufgesogen.</em></td>
+</tr>
+<tr>
+<td>schleichen</td>
+<td>schleicht</td>
+<td>schlich</td>
+<td>ist geschlichen</td>
+<td>creep, sneak</td>
+<td><em>Die Katze ist ums Haus geschlichen.</em></td>
+</tr>
+<tr>
+<td>schwellen</td>
+<td>schwillt</td>
+<td>schwoll</td>
+<td>ist geschwollen</td>
+<td>swell</td>
+<td><em>Mein Knöchel ist geschwollen.</em></td>
+</tr>
+<tr>
+<td>schwinden</td>
+<td>schwindet</td>
+<td>schwand</td>
+<td>ist geschwunden</td>
+<td>dwindle, fade</td>
+<td><em>Die Hoffnung schwand.</em></td>
+</tr>
+<tr>
+<td>schwören</td>
+<td>schwört</td>
+<td>schwor</td>
+<td>hat geschworen</td>
+<td>swear (an oath)</td>
+<td><em>Ich schwöre es dir.</em></td>
+</tr>
+<tr>
+<td>stechen</td>
+<td>sticht</td>
+<td>stach</td>
+<td>hat gestochen</td>
+<td>sting, prick</td>
+<td><em>Mich hat eine Biene gestochen.</em></td>
+</tr>
+<tr>
+<td>verderben</td>
+<td>verdirbt</td>
+<td>verdarb</td>
+<td>hat / ist verdorben</td>
+<td>spoil / go bad</td>
+<td><em>Du hast mir den Abend verdorben. Die Milch ist verdorben.</em></td>
+</tr>
+<tr>
+<td>vermeiden</td>
+<td>vermeidet</td>
+<td>vermied</td>
+<td>hat vermieden</td>
+<td>avoid</td>
+<td><em>Wir haben den Stau vermieden.</em></td>
+</tr>
+<tr>
+<td>verzeihen</td>
+<td>verzeiht</td>
+<td>verzieh</td>
+<td>hat verziehen</td>
+<td>forgive</td>
+<td><em>Sie hat ihm nie verziehen.</em></td>
+</tr>
+<tr>
+<td>weichen</td>
+<td>weicht</td>
+<td>wich</td>
+<td>ist gewichen</td>
+<td>give way, yield</td>
+<td><em>Er wich nicht von ihrer Seite.</em></td>
+</tr>
+<tr>
+<td>werben</td>
+<td>wirbt</td>
+<td>warb</td>
+<td>hat geworben</td>
+<td>advertise, recruit</td>
+<td><em>Die Firma wirbt mit niedrigen Preisen.</em></td>
+</tr>
+<tr>
+<td>zwingen</td>
+<td>zwingt</td>
+<td>zwang</td>
+<td>hat gezwungen</td>
+<td>force</td>
+<td><em>Niemand hat dich gezwungen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>geboren</strong> is the Partizip II of gebären: <em>Ich bin 1995 geboren</em> (state) vs <em>Sie hat ein Kind geboren</em> (the act).</li>
+<li><strong>verziehen</strong> has two sources: the participle of verzeihen (<em>Ich habe dir verziehen</em> — I forgave you) and the separate verb verziehen, verzog, verzogen (<em>Er hat das Gesicht verzogen</em> — he pulled a face).</li>
+<li><strong>sich schleichen</strong> takes haben: <em>Er hat sich aus dem Haus geschlichen.</em> Without sich it takes sein.</li>
+<li><strong>verderben</strong> works like fahren: with an object hat, without one ist.</li>
+<li><strong>staubsaugen</strong> is weak: <em>Ich habe gestaubsaugt</em> (also <em>staubgesaugt</em>).</li>
+<li><strong>Ukrainian:</strong> <em>вибачити</em> = verzeihen, <em>уникати</em> = vermeiden, <em>доводити</em> = beweisen, <em>присягатися</em> = schwören.</li>
+</ul>
+<h3>B2 verbs already in the master table: how they are used</h3>
+<p>gelingen, gelten, geschehen, genießen, gießen, schieben and verschwinden are in the master table above. Their forms are easy; their sentence patterns are where B2 mistakes happen.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Pattern</th>
+<th>Example</th>
+<th>Trap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gelingen</td>
+<td>es gelingt + Dativ (+ zu-Inf.)</td>
+<td><em>Es ist mir gelungen, ihn zu überzeugen.</em> — I managed to convince him.</td>
+<td>Not <em>Ich bin gelungen</em>. Same shape as Ukrainian <em>мені вдалося</em>.</td>
+</tr>
+<tr>
+<td>gelten</td>
+<td>gelten als + Nom. / gelten für</td>
+<td><em>Er gilt als Experte. Das gilt auch für dich.</em></td>
+<td>Present has e → i: <em>gilt</em>, Präteritum <em>galt</em>.</td>
+</tr>
+<tr>
+<td>geschehen</td>
+<td>es geschieht (+ Dativ)</td>
+<td><em>Was ist geschehen? Das geschieht dir recht!</em> — Serves you right!</td>
+<td>Perfekt with sein. More formal than <em>passieren</em>.</td>
+</tr>
+<tr>
+<td>genießen</td>
+<td>genießen + Akk.</td>
+<td><em>Wir haben den Urlaub genossen.</em></td>
+<td>ß → ss after the short vowel: genoss, genossen (like gießen → goss, gegossen).</td>
+</tr>
+<tr>
+<td>gießen</td>
+<td>gießen + Akk.</td>
+<td><em>Hast du die Blumen gegossen?</em> — Did you water the flowers?</td>
+<td>Also <em>Es gießt in Strömen</em> — it's pouring.</td>
+</tr>
+<tr>
+<td>schieben</td>
+<td>(ver)schieben + Akk.</td>
+<td><em>Der Termin wurde auf Montag verschoben.</em> — The appointment was postponed to Monday.</td>
+<td>verschieben = postpone, the most frequent use at B2.</td>
+</tr>
+<tr>
+<td>verschwinden</td>
+<td>verschwinden, ist verschwunden</td>
+<td><em>Mein Schlüssel ist verschwunden. Verschwinde!</em> — Get lost!</td>
+<td>Intransitive only: you cannot "verschwinden" something; use <em>verschwinden lassen</em>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Konjunktiv II forms of strong and mixed verbs</h3>
+<p>Rule: take the Präteritum, umlaut a / o / u, add <strong>-e</strong>: <em>kam → käme, zog → zöge, fuhr → führe</em>; ie and i stay as they are (<em>blieb → bliebe, ging → ginge</em>). Endings: ich käme, du käm(e)st, er käme, wir kämen, ihr käm(e)t, sie kämen. When to use them instead of würde: see the B2+ section of <a href="../docs/tenses.html">Tenses, moods and the passive</a>.</p>
+<p><strong>Regular strong verbs</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Präteritum</th>
+<th>Konjunktiv II</th>
+<th>In use today</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kommen</td>
+<td>kam</td>
+<td>käme</td>
+<td>common</td>
+</tr>
+<tr>
+<td>gehen</td>
+<td>ging</td>
+<td>ginge</td>
+<td>common</td>
+</tr>
+<tr>
+<td>geben</td>
+<td>gab</td>
+<td>gäbe</td>
+<td>common (<em>es gäbe</em>)</td>
+</tr>
+<tr>
+<td>finden</td>
+<td>fand</td>
+<td>fände</td>
+<td>common (<em>ich fände es gut</em>)</td>
+</tr>
+<tr>
+<td>liegen</td>
+<td>lag</td>
+<td>läge</td>
+<td>written</td>
+</tr>
+<tr>
+<td>bleiben</td>
+<td>blieb</td>
+<td>bliebe</td>
+<td>written</td>
+</tr>
+<tr>
+<td>lassen</td>
+<td>ließ</td>
+<td>ließe</td>
+<td>written</td>
+</tr>
+<tr>
+<td>halten</td>
+<td>hielt</td>
+<td>hielte</td>
+<td>written</td>
+</tr>
+<tr>
+<td>sehen</td>
+<td>sah</td>
+<td>sähe</td>
+<td>written</td>
+</tr>
+<tr>
+<td>nehmen</td>
+<td>nahm</td>
+<td>nähme</td>
+<td>written</td>
+</tr>
+<tr>
+<td>ziehen</td>
+<td>zog</td>
+<td>zöge</td>
+<td>formal</td>
+</tr>
+<tr>
+<td>fliegen</td>
+<td>flog</td>
+<td>flöge</td>
+<td>formal</td>
+</tr>
+<tr>
+<td>tragen</td>
+<td>trug</td>
+<td>trüge</td>
+<td>formal (<em>trüge die Verantwortung</em>)</td>
+</tr>
+<tr>
+<td>fahren</td>
+<td>fuhr</td>
+<td>führe</td>
+<td>formal; looks like <em>führen</em>, so speech uses <em>würde fahren</em></td>
+</tr>
+<tr>
+<td>tun</td>
+<td>tat</td>
+<td>täte</td>
+<td>fixed phrases (<em>das täte mir leid</em>)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Verbs with an old ü / ö form.</strong> These come from the old plural Präteritum vowel (<em>wir hulfen, wir sturben</em>). Many have a second, newer form with ä. All of them are formal or literary; in speech use würde.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Präteritum</th>
+<th>Konjunktiv II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stehen</td>
+<td>stand</td>
+<td>stünde / stände</td>
+</tr>
+<tr>
+<td>helfen</td>
+<td>half</td>
+<td>hülfe / hälfe</td>
+</tr>
+<tr>
+<td>sterben</td>
+<td>starb</td>
+<td>stürbe</td>
+</tr>
+<tr>
+<td>werfen</td>
+<td>warf</td>
+<td>würfe</td>
+</tr>
+<tr>
+<td>verderben</td>
+<td>verdarb</td>
+<td>verdürbe</td>
+</tr>
+<tr>
+<td>beginnen</td>
+<td>begann</td>
+<td>begänne / begönne</td>
+</tr>
+<tr>
+<td>gewinnen</td>
+<td>gewann</td>
+<td>gewänne / gewönne</td>
+</tr>
+<tr>
+<td>schwimmen</td>
+<td>schwamm</td>
+<td>schwämme / schwömme</td>
+</tr>
+<tr>
+<td>empfehlen</td>
+<td>empfahl</td>
+<td>empföhle / empfähle</td>
+</tr>
+<tr>
+<td>stehlen</td>
+<td>stahl</td>
+<td>stöhle / stähle</td>
+</tr>
+<tr>
+<td>heben</td>
+<td>hob</td>
+<td>höbe</td>
+</tr>
+<tr>
+<td>schwören</td>
+<td>schwor</td>
+<td>schwüre</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Mixed verbs</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Präteritum</th>
+<th>Konjunktiv II</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wissen</td>
+<td>wusste</td>
+<td>wüsste</td>
+<td>common</td>
+</tr>
+<tr>
+<td>bringen</td>
+<td>brachte</td>
+<td>brächte</td>
+<td>written</td>
+</tr>
+<tr>
+<td>denken</td>
+<td>dachte</td>
+<td>dächte</td>
+<td>written</td>
+</tr>
+<tr>
+<td>brauchen (weak)</td>
+<td>brauchte</td>
+<td>bräuchte</td>
+<td>common in speech, accepted as standard</td>
+</tr>
+<tr>
+<td>kennen, nennen, brennen, rennen</td>
+<td>kannte, nannte …</td>
+<td>kennte, nennte, brennte, rennte</td>
+<td>rare; use würde</td>
+</tr>
+<tr>
+<td>senden, wenden</td>
+<td>sandte / sendete …</td>
+<td>sendete, wendete</td>
+<td>never <em>sändte</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>stünde</em> is the more frequent form; <em>stände</em> is also standard. Pick one and use it consistently.</li>
+</ul>
+<h3>More strong/weak doublets</h3>
+<p>The B1 table above has hängen, erschrecken, schaffen and wiegen. These pairs follow the same idea: one spelling, two conjugations, two meanings.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Strong</th>
+<th>Weak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bewegen</td>
+<td>bewog – hat bewogen = induce, persuade: <em>Was hat dich dazu bewogen?</em> — What made you do it?</td>
+<td>bewegte – hat bewegt = move: <em>Er hat sich nicht bewegt.</em> — He didn't move.</td>
+</tr>
+<tr>
+<td>senden</td>
+<td>sandte – hat gesandt = send (formal; the weak form is also fine here): <em>Wir sandten ihm einen Brief.</em></td>
+<td>sendete – hat gesendet = broadcast (weak only): <em>Das ZDF hat das Spiel live gesendet.</em></td>
+</tr>
+<tr>
+<td>wenden</td>
+<td>wandte – hat gewandt = turn (to): <em>Sie hat sich an den Chef gewandt.</em> (weak also possible)</td>
+<td>wendete – hat gewendet = turn over / turn round (weak only): <em>Er hat das Auto gewendet.</em></td>
+</tr>
+<tr>
+<td>schleifen</td>
+<td>schliff – hat geschliffen = sharpen, grind, polish: <em>Er hat das Messer geschliffen.</em></td>
+<td>schleifte – hat geschleift = drag: <em>Sie hat den Sack über den Boden geschleift.</em></td>
+</tr>
+<tr>
+<td>weichen</td>
+<td>wich – ist gewichen = give way: <em>Er ist nicht von der Stelle gewichen.</em></td>
+<td>weichte – hat geweicht = soak, soften (mostly <em>einweichen</em>): <em>Ich habe die Bohnen eingeweicht.</em></td>
+</tr>
+<tr>
+<td>quellen</td>
+<td>quoll – ist gequollen = well up, swell: <em>Der Reis ist gequollen.</em></td>
+<td>quellte – hat gequellt = soak (rare): <em>Sie quellte die Erbsen.</em></td>
+</tr>
+<tr>
+<td>gären</td>
+<td>gor – hat / ist gegoren = ferment: <em>Der Most ist gegoren.</em></td>
+<td>gärte – hat gegärt = seethe (figurative): <em>Im Volk gärte es.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>More on the B1 four:</p>
+<ul>
+<li><strong>schaffen:</strong> strong <em>geschaffen</em> also means "made for": <em>Sie ist für diesen Job wie geschaffen.</em> In Swabian and Swiss speech weak <em>schaffen</em> simply means "to work": <em>Er schafft beim Daimler.</em></li>
+<li><strong>erschrecken:</strong> the reflexive <em>sich erschrecken</em> ("to get a fright") is heard with both forms: <em>Ich habe mich erschrocken / erschreckt.</em> Both are accepted.</li>
+<li><strong>wiegen:</strong> in the sense "weigh X kg" it is strong too, with the weight as a measure, not a real object: <em>Der Koffer wiegt 20 Kilo / hat 20 Kilo gewogen.</em></li>
+<li><strong>löschen / erlöschen:</strong> a split into two verbs. <em>löschen</em> (weak, with object) = put out, delete; <em>erlöschen</em> (strong, no object) = go out, expire: <em>Die Feuerwehr hat das Feuer gelöscht. Das Feuer ist erloschen.</em></li>
+<li>Adjectives keep the strong forms: <em>gewandt</em> (skilful), <em>verwandt</em> (related), <em>ein Gesandter</em> (an envoy), <em>geschliffen</em> (polished, of style).</li>
+</ul>
+<h3>Archaic and literary forms</h3>
+<p>You only need to recognise these: they appear in older literature, the Bible, poems, songs and the occasional ironic remark. Never use them in your own neutral German.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modern</th>
+<th>Old / literary</th>
+<th>Where you meet it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wurde</td>
+<td>ward</td>
+<td>Bible, poetry: <em>Und es ward Licht.</em> — And there was light.</td>
+</tr>
+<tr>
+<td>stand</td>
+<td>stund</td>
+<td>older texts and folk songs</td>
+</tr>
+<tr>
+<td>hob an</td>
+<td>hub an</td>
+<td>literary: <em>Er hub an zu sprechen.</em> — He began to speak.</td>
+</tr>
+<tr>
+<td>schwor</td>
+<td>schwur</td>
+<td>still found in older or solemn writing</td>
+</tr>
+<tr>
+<td>backte</td>
+<td>buk</td>
+<td>older cookbooks, older speakers</td>
+</tr>
+<tr>
+<td>fragte</td>
+<td>frug</td>
+<td>regional and old; today counted as a mistake</td>
+</tr>
+<tr>
+<td>melkte</td>
+<td>molk</td>
+<td>old; the participle <em>gemolken</em> is still normal</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Strong participle, weak Präteritum.</strong> Some verbs went weak in the Präteritum but kept the old strong participle:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Präteritum</th>
+<th>Partizip II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backen</td>
+<td>backte</td>
+<td>gebacken</td>
+</tr>
+<tr>
+<td>mahlen</td>
+<td>mahlte</td>
+<td>gemahlen</td>
+</tr>
+<tr>
+<td>salzen</td>
+<td>salzte</td>
+<td>gesalzen</td>
+</tr>
+<tr>
+<td>spalten</td>
+<td>spaltete</td>
+<td>gespalten</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Old participles living on as adjectives.</strong> The verb changed or vanished; the adjective stayed:</p>
+<ul>
+<li><em>erhaben</em> (sublime, raised), from erheben</li>
+<li><em>verschollen</em> (missing, never found), from the old verb verschallen</li>
+<li><em>verworren</em> (muddled), from verwirren, which is now weak (<em>verwirrt</em>)</li>
+<li><em>beklommen</em> (uneasy, anxious), from beklemmen</li>
+<li><em>gediegen</em> (solid, high-quality), from gedeihen</li>
+<li>fixed phrase <em>gang und gäbe</em> (common practice): <em>Das ist hier gang und gäbe.</em></li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: when to use Präteritum, Perfekt and Konjunktiv II forms</li>
+<li><a href="../docs/prefixes.html">Prefixes and vowel changes</a>: Ablaut and how prefixes change a strong verb's meaning</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: nouns built from strong verb stems (Gang, Schnitt, Wurf)</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: lassen, double infinitive and Futur II with these verbs</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: where Präteritum and one-word Konjunktiv II forms belong</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/irregular-verbs.html">Irregular verbs quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

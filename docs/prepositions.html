@@ -1,0 +1,2225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prepositions: in, an, auf, vor and the rest · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Prepositions: in, an, auf, vor and the rest</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Prepositions: in, an, auf, vor and the rest</h1></header>
+<article class="prose card">
+<p>Every German preposition fixes the case of the noun after it; the two-way ones switch between Akkusativ (movement, wohin?) and Dativ (location, wo?).</p>
+<h2>Fixed-case prepositions</h2>
+<p>These prepositions always take the same case, no matter whether there is movement or not. Learn them as lists; the classic mnemonics are below.</p>
+<h3>Akkusativ only: durch, für, gegen, ohne, um, bis, entlang</h3>
+<p>Mnemonic: <strong>DOGFUB</strong> (durch, ohne, gegen, für, um, bis).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wir gehen <strong>durch den</strong> Park.</td>
+<td>We walk through the park.</td>
+<td>durch = through</td>
+</tr>
+<tr>
+<td>Das ist <strong>für dich</strong>.</td>
+<td>That is for you.</td>
+<td>für + Akk pronoun: mich, dich, ihn, sie, uns, euch</td>
+</tr>
+<tr>
+<td>Ich bin <strong>gegen den</strong> Plan.</td>
+<td>I am against the plan.</td>
+<td>also "into": gegen die Wand fahren</td>
+</tr>
+<tr>
+<td>Kaffee <strong>ohne</strong> Zucker</td>
+<td>coffee without sugar</td>
+<td>often no article after ohne</td>
+</tr>
+<tr>
+<td>Wir sitzen <strong>um den</strong> Tisch.</td>
+<td>We sit around the table.</td>
+<td>um 8 Uhr = at 8 o'clock (time)</td>
+</tr>
+<tr>
+<td><strong>bis</strong> Montag / <strong>bis zum</strong> Bahnhof</td>
+<td>until Monday / as far as the station</td>
+<td>bis alone rarely takes an article; with one it becomes bis zu + Dat</td>
+</tr>
+<tr>
+<td><strong>den Fluss entlang</strong></td>
+<td>along the river</td>
+<td>entlang usually comes after the noun with Akk</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Dativ only: aus, bei, mit, nach, seit, von, zu, gegenüber, ab, außer</h3>
+<p>Mnemonic: "aus-bei-mit-nach-seit-von-zu" is sung to the tune of "Blue Danube" in many German classes.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich komme <strong>aus der</strong> Ukraine.</td>
+<td>I come from Ukraine.</td>
+<td>aus = out of, from (origin)</td>
+</tr>
+<tr>
+<td>Ich wohne <strong>bei meinen</strong> Eltern.</td>
+<td>I live with my parents.</td>
+<td>bei = at someone's place; укр. у батьків</td>
+</tr>
+<tr>
+<td>Ich fahre <strong>mit dem</strong> Bus.</td>
+<td>I go by bus.</td>
+<td>mit = with, by (transport)</td>
+</tr>
+<tr>
+<td><strong>Nach dem</strong> Essen schlafe ich.</td>
+<td>After the meal I sleep.</td>
+<td>nach = after; also to (cities, countries)</td>
+</tr>
+<tr>
+<td>Ich lerne <strong>seit einem</strong> Jahr Deutsch.</td>
+<td>I have been learning German for a year.</td>
+<td>seit + present tense</td>
+</tr>
+<tr>
+<td>ein Geschenk <strong>von meiner</strong> Schwester</td>
+<td>a present from my sister</td>
+<td>von = from, of, by</td>
+</tr>
+<tr>
+<td>Ich gehe <strong>zum</strong> Arzt.</td>
+<td>I go to the doctor.</td>
+<td>zu = to (people, places, events)</td>
+</tr>
+<tr>
+<td><strong>gegenüber dem</strong> Bahnhof / dem Bahnhof gegenüber</td>
+<td>opposite the station</td>
+<td>can stand before or after the noun</td>
+</tr>
+<tr>
+<td><strong>ab nächster</strong> Woche</td>
+<td>from next week on</td>
+<td>ab = starting from</td>
+</tr>
+<tr>
+<td><strong>Außer mir</strong> war niemand da.</td>
+<td>Nobody except me was there.</td>
+<td>außer = except</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Genitiv: wegen, trotz, während, statt, innerhalb, außerhalb</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>wegen des</strong> Wetters</td>
+<td>because of the weather</td>
+<td>spoken: wegen dem Wetter (Dativ)</td>
+</tr>
+<tr>
+<td><strong>trotz des</strong> Regens</td>
+<td>despite the rain</td>
+<td>spoken: trotz dem Regen</td>
+</tr>
+<tr>
+<td><strong>während der</strong> Arbeit</td>
+<td>during work</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>statt eines</strong> Autos / <strong>anstatt</strong></td>
+<td>instead of a car</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>innerhalb einer</strong> Woche</td>
+<td>within a week</td>
+<td>also time: innerhalb von zwei Tagen (von + Dat)</td>
+</tr>
+<tr>
+<td><strong>außerhalb der</strong> Stadt</td>
+<td>outside the city</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Genitiv masculine and neuter nouns add -s or -es: des Wetters, des Regens, des Autos, eines Jahres.</li>
+<li>In everyday speech wegen, trotz and statt often take Dativ. In writing and exams, use Genitiv.</li>
+<li>With pronouns: wegen mir / meinetwegen (because of me), not "wegen meiner".</li>
+</ul>
+<h2>Two-way prepositions (Wechselpräpositionen)</h2>
+<p>Nine prepositions take Akkusativ for a change of place (wohin? where to?) and Dativ for a fixed location (wo? where?): <strong>an, auf, hinter, in, neben, über, unter, vor, zwischen</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Wohin? + Akk (movement to)</th>
+<th>Wo? + Dat (location)</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich gehe <strong>in die</strong> Küche.</td>
+<td>Ich bin <strong>in der</strong> Küche.</td>
+<td>into the kitchen / in the kitchen</td>
+</tr>
+<tr>
+<td>Ich lege das Buch <strong>auf den</strong> Tisch.</td>
+<td>Das Buch liegt <strong>auf dem</strong> Tisch.</td>
+<td>onto / on the table</td>
+</tr>
+<tr>
+<td>Ich hänge das Bild <strong>an die</strong> Wand.</td>
+<td>Das Bild hängt <strong>an der</strong> Wand.</td>
+<td>onto / on the wall</td>
+</tr>
+<tr>
+<td>Die Katze läuft <strong>unter das</strong> Bett.</td>
+<td>Die Katze schläft <strong>unter dem</strong> Bett.</td>
+<td>under the bed</td>
+</tr>
+<tr>
+<td>Ich stelle die Lampe <strong>neben das</strong> Sofa.</td>
+<td>Die Lampe steht <strong>neben dem</strong> Sofa.</td>
+<td>next to the sofa</td>
+</tr>
+<tr>
+<td>Er fährt das Auto <strong>hinter das</strong> Haus.</td>
+<td>Das Auto steht <strong>hinter dem</strong> Haus.</td>
+<td>behind the house</td>
+</tr>
+<tr>
+<td>Ich hänge die Lampe <strong>über den</strong> Tisch.</td>
+<td>Die Lampe hängt <strong>über dem</strong> Tisch.</td>
+<td>above the table</td>
+</tr>
+<tr>
+<td>Ich setze mich <strong>vor den</strong> Fernseher.</td>
+<td>Ich sitze <strong>vor dem</strong> Fernseher.</td>
+<td>in front of the TV</td>
+</tr>
+<tr>
+<td>Ich stelle den Stuhl <strong>zwischen die</strong> Tische.</td>
+<td>Der Stuhl steht <strong>zwischen den</strong> Tischen.</td>
+<td>between the tables (Dat pl adds -n)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ukrainian parallel.</strong> Ukrainian does the same thing: в місто (знахідний, where to) vs в місті (місцевий, where); на стіл vs на столі; під ліжко vs під ліжком. German Akkusativ = your знахідний, German Dativ here = your місцевий / орудний.</p>
+<h3>Verb pairs: put (Akk) vs be there (Dat)</h3>
+<p>The "put" verb is regular and takes Akk; the "be there" verb is irregular (strong) and takes Dat (see <a href="../docs/irregular-verbs.html">Irregular verbs</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Put somewhere (wohin? + Akk)</th>
+<th>Be somewhere (wo? + Dat)</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stellen – stellte – hat gestellt</td>
+<td>stehen – stand – hat gestanden</td>
+<td>upright things: bottles, chairs, books on a shelf</td>
+</tr>
+<tr>
+<td>legen – legte – hat gelegt</td>
+<td>liegen – lag – hat gelegen</td>
+<td>flat things, lying: phone, keys, a book on a table</td>
+</tr>
+<tr>
+<td>setzen – setzte – hat gesetzt</td>
+<td>sitzen – saß – hat gesessen</td>
+<td>sitting: sich setzen = sit down</td>
+</tr>
+<tr>
+<td>hängen – hängte – hat gehängt</td>
+<td>hängen – hing – hat gehangen</td>
+<td>same infinitive, different past forms</td>
+</tr>
+<tr>
+<td>stecken – steckte – hat gesteckt</td>
+<td>stecken – steckte – hat gesteckt</td>
+<td>put into / be stuck in (Schlüssel im Schloss)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich <strong>stelle</strong> die Flasche <strong>in den</strong> Kühlschrank.</td>
+<td>I put the bottle in the fridge.</td>
+<td>bottle stands</td>
+</tr>
+<tr>
+<td>Die Flasche <strong>steht im</strong> Kühlschrank.</td>
+<td>The bottle is in the fridge.</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich <strong>lege</strong> das Handy <strong>auf den</strong> Tisch.</td>
+<td>I put the phone on the table.</td>
+<td>phone lies</td>
+</tr>
+<tr>
+<td>Ich <strong>setze mich auf das</strong> Sofa.</td>
+<td>I sit down on the sofa.</td>
+<td>reflexive, Akk</td>
+</tr>
+<tr>
+<td>Ich <strong>sitze auf dem</strong> Sofa.</td>
+<td>I am sitting on the sofa.</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich habe den Mantel <strong>an den</strong> Haken <strong>gehängt</strong>.</td>
+<td>I hung the coat on the hook.</td>
+<td></td>
+</tr>
+<tr>
+<td>Der Mantel <strong>hat am</strong> Haken <strong>gehangen</strong>.</td>
+<td>The coat was hanging on the hook.</td>
+<td>in the south: ist gehangen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Movement inside a place is Dativ: Ich laufe <strong>im</strong> Park. (I run around in the park, I stay in it.) Ich laufe <strong>in den</strong> Park. (I run into the park.)</li>
+<li>German uses stehen/liegen where English and Ukrainian just say "is": Das Buch liegt auf dem Tisch. Книга лежить на столі works the same way, so trust your Ukrainian instinct here.</li>
+<li>ankommen is location: Ich komme <strong>in der</strong> Stadt an (Dat), even though you are moving.</li>
+</ul>
+<h2>Going places and being places</h2>
+<p>The destination decides the preposition: <strong>nach</strong> for cities and countries without an article, <strong>in</strong> for countries with an article and for buildings you enter, <strong>zu</strong> for people, shops by function and events, <strong>an</strong> for water and edges, <strong>auf</strong> for open spaces and events.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Where to? (wohin?)</th>
+<th>Where? (wo?)</th>
+<th>Where from? (woher?)</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>nach</strong> Berlin, <strong>nach</strong> Spanien</td>
+<td><strong>in</strong> Berlin, <strong>in</strong> Spanien</td>
+<td><strong>aus</strong> Berlin</td>
+<td>cities, most countries (no article)</td>
+</tr>
+<tr>
+<td><strong>in die</strong> Schweiz, <strong>in die</strong> Türkei, <strong>in die</strong> USA, <strong>in den</strong> Iran</td>
+<td><strong>in der</strong> Schweiz, <strong>in den</strong> USA</td>
+<td><strong>aus der</strong> Schweiz</td>
+<td>countries with an article: die Schweiz, die Türkei, die Ukraine, die USA (pl), der Iran</td>
+</tr>
+<tr>
+<td><strong>ins</strong> Kino, <strong>in die</strong> Schule, <strong>ins</strong> Büro</td>
+<td><strong>im</strong> Kino, <strong>in der</strong> Schule, <strong>im</strong> Büro</td>
+<td><strong>aus dem</strong> Kino</td>
+<td>buildings and rooms you go inside</td>
+</tr>
+<tr>
+<td><strong>zum</strong> Arzt, <strong>zu</strong> meiner Oma</td>
+<td><strong>beim</strong> Arzt, <strong>bei</strong> meiner Oma</td>
+<td><strong>vom</strong> Arzt, <strong>von</strong> meiner Oma</td>
+<td>people and their places</td>
+</tr>
+<tr>
+<td><strong>zum</strong> Bäcker, <strong>zur</strong> Post, <strong>zum</strong> Bahnhof</td>
+<td><strong>beim</strong> Bäcker, <strong>bei der</strong> Post, <strong>am</strong> Bahnhof</td>
+<td><strong>vom</strong> Bäcker</td>
+<td>shops by person, a point you go to</td>
+</tr>
+<tr>
+<td><strong>an den</strong> Strand, <strong>ans</strong> Meer, <strong>an den</strong> See</td>
+<td><strong>am</strong> Strand, <strong>am</strong> Meer, <strong>am</strong> See</td>
+<td><strong>vom</strong> Strand</td>
+<td>water, coast, edges</td>
+</tr>
+<tr>
+<td><strong>auf den</strong> Markt, <strong>auf die</strong> Party, <strong>aufs</strong> Land</td>
+<td><strong>auf dem</strong> Markt, <strong>auf der</strong> Party, <strong>auf dem</strong> Land</td>
+<td><strong>vom</strong> Markt</td>
+<td>open places, events, the countryside</td>
+</tr>
+<tr>
+<td><strong>nach</strong> Hause</td>
+<td><strong>zu</strong> Hause</td>
+<td><strong>von</strong> zu Hause</td>
+<td>home</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ukraine.</strong> It is <strong>die Ukraine</strong> in modern German, so: Ich fahre <strong>in die</strong> Ukraine. Ich wohne <strong>in der</strong> Ukraine. Ich komme <strong>aus der</strong> Ukraine. "Nach Ukraine" is wrong (see <a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>).</p>
+<h3>nach Hause vs zu Hause</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich gehe <strong>nach Hause</strong>.</td>
+<td>I go home.</td>
+<td>movement</td>
+</tr>
+<tr>
+<td>Ich bin <strong>zu Hause</strong>.</td>
+<td>I am at home.</td>
+<td>location</td>
+</tr>
+<tr>
+<td>Ich arbeite <strong>von zu Hause</strong> (aus).</td>
+<td>I work from home.</td>
+<td></td>
+</tr>
+<tr>
+<td>Mach es dir <strong>wie zu Hause</strong>!</td>
+<td>Make yourself at home!</td>
+<td></td>
+</tr>
+<tr>
+<td>das Zuhause</td>
+<td>the home (noun)</td>
+<td>Ich habe ein neues Zuhause.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>zu vs in for the same building</h3>
+<ul>
+<li><strong>zur</strong> Schule gehen = attend school, go to school as an activity. <strong>in die</strong> Schule gehen = also attend, or physically go inside.</li>
+<li><strong>zum</strong> Supermarkt = heading to it. <strong>in den</strong> Supermarkt = going inside it.</li>
+<li>Rule of thumb: zu is the goal, in is entering.</li>
+</ul>
+<h3>Gotchas</h3>
+<ul>
+<li>bei never means movement: Ich gehe zu Anna (to Anna's), Ich bin bei Anna (at Anna's). Укр.: до Анни / у Анни.</li>
+<li>Ukrainian can say both в Київ and до Києва; German has only one option for cities: nach Berlin. Never "in Berlin fahren".</li>
+<li>Islands: <strong>auf</strong> Mallorca, <strong>nach</strong> Mallorca (no article). Mountains: <strong>in die</strong> Berge, <strong>in den</strong> Bergen.</li>
+<li>auf die Toilette gehen, auf der Toilette sein: toilet uses auf, a fixed idiom.</li>
+<li>Bank and Post: <strong>zur</strong> Bank / <strong>auf die</strong> Bank (both common), location <strong>bei der</strong> or <strong>auf der</strong> Bank.</li>
+</ul>
+<h2>The meaning map: an vs auf vs in, and vor</h2>
+<p><strong>an</strong> = touching a side or edge (vertical surfaces, borders, water, dates); <strong>auf</strong> = on top of a horizontal surface, open places, events, languages; <strong>in</strong> = inside something enclosed, countries and cities.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>an (side, edge, contact)</th>
+<th>auf (top, open, event)</th>
+<th>in (inside, enclosed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Bild <strong>an der</strong> Wand</td>
+<td>das Buch <strong>auf dem</strong> Tisch</td>
+<td>das Buch <strong>in der</strong> Tasche</td>
+</tr>
+<tr>
+<td><strong>an der</strong> Tür, <strong>am</strong> Fenster</td>
+<td><strong>auf dem</strong> Boden, <strong>auf dem</strong> Dach</td>
+<td><strong>im</strong> Zimmer, <strong>im</strong> Haus</td>
+</tr>
+<tr>
+<td><strong>am</strong> Meer, <strong>am</strong> See, <strong>am</strong> Rhein</td>
+<td><strong>auf dem</strong> Wasser (on the surface)</td>
+<td><strong>im</strong> Meer, <strong>im</strong> See (swimming in it)</td>
+</tr>
+<tr>
+<td><strong>an der</strong> Grenze, <strong>am</strong> Rand</td>
+<td><strong>auf der</strong> Straße, <strong>auf dem</strong> Platz</td>
+<td><strong>in der</strong> Straße (= living in that street)</td>
+</tr>
+<tr>
+<td><strong>an der</strong> Uni (studying there)</td>
+<td><strong>auf dem</strong> Markt, <strong>auf dem</strong> Land</td>
+<td><strong>in der</strong> Stadt, <strong>in</strong> Deutschland</td>
+</tr>
+<tr>
+<td><strong>an der</strong> Kasse, <strong>am</strong> Tisch (sitting at)</td>
+<td><strong>auf einer</strong> Party, <strong>auf einer</strong> Hochzeit</td>
+<td><strong>im</strong> Kino, <strong>im</strong> Konzert</td>
+</tr>
+<tr>
+<td><strong>am</strong> Montag, <strong>am</strong> 5. Mai (dates, days)</td>
+<td><strong>auf</strong> Deutsch, <strong>auf</strong> Ukrainisch (languages)</td>
+<td><strong>im</strong> Mai, <strong>im</strong> Winter (months, seasons)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Quick tests</h3>
+<ul>
+<li>Could the object fall off if the surface were tilted? Horizontal surface: auf. Hanging on a wall or touching a side: an.</li>
+<li>Are you inside walls or borders? in.</li>
+<li>Languages always use auf: Wie sagt man das <strong>auf</strong> Deutsch? Ukrainian helps here: на українській = auf Ukrainisch (на = auf). English "in German" misleads.</li>
+<li>an der Uni vs auf der Uni: both are heard; an der Uni (studieren) is standard.</li>
+<li>English "on the street" is usually <strong>auf der</strong> Straße; "I live on Main Street" is <strong>in der</strong> Hauptstraße.</li>
+</ul>
+<h3>vor: in front of, before, ago, out of (emotion)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Das Auto steht <strong>vor dem</strong> Haus.</td>
+<td>The car is in front of the house.</td>
+<td>place, Dat</td>
+</tr>
+<tr>
+<td>Ich stelle das Auto <strong>vor das</strong> Haus.</td>
+<td>I put the car in front of the house.</td>
+<td>movement, Akk</td>
+</tr>
+<tr>
+<td><strong>vor dem</strong> Essen</td>
+<td>before the meal</td>
+<td>time, always Dat</td>
+</tr>
+<tr>
+<td><strong>vor einer</strong> Woche</td>
+<td>a week ago</td>
+<td>ago = vor + Dat, placed before the noun</td>
+</tr>
+<tr>
+<td><strong>vor zwei</strong> Jahr<strong>en</strong></td>
+<td>two years ago</td>
+<td>Dat pl: Jahren, Tagen, Monaten</td>
+</tr>
+<tr>
+<td>Ich habe Angst <strong>vor dem</strong> Hund.</td>
+<td>I am afraid of the dog.</td>
+<td>fixed, Dat; укр. боюся собаки</td>
+</tr>
+<tr>
+<td>Er zittert <strong>vor</strong> Kälte.</td>
+<td>He is shaking with cold.</td>
+<td>cause of a physical reaction, no article</td>
+</tr>
+<tr>
+<td>Es ist zehn <strong>vor</strong> acht.</td>
+<td>It is ten to eight.</td>
+<td>clock time</td>
+</tr>
+<tr>
+<td><strong>vor allem</strong></td>
+<td>above all, especially</td>
+<td>fixed phrase</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>"Ago" never goes after the noun in German: <strong>vor drei Tagen</strong>, not "drei Tage vor".</li>
+<li>vor (ago, before) vs seit (since, for): Ich habe ihn vor einem Jahr getroffen (once, past). Ich kenne ihn seit einem Jahr (still true now).</li>
+</ul>
+<h2>Time prepositions</h2>
+<p>Use <strong>um</strong> for clock times, <strong>am</strong> for days and dates, <strong>im</strong> for months, seasons and longer periods; years take no preposition at all (or <strong>im Jahr</strong>) (see <a href="../docs/numbers-dates.html">Numbers, dates, time and money</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>um</strong> 8 Uhr</td>
+<td>at 8 o'clock</td>
+<td>exact time</td>
+</tr>
+<tr>
+<td><strong>gegen</strong> 8 Uhr</td>
+<td>around 8 o'clock</td>
+<td>approximate time, Akk</td>
+</tr>
+<tr>
+<td><strong>am</strong> Montag, <strong>am</strong> Wochenende</td>
+<td>on Monday, at the weekend</td>
+<td>days; am = an dem</td>
+</tr>
+<tr>
+<td><strong>am</strong> 3. Oktober (am dritten Oktober)</td>
+<td>on 3 October</td>
+<td>dates, ordinal with -en</td>
+</tr>
+<tr>
+<td><strong>am</strong> Morgen, <strong>am</strong> Abend, <strong>in der</strong> Nacht</td>
+<td>in the morning, in the evening, at night</td>
+<td>Nacht is the exception</td>
+</tr>
+<tr>
+<td><strong>im</strong> Mai, <strong>im</strong> Sommer</td>
+<td>in May, in summer</td>
+<td>months, seasons; im = in dem</td>
+</tr>
+<tr>
+<td><strong>im</strong> 21. Jahrhundert</td>
+<td>in the 21st century</td>
+<td></td>
+</tr>
+<tr>
+<td>2020 / <strong>im Jahr</strong> 2020</td>
+<td>in 2020</td>
+<td>never "in 2020" in standard German</td>
+</tr>
+<tr>
+<td><strong>vor</strong> einer Woche</td>
+<td>a week ago</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>seit</strong> drei Jahren</td>
+<td>for three years (and still)</td>
+<td>Dat, present tense: Ich wohne seit 2022 hier.</td>
+</tr>
+<tr>
+<td><strong>ab</strong> Montag, <strong>ab</strong> nächster Woche</td>
+<td>from Monday on</td>
+<td>start, open end, Dat</td>
+</tr>
+<tr>
+<td><strong>von</strong> 9 <strong>bis</strong> 17 Uhr</td>
+<td>from 9 to 5</td>
+<td>von ... bis</td>
+</tr>
+<tr>
+<td><strong>bis</strong> Freitag, <strong>bis zum</strong> Wochenende</td>
+<td>until / by Friday</td>
+<td>bis + article = bis zu + Dat</td>
+</tr>
+<tr>
+<td><strong>in</strong> zwei Tagen</td>
+<td>in two days (from now)</td>
+<td>future, Dat pl</td>
+</tr>
+<tr>
+<td><strong>nach</strong> zwei Tagen</td>
+<td>after two days</td>
+<td>in a story, past or future</td>
+</tr>
+<tr>
+<td><strong>innerhalb</strong> einer Woche</td>
+<td>within a week</td>
+<td>Gen</td>
+</tr>
+<tr>
+<td><strong>zwischen</strong> 8 und 9 Uhr</td>
+<td>between 8 and 9</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>während</strong> des Urlaubs</td>
+<td>during the holiday</td>
+<td>Gen</td>
+</tr>
+<tr>
+<td><strong>für</strong> zwei Wochen</td>
+<td>for two weeks (planned span)</td>
+<td>Akk: Ich fahre für zwei Wochen nach Polen.</td>
+</tr>
+<tr>
+<td><strong>über</strong> 100 Euro, <strong>über</strong> zwei Stunden</td>
+<td>more than 100 euros, over two hours</td>
+<td>amount, no case effect on numbers</td>
+</tr>
+<tr>
+<td><strong>unter</strong> 18 Jahren, <strong>unter</strong> 50 Euro</td>
+<td>under 18, under 50 euros</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>zu</strong> Weihnachten, <strong>zu</strong> Ostern</td>
+<td>at Christmas, at Easter</td>
+<td>southern German: an Weihnachten</td>
+</tr>
+</tbody>
+</table></div>
+<h3>seit vs vor vs für</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich lerne <strong>seit</strong> zwei Jahren Deutsch.</td>
+<td>I have been learning German for two years.</td>
+<td>still going: present tense; укр. вже два роки</td>
+</tr>
+<tr>
+<td>Ich habe <strong>vor</strong> zwei Jahren angefangen.</td>
+<td>I started two years ago.</td>
+<td>point in the past; укр. два роки тому</td>
+</tr>
+<tr>
+<td>Ich war <strong>zwei Wochen</strong> in Wien.</td>
+<td>I was in Vienna for two weeks.</td>
+<td>finished span: no preposition (Akk)</td>
+</tr>
+<tr>
+<td>Ich fahre <strong>für</strong> zwei Wochen nach Wien.</td>
+<td>I am going to Vienna for two weeks.</td>
+<td>planned span</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>English speakers say "since" and "for" with different tenses; German uses <strong>seit + present</strong> for both: seit Montag, seit drei Tagen.</li>
+<li>"In 2020" is an anglicism. Write <strong>2020</strong> or <strong>im Jahr 2020</strong>.</li>
+<li>Days and times of day as lowercase adverbs with -s mean "every": <strong>montags</strong> = on Mondays, <strong>abends</strong> = in the evenings.</li>
+</ul>
+<h2>Contractions</h2>
+<p>A preposition and the definite article dem, das or der often merge into one word; with an indefinite article (einem, ein) or when you stress "that one", they stay apart.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Contraction</th>
+<th>Full form</th>
+<th>Example</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>am</strong></td>
+<td>an dem</td>
+<td>am Montag, am Meer</td>
+<td>standard, required in fixed phrases</td>
+</tr>
+<tr>
+<td><strong>ans</strong></td>
+<td>an das</td>
+<td>ans Meer fahren</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>im</strong></td>
+<td>in dem</td>
+<td>im Mai, im Kino</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>ins</strong></td>
+<td>in das</td>
+<td>ins Kino gehen</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>beim</strong></td>
+<td>bei dem</td>
+<td>beim Arzt, beim Essen</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>vom</strong></td>
+<td>von dem</td>
+<td>vom Bahnhof, vom Chef</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>zum</strong></td>
+<td>zu dem</td>
+<td>zum Arzt, zum Glück</td>
+<td>standard</td>
+</tr>
+<tr>
+<td><strong>zur</strong></td>
+<td>zu der</td>
+<td>zur Schule, zur Arbeit</td>
+<td>standard (the only one with der)</td>
+</tr>
+<tr>
+<td><strong>aufs</strong></td>
+<td>auf das</td>
+<td>aufs Land, aufs Dach</td>
+<td>common, written too</td>
+</tr>
+<tr>
+<td><strong>fürs</strong></td>
+<td>für das</td>
+<td>fürs Leben</td>
+<td>informal but written</td>
+</tr>
+<tr>
+<td><strong>ums</strong></td>
+<td>um das</td>
+<td>ums Haus, es geht ums Geld</td>
+<td>common</td>
+</tr>
+<tr>
+<td><strong>durchs</strong></td>
+<td>durch das</td>
+<td>durchs Fenster</td>
+<td>common</td>
+</tr>
+<tr>
+<td>übers, unters, hinters, vors</td>
+<td>über das, ...</td>
+<td>übers Wochenende</td>
+<td>spoken</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>No contraction with ein: <strong>in einem</strong> Haus, <strong>zu einer</strong> Freundin.</li>
+<li>No contraction when the article means "that specific one" or a relative clause follows: Ich wohne <strong>in dem</strong> Haus, das du gesehen hast.</li>
+<li>Some phrases only exist contracted: <strong>am</strong> besten, <strong>im</strong> Moment, <strong>zum</strong> Beispiel, <strong>zum</strong> Glück, <strong>beim</strong> Kochen (while cooking), <strong>im</strong> Allgemeinen.</li>
+<li>zur is the only standard contraction with feminine der. "In der" never contracts.</li>
+</ul>
+<h2>Verbs, adjectives and nouns with fixed prepositions</h2>
+<p>Many verbs, adjectives and nouns lock in one preposition and one case; the meaning is idiomatic, so learn each as a chunk with its case (warten <strong>auf + Akk</strong>).</p>
+<p>Rules of thumb: in fixed phrases <strong>über</strong> is always Akk, <strong>auf</strong> is almost always Akk; <strong>aus, bei, mit, nach, von, zu</strong> are always Dat (they are Dat-only anyway); <strong>für, um</strong> always Akk.</p>
+<h3>Verbs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case / Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>warten auf</strong> den Bus</td>
+<td>wait for the bus</td>
+<td>Akk; чекати <strong>на</strong> автобус (same logic!)</td>
+</tr>
+<tr>
+<td><strong>denken an</strong> meine Mutter</td>
+<td>think of my mother</td>
+<td>Akk; думати про</td>
+</tr>
+<tr>
+<td>sich <strong>erinnern an</strong> den Urlaub</td>
+<td>remember the holiday</td>
+<td>Akk; згадувати про</td>
+</tr>
+<tr>
+<td>sich <strong>freuen auf</strong> das Wochenende</td>
+<td>look forward to the weekend</td>
+<td>Akk; something in the future</td>
+</tr>
+<tr>
+<td>sich <strong>freuen über</strong> das Geschenk</td>
+<td>be happy about the present</td>
+<td>Akk; something now or past</td>
+</tr>
+<tr>
+<td>sich <strong>interessieren für</strong> Musik</td>
+<td>be interested in music</td>
+<td>Akk; цікавитися (орудний)</td>
+</tr>
+<tr>
+<td><strong>Angst haben vor</strong> dem Hund</td>
+<td>be afraid of the dog</td>
+<td>Dat; боятися (родовий)</td>
+</tr>
+<tr>
+<td>sich <strong>fürchten vor</strong> der Prüfung</td>
+<td>be afraid of the exam</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>teilnehmen an</strong> dem Kurs (am Kurs)</td>
+<td>take part in the course</td>
+<td>Dat; брати участь <strong>у</strong></td>
+</tr>
+<tr>
+<td><strong>abhängen von</strong> dem Wetter (vom Wetter)</td>
+<td>depend on the weather</td>
+<td>Dat; залежати <strong>від</strong> (same!)</td>
+</tr>
+<tr>
+<td><strong>träumen von</strong> einem Haus</td>
+<td>dream of a house</td>
+<td>Dat; мріяти про</td>
+</tr>
+<tr>
+<td>sich <strong>kümmern um</strong> die Kinder</td>
+<td>look after the children</td>
+<td>Akk; дбати про</td>
+</tr>
+<tr>
+<td>sich <strong>bewerben um</strong> eine Stelle <strong>bei</strong> einer Firma</td>
+<td>apply for a job at a company</td>
+<td>um + Akk, bei + Dat</td>
+</tr>
+<tr>
+<td>sich <strong>ärgern über</strong> den Lärm</td>
+<td>be annoyed about the noise</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>sprechen über</strong> das Problem <strong>mit</strong> dem Chef</td>
+<td>talk about the problem with the boss</td>
+<td>über + Akk, mit + Dat</td>
+</tr>
+<tr>
+<td>sich <strong>unterhalten mit</strong> Freunden</td>
+<td>chat with friends</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>fragen nach</strong> dem Weg</td>
+<td>ask for directions</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>suchen nach</strong> einer Lösung</td>
+<td>look for a solution</td>
+<td>Dat; also plain suchen + Akk</td>
+</tr>
+<tr>
+<td>sich <strong>entschuldigen bei</strong> dir <strong>für</strong> den Fehler</td>
+<td>apologise to you for the mistake</td>
+<td>bei + Dat (person), für + Akk (reason)</td>
+</tr>
+<tr>
+<td>sich <strong>bedanken bei</strong> ihr <strong>für</strong> die Hilfe</td>
+<td>thank her for the help</td>
+<td>bei + Dat, für + Akk</td>
+</tr>
+<tr>
+<td><strong>helfen bei</strong> der Arbeit</td>
+<td>help with the work</td>
+<td>Dat; helfen + Dat person: Ich helfe dir bei der Arbeit.</td>
+</tr>
+<tr>
+<td>sich <strong>gewöhnen an</strong> das Wetter</td>
+<td>get used to the weather</td>
+<td>Akk; звикати до</td>
+</tr>
+<tr>
+<td><strong>glauben an</strong> Gott</td>
+<td>believe in God</td>
+<td>Akk; вірити <strong>в</strong></td>
+</tr>
+<tr>
+<td>sich <strong>verlieben in</strong> einen Mann</td>
+<td>fall in love with a man</td>
+<td>Akk; закохатися <strong>в</strong></td>
+</tr>
+<tr>
+<td>sich <strong>konzentrieren auf</strong> die Arbeit</td>
+<td>concentrate on work</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>sich <strong>verlassen auf</strong> dich</td>
+<td>rely on you</td>
+<td>Akk; покладатися <strong>на</strong></td>
+</tr>
+<tr>
+<td>sich <strong>vorbereiten auf</strong> die Prüfung</td>
+<td>prepare for the exam</td>
+<td>Akk; готуватися <strong>до</strong></td>
+</tr>
+<tr>
+<td><strong>reagieren auf</strong> die Nachricht</td>
+<td>react to the news</td>
+<td>Akk; реагувати <strong>на</strong></td>
+</tr>
+<tr>
+<td><strong>bestehen aus</strong> drei Teilen</td>
+<td>consist of three parts</td>
+<td>Dat; складатися <strong>з</strong></td>
+</tr>
+<tr>
+<td><strong>anfangen mit</strong> / <strong>aufhören mit</strong> dem Rauchen</td>
+<td>start / stop smoking</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>gehören zu</strong> der Familie (zur Familie)</td>
+<td>be part of the family</td>
+<td>Dat; gehören + Dat alone = belong to: Das gehört mir.</td>
+</tr>
+<tr>
+<td><strong>einladen zu</strong> einer Party</td>
+<td>invite to a party</td>
+<td>Akk object + zu + Dat</td>
+</tr>
+<tr>
+<td>sich <strong>beschweren über</strong> das Essen <strong>bei</strong> dem Kellner</td>
+<td>complain about the food to the waiter</td>
+<td>über + Akk, bei + Dat</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Adjectives</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case / Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stolz auf</strong> meinen Sohn</td>
+<td>proud of my son</td>
+<td>Akk; пишатися (орудний)</td>
+</tr>
+<tr>
+<td><strong>zufrieden mit</strong> dem Ergebnis</td>
+<td>satisfied with the result</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>verheiratet mit</strong> einer Ärztin</td>
+<td>married to a doctor</td>
+<td>Dat; not "zu"</td>
+</tr>
+<tr>
+<td><strong>interessiert an</strong> Politik</td>
+<td>interested in politics</td>
+<td>Dat (vs sich interessieren für + Akk)</td>
+</tr>
+<tr>
+<td><strong>abhängig von</strong> den Eltern</td>
+<td>dependent on the parents</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>bekannt für</strong> gutes Bier</td>
+<td>known for good beer</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>verantwortlich für</strong> das Projekt</td>
+<td>responsible for the project</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>gespannt auf</strong> das Ende</td>
+<td>eager to see the ending</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>froh über</strong> die Nachricht</td>
+<td>glad about the news</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>fertig mit</strong> der Arbeit</td>
+<td>finished with the work</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>neidisch auf</strong> meinen Bruder</td>
+<td>jealous of my brother</td>
+<td>Akk</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Nouns</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die <strong>Angst vor</strong> + Dat</td>
+<td>fear of</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>das <strong>Interesse an</strong> + Dat</td>
+<td>interest in</td>
+<td>Dat: Ich habe Interesse an dem Job.</td>
+</tr>
+<tr>
+<td>die <strong>Lust auf</strong> + Akk</td>
+<td>desire for, feel like</td>
+<td>Akk: Ich habe Lust auf Pizza.</td>
+</tr>
+<tr>
+<td>die <strong>Antwort auf</strong> + Akk</td>
+<td>answer to</td>
+<td>Akk: die Antwort auf meine Frage</td>
+</tr>
+<tr>
+<td>die <strong>Frage nach</strong> + Dat</td>
+<td>question about</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>die <strong>Erinnerung an</strong> + Akk</td>
+<td>memory of</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>der <strong>Grund für</strong> + Akk</td>
+<td>reason for</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>die <strong>Beziehung zu</strong> + Dat</td>
+<td>relationship with</td>
+<td>Dat</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Do not translate from English: "wait for" is not warten für; "married to" is not verheiratet zu; "interested in" is not interessiert in.</li>
+<li>Ukrainian often matches: чекати на = warten auf, залежати від = abhängen von, реагувати на = reagieren auf, вірити в = glauben an. Where Ukrainian uses a bare case (боятися собаки, пишатися сином), German needs a preposition.</li>
+<li>freuen auf (future) vs freuen über (present/past) is a classic exam point.</li>
+</ul>
+<h2>da- and wo-compounds</h2>
+<p>For things and ideas, German replaces "preposition + pronoun" with <strong>da(r)- + preposition</strong> ("on it") and asks with <strong>wo(r)- + preposition</strong> ("on what?"); for people, keep the preposition + pronoun.</p>
+<p>Add <strong>-r-</strong> when the preposition starts with a vowel: dar-auf, wor-über, dar-an; but da-mit, wo-für, da-von.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>da-compound</th>
+<th>wo-question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auf</td>
+<td>darauf</td>
+<td>worauf?</td>
+<td>Worauf wartest du? – Ich warte darauf.</td>
+</tr>
+<tr>
+<td>an</td>
+<td>daran</td>
+<td>woran?</td>
+<td>Woran denkst du? – Ich denke daran.</td>
+</tr>
+<tr>
+<td>über</td>
+<td>darüber</td>
+<td>worüber?</td>
+<td>Worüber sprecht ihr? – Wir sprechen darüber.</td>
+</tr>
+<tr>
+<td>mit</td>
+<td>damit</td>
+<td>womit?</td>
+<td>Womit bist du zufrieden? – Ich bin damit zufrieden.</td>
+</tr>
+<tr>
+<td>für</td>
+<td>dafür</td>
+<td>wofür?</td>
+<td>Wofür interessierst du dich? – Ich interessiere mich dafür.</td>
+</tr>
+<tr>
+<td>von</td>
+<td>davon</td>
+<td>wovon?</td>
+<td>Wovon träumst du? – Ich träume davon.</td>
+</tr>
+<tr>
+<td>vor</td>
+<td>davor</td>
+<td>wovor?</td>
+<td>Wovor hast du Angst? – Ich habe Angst davor.</td>
+</tr>
+<tr>
+<td>um</td>
+<td>darum</td>
+<td>worum?</td>
+<td>Worum geht es? – Es geht darum, dass ...</td>
+</tr>
+<tr>
+<td>nach</td>
+<td>danach</td>
+<td>wonach?</td>
+<td>Wonach suchst du? – Danach.</td>
+</tr>
+<tr>
+<td>zu</td>
+<td>dazu</td>
+<td>wozu?</td>
+<td>Wozu brauchst du das? (what for?)</td>
+</tr>
+<tr>
+<td>in</td>
+<td>darin</td>
+<td>worin?</td>
+<td>Worin liegt das Problem?</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Things vs people</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Thing (da-/wo-)</th>
+<th>Person (preposition + pronoun)</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich warte <strong>darauf</strong>. (auf den Bus)</td>
+<td>Ich warte <strong>auf ihn</strong>. (auf meinen Freund)</td>
+<td>I am waiting for it / for him.</td>
+</tr>
+<tr>
+<td><strong>Worauf</strong> wartest du?</td>
+<td><strong>Auf wen</strong> wartest du?</td>
+<td>What / who are you waiting for?</td>
+</tr>
+<tr>
+<td>Ich denke <strong>daran</strong>.</td>
+<td>Ich denke <strong>an sie</strong>.</td>
+<td>I think of it / of her.</td>
+</tr>
+<tr>
+<td><strong>Wovor</strong> hast du Angst?</td>
+<td><strong>Vor wem</strong> hast du Angst?</td>
+<td>What / whom are you afraid of? (wem = Dat)</td>
+</tr>
+<tr>
+<td>Ich spreche <strong>darüber</strong>.</td>
+<td>Ich spreche <strong>über dich</strong>.</td>
+<td>about it / about you</td>
+</tr>
+</tbody>
+</table></div>
+<h3>da-compound + clause</h3>
+<p>The da-compound can point forward to a dass-clause or an infinitive with zu.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich freue mich <strong>darauf, dass</strong> du kommst.</td>
+<td>I am looking forward to you coming.</td>
+<td>dass-clause</td>
+</tr>
+<tr>
+<td>Ich freue mich <strong>darauf</strong>, dich <strong>zu</strong> sehen.</td>
+<td>I am looking forward to seeing you.</td>
+<td>zu-infinitive</td>
+</tr>
+<tr>
+<td>Ich habe Angst <strong>davor</strong>, allein <strong>zu</strong> sein.</td>
+<td>I am afraid of being alone.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Es geht darum</strong>, schnell eine Lösung <strong>zu</strong> finden.</td>
+<td>The point is to find a solution quickly.</td>
+<td>fixed: es geht um</td>
+</tr>
+<tr>
+<td>Denk <strong>daran</strong>, die Tür ab<strong>zu</strong>schließen!</td>
+<td>Remember to lock the door!</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>"Auf es" and "an das" are wrong for "on it / of it" with things: use darauf, daran.</li>
+<li>In speech, wo-questions often become "auf was?", "an was?", "über was?". Understand them, but write worauf, woran, worüber.</li>
+<li>Ukrainian has nothing like this: на це, про це, про що? are two words. Think of darauf as one word for на це.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Genitiv prepositions of written German</h3>
+<p>News, official letters and B2/C1 exams use a large set of Genitiv prepositions; the B1 ones (wegen, trotz, während, statt, innerhalb, außerhalb) are above. Most of them map onto Ukrainian prepositions with родовий, which makes the case easy to remember.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>angesichts</strong></td>
+<td>in view of</td>
+<td>angesichts der hohen Preise</td>
+<td>з огляду на</td>
+</tr>
+<tr>
+<td><strong>aufgrund</strong> (auf Grund)</td>
+<td>due to</td>
+<td>aufgrund des Streiks</td>
+<td>через, у зв'язку з</td>
+</tr>
+<tr>
+<td><strong>infolge</strong></td>
+<td>as a result of</td>
+<td>infolge des Unfalls</td>
+<td>внаслідок + род.</td>
+</tr>
+<tr>
+<td><strong>bezüglich, hinsichtlich</strong></td>
+<td>regarding</td>
+<td>bezüglich Ihrer Anfrage, hinsichtlich der Kosten</td>
+<td>щодо + род.</td>
+</tr>
+<tr>
+<td><strong>mithilfe</strong> (mit Hilfe)</td>
+<td>with the help of</td>
+<td>mithilfe eines Wörterbuchs</td>
+<td>за допомогою + род.</td>
+</tr>
+<tr>
+<td><strong>anhand</strong></td>
+<td>on the basis of, using</td>
+<td>anhand eines Beispiels</td>
+<td>на основі</td>
+</tr>
+<tr>
+<td><strong>mittels</strong></td>
+<td>by means of</td>
+<td>mittels eines Schlüssels</td>
+<td>за допомогою</td>
+</tr>
+<tr>
+<td><strong>anstelle</strong> (an Stelle)</td>
+<td>instead of</td>
+<td>anstelle des Chefs</td>
+<td>замість + род.</td>
+</tr>
+<tr>
+<td><strong>anlässlich</strong></td>
+<td>on the occasion of</td>
+<td>anlässlich seines 60. Geburtstags</td>
+<td>з нагоди</td>
+</tr>
+<tr>
+<td><strong>seitens</strong></td>
+<td>on the part of</td>
+<td>seitens der Behörden</td>
+<td>з боку</td>
+</tr>
+<tr>
+<td><strong>zugunsten</strong></td>
+<td>in favour of</td>
+<td>zugunsten der Opfer</td>
+<td>на користь</td>
+</tr>
+<tr>
+<td><strong>ungeachtet</strong></td>
+<td>regardless of</td>
+<td>ungeachtet der Kritik</td>
+<td>незважаючи на</td>
+</tr>
+<tr>
+<td><strong>mangels</strong></td>
+<td>for lack of</td>
+<td>mangels Beweisen (plural, no article: Dativ)</td>
+<td>за браком</td>
+</tr>
+<tr>
+<td><strong>zwecks</strong></td>
+<td>for the purpose of</td>
+<td>zwecks Klärung (officialese, no article)</td>
+<td>з метою</td>
+</tr>
+<tr>
+<td><strong>oberhalb / unterhalb</strong></td>
+<td>above / below</td>
+<td>oberhalb des Dorfes, unterhalb der Brücke</td>
+<td>вище / нижче</td>
+</tr>
+<tr>
+<td><strong>diesseits / jenseits</strong></td>
+<td>on this side of / beyond</td>
+<td>jenseits der Grenze</td>
+<td>по той бік</td>
+</tr>
+<tr>
+<td><strong>inmitten</strong></td>
+<td>in the middle of</td>
+<td>inmitten der Altstadt</td>
+<td>посеред</td>
+</tr>
+<tr>
+<td><strong>unweit, abseits</strong></td>
+<td>not far from, away from</td>
+<td>unweit des Bahnhofs, abseits der Hauptstraße</td>
+<td>неподалік від</td>
+</tr>
+<tr>
+<td><strong>dank</strong></td>
+<td>thanks to</td>
+<td>dank deiner Hilfe; Gen or Dat</td>
+<td>завдяки + дав.</td>
+</tr>
+<tr>
+<td><strong>laut</strong></td>
+<td>according to</td>
+<td>laut Gesetz, laut dem Bericht / laut des Berichts</td>
+<td>згідно з</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>When the Genitiv would be invisible</strong>, switch to von + Dativ: aufgrund <strong>von</strong> Bauarbeiten, anstelle <strong>von</strong> Zucker, mithilfe <strong>von</strong> Freunden, innerhalb <strong>von</strong> drei Tagen. The Genitiv needs an article or adjective to show itself: aufgrund schwerer Bauarbeiten is fine.</li>
+<li><strong>Before a noun, entlang</strong> takes the Genitiv: entlang des Flusses (after the noun it is Akk: den Fluss entlang; see the next table).</li>
+<li>These words are formal. In speech, aufgrund becomes wegen, mithilfe becomes mit, and bezüglich becomes zu or wegen: Ich rufe wegen Ihrer Anfrage an.</li>
+</ul>
+<h3>Postpositions and circumpositions</h3>
+<p>A few prepositions stand after the noun (postpositions), and some come in two parts around it (circumpositions). The position can change the case, as with entlang.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Case</th>
+<th>Example</th>
+<th>Meaning, note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>entlang</strong></td>
+<td>Akk after the noun; Gen before it</td>
+<td>den Fluss entlang / entlang des Flusses</td>
+<td>along</td>
+</tr>
+<tr>
+<td><strong>gegenüber</strong></td>
+<td>Dat; always after a pronoun</td>
+<td>dem Bahnhof gegenüber, mir gegenüber</td>
+<td>opposite; towards: Er ist mir gegenüber sehr höflich.</td>
+</tr>
+<tr>
+<td><strong>zufolge</strong></td>
+<td>Dat, after the noun</td>
+<td>dem Bericht zufolge</td>
+<td>according to (formal)</td>
+</tr>
+<tr>
+<td><strong>nach</strong> (opinion)</td>
+<td>Dat, after the noun</td>
+<td>meiner Meinung nach, allem Anschein nach</td>
+<td>according to, by the look of it</td>
+</tr>
+<tr>
+<td><strong>zuliebe</strong></td>
+<td>Dat, after the noun</td>
+<td>dir zuliebe, der Umwelt zuliebe</td>
+<td>for the sake of</td>
+</tr>
+<tr>
+<td><strong>entgegen</strong></td>
+<td>Dat, before or after</td>
+<td>entgegen allen Erwartungen</td>
+<td>contrary to</td>
+</tr>
+<tr>
+<td><strong>wegen</strong></td>
+<td>Gen, after the noun (elevated)</td>
+<td>der Kinder wegen; meinetwegen, deinetwegen</td>
+<td>because of, for the sake of</td>
+</tr>
+<tr>
+<td><strong>halber</strong></td>
+<td>Gen, after the noun</td>
+<td>der Ordnung halber, der Einfachheit halber</td>
+<td>for the sake of</td>
+</tr>
+<tr>
+<td><strong>um … willen</strong></td>
+<td>Gen</td>
+<td>um des Friedens willen, um Gottes willen</td>
+<td>for the sake of</td>
+</tr>
+<tr>
+<td><strong>von … an</strong></td>
+<td>Dat</td>
+<td>von heute an, von Anfang an</td>
+<td>from … on</td>
+</tr>
+<tr>
+<td><strong>von … aus</strong></td>
+<td>Dat</td>
+<td>vom Fenster aus; von mir aus (= fine by me)</td>
+<td>from (a viewpoint)</td>
+</tr>
+<tr>
+<td><strong>an … vorbei / entlang</strong></td>
+<td>Dat</td>
+<td>am Bahnhof vorbei, am Ufer entlang</td>
+<td>past / along</td>
+</tr>
+<tr>
+<td><strong>um … herum</strong></td>
+<td>Akk</td>
+<td>um den Tisch herum</td>
+<td>around</td>
+</tr>
+<tr>
+<td><strong>auf … zu</strong></td>
+<td>Akk</td>
+<td>Er kam auf mich zu.</td>
+<td>towards</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ukrainian has a close parallel in задля миру (um des Friedens willen) and на мою думку (meiner Meinung nach), but the word order differs: German puts nach after the noun.</p>
+<h3>Look-alike pairs: bei vs mit, über vs von, aus vs vor, durch vs von</h3>
+<p>Each pair often comes out as the same English or Ukrainian word, but German splits the meaning.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>First one</th>
+<th>Second one</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bei</strong> vs <strong>mit</strong></td>
+<td>bei = circumstance, place, while: <strong>beim</strong> Kochen, <strong>bei</strong> Regen, <strong>bei</strong> der Arbeit, Ich habe kein Geld <strong>bei</strong> mir.</td>
+<td>mit = tool, company, ingredient: <strong>mit</strong> dem Messer schneiden, <strong>mit</strong> Freunden, Kaffee <strong>mit</strong> Milch</td>
+</tr>
+<tr>
+<td></td>
+<td>Er wohnt <strong>bei</strong> seinen Eltern. (in their home)</td>
+<td>Er wohnt <strong>mit</strong> seiner Freundin zusammen. (they share a flat)</td>
+</tr>
+<tr>
+<td><strong>über</strong> vs <strong>von</strong> (topic)</td>
+<td>über = about, in depth: ein Buch <strong>über</strong> die Geschichte, Wir diskutieren <strong>über</strong> Politik.</td>
+<td>von = of, mentioning: Er hat <strong>von</strong> einem Problem gesprochen. Der Film handelt <strong>von</strong> einem Mädchen.</td>
+</tr>
+<tr>
+<td></td>
+<td>Ich habe viel <strong>darüber</strong> gelesen. (read a lot about it)</td>
+<td>Ich habe <strong>davon</strong> gehört. (heard of it)</td>
+</tr>
+<tr>
+<td><strong>aus</strong> vs <strong>vor</strong> (cause)</td>
+<td>aus = motive for a deliberate act: <strong>aus</strong> Angst lügen, <strong>aus</strong> Liebe heiraten, <strong>aus</strong> Neugier fragen</td>
+<td>vor = involuntary reaction, no article: <strong>vor</strong> Angst zittern, <strong>vor</strong> Freude weinen, <strong>vor</strong> Wut schreien</td>
+</tr>
+<tr>
+<td><strong>durch</strong> vs <strong>von</strong> (passive)</td>
+<td>von = the agent, a person: Das Haus wurde <strong>von</strong> einem Architekten geplant.</td>
+<td>durch = the cause or means: Die Stadt wurde <strong>durch</strong> ein Erdbeben zerstört.</td>
+</tr>
+<tr>
+<td><strong>zwischen</strong> vs <strong>unter</strong></td>
+<td>zwischen = between two (or clearly separate) things: <strong>zwischen</strong> den Häusern</td>
+<td>unter = among a group: <strong>unter</strong> Freunden, <strong>unter</strong> uns gesagt (between you and me)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ukrainian helps with aus/vor: зі страху covers both, so ask yourself whether the action was chosen (aus) or simply happened to you (vor).</p>
+<h3>One verb, several prepositions</h3>
+<p>At B2 the same verb returns with a different preposition and a different meaning. Learn these as sets.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb + preposition</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bestehen <strong>aus</strong> + Dat</td>
+<td>consist of</td>
+<td>Das Team besteht aus fünf Leuten.</td>
+</tr>
+<tr>
+<td>bestehen <strong>auf</strong> + Dat</td>
+<td>insist on</td>
+<td>Er besteht auf einer Antwort. (a rare auf + Dat)</td>
+</tr>
+<tr>
+<td>bestehen <strong>in</strong> + Dat</td>
+<td>lie in, consist in</td>
+<td>Das Problem besteht darin, dass niemand Zeit hat.</td>
+</tr>
+<tr>
+<td>bestehen + Akk</td>
+<td>pass</td>
+<td>Ich habe die Prüfung bestanden.</td>
+</tr>
+<tr>
+<td>leiden <strong>an</strong> + Dat</td>
+<td>suffer from (an illness)</td>
+<td>Sie leidet an Migräne.</td>
+</tr>
+<tr>
+<td>leiden <strong>unter</strong> + Dat</td>
+<td>suffer from (conditions, people)</td>
+<td>Wir leiden unter dem Lärm.</td>
+</tr>
+<tr>
+<td>halten <strong>von</strong> + Dat</td>
+<td>have an opinion of</td>
+<td>Was hältst du von dem Plan?</td>
+</tr>
+<tr>
+<td>halten <strong>für</strong> + Akk</td>
+<td>consider to be</td>
+<td>Ich halte ihn für ehrlich.</td>
+</tr>
+<tr>
+<td>sich halten <strong>an</strong> + Akk</td>
+<td>stick to</td>
+<td>Halte dich an die Regeln!</td>
+</tr>
+<tr>
+<td>denken <strong>an</strong> + Akk</td>
+<td>think of, remember</td>
+<td>Ich denke oft an dich.</td>
+</tr>
+<tr>
+<td>denken <strong>über</strong> + Akk / <strong>von</strong> + Dat</td>
+<td>think about, have an opinion</td>
+<td>Was denkst du über das Thema? Was denkst du von ihm?</td>
+</tr>
+<tr>
+<td>sorgen <strong>für</strong> + Akk</td>
+<td>take care of, provide</td>
+<td>Wer sorgt für die Kinder? Er sorgt für Ruhe.</td>
+</tr>
+<tr>
+<td>sich sorgen <strong>um</strong> + Akk</td>
+<td>worry about</td>
+<td>Ich sorge mich um meine Mutter.</td>
+</tr>
+<tr>
+<td>arbeiten <strong>an</strong> + Dat / <strong>bei</strong> + Dat / <strong>als</strong></td>
+<td>work on / for (employer) / as</td>
+<td>Ich arbeite an einem Projekt, bei Siemens, als Ingenieur.</td>
+</tr>
+<tr>
+<td>kommen <strong>auf</strong> + Akk</td>
+<td>think of (an idea)</td>
+<td>Wie kommst du darauf?</td>
+</tr>
+<tr>
+<td>ankommen <strong>auf</strong> + Akk</td>
+<td>depend on</td>
+<td>Es kommt auf das Wetter an.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>More B2 pairs: verbs, adjectives, nouns, and noun-verb phrases</h3>
+<p>These extend the B1 tables above. The same rules of thumb hold: über and auf take Akk (bestehen auf is the exception), an splits by word.</p>
+<p><strong>Verbs</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case / Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sich <strong>beschäftigen mit</strong> dem Thema</td>
+<td>deal with, be busy with</td>
+<td>Dat; займатися (орудн.)</td>
+</tr>
+<tr>
+<td>sich <strong>auseinandersetzen mit</strong> der Kritik</td>
+<td>engage with, tackle</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>beziehen auf</strong> den Vertrag</td>
+<td>refer to</td>
+<td>Akk; посилатися <strong>на</strong></td>
+</tr>
+<tr>
+<td><strong>verzichten auf</strong> Zucker</td>
+<td>do without, give up</td>
+<td>Akk; відмовлятися <strong>від</strong></td>
+</tr>
+<tr>
+<td><strong>achten auf</strong> die Details</td>
+<td>pay attention to</td>
+<td>Akk; звертати увагу <strong>на</strong></td>
+</tr>
+<tr>
+<td><strong>hinweisen auf</strong> einen Fehler</td>
+<td>point out</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>sich <strong>beschränken auf</strong> das Wichtigste</td>
+<td>limit oneself to</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>verfügen über</strong> viel Erfahrung</td>
+<td>have at one's disposal</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>sich <strong>wenden an</strong> den Kundenservice</td>
+<td>contact, turn to</td>
+<td>Akk; звертатися <strong>до</strong></td>
+</tr>
+<tr>
+<td><strong>zweifeln an</strong> der Aussage</td>
+<td>doubt</td>
+<td>Dat; сумніватися <strong>в</strong></td>
+</tr>
+<tr>
+<td>sich <strong>beteiligen an</strong> dem Projekt</td>
+<td>take part in</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>einsetzen für</strong> die Umwelt</td>
+<td>stand up for, campaign for</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>sich <strong>entscheiden für / gegen</strong> den Plan</td>
+<td>decide for / against</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>sich <strong>bemühen um</strong> eine Lösung</td>
+<td>try hard to get</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>es handelt sich um</strong> ein Missverständnis</td>
+<td>it is (a matter of)</td>
+<td>Akk; fixed, no other subject</td>
+</tr>
+<tr>
+<td>sich <strong>sehnen nach</strong> der Heimat</td>
+<td>long for</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>erkundigen nach</strong> dem Preis</td>
+<td>enquire about</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>warnen vor</strong> / <strong>schützen vor</strong> der Gefahr</td>
+<td>warn / protect against</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>beitragen zu</strong> / <strong>führen zu</strong> einem Erfolg</td>
+<td>contribute to / lead to</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>neigen zu</strong> Übertreibungen</td>
+<td>tend to</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>abfinden mit</strong> der Situation</td>
+<td>come to terms with</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>verabschieden von</strong> den Gästen</td>
+<td>say goodbye to</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>sich <strong>wundern über</strong> die Antwort</td>
+<td>be surprised at</td>
+<td>Akk</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Adjectives</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>angewiesen auf</strong> Hilfe</td>
+<td>dependent on, reliant on</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>begeistert von</strong> der Idee</td>
+<td>enthusiastic about</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>überzeugt von</strong> dem Plan</td>
+<td>convinced of</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>einverstanden mit</strong> dem Vorschlag</td>
+<td>in agreement with</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>befreundet mit</strong> ihr</td>
+<td>friends with</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>beteiligt an</strong> dem Projekt</td>
+<td>involved in</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>reich an</strong> Vitaminen</td>
+<td>rich in</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>zuständig für</strong> die Planung</td>
+<td>in charge of</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>bereit zu</strong> / <strong>fähig zu</strong> allem</td>
+<td>ready for / capable of</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>besorgt um</strong> die Zukunft</td>
+<td>worried about</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td><strong>enttäuscht von</strong> ihm / <strong>über</strong> das Ergebnis</td>
+<td>disappointed in / at</td>
+<td>Dat (person) / Akk (thing)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nouns</strong> (they usually keep the preposition of their verb: zweifeln an → der Zweifel an)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der <strong>Einfluss auf</strong></td>
+<td>influence on</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>der <strong>Anspruch auf</strong></td>
+<td>right to, claim to</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>die <strong>Rücksicht auf</strong> (Rücksicht nehmen auf)</td>
+<td>consideration for</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>der <strong>Verzicht auf</strong></td>
+<td>renunciation of</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>der <strong>Bedarf an</strong> / der <strong>Mangel an</strong></td>
+<td>need for / lack of</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>der <strong>Zweifel an</strong> / die <strong>Kritik an</strong></td>
+<td>doubt about / criticism of</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>die <strong>Sehnsucht nach</strong></td>
+<td>longing for</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td>die <strong>Voraussetzung für</strong></td>
+<td>precondition for</td>
+<td>Akk</td>
+</tr>
+<tr>
+<td>der <strong>Unterschied zwischen</strong></td>
+<td>difference between</td>
+<td>Dat</td>
+</tr>
+<tr>
+<td><strong>in Bezug auf</strong></td>
+<td>with regard to</td>
+<td>Akk</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Noun-verb phrases</strong> (Nomen-Verb-Verbindungen) carry a preposition inside the phrase. They are typical of formal German.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in Frage kommen</td>
+<td>be an option</td>
+<td>Das kommt nicht in Frage.</td>
+</tr>
+<tr>
+<td>zur Verfügung stehen</td>
+<td>be available</td>
+<td>Ich stehe Ihnen gern zur Verfügung.</td>
+</tr>
+<tr>
+<td>Bezug nehmen auf + Akk</td>
+<td>refer to</td>
+<td>Wir nehmen Bezug auf Ihr Schreiben.</td>
+</tr>
+<tr>
+<td>Rücksicht nehmen auf + Akk</td>
+<td>be considerate of</td>
+<td>Nimm bitte Rücksicht auf die Nachbarn.</td>
+</tr>
+<tr>
+<td>in Kauf nehmen</td>
+<td>accept (a downside)</td>
+<td>Wir nehmen die längere Fahrt in Kauf.</td>
+</tr>
+<tr>
+<td>in Anspruch nehmen</td>
+<td>make use of, take up</td>
+<td>Das nimmt viel Zeit in Anspruch.</td>
+</tr>
+<tr>
+<td>zum Ausdruck bringen</td>
+<td>express</td>
+<td>Er brachte seine Dankbarkeit zum Ausdruck.</td>
+</tr>
+<tr>
+<td>zur Sprache bringen</td>
+<td>raise (a topic)</td>
+<td>Sie brachte das Problem zur Sprache.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>da-compounds before dass, ob and zu-clauses</h3>
+<p>The da-compound is a placeholder: it carries the preposition and announces the clause that follows. Ukrainian does exactly the same with той + що: Я радію <strong>тому, що</strong> …, Все залежить <strong>від того, чи</strong> … The question at B2 is when the placeholder is required.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Placeholder</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>es kommt an auf</td>
+<td>required</td>
+<td>Es kommt <strong>darauf</strong> an, <strong>ob</strong> du Zeit hast.</td>
+</tr>
+<tr>
+<td>es hängt ab von</td>
+<td>required</td>
+<td>Es hängt <strong>davon</strong> ab, <strong>wann</strong> wir losfahren.</td>
+</tr>
+<tr>
+<td>es geht um</td>
+<td>required</td>
+<td>Es geht <strong>darum</strong>, eine Lösung <strong>zu</strong> finden.</td>
+</tr>
+<tr>
+<td>sich verlassen auf</td>
+<td>required</td>
+<td>Du kannst dich <strong>darauf</strong> verlassen, <strong>dass</strong> ich komme.</td>
+</tr>
+<tr>
+<td>achten auf</td>
+<td>required</td>
+<td>Achte <strong>darauf</strong>, <strong>dass</strong> die Tür zu ist.</td>
+</tr>
+<tr>
+<td>bestehen auf</td>
+<td>required</td>
+<td>Sie besteht <strong>darauf</strong>, <strong>dass</strong> wir pünktlich sind.</td>
+</tr>
+<tr>
+<td>sich freuen auf</td>
+<td>keep it: without darauf the sentence means "glad that"</td>
+<td>Ich freue mich <strong>darauf</strong>, <strong>dass</strong> du kommst. vs Ich freue mich, dass du da bist. (= darüber)</td>
+</tr>
+<tr>
+<td>sich erinnern an</td>
+<td>optional</td>
+<td>Ich erinnere mich (<strong>daran</strong>), <strong>dass</strong> wir dort waren.</td>
+</tr>
+<tr>
+<td>sich ärgern über</td>
+<td>optional</td>
+<td>Sie ärgert sich (<strong>darüber</strong>), <strong>dass</strong> er zu spät kommt.</td>
+</tr>
+<tr>
+<td>Angst haben vor</td>
+<td>optional</td>
+<td>Ich habe Angst (<strong>davor</strong>), allein <strong>zu</strong> sein.</td>
+</tr>
+<tr>
+<td>aufhören mit</td>
+<td>optional</td>
+<td>Er hat (<strong>damit</strong>) aufgehört, <strong>zu</strong> rauchen.</td>
+</tr>
+<tr>
+<td>bitten um</td>
+<td>optional</td>
+<td>Ich bitte Sie (<strong>darum</strong>), pünktlich <strong>zu</strong> sein.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Word order.</strong> The placeholder sits in the middle of the main clause, before the participle or the separable prefix: Ich habe mich sehr <strong>darüber</strong> gefreut, dass du gekommen bist. For emphasis it can open the sentence together with the clause: <strong>Darauf, dass</strong> er anruft, warte ich seit Wochen.</p>
+<p><strong>wo-compounds as relative words.</strong> After alles, etwas, nichts, das, or a whole clause, a wo-compound links a relative clause: alles, <strong>worüber</strong> wir gesprochen haben; Das ist etwas, <strong>woran</strong> ich oft denke. Er hat endlich angerufen, <strong>worüber</strong> ich mich sehr gefreut habe.</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/articles.html">German article tables (B1)</a>: the der, ein and adjective forms each case needs after a preposition</li>
+<li><a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>: which places take nach, in die or an</li>
+<li><a href="../docs/numbers-dates.html">Numbers, dates, time and money</a>: clock times, dates and years with um, am, im</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: wegen vs weil, trotz vs obwohl, während as preposition and conjunction</li>
+<li><a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>: preposition + relative pronoun and wo-compounds in relative clauses</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv prepositions and noun-verb phrases in formal style</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/prepositions.html">Prepositions quiz</a> has 40 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

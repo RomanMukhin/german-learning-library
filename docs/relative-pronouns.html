@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Relative and demonstrative pronouns: der, denen, dessen · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Relative and demonstrative pronouns: der, denen, dessen</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Relative and demonstrative pronouns: der, denen, dessen</h1></header>
+<article class="prose card">
+<p>A German relative pronoun takes its gender and number from the noun it refers to and its case from its job inside the relative clause; the clause is set off by commas and its verb goes to the end.</p>
+<h2>The full table</h2>
+<p>The relative pronoun looks like the definite article in 11 of 16 slots; the five that differ are <strong>dessen, deren</strong> (Genitiv), <strong>denen</strong> (Dativ plural) and <strong>deren</strong> (Genitiv plural).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ</td>
+<td>der</td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td>den</td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>dem</td>
+<td>der</td>
+<td>dem</td>
+<td><strong>denen</strong></td>
+</tr>
+<tr>
+<td>Genitiv</td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Compare with the definite article, which you already know (see <a href="../docs/articles.html">German article tables (B1)</a>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Article m / f / n / pl</th>
+<th>Relative pronoun m / f / n / pl</th>
+<th>Different?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ</td>
+<td>der / die / das / die</td>
+<td>der / die / das / die</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td>den / die / das / die</td>
+<td>den / die / das / die</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>dem / der / dem / den</td>
+<td>dem / der / dem / <strong>denen</strong></td>
+<td>plural only</td>
+</tr>
+<tr>
+<td>Genitiv</td>
+<td>des / der / des / der</td>
+<td><strong>dessen / deren / dessen / deren</strong></td>
+<td>all four</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>denen</strong> is the one learners forget: die Leute, <strong>denen</strong> ich helfe (not "den ich helfe").</li>
+<li><strong>deren</strong> is both feminine Genitiv and plural Genitiv.</li>
+<li>The relative pronoun <strong>das</strong> is spelled with one s. <strong>dass</strong> (two s) is the conjunction "that": Das Buch, <strong>das</strong> ich lese vs Ich weiß, <strong>dass</strong> du recht hast.</li>
+</ul>
+<h2>How to choose the right form</h2>
+<p>Two questions, in this order: (1) which noun does it refer to, so masculine, feminine, neuter or plural? (2) what job does the pronoun do <strong>inside</strong> the relative clause, so Nom, Akk, Dat or Gen?</p>
+<ol>
+<li>Find the noun: <strong>der Mann</strong> = masculine singular.</li>
+<li>Build the relative clause as a main sentence: "Der Mann hilft mir." / "Ich kenne den Mann." / "Ich danke dem Mann."</li>
+<li>The case of "der Mann" in that sentence is the case of the pronoun.</li>
+<li>Put the pronoun first in the clause, the conjugated verb last, and commas around the clause.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Der Mann, <strong>der</strong> dort steht, ist mein Chef.</td>
+<td>The man who is standing there is my boss.</td>
+<td>m, Nom: he stands</td>
+</tr>
+<tr>
+<td>Der Mann, <strong>den</strong> ich gestern gesehen habe, ist mein Chef.</td>
+<td>The man (whom) I saw yesterday is my boss.</td>
+<td>m, Akk: I saw him</td>
+</tr>
+<tr>
+<td>Der Mann, <strong>dem</strong> ich geholfen habe, ist mein Chef.</td>
+<td>The man (whom) I helped is my boss.</td>
+<td>m, Dat: helfen + Dat</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>die</strong> neben mir wohnt, ist Ärztin.</td>
+<td>The woman who lives next to me is a doctor.</td>
+<td>f, Nom</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>die</strong> ich anrufe, ist Ärztin.</td>
+<td>The woman (whom) I am calling is a doctor.</td>
+<td>f, Akk</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>der</strong> ich das Buch gebe, ist Ärztin.</td>
+<td>The woman to whom I give the book is a doctor.</td>
+<td>f, Dat</td>
+</tr>
+<tr>
+<td>Das Kind, <strong>das</strong> weint, hat Hunger.</td>
+<td>The child who is crying is hungry.</td>
+<td>n, Nom</td>
+</tr>
+<tr>
+<td>Das Auto, <strong>das</strong> ich gekauft habe, ist alt.</td>
+<td>The car (that) I bought is old.</td>
+<td>n, Akk</td>
+</tr>
+<tr>
+<td>Die Kollegen, <strong>die</strong> mir helfen, sind nett.</td>
+<td>The colleagues who help me are nice.</td>
+<td>pl, Nom</td>
+</tr>
+<tr>
+<td>Die Kollegen, <strong>denen</strong> ich vertraue, sind nett.</td>
+<td>The colleagues (whom) I trust are nice.</td>
+<td>pl, Dat: vertrauen + Dat</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Word order</h3>
+<ul>
+<li>Verb at the end: Das ist der Film, den ich gestern <strong>gesehen habe</strong>. With modal verbs: ..., den ich sehen <strong>will</strong>. Separable verbs join up: ..., der um 8 Uhr <strong>ankommt</strong>.</li>
+<li>The relative clause usually comes right after its noun, even if that splits the main clause: Der Mann, der dort steht, <strong>ist</strong> mein Chef.</li>
+<li>If only a verb or short word is left, the clause can move to the end: Ich habe den Film gesehen, <strong>den</strong> du empfohlen hast (see <a href="../docs/word-order.html">Word order</a>).</li>
+<li>Never drop the pronoun. English "the film I saw" is fine, German "der Film ich gesehen habe" is wrong: always <strong>der Film, den</strong> ich gesehen habe.</li>
+</ul>
+<h2>With prepositions</h2>
+<p>The preposition moves to the front of the relative clause, right before the pronoun, and the preposition decides the case: <strong>mit dem</strong>, <strong>über die</strong>, <strong>von denen</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Case logic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Das ist der Freund, <strong>mit dem</strong> ich nach Wien fahre.</td>
+<td>That is the friend I am going to Vienna with.</td>
+<td>mit + Dat, m</td>
+</tr>
+<tr>
+<td>Das ist die Kollegin, <strong>mit der</strong> ich arbeite.</td>
+<td>That is the colleague I work with.</td>
+<td>mit + Dat, f</td>
+</tr>
+<tr>
+<td>Das ist das Thema, <strong>über das</strong> wir gesprochen haben.</td>
+<td>That is the topic we talked about.</td>
+<td>sprechen über + Akk, n</td>
+</tr>
+<tr>
+<td>Das ist die Prüfung, <strong>auf die</strong> ich mich vorbereite.</td>
+<td>That is the exam I am preparing for.</td>
+<td>sich vorbereiten auf + Akk, f</td>
+</tr>
+<tr>
+<td>Das sind die Leute, <strong>von denen</strong> ich dir erzählt habe.</td>
+<td>Those are the people I told you about.</td>
+<td>erzählen von + Dat, pl</td>
+</tr>
+<tr>
+<td>Das ist der Bus, <strong>auf den</strong> ich warte.</td>
+<td>That is the bus I am waiting for.</td>
+<td>warten auf + Akk, m</td>
+</tr>
+<tr>
+<td>Die Stadt, <strong>in der</strong> ich wohne, ist klein.</td>
+<td>The city I live in is small.</td>
+<td>in + Dat (wo?), f</td>
+</tr>
+<tr>
+<td>Die Stadt, <strong>in die</strong> ich ziehe, ist groß.</td>
+<td>The city I am moving to is big.</td>
+<td>in + Akk (wohin?), f</td>
+</tr>
+<tr>
+<td>Die Freunde, <strong>bei denen</strong> ich wohne, sind nett.</td>
+<td>The friends I am staying with are nice.</td>
+<td>bei + Dat, pl</td>
+</tr>
+<tr>
+<td>Der Grund, <strong>aus dem</strong> ich anrufe, ...</td>
+<td>The reason why I am calling ...</td>
+<td>aus + Dat, m</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>English puts the preposition at the end ("the friend I work with"); German never does. It always stands first: der Freund, <strong>mit dem</strong> ich arbeite.</li>
+<li>For things, a <strong>wo-compound</strong> is an informal alternative: das Thema, <strong>worüber</strong> wir gesprochen haben. For people, always preposition + pronoun.</li>
+<li>Fixed-preposition verbs (warten auf, denken an, Angst haben vor) carry their preposition and case into the relative clause: die Spinne, <strong>vor der</strong> ich Angst habe (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</li>
+</ul>
+<h2>dessen and deren: "whose"</h2>
+<p><strong>dessen</strong> = whose for a masculine or neuter owner, <strong>deren</strong> = whose for a feminine or plural owner; the choice depends only on the <strong>owner</strong>, never on the thing owned, and no article follows.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Owner → pronoun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Der Mann, <strong>dessen</strong> Auto vor der Tür steht, ist mein Nachbar.</td>
+<td>The man whose car is in front of the door is my neighbour.</td>
+<td>der Mann → dessen</td>
+</tr>
+<tr>
+<td>Das Kind, <strong>dessen</strong> Mutter Ärztin ist, heißt Lea.</td>
+<td>The child whose mother is a doctor is called Lea.</td>
+<td>das Kind → dessen</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>deren</strong> Sohn in Kyjiw studiert, ist Lehrerin.</td>
+<td>The woman whose son studies in Kyiv is a teacher.</td>
+<td>die Frau → deren</td>
+</tr>
+<tr>
+<td>Die Nachbarn, <strong>deren</strong> Hund immer bellt, sind nett.</td>
+<td>The neighbours whose dog always barks are nice.</td>
+<td>die Nachbarn (pl) → deren</td>
+</tr>
+<tr>
+<td>Der Autor, <strong>dessen</strong> Bücher ich liebe, kommt nach Berlin.</td>
+<td>The author whose books I love is coming to Berlin.</td>
+<td>Bücher is plural, but the owner is der Autor → dessen</td>
+</tr>
+<tr>
+<td>Die Firma, <strong>deren</strong> Chef ich kenne, sucht Leute.</td>
+<td>The company whose boss I know is hiring.</td>
+<td>die Firma → deren</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>mit deren</strong> Sohn ich spiele, ...</td>
+<td>The woman with whose son I play ...</td>
+<td>preposition first, then deren</td>
+</tr>
+<tr>
+<td>Der Mann, <strong>dessen</strong> neues Auto ... / Die Frau, <strong>deren</strong> kleiner Sohn ...</td>
+<td>The man whose new car ... / the woman whose little son ...</td>
+<td>adjective after dessen/deren takes the strong ending (neues, kleiner)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>No article after dessen/deren: Der Mann, dessen Auto ..., never "dessen das Auto".</li>
+<li>Think of it as "sein / ihr" in disguise: Der Mann ... <strong>sein</strong> Auto → <strong>dessen</strong> Auto. Die Frau ... <strong>ihr</strong> Sohn → <strong>deren</strong> Sohn. Die Nachbarn ... <strong>ihr</strong> Hund → <strong>deren</strong> Hund.</li>
+<li>dessen and deren never change for the case of the following noun: Ich kenne den Mann, <strong>dessen</strong> Tochter ich unterrichte (Tochter is Akk, dessen stays).</li>
+<li>In speech people often avoid it ("Der Mann, der das rote Auto hat"), but in writing and B1 exams, dessen/deren is expected.</li>
+</ul>
+<h2>was, wo, wer and welcher</h2>
+<p>Use <strong>was</strong> after words with no real noun (alles, nichts, etwas, das Beste) and for a whole clause; <strong>wo</strong> for places (and colloquially times); <strong>wer/was</strong> with no noun at all for "whoever / whatever"; <strong>welcher</strong> as a formal variant of der.</p>
+<h3>was</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Das ist <strong>alles, was</strong> ich weiß.</td>
+<td>That is all (that) I know.</td>
+<td>after alles</td>
+</tr>
+<tr>
+<td>Es gibt <strong>nichts, was</strong> ich lieber mache.</td>
+<td>There is nothing I would rather do.</td>
+<td>after nichts</td>
+</tr>
+<tr>
+<td>Ich habe <strong>etwas</strong> gefunden, <strong>was</strong> dir gefällt.</td>
+<td>I found something you will like.</td>
+<td>after etwas; etwas, das is also correct</td>
+</tr>
+<tr>
+<td>Das ist <strong>das Beste, was</strong> ich je gegessen habe.</td>
+<td>That is the best thing I have ever eaten.</td>
+<td>after a superlative used as a neuter noun</td>
+</tr>
+<tr>
+<td><strong>Das, was</strong> du sagst, stimmt nicht.</td>
+<td>What you are saying is not true.</td>
+<td>after demonstrative das</td>
+</tr>
+<tr>
+<td>Er kommt nicht, <strong>was</strong> mich ärgert.</td>
+<td>He is not coming, which annoys me.</td>
+<td>refers to the whole clause, not a noun</td>
+</tr>
+<tr>
+<td>Das ist <strong>alles, worüber</strong> wir gesprochen haben.</td>
+<td>That is everything we talked about.</td>
+<td>was + preposition becomes a wo-compound</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>After a real neuter noun use <strong>das</strong>: das Buch, <strong>das</strong> ich lese (not "was"). "Das Buch, was ..." is colloquial and marked wrong in exams.</li>
+</ul>
+<h3>wo (and woher, wohin)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Die Stadt, <strong>wo</strong> ich wohne, ist klein.</td>
+<td>The city where I live is small.</td>
+<td>= die Stadt, in der ich wohne</td>
+</tr>
+<tr>
+<td>Das ist das Café, <strong>wo</strong> wir uns kennengelernt haben.</td>
+<td>That is the café where we met.</td>
+<td>= in dem</td>
+</tr>
+<tr>
+<td>Kyjiw, <strong>woher</strong> ich komme, ist schön.</td>
+<td>Kyiv, where I come from, is beautiful.</td>
+<td>after city and country names wo/woher/wohin is standard</td>
+</tr>
+<tr>
+<td>Ich fahre nach Lwiw, <strong>wo</strong> meine Eltern wohnen.</td>
+<td>I am going to Lviv, where my parents live.</td>
+<td></td>
+</tr>
+<tr>
+<td>In dem Moment, <strong>wo</strong> er kam, ...</td>
+<td>At the moment when he came ...</td>
+<td>time: colloquial; formal: in dem Moment, <strong>als</strong> / <strong>in dem</strong></td>
+</tr>
+<tr>
+<td>Der Tag, <strong>an dem</strong> wir uns getroffen haben ...</td>
+<td>The day (when) we met ...</td>
+<td>formal choice for time</td>
+</tr>
+</tbody>
+</table></div>
+<h3>wer and was: "whoever, whatever"</h3>
+<p>With no noun before them, <strong>wer</strong> (person) and <strong>was</strong> (thing) start the sentence; a demonstrative der/das often picks the idea up in the main clause.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wer</strong> zu spät kommt, (<strong>der</strong>) muss zahlen.</td>
+<td>Whoever comes late has to pay.</td>
+<td>Nom → Nom: der can be dropped</td>
+</tr>
+<tr>
+<td><strong>Wer</strong> mir hilft, <strong>dem</strong> helfe ich auch.</td>
+<td>Whoever helps me, I help them too.</td>
+<td>Nom → Dat: dem is required</td>
+</tr>
+<tr>
+<td><strong>Wen</strong> ich einlade, (<strong>den</strong>) kennst du nicht.</td>
+<td>Whom I invite, you do not know.</td>
+<td>Akk forms: wen, wem</td>
+</tr>
+<tr>
+<td><strong>Was</strong> du sagst, (<strong>das</strong>) ist richtig.</td>
+<td>What you say is right.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Wer</strong> A sagt, muss auch B sagen.</td>
+<td>In for a penny, in for a pound.</td>
+<td>proverb</td>
+</tr>
+</tbody>
+</table></div>
+<h3>welcher (formal)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Der Vertrag, <strong>welcher</strong> gestern unterschrieben wurde, ...</td>
+<td>The contract which was signed yesterday ...</td>
+<td>formal, written</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>welche</strong> die Kinder abholt, ...</td>
+<td>The woman who picks up the children ...</td>
+<td>avoids "die die"</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>welcher declines like dieser: welcher, welche, welches, welchem, welchen.</li>
+<li>It has no Genitiv relative form: always use dessen / deren for "whose".</li>
+<li>In everyday German you will almost never need welcher; der/die/das is the default.</li>
+</ul>
+<h2>Demonstrative der, die, das in speech</h2>
+<p>In spoken German, <strong>der, die, das</strong> replace er, sie, es to point at someone or something already mentioned; they use the same forms as the relative pronoun, are stressed, and usually stand first in the sentence (normal V2 word order, verb second).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kennst du Tom? – Ja, <strong>der</strong> ist nett.</td>
+<td>Do you know Tom? Yes, he is nice.</td>
+<td>Nom m = er</td>
+</tr>
+<tr>
+<td><strong>Den</strong> kenne ich.</td>
+<td>I know him.</td>
+<td>Akk m = ihn</td>
+</tr>
+<tr>
+<td><strong>Die</strong> kommt immer zu spät.</td>
+<td>She is always late.</td>
+<td>Nom f = sie</td>
+</tr>
+<tr>
+<td><strong>Das</strong> weiß ich nicht.</td>
+<td>I do not know that.</td>
+<td>Akk n = es, very common</td>
+</tr>
+<tr>
+<td><strong>Denen</strong> glaube ich nicht.</td>
+<td>I do not believe them.</td>
+<td>Dat pl = ihnen</td>
+</tr>
+<tr>
+<td>Mit <strong>dem</strong> rede ich nicht mehr.</td>
+<td>I am not talking to him anymore.</td>
+<td>Dat m after preposition</td>
+</tr>
+<tr>
+<td><strong>Dessen</strong> bin ich sicher.</td>
+<td>I am sure of that.</td>
+<td>Gen: sich einer Sache sicher sein; formal</td>
+</tr>
+<tr>
+<td>Der Film? <strong>Den</strong> habe ich schon gesehen.</td>
+<td>The film? I have already seen it.</td>
+<td>things too</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Tone: neutral to slightly emphatic among friends; about a person who is present it can sound rude ("Die da!").</li>
+<li>Verb is second, not last: <strong>Den</strong> kenne ich. A relative clause would be: der Mann, <strong>den</strong> ich kenne.</li>
+</ul>
+<h3>derjenige and derselbe</h3>
+<p>Both parts decline: the first like the article, the second like an adjective after der.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>m</th>
+<th>f</th>
+<th>n</th>
+<th>pl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>derjenige / derselbe</td>
+<td>diejenige / dieselbe</td>
+<td>dasjenige / dasselbe</td>
+<td>diejenigen / dieselben</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>denjenigen / denselben</td>
+<td>diejenige / dieselbe</td>
+<td>dasjenige / dasselbe</td>
+<td>diejenigen / dieselben</td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>demjenigen / demselben</td>
+<td>derjenigen / derselben</td>
+<td>demjenigen / demselben</td>
+<td>denjenigen / denselben</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Derjenige, der</strong> zuerst kommt, bekommt den Platz.</td>
+<td>The one who comes first gets the seat.</td>
+<td>"the one who", followed by a relative clause</td>
+</tr>
+<tr>
+<td>Ich helfe <strong>denjenigen, die</strong> Hilfe brauchen.</td>
+<td>I help those who need help.</td>
+<td>Dat pl</td>
+</tr>
+<tr>
+<td>Wir wohnen in <strong>demselben</strong> Haus.</td>
+<td>We live in the same building.</td>
+<td>= im selben Haus (contracted form)</td>
+</tr>
+<tr>
+<td>Er trägt <strong>dasselbe</strong> Hemd wie gestern.</td>
+<td>He is wearing the same shirt as yesterday.</td>
+<td>the identical shirt</td>
+</tr>
+<tr>
+<td>Wir haben <strong>das gleiche</strong> Hemd.</td>
+<td>We have the same (kind of) shirt.</td>
+<td>two identical copies; written apart</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>derselbe</strong> is written as one word; <strong>der gleiche</strong> as two words.</li>
+<li>Strictly, derselbe = the very same one, der gleiche = one of the same kind. In speech the two are often mixed.</li>
+</ul>
+<h2>Ukrainian comparison: який and чий</h2>
+<p>German der/die/das works exactly like Ukrainian <strong>який / яка / яке / які</strong>: gender and number from the noun, case from the role in the clause. The one trap is "whose": Ukrainian <strong>чий</strong> agrees with the thing owned, German dessen/deren with the owner.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ukrainian</th>
+<th>German</th>
+<th>Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>чоловік, <strong>який</strong> там стоїть</td>
+<td>der Mann, <strong>der</strong> dort steht</td>
+<td>Nom</td>
+</tr>
+<tr>
+<td>чоловік, <strong>якого</strong> я бачив</td>
+<td>der Mann, <strong>den</strong> ich gesehen habe</td>
+<td>Akk (знахідний)</td>
+</tr>
+<tr>
+<td>жінка, <strong>якій</strong> я допомагаю</td>
+<td>die Frau, <strong>der</strong> ich helfe</td>
+<td>Dat (давальний)</td>
+</tr>
+<tr>
+<td>люди, <strong>яким</strong> я вірю</td>
+<td>die Leute, <strong>denen</strong> ich glaube</td>
+<td>Dat pl</td>
+</tr>
+<tr>
+<td>місто, <strong>в якому</strong> я живу</td>
+<td>die Stadt, <strong>in der</strong> ich wohne</td>
+<td>preposition first in both languages</td>
+</tr>
+<tr>
+<td>друг, <strong>з яким</strong> я їду</td>
+<td>der Freund, <strong>mit dem</strong> ich fahre</td>
+<td></td>
+</tr>
+<tr>
+<td>чоловік, машина <strong>якого</strong> стоїть тут</td>
+<td>der Mann, <strong>dessen</strong> Auto hier steht</td>
+<td>Gen of the owner: якого = dessen</td>
+</tr>
+<tr>
+<td>жінка, син <strong>якої</strong> студіює</td>
+<td>die Frau, <strong>deren</strong> Sohn studiert</td>
+<td>якої = deren</td>
+</tr>
+<tr>
+<td>сусіди, собака <strong>яких</strong> гавкає</td>
+<td>die Nachbarn, <strong>deren</strong> Hund bellt</td>
+<td>яких = deren</td>
+</tr>
+<tr>
+<td>все, <strong>що</strong> я знаю</td>
+<td>alles, <strong>was</strong> ich weiß</td>
+<td>що = was</td>
+</tr>
+<tr>
+<td>те, <strong>що</strong> ти кажеш</td>
+<td>das, <strong>was</strong> du sagst</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>хто</strong> запізнюється, (той) платить</td>
+<td><strong>wer</strong> zu spät kommt, (der) zahlt</td>
+<td>той, хто = derjenige, der</td>
+</tr>
+<tr>
+<td>місто, <strong>де</strong> я живу</td>
+<td>die Stadt, <strong>wo</strong> ich wohne</td>
+<td>де = wo</td>
+</tr>
+</tbody>
+</table></div>
+<h3>The чий trap</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ukrainian (agrees with the owned thing)</th>
+<th>German (agrees with the owner)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>чоловік, <strong>чия</strong> машина (машина = f)</td>
+<td>der Mann, <strong>dessen</strong> Auto (Mann = m)</td>
+</tr>
+<tr>
+<td>жінка, <strong>чий</strong> син (син = m)</td>
+<td>die Frau, <strong>deren</strong> Sohn (Frau = f)</td>
+</tr>
+<tr>
+<td>автор, <strong>чиї</strong> книжки (pl)</td>
+<td>der Autor, <strong>dessen</strong> Bücher (Autor = m)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Easiest bridge: translate <strong>dessen / deren</strong> through <strong>якого / якої / яких</strong>, not through чий. Both point back to the owner.</li>
+<li>Ukrainian allows що for people in speech (хлопець, що там стоїть). German never uses was for a person: der Junge, <strong>der</strong> dort steht.</li>
+<li>Ukrainian commas before який match German commas exactly: always a comma before and after the relative clause.</li>
+</ul>
+<h2>Common mistakes</h2>
+<p>Most errors come from taking the case from the main clause instead of the relative clause, or from copying English word order.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Wrong</th>
+<th>Right</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich kenne den Mann, <strong>den</strong> dort steht.</td>
+<td>Ich kenne den Mann, <strong>der</strong> dort steht.</td>
+<td>in the clause he is the subject: Nom</td>
+</tr>
+<tr>
+<td>Die Leute, <strong>den</strong> ich helfe, ...</td>
+<td>Die Leute, <strong>denen</strong> ich helfe, ...</td>
+<td>Dat plural is denen</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>die</strong> ich helfe, ...</td>
+<td>Die Frau, <strong>der</strong> ich helfe, ...</td>
+<td>helfen + Dat</td>
+</tr>
+<tr>
+<td>Der Film, <strong>ich gesehen habe</strong>, ...</td>
+<td>Der Film, <strong>den</strong> ich gesehen habe, ...</td>
+<td>the pronoun can never be dropped</td>
+</tr>
+<tr>
+<td>Der Freund, <strong>den</strong> ich arbeite <strong>mit</strong></td>
+<td>Der Freund, <strong>mit dem</strong> ich arbeite</td>
+<td>preposition goes first</td>
+</tr>
+<tr>
+<td>Der Mann, <strong>dessen das</strong> Auto ...</td>
+<td>Der Mann, <strong>dessen</strong> Auto ...</td>
+<td>no article after dessen/deren</td>
+</tr>
+<tr>
+<td>Die Frau, <strong>dessen</strong> Sohn ...</td>
+<td>Die Frau, <strong>deren</strong> Sohn ...</td>
+<td>owner is feminine</td>
+</tr>
+<tr>
+<td>Der Mann, <strong>deren</strong> Tochter ...</td>
+<td>Der Mann, <strong>dessen</strong> Tochter ...</td>
+<td>owner is masculine; Tochter does not matter</td>
+</tr>
+<tr>
+<td>Das Buch, <strong>was</strong> ich lese, ...</td>
+<td>Das Buch, <strong>das</strong> ich lese, ...</td>
+<td>a real noun takes das</td>
+</tr>
+<tr>
+<td>Alles, <strong>das</strong> ich weiß, ...</td>
+<td>Alles, <strong>was</strong> ich weiß, ...</td>
+<td>after alles: was</td>
+</tr>
+<tr>
+<td>Das ist das Haus, <strong>dass</strong> ich gekauft habe.</td>
+<td>Das ist das Haus, <strong>das</strong> ich gekauft habe.</td>
+<td>relative das has one s</td>
+</tr>
+<tr>
+<td>Der Mann, der dort <strong>steht ist</strong> mein Chef.</td>
+<td>Der Mann, der dort <strong>steht, ist</strong> mein Chef.</td>
+<td>comma closes the clause</td>
+</tr>
+<tr>
+<td>Der Mann, der <strong>ist</strong> mein Chef, ...</td>
+<td>Der Mann, der mein Chef <strong>ist</strong>, ...</td>
+<td>verb at the end</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Self-check before you write the pronoun</h3>
+<ol>
+<li>Which noun? Its gender and number.</li>
+<li>Rebuild the clause as a main sentence with that noun. Which case does it have there?</li>
+<li>Is there a preposition? Put it first, it sets the case.</li>
+<li>Is it "whose"? Owner masculine/neuter = dessen, feminine/plural = deren.</li>
+<li>Verb last, commas on both sides.</li>
+</ol>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Genitiv relatives after prepositions</h3>
+<p>After a preposition, <strong>dessen / deren</strong> still point to the owner and never change; only the noun after them takes the preposition's case. Adjectives after dessen/deren take the strong ending, as if no article were there.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mein Kollege, <strong>mit dessen Hilfe</strong> ich das Projekt beendet habe, ist jetzt in Rente.</td>
+<td>My colleague, with whose help I finished the project, has now retired.</td>
+<td>mit + Dat: Hilfe is Dat, dessen stays</td>
+</tr>
+<tr>
+<td>Die Firma, <strong>in deren Auftrag</strong> wir arbeiten, sitzt in München.</td>
+<td>The company on whose behalf we work is based in Munich.</td>
+<td>in + Dat, owner die Firma</td>
+</tr>
+<tr>
+<td>Die Stadt, <strong>an deren Rand</strong> wir wohnen, wächst schnell.</td>
+<td>The city on whose edge we live is growing fast.</td>
+<td>an + Dat</td>
+</tr>
+<tr>
+<td>Der Nachbar, <strong>mit dessen neuem Auto</strong> ich gefahren bin, ...</td>
+<td>The neighbour whose new car I drove ...</td>
+<td>strong Dat ending: neuem</td>
+</tr>
+<tr>
+<td>Das Gesetz, <strong>aufgrund dessen</strong> viele Mieten gestiegen sind, ...</td>
+<td>The law because of which many rents have risen ...</td>
+<td>aufgrund + Gen governs the pronoun itself</td>
+</tr>
+<tr>
+<td>Die Gründe, <strong>wegen deren</strong> er gekündigt hat, sind unklar.</td>
+<td>The reasons for which he resigned are unclear.</td>
+<td>wegen + Gen; wegen derer is common in speech but not standard</td>
+</tr>
+<tr>
+<td>Die Kinder, <strong>derentwegen</strong> sie in Kyjiw geblieben ist, ...</td>
+<td>The children for whose sake she stayed in Kyiv ...</td>
+<td>one word: dessentwegen / derentwegen = for whose sake</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The preposition always comes first: mit dessen Hilfe, never dessen mit Hilfe.</li>
+<li>As a relative pronoun, only deren is standard for feminine and plural Genitiv: mit deren Hilfe, never mit derer Hilfe. derer has a different job (see below).</li>
+<li>Ukrainian works the same way: колега, з допомогою якого ... = der Kollege, mit dessen Hilfe ...</li>
+</ul>
+<h3>Which noun does it refer to? Genitiv chains</h3>
+<p>After a noun with a Genitiv attribute, the relative pronoun can point to either noun; German gender usually tells you which, where English stays ambiguous.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Refers to</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Schwester meines Freundes, <strong>die</strong> in Wien lebt</td>
+<td>die Schwester (f)</td>
+<td>my friend's sister, who lives in Vienna</td>
+</tr>
+<tr>
+<td>die Schwester meines Freundes, <strong>der</strong> in Wien lebt</td>
+<td>der Freund (m)</td>
+<td>the sister of my friend who lives in Vienna (he does)</td>
+</tr>
+<tr>
+<td>das Ergebnis der Studie, <strong>das</strong> alle überrascht hat</td>
+<td>das Ergebnis (n)</td>
+<td>the result of the study, which surprised everyone</td>
+</tr>
+<tr>
+<td>das Ergebnis der Studie, <strong>die</strong> letztes Jahr erschienen ist</td>
+<td>die Studie (f)</td>
+<td>the result of the study that came out last year</td>
+</tr>
+<tr>
+<td>der Leiter der Abteilung, <strong>dessen</strong> Büro im dritten Stock ist</td>
+<td>der Leiter (m)</td>
+<td>the head of the department, whose office is on the third floor</td>
+</tr>
+<tr>
+<td>der Leiter der Abteilung, <strong>deren</strong> Budget gekürzt wurde</td>
+<td>die Abteilung (f)</td>
+<td>the head of the department whose budget was cut</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>If both nouns have the same gender (der Sohn des Lehrers, der ...), German is ambiguous too. Rebuild the phrase: der Lehrer, dessen Sohn ... or split it into two sentences.</li>
+<li>The relative clause still stands right after the whole noun phrase, Genitiv attribute included.</li>
+</ul>
+<h3>wo(r) + preposition as a relative</h3>
+<p>When the antecedent is not a real noun (alles, nichts, etwas, vieles, das, a whole clause), a preposition + was becomes one word: wo + preposition, with an r before a vowel.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Relative</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>womit</td>
+<td>Er hat die Prüfung bestanden, <strong>womit</strong> niemand gerechnet hatte.</td>
+<td>He passed the exam, which nobody had expected (rechnen mit).</td>
+</tr>
+<tr>
+<td>worüber</td>
+<td>Das ist etwas, <strong>worüber</strong> ich nicht sprechen möchte.</td>
+<td>That is something I would rather not talk about.</td>
+</tr>
+<tr>
+<td>woran</td>
+<td>Es gibt vieles, <strong>woran</strong> ich mich noch gewöhnen muss.</td>
+<td>There is a lot I still have to get used to.</td>
+</tr>
+<tr>
+<td>worauf</td>
+<td>Sie hat endlich angerufen, <strong>worauf</strong> ich lange gewartet hatte.</td>
+<td>She finally called, which I had waited a long time for.</td>
+</tr>
+<tr>
+<td>wofür</td>
+<td>Das ist alles, <strong>wofür</strong> ich mich interessiere.</td>
+<td>That is all I am interested in.</td>
+</tr>
+<tr>
+<td>wovon</td>
+<td>Das, <strong>wovon</strong> du träumst, ist teuer.</td>
+<td>What you dream of is expensive.</td>
+</tr>
+<tr>
+<td>wodurch</td>
+<td>Der Zug hatte Verspätung, <strong>wodurch</strong> ich den Anschluss verpasst habe.</td>
+<td>The train was late, as a result of which I missed my connection.</td>
+</tr>
+<tr>
+<td>wozu</td>
+<td>Er hat sich entschuldigt, <strong>wozu</strong> er nicht verpflichtet war.</td>
+<td>He apologised, which he was not obliged to do.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Antecedent</th>
+<th>Choice</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alles, nichts, etwas, das, a superlative</td>
+<td>wo(r)- (über was is colloquial)</td>
+<td>alles, worüber wir gesprochen haben</td>
+</tr>
+<tr>
+<td>a whole clause</td>
+<td>wo(r)- only</td>
+<td>Er kam pünktlich, worüber ich mich sehr freute.</td>
+</tr>
+<tr>
+<td>a concrete thing</td>
+<td>both; preposition + der/die/das is better in writing</td>
+<td>das Thema, über das (worüber) wir gesprochen haben</td>
+</tr>
+<tr>
+<td>a person</td>
+<td>never wo(r)-</td>
+<td>der Freund, mit dem ich arbeite (not womit)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ukrainian bridge: все, про що ми говорили = alles, worüber wir gesprochen haben. A preposition + що maps onto wo(r)-.</p>
+<h3>derjenige, derjenige welcher, and derer vs deren</h3>
+<p><strong>derjenige</strong> sharpens "the one who" in formal text and avoids the clumsy die, die. It can also stand before a noun; adjectives after it take the weak ending.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diejenigen, die die Prüfung bestanden haben, werden eingeladen.</td>
+<td>Those who passed the exam are invited.</td>
+<td>instead of Die, die ...</td>
+</tr>
+<tr>
+<td>Diejenigen Bewerber, die Deutsch sprechen, haben Vorrang.</td>
+<td>Those applicants who speak German have priority.</td>
+<td>derjenige + noun</td>
+</tr>
+<tr>
+<td>Wir suchen diejenigen jungen Leute, die ...</td>
+<td>We are looking for those young people who ...</td>
+<td>weak ending: jungen</td>
+</tr>
+<tr>
+<td>die Rechte derjenigen, die hier arbeiten</td>
+<td>the rights of those who work here</td>
+<td>Gen pl; = die Rechte derer, die ...</td>
+</tr>
+<tr>
+<td>Du bist also derjenige, welcher!</td>
+<td>So you are the one (who did it)!</td>
+<td>fixed, jokey spoken idiom</td>
+</tr>
+</tbody>
+</table></div>
+<p>derer and deren look alike but do different jobs. Rule of thumb: <strong>deren looks back</strong> to a noun already said; <strong>derer looks forward</strong> to a relative clause that follows.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Job</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deren</td>
+<td>relative, Gen f / pl</td>
+<td>die Leute, <strong>deren</strong> Hund bellt</td>
+<td>the people whose dog barks</td>
+</tr>
+<tr>
+<td>deren</td>
+<td>demonstrative pointing back, to avoid ambiguity</td>
+<td>Anna kam mit ihrer Schwester und <strong>deren</strong> Mann.</td>
+<td>Anna came with her sister and the sister's husband.</td>
+</tr>
+<tr>
+<td>dessen</td>
+<td>the same, m / n</td>
+<td>Peter sprach mit Paul und <strong>dessen</strong> Frau.</td>
+<td>Peter talked to Paul and Paul's wife (seine Frau could be Peter's).</td>
+</tr>
+<tr>
+<td>derer</td>
+<td>demonstrative Gen pl before a relative clause</td>
+<td>die Zahl <strong>derer</strong>, die sich angemeldet haben</td>
+<td>the number of those who registered</td>
+</tr>
+<tr>
+<td>derer</td>
+<td>after a Genitiv verb</td>
+<td>Wir gedenken <strong>derer</strong>, die im Krieg gestorben sind.</td>
+<td>We remember those who died in the war.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wrong: die Leute, derer Hund bellt. As a relative pronoun it is always deren.</li>
+<li>For a feminine singular pointing forward, use derjenigen: die Meinung derjenigen, die das Projekt leitet.</li>
+</ul>
+<h3>Partizipialattribut: the formal alternative to a relative clause</h3>
+<p>In formal and academic German a relative clause is often packed into a participle adjective before the noun; everything else from the clause goes between the article and the participle. Read such phrases by jumping to the participle and noun first, then reading back.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Relative clause</th>
+<th>Partizipialattribut</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Mann, der dort steht</td>
+<td>der dort <strong>stehende</strong> Mann</td>
+<td>Partizip I: active, ongoing</td>
+</tr>
+<tr>
+<td>die Preise, die ständig steigen</td>
+<td>die ständig <strong>steigenden</strong> Preise</td>
+<td>Partizip I</td>
+</tr>
+<tr>
+<td>die Welt, die sich schnell verändert</td>
+<td>die sich schnell <strong>verändernde</strong> Welt</td>
+<td>sich stays in</td>
+</tr>
+<tr>
+<td>die Kollegen, die seit Jahren in Kyjiw arbeiten</td>
+<td>die seit Jahren in Kyjiw <strong>arbeitenden</strong> Kollegen</td>
+<td>long middle field before the participle</td>
+</tr>
+<tr>
+<td>das Buch, das ich gekauft habe</td>
+<td>das von mir <strong>gekaufte</strong> Buch</td>
+<td>Partizip II: passive meaning, agent with von</td>
+</tr>
+<tr>
+<td>der Brief, der gestern geschickt wurde</td>
+<td>der gestern <strong>geschickte</strong> Brief</td>
+<td>Partizip II: passive</td>
+</tr>
+<tr>
+<td>der Zug, der gerade angekommen ist</td>
+<td>der gerade <strong>angekommene</strong> Zug</td>
+<td>Partizip II of a sein-verb: active, finished</td>
+</tr>
+<tr>
+<td>die Aufgabe, die gelöst werden muss</td>
+<td>die zu <strong>lösende</strong> Aufgabe</td>
+<td>zu + Partizip I: must / can be done</td>
+</tr>
+<tr>
+<td>ein Problem, das nicht unterschätzt werden darf</td>
+<td>ein nicht zu <strong>unterschätzendes</strong> Problem</td>
+<td>zu + Partizip I</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Partizip II works only for verbs with an object (passive meaning) or sein-verbs: das eingeschlafene Kind is fine, der gearbeitete Mann is wrong.</li>
+<li>The participle takes normal adjective endings: der steigende Preis, die steigenden Preise, mit steigenden Preisen.</li>
+<li>Ukrainian has a close cousin, the дієприкметниковий зворот: лист, надісланий учора. German puts the whole phrase before the noun: der gestern geschickte Brief.</li>
+<li>More on nominal style: <a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: participle attributes and nominal style in depth</li>
+<li><a href="../docs/word-order.html">Word order</a>: verb-last clauses and where a relative clause can stand</li>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: which case each preposition sets in mit dem, auf den</li>
+<li><a href="../docs/articles.html">German article tables (B1)</a>: the article forms the pronoun is built on, and strong adjective endings</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: the other verb-last clauses (weil, dass, obwohl)</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/relative-pronouns.html">Relative pronouns quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

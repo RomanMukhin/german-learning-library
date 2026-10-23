@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Nachhaltig leben · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "31-nachhaltig-leben", "n": 31, "area": "Society", "level": "B1", "title_de": "Nachhaltig leben", "title_en": "Living more sustainably", "grammar": [{"name": "um … zu and damit (purpose)", "explain": "Both express a purpose (\"in order to / so that\"). Use *um … zu* + infinitive when the subject is the same in both parts: *Oksana nimmt einen Stoffbeutel mit, um Plastiktüten zu vermeiden.* Use *damit* + a full clause (verb last) when the subjects are different, or with a passive: *Sie kochen größere Portionen, damit keine Lebensmittel verschwendet werden.* With separable verbs *zu* goes in the middle: *um Strom einzusparen*. Ukrainian uses *щоб* for both.", "examples": [{"de": "Sie hat immer einen Stoffbeutel dabei, *um* Plastiktüten *zu vermeiden*.", "en": "She always has a cloth bag with her to avoid plastic bags."}, {"de": "Er duscht kürzer, *um* Wasser *zu sparen*.", "en": "He takes shorter showers to save water."}, {"de": "Sie kochen größere Portionen, *damit* keine Lebensmittel verschwendet *werden*.", "en": "They cook bigger portions so that no food is wasted."}], "links": [{"title": "Connectors and sentence starters", "url": "../docs/connectors.html"}, {"title": "Word order", "url": "../docs/word-order.html"}]}, {"name": "Passive with werden (Präsens)", "explain": "The passive puts the action in focus, not the person: *werden* (position 2) + participle (at the end). *Der Müll wird getrennt.* = The rubbish is separated (by someone). Plural subject → *werden*: *Nudeln werden verkauft.* If you want to say who does it, use *von* + Dativ, but often nobody is named. Don't confuse it with *sein* + participle, which describes a state: *Der Laden ist geöffnet.* In a subordinate clause *werden* goes last: *…, dass weniger Fleisch angeboten wird.*", "examples": [{"de": "Dort *werden* Nudeln, Reis und Nüsse ohne Verpackung *verkauft*.", "en": "Pasta, rice and nuts are sold there without packaging."}, {"de": "Zu Hause *wird* der Müll genau *getrennt*.", "en": "At home the rubbish is carefully separated."}, {"de": "… dass in der Kantine weniger Fleisch *angeboten wird*.", "en": "… that less meat is offered in the canteen."}], "links": [{"title": "Tenses, moods and the passive", "url": "../docs/tenses.html"}, {"title": "Irregular verbs", "url": "../docs/irregular-verbs.html"}]}], "vocab": [{"id": "nachhaltig", "de": "nachhaltig", "gender": null, "plural": null, "en": "sustainable", "uk": "сталий, екологічно відповідальний", "examples": [{"de": "Freiburg gilt als besonders nachhaltig.", "en": "Freiburg is considered especially sustainable."}], "note": "Noun: *die Nachhaltigkeit*. Originally from forestry: cut only as many trees as grow back. It can also mean \"lasting\": *ein nachhaltiger Eindruck*."}, {"id": "muell", "de": "Müll", "gender": "m", "plural": null, "en": "rubbish, waste, trash", "uk": "сміття", "examples": [{"de": "Sie wollen weniger Müll produzieren.", "en": "They want to produce less waste."}, {"de": "*den Müll rausbringen*", "en": "to take out the rubbish"}], "note": "Masculine and uncountable. *der Mülleimer* = bin. More formal synonym: *der Abfall* (plural *Abfälle*)."}, {"id": "nach_und_nach", "de": "nach und nach", "gender": null, "plural": null, "en": "gradually, bit by bit", "uk": "поступово, крок за кроком", "examples": [{"de": "Sie ändern ihre Gewohnheiten nach und nach.", "en": "They change their habits bit by bit."}], "note": "Fixed phrase, no article, no capitals. Synonym: *allmählich*, *Schritt für Schritt*."}, {"id": "gewohnheit", "de": "Gewohnheit", "gender": "f", "plural": "Gewohnheiten", "en": "habit", "uk": "звичка", "examples": [{"de": "Neue Gewohnheiten brauchen Zeit.", "en": "New habits take time."}], "note": "Words in *-heit* are feminine. Related: *sich gewöhnen an + Akk* (to get used to)."}, {"id": "unverpackt", "de": "Unverpackt-Laden", "gender": "m", "plural": "Unverpackt-Läden", "en": "zero-waste shop (no packaging)", "uk": "магазин без упаковки", "examples": [{"de": "Sie kaufen *in einem Unverpackt-Laden* ein.", "en": "They shop in a zero-waste store."}], "note": "*der Laden* → plural *die Läden* (with umlaut). *unverpackt* = unpacked, without packaging."}, {"id": "verpackung", "de": "Verpackung", "gender": "f", "plural": "Verpackungen", "en": "packaging", "uk": "упаковка", "examples": [{"de": "Nudeln werden ohne Verpackung verkauft.", "en": "Pasta is sold without packaging."}], "note": "From *verpacken* (to pack, wrap). -ung → feminine. *ohne* takes the Akkusativ: *ohne die Verpackung*."}, {"id": "stoffbeutel", "de": "Stoffbeutel", "gender": "m", "plural": "Stoffbeutel", "en": "cloth bag, tote bag", "uk": "тканинна торбинка, шопер", "examples": [{"de": "Ich habe immer einen Stoffbeutel dabei.", "en": "I always have a cloth bag with me."}], "note": "*der Stoff* (fabric) + *der Beutel* (bag); plural unchanged. A plastic bag is *die Plastiktüte*. *dabeihaben* = to have on you."}, {"id": "vermeiden", "de": "vermeiden", "gender": null, "plural": null, "en": "to avoid", "uk": "уникати", "examples": [{"de": "Sie will Plastiktüten vermeiden.", "en": "She wants to avoid plastic bags."}, {"de": "Das lässt sich nicht vermeiden.", "en": "That can't be avoided."}], "note": "Strong, inseparable: *vermied, hat vermieden*. Takes a direct object (Akk). *vermeiden, etwas zu tun* = to avoid doing something."}, {"id": "pfand", "de": "Pfand", "gender": "n", "plural": null, "en": "(bottle) deposit", "uk": "застава (за пляшку)", "examples": [{"de": "Für jede Flasche wird Pfand bezahlt.", "en": "A deposit is paid for every bottle."}, {"de": "*die Pfandflasche*", "en": "deposit bottle"}], "note": "Standard German is *das Pfand*, though many people say *der Pfand* in speech. You get the money back at a machine in the supermarket."}, {"id": "trennen", "de": "trennen", "gender": null, "plural": null, "en": "to separate, to sort (rubbish)", "uk": "розділяти, сортувати", "examples": [{"de": "Der Müll wird genau getrennt.", "en": "The rubbish is carefully sorted."}, {"de": "Sie haben sich *getrennt*.", "en": "They broke up."}], "note": "Regular: *hat getrennt*. Reflexive *sich trennen (von + Dat)* = to break up (with). Noun: *die Mülltrennung*."}, {"id": "verbrauch", "de": "Verbrauch", "gender": "m", "plural": null, "en": "consumption, usage", "uk": "споживання", "examples": [{"de": "Felix achtet auf den Verbrauch von Strom und Wasser.", "en": "Felix keeps an eye on his electricity and water usage."}], "note": "Masculine, usually no plural. Verb: *verbrauchen* (to use up). *achten auf + Akk* = to pay attention to."}, {"id": "lebensmittel", "de": "Lebensmittel", "gender": "n", "plural": "Lebensmittel", "en": "food, groceries", "uk": "продукти харчування", "examples": [{"de": "Keine Lebensmittel sollen im Müll landen.", "en": "No food should end up in the bin."}], "note": "Mostly used in the plural (*die Lebensmittel*), like Ukrainian *продукти*. Not *Produkte*: that's any goods. Note the linking *-s-*."}, {"id": "verschwenden", "de": "verschwenden", "gender": null, "plural": null, "en": "to waste", "uk": "марнувати, витрачати даремно", "examples": [{"de": "Damit keine Lebensmittel verschwendet werden …", "en": "So that no food is wasted …"}, {"de": "Du verschwendest deine Zeit.", "en": "You're wasting your time."}], "note": "Regular, inseparable: *hat verschwendet*. Noun: *die Verschwendung*. Don't confuse with *verschwinden* (to disappear)."}, {"id": "wegwerfen", "de": "wegwerfen", "gender": null, "plural": null, "en": "to throw away", "uk": "викидати", "examples": [{"de": "Früher hat er kaputte Sachen weggeworfen.", "en": "He used to throw broken things away."}, {"de": "*Wirf* das nicht *weg*!", "en": "Don't throw that away!"}], "note": "Separable and strong: *wirft weg, warf weg, hat weggeworfen*. Imperative: *Wirf weg!* (e → i)."}, {"id": "reparatur", "de": "Reparatur", "gender": "f", "plural": "Reparaturen", "en": "repair", "uk": "ремонт (речі)", "examples": [{"de": "Ehrenamtliche helfen bei der Reparatur.", "en": "Volunteers help with the repair."}], "note": "Feminine (-ur), stress on *-TUR*. Ukrainian *ремонт* also means renovating a flat; that is *die Renovierung*, not *Reparatur*."}, {"id": "umweltfreundlich", "de": "umweltfreundlich", "gender": null, "plural": null, "en": "environmentally friendly, eco-friendly", "uk": "екологічний, безпечний для довкілля", "examples": [{"de": "Der Zug ist umweltfreundlicher als das Auto.", "en": "The train is more eco-friendly than the car."}], "note": "*die Umwelt* + *freundlich*. Comparative *umweltfreundlicher*. Opposite: *umweltschädlich*."}, {"id": "umwelt", "de": "Umwelt", "gender": "f", "plural": null, "en": "environment", "uk": "довкілля, навколишнє середовище", "examples": [{"de": "Sie setzt sich für die Umwelt ein.", "en": "She stands up for the environment."}, {"de": "*der Umweltschutz*", "en": "environmental protection"}], "note": "Feminine like *die Welt*, no plural. For a work or social environment Germans say *das Umfeld* or *die Umgebung*."}, {"id": "einsetzen", "de": "sich einsetzen für + Akk", "gender": null, "plural": null, "en": "to stand up for, to campaign for", "uk": "виступати за, боротися за", "examples": [{"de": "Oksana möchte sich für die Umwelt einsetzen.", "en": "Oksana wants to stand up for the environment."}, {"de": "Sie *setzt sich für* mehr Radwege *ein*.", "en": "She campaigns for more cycle paths."}], "note": "Separable and reflexive, with *für + Akkusativ*. Without *sich*, *einsetzen* means to use or deploy something."}, {"id": "wert_legen", "de": "Wert legen auf + Akk", "gender": null, "plural": null, "en": "to attach importance to, to care about", "uk": "надавати значення, зважати на", "examples": [{"de": "Sie legt Wert darauf, dass weniger Fleisch angeboten wird.", "en": "It's important to her that less meat is offered."}, {"de": "Ich lege Wert *auf* gute Qualität.", "en": "Good quality matters to me."}], "note": "*auf + Akkusativ*; before a *dass* clause use *darauf*. *der Wert* (value) has no article in this phrase."}, {"id": "klimawandel", "de": "Klimawandel", "gender": "m", "plural": null, "en": "climate change", "uk": "зміна клімату", "examples": [{"de": "Wir können den Klimawandel nicht allein stoppen.", "en": "We can't stop climate change on our own."}], "note": "*das Klima* + *der Wandel*: the last part makes it masculine. Ukrainian *зміна* is feminine."}], "text": "Oksana und Felix wohnen in Freiburg, einer Stadt, die als besonders {{nachhaltig|nachhaltig}} {{=gilt|is considered · вважається}}. Vor einem Jahr haben sie {{=beschlossen|decided · вирішили}}, weniger {{muell|Müll}} zu produzieren. Sie wollten ihr Leben nicht sofort komplett ändern, sondern {{nach_und_nach|nach und nach}} neue {{gewohnheit|Gewohnheiten}} lernen.\n\nZum Einkaufen gehen sie jetzt in einen {{unverpackt|Unverpackt-Laden}}. Dort werden Nudeln, Reis und Nüsse ohne {{verpackung|Verpackung}} verkauft. Man bringt eigene Gläser mit, {{=füllt|fills · наповнює}} sie und bezahlt nach Gewicht. Oksana hat immer einen {{stoffbeutel|Stoffbeutel}} dabei, um Plastiktüten zu {{vermeiden|vermeiden}}. Getränke kaufen sie in Mehrwegflaschen, denn für jede Flasche wird {{pfand|Pfand}} bezahlt. Leere Flaschen werden zurückgebracht und wieder benutzt.\n\nZu Hause wird der Müll genau {{trennen|getrennt}}: Papier, Glas, Plastik und Bio. Felix achtet auf den {{verbrauch|Verbrauch}} von Strom und Wasser. Er duscht kürzer, um Wasser zu sparen. Am Wochenende kochen sie größere Portionen, damit keine {{lebensmittel|Lebensmittel}} {{verschwenden|verschwendet}} werden. Früher hat Felix kaputte Sachen einfach {{wegwerfen|weggeworfen}}. Heute bringt er sie zu einem Treffen in der Nachbarschaft, wo {{=Ehrenamtliche|volunteers · волонтери}} bei der {{reparatur|Reparatur}} helfen.\n\nZu Oksanas Familie nach Lwiw fahren sie mit Zug und Bus. Die Fahrt dauert lange, aber sie ist {{umweltfreundlich|umweltfreundlicher}} als das Auto. Oksana möchte sich auch in ihrer Firma für die {{umwelt|Umwelt}} {{einsetzen|einsetzen}}. Sie {{wert_legen|legt Wert darauf}}, dass in der {{=Kantine|canteen · їдальня}} weniger Fleisch angeboten wird. „Wir können den {{klimawandel|Klimawandel}} nicht allein stoppen“, sagt sie, „aber jeder kann etwas tun.“", "quiz": [{"q": "Was haben Oksana und Felix vor einem Jahr beschlossen?", "options": ["weniger Müll zu produzieren", "nach Lwiw zu ziehen", "ein Auto zu kaufen", "kein Fleisch mehr zu essen", "einen Laden zu eröffnen"], "answer": 0, "explain": "\"Vor einem Jahr haben sie beschlossen, *weniger Müll zu produzieren*.\""}, {"q": "Im Unverpackt-Laden *___* Nudeln und Reis ohne Verpackung *___*.", "options": ["wird … verkauft", "werden … verkaufen", "hat … verkauft", "werden … verkauft", "sind … verkaufen"], "answer": 3, "explain": "Passive = *werden* + participle; plural subject (*Nudeln, Reis und Nüsse*) → \"Dort *werden* … ohne Verpackung *verkauft*.\""}, {"q": "Warum hat Oksana immer einen Stoffbeutel dabei?", "options": ["damit Felix einkaufen kann", "um Plastiktüten zu vermeiden", "weil der Laden das verlangt", "um Pfand zu bekommen", "weil er schön ist"], "answer": 1, "explain": "\"Oksana hat immer einen Stoffbeutel dabei, *um Plastiktüten zu vermeiden*.\" Same subject → *um … zu*."}, {"q": "Wie bezahlt man im Unverpackt-Laden?", "options": ["mit Pfand", "pro Glas", "nur mit Karte", "pro Packung", "nach Gewicht"], "answer": 4, "explain": "\"Man bringt eigene Gläser mit, füllt sie und bezahlt *nach Gewicht*.\""}, {"q": "Felix duscht kürzer, *___* Wasser zu sparen.", "options": ["damit", "weil", "um", "dass", "für"], "answer": 2, "explain": "Infinitive with *zu* and the same subject → *um*: \"Er duscht kürzer, *um* Wasser *zu sparen*.\""}, {"q": "Warum kochen sie am Wochenende größere Portionen?", "options": ["um Gäste einzuladen", "weil sie viel Hunger haben", "damit keine Lebensmittel verschwendet werden", "damit Felix nicht kochen muss", "um Geld zu verdienen"], "answer": 2, "explain": "\"… *damit* keine Lebensmittel verschwendet *werden*.\" Different subject (*Lebensmittel*) → *damit*, not *um … zu*."}, {"q": "Was passiert zu Hause mit dem Müll?", "options": ["Er wird verbrannt.", "Er wird in den Laden gebracht.", "Er wird nicht getrennt.", "Er wird verkauft.", "Er wird genau getrennt."], "answer": 4, "explain": "\"Zu Hause *wird* der Müll genau *getrennt*: Papier, Glas, Plastik und Bio.\""}, {"q": "Was macht Felix heute mit kaputten Sachen?", "options": ["Er wirft sie weg.", "Er bringt sie zu einem Treffen, wo Ehrenamtliche bei der Reparatur helfen.", "Er verkauft sie im Internet.", "Er kauft neue.", "Er schenkt sie Oksanas Familie."], "answer": 1, "explain": "\"Heute bringt er sie zu einem Treffen in der Nachbarschaft, wo Ehrenamtliche *bei der Reparatur helfen*.\" Throwing them away was *früher*."}, {"q": "Oksana legt Wert darauf, dass in der Kantine weniger Fleisch *___*.", "options": ["anbietet", "angeboten hat", "bietet an", "angeboten wird", "anzubieten"], "answer": 3, "explain": "Passive in a *dass* clause: participle + *wird* at the end: \"… dass in der Kantine weniger Fleisch *angeboten wird*.\""}, {"q": "Wie fahren sie zu Oksanas Familie nach Lwiw?", "options": ["mit Zug und Bus", "mit dem Flugzeug", "mit dem Auto", "mit dem Fahrrad", "zu Fuß"], "answer": 0, "explain": "\"Zu Oksanas Familie nach Lwiw fahren sie *mit Zug und Bus*.\""}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

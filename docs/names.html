@@ -1,0 +1,1846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Names: countries, cities, rivers, seas and acronyms · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Names: countries, cities, rivers, seas and acronyms</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Names: countries, cities, rivers, seas and acronyms</h1></header>
+<article class="prose card">
+<p>Most countries and all cities take no article and are neuter, but a fixed list of countries (die Ukraine, die Schweiz, der Iran, die USA) always carries one, and that changes the preposition.</p>
+<h2>Countries with and without an article</h2>
+<p>Most countries are neuter and used without an article (Deutschland, Frankreich, Polen); a fixed group is feminine, masculine or plural and always takes its article.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Countries</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neuter, no article (the majority)</td>
+<td>Deutschland, Österreich, Frankreich, Italien, Spanien, Polen, England, Russland, China, Japan, Kanada, Tschechien, Belarus</td>
+<td>Deutschland ist groß.</td>
+</tr>
+<tr>
+<td>Feminine (die)</td>
+<td>die Ukraine, die Schweiz, die Türkei, die Slowakei, die Mongolei, die Tschechische Republik, die Dominikanische Republik</td>
+<td>Die Ukraine liegt in Osteuropa.</td>
+</tr>
+<tr>
+<td>Masculine (der)</td>
+<td>der Iran, der Irak, der Libanon, der Sudan, der Jemen, der Kongo, der Tschad, der Vatikan</td>
+<td>Der Libanon liegt am Mittelmeer.</td>
+</tr>
+<tr>
+<td>Plural (die)</td>
+<td>die Niederlande, die USA, die Vereinigten Staaten, die Philippinen, die Malediven, die Vereinigten Arabischen Emirate</td>
+<td>Die USA sind ein großes Land.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Plural countries take a plural verb: Die USA sind ..., Die Niederlande haben ...</li>
+<li>Feminine endings to spot: -ei (Türkei, Slowakei, Mongolei) and "die ... Republik".</li>
+<li>Iran and Irak are often used without an article in news today (in Iran, aus Irak); with the article is still the safe standard.</li>
+<li>Neuter countries get "das" once an adjective comes in: das heutige Deutschland, das schöne Italien, im modernen China (see <a href="../docs/articles.html">German article tables (B1)</a>).</li>
+<li>Ukrainian comparison: Ukrainian has no articles, so "die" in "die Ukraine" is pure memorisation; think of it as part of the name, like "the" in "the Netherlands".</li>
+<li>Note: "die Ukraine" (not "Ukraine") is still the standard German form; you hear "in der Ukraine" every day in the news.</li>
+</ul>
+<h2>Prepositions with countries and cities</h2>
+<p>No article means nach / in / aus; an article means in + Akkusativ for direction, in + Dativ for location, aus + Dativ for origin (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Wohin? (where to)</th>
+<th>Wo? (where)</th>
+<th>Woher? (where from)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No article: Deutschland, Berlin</td>
+<td>nach Deutschland, nach Berlin</td>
+<td>in Deutschland, in Berlin</td>
+<td>aus Deutschland, aus Berlin</td>
+</tr>
+<tr>
+<td>Feminine: die Ukraine</td>
+<td>in die Ukraine</td>
+<td>in der Ukraine</td>
+<td>aus der Ukraine</td>
+</tr>
+<tr>
+<td>Feminine: die Schweiz</td>
+<td>in die Schweiz</td>
+<td>in der Schweiz</td>
+<td>aus der Schweiz</td>
+</tr>
+<tr>
+<td>Masculine: der Iran</td>
+<td>in den Iran</td>
+<td>im Iran</td>
+<td>aus dem Iran</td>
+</tr>
+<tr>
+<td>Plural: die USA</td>
+<td>in die USA</td>
+<td>in den USA</td>
+<td>aus den USA</td>
+</tr>
+<tr>
+<td>Plural: die Niederlande</td>
+<td>in die Niederlande</td>
+<td>in den Niederlanden</td>
+<td>aus den Niederlanden</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Typical sentences: Ich komme aus der Ukraine. Ich wohne in Deutschland. Nächste Woche fliege ich in die Türkei.</li>
+<li>Never "nach der Ukraine": once there is an article, "nach" is out.</li>
+<li>Going home is special: nach Hause (to home), zu Hause (at home).</li>
+<li>Islands and regions: auf Mallorca, auf Rügen (islands use auf); in Bayern, ins Ruhrgebiet, im Ruhrgebiet.</li>
+<li>Ukrainian comparison: в Україну / в Україні / з України mirror in die / in der / aus der Ukraine: direction vs location changes the case in both languages.</li>
+</ul>
+<h2>Countries, nationalities and languages</h2>
+<p>Nationality nouns come in three types: -er / -erin (normal), -e / -in (n-Deklination: den Polen, dem Franzosen), and "Deutsche" (an adjective used as a noun).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Country</th>
+<th>Man</th>
+<th>Woman</th>
+<th>Adjective</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Ukraine</td>
+<td>der Ukrainer</td>
+<td>die Ukrainerin</td>
+<td>ukrainisch</td>
+<td>Ukrainisch</td>
+</tr>
+<tr>
+<td>Deutschland</td>
+<td>der Deutsche / ein Deutscher</td>
+<td>die Deutsche / eine Deutsche</td>
+<td>deutsch</td>
+<td>Deutsch</td>
+</tr>
+<tr>
+<td>Österreich</td>
+<td>der Österreicher</td>
+<td>die Österreicherin</td>
+<td>österreichisch</td>
+<td>Deutsch</td>
+</tr>
+<tr>
+<td>die Schweiz</td>
+<td>der Schweizer</td>
+<td>die Schweizerin</td>
+<td>schweizerisch (also: Schweizer Käse)</td>
+<td>Deutsch, Französisch, Italienisch, Rätoromanisch</td>
+</tr>
+<tr>
+<td>Polen</td>
+<td>der Pole (n)</td>
+<td>die Polin</td>
+<td>polnisch</td>
+<td>Polnisch</td>
+</tr>
+<tr>
+<td>Russland</td>
+<td>der Russe (n)</td>
+<td>die Russin</td>
+<td>russisch</td>
+<td>Russisch</td>
+</tr>
+<tr>
+<td>Belarus</td>
+<td>der Belarusse (n)</td>
+<td>die Belarussin</td>
+<td>belarussisch</td>
+<td>Belarussisch</td>
+</tr>
+<tr>
+<td>Tschechien</td>
+<td>der Tscheche (n)</td>
+<td>die Tschechin</td>
+<td>tschechisch</td>
+<td>Tschechisch</td>
+</tr>
+<tr>
+<td>die Slowakei</td>
+<td>der Slowake (n)</td>
+<td>die Slowakin</td>
+<td>slowakisch</td>
+<td>Slowakisch</td>
+</tr>
+<tr>
+<td>Ungarn</td>
+<td>der Ungar (n)</td>
+<td>die Ungarin</td>
+<td>ungarisch</td>
+<td>Ungarisch</td>
+</tr>
+<tr>
+<td>Rumänien</td>
+<td>der Rumäne (n)</td>
+<td>die Rumänin</td>
+<td>rumänisch</td>
+<td>Rumänisch</td>
+</tr>
+<tr>
+<td>Bulgarien</td>
+<td>der Bulgare (n)</td>
+<td>die Bulgarin</td>
+<td>bulgarisch</td>
+<td>Bulgarisch</td>
+</tr>
+<tr>
+<td>Kroatien</td>
+<td>der Kroate (n)</td>
+<td>die Kroatin</td>
+<td>kroatisch</td>
+<td>Kroatisch</td>
+</tr>
+<tr>
+<td>Litauen</td>
+<td>der Litauer</td>
+<td>die Litauerin</td>
+<td>litauisch</td>
+<td>Litauisch</td>
+</tr>
+<tr>
+<td>Georgien</td>
+<td>der Georgier</td>
+<td>die Georgierin</td>
+<td>georgisch</td>
+<td>Georgisch</td>
+</tr>
+<tr>
+<td>Frankreich</td>
+<td>der Franzose (n)</td>
+<td>die Französin</td>
+<td>französisch</td>
+<td>Französisch</td>
+</tr>
+<tr>
+<td>Italien</td>
+<td>der Italiener</td>
+<td>die Italienerin</td>
+<td>italienisch</td>
+<td>Italienisch</td>
+</tr>
+<tr>
+<td>Spanien</td>
+<td>der Spanier</td>
+<td>die Spanierin</td>
+<td>spanisch</td>
+<td>Spanisch</td>
+</tr>
+<tr>
+<td>Portugal</td>
+<td>der Portugiese (n)</td>
+<td>die Portugiesin</td>
+<td>portugiesisch</td>
+<td>Portugiesisch</td>
+</tr>
+<tr>
+<td>England</td>
+<td>der Engländer</td>
+<td>die Engländerin</td>
+<td>englisch</td>
+<td>Englisch</td>
+</tr>
+<tr>
+<td>Großbritannien</td>
+<td>der Brite (n)</td>
+<td>die Britin</td>
+<td>britisch</td>
+<td>Englisch</td>
+</tr>
+<tr>
+<td>die Niederlande</td>
+<td>der Niederländer</td>
+<td>die Niederländerin</td>
+<td>niederländisch</td>
+<td>Niederländisch</td>
+</tr>
+<tr>
+<td>Belgien</td>
+<td>der Belgier</td>
+<td>die Belgierin</td>
+<td>belgisch</td>
+<td>Niederländisch, Französisch, Deutsch</td>
+</tr>
+<tr>
+<td>Schweden</td>
+<td>der Schwede (n)</td>
+<td>die Schwedin</td>
+<td>schwedisch</td>
+<td>Schwedisch</td>
+</tr>
+<tr>
+<td>Norwegen</td>
+<td>der Norweger</td>
+<td>die Norwegerin</td>
+<td>norwegisch</td>
+<td>Norwegisch</td>
+</tr>
+<tr>
+<td>Dänemark</td>
+<td>der Däne (n)</td>
+<td>die Dänin</td>
+<td>dänisch</td>
+<td>Dänisch</td>
+</tr>
+<tr>
+<td>Finnland</td>
+<td>der Finne (n)</td>
+<td>die Finnin</td>
+<td>finnisch</td>
+<td>Finnisch</td>
+</tr>
+<tr>
+<td>Griechenland</td>
+<td>der Grieche (n)</td>
+<td>die Griechin</td>
+<td>griechisch</td>
+<td>Griechisch</td>
+</tr>
+<tr>
+<td>die Türkei</td>
+<td>der Türke (n)</td>
+<td>die Türkin</td>
+<td>türkisch</td>
+<td>Türkisch</td>
+</tr>
+<tr>
+<td>die USA</td>
+<td>der Amerikaner</td>
+<td>die Amerikanerin</td>
+<td>amerikanisch</td>
+<td>Englisch</td>
+</tr>
+<tr>
+<td>Kanada</td>
+<td>der Kanadier</td>
+<td>die Kanadierin</td>
+<td>kanadisch</td>
+<td>Englisch, Französisch</td>
+</tr>
+<tr>
+<td>Brasilien</td>
+<td>der Brasilianer</td>
+<td>die Brasilianerin</td>
+<td>brasilianisch</td>
+<td>Portugiesisch</td>
+</tr>
+<tr>
+<td>China</td>
+<td>der Chinese (n)</td>
+<td>die Chinesin</td>
+<td>chinesisch</td>
+<td>Chinesisch</td>
+</tr>
+<tr>
+<td>Japan</td>
+<td>der Japaner</td>
+<td>die Japanerin</td>
+<td>japanisch</td>
+<td>Japanisch</td>
+</tr>
+<tr>
+<td>Indien</td>
+<td>der Inder</td>
+<td>die Inderin</td>
+<td>indisch</td>
+<td>Hindi, Englisch</td>
+</tr>
+<tr>
+<td>der Iran</td>
+<td>der Iraner</td>
+<td>die Iranerin</td>
+<td>iranisch</td>
+<td>Persisch (Farsi)</td>
+</tr>
+<tr>
+<td>Israel</td>
+<td>der Israeli</td>
+<td>die Israeli</td>
+<td>israelisch</td>
+<td>Hebräisch</td>
+</tr>
+</tbody>
+</table></div>
+<h3>How to use them</h3>
+<ul>
+<li>No article after "sein": Ich bin Ukrainer. Sie ist Ukrainerin. (Ukrainian: Я українець / українка.)</li>
+<li>Adjectives are lowercase, languages are capitalised: ukrainisches Essen, but Ich spreche Ukrainisch.</li>
+<li>Plural: Ukrainer (no ending), Ukrainerinnen; Polen, Franzosen (n); die Deutschen.</li>
+<li>(n) = n-Deklination: every form except Nominativ singular ends in -n: Ich kenne einen Franzosen. Ich spreche mit dem Polen.</li>
+<li>Deutsche behaves like an adjective: der Deutsche, ein Deutscher, die Deutschen, viele Deutsche, Er ist Deutscher. Sie ist Deutsche.</li>
+<li>Franzose / Französin: the woman gets an umlaut. Same pattern: der Arzt / die Ärztin.</li>
+</ul>
+<h2>Cities</h2>
+<p>All city names are neuter and used without an article, until an adjective arrives: Berlin ist groß, but das schöne Berlin, im alten Wien.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plain</td>
+<td>Hamburg liegt im Norden. Ich fahre nach München.</td>
+</tr>
+<tr>
+<td>With adjective</td>
+<td>das historische Dresden, im heutigen Kyjiw, aus dem sonnigen Barcelona</td>
+</tr>
+<tr>
+<td>Genitiv -s</td>
+<td>Berlins Museen, die Straßen Kyjiws (or: die Straßen von Kyjiw)</td>
+</tr>
+<tr>
+<td>Pronoun</td>
+<td>Wien? Es ist wunderschön.</td>
+</tr>
+<tr>
+<td>Residents -er</td>
+<td>Berliner, Hamburger, Münchner, Wiener, Kölner, Frankfurter</td>
+</tr>
+<tr>
+<td>City adjective -er (never changes)</td>
+<td>der Kölner Dom, die Berliner Mauer, Wiener Würstchen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The "-er" city adjective is capitalised and has no endings: in der Frankfurter Innenstadt, mit dem Hamburger Hafen.</li>
+<li>German exonyms to know: München (Munich), Köln (Cologne), Wien (Vienna), Prag (Prague), Warschau (Warsaw), Mailand (Milan), Rom, Venedig (Venice), Moskau, Lemberg = Lwiw (historical German name).</li>
+</ul>
+<h3>Kyjiw vs Kiew</h3>
+<ul>
+<li>Kyjiw is the transliteration from Ukrainian (Київ) and is used by the German Foreign Office and a growing number of media, such as Deutsche Welle.</li>
+<li>Kiew is the older German form, based on Russian; many newspapers and TV news still use it, so expect both.</li>
+<li>Same shift for other cities: Charkiw (not Charkow), Odesa / Odessa, Lwiw (also Lemberg), Dnipro.</li>
+<li>Residents: der Kyjiwer / Kiewer, die Kyjiwerin / Kiewerin.</li>
+</ul>
+<h2>Rivers</h2>
+<p>Most German rivers are feminine (die Donau, die Elbe); the big masculine exceptions are der Rhein, der Main, der Neckar and der Inn; foreign rivers vary, so learn each with its article.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gender</th>
+<th>Rivers</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die (most rivers in Germany)</td>
+<td>die Donau, die Elbe, die Spree, die Oder, die Weser, die Mosel, die Saale, die Ruhr, die Isar, die Havel, die Neiße</td>
+<td>Berlin liegt an der Spree.</td>
+</tr>
+<tr>
+<td>der (German exceptions)</td>
+<td>der Rhein, der Main, der Neckar, der Inn, der Lech</td>
+<td>Frankfurt liegt am Main.</td>
+</tr>
+<tr>
+<td>der (foreign)</td>
+<td>der Nil, der Dnipro (older: der Dnjepr), der Don, der Amazonas, der Mississippi, der Ganges, der Jangtse, der Jordan</td>
+<td>Kyjiw liegt am Dnipro.</td>
+</tr>
+<tr>
+<td>die (foreign)</td>
+<td>die Wolga, die Themse (Thames), die Seine, die Loire, die Weichsel (Vistula), die Moldau (Vltava), die Theiss</td>
+<td>London liegt an der Themse.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Location on a river: an + Dativ: an der Donau, am Rhein (am = an dem).</li>
+<li>Direction: an + Akkusativ: Wir fahren an die Elbe / an den Rhein.</li>
+<li>Exonyms: die Donau = Danube = Дунай (masculine in Ukrainian!), die Weichsel = Vistula = Вісла, der Dnipro = Дніпро.</li>
+<li>Compounds: der Rheinfall, das Elbufer, die Donauwelle, das Mainufer.</li>
+</ul>
+<h2>Seas, lakes and oceans</h2>
+<p>"Die See" is the sea and "der See" is a lake; "das Meer" is the everyday word for sea, and oceans are masculine.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Plural</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der See</td>
+<td>lake</td>
+<td>die Seen</td>
+<td>Wir schwimmen im See.</td>
+</tr>
+<tr>
+<td>die See</td>
+<td>sea (formal, northern, sailing)</td>
+<td>die Seen (rare)</td>
+<td>an der See, auf hoher See</td>
+</tr>
+<tr>
+<td>das Meer</td>
+<td>sea (everyday)</td>
+<td>die Meere</td>
+<td>Wir fahren ans Meer. Wir sind am Meer.</td>
+</tr>
+<tr>
+<td>der Ozean</td>
+<td>ocean</td>
+<td>die Ozeane</td>
+<td>der Atlantische Ozean</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Names to know</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>English</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Nordsee</td>
+<td>f</td>
+<td>North Sea</td>
+<td>Північне море</td>
+</tr>
+<tr>
+<td>die Ostsee</td>
+<td>f</td>
+<td>Baltic Sea</td>
+<td>Балтійське море</td>
+</tr>
+<tr>
+<td>das Schwarze Meer</td>
+<td>n</td>
+<td>Black Sea</td>
+<td>Чорне море</td>
+</tr>
+<tr>
+<td>das Asowsche Meer</td>
+<td>n</td>
+<td>Sea of Azov</td>
+<td>Азовське море</td>
+</tr>
+<tr>
+<td>das Mittelmeer</td>
+<td>n</td>
+<td>Mediterranean</td>
+<td>Середземне море</td>
+</tr>
+<tr>
+<td>das Rote Meer</td>
+<td>n</td>
+<td>Red Sea</td>
+<td>Червоне море</td>
+</tr>
+<tr>
+<td>der Atlantik</td>
+<td>m</td>
+<td>Atlantic</td>
+<td>Атлантичний океан</td>
+</tr>
+<tr>
+<td>der Pazifik</td>
+<td>m</td>
+<td>Pacific</td>
+<td>Тихий океан</td>
+</tr>
+<tr>
+<td>der Indische Ozean</td>
+<td>m</td>
+<td>Indian Ocean</td>
+<td>Індійський океан</td>
+</tr>
+<tr>
+<td>der Bodensee</td>
+<td>m</td>
+<td>Lake Constance</td>
+<td>Боденське озеро</td>
+</tr>
+<tr>
+<td>der Chiemsee</td>
+<td>m</td>
+<td>Lake Chiem</td>
+<td>Кімзее</td>
+</tr>
+<tr>
+<td>der Genfer See</td>
+<td>m</td>
+<td>Lake Geneva</td>
+<td>Женевське озеро</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Compound rule: -see names follow the last part: die Nordsee (sea), der Bodensee (lake).</li>
+<li>Adjective names inflect: am Schwarzen Meer, ans Schwarze Meer, im Mittelmeer.</li>
+<li>Prepositions: an die / an der Ostsee (coast, beach); in der Nordsee (in the water); auf dem Meer / auf See (on the water, at sea).</li>
+<li>Ukrainian comparison: море is neuter like das Meer, but озеро (neuter) becomes der See.</li>
+</ul>
+<h2>Mountains, regions and federal states</h2>
+<p>Mountains and ranges always take an article (der Harz, die Alpen); federal states and most regions work like countries, without one (Bayern, Sachsen), except names built on a noun (das Ruhrgebiet).</p>
+<h3>Mountains</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Gender</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Alpen</td>
+<td>plural</td>
+<td>in den Alpen, in die Alpen</td>
+</tr>
+<tr>
+<td>die Karpaten</td>
+<td>plural</td>
+<td>Carpathians (Карпати)</td>
+</tr>
+<tr>
+<td>der Harz</td>
+<td>m</td>
+<td>low mountain range: im Harz</td>
+</tr>
+<tr>
+<td>der Schwarzwald</td>
+<td>m</td>
+<td>Black Forest: im Schwarzwald</td>
+</tr>
+<tr>
+<td>das Erzgebirge</td>
+<td>n</td>
+<td>-gebirge is neuter: im Erzgebirge</td>
+</tr>
+<tr>
+<td>der Brocken</td>
+<td>m</td>
+<td>highest peak of the Harz</td>
+</tr>
+<tr>
+<td>die Zugspitze</td>
+<td>f</td>
+<td>highest mountain in Germany (2962 m): auf der Zugspitze</td>
+</tr>
+<tr>
+<td>der Mount Everest</td>
+<td>m</td>
+<td>auf dem Mount Everest</td>
+</tr>
+<tr>
+<td>das Matterhorn</td>
+<td>n</td>
+<td>-horn is neuter</td>
+</tr>
+<tr>
+<td>der Montblanc</td>
+<td>m</td>
+<td>der Berg = masculine, so most single peaks are der</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Rule of thumb: der Berg (single mountain, mostly m), das Gebirge (range, n), plural names for big ranges (die Alpen, die Anden, die Pyrenäen).</li>
+<li>On a mountain: auf + Dativ (auf dem Brocken); in a range: in + Dativ (in den Alpen).</li>
+</ul>
+<h3>Regions and the 16 Bundesländer</h3>
+<ul>
+<li>das Bundesland (pl. die Bundesländer); Austria has Bundesländer too, Switzerland has Kantone (der Kanton).</li>
+<li>The 16 German states: Baden-Württemberg, Bayern, Berlin, Brandenburg, Bremen, Hamburg, Hessen, Mecklenburg-Vorpommern, Niedersachsen, Nordrhein-Westfalen, Rheinland-Pfalz, das Saarland, Sachsen, Sachsen-Anhalt, Schleswig-Holstein, Thüringen.</li>
+<li>No article: in Bayern, nach Hessen, aus Sachsen. With article: das Saarland (im Saarland, ins Saarland).</li>
+<li>Regions with a noun inside take its gender: das Ruhrgebiet (das Gebiet), der Schwarzwald (der Wald), das Rheinland (das Land). Others just have to be learned with their article: das Allgäu, die Lausitz, die Pfalz.</li>
+<li>Directions: der Norden, Süden, Osten, Westen (all m): im Norden Deutschlands, in Norddeutschland, in Ostdeutschland.</li>
+</ul>
+<h2>Acronyms</h2>
+<p>An acronym takes the gender of its head noun, the last word of the full form: die EU because of die Union, der Pkw because of der Wagen (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full form</th>
+<th>Gender from</th>
+<th>Said as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die EU</td>
+<td>Europäische Union</td>
+<td>die Union</td>
+<td>E-U</td>
+</tr>
+<tr>
+<td>die USA</td>
+<td>Vereinigte Staaten von Amerika</td>
+<td>plural</td>
+<td>U-S-A</td>
+</tr>
+<tr>
+<td>die BRD</td>
+<td>Bundesrepublik Deutschland</td>
+<td>die Republik</td>
+<td>B-R-D</td>
+</tr>
+<tr>
+<td>der ICE</td>
+<td>Intercity-Express</td>
+<td>der Express</td>
+<td>I-C-E</td>
+</tr>
+<tr>
+<td>die DB</td>
+<td>Deutsche Bahn</td>
+<td>die Bahn</td>
+<td>De-Be</td>
+</tr>
+<tr>
+<td>das Kfz</td>
+<td>Kraftfahrzeug</td>
+<td>das Fahrzeug</td>
+<td>Ka-Ef-Zett</td>
+</tr>
+<tr>
+<td>der Pkw</td>
+<td>Personenkraftwagen</td>
+<td>der Wagen</td>
+<td>Pe-Ka-We</td>
+</tr>
+<tr>
+<td>der Lkw</td>
+<td>Lastkraftwagen</td>
+<td>der Wagen</td>
+<td>El-Ka-We</td>
+</tr>
+<tr>
+<td>die WG</td>
+<td>Wohngemeinschaft</td>
+<td>die Gemeinschaft</td>
+<td>We-Ge</td>
+</tr>
+<tr>
+<td>die AG</td>
+<td>Aktiengesellschaft</td>
+<td>die Gesellschaft</td>
+<td>A-Ge</td>
+</tr>
+<tr>
+<td>die GmbH</td>
+<td>Gesellschaft mit beschränkter Haftung</td>
+<td>die Gesellschaft</td>
+<td>Ge-Em-Be-Ha</td>
+</tr>
+<tr>
+<td>das BIP</td>
+<td>Bruttoinlandsprodukt</td>
+<td>das Produkt</td>
+<td>Be-I-Pe</td>
+</tr>
+<tr>
+<td>der TÜV</td>
+<td>Technischer Überwachungsverein</td>
+<td>der Verein</td>
+<td>as a word: Tüf</td>
+</tr>
+<tr>
+<td>die SPD</td>
+<td>Sozialdemokratische Partei Deutschlands</td>
+<td>die Partei</td>
+<td>Es-Pe-De</td>
+</tr>
+<tr>
+<td>die CDU</td>
+<td>Christlich Demokratische Union</td>
+<td>die Union</td>
+<td>Ce-De-U</td>
+</tr>
+<tr>
+<td>der ADAC</td>
+<td>Allgemeiner Deutscher Automobil-Club</td>
+<td>der Club</td>
+<td>A-De-A-Ce</td>
+</tr>
+<tr>
+<td>das ZDF</td>
+<td>Zweites Deutsches Fernsehen</td>
+<td>das Fernsehen</td>
+<td>Zett-De-Ef</td>
+</tr>
+<tr>
+<td>die NATO</td>
+<td>North Atlantic Treaty Organization</td>
+<td>die Organisation</td>
+<td>as a word: Nato</td>
+</tr>
+<tr>
+<td>die UNO</td>
+<td>United Nations Organization</td>
+<td>die Organisation</td>
+<td>as a word: Uno</td>
+</tr>
+<tr>
+<td>der / das PC</td>
+<td>Personal Computer</td>
+<td>der Computer</td>
+<td>Pe-Ce</td>
+</tr>
+<tr>
+<td>die SMS</td>
+<td>Short Message Service</td>
+<td>die Nachricht</td>
+<td>Es-Em-Es</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Plurals: -s, but often none in speech: die Pkws / die Pkw, zwei Lkws, die AGs, die WGs.</li>
+<li>Letter names you need: A (a), B (be), C (ce), D (de), E (e), F (ef), G (ge), H (ha), J (jot), K (ka), Q (ku), R (er), U (u), V (fau), W (we), Y (üpsilon), Z (zett).</li>
+<li>Stress falls on the last letter: die EU (e-U), der ICE (i-ce-E).</li>
+<li>Spoken as a word when it is pronounceable: NATO, UNO, TÜV, Azubi, Kita, BAföG (Bafög).</li>
+</ul>
+<h2>Written abbreviations and short words</h2>
+<p>Written abbreviations end with a dot and are read out in full (z. B. = zum Beispiel); short words like Kita or Uni are real words with their own gender and plural.</p>
+<h3>Abbreviations in writing</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Read as</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>z. B.</td>
+<td>zum Beispiel</td>
+<td>e.g.</td>
+</tr>
+<tr>
+<td>d. h.</td>
+<td>das heißt</td>
+<td>i.e.</td>
+</tr>
+<tr>
+<td>usw.</td>
+<td>und so weiter</td>
+<td>etc.</td>
+</tr>
+<tr>
+<td>bzw.</td>
+<td>beziehungsweise</td>
+<td>or rather / respectively</td>
+</tr>
+<tr>
+<td>ca.</td>
+<td>circa</td>
+<td>approx.</td>
+</tr>
+<tr>
+<td>ggf.</td>
+<td>gegebenenfalls</td>
+<td>if necessary</td>
+</tr>
+<tr>
+<td>u. a.</td>
+<td>unter anderem / und andere</td>
+<td>among other things</td>
+</tr>
+<tr>
+<td>evtl.</td>
+<td>eventuell</td>
+<td>possibly (not "eventually"!)</td>
+</tr>
+<tr>
+<td>inkl.</td>
+<td>inklusive</td>
+<td>incl.</td>
+</tr>
+<tr>
+<td>MwSt.</td>
+<td>Mehrwertsteuer</td>
+<td>VAT</td>
+</tr>
+<tr>
+<td>Nr.</td>
+<td>Nummer</td>
+<td>No.</td>
+</tr>
+<tr>
+<td>Str.</td>
+<td>Straße</td>
+<td>St.</td>
+</tr>
+<tr>
+<td>Tel.</td>
+<td>Telefon</td>
+<td>tel.</td>
+</tr>
+<tr>
+<td>z. Hd.</td>
+<td>zu Händen</td>
+<td>attn.</td>
+</tr>
+<tr>
+<td>v. a.</td>
+<td>vor allem</td>
+<td>above all</td>
+</tr>
+<tr>
+<td>s. o. / s. u.</td>
+<td>siehe oben / siehe unten</td>
+<td>see above / below</td>
+</tr>
+<tr>
+<td>Mo., Di., Mi., Do., Fr., Sa., So.</td>
+<td>weekdays</td>
+<td>Mon. to Sun.</td>
+</tr>
+<tr>
+<td>Hbf.</td>
+<td>Hauptbahnhof</td>
+<td>central station</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Official spelling puts a space inside: z. B., d. h., u. a. (zB without dots is informal chat style).</li>
+<li>MwSt. ends in a dot even though it ends with a capital: inkl. 19 % MwSt.</li>
+<li>At the end of a sentence, one dot is enough: Wir brauchen Brot, Milch usw.</li>
+</ul>
+<h3>Short words</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Short word</th>
+<th>Full form</th>
+<th>Gender, plural</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Kita</td>
+<td>Kindertagesstätte</td>
+<td>die Kitas</td>
+<td>daycare</td>
+</tr>
+<tr>
+<td>die Uni</td>
+<td>Universität</td>
+<td>die Unis</td>
+<td>university</td>
+</tr>
+<tr>
+<td>der Azubi</td>
+<td>Auszubildende(r)</td>
+<td>die Azubis</td>
+<td>apprentice (also: die Azubi)</td>
+</tr>
+<tr>
+<td>das Abi</td>
+<td>Abitur</td>
+<td>(no plural)</td>
+<td>school-leaving exam</td>
+</tr>
+<tr>
+<td>das Bafög / BAföG</td>
+<td>Bundesausbildungsförderungsgesetz</td>
+<td>(no plural)</td>
+<td>state student grant</td>
+</tr>
+<tr>
+<td>das Kfz</td>
+<td>Kraftfahrzeug</td>
+<td>die Kfz / Kfzs</td>
+<td>motor vehicle</td>
+</tr>
+<tr>
+<td>die Kripo</td>
+<td>Kriminalpolizei</td>
+<td>(no plural)</td>
+<td>criminal police</td>
+</tr>
+<tr>
+<td>der Akku</td>
+<td>Akkumulator</td>
+<td>die Akkus</td>
+<td>rechargeable battery</td>
+</tr>
+<tr>
+<td>das Labor</td>
+<td>Laboratorium</td>
+<td>die Labore</td>
+<td>lab</td>
+</tr>
+<tr>
+<td>das Handy</td>
+<td>(pseudo-English)</td>
+<td>die Handys</td>
+<td>mobile phone</td>
+</tr>
+<tr>
+<td>das Auto</td>
+<td>Automobil</td>
+<td>die Autos</td>
+<td>car</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Short words keep the gender of the full word: die Universität, so die Uni; das Abitur, so das Abi.</li>
+<li>"Handy" is not English in this meaning: English speakers say mobile / cell phone.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>City adjectives in -er: the full rules</h3>
+<p>City name + -er gives an adjective that is capitalised, written as a separate word and never declined, whatever the gender, case or number of the noun.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>City</th>
+<th>-er form</th>
+<th>Fixed phrases</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Berlin</td>
+<td>Berliner</td>
+<td>die Berliner Mauer, die Berliner Philharmoniker</td>
+<td>the Berlin Wall, the Berlin Philharmonic</td>
+</tr>
+<tr>
+<td>Wien</td>
+<td>Wiener</td>
+<td>das Wiener Schnitzel, der Wiener Kongress</td>
+<td>Viennese schnitzel, the Congress of Vienna</td>
+</tr>
+<tr>
+<td>Frankfurt</td>
+<td>Frankfurter</td>
+<td>die Frankfurter Allgemeine Zeitung (FAZ), die Frankfurter Buchmesse</td>
+<td>Frankfurt newspaper, Frankfurt Book Fair</td>
+</tr>
+<tr>
+<td>Hamburg</td>
+<td>Hamburger</td>
+<td>der Hamburger Hafen</td>
+<td>the port of Hamburg</td>
+</tr>
+<tr>
+<td>Köln</td>
+<td>Kölner</td>
+<td>der Kölner Dom</td>
+<td>Cologne Cathedral</td>
+</tr>
+<tr>
+<td>München</td>
+<td>Münchner (also Münchener)</td>
+<td>das Münchner Oktoberfest</td>
+<td>the Munich Oktoberfest</td>
+</tr>
+<tr>
+<td>Dresden</td>
+<td>Dresdner</td>
+<td>die Dresdner Frauenkirche, der Dresdner Stollen</td>
+<td>Dresden's Church of Our Lady, Dresden stollen</td>
+</tr>
+<tr>
+<td>Nürnberg</td>
+<td>Nürnberger</td>
+<td>die Nürnberger Prozesse</td>
+<td>the Nuremberg trials</td>
+</tr>
+<tr>
+<td>Weimar</td>
+<td>Weimarer</td>
+<td>die Weimarer Republik</td>
+<td>the Weimar Republic</td>
+</tr>
+<tr>
+<td>Zürich</td>
+<td>Zürcher (in Germany also Züricher)</td>
+<td>die Neue Zürcher Zeitung (NZZ)</td>
+<td>Zurich newspaper</td>
+</tr>
+<tr>
+<td>Kyjiw</td>
+<td>Kyjiwer</td>
+<td>die Kyjiwer Innenstadt</td>
+<td>central Kyiv</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>No endings, ever: mit der Berliner Mauer, des Kölner Doms, in Wiener Cafés. Compare a normal adjective: in alten Cafés.</li>
+<li>Cities in -en often lose it: Bremen → Bremer, Dresden → Dresdner, Göttingen → Göttinger; but Essen → Essener.</li>
+<li>The same form is the resident noun, which does decline: der Berliner, die Berlinerin, mit den Berlinern. The adjective has no feminine: die Berliner Polizei, never "Berlinerin Polizei".</li>
+<li>Regions and one country work the same way: Schweizer Käse, der Schweizer Franken, Thüringer Rostbratwurst, Schwarzwälder Kirschtorte, Allgäuer Käse.</li>
+<li>Food named after cities: das Wiener Würstchen (in Vienna itself: Frankfurter), der Hamburger, der Berliner (a doughnut in many regions; in Berlin itself: Pfannkuchen).</li>
+<li>Kennedy's "Ich bin ein Berliner" (1963) was correct German for "I am a Berliner"; the doughnut joke is a myth.</li>
+<li>Ukrainian comparison: Ukrainian makes a declined adjective (київський, львівська); German freezes the -er form, so think of it as part of a name.</li>
+</ul>
+<h3>History and politics: names you will read</h3>
+<p>Historical and political names (states, eras, events) always take an article, like die Ukraine: in der DDR, im Kaiserreich, nach der Wende.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Article</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Heilige Römische Reich (Deutscher Nation)</td>
+<td>n</td>
+<td>Holy Roman Empire, until 1806</td>
+<td>im Heiligen Römischen Reich</td>
+</tr>
+<tr>
+<td>das Kaiserreich (das Deutsche Kaiserreich)</td>
+<td>n</td>
+<td>German Empire, 1871 to 1918</td>
+<td>im Kaiserreich</td>
+</tr>
+<tr>
+<td>die Weimarer Republik</td>
+<td>f</td>
+<td>first German democracy, 1919 to 1933</td>
+<td>in der Weimarer Republik</td>
+</tr>
+<tr>
+<td>die NS-Zeit / der Nationalsozialismus</td>
+<td>f / m</td>
+<td>Nazi era, 1933 to 1945 (historians avoid "das Dritte Reich" without quotation marks)</td>
+<td>in der NS-Zeit</td>
+</tr>
+<tr>
+<td>die Nachkriegszeit</td>
+<td>f</td>
+<td>post-war period</td>
+<td>in der Nachkriegszeit</td>
+</tr>
+<tr>
+<td>die DDR (Deutsche Demokratische Republik)</td>
+<td>f</td>
+<td>East Germany, 1949 to 1990</td>
+<td>Sie ist in der DDR aufgewachsen.</td>
+</tr>
+<tr>
+<td>die BRD (Bundesrepublik Deutschland)</td>
+<td>f</td>
+<td>official name of (West) Germany since 1949</td>
+<td>die alte BRD = West Germany before 1990</td>
+</tr>
+<tr>
+<td>die Mauer / der Mauerfall</td>
+<td>f / m</td>
+<td>the Wall / its fall on 9 November 1989</td>
+<td>nach dem Mauerfall</td>
+</tr>
+<tr>
+<td>die Wende</td>
+<td>f</td>
+<td>the turn of 1989/90: end of SED rule, fall of the Wall</td>
+<td>vor der Wende, nach der Wende</td>
+</tr>
+<tr>
+<td>die Wiedervereinigung</td>
+<td>f</td>
+<td>reunification, 3 October 1990 (Tag der Deutschen Einheit)</td>
+<td>seit der Wiedervereinigung</td>
+</tr>
+<tr>
+<td>die neuen Bundesländer</td>
+<td>pl</td>
+<td>the five eastern states</td>
+<td>in den neuen Bundesländern</td>
+</tr>
+<tr>
+<td>die Bonner Republik / die Berliner Republik</td>
+<td>f</td>
+<td>West Germany with Bonn as capital / Germany since the move to Berlin</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Germans rarely call their own country "die BRD" today: they say Deutschland or die Bundesrepublik; "BRD" can sound dated or, in some circles, polemical.</li>
+<li>"Die ehemalige DDR" (the former GDR) is the usual way to refer to it now; adjective: ostdeutsch, DDR-Bürger, DDR-Zeit.</li>
+<li>Ossi / Wessi (East / West German) are colloquial and can be mildly pejorative; Ostdeutsche / Westdeutsche is neutral.</li>
+<li>"Die Wende" can also mean any turning point; with the article and no context it means 1989.</li>
+<li>Ukrainian comparison: like УРСР / СРСР, these are names of a past state; German simply adds the article: in der DDR = в НДР.</li>
+</ul>
+<h3>Austrian and Swiss German</h3>
+<p>German has three national standards: Austrian and Swiss words below are correct standard German in their country, not dialect, and you will meet them in texts, menus and exams.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Germany</th>
+<th>Austria</th>
+<th>Switzerland</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Januar</td>
+<td>der Jänner</td>
+<td>der Januar</td>
+<td>January</td>
+</tr>
+<tr>
+<td>das Abitur</td>
+<td>die Matura</td>
+<td>die Matura (also: die Matur)</td>
+<td>school-leaving exam</td>
+</tr>
+<tr>
+<td>das Fahrrad</td>
+<td>das Fahrrad (colloquial: das Radl)</td>
+<td>das Velo</td>
+<td>bicycle</td>
+</tr>
+<tr>
+<td>Guten Tag / Hallo</td>
+<td>Grüß Gott / Servus</td>
+<td>Grüezi (formal), Hoi / Sali (informal)</td>
+<td>hello</td>
+</tr>
+<tr>
+<td>Tschüss</td>
+<td>Servus / Baba (colloquial)</td>
+<td>Adieu / Tschüss / Ciao</td>
+<td>bye</td>
+</tr>
+<tr>
+<td>die Kartoffel</td>
+<td>der Erdapfel (also: die Kartoffel)</td>
+<td>die Kartoffel</td>
+<td>potato</td>
+</tr>
+<tr>
+<td>die Tomate</td>
+<td>der Paradeiser (also: die Tomate)</td>
+<td>die Tomate</td>
+<td>tomato</td>
+</tr>
+<tr>
+<td>die Sahne</td>
+<td>das Obers / das Schlagobers</td>
+<td>der Rahm</td>
+<td>cream</td>
+</tr>
+<tr>
+<td>das Brötchen</td>
+<td>die Semmel</td>
+<td>das Brötchen / das Brötli</td>
+<td>bread roll</td>
+</tr>
+<tr>
+<td>die Aprikose</td>
+<td>die Marille</td>
+<td>die Aprikose</td>
+<td>apricot</td>
+</tr>
+<tr>
+<td>der Quark</td>
+<td>der Topfen</td>
+<td>der Quark</td>
+<td>quark</td>
+</tr>
+<tr>
+<td>die Tüte</td>
+<td>das Sackerl</td>
+<td>der Sack / das Säckli</td>
+<td>(plastic) bag</td>
+</tr>
+<tr>
+<td>das Krankenhaus</td>
+<td>das Spital / das Krankenhaus</td>
+<td>das Spital</td>
+<td>hospital</td>
+</tr>
+<tr>
+<td>parken</td>
+<td>parken</td>
+<td>parkieren</td>
+<td>to park</td>
+</tr>
+<tr>
+<td>der Bürgersteig / der Gehweg</td>
+<td>der Gehsteig</td>
+<td>das Trottoir</td>
+<td>pavement</td>
+</tr>
+<tr>
+<td>die Fahrkarte</td>
+<td>der Fahrschein / die Fahrkarte</td>
+<td>das Billett</td>
+<td>ticket</td>
+</tr>
+<tr>
+<td>die Straßenbahn / die Tram</td>
+<td>die Bim (colloquial), die Straßenbahn</td>
+<td>das Tram</td>
+<td>tram</td>
+</tr>
+<tr>
+<td>dieses Jahr</td>
+<td>heuer</td>
+<td>dieses Jahr</td>
+<td>this year</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Swiss Standard German has no ß: Strasse, gross, Fussball. Do not copy this in German exams.</li>
+<li>Gender can differ: die E-Mail (Germany) but often das E-Mail (Austria, Switzerland); die Tram vs das Tram.</li>
+<li>Austrian school grades run 1 (Sehr gut) to 5 (Nicht genügend); Switzerland runs the other way, 6 best and 4 a pass.</li>
+<li>Grüezi and Hoi are Swiss German (dialect) greetings used by everyone, also when speaking standard German.</li>
+<li>Ukrainian comparison: think of a western Ukrainian word like файно, regional but understood everywhere; the difference is that Austrian words like Jänner and Matura are official, used in law and on forms.</li>
+</ul>
+<h3>Genitive of names</h3>
+<p>Names without an article add -s (Deutschlands, Berlins); names with an article show the case on the article, so feminine and plural names add nothing (der Ukraine, der USA).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Genitive</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Country or city, no article</td>
+<td>-s</td>
+<td>Deutschlands Wirtschaft, die Hauptstadt Österreichs, die Geschichte Kyjiws</td>
+</tr>
+<tr>
+<td>Ends in -s, -ß, -x, -z</td>
+<td>apostrophe, or von + Dativ</td>
+<td>Paris' Museen, die Museen von Paris</td>
+</tr>
+<tr>
+<td>Feminine with article</td>
+<td>der, no ending</td>
+<td>die Geschichte der Ukraine, die Berge der Schweiz</td>
+</tr>
+<tr>
+<td>Plural with article</td>
+<td>der, no ending</td>
+<td>die Politik der USA, die Grachten der Niederlande</td>
+</tr>
+<tr>
+<td>Masculine with article</td>
+<td>des + -s</td>
+<td>die Ufer des Rheins, die Quelle des Mains, des Irans (also: des Iran)</td>
+</tr>
+<tr>
+<td>With an adjective</td>
+<td>des + adjective -en, -s optional</td>
+<td>des heutigen Deutschlands / des heutigen Deutschland</td>
+</tr>
+<tr>
+<td>Acronym with article</td>
+<td>usually no -s</td>
+<td>des ICE, des BIP, der EU-Kommission (des Pkws is also correct)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Name first or second: Berlins Museen (more literary) = die Museen Berlins (neutral) = die Museen von Berlin (spoken).</li>
+<li>With a person's name the same rule applies: Merkels Politik, Goethes Werke; never with an apostrophe ("Goethe's" is an English habit and counts as a mistake), except after s / x / z: Marx' Theorie.</li>
+<li>Spoken German replaces the genitive with von + Dativ almost everywhere; in B2 writing (letters, essays, Grafikbeschreibung) the genitive looks better: die Bevölkerung Deutschlands, not die Bevölkerung von Deutschland.</li>
+<li>Ukrainian comparison: історія України = die Geschichte der Ukraine: Ukrainian changes the noun, German changes the article.</li>
+</ul>
+<h3>Institutions, parties and media</h3>
+<p>The acronym rule from above still decides the gender (die Partei, das Amt, die Kammer), and these are the names a B2 reader meets in news, forms and daily life in Germany.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Acronym</th>
+<th>Full form</th>
+<th>Gender</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das BAföG</td>
+<td>Bundesausbildungsförderungsgesetz</td>
+<td>n (das Gesetz)</td>
+<td>state support for students; also the money itself: Ich bekomme BAföG.</td>
+</tr>
+<tr>
+<td>der Rundfunkbeitrag ("die GEZ")</td>
+<td>Gebühreneinzugszentrale</td>
+<td>m / f</td>
+<td>broadcasting fee paid per household; the collecting office is now called Beitragsservice, but people still say "GEZ"</td>
+</tr>
+<tr>
+<td>die IHK</td>
+<td>Industrie- und Handelskammer</td>
+<td>f (die Kammer)</td>
+<td>chamber of commerce: runs Ausbildung exams, checks foreign qualifications</td>
+</tr>
+<tr>
+<td>die HWK</td>
+<td>Handwerkskammer</td>
+<td>f</td>
+<td>chamber of crafts (electricians, bakers, hairdressers)</td>
+</tr>
+<tr>
+<td>das BAMF</td>
+<td>Bundesamt für Migration und Flüchtlinge</td>
+<td>n (das Amt)</td>
+<td>federal migration office: asylum, integration courses</td>
+</tr>
+<tr>
+<td>die ARD</td>
+<td>Arbeitsgemeinschaft der öffentlich-rechtlichen Rundfunkanstalten der Bundesrepublik Deutschland</td>
+<td>f</td>
+<td>public broadcaster: Das Erste, Tagesschau</td>
+</tr>
+<tr>
+<td>die dpa</td>
+<td>Deutsche Presse-Agentur</td>
+<td>f</td>
+<td>national news agency</td>
+</tr>
+<tr>
+<td>der DGB</td>
+<td>Deutscher Gewerkschaftsbund</td>
+<td>m (der Bund)</td>
+<td>trade union federation</td>
+</tr>
+<tr>
+<td>die AOK</td>
+<td>Allgemeine Ortskrankenkasse</td>
+<td>f (die Kasse)</td>
+<td>the largest public health insurer</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Parties</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Party</th>
+<th>Full form</th>
+<th>Grammar</th>
+<th>Colour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die CDU</td>
+<td>Christlich Demokratische Union Deutschlands</td>
+<td>f; with the CSU = die Union</td>
+<td>schwarz</td>
+</tr>
+<tr>
+<td>die CSU</td>
+<td>Christlich-Soziale Union in Bayern</td>
+<td>f; only in Bavaria</td>
+<td>schwarz</td>
+</tr>
+<tr>
+<td>die SPD</td>
+<td>Sozialdemokratische Partei Deutschlands</td>
+<td>f</td>
+<td>rot</td>
+</tr>
+<tr>
+<td>die FDP</td>
+<td>Freie Demokratische Partei</td>
+<td>f</td>
+<td>gelb</td>
+</tr>
+<tr>
+<td>die Grünen</td>
+<td>Bündnis 90/Die Grünen</td>
+<td>plural: Die Grünen sind ..., mit den Grünen</td>
+<td>grün</td>
+</tr>
+<tr>
+<td>die Linke</td>
+<td>Die Linke</td>
+<td>singular, adjective endings: mit der Linken, ein Linker (a left-wing person)</td>
+<td>rot (in charts often magenta)</td>
+</tr>
+<tr>
+<td>die AfD</td>
+<td>Alternative für Deutschland</td>
+<td>f (die Alternative)</td>
+<td>blau</td>
+</tr>
+<tr>
+<td>das BSW</td>
+<td>Bündnis Sahra Wagenknecht</td>
+<td>n (das Bündnis)</td>
+<td>violett</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Members and adjectives: der CDU-Politiker, die SPD-Abgeordnete, ein Grüner (a Green politician); sozialdemokratisch, christdemokratisch, liberal.</li>
+<li>Coalitions are named by colours: die Ampel (SPD, Grüne, FDP), die große Koalition or GroKo (CDU/CSU and SPD), Schwarz-Grün.</li>
+<li>Spoken letters as usual: Ce-De-U, Es-Pe-De, Ef-De-Pe, A-Ef-De; but das BAföG is said as a word (Bafög).</li>
+</ul>
+<h3>Writing abbreviations: the Duden rules</h3>
+<p>An abbreviation you read out in full takes a dot (z. B., Nr.); one you spell or say as a word takes none (EU, Lkw, BAföG); units of measure never take a dot (km, kg, min).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Right</th>
+<th>Wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read in full = dot</td>
+<td>z. B., Dr., Nr., Str., vgl.</td>
+<td>z.B (no final dot)</td>
+</tr>
+<tr>
+<td>Several words = dot after each, with a space</td>
+<td>z. B., d. h., u. a., i. A.</td>
+<td>zB, z.B. (informal only)</td>
+</tr>
+<tr>
+<td>Spelled out or said as a word = no dot</td>
+<td>EU, GmbH, Lkw, TÜV, NATO</td>
+<td>E.U., G.m.b.H.</td>
+</tr>
+<tr>
+<td>Units and currency codes = no dot</td>
+<td>5 km, 200 g, 30 min, 10 EUR</td>
+<td>5 km., 10 EUR.</td>
+</tr>
+<tr>
+<td>Plural and genitive -s, no apostrophe</td>
+<td>die Pkws, des Lkws</td>
+<td>die Pkw's (the "Deppenapostroph")</td>
+</tr>
+<tr>
+<td>Compounds = hyphen</td>
+<td>EU-Kommission, SPD-Vorsitzende, Kfz-Steuer, US-amerikanisch</td>
+<td>EU Kommission</td>
+</tr>
+<tr>
+<td>Sentence end = one dot</td>
+<td>... Brot, Milch usw.</td>
+<td>... usw..</td>
+</tr>
+<tr>
+<td>Sentence start = write it out</td>
+<td>Zum Beispiel ...</td>
+<td>Z. B. ... (allowed, but clumsy)</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Abbreviations in official letters</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Read as</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i. A.</td>
+<td>im Auftrag</td>
+<td>on behalf of (signing for someone)</td>
+</tr>
+<tr>
+<td>i. V.</td>
+<td>in Vertretung</td>
+<td>as deputy for</td>
+</tr>
+<tr>
+<td>gem.</td>
+<td>gemäß</td>
+<td>according to</td>
+</tr>
+<tr>
+<td>lt.</td>
+<td>laut</td>
+<td>according to</td>
+</tr>
+<tr>
+<td>bzgl.</td>
+<td>bezüglich</td>
+<td>regarding</td>
+</tr>
+<tr>
+<td>Abs.</td>
+<td>Absatz</td>
+<td>paragraph (of a law)</td>
+</tr>
+<tr>
+<td>Az.</td>
+<td>Aktenzeichen</td>
+<td>reference number</td>
+</tr>
+<tr>
+<td>Anl.</td>
+<td>Anlage</td>
+<td>enclosure</td>
+</tr>
+<tr>
+<td>vgl.</td>
+<td>vergleiche</td>
+<td>cf.</td>
+</tr>
+<tr>
+<td>o. Ä.</td>
+<td>oder Ähnliches</td>
+<td>or similar</td>
+</tr>
+<tr>
+<td>i. d. R.</td>
+<td>in der Regel</td>
+<td>as a rule</td>
+</tr>
+<tr>
+<td>u. U.</td>
+<td>unter Umständen</td>
+<td>possibly, under certain circumstances</td>
+</tr>
+<tr>
+<td>z. T.</td>
+<td>zum Teil</td>
+<td>partly</td>
+</tr>
+<tr>
+<td>S. / ff.</td>
+<td>Seite / folgende</td>
+<td>page / and following pages (S. 12 ff.)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Laws are cited as "§ 5 Abs. 2 AufenthG" = Paragraf fünf, Absatz zwei, Aufenthaltsgesetz.</li>
+<li>Mixed spellings are kept as registered: GmbH, BAföG (Duden also accepts Bafög).</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: in / nach / aus and an + Dativ behind the country and river tables</li>
+<li><a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>: gender rules and the n-Deklination of Pole, Franzose, Russe</li>
+<li><a href="../docs/articles.html">German article tables (B1)</a>: article and adjective endings for das heutige Deutschland, der Ukraine</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: the -er, -in and -isch suffixes behind nationality words</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: official letters where i. A., gem. and the genitive appear</li>
+<li><a href="../docs/gotchas.html">Gotchas and false friends</a>: evtl. and Handy-type traps</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/names.html">Names quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

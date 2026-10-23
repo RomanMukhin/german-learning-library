@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prefixes and vowel changes · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Prefixes and vowel changes</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Prefixes and vowel changes</h1></header>
+<article class="prose card">
+<p>A German prefix changes what a verb means, and whether it is separable decides where it goes in the sentence and how the participle looks.</p>
+<h2>Separable prefixes</h2>
+<p>Separable prefixes are stressed, jump to the end of a main clause (see <a href="../docs/word-order.html">Word order</a>), and take -ge- in the middle of the participle: ankommen → Der Zug kommt an → Der Zug ist angekommen. Most of them are ordinary prepositions or adverbs, so their meaning is often guessable.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Present, main clause</td>
+<td>Ich stehe um sechs Uhr auf.</td>
+<td>I get up at six.</td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td>Ich bin um sechs Uhr aufgestanden.</td>
+<td>I got up at six.</td>
+</tr>
+<tr>
+<td>Subordinate clause</td>
+<td>..., weil ich um sechs Uhr aufstehe.</td>
+<td>... because I get up at six.</td>
+</tr>
+<tr>
+<td>Modal verb</td>
+<td>Ich muss morgen früh aufstehen.</td>
+<td>I have to get up early tomorrow.</td>
+</tr>
+<tr>
+<td>zu-infinitive</td>
+<td>Es ist schwer, früh aufzustehen.</td>
+<td>It's hard to get up early.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Core idea</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>an-</td>
+<td>start, contact, towards</td>
+<td>anfangen (begin), ankommen (arrive), anrufen (call), anmachen (switch on), anziehen (put on), ansehen (look at)</td>
+</tr>
+<tr>
+<td>auf-</td>
+<td>up, open, finished</td>
+<td>aufstehen (get up), aufmachen (open), aufwachen (wake up), aufhören (stop), aufräumen (tidy up), aufpassen (pay attention), aufschreiben (write down)</td>
+</tr>
+<tr>
+<td>aus-</td>
+<td>out, off, to the end</td>
+<td>ausgehen (go out), aussteigen (get off), ausmachen (switch off), ausfüllen (fill in), ausgeben (spend), aussehen (look, appear), ausschlafen (sleep in)</td>
+</tr>
+<tr>
+<td>ab-</td>
+<td>away, off, down</td>
+<td>abfahren (depart), abholen (pick up), absagen (cancel), abschließen (lock; complete), abwaschen (wash up), abnehmen (lose weight; answer the phone)</td>
+</tr>
+<tr>
+<td>ein-</td>
+<td>in, into</td>
+<td>einsteigen (get on), einkaufen (shop), einladen (invite), einschlafen (fall asleep), einziehen (move in), einpacken (pack)</td>
+</tr>
+<tr>
+<td>mit-</td>
+<td>along, together</td>
+<td>mitkommen (come along), mitnehmen (take along), mitbringen (bring along), mitmachen (join in), mitteilen (inform)</td>
+</tr>
+<tr>
+<td>vor-</td>
+<td>before, forward</td>
+<td>vorbereiten (prepare), vorstellen (introduce), vorschlagen (suggest), vorhaben (plan), vorlesen (read aloud)</td>
+</tr>
+<tr>
+<td>zu-</td>
+<td>closed, towards</td>
+<td>zumachen (close), zuhören (listen, + Dat), zuschauen (watch), zunehmen (gain weight), zustimmen (agree, + Dat)</td>
+</tr>
+<tr>
+<td>nach-</td>
+<td>after, following, copying</td>
+<td>nachdenken (think over), nachfragen (ask again), nachmachen (imitate), nachschlagen (look up)</td>
+</tr>
+<tr>
+<td>zurück-</td>
+<td>back</td>
+<td>zurückkommen (come back), zurückgeben (give back), zurückrufen (call back)</td>
+</tr>
+<tr>
+<td>weg-</td>
+<td>away, gone</td>
+<td>weggehen (leave), wegwerfen (throw away), wegfahren (drive away), weglaufen (run away)</td>
+</tr>
+<tr>
+<td>los-</td>
+<td>off, starting</td>
+<td>losgehen (set off; start), losfahren (drive off), loslassen (let go)</td>
+</tr>
+<tr>
+<td>fern-</td>
+<td>far</td>
+<td>fernsehen (watch TV)</td>
+</tr>
+<tr>
+<td>her- / hin-</td>
+<td>towards / away from the speaker</td>
+<td>herkommen (come here), hingehen (go there), herunterladen (download)</td>
+</tr>
+<tr>
+<td>zusammen-</td>
+<td>together</td>
+<td>zusammenarbeiten (cooperate), zusammenfassen (summarise)</td>
+</tr>
+<tr>
+<td>bei- / weiter- / fest-</td>
+<td>by / further / fixed</td>
+<td>beibringen (teach), weitermachen (carry on), feststellen (find out, establish)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Es geht los! = Here we go / It's starting.</li>
+<li>Sich vorstellen has two meanings: Ich stelle mich vor (I introduce myself, Akk) vs Ich stelle mir das vor (I imagine it, Dat).</li>
+<li>abnehmen depends on context: Ich habe drei Kilo abgenommen (lost weight); Niemand nimmt ab (nobody answers the phone).</li>
+</ul>
+<h2>Inseparable prefixes</h2>
+<p>be-, ver-, er-, ent-, emp-, zer-, ge- and miss- never split off, are never stressed, and their participle has no ge-: besuchen → hat besucht, verstehen → hat verstanden. Their meanings are tendencies, not laws, but the tendencies help a lot.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Tendency</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>be-</td>
+<td>makes a verb take a direct (Akk) object; "act on something"</td>
+<td>antworten auf → eine Frage beantworten; besuchen (visit), bezahlen (pay for), beschreiben (describe), bemerken (notice), bestellen (order), behalten (keep), bekommen (get, receive)</td>
+</tr>
+<tr>
+<td>ver- (mistake)</td>
+<td>doing it wrong</td>
+<td>sich verlaufen (get lost on foot), sich verfahren (get lost driving), verschlafen (oversleep), sich versprechen (misspeak), sich verhören (mishear)</td>
+</tr>
+<tr>
+<td>ver- (away, used up)</td>
+<td>losing, giving away, ending</td>
+<td>verlieren (lose), verkaufen (sell), vermieten (rent out), verbrauchen (use up), verschwinden (disappear), verlassen (leave)</td>
+</tr>
+<tr>
+<td>ver- (change of state)</td>
+<td>making something more X</td>
+<td>verbessern (improve), vergrößern (enlarge), verlängern (extend), verändern (change)</td>
+</tr>
+<tr>
+<td>ver- (no clear pattern)</td>
+<td>learn as vocabulary</td>
+<td>verstehen (understand), versuchen (try), verbringen (spend time), verdienen (earn), verbieten (forbid)</td>
+</tr>
+<tr>
+<td>er-</td>
+<td>reaching a result</td>
+<td>erreichen (reach), erkennen (recognise), erklären (explain), erfinden (invent), erhalten (receive), erleben (experience), erzählen (tell), erwarten (expect)</td>
+</tr>
+<tr>
+<td>ent-</td>
+<td>away, removing, undoing</td>
+<td>entfernen (remove), entdecken (discover, literally un-cover), entwickeln (develop, literally un-wrap), entlassen (dismiss), sich entspannen (relax), enttäuschen (disappoint), entscheiden (decide)</td>
+</tr>
+<tr>
+<td>emp-</td>
+<td>ent- before f</td>
+<td>empfehlen (recommend), empfangen (receive, welcome), empfinden (feel)</td>
+</tr>
+<tr>
+<td>zer-</td>
+<td>to pieces</td>
+<td>zerbrechen (shatter), zerstören (destroy), zerreißen (tear up), zerschneiden (cut up)</td>
+</tr>
+<tr>
+<td>ge-</td>
+<td>no live meaning; fixed verbs</td>
+<td>gehören (belong, + Dat), gefallen (please, + Dat), gewinnen (win), genießen (enjoy), gelingen (succeed), gestehen (confess)</td>
+</tr>
+<tr>
+<td>miss-</td>
+<td>wrongly, badly</td>
+<td>missverstehen (misunderstand), misstrauen (distrust, + Dat), misslingen (fail), missbrauchen (abuse)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Participles without ge-</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Perfekt</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>besuchen</td>
+<td>Ich habe meine Oma besucht.</td>
+<td>I visited my grandma.</td>
+</tr>
+<tr>
+<td>bekommen</td>
+<td>Ich habe dein Paket bekommen.</td>
+<td>I got your parcel.</td>
+</tr>
+<tr>
+<td>verstehen</td>
+<td>Ich habe das nicht verstanden.</td>
+<td>I didn't understand that.</td>
+</tr>
+<tr>
+<td>vergessen</td>
+<td>Ich habe den Schlüssel vergessen.</td>
+<td>I forgot the key.</td>
+</tr>
+<tr>
+<td>erzählen</td>
+<td>Sie hat mir alles erzählt.</td>
+<td>She told me everything.</td>
+</tr>
+<tr>
+<td>entscheiden</td>
+<td>Wir haben uns entschieden.</td>
+<td>We have decided.</td>
+</tr>
+<tr>
+<td>zerbrechen</td>
+<td>Die Tasse ist zerbrochen.</td>
+<td>The cup broke.</td>
+</tr>
+<tr>
+<td>gefallen</td>
+<td>Der Film hat mir gefallen.</td>
+<td>I liked the film.</td>
+</tr>
+<tr>
+<td>missverstehen</td>
+<td>Du hast mich missverstanden.</td>
+<td>You misunderstood me.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Same rule as -ieren verbs: no ge- when the first syllable is unstressed (studiert, besucht).</li>
+<li>zu-infinitive goes in front: Ich habe vergessen, dich anzurufen (separable) vs Ich versuche, es zu verstehen (inseparable).</li>
+<li>Two "spend" verbs: Zeit verbringen, Geld ausgeben.</li>
+<li>mieten = to rent (as tenant); vermieten = to rent out (as landlord), der Vermieter = landlord.</li>
+</ul>
+<h2>Dual prefixes: über, unter, um, durch, wieder</h2>
+<p>These five can be separable or inseparable, and stress tells you which: stress on the prefix = separable, usually literal; stress on the verb = inseparable, usually figurative, with no ge- in the participle. Below, the stressed syllable is in CAPITALS.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Perfekt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UMfahren</td>
+<td>separable</td>
+<td>to knock down (with a vehicle)</td>
+<td>Er fährt das Schild um.</td>
+<td>hat umgefahren</td>
+</tr>
+<tr>
+<td>umFAHren</td>
+<td>inseparable</td>
+<td>to drive around, bypass</td>
+<td>Wir umfahren den Stau.</td>
+<td>hat umfahren</td>
+</tr>
+<tr>
+<td>UMgehen (mit)</td>
+<td>separable</td>
+<td>to deal with, handle</td>
+<td>Sie geht gut mit Stress um.</td>
+<td>ist umgegangen</td>
+</tr>
+<tr>
+<td>umGEhen</td>
+<td>inseparable</td>
+<td>to avoid, get around (a rule)</td>
+<td>Er umgeht das Problem.</td>
+<td>hat umgangen</td>
+</tr>
+<tr>
+<td>ÜBERsetzen</td>
+<td>separable</td>
+<td>to ferry across</td>
+<td>Die Fähre setzt uns über.</td>
+<td>hat / ist übergesetzt</td>
+</tr>
+<tr>
+<td>überSETzen</td>
+<td>inseparable</td>
+<td>to translate</td>
+<td>Ich übersetze den Brief.</td>
+<td>hat übersetzt</td>
+</tr>
+<tr>
+<td>ÜBERziehen</td>
+<td>separable</td>
+<td>to put on (over something)</td>
+<td>Zieh dir eine Jacke über!</td>
+<td>hat übergezogen</td>
+</tr>
+<tr>
+<td>überZIEhen</td>
+<td>inseparable</td>
+<td>to overdraw (an account)</td>
+<td>Ich habe mein Konto überzogen.</td>
+<td>hat überzogen</td>
+</tr>
+<tr>
+<td>DURCHfahren</td>
+<td>separable</td>
+<td>to go straight through without stopping</td>
+<td>Der Zug fährt hier durch.</td>
+<td>ist durchgefahren</td>
+</tr>
+<tr>
+<td>durchFAHren</td>
+<td>inseparable</td>
+<td>to travel all across</td>
+<td>Wir haben ganz Europa durchfahren.</td>
+<td>hat durchfahren</td>
+</tr>
+<tr>
+<td>UNterhalten</td>
+<td>separable</td>
+<td>to hold underneath</td>
+<td>Halt mal den Teller unter.</td>
+<td>hat untergehalten</td>
+</tr>
+<tr>
+<td>unterHALten</td>
+<td>inseparable</td>
+<td>to entertain; sich unterhalten = to chat</td>
+<td>Wir haben uns lange unterhalten.</td>
+<td>hat unterhalten</td>
+</tr>
+<tr>
+<td>WIEderholen</td>
+<td>separable</td>
+<td>to fetch back</td>
+<td>Ich hole mein Buch wieder.</td>
+<td>hat wiedergeholt</td>
+</tr>
+<tr>
+<td>wiederHOlen</td>
+<td>inseparable</td>
+<td>to repeat</td>
+<td>Können Sie das bitte wiederholen?</td>
+<td>hat wiederholt</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Common verbs that come in only one version</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Separable (prefix stressed)</th>
+<th>Inseparable (verb stressed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>umsteigen (change trains), umziehen (move house), untergehen (sink; set, of the sun), durchfallen (fail an exam), durchlesen (read through), wiedersehen (see again), wiederkommen (come back), überkochen (boil over)</td>
+<td>umarmen (hug), umgeben (surround), übernachten (stay overnight), überraschen (surprise), überlegen (think over), übernehmen (take over), überweisen (transfer money), unterschreiben (sign), unterrichten (teach), untersuchen (examine), unterbrechen (interrupt), unterstützen (support), durchsuchen (search)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Rule of thumb: if you can translate it with a physical over / under / around / through, it is probably separable.</li>
+<li>wieder- is inseparable only in wiederholen (to repeat); everywhere else it separates: Auf Wiedersehen, Ich komme wieder.</li>
+<li>Ich bin durchgefallen = I failed (the exam), a very common sentence. Opposite: Ich habe bestanden.</li>
+</ul>
+<h2>One root, many prefixes</h2>
+<p>Five everyday verbs with prefixes give you well over fifty high-frequency words; the meaning often drifts far from the root, so learn each one with an example sentence. Separable ones are marked sep., inseparable insep.</p>
+<h3>kommen: to come</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ankommen</td>
+<td>sep.</td>
+<td>to arrive</td>
+<td>Wann kommt der Zug an?</td>
+</tr>
+<tr>
+<td>bekommen</td>
+<td>insep.</td>
+<td>to get, receive</td>
+<td>Ich habe einen Brief bekommen.</td>
+</tr>
+<tr>
+<td>mitkommen</td>
+<td>sep.</td>
+<td>to come along</td>
+<td>Kommst du mit?</td>
+</tr>
+<tr>
+<td>zurückkommen</td>
+<td>sep.</td>
+<td>to come back</td>
+<td>Ich komme um acht zurück.</td>
+</tr>
+<tr>
+<td>auskommen (mit)</td>
+<td>sep.</td>
+<td>to get by; to get along (with)</td>
+<td>Ich komme gut mit meinem Chef aus.</td>
+</tr>
+<tr>
+<td>vorkommen</td>
+<td>sep.</td>
+<td>to happen; to seem</td>
+<td>Das kommt mir bekannt vor. = That seems familiar.</td>
+</tr>
+<tr>
+<td>umkommen</td>
+<td>sep.</td>
+<td>to die (in an accident, disaster)</td>
+<td>Bei dem Unfall ist niemand umgekommen.</td>
+</tr>
+<tr>
+<td>entkommen</td>
+<td>insep.</td>
+<td>to escape</td>
+<td>Der Dieb ist entkommen.</td>
+</tr>
+<tr>
+<td>zukommen auf</td>
+<td>sep.</td>
+<td>to come up to, approach</td>
+<td>Er kam auf mich zu.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>False friend: bekommen = to get, never "to become". To become = werden: Ich werde Arzt. Ich bekomme ein Geschenk.</li>
+</ul>
+<h3>stellen: to put (upright)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bestellen</td>
+<td>insep.</td>
+<td>to order</td>
+<td>Ich bestelle eine Pizza.</td>
+</tr>
+<tr>
+<td>vorstellen</td>
+<td>sep.</td>
+<td>to introduce; sich etwas vorstellen = to imagine</td>
+<td>Darf ich mich vorstellen?</td>
+</tr>
+<tr>
+<td>herstellen</td>
+<td>sep.</td>
+<td>to produce</td>
+<td>Die Firma stellt Autos her. der Hersteller = manufacturer</td>
+</tr>
+<tr>
+<td>feststellen</td>
+<td>sep.</td>
+<td>to find out, establish</td>
+<td>Ich habe festgestellt, dass ...</td>
+</tr>
+<tr>
+<td>einstellen</td>
+<td>sep.</td>
+<td>to hire; to adjust (settings)</td>
+<td>Die Firma stellt neue Leute ein. die Einstellung = setting; attitude</td>
+</tr>
+<tr>
+<td>anstellen</td>
+<td>sep.</td>
+<td>to employ; to switch on</td>
+<td>der / die Angestellte = employee</td>
+</tr>
+<tr>
+<td>abstellen</td>
+<td>sep.</td>
+<td>to put down, park; to switch off</td>
+<td>Wo kann ich das Fahrrad abstellen?</td>
+</tr>
+<tr>
+<td>ausstellen</td>
+<td>sep.</td>
+<td>to exhibit; to issue (a document)</td>
+<td>einen Pass ausstellen. die Ausstellung = exhibition</td>
+</tr>
+<tr>
+<td>darstellen</td>
+<td>sep.</td>
+<td>to represent, portray</td>
+<td></td>
+</tr>
+<tr>
+<td>zustellen</td>
+<td>sep.</td>
+<td>to deliver (post)</td>
+<td>der Zusteller = delivery person</td>
+</tr>
+<tr>
+<td>umstellen</td>
+<td>sep.</td>
+<td>to switch over, rearrange</td>
+<td>auf Sommerzeit umstellen</td>
+</tr>
+</tbody>
+</table></div>
+<h3>nehmen: to take</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>annehmen</td>
+<td>sep.</td>
+<td>to accept; to assume</td>
+<td>Ich nehme an, dass er kommt.</td>
+</tr>
+<tr>
+<td>mitnehmen</td>
+<td>sep.</td>
+<td>to take along</td>
+<td>Zum Mitnehmen, bitte. = To take away, please.</td>
+</tr>
+<tr>
+<td>teilnehmen an + Dat</td>
+<td>sep.</td>
+<td>to take part in</td>
+<td>Ich nehme an dem Kurs teil.</td>
+</tr>
+<tr>
+<td>abnehmen / zunehmen</td>
+<td>sep.</td>
+<td>to lose / gain weight</td>
+<td></td>
+</tr>
+<tr>
+<td>aufnehmen</td>
+<td>sep.</td>
+<td>to record; to admit</td>
+<td></td>
+</tr>
+<tr>
+<td>übernehmen</td>
+<td>insep.</td>
+<td>to take over</td>
+<td>Sie übernimmt das Projekt.</td>
+</tr>
+<tr>
+<td>unternehmen</td>
+<td>insep.</td>
+<td>to do (something, an activity)</td>
+<td>Was unternehmen wir am Wochenende?</td>
+</tr>
+<tr>
+<td>sich vornehmen</td>
+<td>sep.</td>
+<td>to resolve, plan</td>
+<td>Ich habe mir vorgenommen, mehr Sport zu machen.</td>
+</tr>
+<tr>
+<td>sich benehmen</td>
+<td>insep.</td>
+<td>to behave</td>
+<td>Benimm dich!</td>
+</tr>
+<tr>
+<td>festnehmen</td>
+<td>sep.</td>
+<td>to arrest</td>
+<td></td>
+</tr>
+<tr>
+<td>wegnehmen</td>
+<td>sep.</td>
+<td>to take away</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>gehen: to go</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ausgehen</td>
+<td>sep.</td>
+<td>to go out</td>
+<td>Wir gehen heute Abend aus.</td>
+</tr>
+<tr>
+<td>angehen</td>
+<td>sep.</td>
+<td>to concern</td>
+<td>Das geht dich nichts an! = None of your business!</td>
+</tr>
+<tr>
+<td>aufgehen / untergehen</td>
+<td>sep.</td>
+<td>to rise / set (sun)</td>
+<td>Die Sonne geht um sieben auf.</td>
+</tr>
+<tr>
+<td>weggehen / mitgehen</td>
+<td>sep.</td>
+<td>to leave / go along</td>
+<td></td>
+</tr>
+<tr>
+<td>losgehen</td>
+<td>sep.</td>
+<td>to start; to set off</td>
+<td>Wann geht's los?</td>
+</tr>
+<tr>
+<td>vorgehen / nachgehen</td>
+<td>sep.</td>
+<td>to be fast / slow (clock); vorgehen also = to proceed</td>
+<td>Meine Uhr geht fünf Minuten vor.</td>
+</tr>
+<tr>
+<td>vergehen</td>
+<td>insep.</td>
+<td>to pass (time)</td>
+<td></td>
+</tr>
+<tr>
+<td>begehen</td>
+<td>insep.</td>
+<td>to commit (an error, a crime)</td>
+<td>einen Fehler begehen</td>
+</tr>
+<tr>
+<td>entgehen</td>
+<td>insep.</td>
+<td>to escape, miss</td>
+<td>Das ist mir entgangen. = I missed that.</td>
+</tr>
+<tr>
+<td>umgehen mit</td>
+<td>sep.</td>
+<td>to deal with</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>legen: to put (lying flat)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sich hinlegen</td>
+<td>sep.</td>
+<td>to lie down</td>
+<td>Ich lege mich kurz hin.</td>
+</tr>
+<tr>
+<td>ablegen</td>
+<td>sep.</td>
+<td>to take off (coat); to take (an exam)</td>
+<td>eine Prüfung ablegen</td>
+</tr>
+<tr>
+<td>auflegen</td>
+<td>sep.</td>
+<td>to hang up (the phone)</td>
+<td>Er hat einfach aufgelegt.</td>
+</tr>
+<tr>
+<td>einlegen</td>
+<td>sep.</td>
+<td>to insert; to take (a break)</td>
+<td>eine Pause einlegen</td>
+</tr>
+<tr>
+<td>anlegen</td>
+<td>sep.</td>
+<td>to invest; to create (a file, account)</td>
+<td>ein Konto anlegen</td>
+</tr>
+<tr>
+<td>festlegen</td>
+<td>sep.</td>
+<td>to fix, set (a date, rule)</td>
+<td>einen Termin festlegen</td>
+</tr>
+<tr>
+<td>zurücklegen</td>
+<td>sep.</td>
+<td>to put back; to cover (a distance)</td>
+<td>100 km zurücklegen</td>
+</tr>
+<tr>
+<td>überlegen</td>
+<td>insep.</td>
+<td>to think over</td>
+<td>Ich muss es mir überlegen.</td>
+</tr>
+<tr>
+<td>verlegen</td>
+<td>insep.</td>
+<td>to misplace; to postpone</td>
+<td>Das Treffen wurde verlegt. (adj. verlegen = embarrassed)</td>
+</tr>
+<tr>
+<td>belegen</td>
+<td>insep.</td>
+<td>to enrol in; to prove; to put a topping on</td>
+<td>einen Kurs belegen, ein belegtes Brötchen</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Noun and adjective prefixes</h2>
+<p>Noun and adjective prefixes never change gender or word class; they only add meaning: un- = not (or very bad), ur- = original, Haupt- = main, Lieblings- = favourite. The gender still comes from the last part: der Film → der Lieblingsfilm.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Meaning</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>un- (adjectives)</td>
+<td>not</td>
+<td>unglücklich, unmöglich, unbekannt, ungesund, unfreundlich, unhöflich, unklar, unabhängig</td>
+<td>Ukrainian не-: неможливий = unmöglich</td>
+</tr>
+<tr>
+<td>un- (nouns)</td>
+<td>bad, negative; sometimes huge</td>
+<td>das Unglück (disaster; bad luck), der Unfall (accident), das Unwetter (severe storm), die Unruhe (unrest), die Unmenge (huge amount)</td>
+<td>Unwetter is not "no weather" but very bad weather</td>
+</tr>
+<tr>
+<td>ur-</td>
+<td>original, very old, one generation further</td>
+<td>der Ursprung (origin), ursprünglich (originally), die Ursache (cause), der Urwald (primeval forest), uralt (ancient), die Urgroßmutter (great-grandmother), der Urenkel (great-grandson)</td>
+<td>Ukrainian пра-: прабабуся = Urgroßmutter; der Urlaub (holiday) is an old ur- word, now opaque</td>
+</tr>
+<tr>
+<td>miss-</td>
+<td>failed, wrong</td>
+<td>das Missverständnis (misunderstanding), der Misserfolg (failure), das Misstrauen (distrust), der Missbrauch (abuse)</td>
+<td>pairs with miss- verbs</td>
+</tr>
+<tr>
+<td>Haupt-</td>
+<td>main, chief</td>
+<td>der Hauptbahnhof (Hbf, main station), die Hauptstadt (capital), die Hauptsache (main thing), das Hauptgericht (main course), der Haupteingang (main entrance)</td>
+<td>hauptsächlich = mainly; Ukrainian головний, same image (Haupt = head)</td>
+</tr>
+<tr>
+<td>Lieblings-</td>
+<td>favourite</td>
+<td>das Lieblingsessen, die Lieblingsfarbe, der Lieblingsfilm, das Lieblingsbuch, der Lieblingsort</td>
+<td>always with linking -s-; Was ist deine Lieblingsfarbe?</td>
+</tr>
+<tr>
+<td>erz-</td>
+<td>arch-, extremely</td>
+<td>der Erzfeind (arch-enemy), der Erzbischof (archbishop), erzkonservativ (ultra-conservative)</td>
+<td>unrelated to das Erz = ore</td>
+</tr>
+<tr>
+<td>Vor- / Nach-</td>
+<td>before / after</td>
+<td>der Vorname / der Nachname (first / last name), die Vorspeise / die Nachspeise (starter / dessert), der Vorteil / der Nachteil (advantage / disadvantage)</td>
+<td>handy opposite pairs</td>
+</tr>
+<tr>
+<td>Mit-</td>
+<td>co-, fellow</td>
+<td>der Mitbewohner (flatmate), der Mitarbeiter (colleague), der Mitschüler (classmate)</td>
+<td></td>
+</tr>
+<tr>
+<td>Rück-</td>
+<td>back</td>
+<td>die Rückfahrt (return trip), die Rückseite (back side), der Rückweg (way back)</td>
+<td></td>
+</tr>
+<tr>
+<td>Gegen-</td>
+<td>opposite</td>
+<td>das Gegenteil (opposite), der Gegensatz (contrast), der Gegner (opponent)</td>
+<td></td>
+</tr>
+<tr>
+<td>Ex-</td>
+<td>former</td>
+<td>der Exfreund, die Exfrau</td>
+<td>colloquial</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Informal intensifiers stick to adjectives the same way: todmüde (dead tired), steinalt (ancient), riesengroß (huge), eiskalt (ice-cold), superschnell.</li>
+<li>un- with -bar and -lich is very productive: unglaublich (unbelievable), unvergesslich (unforgettable), unbezahlbar (unaffordable; priceless).</li>
+</ul>
+<h2>Vowel changes in word families</h2>
+<p>Two kinds of vowel change hide family links: Ablaut, the vowel series of strong verbs (sprechen – sprach – gesprochen; see <a href="../docs/irregular-verbs.html">Irregular verbs</a>), which reappears in nouns made from them; and Umlaut (a → ä, o → ö, u → ü, au → äu), which appears in plurals, comparatives and many derived words. Once you see the pattern, Spruch and Gespräch are obviously sprechen.</p>
+<h3>Ablaut: strong verb → noun</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb (3 forms)</th>
+<th>Related nouns</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sprechen – sprach – gesprochen</td>
+<td>die Sprache, der Spruch, das Gespräch</td>
+<td>language, saying, conversation</td>
+</tr>
+<tr>
+<td>trinken – trank – getrunken</td>
+<td>der Trank, das Getränk, betrunken</td>
+<td>potion (old), drink, drunk</td>
+</tr>
+<tr>
+<td>fliegen – flog – geflogen</td>
+<td>der Flug, das Flugzeug, der Flügel</td>
+<td>flight, plane, wing</td>
+</tr>
+<tr>
+<td>ziehen – zog – gezogen</td>
+<td>der Zug, die Erziehung</td>
+<td>train, upbringing</td>
+</tr>
+<tr>
+<td>schließen – schloss – geschlossen</td>
+<td>das Schloss, der Schluss, der Schlüssel, der Abschluss</td>
+<td>lock / castle, end, key, degree</td>
+</tr>
+<tr>
+<td>springen – sprang – gesprungen</td>
+<td>der Sprung</td>
+<td>jump</td>
+</tr>
+<tr>
+<td>singen – sang – gesungen</td>
+<td>der Gesang, der Sänger</td>
+<td>singing, singer</td>
+</tr>
+<tr>
+<td>binden – band – gebunden</td>
+<td>das Band, der Bund, die Verbindung</td>
+<td>ribbon / band, federation, connection</td>
+</tr>
+<tr>
+<td>werfen – warf – geworfen</td>
+<td>der Wurf</td>
+<td>throw</td>
+</tr>
+<tr>
+<td>schießen – schoss – geschossen</td>
+<td>der Schuss</td>
+<td>shot</td>
+</tr>
+<tr>
+<td>greifen – griff – gegriffen</td>
+<td>der Griff, der Begriff</td>
+<td>grip / handle, concept</td>
+</tr>
+<tr>
+<td>schneiden – schnitt – geschnitten</td>
+<td>der Schnitt</td>
+<td>cut</td>
+</tr>
+<tr>
+<td>nehmen – nahm – genommen</td>
+<td>die Ausnahme, die Teilnahme</td>
+<td>exception, participation</td>
+</tr>
+<tr>
+<td>liegen – lag – gelegen</td>
+<td>die Lage, die Gelegenheit</td>
+<td>situation, opportunity</td>
+</tr>
+</tbody>
+</table></div>
+<h3>State vs action pairs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>State (strong, intransitive)</th>
+<th>Action (weak, takes Akk)</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>liegen (lie)</td>
+<td>legen (lay, put flat)</td>
+<td>Das Buch liegt auf dem Tisch. Ich lege das Buch auf den Tisch.</td>
+</tr>
+<tr>
+<td>sitzen (sit)</td>
+<td>setzen (seat, put)</td>
+<td>Ich sitze. Ich setze mich.</td>
+</tr>
+<tr>
+<td>stehen (stand)</td>
+<td>stellen (stand up, put upright)</td>
+<td>Die Flasche steht. Ich stelle die Flasche hin.</td>
+</tr>
+<tr>
+<td>fallen (fall)</td>
+<td>fällen (fell a tree)</td>
+<td></td>
+</tr>
+<tr>
+<td>trinken (drink)</td>
+<td>tränken (water animals)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian has the same kind of state / action pair (сидіти / садити, лежати / класти), and the e/o ablaut of нести / носити, везти / возити is the same ancient system as German Ablaut.</li>
+</ul>
+<h3>Umlaut in families</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Umlaut form</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Haus</td>
+<td>die Häuser, häuslich (domestic), das Häuschen</td>
+<td>plural, adjective, diminutive</td>
+</tr>
+<tr>
+<td>der Tag / das Jahr / die Stunde</td>
+<td>täglich, jährlich, stündlich</td>
+<td>-lich adjectives</td>
+</tr>
+<tr>
+<td>der Mund / der Arzt</td>
+<td>mündlich (oral), ärztlich (medical)</td>
+<td>-lich adjectives</td>
+</tr>
+<tr>
+<td>groß</td>
+<td>größer, die Größe (size)</td>
+<td>comparative, quality noun in -e</td>
+</tr>
+<tr>
+<td>lang / kurz</td>
+<td>länger, die Länge; kürzer, die Kürze</td>
+<td></td>
+</tr>
+<tr>
+<td>warm / kalt</td>
+<td>wärmer, die Wärme; kälter, die Kälte</td>
+<td></td>
+</tr>
+<tr>
+<td>hoch / nah</td>
+<td>höher, die Höhe; näher, die Nähe</td>
+<td></td>
+</tr>
+<tr>
+<td>stark / schwach</td>
+<td>stärker, die Stärke; schwächer, die Schwäche</td>
+<td></td>
+</tr>
+<tr>
+<td>die Katze / der Hund</td>
+<td>das Kätzchen, das Hündchen</td>
+<td>-chen usually adds Umlaut (exception: das Frauchen)</td>
+</tr>
+<tr>
+<td>der Koch / der Bauer</td>
+<td>die Köchin, die Bäuerin</td>
+<td>some -in forms</td>
+</tr>
+<tr>
+<td>backen / fahren</td>
+<td>der Bäcker, die Fähre</td>
+<td>agent and object nouns</td>
+</tr>
+<tr>
+<td>fahren / schlafen / laufen</td>
+<td>du fährst, er schläft, sie läuft</td>
+<td>present tense of strong verbs</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Pattern to remember: short adjective + Umlaut + -e = feminine noun of the quality (die Größe, die Wärme, die Kälte, die Nähe). Not every adjective does it: breit → die Breite, tief → die Tiefe (no vowel to umlaut).</li>
+<li>When you meet an unknown word with ä, ö, ü, äu, take the Umlaut off and look for the base: Kälte → kalt, Flügel → Flug.</li>
+</ul>
+<h2>Ukrainian vs German prefixes</h2>
+<p>A Ukrainian prefix usually makes a verb perfective, often without changing its meaning (писати → написати); a German prefix always changes the meaning and never marks aspect (schreiben → unterschreiben = to sign). German has no aspect: schreiben covers both писати and написати.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ukrainian</th>
+<th>German</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>писати / написати</td>
+<td>schreiben</td>
+<td>one German verb for both aspects</td>
+</tr>
+<tr>
+<td>читати / прочитати</td>
+<td>lesen (durchlesen, zu Ende lesen)</td>
+<td>add durch- or zu Ende only to stress "all of it"</td>
+</tr>
+<tr>
+<td>їсти / з'їсти</td>
+<td>essen / aufessen</td>
+<td>auf- = eat it all up</td>
+</tr>
+<tr>
+<td>пити / випити</td>
+<td>trinken / austrinken</td>
+<td>aus- = drink it all</td>
+</tr>
+<tr>
+<td>робити / зробити</td>
+<td>machen (fertig machen)</td>
+<td></td>
+</tr>
+<tr>
+<td>підписати</td>
+<td>unterschreiben</td>
+<td>під- = unter-, same image</td>
+</tr>
+<tr>
+<td>записати</td>
+<td>aufschreiben</td>
+<td>за- here = auf-</td>
+</tr>
+<tr>
+<td>описати</td>
+<td>beschreiben</td>
+<td>о- often = be-</td>
+</tr>
+<tr>
+<td>перекласти</td>
+<td>übersetzen</td>
+<td>пере- = über-, same image</td>
+</tr>
+<tr>
+<td>переїхати (на нову квартиру)</td>
+<td>umziehen</td>
+<td>пере- = um- (change)</td>
+</tr>
+<tr>
+<td>пересісти</td>
+<td>umsteigen</td>
+<td></td>
+</tr>
+<tr>
+<td>приїхати, прийти</td>
+<td>ankommen</td>
+<td>при- = an- (arrival)</td>
+</tr>
+<tr>
+<td>від’їжджати</td>
+<td>abfahren</td>
+<td>від- = ab- (away)</td>
+</tr>
+<tr>
+<td>відкрити / закрити</td>
+<td>aufmachen / zumachen</td>
+<td></td>
+</tr>
+<tr>
+<td>вийти, висісти</td>
+<td>ausgehen, aussteigen</td>
+<td>ви- = aus- (out)</td>
+</tr>
+<tr>
+<td>вимкнути / увімкнути</td>
+<td>ausmachen / anmachen</td>
+<td></td>
+</tr>
+<tr>
+<td>витратити (гроші)</td>
+<td>ausgeben</td>
+<td></td>
+</tr>
+<tr>
+<td>заснути</td>
+<td>einschlafen</td>
+<td>за- (start) = ein- here</td>
+</tr>
+<tr>
+<td>розбити, розірвати</td>
+<td>zerbrechen, zerreißen</td>
+<td>роз- = zer- (to pieces)</td>
+</tr>
+<tr>
+<td>розповісти</td>
+<td>erzählen</td>
+<td>no prefix match</td>
+</tr>
+</tbody>
+</table></div>
+<h3>How German shows "finished" instead</h3>
+<ul>
+<li>Tense: Ich habe den Brief geschrieben = I wrote / have written the letter (написав).</li>
+<li>Adverbs: schon (already), gerade (just now / right now), fertig: Ich bin fertig mit dem Buch.</li>
+<li>A few result prefixes: aufessen, austrinken, durchlesen, aufräumen.</li>
+<li>Ongoing action: gerade or am + infinitive (colloquial): Ich schreibe gerade einen Brief. / Ich bin am Schreiben. (я саме пишу)</li>
+<li>Trap for Ukrainian speakers: do not look for a German prefix to make a verb "perfective". Adding one almost always gives a different verb: kaufen (buy) vs verkaufen (sell) vs einkaufen (shop).</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Dual prefixes: the figurative pairs</h3>
+<p>At B2 the same rule as above runs through many more verbs: the stressed, separable version is literal; the unstressed, inseparable one is figurative. Stressed syllable in CAPITALS.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Separable: literal</th>
+<th>Inseparable: figurative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>durchschauen</td>
+<td>DURCHschauen: to look through (a window, a telescope); hat durchgeschaut</td>
+<td>durchSCHAUen: to see through someone; Ich habe ihn sofort durchschaut.</td>
+</tr>
+<tr>
+<td>durchbrechen</td>
+<td>DURCHbrechen: to break in two; Der Ast ist durchgebrochen.</td>
+<td>durchBREchen: to break through; Sie durchbrachen die Absperrung.</td>
+</tr>
+<tr>
+<td>durchsetzen</td>
+<td>sich DURCHsetzen: to prevail, get one's way; hat sich durchgesetzt</td>
+<td>durchSETzen: to permeate; ein Text, von Fehlern durchsetzt</td>
+</tr>
+<tr>
+<td>übergehen</td>
+<td>ÜBERgehen zu: to move on to; Wir gehen zum nächsten Punkt über.</td>
+<td>überGEhen: to pass over, ignore; Man hat mich bei der Beförderung übergangen.</td>
+</tr>
+<tr>
+<td>überlegen</td>
+<td>ÜBERlegen: to put over; Leg dir eine Decke über!</td>
+<td>überLEgen: to think over; Ich habe es mir überlegt.</td>
+</tr>
+<tr>
+<td>umschreiben</td>
+<td>UMschreiben: to rewrite; Ich habe den Text umgeschrieben.</td>
+<td>umSCHREIben: to paraphrase, describe in other words; Er hat das Wort umschrieben.</td>
+</tr>
+<tr>
+<td>umstellen</td>
+<td>UMstellen: to rearrange, switch over; hat umgestellt</td>
+<td>umSTELlen: to surround; Die Polizei umstellte das Haus.</td>
+</tr>
+<tr>
+<td>unterstellen</td>
+<td>UNterstellen: to store under; sich unterstellen = to take shelter; hat sich untergestellt</td>
+<td>unterSTELlen: to insinuate, imply; Willst du mir etwas unterstellen?</td>
+</tr>
+<tr>
+<td>unterhalten</td>
+<td>UNterhalten: to hold underneath</td>
+<td>unterHALten: to entertain; to maintain, support (eine Familie unterhalten, gute Beziehungen unterhalten)</td>
+</tr>
+<tr>
+<td>übersetzen</td>
+<td>ÜBERsetzen: to ferry across</td>
+<td>überSETzen: to translate; figurative from "carry across", like Ukrainian перекласти</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Adjectives and nouns from the inseparable verb keep the figurative sense: die Unterstellung (insinuation), die Umschreibung (paraphrase), die Unterhaltung (conversation; entertainment).</li>
+</ul>
+<h3>Particle verbs with nuanced meanings</h3>
+<p>Beyond the core ideas in the B1 table, ab-, an-, auf- and aus- each carry a few extra shades that recur across dozens of verbs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Particle</th>
+<th>Shade</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ab-</td>
+<td>copying</td>
+<td>abschreiben (copy, also cheat; also write off), abzeichnen (copy a drawing; initial a document)</td>
+</tr>
+<tr>
+<td>ab-</td>
+<td>refusing, advising against</td>
+<td>ablehnen (reject), abraten von (advise against), absagen (cancel)</td>
+</tr>
+<tr>
+<td>ab-</td>
+<td>running out, wearing down</td>
+<td>ablaufen (expire: Mein Pass läuft ab), abnutzen (wear out), sich abfinden mit (resign oneself to)</td>
+</tr>
+<tr>
+<td>ab-</td>
+<td>waiting it out</td>
+<td>abwarten (wait and see: Abwarten und Tee trinken.)</td>
+</tr>
+<tr>
+<td>an-</td>
+<td>starting, only partly</td>
+<td>anbraten (sear), anbrennen (burn slightly: Die Milch ist angebrannt), anlesen (read the start of)</td>
+</tr>
+<tr>
+<td>an-</td>
+<td>addressing, aiming at</td>
+<td>ansprechen (speak to; appeal to: Das spricht mich an), anschreien (shout at), anlächeln (smile at)</td>
+</tr>
+<tr>
+<td>an-</td>
+<td>building up</td>
+<td>sich angewöhnen (get into a habit; opposite sich abgewöhnen), ansteigen (rise), ansparen (save up)</td>
+</tr>
+<tr>
+<td>auf-</td>
+<td>sudden, short</td>
+<td>auflachen (burst out laughing), aufleuchten (light up), aufschreien (cry out)</td>
+</tr>
+<tr>
+<td>auf-</td>
+<td>using up, catching up, refreshing</td>
+<td>aufbrauchen (use up), aufholen (catch up), auffrischen (brush up: Deutschkenntnisse auffrischen)</td>
+</tr>
+<tr>
+<td>auf-</td>
+<td>becoming noticed</td>
+<td>auffallen (be noticed: Mir ist aufgefallen, dass ...)</td>
+</tr>
+<tr>
+<td>aus-</td>
+<td>to the very end</td>
+<td>ausdiskutieren (discuss fully), ausreden (finish speaking: Lass mich ausreden!), aushalten (endure: Ich halte es nicht mehr aus.)</td>
+</tr>
+<tr>
+<td>aus-</td>
+<td>testing, choosing</td>
+<td>ausprobieren (try out), aussuchen (pick out), auswählen (select)</td>
+</tr>
+<tr>
+<td>aus-</td>
+<td>excluding, mocking</td>
+<td>ausschließen (exclude), auslachen (laugh at)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>jemandem etwas ausreden = to talk someone out of something: Sie hat mir die Idee ausgeredet.</li>
+</ul>
+<h3>ver- as "wrong", er- as result, zer- as destruction</h3>
+<p>Three inseparable prefixes act almost like grammar: put them on a verb you know and the new meaning is predictable.</p>
+<h4>ver- + sich: doing it wrong</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sich verschreiben</td>
+<td>make a slip of the pen</td>
+<td>Ich habe mich verschrieben.</td>
+</tr>
+<tr>
+<td>verschreiben (no sich)</td>
+<td>prescribe</td>
+<td>Der Arzt hat mir Tabletten verschrieben.</td>
+</tr>
+<tr>
+<td>sich verrechnen</td>
+<td>miscalculate</td>
+<td>Da hast du dich verrechnet.</td>
+</tr>
+<tr>
+<td>sich verwählen</td>
+<td>dial the wrong number</td>
+<td>Entschuldigung, ich habe mich verwählt.</td>
+</tr>
+<tr>
+<td>sich verlaufen / sich verfahren</td>
+<td>get lost on foot / driving</td>
+<td>Wir haben uns im Wald verlaufen.</td>
+</tr>
+<tr>
+<td>sich verhören / sich versprechen</td>
+<td>mishear / misspeak</td>
+<td>Ich habe mich wohl verhört.</td>
+</tr>
+<tr>
+<td>verlegen / verwechseln</td>
+<td>misplace / mix up</td>
+<td>Ich habe meine Brille verlegt. Ich verwechsle die beiden immer.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>ver- also means "to the end, to death" for slow processes: verhungern (starve), verdursten (die of thirst), verbluten (bleed to death), verblühen (wither).</li>
+</ul>
+<h4>er-: reaching a result</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(sich) erarbeiten</td>
+<td>earn or gain by work</td>
+<td>Sie hat sich ihren Erfolg hart erarbeitet.</td>
+</tr>
+<tr>
+<td>(sich) erkämpfen</td>
+<td>win by fighting</td>
+<td>Die Mannschaft hat sich den Sieg erkämpft.</td>
+</tr>
+<tr>
+<td>erlernen</td>
+<td>learn fully (a trade, a skill)</td>
+<td>einen Beruf erlernen</td>
+</tr>
+<tr>
+<td>erwirtschaften</td>
+<td>generate (profit)</td>
+<td>Die Firma hat Gewinn erwirtschaftet.</td>
+</tr>
+<tr>
+<td>erringen</td>
+<td>achieve (a victory)</td>
+<td>einen Sieg erringen</td>
+</tr>
+<tr>
+<td>ersparen</td>
+<td>spare someone something; save up</td>
+<td>Das hat mir viel Ärger erspart.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>er- with killing and dying marks the end result: erschießen (shoot dead), erstechen, erschlagen; ertrinken (drown), erfrieren (freeze to death), ersticken (suffocate). Compare schießen (shoot) and erschießen (shoot dead).</li>
+</ul>
+<h4>zer-: to pieces</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zerfallen</td>
+<td>fall apart, decay</td>
+</tr>
+<tr>
+<td>zerlegen</td>
+<td>take apart, dismantle</td>
+</tr>
+<tr>
+<td>zerkleinern</td>
+<td>chop up, shred</td>
+</tr>
+<tr>
+<td>zerkratzen / zerdrücken / zertreten</td>
+<td>scratch all over / crush / trample</td>
+</tr>
+<tr>
+<td>zerknittern</td>
+<td>crumple (ein zerknittertes Hemd)</td>
+</tr>
+<tr>
+<td>zerplatzen</td>
+<td>burst</td>
+</tr>
+<tr>
+<td>zerreden</td>
+<td>talk something to death</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian роз- often matches zer-: розбити = zerschlagen, розірвати = zerreißen, розібрати = zerlegen.</li>
+</ul>
+<h3>The stellen family at B2</h3>
+<p>The B1 table gave stellen's everyday prefixes; at B2 the same verbs gain abstract meanings, and a second set appears in formal writing.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>B2 meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>darstellen</td>
+<td>sep.</td>
+<td>to constitute, be</td>
+<td>Das stellt ein großes Risiko dar.</td>
+</tr>
+<tr>
+<td>herstellen</td>
+<td>sep.</td>
+<td>to establish (contact, a link)</td>
+<td>eine Verbindung herstellen</td>
+</tr>
+<tr>
+<td>feststellen</td>
+<td>sep.</td>
+<td>to notice, conclude</td>
+<td>Der Arzt stellte fest, dass ...</td>
+</tr>
+<tr>
+<td>einstellen</td>
+<td>sep.</td>
+<td>to stop (production, a search); sich einstellen auf = prepare for</td>
+<td>Die Firma stellt die Produktion ein. Stell dich auf Regen ein!</td>
+</tr>
+<tr>
+<td>vorstellen</td>
+<td>sep.</td>
+<td>sich (Dat) etwas vorstellen = to imagine; sich (Akk) vorstellen = to introduce oneself, have an interview</td>
+<td>Ich habe mich bei der Firma vorgestellt.</td>
+</tr>
+<tr>
+<td>entstellen</td>
+<td>insep.</td>
+<td>to disfigure; to distort (facts)</td>
+<td>Seine Worte wurden entstellt wiedergegeben.</td>
+</tr>
+<tr>
+<td>verstellen</td>
+<td>insep.</td>
+<td>to adjust wrongly; to block; sich verstellen = to pretend</td>
+<td>Der Schrank verstellt die Tür. Er verstellt sich nur.</td>
+</tr>
+<tr>
+<td>erstellen</td>
+<td>insep.</td>
+<td>to draw up, create (formal)</td>
+<td>einen Bericht / einen Plan erstellen</td>
+</tr>
+<tr>
+<td>unterstellen</td>
+<td>insep.</td>
+<td>to insinuate</td>
+<td>Sie unterstellt mir Lügen.</td>
+</tr>
+<tr>
+<td>umstellen</td>
+<td>sep. / insep.</td>
+<td>UMstellen: switch over; umSTELlen: surround</td>
+<td>auf Elektroautos umstellen</td>
+</tr>
+<tr>
+<td>aufstellen</td>
+<td>sep.</td>
+<td>to set up, nominate, set (a record)</td>
+<td>eine Regel / einen Kandidaten / einen Rekord aufstellen</td>
+</tr>
+<tr>
+<td>anstellen</td>
+<td>sep.</td>
+<td>sich anstellen = to queue; to make a fuss; etwas anstellen = to get up to mischief</td>
+<td>Stell dich nicht so an! Was hast du angestellt?</td>
+</tr>
+<tr>
+<td>sicherstellen</td>
+<td>sep.</td>
+<td>to ensure; to seize (police)</td>
+<td>Wir müssen sicherstellen, dass ...</td>
+</tr>
+<tr>
+<td>bereitstellen</td>
+<td>sep.</td>
+<td>to provide</td>
+<td>Die Stadt stellt Notunterkünfte bereit.</td>
+</tr>
+<tr>
+<td>zusammenstellen</td>
+<td>sep.</td>
+<td>to compile, put together</td>
+<td>eine Liste zusammenstellen</td>
+</tr>
+<tr>
+<td>zurückstellen</td>
+<td>sep.</td>
+<td>to put back; to postpone</td>
+<td>ein Projekt zurückstellen</td>
+</tr>
+<tr>
+<td>freistellen</td>
+<td>sep.</td>
+<td>to release from work; to leave to someone</td>
+<td>Es ist Ihnen freigestellt. = It is up to you.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Noun-verb phrases (Funktionsverbgefüge)</h4>
+<p>In formal German, stellen, kommen, nehmen and similar verbs pair with a noun that carries the real meaning (more in <a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Meaning</th>
+<th>Plain verb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zur Verfügung stellen</td>
+<td>make available</td>
+<td>bereitstellen</td>
+</tr>
+<tr>
+<td>in Frage stellen</td>
+<td>call into question</td>
+<td>bezweifeln</td>
+</tr>
+<tr>
+<td>unter Beweis stellen</td>
+<td>prove, demonstrate</td>
+<td>beweisen</td>
+</tr>
+<tr>
+<td>einen Antrag stellen</td>
+<td>apply formally</td>
+<td>beantragen</td>
+</tr>
+<tr>
+<td>in Frage kommen</td>
+<td>be an option</td>
+<td>möglich sein</td>
+</tr>
+<tr>
+<td>Abschied nehmen</td>
+<td>say goodbye</td>
+<td>sich verabschieden</td>
+</tr>
+<tr>
+<td>in Anspruch nehmen</td>
+<td>make use of; take up (time)</td>
+<td>nutzen</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Adjective prefixes</h3>
+<p>Adjective prefixes either negate (un-, miss-) or intensify (ur-, erz-, hoch-, tief-, stock-); the intensifiers differ mainly in register and in which adjectives they combine with.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Meaning</th>
+<th>Examples</th>
+<th>Register</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>un-</td>
+<td>not; often a polite understatement</td>
+<td>unschön (unpleasant), unweit (not far from), unzählig (countless); nicht unwichtig = quite important</td>
+<td>neutral</td>
+</tr>
+<tr>
+<td>miss-</td>
+<td>badly, wrongly</td>
+<td>missverständlich (open to misunderstanding), missmutig (sullen), missgünstig (envious)</td>
+<td>neutral to formal</td>
+</tr>
+<tr>
+<td>ur-</td>
+<td>very; deeply, originally</td>
+<td>urkomisch (hilarious), urplötzlich (all of a sudden), urgemütlich (very cosy), ureigen (very own)</td>
+<td>neutral, a little colloquial</td>
+</tr>
+<tr>
+<td>erz-</td>
+<td>arch-, extremely (with -isms and beliefs)</td>
+<td>erzkonservativ, erzkatholisch, erzreaktionär</td>
+<td>neutral</td>
+</tr>
+<tr>
+<td>hoch-</td>
+<td>highly (positive or technical)</td>
+<td>hochinteressant, hochbegabt (highly gifted), hochwertig (high quality), hochmodern, hochgiftig</td>
+<td>neutral, written</td>
+</tr>
+<tr>
+<td>tief-</td>
+<td>deeply (feelings, colours, cold)</td>
+<td>tieftraurig, tiefgreifend (far-reaching), tiefblau, tiefgekühlt (frozen)</td>
+<td>neutral</td>
+</tr>
+<tr>
+<td>stock-</td>
+<td>completely (mostly negative)</td>
+<td>stockdunkel (pitch-dark), stockkonservativ, stocktaub (stone-deaf), stocksauer (furious)</td>
+<td>colloquial</td>
+</tr>
+<tr>
+<td>stink-, sau-</td>
+<td>extremely</td>
+<td>stinklangweilig, stinknormal, stinkreich; saukalt, saugut</td>
+<td>very colloquial</td>
+</tr>
+<tr>
+<td>grund-, knall-</td>
+<td>totally; (colours) glaring</td>
+<td>grundverschieden (completely different), grundehrlich; knallrot, knallhart</td>
+<td>neutral / colloquial</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>un- works mainly on positive or neutral adjectives: unklug, unschön, but not *unschlecht.</li>
+<li>Two negatives make a cautious positive, typical of formal German: Das ist nicht unproblematisch = this is rather problematic.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/word-order.html">Word order</a>: where the separated prefix goes in main and subordinate clauses</li>
+<li><a href="../docs/irregular-verbs.html">Irregular verbs</a>: the strong-verb forms behind Ablaut families</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: the suffix side of the same word families</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: Funktionsverbgefüge and other verb patterns</li>
+<li><a href="../docs/gotchas.html">Gotchas and false friends</a>: bekommen, merkwürdig and other traps</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/prefixes.html">Prefixes quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

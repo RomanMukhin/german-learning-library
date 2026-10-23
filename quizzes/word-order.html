@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Word order quiz · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs hide-sm"><span class="sep">/</span><span class="hide-sm">Quizzes</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" id="doclink" target="_blank" rel="noopener">Open the doc</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="quiz">
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="copy" type="button" hidden>Copy results</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <p class="note-copy" id="copynote" hidden></p>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"id": "word-order", "title": "Word order quiz", "level": "B1", "doc": {"title": "Word order", "url": "../docs/word-order.html"}, "questions": [{"q": "Pick the correct sentence: *Today I'm going to the cinema.*", "options": ["Heute gehe ich ins Kino.", "Heute ich gehe ins Kino.", "Heute ich ins Kino gehe.", "Gehe heute ich ins Kino.", "Heute ins Kino ich gehe."], "answer": 0, "explain": "V2 rule: only one element before the verb. When *Heute* takes position 1, the subject moves behind the verb. Ukrainian *Сьогодні я йду* keeps я first; German cannot."}, {"q": "Ich bleibe heute zu Hause, denn *___*.", "options": ["ich krank bin", "ich bin krank", "bin ich krank", "krank ich bin", "ich krank sein"], "answer": 1, "explain": "*denn* (like und, aber, oder, sondern) stands in position 0: it does not count, so normal main-clause order follows: *ich bin krank*."}, {"q": "Pick the correct sentence: *I'd like to get up early tomorrow.*", "options": ["Ich möchte aufstehen morgen früh.", "Ich möchte morgen früh auf stehen.", "Ich möchte morgen früh aufstehen.", "Ich stehe morgen früh möchte auf.", "Ich möchte morgen auf früh stehen."], "answer": 2, "explain": "Verb bracket: the modal sits in position 2, the infinitive goes to the end. As an infinitive the separable verb stays one word: *aufstehen*."}, {"q": "Pick the correct sentence: *The train leaves at 8.*", "options": ["Der Zug abfährt um 8 Uhr.", "Um 8 Uhr der Zug fährt ab.", "Der Zug um 8 Uhr abfährt.", "Der Zug fährt um 8 Uhr ab.", "Um 8 Uhr abfährt der Zug."], "answer": 3, "explain": "A conjugated separable verb splits: the verb in position 2, the prefix *ab* at the very end, closing the bracket."}, {"q": "Pick the correct question: *Who are you going on holiday with?*", "options": ["Wem fährst du mit in Urlaub?", "Mit wem du fährst in Urlaub?", "Wer fährst du mit in Urlaub?", "Mit wer fährst du in Urlaub?", "Mit wem fährst du in Urlaub?"], "answer": 4, "explain": "The preposition stays glued to the question word in position 1 (*Mit wem…?*), and *mit* takes the dative *wem*. Verb second."}, {"q": "Ich glaube, dass *___*.", "options": ["er heute kommt", "er kommt heute", "kommt er heute", "heute er kommt", "er heute kommen"], "answer": 0, "explain": "*dass* opens a subordinate clause: subject right after the conjunction, conjugated verb at the very end: *dass er heute kommt*."}, {"q": "Ruf mich an, wenn du *___*.", "options": ["kommst an", "ankommst", "an kommst", "ankommen bist", "kommst angekommen"], "answer": 1, "explain": "At the end of a subordinate clause a separable verb is written as one word again: *…, wenn du ankommst*."}, {"q": "Er sagt, dass er morgen *___*.", "options": ["kann kommen", "kommen können", "kommen kann", "kann zu kommen", "können kommt"], "answer": 2, "explain": "With several verbs at the end of a subordinate clause, the conjugated one comes last: *kommen kann*. Modals take no zu."}, {"q": "Wenn ich Zeit habe, *___*.", "options": ["ich komme", "dann ich komme", "ich komme dann", "komme ich", "kommen ich"], "answer": 3, "explain": "A subordinate clause in front counts as position 1, so the main verb follows the comma at once: verb, comma, verb. *Wenn ich Zeit habe, ich komme* is the classic mistake."}, {"q": "Kannst du mir sagen, *___*?", "options": ["wo ist der Bahnhof", "wo der Bahnhof sein", "ob ist der Bahnhof wo", "der Bahnhof wo ist", "wo der Bahnhof ist"], "answer": 4, "explain": "An indirect question is a subordinate clause: the W-word acts as the conjunction and the verb goes last: *wo der Bahnhof ist*."}, {"q": "Pick the neutral default order: *Tomorrow I'm going to Berlin by train.*", "options": ["Ich fahre morgen mit dem Zug nach Berlin.", "Ich fahre nach Berlin mit dem Zug morgen.", "Ich fahre mit dem Zug nach Berlin morgen.", "Ich fahre nach Berlin morgen mit dem Zug.", "Morgen ich fahre mit dem Zug nach Berlin."], "answer": 0, "explain": "TeKaMoLo: time (morgen), manner (mit dem Zug), place (nach Berlin). Time before place, and a direction likes to come last."}, {"q": "Pick the correct sentence: *I give it to him.*", "options": ["Ich gebe ihm es.", "Ich gebe es ihm.", "Ich gebe es zu ihm.", "Ich gebe ihn es.", "Ich es ihm gebe."], "answer": 1, "explain": "Two pronouns: accusative before dative, *es ihm* ('Akk-Dat'). Two nouns go the other way: dem Mann das Buch."}, {"q": "Ich gebe *___*. (him the book)", "options": ["ihm dem Buch", "ihn das Buch", "ihm das Buch", "er das Buch", "das Buch zu ihm"], "answer": 2, "explain": "Pronoun + noun: the pronoun comes first, whatever its case. *geben* takes a dative person: *ihm*. Ukrainian also says *Я йому дав книжку*."}, {"q": "Ich habe heute leider *___* Zeit.", "options": ["nicht", "nichts", "kein", "keine", "keinen"], "answer": 3, "explain": "A noun without an article is negated with *kein*, not nicht. *Zeit* is feminine, so Akkusativ *keine Zeit*."}, {"q": "Pick the correct sentence: *I can't come today.*", "options": ["Ich nicht kann heute kommen.", "Ich kann heute kommen nicht.", "Ich kann kein heute kommen.", "Ich kann heute keine kommen.", "Ich kann heute nicht kommen."], "answer": 4, "explain": "Sentence negation: *nicht* goes late in the middle field, after the time word but before the infinitive at the end. Ukrainian не stands before the verb; German nicht does not."}, {"q": "Vergiss nicht, die Tür *___*. (abschließen)", "options": ["abzuschließen", "zu abschließen", "abschließen zu", "abzuschließt", "zuabschließen"], "answer": 0, "explain": "With a separable verb, *zu* goes between prefix and stem, written as one word: *abzuschließen*, anzurufen."}, {"q": "Pick the correct sentence: *I'm learning German in order to work in Germany.*", "options": ["Ich lerne Deutsch, um zu arbeiten in Deutschland.", "Ich lerne Deutsch, um in Deutschland zu arbeiten.", "Ich lerne Deutsch, damit in Deutschland zu arbeiten.", "Ich lerne Deutsch, um in Deutschland arbeiten.", "Ich lerne Deutsch, für in Deutschland zu arbeiten."], "answer": 1, "explain": "*um* opens the clause and *zu* + infinitive closes it: *um in Deutschland zu arbeiten*. *damit* needs a full clause with its own subject and verb."}, {"q": "Formal imperative: *Call me tomorrow!*", "options": ["Rufen mich Sie morgen an!", "Rufen Sie an mich morgen!", "Rufen Sie mich morgen an!", "Anrufen Sie mich morgen!", "Ruf Sie mich morgen an!"], "answer": 2, "explain": "Imperative verb in position 1, *Sie* right after it, the separable prefix *an* at the very end."}, {"q": "Pick the correct sentence: *That film I already know.* (object first)", "options": ["Den Film ich kenne schon.", "Der Film kenne ich schon.", "Den Film schon ich kenne.", "Den Film kenne ich schon.", "Kenne den Film ich schon."], "answer": 3, "explain": "Any one element can take position 1; the verb stays second and the subject follows it. The accusative *den Film* shows it is the object, as in Ukrainian *Цей фільм я знаю*."}, {"q": "Pick the correct question (ihr): *What are you talking about?*", "options": ["Was sprecht ihr über?", "Worüber ihr sprecht?", "Über sprecht ihr was?", "Worüber sprechen ihr?", "Worüber sprecht ihr?"], "answer": 4, "explain": "For things, über + was becomes the wo(r)-word *worüber* in position 1, verb second: *Worüber sprecht ihr?*"}, {"q": "Pick the correct question: *Have you read the book yet?*", "options": ["Hast du das Buch schon gelesen?", "Hast du gelesen das Buch schon?", "Hast gelesen du das Buch schon?", "Gelesen du hast das Buch schon?", "Hast du schon gelesen das Buch?"], "answer": 0, "explain": "Yes/no question: conjugated verb first, subject next, and the participle still closes the bracket at the end: *Hast du … gelesen?*"}, {"q": "Ich weiß, dass er gestern *___*.", "options": ["ist gekommen", "gekommen ist", "kommen ist", "gekommen hat", "ist kommen"], "answer": 1, "explain": "In a subordinate clause the conjugated verb is last, the participle right before it: *gekommen ist*. kommen takes sein."}, {"q": "Der Chef sagt, dass das heute *___*.", "options": ["muss gemacht werden", "gemacht muss werden", "gemacht werden muss", "werden gemacht muss", "machen werden muss"], "answer": 2, "explain": "Passive + modal in a subordinate clause: Partizip II, then werden, then the conjugated modal last: *gemacht werden muss*."}, {"q": "Pick the correct sentence: *The book you gave me is great.*", "options": ["Das Buch, das du mir hast gegeben, ist super.", "Das Buch, das du hast mir gegeben, ist super.", "Das Buch, das du mir gegeben hast, super ist.", "Das Buch, das du mir gegeben hast, ist super.", "Das Buch, das hast du mir gegeben, ist super."], "answer": 3, "explain": "The relative clause ends with its verb (*gegeben hast*), and the whole block is position 1, so the main verb *ist* follows straight after the comma: verb, comma, verb."}, {"q": "Pick the correct sentence: *I won't call you.*", "options": ["Ich nicht rufe dich an.", "Ich rufe dich an nicht.", "Ich rufe kein dich an.", "Ich nicht anrufe dich.", "Ich rufe dich nicht an."], "answer": 4, "explain": "Sentence negation: *nicht* goes late, after the object but before the separable prefix that closes the bracket: *nicht an*."}, {"q": "Pick the correct sentence: *I'm not going today but tomorrow.*", "options": ["Ich fahre nicht heute, sondern morgen.", "Ich fahre heute, sondern morgen nicht.", "Ich fahre nicht heute, sonst morgen.", "Ich fahre kein heute, sondern morgen.", "Ich nicht fahre heute, sondern morgen."], "answer": 0, "explain": "Partial negation: *nicht* stands directly before the part you deny (*heute*), and the correction follows with *sondern*."}, {"q": "Das ist *___* mein Handy.", "options": ["kein", "nicht", "keine", "nichts", "keins"], "answer": 1, "explain": "A noun with a possessive (mein, dein…) or definite article is negated with *nicht*; kein replaces only ein or no article."}, {"q": "Ich habe vor, morgen meine Oma *___*. (besuchen)", "options": ["bezusuchen", "besuchen zu", "zu besuchen", "zubesuchen", "zu besucht"], "answer": 2, "explain": "Inseparable verbs keep *zu* as a separate word in front: *zu besuchen*. Only separable verbs take it inside (anzurufen)."}, {"q": "Pick the correct sentence: *I'm going swimming.*", "options": ["Ich gehe zu schwimmen.", "Ich gehe schwimmen zu.", "Ich schwimmen gehe.", "Ich gehe schwimmen.", "Ich gehe um zu schwimmen."], "answer": 3, "explain": "*gehen* (like modals, lassen, bleiben) takes a bare infinitive with no zu: *Ich gehe schwimmen*, Ukrainian *я йду плавати*."}, {"q": "Er ist gegangen, *___*. (without saying anything)", "options": ["ohne zu sagen etwas", "ohne etwas sagen", "ohne etwas sagt", "ohne dass etwas zu sagen", "ohne etwas zu sagen"], "answer": 4, "explain": "*ohne* opens the clause, *zu* + infinitive closes it, everything else in between: *ohne etwas zu sagen*."}, {"q": "Pick the correct sentence (du): *Don't call me!*", "options": ["Ruf mich nicht an!", "Nicht ruf mich an!", "Ruf mich an nicht!", "Rufst mich nicht an!", "Ruf nicht an mich!"], "answer": 0, "explain": "Imperative verb in position 1, object pronoun, then *nicht* before the separable prefix at the end: *Ruf mich nicht an!*"}, {"q": "Pick the correct sentence: *I called you twice yesterday.*", "options": ["Gestern ich habe dich zweimal angerufen.", "Gestern habe ich dich zweimal angerufen.", "Gestern habe ich angerufen dich zweimal.", "Gestern habe ich dich zweimal angeruft.", "Gestern habe ich dich angerufen zweimal."], "answer": 1, "explain": "*Gestern* in position 1, *habe* second, subject after it, and the participle *angerufen* (ge- inside the separable verb) closes the bracket."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+  document.getElementById('title').textContent = data.title;
+  document.getElementById('crumb').textContent = data.title;
+  var dl = document.getElementById('doclink');
+  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+  var intro = document.getElementById('intro');
+  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+  if (data.doc && data.doc.url) {
+    intro.appendChild(document.createTextNode(' Based on '));
+    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

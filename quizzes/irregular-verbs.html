@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Irregular verbs quiz · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs hide-sm"><span class="sep">/</span><span class="hide-sm">Quizzes</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" id="doclink" target="_blank" rel="noopener">Open the doc</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="quiz">
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="copy" type="button" hidden>Copy results</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <p class="note-copy" id="copynote" hidden></p>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"id": "irregular-verbs", "title": "Irregular verbs quiz", "level": "B1", "doc": {"title": "Irregular verbs", "url": "../docs/irregular-verbs.html"}, "questions": [{"q": "Wir *___* letzten Sommer drei Tage in Prag. (bleiben, Präteritum)", "options": ["blieben", "bleibten", "blieb", "geblieben", "bliebten"], "answer": 0, "explain": "*bleiben* is strong (pattern ei – ie – ie): blieb, ist geblieben. Strong verbs take no -te, so wir *blieben*."}, {"q": "Hast du ihm schon *___*? (schreiben)", "options": ["geschreibt", "geschrieben", "geschriebt", "schrieb", "geschreiben"], "answer": 1, "explain": "ei – ie – ie: schreiben – schrieb – hat *geschrieben*. Strong participles end in -en and carry the new vowel."}, {"q": "Which verb follows the same vowel pattern (i – a – u) as trinken – trank – getrunken?", "options": ["beginnen", "schwimmen", "finden", "bitten", "sitzen"], "answer": 2, "explain": "*finden – fand – gefunden* is i – a – u. beginnen and schwimmen are i – a – o (before -nn/-mm); bitten (bat, gebeten) and sitzen (saß, gesessen) belong elsewhere."}, {"q": "Er *___* immer den Bus um acht. (nehmen)", "options": ["nehmt", "nemmt", "nimt", "nimmt", "nahmt"], "answer": 3, "explain": "*nehmen* changes e → i in du/er and also its consonants: du nimmst, er *nimmt*. *nehmt* is the ihr-form."}, {"q": "Letztes Jahr *___* sie nach Italien. (fahren, Präteritum)", "options": ["fahrte", "fuhrte", "fährte", "fahr", "fuhr"], "answer": 4, "explain": "a – u – a: fahren – fährt – *fuhr* – ist gefahren. Strong Präteritum has no -te and no ending in ich/er/sie."}, {"q": "Gestern *___* ich den ganzen Tag zu Hause geblieben.", "options": ["bin", "habe", "hat", "ist", "hatte"], "answer": 0, "explain": "*bleiben* is one of the exceptions that take sein although nothing moves: ich *bin* geblieben."}, {"q": "Ich habe lange darüber *___*. (nachdenken)", "options": ["gedenkt", "gedacht", "gedachen", "gedunken", "gedankt"], "answer": 1, "explain": "denken is a mixed verb: new stem + weak -t: dachte, *gedacht* (like English think – thought). *gedankt* comes from danken."}, {"q": "Er *___* mir gestern Blumen. (bringen, Präteritum)", "options": ["bringte", "brang", "brachte", "brung", "bracht"], "answer": 2, "explain": "Mixed verb: vowel and consonant change plus weak -te: bringen – *brachte* – gebracht (bring – brought)."}, {"q": "Ich habe gestern leider nicht kommen *___*.", "options": ["gekonnt", "könnte", "gekönnt", "können", "konnte"], "answer": 3, "explain": "A modal with another verb forms its Perfekt with a double infinitive: hat … kommen *können*. *gekonnt* is used only when the modal stands alone."}, {"q": "Ich *___* noch nie in Japan gewesen.", "options": ["habe", "hat", "hatte", "wurde", "bin"], "answer": 4, "explain": "*sein* forms its Perfekt with sein: ich *bin* gewesen. In speech *Ich war noch nie in Japan* is even more common."}, {"q": "Wir *___* letztes Jahr nach Hamburg gezogen.", "options": ["sind", "haben", "hat", "ist", "seid"], "answer": 0, "explain": "*ziehen* without an object means 'move house' and takes sein: wir *sind* gezogen. With an object (den Wagen) it is hat gezogen."}, {"q": "Ich *___* mir beim Skifahren das Bein gebrochen.", "options": ["bin", "habe", "ist", "wurde", "war"], "answer": 1, "explain": "*brechen* takes haben when it has an accusative object (das Bein): Ich *habe* mir das Bein gebrochen. Without one: Das Eis *ist* gebrochen."}, {"q": "Ich *___* das Buch auf den Tisch.", "options": ["liege", "lag", "lege", "gelegen", "liegt"], "answer": 2, "explain": "Putting something somewhere = weak transitive *legen* + Akkusativ: Ich *lege* das Buch auf den Tisch. *liegen* (lag, gelegen) = be lying there."}, {"q": "Das Bild hat jahrelang an der Wand *___*.", "options": ["gehängt", "hängt", "gehängen", "gehangen", "hing"], "answer": 3, "explain": "Strong *hängen* (hing, *gehangen*) = be hanging, with Dativ (an der Wand), like Ukrainian *висіти*. Weak gehängt = hung it up (вішати)."}, {"q": "Ich habe die Prüfung *___*! (I passed / managed it)", "options": ["geschaffen", "schuf", "geschaffte", "geschafen", "geschafft"], "answer": 4, "explain": "Weak *schaffen* (schaffte, *geschafft*) = manage, pass. Strong schaffen (schuf, geschaffen) = create."}, {"q": "What does *Ich soll dich von Anna grüßen* mean?", "options": ["Anna asked me to say hi to you.", "I want to greet Anna.", "I must greet you instead of Anna.", "I'm allowed to say hi to Anna.", "I should have said hi from Anna."], "answer": 0, "explain": "*sollen* = someone else's will (Ukrainian *мати зробити*): Anna wants me to pass on her greetings."}, {"q": "Der Film *___* mir gut *___*.", "options": ["ist … gefallen", "hat … gefallen", "hat … gefällt", "ist … gefällt", "hat … gefiel"], "answer": 1, "explain": "*gefallen* (gefällt – gefiel – hat gefallen) means 'please' and takes haben. *ist gefallen* comes from fallen: 'has fallen'."}, {"q": "Would you know where the station is? *___* du, wo der Bahnhof ist?", "options": ["Wusstest", "Wisstest", "Wüsstest", "Wüsst", "Weißtest"], "answer": 2, "explain": "Konjunktiv II of mixed verbs = Präteritum + umlaut: wusste → *wüsste*, du *wüsstest*. *Wusstest* is the plain past: 'Did you know'."}, {"q": "Er hat sich beim Kochen in den Finger *___*. (schneiden)", "options": ["geschneidet", "geschnieden", "geschnittet", "geschnitten", "schnitt"], "answer": 3, "explain": "ei – i – i (short i, double consonant): schneiden – schnitt – hat *geschnitten*, like reiten – ritt – geritten."}, {"q": "Ich habe meinen Schlüssel *___*. (verlieren)", "options": ["verliert", "geverloren", "verlort", "verlieren", "verloren"], "answer": 4, "explain": "ie – o – o: verlieren – verlor – hat *verloren*. The inseparable prefix ver- blocks ge-."}, {"q": "Wer hat das Spiel *___*? (gewinnen)", "options": ["gewonnen", "gewinnt", "gewunnen", "gewannen", "gegewonnen"], "answer": 0, "explain": "Before -nn / -mm the pattern is i – a – o: gewinnen – gewann – hat *gewonnen* (not -u- as in getrunken)."}, {"q": "Der Kellner *___* uns den Fisch. (empfehlen, Präteritum)", "options": ["empfiehl", "empfahl", "empfehlte", "empfohl", "empfiehlte"], "answer": 1, "explain": "e – a – o: empfehlen – empfiehlt – *empfahl* – hat empfohlen. The present e → ie does not carry into the Präteritum."}, {"q": "Habt ihr schon *___*? (essen)", "options": ["geessen", "gessen", "gegessen", "gegesst", "geesst"], "answer": 2, "explain": "essen is e – a – e with an extra g in the participle: ge-g-essen = *gegessen*."}, {"q": "Wie *___* dein Großvater? (heißen, Präteritum)", "options": ["heißte", "hießte", "geheißen", "hieß", "hiß"], "answer": 3, "explain": "heißen belongs to the -ie- Präteritum group (like rufen – rief): heißen – *hieß* – hat geheißen. Strong, so no -te."}, {"q": "Sie *___* an dem Abend ein rotes Kleid. (tragen, Präteritum)", "options": ["tragte", "trägte", "trugte", "tragt", "trug"], "answer": 4, "explain": "a – u – a: tragen – trägt – *trug* – hat getragen, like fahren – fuhr."}, {"q": "Was hast du am Wochenende *___*? (tun)", "options": ["getan", "getut", "getunt", "getat", "getann"], "answer": 0, "explain": "tun is one of a kind: tun – tut – tat – hat *getan*."}, {"q": "Er *___* lange vor der Tür. (stehen, Präteritum)", "options": ["stehte", "stand", "standete", "stande", "gestanden"], "answer": 1, "explain": "stehen is one of a kind: stehen – *stand* – hat gestanden (in the south: ist gestanden). Same for verstehen – verstand."}, {"q": "Ich *___* ihn schon als Kind. (kennen, Präteritum)", "options": ["kennte", "konnte", "kannte", "kennt", "kante"], "answer": 2, "explain": "kennen is a mixed verb: vowel change plus weak -te: *kannte*, hat gekannt. *konnte* comes from können."}, {"q": "Er ist zum Bus *___*. (rennen)", "options": ["gerennt", "gerunnen", "gerennen", "gerannt", "rannte"], "answer": 3, "explain": "rennen is mixed like kennen and nennen: rannte – ist *gerannt*. Movement, so sein."}, {"q": "Das habe ich nicht *___*. (wollen, no other verb)", "options": ["wollen", "gewillt", "gewolt", "wollte", "gewollt"], "answer": 4, "explain": "A modal standing alone forms a normal ge-participle: Das habe ich nicht *gewollt*. With another verb it would be an infinitive (hat … kommen wollen)."}, {"q": "To a friend: *Don't be afraid!*", "options": ["Hab keine Angst!", "Sei keine Angst!", "Hast keine Angst!", "Habst keine Angst!", "Hab nicht Angst!"], "answer": 0, "explain": "du-imperative of haben is *hab(e)*, and *Angst haben* is negated with kein: *Hab keine Angst!* Ukrainian *не бійся* uses a different verb."}, {"q": "Er *___* den Ball ins Tor getreten.", "options": ["ist", "hat", "wird", "bist", "habe"], "answer": 1, "explain": "*treten* takes haben with an accusative object (den Ball = kick); without one it takes sein (Er ist auf die Straße getreten)."}, {"q": "Ich *___* mich aufs Sofa. (I sit down on the sofa.)", "options": ["sitze", "sitzte", "setze", "setzt", "saß"], "answer": 2, "explain": "Putting yourself somewhere = weak transitive *setzen* + Akkusativ: Ich *setze* mich aufs Sofa. sitzen (saß, gesessen) = be sitting."}, {"q": "Translate: *You scared me!*", "options": ["Du hast mich erschrocken!", "Du bist mich erschrocken!", "Du hast mir erschreckt!", "Du hast mich erschreckt!", "Du bist mir erschreckt!"], "answer": 3, "explain": "Scaring someone = weak transitive *erschrecken*: hat *erschreckt* + Akkusativ. Strong ist erschrocken = I got a fright (Ich bin erschrocken)."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+  document.getElementById('title').textContent = data.title;
+  document.getElementById('crumb').textContent = data.title;
+  var dl = document.getElementById('doclink');
+  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+  var intro = document.getElementById('intro');
+  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+  if (data.doc && data.doc.url) {
+    intro.appendChild(document.createTextNode(' Based on '));
+    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>B2+: Advanced verb structures · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">B2+: Advanced verb structures</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>B2+ · B2+</span><h1>B2+: Advanced verb structures</h1></header>
+<article class="prose card">
+<p>B2+ material: skip it until B1 feels solid.</p>
+<h2>lassen: let, have done, can be</h2>
+<p><em>lassen</em> + infinitive (no <em>zu</em>) has three main meanings. The infinitive goes to the end, like after a modal verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allow, let</td>
+<td>Ich <strong>lasse</strong> die Kinder im Garten <strong>spielen</strong>.</td>
+<td>I let the children play in the garden.</td>
+</tr>
+<tr>
+<td>allow, let</td>
+<td><strong>Lass</strong> mich <strong>ausreden</strong>!</td>
+<td>Let me finish!</td>
+</tr>
+<tr>
+<td>suggestion</td>
+<td><strong>Lass uns</strong> <strong>gehen</strong>! / <strong>Lasst uns</strong> anfangen!</td>
+<td>Let's go! / Let's start!</td>
+</tr>
+<tr>
+<td>have something done</td>
+<td>Ich <strong>lasse</strong> das Auto <strong>reparieren</strong>.</td>
+<td>I'm having the car repaired.</td>
+</tr>
+<tr>
+<td>have done for yourself (Dat)</td>
+<td>Ich <strong>lasse mir</strong> die Haare <strong>schneiden</strong>.</td>
+<td>I'm getting my hair cut.</td>
+</tr>
+<tr>
+<td>sich lassen = can be</td>
+<td>Das Fenster <strong>lässt sich</strong> nicht <strong>öffnen</strong>.</td>
+<td>The window can't be opened.</td>
+</tr>
+<tr>
+<td>sich lassen = can be</td>
+<td>Das <strong>lässt sich</strong> machen.</td>
+<td>That can be done.</td>
+</tr>
+<tr>
+<td>without infinitive = leave</td>
+<td>Ich habe den Schlüssel zu Hause <strong>gelassen</strong>.</td>
+<td>I left the key at home.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Perfekt:</p>
+<ul>
+<li>With an infinitive → double infinitive: <em>Ich <strong>habe</strong> das Auto <strong>reparieren lassen</strong>.</em> (not <em>gelassen</em>)</li>
+<li>Without an infinitive → normal Partizip II: <em>Ich <strong>habe</strong> die Tür offen <strong>gelassen</strong>.</em></li>
+</ul>
+<p><strong>Ukrainian comparison.</strong> Ukrainian often says <em>Я відремонтував машину</em> or <em>Я постригся</em> even when a mechanic or hairdresser did the work. German speakers hear <em>Ich habe das Auto repariert</em> as "I did it myself", so use <em>lassen</em>: <em>Ich habe das Auto reparieren lassen</em>, <em>Ich habe mir die Haare schneiden lassen</em>. The "let's" form <em>Lass uns …</em> = Ukrainian <em>Давай …</em>.</p>
+<h2>The double infinitive (Ersatzinfinitiv)</h2>
+<p>When a modal verb, <em>lassen</em>, or (optionally) <em>sehen/hören</em> has an infinitive with it, its Perfekt uses the infinitive instead of the Partizip II. Two infinitives stand side by side at the end, and the auxiliary is always <em>haben</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Present</th>
+<th>Perfekt (main clause)</th>
+<th>Subordinate clause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Er muss kommen.</td>
+<td>Er <strong>hat kommen müssen</strong>.</td>
+<td>…, dass er <strong>hat kommen müssen</strong>.</td>
+</tr>
+<tr>
+<td>Ich kann nicht schlafen.</td>
+<td>Ich <strong>habe</strong> nicht <strong>schlafen können</strong>.</td>
+<td>…, weil ich nicht <strong>habe schlafen können</strong>.</td>
+</tr>
+<tr>
+<td>Sie will helfen.</td>
+<td>Sie <strong>hat helfen wollen</strong>.</td>
+<td>…, obwohl sie <strong>hat helfen wollen</strong>.</td>
+</tr>
+<tr>
+<td>Wir lassen das Haus bauen.</td>
+<td>Wir <strong>haben</strong> das Haus <strong>bauen lassen</strong>.</td>
+<td>…, dass wir das Haus <strong>haben bauen lassen</strong>.</td>
+</tr>
+<tr>
+<td>Ich höre ihn singen.</td>
+<td>Ich <strong>habe</strong> ihn <strong>singen hören</strong> (or <em>gehört</em>).</td>
+<td>…, dass ich ihn <strong>habe singen hören</strong>.</td>
+</tr>
+<tr>
+<td>Er muss gehen. (future)</td>
+<td>Er <strong>wird gehen müssen</strong>.</td>
+<td>…, dass er <strong>wird gehen müssen</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Key rules:</p>
+<ul>
+<li>In a subordinate clause the finite verb (<em>hat, habe, haben, wird</em>) does not go last. It stands <strong>before</strong> the two infinitives. This is the one big exception to verb-last.</li>
+<li>Even verbs that normally take <em>sein</em> switch to <em>haben</em>: <em>Er ist gegangen</em> but <em>Er hat gehen müssen</em>.</li>
+<li>Without an infinitive, the modal has a normal Partizip II: <em>Ich habe es nicht <strong>gekonnt</strong>.</em> · <em>Das habe ich nicht <strong>gewollt</strong>.</em></li>
+<li>In speech, people avoid all this with the Präteritum: <em>Er <strong>musste</strong> kommen</em>, <em>…, weil ich nicht schlafen <strong>konnte</strong></em>.</li>
+</ul>
+<h2>Guessing and reporting: subjective modal verbs and Futur II</h2>
+<p>Modal verbs have a second use: the speaker rates how sure they are, or says the claim comes from someone else. The sentence often uses <em>sein</em> or a past infinitive (<em>gemacht haben</em>, <em>gegangen sein</em>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>How sure / whose claim</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>muss</td>
+<td>Er <strong>muss</strong> krank <strong>sein</strong>.</td>
+<td>almost certain</td>
+<td>мабуть, напевно</td>
+</tr>
+<tr>
+<td>dürfte</td>
+<td>Er <strong>dürfte</strong> schon zu Hause <strong>sein</strong>.</td>
+<td>probable</td>
+<td>ймовірно</td>
+</tr>
+<tr>
+<td>wird (+ wohl)</td>
+<td>Er <strong>wird</strong> wohl zu Hause <strong>sein</strong>.</td>
+<td>probable</td>
+<td>мабуть</td>
+</tr>
+<tr>
+<td>kann</td>
+<td>Das <strong>kann</strong> stimmen.</td>
+<td>possible</td>
+<td>може бути</td>
+</tr>
+<tr>
+<td>könnte</td>
+<td>Sie <strong>könnte</strong> recht <strong>haben</strong>.</td>
+<td>possible, less sure</td>
+<td>можливо</td>
+</tr>
+<tr>
+<td>mag</td>
+<td>Er <strong>mag</strong> 40 <strong>sein</strong>. / Das <strong>mag</strong> sein, aber …</td>
+<td>may well be (concession)</td>
+<td>може, й так</td>
+</tr>
+<tr>
+<td>kann nicht</td>
+<td>Das <strong>kann</strong> nicht <strong>sein</strong>.</td>
+<td>impossible</td>
+<td>не може бути</td>
+</tr>
+<tr>
+<td>soll</td>
+<td>Er <strong>soll</strong> sehr reich <strong>sein</strong>.</td>
+<td>others say so</td>
+<td>кажуть, що</td>
+</tr>
+<tr>
+<td>will</td>
+<td>Er <strong>will</strong> den Täter <strong>gesehen haben</strong>.</td>
+<td>he himself claims (doubtful)</td>
+<td>стверджує, що нібито</td>
+</tr>
+</tbody>
+</table></div>
+<p>About the past: modal in the present + past infinitive.</p>
+<ul>
+<li><em>Er <strong>muss</strong> den Zug <strong>verpasst haben</strong>.</em> = He must have missed the train.</li>
+<li><em>Sie <strong>soll</strong> früher in Kyjiw <strong>gewohnt haben</strong>.</em> = She is said to have lived in Kyiv.</li>
+<li><em>Er <strong>will</strong> nichts <strong>gehört haben</strong>.</em> = He claims he heard nothing.</li>
+<li><em>Sie <strong>könnte</strong> schon <strong>gegangen sein</strong>.</em> = She might have left already.</li>
+</ul>
+<p><strong>Futur II for assumptions.</strong> <em>werden</em> + past infinitive = "must have / probably has", usually with <em>wohl</em> or <em>schon</em>:</p>
+<ul>
+<li><em>Er <strong>wird</strong> es <strong>vergessen haben</strong>.</em> = He has probably forgotten it.</li>
+<li><em>Sie <strong>wird</strong> schon nach Hause <strong>gegangen sein</strong>.</em> = She has probably gone home already.</li>
+<li>Real future-perfect use is rare: <em>Bis Montag <strong>werde</strong> ich den Bericht <strong>geschrieben haben</strong>.</em></li>
+</ul>
+<p>Trap: <em>Er soll kommen</em> = he is supposed to come (objective); <em>Er soll gekommen sein</em> = he reportedly came (subjective). The past infinitive tells you which.</p>
+<h2>Passive alternatives</h2>
+<p>The <em>werden</em>-passive is not the only way to say "is done" or "can be done". These forms are shorter and often sound more natural.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>Same as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>man + active</td>
+<td><strong>Man</strong> spricht hier Ukrainisch.</td>
+<td>Hier wird Ukrainisch gesprochen.</td>
+</tr>
+<tr>
+<td>sich lassen + Inf</td>
+<td>Das Problem <strong>lässt sich lösen</strong>.</td>
+<td>Das Problem kann gelöst werden.</td>
+</tr>
+<tr>
+<td>sein + zu + Inf</td>
+<td>Das Problem <strong>ist</strong> leicht <strong>zu lösen</strong>.</td>
+<td>… kann leicht gelöst werden.</td>
+</tr>
+<tr>
+<td>sein + zu + Inf</td>
+<td>Der Antrag <strong>ist</strong> bis Freitag <strong>abzugeben</strong>.</td>
+<td>… muss abgegeben werden.</td>
+</tr>
+<tr>
+<td>-bar adjective</td>
+<td>Das Problem ist <strong>lösbar</strong>.</td>
+<td>… kann gelöst werden.</td>
+</tr>
+<tr>
+<td>-lich adjective</td>
+<td>Die Erklärung ist <strong>verständlich</strong>.</td>
+<td>… kann verstanden werden.</td>
+</tr>
+<tr>
+<td>bekommen-Passiv</td>
+<td>Ich <strong>bekomme</strong> das Paket <strong>geschickt</strong>.</td>
+<td>Mir wird das Paket geschickt.</td>
+</tr>
+<tr>
+<td>bekommen-Passiv</td>
+<td>Sie <strong>hat</strong> ein Fahrrad <strong>geschenkt bekommen</strong>.</td>
+<td>Ihr wurde ein Fahrrad geschenkt.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Common <em>-bar</em> / <em>-lich</em> adjectives: essbar, trinkbar, lesbar, machbar, erkennbar, waschbar, erreichbar, unvermeidbar; verständlich, erhältlich, unvermeidlich, begreiflich, verkäuflich. <em>un-</em> adds "cannot": <em>unlösbar</em>, <em>unlesbar</em>.</p>
+<p>Notes:</p>
+<ul>
+<li>The <em>bekommen</em>-passive works with verbs that have a dative person + an object: <em>schenken, schicken, geben, erklären, zeigen, empfehlen</em>. The dative person becomes the subject. Colloquial: <em>kriegen</em> (<em>Ich hab's geschenkt gekriegt</em>).</li>
+<li><em>sich lassen</em> and <em>-bar</em> mean "can"; <em>sein + zu</em> means "can" or "must" depending on context (see the next section).</li>
+</ul>
+<p>Ukrainian uses <em>-ний/-тий</em> participles, <em>-ся</em> verbs and <em>можна</em> + infinitive for the same job: <em>це можна вирішити</em> = das lässt sich lösen; <em>тут розмовляють українською</em> (no subject) = man spricht hier Ukrainisch.</p>
+<h2>haben + zu and sein + zu</h2>
+<p>Both replace a modal verb. <em>haben + zu</em> is active (the subject must do it); <em>sein + zu</em> is passive (something must or can be done).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Example</th>
+<th>Same as</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>haben + zu + Inf</td>
+<td>Ich <strong>habe</strong> heute noch viel <strong>zu arbeiten</strong>.</td>
+<td>Ich muss viel arbeiten.</td>
+<td>I have a lot to do.</td>
+</tr>
+<tr>
+<td>haben + zu + Inf</td>
+<td>Sie <strong>haben</strong> den Anweisungen <strong>zu folgen</strong>.</td>
+<td>Sie müssen … folgen.</td>
+<td>You are to follow the instructions.</td>
+</tr>
+<tr>
+<td>nichts zu + Inf haben</td>
+<td>Du <strong>hast</strong> hier nichts <strong>zu sagen</strong>.</td>
+<td>Du darfst hier nicht bestimmen.</td>
+<td>You have no say here.</td>
+</tr>
+<tr>
+<td>sein + zu + Inf (must)</td>
+<td>Die Rechnung <strong>ist</strong> bis Freitag <strong>zu bezahlen</strong>.</td>
+<td>… muss bezahlt werden.</td>
+<td>is to be paid</td>
+</tr>
+<tr>
+<td>sein + zu + Inf (can)</td>
+<td>Er <strong>ist</strong> telefonisch nicht <strong>zu erreichen</strong>.</td>
+<td>… kann nicht erreicht werden.</td>
+<td>can't be reached</td>
+</tr>
+<tr>
+<td>sein + zu + Inf (can)</td>
+<td>Die Schmerzen <strong>sind</strong> kaum <strong>zu ertragen</strong>.</td>
+<td>… können kaum ertragen werden.</td>
+<td>are hardly bearable</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Separable verbs put <em>zu</em> inside: <em>Das Formular ist bis Montag aus<strong>zu</strong>füllen.</em></li>
+<li>Both are typical of rules, instructions and official texts; in conversation <em>muss</em> and <em>kann</em> are more common.</li>
+<li>The same idea before a noun becomes <em>zu</em> + Partizip I: <em>die zu bezahlende Rechnung</em> (the bill that must be paid).</li>
+</ul>
+<p><strong>Ukrainian comparison.</strong> <em>haben + zu</em> matches Ukrainian <em>мати</em> + infinitive almost exactly: <em>Я маю багато працювати</em> = Ich habe viel zu arbeiten; <em>Ви маєте виконувати інструкції</em> = Sie haben die Anweisungen zu befolgen.</p>
+<h2>Partizip I and II as adjectives and adverbs</h2>
+<p>Partizip I = infinitive + <em>-d</em> (schlafen → schlafen<strong>d</strong>): active, happening at the same time. Partizip II (gekocht, geschlossen) = passive or completed. Before a noun both take normal adjective endings; as adverbs they take none.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Partizip I</th>
+<th>Partizip II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adjective</td>
+<td>das <strong>schlafende</strong> Kind (the sleeping child)</td>
+<td>das <strong>gekochte</strong> Ei (the boiled egg)</td>
+</tr>
+<tr>
+<td>Adjective</td>
+<td>die <strong>kommende</strong> Woche (next week)</td>
+<td>die <strong>vergangene</strong> Woche (last week)</td>
+</tr>
+<tr>
+<td>Adjective</td>
+<td><strong>fließendes</strong> Wasser (running water)</td>
+<td><strong>gebrauchte</strong> Autos (used cars)</td>
+</tr>
+<tr>
+<td>Adjective</td>
+<td>ein <strong>überzeugendes</strong> Argument</td>
+<td>ein <strong>gelungener</strong> Abend (a successful evening)</td>
+</tr>
+<tr>
+<td>Adverb</td>
+<td>Sie kam <strong>lachend</strong> ins Zimmer.</td>
+<td>Er saß <strong>gelangweilt</strong> da.</td>
+</tr>
+<tr>
+<td>Adverb</td>
+<td>Er spricht <strong>fließend</strong> Deutsch.</td>
+<td>Sie hörte <strong>gespannt</strong> zu.</td>
+</tr>
+<tr>
+<td>Noun</td>
+<td>der/die <strong>Reisende</strong> (traveller), die <strong>Studierenden</strong></td>
+<td>der/die <strong>Angestellte</strong> (employee), die <strong>Verletzten</strong> (the injured)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nouns from participles decline like adjectives: <em>der Angestellte</em>, but <em>ein Angestellt<strong>er</strong></em>, <em>mit dem Reisend<strong>en</strong></em>.</p>
+<p><strong>Ukrainian comparison.</strong> Partizip I as an adjective = <em>дієприкметник</em> (<em>спляча дитина</em>, though Ukrainian prefers <em>дитина, яка спить</em>); Partizip I as an adverb = <em>дієприслівник</em>: <em>Вона ввійшла, сміючись</em> = <em>Sie kam lachend herein</em>. German needs no comma and no reflexive here.</p>
+<h2>Case patterns: genitive verbs and reflexive dative</h2>
+<p><strong>Verbs with a genitive object</strong> are few and formal, but they appear in news, law and literature. Most have a modern alternative.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Example</th>
+<th>Modern / everyday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gedenken + Gen</td>
+<td>Wir <strong>gedenken der Opfer</strong>.</td>
+<td>an die Opfer erinnern</td>
+</tr>
+<tr>
+<td>sich bedienen + Gen</td>
+<td>Er <strong>bediente sich einer</strong> einfachen <strong>Methode</strong>.</td>
+<td>eine Methode benutzen</td>
+</tr>
+<tr>
+<td>bedürfen + Gen</td>
+<td>Das <strong>bedarf einer Erklärung</strong>.</td>
+<td>Das braucht eine Erklärung.</td>
+</tr>
+<tr>
+<td>sich erinnern + Gen (old)</td>
+<td>Sie <strong>erinnerte sich ihrer Kindheit</strong>.</td>
+<td>sich an + Akk erinnern</td>
+</tr>
+<tr>
+<td>sich enthalten + Gen</td>
+<td>Er <strong>enthielt sich der Stimme</strong>.</td>
+<td>nicht abstimmen</td>
+</tr>
+<tr>
+<td>sich annehmen + Gen</td>
+<td>Sie <strong>nahm sich des Problems an</strong>.</td>
+<td>sich um + Akk kümmern</td>
+</tr>
+<tr>
+<td>sich vergewissern + Gen</td>
+<td><strong>Vergewissern Sie sich</strong> der Fakten.</td>
+<td>prüfen, ob …</td>
+</tr>
+<tr>
+<td>jdn. beschuldigen + Gen</td>
+<td>Man <strong>beschuldigt ihn des Diebstahls</strong>.</td>
+<td>jdm. Diebstahl vorwerfen</td>
+</tr>
+<tr>
+<td>jdn. anklagen + Gen</td>
+<td>Er wurde <strong>des Mordes angeklagt</strong>.</td>
+<td>wegen Mordes angeklagt</td>
+</tr>
+<tr>
+<td>jdn. verdächtigen + Gen</td>
+<td>Sie wird <strong>des Betrugs verdächtigt</strong>.</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reflexive verbs: Akk or Dat?</strong> The reflexive pronoun is accusative unless the sentence already has another accusative object; then it becomes dative. Only <em>ich</em> and <em>du</em> show the difference (<em>mich/mir</em>, <em>dich/dir</em>); all other persons use <em>sich, uns, euch</em> for both.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Akk (no other object)</th>
+<th>Dat (other object present)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich wasche <strong>mich</strong>.</td>
+<td>Ich wasche <strong>mir</strong> die Hände.</td>
+</tr>
+<tr>
+<td>Du kämmst <strong>dich</strong>.</td>
+<td>Du kämmst <strong>dir</strong> die Haare.</td>
+</tr>
+<tr>
+<td>Ich ziehe <strong>mich</strong> an.</td>
+<td>Ich ziehe <strong>mir</strong> die Jacke an.</td>
+</tr>
+<tr>
+<td>Ich verletze <strong>mich</strong>.</td>
+<td>Ich habe <strong>mir</strong> den Arm verletzt.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Always dative (they always have an object): <em>sich etwas vorstellen</em> (Ich stelle <strong>mir</strong> das vor), <em>sich etwas merken</em>, <em>sich etwas leisten</em>, <em>sich etwas wünschen</em>, <em>sich etwas überlegen</em>, <em>sich etwas ansehen</em>, <em>sich Sorgen machen</em> (Ich mache <strong>mir</strong> Sorgen).</p>
+<p>Ukrainian says <em>Я мию руки</em> with no pronoun at all, so German <em>mir</em> is easy to forget: <em>Ich wasche <strong>mir</strong> die Hände</em>, not <em>Ich wasche meine Hände</em> (possible, but unusual).</p>
+<h2>Verbs + infinitive without zu</h2>
+<p>Besides the modal verbs, a small group takes a bare infinitive. Everything else needs <em>zu</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Verbs</th>
+<th>Example</th>
+<th>Perfekt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lassen</td>
+<td>lassen</td>
+<td>Ich lasse das Auto waschen.</td>
+<td>Ich habe das Auto waschen <strong>lassen</strong>.</td>
+</tr>
+<tr>
+<td>Perception</td>
+<td>sehen, hören, fühlen, spüren</td>
+<td>Ich sehe ihn kommen. · Ich höre sie singen.</td>
+<td>Ich habe ihn kommen <strong>sehen</strong> / <strong>gesehen</strong>.</td>
+</tr>
+<tr>
+<td>Movement (purpose)</td>
+<td>gehen, fahren, kommen</td>
+<td>Wir gehen schwimmen. · Ich fahre einkaufen. · Kommst du mit essen?</td>
+<td>Wir <strong>sind</strong> schwimmen <strong>gegangen</strong>.</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>bleiben</td>
+<td>Bleib sitzen! · Er blieb stehen.</td>
+<td>Er <strong>ist</strong> stehen <strong>geblieben</strong>.</td>
+</tr>
+<tr>
+<td>Optional zu</td>
+<td>lernen, helfen, lehren</td>
+<td>Ich lerne schwimmen. · Ich helfe dir tragen.</td>
+<td>Ich habe schwimmen <strong>gelernt</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>With <em>lernen</em> and <em>helfen</em>, a longer phrase takes <em>zu</em> and a comma: <em>Ich lerne, Klavier zu spielen.</em> · <em>Ich helfe dir, die Kisten zu tragen.</em></li>
+<li><em>brauchen</em> in the negative officially needs <em>zu</em> (<em>Du brauchst nicht zu kommen</em>); in speech <em>zu</em> is often dropped.</li>
+<li>Fixed meanings: <em>sitzen bleiben</em> (also: repeat a school year), <em>kennenlernen</em> (get to know, written as one word), <em>spazieren gehen</em>, <em>verloren gehen</em> (get lost).</li>
+</ul>
+<p>Compare English: <em>I see him come</em>, <em>Let me go</em> also use the bare infinitive, so this group is easy to remember; Ukrainian uses a clause instead (<em>бачу, як він іде</em>).</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: modal verbs, Perfekt and the <em>werden</em>-passive</li>
+<li><a href="../docs/irregular-verbs.html">Irregular verbs</a>: Partizip II forms used in every structure here</li>
+<li><a href="../docs/word-order.html">Word order</a>: verb-last and its double-infinitive exception</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: -bar and -lich adjectives</li>
+<li><a href="../docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a>: another way to report claims besides <em>soll</em> and <em>will</em></li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: extended participles and passive style in writing</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/b2-verb-structures.html">Verb structures quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

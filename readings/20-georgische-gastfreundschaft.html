@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Gastfreundschaft und Alphabet · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "20-georgische-gastfreundschaft", "n": 20, "area": "Georgia", "level": "B1", "title_de": "Gastfreundschaft und Alphabet", "title_en": "Georgian hospitality and a new alphabet", "grammar": [{"name": "Verbs with the Dativ (helfen, gefallen, schmecken)", "explain": "Some common verbs take the person in the *Dativ*, not the Akkusativ: *helfen, danken, antworten, gehören, gratulieren* and *gefallen, schmecken, auffallen, passen*. So it is *Ich helfe dir*, never *dich*. With *gefallen, schmecken, auffallen* the thing is the subject and the person is Dativ, exactly like Ukrainian: *Мені подобається місто* = *Die Stadt gefällt mir*. If the thing is plural, the verb is plural: *Die Buchstaben gefallen mir.* *helfen* also matches Ukrainian *допомагати кому*.", "examples": [{"de": "Manana fragt, ob es *ihm* schmeckt. – Es schmeckt *ihm* sehr.", "en": "Manana asks if he likes the food. – He likes it a lot."}, {"de": "Mananas Enkel Dato *hilft ihm*.", "en": "Manana's grandson Dato helps him."}, {"de": "Schon am ersten Abend *fällt ihm auf*, wie wichtig Gastfreundschaft ist.", "en": "On the very first evening he notices how important hospitality is."}], "links": [{"title": "German article tables (B1)", "url": "../docs/articles.html"}, {"title": "Gotchas and false friends", "url": "../docs/gotchas.html"}]}, {"name": "Indirect questions (ob, wie, wann …)", "explain": "A question inside a sentence becomes a subordinate clause with the verb at the end. W-questions keep their question word: *Wie schreibt man das?* → *Er fragt, wie man das schreibt.* Yes/no questions use *ob* (Ukrainian *чи*): *Schmeckt es dir?* → *Sie fragt, ob es ihm schmeckt.* Don't use *wenn* or *falls* here: *ob* = whether. After a statement like *Ich weiß nicht, …* there is no question mark.", "examples": [{"de": "Sie fragt immer wieder, *ob* es ihm *schmeckt*.", "en": "She keeps asking whether he likes it."}, {"de": "Er weiß nicht, *ob* er ein viertes Stück ablehnen *darf*.", "en": "He doesn't know if he's allowed to say no to a fourth piece."}, {"de": "Manana fragt, *wann* er *wiederkommt*.", "en": "Manana asks when he's coming back."}], "links": [{"title": "Word order", "url": "../docs/word-order.html"}, {"title": "Connectors and sentence starters", "url": "../docs/connectors.html"}]}], "vocab": [{"id": "gastfreundschaft", "de": "Gastfreundschaft", "gender": "f", "plural": null, "en": "hospitality", "uk": "гостинність", "examples": [{"de": "Die georgische Gastfreundschaft ist berühmt.", "en": "Georgian hospitality is famous."}], "note": "*der Gast* + *die Freundschaft*: *-schaft* is always feminine. No plural. Adjective: *gastfreundlich*."}, {"id": "sprichwort", "de": "Sprichwort", "gender": "n", "plural": "Sprichwörter", "en": "proverb, saying", "uk": "прислів'я", "examples": [{"de": "Kennst du ein deutsches Sprichwort?", "en": "Do you know a German proverb?"}], "note": "*das Wort* has two plurals: *Wörter* (single words) and *Worte* (meaningful words, a speech). Here: *die Sprichwörter*."}, {"id": "gast", "de": "Gast", "gender": "m", "plural": "Gäste", "en": "guest", "uk": "гість", "examples": [{"de": "Wir sind heute *bei Manana zu Gast*.", "en": "We are Manana's guests today."}], "note": "Plural with umlaut: *die Gäste*. Usually also for women: *Sie ist unser Gast* (*die Gästin* is rare)."}, {"id": "geschenk", "de": "Geschenk", "gender": "n", "plural": "Geschenke", "en": "gift, present", "uk": "подарунок", "examples": [{"de": "Das ist ein Geschenk *für dich*.", "en": "This is a present for you."}], "note": "Big false friend: German *das Gift* means poison! Verb: *jemandem (Dat) etwas schenken*."}, {"id": "einladung", "de": "Einladung", "gender": "f", "plural": "Einladungen", "en": "invitation", "uk": "запрошення", "examples": [{"de": "Vielen Dank *für die Einladung*!", "en": "Thank you very much for the invitation!"}], "note": "*-ung* → feminine. Verb: *einladen* (separable, *lädt ein*) *zu + Dat*: *Sie lädt mich zum Essen ein.*"}, {"id": "nachbar", "de": "Nachbar", "gender": "m", "plural": "Nachbarn", "en": "neighbour", "uk": "сусід", "examples": [{"de": "Unsere Nachbarn sind sehr nett.", "en": "Our neighbours are very nice."}, {"de": "Ich habe *dem Nachbarn* geholfen.", "en": "I helped the neighbour."}], "note": "Plural *die Nachbarn*. It follows the n-Deklination: *den / dem / des Nachbarn*. Female: *die Nachbarin*."}, {"id": "schrift", "de": "Schrift", "gender": "f", "plural": "Schriften", "en": "script, writing system; handwriting", "uk": "письмо, писемність; почерк", "examples": [{"de": "Die georgische Schrift ist sehr alt.", "en": "The Georgian script is very old."}], "note": "Also handwriting (*die Handschrift*) and font (*die Schriftart*). *das Alphabet* is neuter."}, {"id": "buchstabe", "de": "Buchstabe", "gender": "m", "plural": "Buchstaben", "en": "letter (of the alphabet)", "uk": "літера", "examples": [{"de": "Wie viele Buchstaben hat das Alphabet?", "en": "How many letters does the alphabet have?"}], "note": "Not a letter you send (*der Brief*). n-Deklination: *den / dem Buchstaben*, Genitiv *des Buchstabens*."}, {"id": "aussprache", "de": "Aussprache", "gender": "f", "plural": null, "en": "pronunciation", "uk": "вимова", "examples": [{"de": "Deine Aussprache ist schon sehr gut.", "en": "Your pronunciation is already very good."}], "note": "From *aussprechen* (to pronounce). It can also mean a talk to clear things up: *Wir brauchen eine Aussprache.*"}, {"id": "hoeflichkeit", "de": "Höflichkeit", "gender": "f", "plural": null, "en": "politeness", "uk": "ввічливість", "examples": [{"de": "Das ist eine Frage der Höflichkeit.", "en": "That's a question of politeness."}], "note": "*höflich* + *-keit* → feminine. Opposite: *die Unhöflichkeit*. The plural *Höflichkeiten* means polite phrases."}, {"id": "ausnahme", "de": "Ausnahme", "gender": "f", "plural": "Ausnahmen", "en": "exception", "uk": "виняток", "examples": [{"de": "*Ohne Ausnahme* müssen alle mitessen.", "en": "Everyone has to eat, without exception."}, {"de": "Ausnahmen bestätigen die Regel.", "en": "The exception proves the rule."}], "note": "Feminine (Ukrainian *виняток* is masculine). *mit Ausnahme von + Dat* = with the exception of."}, {"id": "nachtisch", "de": "Nachtisch", "gender": "m", "plural": "Nachtische", "en": "dessert", "uk": "десерт", "examples": [{"de": "*Zum Nachtisch* gibt es Kuchen.", "en": "There's cake for dessert."}], "note": "Gender trap: *der Nachtisch* (from *der Tisch*), *die Nachspeise*, *das Dessert*: three words, three genders. \"For dessert\" = *zum Nachtisch*."}, {"id": "helfen", "de": "helfen + Dat (bei + Dat)", "gender": null, "plural": null, "en": "to help", "uk": "допомагати (кому)", "examples": [{"de": "Kannst du *mir* helfen?", "en": "Can you help me?"}, {"de": "Er hilft mir *bei der Aussprache*.", "en": "He helps me with the pronunciation."}], "note": "Person in the Dativ (*mir*, never *mich*), like Ukrainian *кому*. Irregular: *du hilfst, er hilft*, Perfekt *hat geholfen*."}, {"id": "gefallen", "de": "gefallen + Dat", "gender": null, "plural": null, "en": "to like (lit. to please)", "uk": "подобатися (кому)", "examples": [{"de": "Kutaissi gefällt *mir*.", "en": "I like Kutaisi."}, {"de": "Die Buchstaben gefallen *ihm*.", "en": "He likes the letters."}], "note": "Built like Ukrainian *мені подобається*: the thing is the subject. Perfekt *hat gefallen*; *ist gefallen* is from *fallen* (to fall)."}, {"id": "schmecken", "de": "schmecken + Dat", "gender": null, "plural": null, "en": "to taste good (to someone)", "uk": "смакувати (кому)", "examples": [{"de": "Schmeckt *es dir*?", "en": "Do you like it? / Is it good?"}, {"de": "Der Wein schmeckt *nach* Kirschen.", "en": "The wine tastes of cherries."}], "note": "Person in the Dativ: *Schmeckt es dir?*, not *dich*. \"Tastes of\" = *schmecken nach + Dat*."}, {"id": "auffallen", "de": "auffallen + Dat", "gender": null, "plural": null, "en": "to strike, to be noticed (by someone)", "uk": "впадати в око, помічати", "examples": [{"de": "*Mir ist aufgefallen*, dass hier alle sehr freundlich sind.", "en": "I noticed that everyone here is very friendly."}], "note": "Separable, Perfekt with *sein*: *ist aufgefallen*. What you notice is the subject: *Das fällt mir auf* = I notice that."}, {"id": "ablehnen", "de": "ablehnen + Akk", "gender": null, "plural": null, "en": "to refuse, to decline", "uk": "відмовлятися (від), відхиляти", "examples": [{"de": "Er lehnt das Angebot ab.", "en": "He turns the offer down."}], "note": "Separable, direct Akkusativ object, no preposition: *etwas ablehnen*, not *von etwas* (unlike Ukrainian *відмовитися від*)."}, {"id": "bedanken", "de": "sich bedanken bei + Dat für + Akk", "gender": null, "plural": null, "en": "to thank (someone for something)", "uk": "дякувати (комусь за щось)", "examples": [{"de": "Ich bedanke mich *bei dir für die* Hilfe.", "en": "Thank you for your help."}], "note": "Two prepositions: person *bei + Dat*, reason *für + Akk*. Shorter: *danken + Dat*: *Ich danke dir.*"}, {"id": "neugierig", "de": "neugierig auf + Akk", "gender": null, "plural": null, "en": "curious about", "uk": "цікавий, допитливий", "examples": [{"de": "Ich bin neugierig *auf die* Stadt.", "en": "I'm curious about the city."}, {"de": "Ich bin neugierig, ob es klappt.", "en": "I'm curious whether it will work."}], "note": "*auf + Akkusativ*. Can also introduce an indirect question: *neugierig, ob / wie …*."}, {"id": "muehe", "de": "sich (Dat) Mühe geben", "gender": null, "plural": null, "en": "to make an effort, to try hard", "uk": "старатися", "examples": [{"de": "Ich gebe *mir* große Mühe.", "en": "I'm trying really hard."}], "note": "The reflexive pronoun is Dativ: *ich gebe mir*, *du gibst dir* (never *mich / dich*). *die Mühe* = effort."}], "text": "Oleksij aus Lwiw verbringt einen Monat in Kutaissi. Er wohnt bei Manana und ihrer Familie. Schon am ersten Abend {{auffallen|fällt}} ihm auf, wie wichtig {{gastfreundschaft|Gastfreundschaft}} in Georgien ist. Ein {{sprichwort|Sprichwort}} sagt hier: „Ein {{gast|Gast}} ist ein {{geschenk|Geschenk}} Gottes.“ Fast jeden Tag bekommt Oleksij eine neue {{einladung|Einladung}}, und die {{nachbar|Nachbarn}} bringen ihm Obst und Wein.\n\nManana kocht jeden Abend für ihn und fragt immer wieder, ob es ihm {{schmecken|schmeckt}}. Es schmeckt ihm sehr, aber nach drei Tellern kann er einfach nicht mehr. Er weiß nicht, ob er ein viertes Stück Chatschapuri {{ablehnen|ablehnen}} darf, und fragt sich, wie man hier mit {{hoeflichkeit|Höflichkeit}} Nein sagt. Mananas {{=Enkel|grandson · онук}} Dato {{helfen|hilft}} ihm: „Sag einfach ‚Madloba, ich bin satt‘ und lächle. Dann versteht sie dich.“\n\nAm meisten ist Oleksij aber {{neugierig|neugierig}} auf die georgische {{schrift|Schrift}}. Sie hat 33 {{buchstabe|Buchstaben}}, und alle sehen rund aus, fast wie kleine {{=Wellen|waves · хвилі}}. Die {{aussprache|Aussprache}} ist nicht leicht, denn manche {{=Laute|sounds · звуки}} gibt es weder im Ukrainischen noch im Deutschen. Zum Glück schreibt man fast ohne {{ausnahme|Ausnahme}} so, wie man spricht. Das {{gefallen|gefällt}} ihm.\n\nAm letzten Abend gibt es zum {{nachtisch|Nachtisch}} einen Kuchen mit Walnüssen. Oleksij schreibt Manana eine Karte auf Georgisch. Er {{muehe|gibt sich große Mühe}}, aber einige Buchstaben sind noch etwas {{=schief|crooked · криві}}. Dann {{bedanken|bedankt}} er sich bei allen für die schöne Zeit. Manana liest die Karte, umarmt ihn und fragt, wann er wiederkommt.", "quiz": [{"q": "Wo verbringt Oleksij einen Monat?", "options": ["in Tiflis", "in Lwiw", "in Batumi", "in Kutaissi", "in Kyjiw"], "answer": 3, "explain": "\"Oleksij aus Lwiw verbringt einen Monat in Kutaissi.\" He comes *aus* Lwiw and stays *in* Kutaissi."}, {"q": "Was fällt Oleksij am ersten Abend auf?", "options": ["wie teuer Georgien ist", "wie wichtig Gastfreundschaft in Georgien ist", "wie kalt es in Kutaissi ist", "wie schnell Manana spricht", "wie klein das Haus ist"], "answer": 1, "explain": "\"Schon am ersten Abend fällt *ihm* auf, *wie* wichtig Gastfreundschaft in Georgien *ist*\": Dativ verb + indirect question with the verb at the end."}, {"q": "Manana fragt immer wieder, *___* es ihm schmeckt.", "options": ["wenn", "dass", "wie viel", "weil", "ob"], "answer": 4, "explain": "A yes/no question (Schmeckt es dir?) becomes an indirect question with *ob*: \"fragt immer wieder, *ob* es ihm schmeckt.\""}, {"q": "Schmeckt Oleksij das Essen? – Ja, es schmeckt *___* sehr.", "options": ["ihm", "ihn", "er", "sein", "sich"], "answer": 0, "explain": "*schmecken* takes the person in the Dativ: \"Es schmeckt *ihm* sehr.\" (er → ihm)"}, {"q": "Was weiß Oleksij nicht?", "options": ["wann Manana kocht", "wie Mananas Enkel heißt", "ob er ein viertes Stück ablehnen darf", "wo die Nachbarn wohnen", "warum die Karte schief ist"], "answer": 2, "explain": "\"Er weiß nicht, *ob* er ein viertes Stück Chatschapuri ablehnen *darf*.\""}, {"q": "Mananas Enkel Dato *___*.", "options": ["hilft ihn", "hilft sich", "hilft ihm", "helft ihm", "hilfst ihm"], "answer": 2, "explain": "*helfen* + Dativ, and *er* form *hilft*: \"Dato *hilft ihm*.\""}, {"q": "Wie sehen die georgischen Buchstaben aus?", "options": ["eckig wie Runen", "wie lateinische Buchstaben", "wie kyrillische Buchstaben", "sehr klein und spitz", "rund, fast wie kleine Wellen"], "answer": 4, "explain": "\"Sie hat 33 Buchstaben, und alle sehen rund aus, fast wie kleine Wellen.\""}, {"q": "Warum ist die Aussprache nicht leicht?", "options": ["Georgisch hat keine Vokale.", "Manche Laute gibt es weder im Ukrainischen noch im Deutschen.", "Dato spricht zu schnell.", "Jeder Buchstabe hat drei Laute.", "Man schreibt ganz anders, als man spricht."], "answer": 1, "explain": "\"Die Aussprache ist nicht leicht, denn manche Laute gibt es weder im Ukrainischen noch im Deutschen.\""}, {"q": "Was gefällt Oleksij an der georgischen Schrift?", "options": ["die vielen Großbuchstaben", "die vielen Ausnahmen", "dass sie wie Kyrillisch aussieht", "dass man fast immer so schreibt, wie man spricht", "dass sie nur 20 Buchstaben hat"], "answer": 3, "explain": "\"Man schreibt fast ohne Ausnahme so, wie man spricht. Das *gefällt ihm*.\" (gefallen + Dativ)"}, {"q": "Was fragt Manana am Ende?", "options": ["Sie fragt, wann er wiederkommt.", "Sie fragt, ob er satt ist.", "Sie fragt, wie man ihren Namen schreibt.", "Sie fragt, warum er so müde ist.", "Sie fragt, ob die Karte von Dato ist."], "answer": 0, "explain": "\"Manana … fragt, *wann* er *wiederkommt*\": indirect W-question, separable verb together at the end."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

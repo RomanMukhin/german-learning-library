@@ -1,0 +1,2058 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Numbers, dates, time and money · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Numbers, dates, time and money</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Numbers, dates, time and money</h1></header>
+<article class="prose card">
+<p>German numbers read the units before the tens (21 = einundzwanzig), use a comma for decimals and a dot for thousands, and "halb drei" means 2:30, not 3:30.</p>
+<h2>Cardinal numbers</h2>
+<p>From 21 to 99, German says the unit first, then "und", then the ten: 21 = einundzwanzig ("one-and-twenty"), written as one word.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>German</th>
+<th>Number</th>
+<th>German</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>null</td>
+<td>11</td>
+<td>elf</td>
+</tr>
+<tr>
+<td>1</td>
+<td>eins</td>
+<td>12</td>
+<td>zwölf</td>
+</tr>
+<tr>
+<td>2</td>
+<td>zwei</td>
+<td>13</td>
+<td>dreizehn</td>
+</tr>
+<tr>
+<td>3</td>
+<td>drei</td>
+<td>16</td>
+<td>sechzehn (not sechszehn)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>vier</td>
+<td>17</td>
+<td>siebzehn (not siebenzehn)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>fünf</td>
+<td>20</td>
+<td>zwanzig</td>
+</tr>
+<tr>
+<td>6</td>
+<td>sechs</td>
+<td>30</td>
+<td>dreißig (with ß, not -zig)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>sieben</td>
+<td>60</td>
+<td>sechzig</td>
+</tr>
+<tr>
+<td>8</td>
+<td>acht</td>
+<td>70</td>
+<td>siebzig</td>
+</tr>
+<tr>
+<td>9</td>
+<td>neun</td>
+<td>21</td>
+<td>einundzwanzig</td>
+</tr>
+<tr>
+<td>10</td>
+<td>zehn</td>
+<td>99</td>
+<td>neunundneunzig</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>40 vierzig, 50 fünfzig, 80 achtzig, 90 neunzig.</li>
+<li>22 zweiundzwanzig, 35 fünfunddreißig, 47 siebenundvierzig, 68 achtundsechzig.</li>
+<li>Listen for the unit first: "dreiundsiebzig" = 3 + 70 = 73. In Ukrainian (сімдесят три) and English (seventy-three) the order is the opposite, so this is the classic trap with phone numbers and prices.</li>
+</ul>
+<h3>eins, ein, eine</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Counting, alone</td>
+<td>eins</td>
+<td>eins, zwei, drei; Es steht eins zu null (1:0).</td>
+</tr>
+<tr>
+<td>Inside a compound</td>
+<td>ein-</td>
+<td>einundzwanzig, einhundert, eintausend</td>
+</tr>
+<tr>
+<td>Before a noun</td>
+<td>ein / eine / einen (article endings)</td>
+<td>ein Kind, eine Stunde, einen Tag</td>
+</tr>
+<tr>
+<td>With "Uhr"</td>
+<td>ein</td>
+<td>Es ist ein Uhr. (but: Es ist eins.)</td>
+</tr>
+<tr>
+<td>In decimals</td>
+<td>eins</td>
+<td>1,5 = eins Komma fünf</td>
+</tr>
+<tr>
+<td>101</td>
+<td>hunderteins</td>
+<td>also: hundertundeins</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Hundred and thousand</h3>
+<ul>
+<li>100 (ein)hundert, 200 zweihundert, 1.000 (ein)tausend, 2.000 zweitausend.</li>
+<li>Numbers under a million are one word: 345 = dreihundertfünfundvierzig; 7.812 = siebentausendachthundertzwölf.</li>
+<li>No "and" after hundred, unlike British English: 120 = hundertzwanzig (not "hundred and twenty").</li>
+<li>As nouns, with "-e" in the plural: Hunderte von Menschen (hundreds of people), Tausende von Euro.</li>
+<li>Seven stays "sieben" in compounds (siebenhundert, siebentausend); only 17 siebzehn and 70 siebzig shorten to sieb-.</li>
+</ul>
+<p>Tip: on the phone and in loud places people say "zwo" instead of "zwei" so it is not confused with "drei".</p>
+<h2>Big numbers and decimals</h2>
+<p>German "Milliarde" is the English "billion"; German "Billion" is the English "trillion", so never translate billion as Billion.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>German</th>
+<th>English</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10^6</td>
+<td>eine Million (pl. Millionen)</td>
+<td>a million</td>
+<td>мільйон</td>
+</tr>
+<tr>
+<td>10^9</td>
+<td>eine Milliarde (pl. Milliarden)</td>
+<td>a billion</td>
+<td>мільярд</td>
+</tr>
+<tr>
+<td>10^12</td>
+<td>eine Billion (pl. Billionen)</td>
+<td>a trillion</td>
+<td>трильйон</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Million, Milliarde and Billion are feminine nouns: written separately, capitalised, with a plural: zwei Millionen Einwohner, drei Milliarden Euro.</li>
+<li>1.500.000 = eine Million fünfhunderttausend; 2,5 Mio. = zweieinhalb Millionen.</li>
+<li>Abbreviations: Mio. (Million), Mrd. (Milliarde), Tsd. (Tausend).</li>
+<li>Good news for Ukrainian speakers: Ukrainian uses the same system (мільярд = Milliarde), so think in Ukrainian here, not English.</li>
+</ul>
+<h3>Writing: dot and comma swap roles</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Written</th>
+<th>Means</th>
+<th>Spoken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.000 or 1 000</td>
+<td>one thousand</td>
+<td>tausend</td>
+</tr>
+<tr>
+<td>1.000.000</td>
+<td>one million</td>
+<td>eine Million</td>
+</tr>
+<tr>
+<td>3,5</td>
+<td>3.5</td>
+<td>drei Komma fünf</td>
+</tr>
+<tr>
+<td>0,25</td>
+<td>0.25</td>
+<td>null Komma zwei fünf</td>
+</tr>
+<tr>
+<td>12,75</td>
+<td>12.75</td>
+<td>zwölf Komma sieben fünf</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>After the comma, read digits one by one: 3,14 = drei Komma eins vier (not vierzehn).</li>
+<li>Ukrainian also uses the decimal comma (3,5 = три кома п'ять), so only English habits need unlearning.</li>
+<li>1,5 is usually said "anderthalb" or "eineinhalb" in everyday speech (see Fractions).</li>
+</ul>
+<h2>Ordinal numbers</h2>
+<p>Add -t- for 2 to 19 and -st- from 20 upwards, then an adjective ending; four forms are irregular: erste, dritte, siebte, achte.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Ordinal (der ...)</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>der erste</td>
+<td>irregular</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>der zweite</td>
+<td>-te</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>der dritte</td>
+<td>irregular</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>der vierte</td>
+<td>-te</td>
+</tr>
+<tr>
+<td>5.</td>
+<td>der fünfte</td>
+<td>-te</td>
+</tr>
+<tr>
+<td>7.</td>
+<td>der siebte</td>
+<td>irregular (not siebente in modern use)</td>
+</tr>
+<tr>
+<td>8.</td>
+<td>der achte</td>
+<td>only one t</td>
+</tr>
+<tr>
+<td>11.</td>
+<td>der elfte</td>
+<td>-te</td>
+</tr>
+<tr>
+<td>19.</td>
+<td>der neunzehnte</td>
+<td>-te</td>
+</tr>
+<tr>
+<td>20.</td>
+<td>der zwanzigste</td>
+<td>-ste</td>
+</tr>
+<tr>
+<td>21.</td>
+<td>der einundzwanzigste</td>
+<td>-ste (last part decides)</td>
+</tr>
+<tr>
+<td>100.</td>
+<td>der hundertste</td>
+<td>-ste</td>
+</tr>
+<tr>
+<td>1000.</td>
+<td>der tausendste</td>
+<td>-ste</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Endings: ordinals are adjectives</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>After der/die/das</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ</td>
+<td>-e</td>
+<td>Das ist der erste Versuch.</td>
+</tr>
+<tr>
+<td>Akkusativ (masc.)</td>
+<td>-en</td>
+<td>Ich nehme den zweiten Bus.</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>-en</td>
+<td>Am dritten Tag war ich müde.</td>
+</tr>
+<tr>
+<td>Genitiv</td>
+<td>-en</td>
+<td>Ende des vierten Monats</td>
+</tr>
+<tr>
+<td>After ein / mein</td>
+<td>strong ending</td>
+<td>mein erster Job, ein zweites Mal</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Written with a dot</h3>
+<ul>
+<li>The dot after a digit marks an ordinal: der 3. Mai = der dritte Mai; am 3. Mai = am dritten Mai.</li>
+<li>Also for floors and ranks: im 2. Stock (im zweiten Stock), der 1. Platz.</li>
+<li>Kings and centuries: Ludwig XIV. (der Vierzehnte), im 21. Jahrhundert (im einundzwanzigsten Jahrhundert).</li>
+<li>Adverbs for lists: erstens, zweitens, drittens (firstly, secondly, thirdly).</li>
+<li>Ukrainian comparison: like перший / перша / перше, the ordinal agrees with the noun in gender and case.</li>
+</ul>
+<h2>Dates</h2>
+<p>A date is an ordinal with "der" (what date it is) or "am" + -en (when something happens): Heute ist der dritte Mai, but Ich komme am dritten Mai.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer pattern</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Der Wievielte ist heute? / Welches Datum ist heute?</td>
+<td>der + ordinal -e</td>
+<td>Heute ist der 3. Mai (der dritte Mai).</td>
+</tr>
+<tr>
+<td>Den Wievielten haben wir heute?</td>
+<td>den + ordinal -en</td>
+<td>Heute haben wir den 3. Mai (den dritten Mai).</td>
+</tr>
+<tr>
+<td>Wann ...? / Am Wievielten ...?</td>
+<td>am + ordinal -en</td>
+<td>Am 3. Mai (am dritten Mai) habe ich Geburtstag.</td>
+</tr>
+<tr>
+<td>Seit / bis / ab wann?</td>
+<td>Dativ or Akkusativ ending</td>
+<td>vom 1. bis zum 5. Juni (vom ersten bis zum fünften Juni)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Writing a date</h3>
+<ul>
+<li>Order is day.month.year, like Ukrainian: 03.05.2026 = 3 May 2026 (not 5 March).</li>
+<li>Spoken: der dritte fünfte zweitausendsechsundzwanzig, or more often der dritte Mai.</li>
+<li>Letters: Berlin, den 3. Mai 2026 or Berlin, 03.05.2026.</li>
+<li>With a weekday: am Montag, dem 4. Mai (am Montag, den 4. Mai is also common).</li>
+<li>ISO style 2026-05-03 appears in IT and forms.</li>
+</ul>
+<h3>Years</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Spoken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1990</td>
+<td>neunzehnhundertneunzig</td>
+</tr>
+<tr>
+<td>1848</td>
+<td>achtzehnhundertachtundvierzig</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>zweitausend</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>zweitausendacht</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>zweitausendzwanzig</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>zweitausendsechsundzwanzig</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Before 2000, say the hundreds: neunzehnhundert (never "tausendneunhundert").</li>
+<li>From 2000, say the thousand: zweitausendzwanzig (not "zwanzig zwanzig").</li>
+<li>"In 2020" is an anglicism that standard German avoids. Say either just the year or im Jahr 2020: Ich bin 2020 nach Deutschland gekommen. / Im Jahr 2020 bin ich nach Deutschland gekommen.</li>
+<li>Ukrainian comparison: у 2020 році = im Jahr 2020 or simply 2020, never "in 2020".</li>
+</ul>
+<h2>Days, months, seasons</h2>
+<p>All days, months and seasons are masculine (der); use "am" for days and parts of the day, "im" for months and seasons (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Words</th>
+<th>Preposition</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Days</td>
+<td>der Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag (north also Sonnabend), Sonntag</td>
+<td>am</td>
+<td>am Montag, am Wochenende</td>
+</tr>
+<tr>
+<td>Months</td>
+<td>der Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember</td>
+<td>im</td>
+<td>im Mai, im Dezember</td>
+</tr>
+<tr>
+<td>Seasons</td>
+<td>der Frühling, der Sommer, der Herbst, der Winter</td>
+<td>im</td>
+<td>im Winter, im Frühling</td>
+</tr>
+<tr>
+<td>Parts of day</td>
+<td>der Morgen, Vormittag, Mittag, Nachmittag, Abend</td>
+<td>am</td>
+<td>am Abend, am Nachmittag</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>die Nacht</td>
+<td>in der</td>
+<td>in der Nacht</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Tip: say "Juno" for Juni and "Julei" for Juli on the phone to avoid confusion.</li>
+<li>Austria uses "Jänner" for January.</li>
+<li>"Das Wochenende" is neuter, but still am Wochenende.</li>
+<li>Ukrainian comparison: у понеділок = am Montag; у травні = im Mai; взимку = im Winter.</li>
+</ul>
+<h3>Regular habits: -s adverbs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>One time</th>
+<th>Every time (lowercase)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>am Montag (on Monday)</td>
+<td>montags (on Mondays)</td>
+</tr>
+<tr>
+<td>am Abend</td>
+<td>abends</td>
+</tr>
+<tr>
+<td>am Morgen</td>
+<td>morgens</td>
+</tr>
+<tr>
+<td>am Nachmittag</td>
+<td>nachmittags</td>
+</tr>
+<tr>
+<td>in der Nacht</td>
+<td>nachts</td>
+</tr>
+<tr>
+<td>am Wochenende</td>
+<td>(no -s form; say jedes Wochenende)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Combine: montagabends or montags abends (on Monday evenings).</li>
+</ul>
+<h3>Time adverbs you need daily</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vorgestern</td>
+<td>the day before yesterday</td>
+<td>позавчора</td>
+</tr>
+<tr>
+<td>gestern</td>
+<td>yesterday</td>
+<td>вчора</td>
+</tr>
+<tr>
+<td>heute</td>
+<td>today</td>
+<td>сьогодні</td>
+</tr>
+<tr>
+<td>morgen</td>
+<td>tomorrow</td>
+<td>завтра</td>
+</tr>
+<tr>
+<td>übermorgen</td>
+<td>the day after tomorrow</td>
+<td>післязавтра</td>
+</tr>
+<tr>
+<td>heute Morgen / heute Abend</td>
+<td>this morning / this evening</td>
+<td>сьогодні вранці / ввечері</td>
+</tr>
+<tr>
+<td>morgen früh</td>
+<td>tomorrow morning</td>
+<td>завтра вранці</td>
+</tr>
+<tr>
+<td>gestern Abend</td>
+<td>last night (evening)</td>
+<td>вчора ввечері</td>
+</tr>
+<tr>
+<td>letzte Woche / nächste Woche</td>
+<td>last week / next week</td>
+<td>минулого / наступного тижня</td>
+</tr>
+<tr>
+<td>vor zwei Tagen</td>
+<td>two days ago</td>
+<td>два дні тому</td>
+</tr>
+<tr>
+<td>in zwei Tagen</td>
+<td>in two days</td>
+<td>через два дні</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Trap: "morgen" (lowercase) = tomorrow; "der Morgen" = the morning. Tomorrow morning is "morgen früh", not "morgen Morgen".</li>
+<li>Time expressions without a preposition are Akkusativ: letzten Montag, nächsten Monat, jeden Tag, diese Woche (see <a href="../docs/articles.html">German article tables (B1)</a>).</li>
+</ul>
+<h2>Clock time</h2>
+<p>Formal time is hour + Uhr + minutes on a 24-hour clock; informal time uses a 12-hour clock where "halb drei" means half way TO three, so 2:30.</p>
+<ul>
+<li>Asking: Wie spät ist es? / Wie viel Uhr ist es? Answer: Es ist ...</li>
+<li>Asking when: Um wie viel Uhr ...? / Wann ...? Answer: Um ...</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Clock</th>
+<th>Formal (radio, timetables, work)</th>
+<th>Informal (everyday)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7:00</td>
+<td>sieben Uhr</td>
+<td>sieben (Uhr)</td>
+</tr>
+<tr>
+<td>14:00</td>
+<td>vierzehn Uhr</td>
+<td>zwei (Uhr)</td>
+</tr>
+<tr>
+<td>14:05</td>
+<td>vierzehn Uhr fünf</td>
+<td>fünf nach zwei</td>
+</tr>
+<tr>
+<td>14:15</td>
+<td>vierzehn Uhr fünfzehn</td>
+<td>Viertel nach zwei</td>
+</tr>
+<tr>
+<td>14:20</td>
+<td>vierzehn Uhr zwanzig</td>
+<td>zwanzig nach zwei / zehn vor halb drei</td>
+</tr>
+<tr>
+<td>14:25</td>
+<td>vierzehn Uhr fünfundzwanzig</td>
+<td>fünf vor halb drei</td>
+</tr>
+<tr>
+<td>14:30</td>
+<td>vierzehn Uhr dreißig</td>
+<td>halb drei</td>
+</tr>
+<tr>
+<td>14:35</td>
+<td>vierzehn Uhr fünfunddreißig</td>
+<td>fünf nach halb drei</td>
+</tr>
+<tr>
+<td>14:40</td>
+<td>vierzehn Uhr vierzig</td>
+<td>zwanzig vor drei / zehn nach halb drei</td>
+</tr>
+<tr>
+<td>14:45</td>
+<td>vierzehn Uhr fünfundvierzig</td>
+<td>Viertel vor drei</td>
+</tr>
+<tr>
+<td>14:55</td>
+<td>vierzehn Uhr fünfundfünfzig</td>
+<td>fünf vor drei</td>
+</tr>
+<tr>
+<td>0:00</td>
+<td>null Uhr / vierundzwanzig Uhr</td>
+<td>Mitternacht / zwölf</td>
+</tr>
+<tr>
+<td>12:00</td>
+<td>zwölf Uhr</td>
+<td>Mittag / zwölf</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Written: 14:30 Uhr or 14.30 Uhr. Spoken: vierzehn Uhr dreißig (Uhr comes BEFORE the minutes).</li>
+<li>Ukrainian has the same logic: пів на третю = halb drei = 2:30. English "half three" (= 3:30) is the false friend.</li>
+<li>Regional: in the east and south "Viertel drei" = 2:15 and "drei viertel drei" = 2:45; just recognise it.</li>
+<li>Informal times need context: um halb acht (morgens / abends), or add "früh" or "abends".</li>
+</ul>
+<h3>Prepositions with time</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>um</td>
+<td>exactly at</td>
+<td>Der Kurs beginnt um 9 Uhr.</td>
+</tr>
+<tr>
+<td>gegen</td>
+<td>around, approximately</td>
+<td>Ich komme gegen acht.</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>from ... on</td>
+<td>Ab 18 Uhr ist der Laden zu.</td>
+</tr>
+<tr>
+<td>von ... bis</td>
+<td>from ... to</td>
+<td>von 9 bis 17 Uhr</td>
+</tr>
+<tr>
+<td>bis</td>
+<td>until, by</td>
+<td>Bis 10 Uhr bin ich zu Hause.</td>
+</tr>
+<tr>
+<td>nach / vor</td>
+<td>after / before</td>
+<td>nach dem Essen, vor 8 Uhr</td>
+</tr>
+<tr>
+<td>zwischen</td>
+<td>between</td>
+<td>zwischen 12 und 13 Uhr</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Uhr vs Stunde</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Uhr (pl. Uhren)</td>
+<td>clock / o'clock (time of day)</td>
+<td>Es ist drei Uhr. Meine Uhr ist kaputt.</td>
+</tr>
+<tr>
+<td>die Stunde (pl. Stunden)</td>
+<td>hour (duration), also a lesson</td>
+<td>Ich warte seit drei Stunden. Die Deutschstunde dauert 90 Minuten.</td>
+</tr>
+<tr>
+<td>die Minute, die Sekunde</td>
+<td>minute, second</td>
+<td>in fünf Minuten</td>
+</tr>
+<tr>
+<td>eine halbe Stunde</td>
+<td>half an hour</td>
+<td>Der Film dauert anderthalb Stunden.</td>
+</tr>
+<tr>
+<td>eine Viertelstunde</td>
+<td>quarter of an hour</td>
+<td>in einer Viertelstunde</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>"Drei Uhr" never takes a plural: Es ist drei Uhr, but drei Stunden (duration).</li>
+<li>Ukrainian comparison: Uhr = година as time of day (о третій годині); Stunde = година as duration (три години).</li>
+</ul>
+<h2>Money and prices</h2>
+<p>After a number, currency units stay singular (zwei Euro, fünfzig Cent), and a price is said as "Euro" in the middle: 3,50 € = drei Euro fünfzig.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Written</th>
+<th>Spoken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1,00 €</td>
+<td>ein Euro</td>
+</tr>
+<tr>
+<td>2,00 €</td>
+<td>zwei Euro</td>
+</tr>
+<tr>
+<td>3,50 €</td>
+<td>drei Euro fünfzig</td>
+</tr>
+<tr>
+<td>0,99 €</td>
+<td>neunundneunzig Cent</td>
+</tr>
+<tr>
+<td>12,95 €</td>
+<td>zwölf Euro fünfundneunzig</td>
+</tr>
+<tr>
+<td>1.250 €</td>
+<td>tausendzweihundertfünfzig Euro</td>
+</tr>
+<tr>
+<td>2,5 Mio. €</td>
+<td>zweieinhalb Millionen Euro</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>der Euro (pl. die Euros, only for coins: Ich habe nur noch drei Euros im Portemonnaie, colloquial), der Cent (pl. die Cents, same idea).</li>
+<li>The symbol comes after the number in German: 3,50 € (also written EUR 3,50 or 3,50 EUR).</li>
+<li>Other currencies: der Dollar, das Pfund, der Franken (Swiss), die Hrywnja (Ukrainian hryvnia, UAH), der Zloty.</li>
+<li>Money words: das Geld (only singular), das Bargeld (cash), das Kleingeld (change, coins), der Schein (note), die Münze (coin), das Wechselgeld (change given back), das Trinkgeld (tip).</li>
+</ul>
+<h3>Phrases for prices and paying</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>German</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asking a price</td>
+<td>Was kostet das? / Wie viel kostet der Mantel? / Was kosten die Äpfel?</td>
+</tr>
+<tr>
+<td>Giving a price</td>
+<td>Das kostet 5 Euro. Die Äpfel kosten 2 Euro das Kilo.</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>Das macht 12,40 €. (zwölf Euro vierzig)</td>
+</tr>
+<tr>
+<td>Paying method</td>
+<td>Kann ich mit Karte zahlen? / Ich zahle bar. / Nur Barzahlung.</td>
+</tr>
+<tr>
+<td>Separate or together</td>
+<td>Zusammen oder getrennt?</td>
+</tr>
+<tr>
+<td>Tip</td>
+<td>Stimmt so. (Keep the change.) / Machen Sie 15.</td>
+</tr>
+<tr>
+<td>Receipt</td>
+<td>Kann ich bitte eine Quittung / den Kassenbon haben?</td>
+</tr>
+<tr>
+<td>Cheap / expensive</td>
+<td>billig, günstig / teuer; Das ist im Angebot. (on sale)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>"kosten" agrees with the thing: Das Brot kostet ..., die Brötchen kosten ...</li>
+<li>Ukrainian comparison: скільки це коштує? = Was kostet das?; готівкою = bar; карткою = mit Karte.</li>
+</ul>
+<h2>Fractions, percentages, Mal and arithmetic</h2>
+<p>Fractions add -tel (up to 19) or -stel (from 20) to the number and are neuter nouns: das Drittel, das Viertel, das Zwanzigstel; only 1/2 is special.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Written</th>
+<th>Noun</th>
+<th>Adjective / adverb use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1/2</td>
+<td>die Hälfte</td>
+<td>halb: ein halbes Kilo, eine halbe Stunde</td>
+</tr>
+<tr>
+<td>1/3</td>
+<td>ein Drittel</td>
+<td>ein Drittel der Leute</td>
+</tr>
+<tr>
+<td>2/3</td>
+<td>zwei Drittel</td>
+<td>zwei Drittel aller Studenten</td>
+</tr>
+<tr>
+<td>1/4</td>
+<td>ein Viertel</td>
+<td>ein Viertel Butter, ein Viertelliter</td>
+</tr>
+<tr>
+<td>3/4</td>
+<td>drei Viertel</td>
+<td>eine Dreiviertelstunde</td>
+</tr>
+<tr>
+<td>1/8</td>
+<td>ein Achtel</td>
+<td>ein Achtel Wein (Austria)</td>
+</tr>
+<tr>
+<td>1/100</td>
+<td>ein Hundertstel</td>
+<td>eine Hundertstelsekunde</td>
+</tr>
+<tr>
+<td>1 1/2</td>
+<td>anderthalb / eineinhalb</td>
+<td>anderthalb Stunden, eineinhalb Jahre</td>
+</tr>
+<tr>
+<td>2 1/2</td>
+<td>zweieinhalb</td>
+<td>zweieinhalb Kilo</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>die Hälfte (noun) vs halb (adjective): die Hälfte des Kuchens, but ein halber Kuchen.</li>
+<li>"anderthalb" and "-einhalb" never change their ending: anderthalb Stunden, mit zweieinhalb Jahren.</li>
+<li>Halbe-halbe machen = split 50/50.</li>
+</ul>
+<h3>Percentages</h3>
+<ul>
+<li>das Prozent (pl. Prozent after numbers): 20 % = zwanzig Prozent; 0,5 % = null Komma fünf Prozent.</li>
+<li>Verb agreement usually with the noun: 20 Prozent der Deutschen haben ... (plural noun, plural verb).</li>
+<li>Discounts: 30 Prozent Rabatt, Alles 50 % reduziert.</li>
+<li>der Prozentsatz (percentage rate), der Prozentpunkt (percentage point).</li>
+</ul>
+<h3>Mal: how many times</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>einmal</td>
+<td>once</td>
+<td>один раз</td>
+</tr>
+<tr>
+<td>zweimal</td>
+<td>twice</td>
+<td>двічі</td>
+</tr>
+<tr>
+<td>dreimal, zehnmal</td>
+<td>three times, ten times</td>
+<td>тричі, десять разів</td>
+</tr>
+<tr>
+<td>zweimal pro Woche / zweimal die Woche</td>
+<td>twice a week</td>
+<td>двічі на тиждень</td>
+</tr>
+<tr>
+<td>das erste Mal / zum ersten Mal</td>
+<td>the first time / for the first time</td>
+<td>вперше</td>
+</tr>
+<tr>
+<td>das letzte Mal / beim nächsten Mal</td>
+<td>the last time / next time</td>
+<td>востаннє / наступного разу</td>
+</tr>
+<tr>
+<td>jedes Mal / manchmal</td>
+<td>every time / sometimes</td>
+<td>щоразу / іноді</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>One word with a number (dreimal), separate with an adjective (das dritte Mal, viele Male).</li>
+</ul>
+<h3>Arithmetic</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Sign</th>
+<th>German</th>
+<th>Example spoken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>plus / und</td>
+<td>2 + 3 = 5: zwei plus drei ist (gleich) fünf</td>
+</tr>
+<tr>
+<td>−</td>
+<td>minus / weniger</td>
+<td>10 − 4 = 6: zehn minus vier ist sechs</td>
+</tr>
+<tr>
+<td>×</td>
+<td>mal</td>
+<td>3 × 4 = 12: drei mal vier ist zwölf</td>
+</tr>
+<tr>
+<td>:</td>
+<td>durch / geteilt durch</td>
+<td>20 : 5 = 4: zwanzig durch fünf ist vier</td>
+</tr>
+<tr>
+<td>x²</td>
+<td>hoch zwei / zum Quadrat</td>
+<td>5²: fünf hoch zwei</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Division is written with a colon in German schools: 20 : 5.</li>
+</ul>
+<h2>Phone numbers, measurements and temperature</h2>
+<p>Masculine and neuter units of measure stay singular after a number (zwei Kilo, drei Meter, fünf Grad); feminine units take a plural (zwei Tassen, drei Flaschen) (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>).</p>
+<h3>Phone numbers</h3>
+<ul>
+<li>Usually read in pairs: 0176 / 23 45 67 = null eins sieben sechs, dreiundzwanzig, fünfundvierzig, siebenundsechzig.</li>
+<li>Digit by digit is also fine and clearer: null eins sieben sechs, zwei drei, vier fünf ...</li>
+<li>Say "zwo" for 2 to avoid confusion with "drei".</li>
+<li>Phrases: Wie ist Ihre Telefonnummer / Handynummer? Die Vorwahl ist 030 (area code). Sie haben sich verwählt. (wrong number)</li>
+<li>Country codes: +49 Germany, +43 Austria, +41 Switzerland, +380 Ukraine.</li>
+</ul>
+<h3>Measurements</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Gender</th>
+<th>Example</th>
+<th>Plural?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Kilo(gramm), kg</td>
+<td>n</td>
+<td>zwei Kilo Äpfel</td>
+<td>no: 2 Kilo</td>
+</tr>
+<tr>
+<td>das Gramm, g</td>
+<td>n</td>
+<td>200 Gramm Käse</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Pfund (500 g)</td>
+<td>n</td>
+<td>ein Pfund Hackfleisch</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der / das Liter, l</td>
+<td>m/n</td>
+<td>zwei Liter Milch</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Meter, m</td>
+<td>m</td>
+<td>drei Meter lang</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der / das Zentimeter, cm</td>
+<td>m/n</td>
+<td>180 Zentimeter groß</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Kilometer, km</td>
+<td>m</td>
+<td>100 Kilometer pro Stunde (km/h)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der / das Quadratmeter, m²</td>
+<td>m/n</td>
+<td>eine Wohnung mit 60 Quadratmetern</td>
+<td>Dativ -n possible</td>
+</tr>
+<tr>
+<td>die Flasche</td>
+<td>f</td>
+<td>zwei Flaschen Wasser</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>die Tasse</td>
+<td>f</td>
+<td>drei Tassen Kaffee</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>das Stück</td>
+<td>n</td>
+<td>zwei Stück Kuchen</td>
+<td>no</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>No "of" between the unit and the thing: ein Kilo Tomaten (Ukrainian: кілограм помідорів uses the genitive; German does not).</li>
+<li>Size questions: Wie groß bist du? Ich bin 1,80 (eins achtzig). Wie viel wiegst du? Wie weit ist es? Es sind 5 Kilometer.</li>
+<li>Dimensions: 2 mal 3 Meter (2 × 3 m).</li>
+</ul>
+<h3>Temperature</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Written</th>
+<th>Spoken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20 °C</td>
+<td>zwanzig Grad (Celsius)</td>
+</tr>
+<tr>
+<td>1 °C</td>
+<td>ein Grad</td>
+</tr>
+<tr>
+<td>−5 °C</td>
+<td>minus fünf Grad / fünf Grad unter null</td>
+</tr>
+<tr>
+<td>0 °C</td>
+<td>null Grad</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>der Grad, but no plural after numbers: 30 Grad.</li>
+<li>Phrases: Wie warm ist es? / Wie viel Grad haben wir? Es sind 25 Grad. Ich habe 38,5 Fieber (achtunddreißig fünf / Komma fünf).</li>
+</ul>
+<h2>Age and decades</h2>
+<p>Age uses "sein", not "haben": Ich bin 30 (Jahre alt), unlike Ukrainian мені 30 років.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>German</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How old are you?</td>
+<td>Wie alt bist du? / Wie alt sind Sie?</td>
+</tr>
+<tr>
+<td>I am 30.</td>
+<td>Ich bin 30 Jahre alt. / Ich bin 30.</td>
+</tr>
+<tr>
+<td>at the age of 18</td>
+<td>mit 18 (Jahren)</td>
+</tr>
+<tr>
+<td>a 5-year-old child</td>
+<td>ein fünfjähriges Kind</td>
+</tr>
+<tr>
+<td>He is in his mid-forties.</td>
+<td>Er ist Mitte vierzig.</td>
+</tr>
+<tr>
+<td>She is over / under 50.</td>
+<td>Sie ist über / unter fünfzig.</td>
+</tr>
+<tr>
+<td>He is in his thirties.</td>
+<td>Er ist in den Dreißigern. / Er ist Anfang / Ende dreißig.</td>
+</tr>
+<tr>
+<td>birthday</td>
+<td>Ich habe am 12. März Geburtstag.</td>
+</tr>
+<tr>
+<td>born</td>
+<td>Ich bin 1996 geboren. / Ich bin am 12. März 1996 geboren.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Never "Ich habe 30 Jahre": that is the Spanish/French "have years" pattern and sounds wrong. (Ukrainian uses the dative, мені 30 років, but German uses sein.)</li>
+</ul>
+<h3>Decades</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Neunzigerjahre / die 90er-Jahre / die Neunziger</td>
+<td>the nineties</td>
+</tr>
+<tr>
+<td>in den Neunzigern / in den 90er-Jahren</td>
+<td>in the nineties</td>
+</tr>
+<tr>
+<td>Anfang der Achtziger</td>
+<td>in the early eighties</td>
+</tr>
+<tr>
+<td>Ende der Siebzigerjahre</td>
+<td>in the late seventies</td>
+</tr>
+<tr>
+<td>die Zwanzigerjahre (die Goldenen Zwanziger)</td>
+<td>the 1920s</td>
+</tr>
+<tr>
+<td>die Nullerjahre</td>
+<td>the 2000s (2000-2009)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>"Neunziger" never changes its ending as an adjective: die neunziger Jahre, in den neunziger Jahren.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Number words as nouns</h3>
+<p>A digit used as a noun is feminine and capitalised (die Eins, die Zwei, pl. die Einsen, die Zweien); a number + -er is a masculine noun for notes, coins and age groups (der Zehner, der Fünfziger).</p>
+<h4>School grades in Germany</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Grade</th>
+<th>Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>sehr gut</td>
+<td>Ich habe eine Eins in Mathe.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>gut</td>
+<td>eine Zwei plus / eine Zwei minus (2+, 2−)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>befriedigend</td>
+<td>Er hat eine Drei geschrieben.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ausreichend</td>
+<td>Mit einer Vier hat sie gerade noch bestanden.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>mangelhaft</td>
+<td>zwei Fünfen im Zeugnis</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ungenügend</td>
+<td>eine Sechs: the worst grade</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>At university grades run 1,0 to 4,0 in steps: 1,3, 1,7, 2,0 ... (eins Komma drei). Austria uses 1 to 5; Switzerland reverses it, 6 is best.</li>
+<li>Other feminine number nouns: Ich nehme die Drei (tram or bus line 3); die deutsche Elf (the national football team); eine Null (a zero; also, rudely, a nobody).</li>
+</ul>
+<h4>-er nouns</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Fünfer, der Zehner, der Zwanziger, der Fünfziger, der Hunderter</td>
+<td>a 5 / 10 / 20 / 50 / 100 euro note</td>
+<td>Hast du einen Zehner? Kannst du mir einen Fünfziger wechseln?</td>
+</tr>
+<tr>
+<td>der Zehner, der Einer</td>
+<td>tens digit, units digit (school maths)</td>
+<td>die Zehnerstelle</td>
+</tr>
+<tr>
+<td>ein Fünfziger</td>
+<td>a man in his fifties</td>
+<td>ein Mittfünfziger (a man in his mid-fifties)</td>
+</tr>
+<tr>
+<td>die Zwanziger (pl.)</td>
+<td>the twenties: a decade or a person's age</td>
+<td>Sie ist Ende zwanzig. Die Goldenen Zwanziger</td>
+</tr>
+<tr>
+<td>der Achter</td>
+<td>a figure of eight; a rowing eight</td>
+<td>Das Rad hat einen Achter. (The wheel is buckled.)</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Old case endings that survive</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zu zweit, zu dritt, zu viert</td>
+<td>as a pair, as a group of three, four</td>
+<td>Wir sind zu dritt gekommen.</td>
+</tr>
+<tr>
+<td>zweier, dreier (Genitiv)</td>
+<td>of two, of three</td>
+<td>die Aussage zweier Zeugen, die Mutter dreier Kinder</td>
+</tr>
+<tr>
+<td>auf allen vieren</td>
+<td>on all fours</td>
+<td>Das Kind krabbelt auf allen vieren.</td>
+</tr>
+<tr>
+<td>mit dreien</td>
+<td>with three (old, literary)</td>
+<td>Er kam mit dreien seiner Freunde.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian comparison: удвох, втрьох = zu zweit, zu dritt; п'ятірка (a 5 grade or a 5-hryvnia note) works like die Fünf / der Fünfer, but remember the German scale is upside down: eine Fünf is bad.</li>
+</ul>
+<h3>Formal dates in letters and documents</h3>
+<p>The classic date line of a letter is "Ort, den + date" in the Akkusativ (Berlin, den 23. Oktober 2026); the DIN 5008 business standard today prefers it without "den" or in numbers.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Pattern</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date line, traditional</td>
+<td>Ort, den + ordinal -en</td>
+<td>Berlin, den 23. Oktober 2026</td>
+</tr>
+<tr>
+<td>Date line, DIN 5008</td>
+<td>Ort, date / numeric / ISO</td>
+<td>Berlin, 23. Oktober 2026 / 23.10.2026 / 2026-10-23</td>
+</tr>
+<tr>
+<td>Referring to a letter</td>
+<td>vom + Dativ</td>
+<td>Ihr Schreiben vom 15. Oktober 2026</td>
+</tr>
+<tr>
+<td>A day something happens</td>
+<td>am + Dativ</td>
+<td>am 23.10.2026 (am dreiundzwanzigsten Zehnten)</td>
+</tr>
+<tr>
+<td>With a weekday</td>
+<td>am + day, dem / den + date</td>
+<td>am Freitag, dem 23. Oktober 2026 (den is also accepted)</td>
+</tr>
+<tr>
+<td>Deadline</td>
+<td>bis zum / spätestens am</td>
+<td>bis zum 30. November 2026; spätestens am 1. Dezember</td>
+</tr>
+<tr>
+<td>Period</td>
+<td>vom ... bis (zum)</td>
+<td>vom 1. bis 15. März 2027; vom 01.03. bis 15.03.2027</td>
+</tr>
+<tr>
+<td>Effective date</td>
+<td>mit Wirkung zum / ab</td>
+<td>mit Wirkung zum 1. Januar 2027</td>
+</tr>
+<tr>
+<td>As of</td>
+<td>Stand:</td>
+<td>Stand: Oktober 2026</td>
+</tr>
+<tr>
+<td>Forms</td>
+<td>TT.MM.JJJJ</td>
+<td>Geburtsdatum: 03.05.1996</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>In numbers, the month can be spoken as an ordinal: der 23.10. = der dreiundzwanzigste Zehnte.</li>
+<li>Frist words for official letters: die Frist (deadline), fristgerecht (on time), die Frist läuft am ... ab, innerhalb von 14 Tagen, umgehend (without delay).</li>
+<li>Vague dates in reports: Anfang / Mitte / Ende November, im ersten Quartal (Q1), im Vorjahr, im Laufe des Jahres, im Vorjahreszeitraum.</li>
+<li>Ukrainian comparison: Київ, 23 жовтня 2026 р. has no word like "den"; German keeps it as a frozen Akkusativ, so never write "der 23. Oktober" in the date line.</li>
+</ul>
+<h3>Approximate amounts and large quantities</h3>
+<p>News and reports rarely give exact numbers: knapp means just under, gut means a bit over, and rund / etwa mean roughly.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rund</td>
+<td>around (a rounded figure)</td>
+<td>Deutschland hat rund 84 Millionen Einwohner.</td>
+</tr>
+<tr>
+<td>etwa / ungefähr / circa (ca.)</td>
+<td>about</td>
+<td>etwa 300 Teilnehmer, ca. 20 Minuten</td>
+</tr>
+<tr>
+<td>knapp</td>
+<td>just under</td>
+<td>knapp 50 Prozent (= 49,x %), knapp zwei Stunden</td>
+</tr>
+<tr>
+<td>gut</td>
+<td>a little over</td>
+<td>gut 3 Millionen, eine gute Stunde (a good hour)</td>
+</tr>
+<tr>
+<td>über / mehr als</td>
+<td>over, more than</td>
+<td>über 1.000 Menschen</td>
+</tr>
+<tr>
+<td>unter / weniger als</td>
+<td>under, less than</td>
+<td>unter 10 Prozent</td>
+</tr>
+<tr>
+<td>fast / beinahe</td>
+<td>almost</td>
+<td>fast die Hälfte</td>
+</tr>
+<tr>
+<td>mindestens / höchstens</td>
+<td>at least / at most</td>
+<td>mindestens drei Jahre Erfahrung</td>
+</tr>
+<tr>
+<td>bis zu</td>
+<td>up to</td>
+<td>bis zu 40 Prozent Rabatt</td>
+</tr>
+<tr>
+<td>zwischen ... und</td>
+<td>between</td>
+<td>zwischen 20 und 30 Grad</td>
+</tr>
+<tr>
+<td>an die (colloquial)</td>
+<td>close to</td>
+<td>Es waren an die hundert Leute da.</td>
+</tr>
+<tr>
+<td>zig, zigtausend (colloquial)</td>
+<td>umpteen</td>
+<td>Ich habe dich zigmal angerufen.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Dozens, hundreds, thousands</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Dutzend (12), ein halbes Dutzend</td>
+<td>ein Dutzend Eier</td>
+</tr>
+<tr>
+<td>Dutzende / Hunderte / Tausende + noun</td>
+<td>Hunderte Menschen, Tausende Euro</td>
+</tr>
+<tr>
+<td>... + von + Dativ</td>
+<td>Hunderte von Menschen, Tausende von Flüchtlingen</td>
+</tr>
+<tr>
+<td>Genitiv (formal)</td>
+<td>das Schicksal Tausender Flüchtlinge</td>
+</tr>
+<tr>
+<td>einige / mehrere / viele Hundert</td>
+<td>einige Hundert Besucher</td>
+</tr>
+<tr>
+<td>Hunderttausende, Millionen</td>
+<td>Millionen von Menschen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Both Hunderte / hunderte and Tausende / tausende are correct Duden spellings; capitals are the safer choice in exams.</li>
+<li>knapp can also mean narrowly: knapp gewonnen (narrowly won), knapp verpasst (just missed).</li>
+<li>Ukrainian comparison: майже = fast; близько / приблизно = etwa; сотні людей = Hunderte (von) Menschen.</li>
+</ul>
+<h3>Multiplicatives, ordinal adverbs and -mal vs Mal</h3>
+<p>Number + -fach means "-fold" (dreifach), number + -erlei means "kinds of" (zweierlei), and -mal is joined to a number but Mal is a separate noun after an adjective.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>einfach, zweifach, dreifach, vielfach</td>
+<td>single, twofold, threefold, manifold</td>
+<td>in dreifacher Ausfertigung (in triplicate); der zweifache Weltmeister</td>
+</tr>
+<tr>
+<td>doppelt</td>
+<td>double, twice</td>
+<td>doppelt so groß wie; die doppelte Menge; doppelt gemoppelt (saying the same thing twice)</td>
+</tr>
+<tr>
+<td>das Doppelte, das Dreifache</td>
+<td>twice / three times the amount</td>
+<td>Die Miete ist auf das Dreifache gestiegen.</td>
+</tr>
+<tr>
+<td>sich verdoppeln, sich verdreifachen, sich halbieren</td>
+<td>to double, triple, halve</td>
+<td>Die Preise haben sich verdoppelt.</td>
+</tr>
+<tr>
+<td>zweierlei, dreierlei, vielerlei (never declined)</td>
+<td>two / three / many kinds of</td>
+<td>Das sind zweierlei Dinge. mit zweierlei Maß messen (double standards)</td>
+</tr>
+<tr>
+<td>erstens, zweitens, drittens</td>
+<td>firstly, secondly, thirdly</td>
+<td>Erstens ist es zu teuer, zweitens zu spät.</td>
+</tr>
+<tr>
+<td>zum Ersten, zum Zweiten, zum Dritten</td>
+<td>going once, twice, sold (auction)</td>
+<td></td>
+</tr>
+<tr>
+<td>erstmals</td>
+<td>for the first time (formal, news)</td>
+<td>Erstmals sank die Zahl unter 5 %.</td>
+</tr>
+<tr>
+<td>halb so ... wie</td>
+<td>half as ... as</td>
+<td>halb so teuer wie letztes Jahr</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Trap: letztens means "recently" in everyday German (Letztens war ich in Wien). For "lastly" in a list say schließlich, zuletzt or zum Schluss.</li>
+<li>doppelt so viel = twice as much; um das Doppelte teurer is common but illogical, and careful writers avoid it.</li>
+</ul>
+<h4>-mal or Mal?</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Together (adverb)</th>
+<th>Separate (noun Mal)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>einmal, zweimal, hundertmal</td>
+<td>das erste Mal, zum letzten Mal</td>
+</tr>
+<tr>
+<td>diesmal, manchmal, keinmal, x-mal</td>
+<td>dieses Mal, jedes Mal, beim nächsten Mal</td>
+</tr>
+<tr>
+<td>mehrmals, vielmals (Danke vielmals)</td>
+<td>viele Male, beide Male, ein paar Mal (also: ein paarmal)</td>
+</tr>
+<tr>
+<td>with a digit: 3-mal (also 3mal)</td>
+<td>Dutzende Mal(e)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Rule: a number word or a short adverb fuses with -mal; an adjective or article in front makes Mal a capitalised noun.</li>
+<li>noch einmal = noch mal = nochmal (spoken): Kannst du das nochmal sagen?</li>
+<li>Ukrainian comparison: вдвічі більше = doppelt so viel; подвійний = doppelt; вперше = zum ersten Mal / erstmals.</li>
+</ul>
+<h3>Describing statistics and charts</h3>
+<p>B2 exams (Goethe, telc, ÖSD) often ask you to describe a Grafik; the one rule to master is um = by (the difference) and auf = to (the new value).</p>
+<h4>Verbs of change</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>Verbs (Perfekt)</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rise</td>
+<td>steigen (ist gestiegen), ansteigen, zunehmen (hat zugenommen), wachsen (ist gewachsen)</td>
+<td>Die Zahl der Studierenden ist um 5 % gestiegen.</td>
+</tr>
+<tr>
+<td>fall</td>
+<td>sinken (ist gesunken), fallen (ist gefallen), zurückgehen (ist zurückgegangen), abnehmen (hat abgenommen)</td>
+<td>Die Arbeitslosigkeit ist auf 6 % gesunken.</td>
+</tr>
+<tr>
+<td>stay the same</td>
+<td>gleich bleiben, konstant bleiben, stagnieren</td>
+<td>Der Wert ist seit 2020 gleich geblieben.</td>
+</tr>
+<tr>
+<td>double, halve</td>
+<td>sich verdoppeln, sich verdreifachen, sich halbieren</td>
+<td>Der Anteil hat sich verdoppelt.</td>
+</tr>
+<tr>
+<td>peak, low</td>
+<td>den Höchststand erreichen, auf einen Tiefstand fallen</td>
+<td>2023 erreichte der Preis seinen Höchststand.</td>
+</tr>
+<tr>
+<td>fluctuate</td>
+<td>schwanken</td>
+<td>Die Zahlen schwanken stark.</td>
+</tr>
+<tr>
+<td>stand at</td>
+<td>liegen bei</td>
+<td>Die Quote liegt bei 12 Prozent.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>um or auf?</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>steigen / sinken um</td>
+<td>by (difference)</td>
+<td>Der Preis ist um 50 Cent gestiegen.</td>
+</tr>
+<tr>
+<td>steigen / sinken auf</td>
+<td>to (new value)</td>
+<td>Der Preis ist auf 2,50 € gestiegen.</td>
+</tr>
+<tr>
+<td>von ... auf</td>
+<td>from ... to</td>
+<td>Der Preis stieg von 2 € auf 2,50 €.</td>
+</tr>
+<tr>
+<td>ein Anstieg / ein Rückgang um / auf</td>
+<td>the same with nouns</td>
+<td>ein Anstieg um 3 Prozent auf 8 Prozent</td>
+</tr>
+<tr>
+<td>um ... Prozentpunkte</td>
+<td>percentage points</td>
+<td>Von 10 % auf 12 %: um 2 Prozentpunkte, also um 20 Prozent.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Nouns and phrases</h4>
+<ul>
+<li>der Anteil (share), der Anstieg, der Rückgang, die Zunahme, die Abnahme, der Durchschnitt (im Durchschnitt, durchschnittlich), die Mehrheit / die Minderheit, die Umfrage, die Befragten.</li>
+<li>Opening: Die Grafik zeigt / stellt dar, wie ... Die Daten stammen vom Statistischen Bundesamt (2025).</li>
+<li>Comparing: Im Vergleich zu 2020 ... Während die Zahl der Frauen stieg, sank die Zahl der Männer. Im Gegensatz dazu ...</li>
+<li>Ranking: An erster Stelle steht ..., gefolgt von ... Den größten Anteil haben ... mit 40 Prozent. Schlusslicht ist ...</li>
+<li>Comment: Auffällig ist, dass ... Zusammenfassend lässt sich sagen, dass ...</li>
+<li>Agreement: Die Mehrheit der Befragten ist dagegen (singular is standard); 20 Prozent der Befragten gaben an, dass ... (plural is usual).</li>
+<li>Ukrainian comparison: зрости на 5 % = um 5 % steigen; зрости до 5 % = auf 5 % steigen. Ukrainian на matches German um, not auf: the classic trap.</li>
+</ul>
+<h3>Money and finance</h3>
+<p>These are the words of bank letters, payslips, rent contracts and invoices; brutto (gross) and netto (net) are the first two to learn.</p>
+<h4>Bank</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Konto (pl. die Konten), das Girokonto</td>
+<td>account, current account</td>
+<td>ein Konto eröffnen / kündigen</td>
+</tr>
+<tr>
+<td>der Kontostand</td>
+<td>balance</td>
+<td>Mein Kontostand ist im Minus.</td>
+</tr>
+<tr>
+<td>der Kontoauszug (pl. -auszüge)</td>
+<td>bank statement</td>
+<td>Bitte legen Sie die Kontoauszüge der letzten drei Monate bei.</td>
+</tr>
+<tr>
+<td>die Überweisung / überweisen</td>
+<td>bank transfer / to transfer</td>
+<td>Ich überweise Ihnen den Betrag heute.</td>
+</tr>
+<tr>
+<td>der Dauerauftrag</td>
+<td>standing order</td>
+<td>die Miete per Dauerauftrag zahlen</td>
+</tr>
+<tr>
+<td>die Lastschrift, abbuchen</td>
+<td>direct debit, to debit</td>
+<td>Der Betrag wird von Ihrem Konto abgebucht.</td>
+</tr>
+<tr>
+<td>der Dispo(kredit)</td>
+<td>overdraft</td>
+<td>Ich bin im Dispo.</td>
+</tr>
+<tr>
+<td>die Zinsen (pl.)</td>
+<td>interest</td>
+<td>3 Prozent Zinsen</td>
+</tr>
+<tr>
+<td>der Kredit / das Darlehen</td>
+<td>loan</td>
+<td>einen Kredit aufnehmen</td>
+</tr>
+<tr>
+<td>die Rate, in Raten zahlen</td>
+<td>instalment</td>
+<td>in zwölf Raten</td>
+</tr>
+<tr>
+<td>der Wechselkurs</td>
+<td>exchange rate</td>
+<td>Euro in Hrywnja umtauschen</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Income, tax and bills</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>brutto / netto</td>
+<td>gross / net</td>
+<td>Ich verdiene 3.500 Euro brutto im Monat. das Bruttogehalt, das Nettogehalt</td>
+</tr>
+<tr>
+<td>das Gehalt (pl. Gehälter) / der Lohn (pl. Löhne)</td>
+<td>salary / wage</td>
+<td>die Gehaltsabrechnung (payslip)</td>
+</tr>
+<tr>
+<td>die Mehrwertsteuer (MwSt.)</td>
+<td>VAT</td>
+<td>Germany 19 %, reduced 7 % (most food, books); Austria 20 %, Switzerland 8,1 %</td>
+</tr>
+<tr>
+<td>die Lohnsteuer, die Einkommensteuer</td>
+<td>income tax</td>
+<td>Einkommensteuer has no -s- in the middle</td>
+</tr>
+<tr>
+<td>die Steuererklärung, das Finanzamt</td>
+<td>tax return, tax office</td>
+<td>die Steuer-ID (Steueridentifikationsnummer)</td>
+</tr>
+<tr>
+<td>die Sozialabgaben</td>
+<td>social security contributions</td>
+<td>Kranken-, Renten-, Pflege-, Arbeitslosenversicherung</td>
+</tr>
+<tr>
+<td>die Rechnung</td>
+<td>invoice, bill</td>
+<td>zahlbar innerhalb von 14 Tagen ohne Abzug</td>
+</tr>
+<tr>
+<td>die Mahnung</td>
+<td>payment reminder</td>
+<td>Dies ist die zweite Mahnung.</td>
+</tr>
+<tr>
+<td>die Gebühr</td>
+<td>fee</td>
+<td>die Kontoführungsgebühr</td>
+</tr>
+<tr>
+<td>die Kaution</td>
+<td>rent deposit</td>
+<td>at most three months' Kaltmiete</td>
+</tr>
+<tr>
+<td>die Kaltmiete / die Warmmiete / die Nebenkosten</td>
+<td>rent without / with heating and service charges / service charges</td>
+<td></td>
+</tr>
+<tr>
+<td>die Rente</td>
+<td>pension</td>
+<td>Trap: rent = die Miete</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Phrases: Das Geld ist noch nicht eingegangen. (has not arrived yet) Die Preise verstehen sich inklusive MwSt. (prices include VAT) Bitte überweisen Sie den Betrag bis zum ... auf folgendes Konto.</li>
+<li>Ukrainian comparison: рахунок = das Konto (account) and also die Rechnung (bill), so check which one you mean; виписка = der Kontoauszug.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/articles.html">German article tables (B1)</a>: adjective endings on ordinals and Akkusativ time phrases (letzten Montag)</li>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: am, im, um, seit, ab with dates and times</li>
+<li><a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>: why units like Kilo and Meter stay singular</li>
+<li><a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>: written abbreviations such as ca., MwSt., Mio.</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: während, im Gegensatz dazu and other links for a chart description</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: formal letters with the date line and deadlines</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/numbers-dates.html">Numbers, dates and time quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

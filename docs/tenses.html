@@ -1,0 +1,2046 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Tenses, moods and the passive · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Tenses, moods and the passive</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Tenses, moods and the passive</h1></header>
+<article class="prose card">
+<p>German builds most of its time system from three helpers (haben, sein, werden) plus two participle-free core forms (Präsens, Präteritum); in speech you mainly need Präsens, Perfekt and Konjunktiv II.</p>
+<h2>Präsens (present)</h2>
+<p>Präsens covers present, ongoing and, with a time word, future actions: German has no separate "I am doing" form, so <em>ich arbeite</em> = I work / I am working / I'll work.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Now / ongoing</td>
+<td>Ich lese gerade ein Buch.</td>
+<td>I'm reading a book right now.</td>
+</tr>
+<tr>
+<td>Habit / fact</td>
+<td>Wasser kocht bei 100 Grad.</td>
+<td>Water boils at 100 degrees.</td>
+</tr>
+<tr>
+<td>Future (with time word)</td>
+<td>Morgen fahre ich nach Berlin.</td>
+<td>Tomorrow I'm going to Berlin.</td>
+</tr>
+<tr>
+<td>Since + still true (seit)</td>
+<td>Ich wohne seit drei Jahren hier.</td>
+<td>I have lived here for three years.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>seit + Präsens</strong> is a classic trap for English speakers (<em>I have lived</em>), but natural for Ukrainian: Я живу тут три роки also uses the present.</li>
+<li>Like Ukrainian Завтра я їду до Києва, the present + time word is the normal way to talk about plans.</li>
+</ul>
+<h3>Regular endings</h3>
+<p>Stem + ending: <em>mach-en</em> → stem <em>mach-</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Ending</th>
+<th>machen</th>
+<th>arbeiten (stem in -t/-d)</th>
+<th>tanzen (stem in -s/-z)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>-e</td>
+<td>mache</td>
+<td>arbeite</td>
+<td>tanze</td>
+</tr>
+<tr>
+<td>du</td>
+<td>-st</td>
+<td>machst</td>
+<td>arbeit<strong>e</strong>st</td>
+<td>tanzt</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>-t</td>
+<td>macht</td>
+<td>arbeit<strong>e</strong>t</td>
+<td>tanzt</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>-en</td>
+<td>machen</td>
+<td>arbeiten</td>
+<td>tanzen</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>-t</td>
+<td>macht</td>
+<td>arbeit<strong>e</strong>t</td>
+<td>tanzt</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>-en</td>
+<td>machen</td>
+<td>arbeiten</td>
+<td>tanzen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Stems ending in -t, -d (and -chn, -ffn, -tm: rechnen, öffnen, atmen) insert <strong>-e-</strong>: du arbeitest, er findet, sie öffnet.</li>
+<li>Stems ending in -s, -ß, -z, -x: du only adds <strong>-t</strong>: du heißt, du sitzt, du reist.</li>
+<li>Verbs in -eln / -ern: wir/sie take just <strong>-n</strong>: wir sammeln, sie wandern; ich samm(e)le.</li>
+</ul>
+<h3>Stem-vowel changes (strong verbs, du and er/sie/es only)</h3>
+<p>Many strong verbs change their vowel <strong>only in du and er/sie/es</strong>; ich, wir, ihr, sie stay regular.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Infinitive</th>
+<th>ich</th>
+<th>du</th>
+<th>er/sie/es</th>
+<th>wir</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e → i</td>
+<td>sprechen</td>
+<td>spreche</td>
+<td>sprichst</td>
+<td>spricht</td>
+<td>sprechen</td>
+<td>speak</td>
+</tr>
+<tr>
+<td>e → i</td>
+<td>helfen</td>
+<td>helfe</td>
+<td>hilfst</td>
+<td>hilft</td>
+<td>helfen</td>
+<td>help</td>
+</tr>
+<tr>
+<td>e → i</td>
+<td>essen</td>
+<td>esse</td>
+<td>isst</td>
+<td>isst</td>
+<td>essen</td>
+<td>eat</td>
+</tr>
+<tr>
+<td>e → i</td>
+<td>nehmen</td>
+<td>nehme</td>
+<td>nimmst</td>
+<td>nimmt</td>
+<td>nehmen</td>
+<td>take</td>
+</tr>
+<tr>
+<td>e → i</td>
+<td>geben</td>
+<td>gebe</td>
+<td>gibst</td>
+<td>gibt</td>
+<td>geben</td>
+<td>give</td>
+</tr>
+<tr>
+<td>e → ie</td>
+<td>sehen</td>
+<td>sehe</td>
+<td>siehst</td>
+<td>sieht</td>
+<td>sehen</td>
+<td>see</td>
+</tr>
+<tr>
+<td>e → ie</td>
+<td>lesen</td>
+<td>lese</td>
+<td>liest</td>
+<td>liest</td>
+<td>lesen</td>
+<td>read</td>
+</tr>
+<tr>
+<td>e → ie</td>
+<td>empfehlen</td>
+<td>empfehle</td>
+<td>empfiehlst</td>
+<td>empfiehlt</td>
+<td>empfehlen</td>
+<td>recommend</td>
+</tr>
+<tr>
+<td>a → ä</td>
+<td>fahren</td>
+<td>fahre</td>
+<td>fährst</td>
+<td>fährt</td>
+<td>fahren</td>
+<td>drive, go</td>
+</tr>
+<tr>
+<td>a → ä</td>
+<td>schlafen</td>
+<td>schlafe</td>
+<td>schläfst</td>
+<td>schläft</td>
+<td>schlafen</td>
+<td>sleep</td>
+</tr>
+<tr>
+<td>a → ä</td>
+<td>tragen</td>
+<td>trage</td>
+<td>trägst</td>
+<td>trägt</td>
+<td>tragen</td>
+<td>carry, wear</td>
+</tr>
+<tr>
+<td>au → äu</td>
+<td>laufen</td>
+<td>laufe</td>
+<td>läufst</td>
+<td>läuft</td>
+<td>laufen</td>
+<td>run, walk</td>
+</tr>
+<tr>
+<td>o → ö</td>
+<td>stoßen</td>
+<td>stoße</td>
+<td>stößt</td>
+<td>stößt</td>
+<td>stoßen</td>
+<td>push, bump</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>nehmen</strong> also changes consonants: du nimmst, er nimmt.</li>
+<li><strong>halten</strong>: du hältst, er hält (no extra -t). <strong>raten</strong>: er rät. <strong>treten</strong>: du trittst, er tritt.</li>
+<li>The imperative (du) keeps e → i/ie: <em>Sprich! Nimm! Lies!</em> but <strong>not</strong> a → ä: <em>Fahr! Schlaf!</em></li>
+</ul>
+<h3>Key irregular verbs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>sein</th>
+<th>haben</th>
+<th>werden</th>
+<th>wissen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>bin</td>
+<td>habe</td>
+<td>werde</td>
+<td>weiß</td>
+</tr>
+<tr>
+<td>du</td>
+<td>bist</td>
+<td>hast</td>
+<td>wirst</td>
+<td>weißt</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>ist</td>
+<td>hat</td>
+<td>wird</td>
+<td>weiß</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>sind</td>
+<td>haben</td>
+<td>werden</td>
+<td>wissen</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>seid</td>
+<td>habt</td>
+<td>werdet</td>
+<td>wisst</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>sind</td>
+<td>haben</td>
+<td>werden</td>
+<td>wissen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>seid</strong> (ihr seid) vs <strong>seit</strong> (since): same sound, different words.</li>
+<li><strong>wissen</strong> = know a fact (<em>Ich weiß, dass…</em>), <strong>kennen</strong> = be familiar with a person/place (<em>Ich kenne Anna</em>). Same split as Ukrainian знати vs бути знайомим / French savoir vs connaître.</li>
+</ul>
+<h3>Modal verbs</h3>
+<p>Modals have a different vowel in the singular and <strong>no ending in ich and er/sie/es</strong> (ich kann, er kann).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>können</th>
+<th>müssen</th>
+<th>dürfen</th>
+<th>wollen</th>
+<th>sollen</th>
+<th>mögen</th>
+<th>möchte(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>kann</td>
+<td>muss</td>
+<td>darf</td>
+<td>will</td>
+<td>soll</td>
+<td>mag</td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>kannst</td>
+<td>musst</td>
+<td>darfst</td>
+<td>willst</td>
+<td>sollst</td>
+<td>magst</td>
+<td>möchtest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>kann</td>
+<td>muss</td>
+<td>darf</td>
+<td>will</td>
+<td>soll</td>
+<td>mag</td>
+<td>möchte</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>wollen</td>
+<td>sollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>könnt</td>
+<td>müsst</td>
+<td>dürft</td>
+<td>wollt</td>
+<td>sollt</td>
+<td>mögt</td>
+<td>möchtet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>können</td>
+<td>müssen</td>
+<td>dürfen</td>
+<td>wollen</td>
+<td>sollen</td>
+<td>mögen</td>
+<td>möchten</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The modal is in position 2, the infinitive goes to the <strong>end</strong>: <em>Ich kann heute nicht kommen.</em> (I can't come today.)</li>
+<li><strong>nicht müssen</strong> = don't have to (не мусиш), <strong>nicht dürfen</strong> = must not (не можна): <em>Du musst nicht kommen</em> (you needn't) vs <em>Du darfst nicht rauchen</em> (you mustn't).</li>
+<li><strong>ich will</strong> = I want, never "I will": <em>Ich will nach Hause.</em> = I want to go home.</li>
+</ul>
+<h2>Perfekt (spoken past)</h2>
+<p>Perfekt = <strong>haben or sein</strong> (conjugated, position 2) + <strong>Partizip II</strong> (at the end); it is the default past tense in conversation for almost all verbs.</p>
+<ul>
+<li><em>Ich habe gestern Pizza gegessen.</em> — I ate pizza yesterday.</li>
+<li><em>Wir sind nach Wien gefahren.</em> — We went to Vienna.</li>
+<li><em>Hast du das schon gemacht?</em> — Have you done that yet?</li>
+</ul>
+<h3>Building the Partizip II</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb type</th>
+<th>Pattern</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weak (regular)</td>
+<td><strong>ge-</strong> + stem + <strong>-t</strong></td>
+<td>machen → gemacht, kaufen → gekauft, arbeiten → gearbeit<strong>e</strong>t</td>
+</tr>
+<tr>
+<td>Strong (irregular)</td>
+<td><strong>ge-</strong> + stem (often new vowel) + <strong>-en</strong></td>
+<td>fahren → gefahren, trinken → getrunken, schreiben → geschrieben</td>
+</tr>
+<tr>
+<td>Mixed</td>
+<td><strong>ge-</strong> + changed stem + <strong>-t</strong></td>
+<td>bringen → gebracht, denken → gedacht, wissen → gewusst</td>
+</tr>
+<tr>
+<td>Inseparable prefix (be-, ver-, er-, ent-, emp-, ge-, zer-, miss-)</td>
+<td><strong>no ge-</strong></td>
+<td>besuchen → besucht, verstehen → verstanden, erklären → erklärt, bekommen → bekommen</td>
+</tr>
+<tr>
+<td>Verbs in <strong>-ieren</strong></td>
+<td><strong>no ge-</strong>, ends in -t</td>
+<td>studieren → studiert, telefonieren → telefoniert, passieren → passiert</td>
+</tr>
+<tr>
+<td>Separable prefix (auf-, an-, ein-, mit-, zu-, aus-, ab-, vor-, zurück-…)</td>
+<td>prefix + <strong>ge</strong> + rest</td>
+<td>aufmachen → auf<strong>ge</strong>macht, einkaufen → ein<strong>ge</strong>kauft, ankommen → an<strong>ge</strong>kommen, mitnehmen → mit<strong>ge</strong>nommen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Test for separable vs inseparable: the stress. Separable prefixes are stressed (<em>AUFmachen</em>), inseparable ones are not (<em>verSTEHen</em>).</li>
+<li>An inseparable verb can be strong: <em>verstehen → verstanden</em>, <em>vergessen → vergessen</em>, <em>beginnen → begonnen</em>.</li>
+<li>A double prefix stays without ge-: <em>ausprobieren → ausprobiert</em>, <em>vorbereiten → vorbereitet</em>.</li>
+</ul>
+<h3>haben or sein?</h3>
+<p>Most verbs take <strong>haben</strong>. Use <strong>sein</strong> for these groups (all are intransitive: no accusative object).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>sein group</th>
+<th>Examples</th>
+<th>Sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Movement from A to B</td>
+<td>gehen, fahren, fliegen, kommen, laufen, reisen, steigen, fallen</td>
+<td><em>Sie ist nach Hause gegangen.</em> — She went home.</td>
+</tr>
+<tr>
+<td>Change of state</td>
+<td>werden, aufwachen, einschlafen, sterben, wachsen, aufstehen, passieren</td>
+<td><em>Ich bin um sieben aufgewacht.</em> — I woke up at seven.</td>
+</tr>
+<tr>
+<td>The exceptions to memorise</td>
+<td>sein, bleiben, werden, passieren / geschehen, begegnen, gelingen</td>
+<td><em>Er ist zu Hause geblieben.</em> — He stayed at home.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>sein → ist gewesen</strong>: <em>Ich bin in Kyjiw gewesen.</em> (In speech, <em>ich war</em> is more common: see Präteritum.)</li>
+<li><strong>Was ist passiert?</strong> — What happened? (never <em>hat passiert</em>).</li>
+<li>Movement <strong>with an object</strong> switches to haben: <em>Ich bin nach München gefahren</em> (I drove to Munich) but <em>Ich habe das Auto in die Garage gefahren</em> (I drove the car into the garage).</li>
+<li>Activity without destination (schwimmen, tanzen, wandern): tanzen takes haben (*ich habe getanzt*); standard German uses <strong>sein</strong> for schwimmen and wandern (<em>Ich bin geschwommen</em>); southern Germany, Austria and Switzerland also say <em>bin gestanden / bin gesessen / bin gelegen</em>, while the north uses haben for those three.</li>
+<li>Reflexive verbs always take haben: <em>Ich habe mich gefreut.</em></li>
+<li>Modals in Perfekt use a double infinitive and haben: <em>Ich habe arbeiten müssen.</em> (Often replaced by Präteritum: <em>Ich musste arbeiten.</em>)</li>
+</ul>
+<h3>Word order</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Clause</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main clause</td>
+<td>Ich <strong>habe</strong> das Buch gestern <strong>gelesen</strong>.</td>
+<td>I read the book yesterday.</td>
+</tr>
+<tr>
+<td>Question</td>
+<td><strong>Hast</strong> du das Buch <strong>gelesen</strong>?</td>
+<td>Have you read the book?</td>
+</tr>
+<tr>
+<td>Subordinate clause</td>
+<td>…, weil ich das Buch <strong>gelesen habe</strong>.</td>
+<td>…because I read the book.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Präteritum (simple past)</h2>
+<p>Präteritum is the written, narrative past; in speech Germans use it mainly for <strong>sein, haben, the modals</strong> and a few frequent verbs (wissen, geben in <em>es gab</em>, denken, finden, gehen/kommen in the north).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Typical choice</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conversation</td>
+<td>Perfekt, except the verbs below</td>
+<td><em>Ich habe gestern lange geschlafen.</em></td>
+</tr>
+<tr>
+<td>Conversation: sein, haben, modals</td>
+<td>Präteritum</td>
+<td><em>Ich war müde und hatte keine Zeit. Ich musste arbeiten.</em></td>
+</tr>
+<tr>
+<td>Fixed phrases</td>
+<td>Präteritum</td>
+<td><em>Es gab ein Problem.</em> — There was a problem. <em>Wie war's?</em> — How was it?</td>
+</tr>
+<tr>
+<td>Books, news, reports, fairy tales</td>
+<td>Präteritum</td>
+<td><em>Es war einmal ein König…</em> — Once upon a time there was a king…</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Weak (regular) verbs: stem + -te + ending</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Ending</th>
+<th>machen</th>
+<th>arbeiten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>-te</td>
+<td>machte</td>
+<td>arbeit<strong>e</strong>te</td>
+</tr>
+<tr>
+<td>du</td>
+<td>-test</td>
+<td>machtest</td>
+<td>arbeitetest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>-te</td>
+<td>machte</td>
+<td>arbeitete</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>-ten</td>
+<td>machten</td>
+<td>arbeiteten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>-tet</td>
+<td>machtet</td>
+<td>arbeitetet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>-ten</td>
+<td>machten</td>
+<td>arbeiteten</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Strong verbs: new stem, no -te</h3>
+<p>The ich and er/sie/es forms have <strong>no ending</strong>: <em>ich kam, er kam</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Ending</th>
+<th>kommen</th>
+<th>gehen</th>
+<th>fahren</th>
+<th>sein</th>
+<th>haben</th>
+<th>werden</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>—</td>
+<td>kam</td>
+<td>ging</td>
+<td>fuhr</td>
+<td>war</td>
+<td>hatte</td>
+<td>wurde</td>
+</tr>
+<tr>
+<td>du</td>
+<td>-st</td>
+<td>kamst</td>
+<td>gingst</td>
+<td>fuhrst</td>
+<td>warst</td>
+<td>hattest</td>
+<td>wurdest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>—</td>
+<td>kam</td>
+<td>ging</td>
+<td>fuhr</td>
+<td>war</td>
+<td>hatte</td>
+<td>wurde</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>-en</td>
+<td>kamen</td>
+<td>gingen</td>
+<td>fuhren</td>
+<td>waren</td>
+<td>hatten</td>
+<td>wurden</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>-t</td>
+<td>kamt</td>
+<td>gingt</td>
+<td>fuhrt</td>
+<td>wart</td>
+<td>hattet</td>
+<td>wurdet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>-en</td>
+<td>kamen</td>
+<td>gingen</td>
+<td>fuhren</td>
+<td>waren</td>
+<td>hatten</td>
+<td>wurden</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>haben</strong> is weak-like in Präteritum (<em>hatte</em>, with -te); <strong>werden</strong> adds -e in the singular (<em>ich wurde</em>).</li>
+</ul>
+<h3>Modals in Präteritum: drop the umlaut, add -te</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modal</th>
+<th>ich / er</th>
+<th>wir / sie</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>können</td>
+<td>konnte</td>
+<td>konnten</td>
+<td><em>Ich konnte nicht schlafen.</em> — I couldn't sleep.</td>
+</tr>
+<tr>
+<td>müssen</td>
+<td>musste</td>
+<td>mussten</td>
+<td><em>Wir mussten warten.</em> — We had to wait.</td>
+</tr>
+<tr>
+<td>dürfen</td>
+<td>durfte</td>
+<td>durften</td>
+<td><em>Er durfte nicht mitkommen.</em> — He wasn't allowed to come along.</td>
+</tr>
+<tr>
+<td>wollen</td>
+<td>wollte</td>
+<td>wollten</td>
+<td><em>Sie wollte Ärztin werden.</em> — She wanted to become a doctor.</td>
+</tr>
+<tr>
+<td>sollen</td>
+<td>sollte</td>
+<td>sollten</td>
+<td><em>Ich sollte dich anrufen.</em> — I was supposed to call you.</td>
+</tr>
+<tr>
+<td>mögen</td>
+<td>mochte</td>
+<td>mochten</td>
+<td><em>Als Kind mochte ich keinen Fisch.</em> — As a child I didn't like fish.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>möchte</strong> has no past of its own; use <em>wollte</em>: <em>Ich wollte dich fragen…</em> — I wanted to ask you…</li>
+<li>The full list of strong Präteritum forms is in the separate "Irregular verbs" doc.</li>
+</ul>
+<h2>Plusquamperfekt (past perfect)</h2>
+<p>Plusquamperfekt = <strong>hatte / war</strong> (Präteritum of the helper) + <strong>Partizip II</strong>; it marks something that happened <strong>before</strong> another past event, exactly like English <em>had done</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>with haben</th>
+<th>with sein</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>hatte gegessen</td>
+<td>war gegangen</td>
+</tr>
+<tr>
+<td>du</td>
+<td>hattest gegessen</td>
+<td>warst gegangen</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>hatte gegessen</td>
+<td>war gegangen</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>hatten gegessen</td>
+<td>waren gegangen</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>hattet gegessen</td>
+<td>wart gegangen</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>hatten gegessen</td>
+<td>waren gegangen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Als wir ankamen, <strong>war</strong> der Zug schon <strong>abgefahren</strong>.</em> — When we arrived, the train had already left.</li>
+<li><em>Nachdem ich gegessen <strong>hatte</strong>, ging ich spazieren.</em> — After I had eaten, I went for a walk.</li>
+<li>haben vs sein follows the same rules as Perfekt.</li>
+<li><strong>nachdem</strong> wants a tense shift: Plusquamperfekt in the nachdem-clause + Präteritum/Perfekt in the main clause (or Perfekt + Präsens).</li>
+<li>Ukrainian has no separate form here (зробив / було зроблено), so think English <em>had done</em>.</li>
+</ul>
+<h2>Futur I and the three jobs of werden</h2>
+<p>Futur I = <strong>werden</strong> + infinitive at the end, but Germans use it far less than English <em>will</em>: Präsens + a time word is the normal way to speak about the future.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Futur I</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>werde arbeiten</td>
+</tr>
+<tr>
+<td>du</td>
+<td>wirst arbeiten</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>wird arbeiten</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>werden arbeiten</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>werdet arbeiten</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>werden arbeiten</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>When Futur I is used</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Promise, firm intention</td>
+<td><em>Ich werde dich nie vergessen.</em></td>
+<td>I will never forget you.</td>
+</tr>
+<tr>
+<td>Prediction, no time word</td>
+<td><em>Es wird regnen.</em></td>
+<td>It's going to rain.</td>
+</tr>
+<tr>
+<td>Guess about the present (with wohl, sicher)</td>
+<td><em>Er wird wohl krank sein.</em></td>
+<td>He's probably ill.</td>
+</tr>
+<tr>
+<td>Formal announcements</td>
+<td><em>Der Minister wird morgen sprechen.</em></td>
+<td>The minister will speak tomorrow.</td>
+</tr>
+<tr>
+<td>Firm order</td>
+<td><em>Du wirst jetzt sofort ins Bett gehen!</em></td>
+<td>You're going to bed right now!</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Everyday: <em>Ich rufe dich morgen an.</em> (not <em>Ich werde dich morgen anrufen</em>, which sounds weighty).</li>
+<li>Ukrainian parallel: я <strong>буду</strong> працювати = <em>ich werde arbeiten</em>, built the same way (helper + infinitive).</li>
+</ul>
+<h3>werden: three jobs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Structure</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. become (full verb)</td>
+<td>werden + noun/adjective</td>
+<td><em>Ich werde Lehrer. Es wird kalt.</em></td>
+<td>I'm becoming a teacher. It's getting cold.</td>
+</tr>
+<tr>
+<td>2. future (helper)</td>
+<td>werden + <strong>infinitive</strong></td>
+<td><em>Ich werde Lehrer sein.</em></td>
+<td>I will be a teacher.</td>
+</tr>
+<tr>
+<td>3. passive (helper)</td>
+<td>werden + <strong>Partizip II</strong></td>
+<td><em>Das Haus wird gebaut.</em></td>
+<td>The house is being built.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Look at the end of the clause: infinitive → future, Partizip II → passive, nothing verbal → become.</li>
+<li>Perfekt of job 1 is <em>ist geworden</em>; in the passive it shrinks to <em>worden</em>: <em>Er ist Arzt geworden</em> vs <em>Das Haus ist gebaut worden</em>.</li>
+<li>Ukrainian ставати = job 1: <em>Він став лікарем</em> = <em>Er ist Arzt geworden</em>.</li>
+</ul>
+<h2>Konjunktiv II (would / could / if)</h2>
+<p>Konjunktiv II expresses the unreal, the hypothetical and the polite; for most verbs use <strong>würde + infinitive</strong>, but for sein, haben and the modals use their own one-word forms.</p>
+<p>Ukrainian does this with one particle: я <strong>б</strong> зробив, якби в мене <strong>був</strong> час. German needs the special verb form instead.</p>
+<h3>The forms</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>würde (+ Inf.)</th>
+<th>sein → wäre</th>
+<th>haben → hätte</th>
+<th>können → könnte</th>
+<th>müssen → müsste</th>
+<th>sollen → sollte</th>
+<th>dürfen → dürfte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>würde</td>
+<td>wäre</td>
+<td>hätte</td>
+<td>könnte</td>
+<td>müsste</td>
+<td>sollte</td>
+<td>dürfte</td>
+</tr>
+<tr>
+<td>du</td>
+<td>würdest</td>
+<td>wär(e)st</td>
+<td>hättest</td>
+<td>könntest</td>
+<td>müsstest</td>
+<td>solltest</td>
+<td>dürftest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td>würde</td>
+<td>wäre</td>
+<td>hätte</td>
+<td>könnte</td>
+<td>müsste</td>
+<td>sollte</td>
+<td>dürfte</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>würden</td>
+<td>wären</td>
+<td>hätten</td>
+<td>könnten</td>
+<td>müssten</td>
+<td>sollten</td>
+<td>dürften</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>würdet</td>
+<td>wär(e)t</td>
+<td>hättet</td>
+<td>könntet</td>
+<td>müsstet</td>
+<td>solltet</td>
+<td>dürftet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>würden</td>
+<td>wären</td>
+<td>hätten</td>
+<td>könnten</td>
+<td>müssten</td>
+<td>sollten</td>
+<td>dürften</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Rule of thumb: Präteritum + umlaut (war → wäre, hatte → hätte, konnte → könnte). <strong>sollen</strong> and <strong>wollen</strong> get no umlaut: <em>sollte, wollte</em> look the same as Präteritum.</li>
+<li>A few more one-word forms are common: <em>ich wüsste</em> (wissen), <em>es gäbe</em> (geben), <em>ich käme</em> (kommen), <em>ich ginge</em> (gehen), <em>ich bräuchte</em> (brauchen). With other verbs, würde is safest (see <a href="../docs/irregular-verbs.html">Irregular verbs</a>).</li>
+<li><strong>möchte</strong> is itself a Konjunktiv II of mögen: that is why it sounds polite.</li>
+</ul>
+<h3>What it is used for</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polite request</td>
+<td><em>Könnten Sie mir bitte helfen?</em></td>
+<td>Could you help me, please?</td>
+</tr>
+<tr>
+<td>Polite request</td>
+<td><em>Würden Sie das Fenster öffnen?</em></td>
+<td>Would you open the window?</td>
+</tr>
+<tr>
+<td>Polite order (café, shop)</td>
+<td><em>Ich hätte gern einen Kaffee.</em></td>
+<td>I'd like a coffee.</td>
+</tr>
+<tr>
+<td>Advice</td>
+<td><em>Du solltest mehr schlafen.</em></td>
+<td>You should sleep more.</td>
+</tr>
+<tr>
+<td>Advice</td>
+<td><em>An deiner Stelle würde ich das nicht machen.</em></td>
+<td>If I were you, I wouldn't do that.</td>
+</tr>
+<tr>
+<td>Wish (present)</td>
+<td><em>Ich wäre gern reich.</em> / <em>Ich hätte gern mehr Zeit.</em></td>
+<td>I'd like to be rich. / I wish I had more time.</td>
+</tr>
+<tr>
+<td>Wish with wenn / doch</td>
+<td><em>Wenn ich doch mehr Zeit hätte!</em></td>
+<td>If only I had more time!</td>
+</tr>
+<tr>
+<td>Suggestion</td>
+<td><em>Wir könnten ins Kino gehen.</em></td>
+<td>We could go to the cinema.</td>
+</tr>
+<tr>
+<td>Speculation</td>
+<td><em>Das dürfte schwierig werden.</em></td>
+<td>That's likely to be difficult.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Unreal if-clauses: wenn … (dann)</h3>
+<p>Both halves take Konjunktiv II; the verb goes to the end of the wenn-clause, and the main clause starts with the verb (or with <em>dann</em>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Real (Präsens)</th>
+<th>Unreal (Konjunktiv II)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Wenn ich Zeit habe, komme ich.</em> — If I have time, I'll come.</td>
+<td><em>Wenn ich Zeit hätte, würde ich kommen.</em> — If I had time, I would come.</td>
+</tr>
+<tr>
+<td><em>Wenn es nicht regnet, gehen wir spazieren.</em></td>
+<td><em>Wenn es nicht regnen würde, (dann) würden wir spazieren gehen.</em></td>
+</tr>
+<tr>
+<td><em>Wenn ich Geld habe, kaufe ich ein Auto.</em></td>
+<td><em>Wenn ich mehr Geld hätte, würde ich ein Auto kaufen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Avoid two würde in one sentence when you can: <em>Wenn ich Zeit <strong>hätte</strong>, würde ich kommen</em> sounds better than <em>Wenn ich Zeit haben würde…</em></li>
+<li>English "If I were you" = <em>Wenn ich du wäre</em> or <em>An deiner Stelle…</em></li>
+</ul>
+<h3>als ob (as if)</h3>
+<p><strong>als ob</strong> + Konjunktiv II, verb at the end; <em>als</em> + verb directly is the bookish variant.</p>
+<ul>
+<li><em>Er tut so, als ob er alles wüsste.</em> — He acts as if he knew everything.</li>
+<li><em>Du siehst aus, als ob du müde wärst.</em> = <em>Du siehst aus, als wärst du müde.</em> — You look as if you were tired.</li>
+<li>Ukrainian: ніби / наче (би).</li>
+</ul>
+<h3>Konjunktiv II past: hätte / wäre + Partizip II</h3>
+<p>For unreal past events (regret, missed chances), use <strong>hätte</strong> or <strong>wäre</strong> + Partizip II; haben vs sein follows the Perfekt rules.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Ich hätte das nicht gemacht.</em></td>
+<td>I wouldn't have done that.</td>
+</tr>
+<tr>
+<td><em>Wir wären gern mitgekommen.</em></td>
+<td>We would have liked to come along.</td>
+</tr>
+<tr>
+<td><em>Wenn ich das gewusst hätte, wäre ich früher gegangen.</em></td>
+<td>If I had known that, I would have left earlier.</td>
+</tr>
+<tr>
+<td><em>Hättest du doch angerufen!</em></td>
+<td>If only you had called!</td>
+</tr>
+<tr>
+<td><em>Du hättest fragen sollen / können.</em></td>
+<td>You should / could have asked.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Modal + past: <strong>hätte + infinitive + modal infinitive</strong> (double infinitive): <em>Ich hätte das wissen müssen.</em> — I should have known that.</li>
+<li>Ukrainian uses the same б-form for present and past (я б прийшов = I would come / would have come); German separates them, so check the time: <em>ich würde kommen</em> vs <em>ich wäre gekommen</em>.</li>
+</ul>
+<h2>Imperativ (commands)</h2>
+<p>The imperative has three main forms (du, ihr, Sie) plus a "let's" form with wir; the verb comes first and du / ihr drop the pronoun.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>How to build it</th>
+<th>machen</th>
+<th>kommen</th>
+<th>aufstehen</th>
+<th>lesen (e→ie)</th>
+<th>fahren (a→ä)</th>
+<th>sein</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du</td>
+<td>du-form minus -st, no pronoun</td>
+<td>Mach!</td>
+<td>Komm!</td>
+<td>Steh auf!</td>
+<td>Lies!</td>
+<td>Fahr!</td>
+<td>Sei!</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>ihr-form, no pronoun</td>
+<td>Macht!</td>
+<td>Kommt!</td>
+<td>Steht auf!</td>
+<td>Lest!</td>
+<td>Fahrt!</td>
+<td>Seid!</td>
+</tr>
+<tr>
+<td>Sie</td>
+<td>infinitive + Sie</td>
+<td>Machen Sie!</td>
+<td>Kommen Sie!</td>
+<td>Stehen Sie auf!</td>
+<td>Lesen Sie!</td>
+<td>Fahren Sie!</td>
+<td>Seien Sie!</td>
+</tr>
+<tr>
+<td>wir (let's)</td>
+<td>infinitive + wir</td>
+<td>Machen wir!</td>
+<td>Kommen wir!</td>
+<td>Stehen wir auf!</td>
+<td>Lesen wir!</td>
+<td>Fahren wir!</td>
+<td>Seien wir!</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>e → i/ie verbs keep the change in du: <em>Gib mir das! Nimm das! Sprich lauter! Hilf mir! Iss!</em></li>
+<li>a → ä and au → äu verbs do <strong>not</strong>: <em>Fahr langsam! Schlaf gut! Lauf!</em></li>
+<li>Stems in -t, -d, -ig, -chn add <strong>-e</strong> in du: <em>Warte! Antworte! Entschuldige! Öffne!</em></li>
+<li>The du-form may take an -e in careful style (<em>Komme!</em>, <em>Mache!</em>); everyday German drops it.</li>
+<li><strong>sei</strong> is irregular: <em>Sei vorsichtig!</em> — Be careful! <em>Seid leise!</em> — Be quiet (you all)! <em>Seien Sie so nett…</em> — Would you be so kind…</li>
+<li>Separable prefix goes to the end: <em>Mach die Tür zu!</em> — Close the door!</li>
+</ul>
+<h3>Softeners</h3>
+<p>A bare imperative can sound sharp; add a particle or bitte.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Particle</th>
+<th>Effect</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mal</td>
+<td>casual, "just"</td>
+<td><em>Mach mal das Fenster auf.</em></td>
+<td>Just open the window.</td>
+</tr>
+<tr>
+<td>bitte</td>
+<td>polite</td>
+<td><em>Komm bitte her.</em></td>
+<td>Come here, please.</td>
+</tr>
+<tr>
+<td>doch</td>
+<td>encouraging, slightly impatient</td>
+<td><em>Setz dich doch!</em></td>
+<td>Do sit down!</td>
+</tr>
+<tr>
+<td>doch mal</td>
+<td>friendly suggestion</td>
+<td><em>Probier doch mal den Kuchen!</em></td>
+<td>Why don't you try the cake?</td>
+</tr>
+<tr>
+<td>ruhig</td>
+<td>"go ahead, it's fine"</td>
+<td><em>Frag ruhig!</em></td>
+<td>Feel free to ask!</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian parallel: <em>зроби ну</em> / <em>зроби, будь ласка</em> ≈ <em>mach mal</em> / <em>mach bitte</em>.</li>
+<li>For strangers, Konjunktiv II is politer than any imperative: <em>Könnten Sie…?</em></li>
+</ul>
+<h2>Passiv (passive)</h2>
+<p>The process passive (Vorgangspassiv) = <strong>werden + Partizip II</strong>: the focus moves from who does it to what happens, just as in Ukrainian <em>будинок будують / будується</em>.</p>
+<ul>
+<li>Active: <em>Der Mechaniker repariert das Auto.</em> — The mechanic repairs the car.</li>
+<li>Passive: <em>Das Auto wird (vom Mechaniker) repariert.</em> — The car is being repaired (by the mechanic).</li>
+</ul>
+<p>The accusative object of the active (<em>das Auto</em>) becomes the nominative subject of the passive.</p>
+<h3>Vorgangspassiv in every tense</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tense</th>
+<th>Structure</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Präsens</td>
+<td>wird + P II</td>
+<td><em>Das Auto wird repariert.</em></td>
+<td>The car is being repaired.</td>
+</tr>
+<tr>
+<td>Präteritum</td>
+<td>wurde + P II</td>
+<td><em>Das Auto wurde repariert.</em></td>
+<td>The car was repaired.</td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td>ist + P II + <strong>worden</strong></td>
+<td><em>Das Auto ist repariert worden.</em></td>
+<td>The car has been repaired.</td>
+</tr>
+<tr>
+<td>Plusquamperfekt</td>
+<td>war + P II + worden</td>
+<td><em>Das Auto war repariert worden.</em></td>
+<td>The car had been repaired.</td>
+</tr>
+<tr>
+<td>Futur I</td>
+<td>wird + P II + werden</td>
+<td><em>Das Auto wird repariert werden.</em></td>
+<td>The car will be repaired.</td>
+</tr>
+<tr>
+<td>With modal</td>
+<td>modal + P II + <strong>werden</strong></td>
+<td><em>Das Auto muss repariert werden.</em></td>
+<td>The car must be repaired.</td>
+</tr>
+<tr>
+<td>Modal, Präteritum</td>
+<td>konnte + P II + werden</td>
+<td><em>Das Auto konnte nicht repariert werden.</em></td>
+<td>The car couldn't be repaired.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Passive Perfekt always uses <strong>sein</strong> (<em>ist … worden</em>), never <em>hat</em>.</li>
+<li>In the passive it is <strong>worden</strong>, not <em>geworden</em>: <em>Er ist krank geworden</em> (he became ill) vs <em>Er ist operiert worden</em> (he was operated on).</li>
+<li>Präteritum <em>wurde …</em> is very common in speech and writing for the passive, often more than <em>ist … worden</em>.</li>
+<li>Subordinate clause: the conjugated verb goes last: <em>…, weil das Auto repariert werden muss.</em></li>
+</ul>
+<h3>Who did it: von + Dativ (durch + Akk)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Agent</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>von + Dativ</td>
+<td>person or direct cause</td>
+<td><em>Das Buch wurde von einer Frau geschrieben.</em></td>
+<td>The book was written by a woman.</td>
+</tr>
+<tr>
+<td>durch + Akkusativ</td>
+<td>means, process, indirect cause</td>
+<td><em>Die Stadt wurde durch ein Erdbeben zerstört.</em></td>
+<td>The city was destroyed by an earthquake.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Most passive sentences in German leave the agent out entirely.</li>
+</ul>
+<h3>Impersonal passive</h3>
+<p>Verbs without an accusative object can also form a passive with <strong>es</strong> or with no subject at all.</p>
+<ul>
+<li><em>Hier wird nicht geraucht.</em> — There's no smoking here.</li>
+<li><em>Am Wochenende wird gefeiert.</em> — There's a party at the weekend.</li>
+<li><em>Mir wurde geholfen.</em> — I was helped. (Dative stays dative: not <em>Ich wurde geholfen</em>.)</li>
+</ul>
+<h3>Zustandspassiv: sein + Partizip II (the result)</h3>
+<p><strong>sein + Partizip II</strong> describes the state after the action, like an adjective.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Vorgangspassiv (process)</th>
+<th>Zustandspassiv (state)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Die Tür wird geschlossen.</em> — The door is being closed.</td>
+<td><em>Die Tür ist geschlossen.</em> — The door is closed.</td>
+</tr>
+<tr>
+<td><em>Das Restaurant wird geöffnet.</em> — The restaurant is being opened.</td>
+<td><em>Das Restaurant ist geöffnet.</em> — The restaurant is open.</td>
+</tr>
+<tr>
+<td><em>Der Tisch wurde reserviert.</em> — The table was reserved.</td>
+<td><em>Der Tisch ist reserviert.</em> — The table is reserved.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian parallel: <em>двері зачиняють</em> (process) vs <em>двері зачинені</em> (state).</li>
+<li>Past state: <em>Der Laden war geschlossen.</em> — The shop was closed (it was shut when we came).</li>
+</ul>
+<h3>man: the everyday alternative</h3>
+<p><strong>man</strong> + active verb (3rd person singular) often replaces the passive in speech, like Ukrainian impersonal <em>кажуть, тут не курять</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Passive</th>
+<th>With man</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Hier wird Deutsch gesprochen.</em></td>
+<td><em>Hier spricht man Deutsch.</em></td>
+<td>German is spoken here.</td>
+</tr>
+<tr>
+<td><em>Das muss gemacht werden.</em></td>
+<td><em>Das muss man machen.</em></td>
+<td>That has to be done.</td>
+</tr>
+<tr>
+<td><em>Wie wird das geschrieben?</em></td>
+<td><em>Wie schreibt man das?</em></td>
+<td>How do you spell that?</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>man</strong> takes the er-form: <em>man kann, man muss, man weiß</em>; its accusative is <em>einen</em>, dative <em>einem</em>.</li>
+</ul>
+<h2>No aspect: from робив / зробив to German</h2>
+<p>German verbs have no grammatical aspect: one Perfekt form covers both Ukrainian imperfective and perfective, so <em>ich habe gelesen</em> = я читав <strong>and</strong> я прочитав; context and small words do the work.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ukrainian</th>
+<th>German</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Я читав книжку (process)</td>
+<td>Ich habe ein Buch gelesen.</td>
+<td>I was reading / I read a book.</td>
+</tr>
+<tr>
+<td>Я прочитав книжку (result)</td>
+<td>Ich habe das Buch (zu Ende) gelesen.</td>
+<td>I've read (finished) the book.</td>
+</tr>
+<tr>
+<td>Я роблю (now)</td>
+<td>Ich mache das gerade.</td>
+<td>I'm doing it right now.</td>
+</tr>
+<tr>
+<td>Я зроблю (future, result)</td>
+<td>Ich mache das (morgen).</td>
+<td>I'll do it (tomorrow).</td>
+</tr>
+<tr>
+<td>Я буду робити (future, process)</td>
+<td>Ich werde das machen. / Ich mache das.</td>
+<td>I'll be doing it.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The Ukrainian future pair зроблю / буду робити collapses into Präsens or Futur I: no difference in form.</li>
+<li>English progressive (<em>I was doing</em>) also has no German equivalent; don't look for one.</li>
+</ul>
+<h3>Tools for aspect-like meaning</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>German tool</th>
+<th>Example</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In progress right now</td>
+<td><strong>gerade</strong></td>
+<td><em>Ich koche gerade.</em></td>
+<td>I'm cooking right now (я саме готую).</td>
+</tr>
+<tr>
+<td>In progress, "in the middle of"</td>
+<td><strong>dabei sein, … zu + Inf.</strong></td>
+<td><em>Ich bin dabei, die Koffer zu packen.</em></td>
+<td>I'm busy packing the cases.</td>
+</tr>
+<tr>
+<td>In progress (colloquial, regional)</td>
+<td><strong>am + Inf. + sein</strong></td>
+<td><em>Ich bin am Arbeiten.</em></td>
+<td>I'm working (just now).</td>
+</tr>
+<tr>
+<td>Process over time</td>
+<td><strong>lange, stundenlang, die ganze Zeit</strong></td>
+<td><em>Ich habe stundenlang gewartet.</em></td>
+<td>I waited for hours (чекав).</td>
+</tr>
+<tr>
+<td>Completed, result</td>
+<td><strong>schon</strong></td>
+<td><em>Ich habe schon gegessen.</em></td>
+<td>I've already eaten (вже поїв).</td>
+</tr>
+<tr>
+<td>Completed, done</td>
+<td><strong>fertig sein (mit)</strong></td>
+<td><em>Ich bin mit der Arbeit fertig.</em></td>
+<td>I've finished the work.</td>
+</tr>
+<tr>
+<td>To the end</td>
+<td><strong>zu Ende + verb</strong>, <strong>aus-</strong></td>
+<td><em>Ich habe das Buch zu Ende gelesen. Ich habe den Kaffee ausgetrunken.</em></td>
+<td>I read the book to the end. I finished my coffee (допив).</td>
+</tr>
+<tr>
+<td>Not yet</td>
+<td><strong>noch nicht</strong></td>
+<td><em>Ich habe das noch nicht gemacht.</em></td>
+<td>I haven't done it yet (ще не зробив).</td>
+</tr>
+<tr>
+<td>Start</td>
+<td><strong>anfangen / beginnen zu</strong></td>
+<td><em>Es fängt an zu regnen.</em></td>
+<td>It's starting to rain (задощило).</td>
+</tr>
+<tr>
+<td>Single short act</td>
+<td><strong>mal, kurz</strong></td>
+<td><em>Ich rufe dich kurz an.</em></td>
+<td>I'll give you a quick call (подзвоню).</td>
+</tr>
+<tr>
+<td>Repeated / habitual</td>
+<td><strong>immer, oft, jeden Tag, meistens</strong></td>
+<td><em>Früher bin ich jeden Tag gelaufen.</em></td>
+<td>I used to run every day (бігав).</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Prefixes such as <strong>aus-, auf-, ver-, er-, zer-</strong> often add a sense of completion, roughly like Ukrainian ви-, з-, до-, роз-: <em>trinken</em> → <em>austrinken</em> (випити до кінця), <em>essen</em> → <em>aufessen</em> (з'їсти все), <em>brennen</em> → <em>verbrennen</em> (згоріти). These are separate vocabulary items, not a grammar system.</li>
+<li>Used to = <em>früher</em> + past: <em>Früher habe ich in Lwiw gewohnt.</em> — I used to live in Lviv.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Konjunktiv II past with modals: hätte … machen müssen</h3>
+<p>For regret, criticism and missed chances, German uses <strong>hätte + infinitive + modal infinitive</strong>. The modal never becomes a Partizip II here: it stays an infinitive (double infinitive).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Modal</th>
+<th>Pattern</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sollen</td>
+<td>hätte … tun sollen</td>
+<td><em>Du hättest mich anrufen sollen.</em></td>
+<td>You should have called me.</td>
+</tr>
+<tr>
+<td>müssen</td>
+<td>hätte … tun müssen</td>
+<td><em>Ich hätte früher losfahren müssen.</em></td>
+<td>I should have (would have had to) set off earlier.</td>
+</tr>
+<tr>
+<td>können</td>
+<td>hätte … tun können</td>
+<td><em>Wir hätten den Zug noch erreichen können.</em></td>
+<td>We could still have caught the train.</td>
+</tr>
+<tr>
+<td>dürfen</td>
+<td>hätte … tun dürfen</td>
+<td><em>Er hätte nicht mehr fahren dürfen.</em></td>
+<td>He shouldn't have been allowed to drive any more.</td>
+</tr>
+<tr>
+<td>wollen</td>
+<td>hätte … tun wollen</td>
+<td><em>Das hätte ich nie tun wollen.</em></td>
+<td>I would never have wanted to do that.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Subordinate clause:</strong> hätte does not go to the very end; it stands <em>before</em> the two infinitives: <em>…, dass ich das hätte wissen müssen.</em> Not <em>… wissen müssen hätte</em>.</li>
+<li><strong>Passive on top:</strong> <em>Das hätte längst repariert werden müssen.</em> — That should have been repaired long ago.</li>
+<li><strong>Unreal past vs guess about the past.</strong> <em>Er hätte den Zug verpassen können</em> = he could have missed it (but did not). <em>Er könnte den Zug verpasst haben</em> = maybe he missed it (we don't know). <em>Er muss den Zug verpasst haben</em> = he must have missed it.</li>
+<li><strong>Ukrainian:</strong> <em>треба було подзвонити</em> / <em>ти мав би подзвонити</em> = <em>Du hättest anrufen sollen</em>. Ukrainian marks the past on було / мав; German marks it only on hätte.</li>
+</ul>
+<h3>Passive with modals in every tense</h3>
+<p>The B1 table above stops at <em>muss / musste repariert werden</em>. In the compound tenses the <strong>modal</strong> is the verb that gets conjugated, so the auxiliary is <strong>haben</strong>, not sein, and the modal appears as an infinitive at the very end.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tense</th>
+<th>Main clause</th>
+<th>Subordinate clause (weil …)</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Präsens</td>
+<td><em>Das Auto muss repariert werden.</em></td>
+<td><em>…, weil das Auto repariert werden muss.</em></td>
+<td>The car must be repaired.</td>
+</tr>
+<tr>
+<td>Präteritum</td>
+<td><em>Das Auto musste repariert werden.</em></td>
+<td><em>…, weil das Auto repariert werden musste.</em></td>
+<td>The car had to be repaired.</td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td><em>Das Auto hat repariert werden müssen.</em></td>
+<td><em>…, weil das Auto hat repariert werden müssen.</em></td>
+<td>The car has had to be repaired.</td>
+</tr>
+<tr>
+<td>Plusquamperfekt</td>
+<td><em>Das Auto hatte repariert werden müssen.</em></td>
+<td><em>…, weil das Auto hatte repariert werden müssen.</em></td>
+<td>The car had had to be repaired.</td>
+</tr>
+<tr>
+<td>Futur I</td>
+<td><em>Das Auto wird repariert werden müssen.</em></td>
+<td><em>…, weil das Auto repariert werden müssen wird. (also: … wird repariert werden müssen)</em></td>
+<td>The car will have to be repaired.</td>
+</tr>
+<tr>
+<td>Konjunktiv II past</td>
+<td><em>Das Auto hätte repariert werden müssen.</em></td>
+<td><em>…, weil das Auto hätte repariert werden müssen.</em></td>
+<td>The car should have been repaired.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>This is the one exception to "passive Perfekt always uses sein": the plain passive is <em>ist repariert worden</em>, but with a modal it is <em>hat repariert werden müssen</em>.</li>
+<li>In the subordinate clause, hat / hatte / hätte must jump in front of the three-verb block instead of going last (same rule as the double infinitive); with wird both orders are correct.</li>
+<li>In real life the Perfekt version is heavy; speakers and writers prefer Präteritum: <em>Das Auto musste repariert werden.</em></li>
+<li>Zustandspassiv with a modal describes a required state: <em>Bis Freitag muss alles erledigt sein.</em> — Everything has to be done by Friday.</li>
+</ul>
+<h3>Passive without a subject, and the bekommen-passive</h3>
+<p>Intransitive verbs that describe an activity (rauchen, tanzen, arbeiten, lachen, streiken) can form a passive with <strong>no subject at all</strong>: <em>Hier wird nicht geraucht</em> (see the B1 section above). At B2 you need its rules and its uses.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activity, no doer named</td>
+<td><em>Gestern wurde bis drei Uhr getanzt.</em></td>
+<td>People danced until three yesterday.</td>
+</tr>
+<tr>
+<td>Placeholder es in position 1</td>
+<td><em>Es wird viel gelacht.</em></td>
+<td>There's a lot of laughing.</td>
+</tr>
+<tr>
+<td>Dative verbs</td>
+<td><em>Ihm wurde gekündigt.</em></td>
+<td>He was given notice (fired).</td>
+</tr>
+<tr>
+<td>Brisk command</td>
+<td><em>Jetzt wird geschlafen!</em></td>
+<td>Bedtime, now!</td>
+</tr>
+<tr>
+<td>Formal notices</td>
+<td><em>Es wird gebeten, nicht zu rauchen.</em></td>
+<td>You are asked not to smoke.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>es only in position 1.</strong> It is a placeholder, not a subject: <em>Es wird hier nicht geraucht</em>, but <em>Hier wird nicht geraucht</em> (no es).</li>
+<li><strong>Verb stays 3rd person singular</strong>, always <em>wird / wurde</em>.</li>
+<li><strong>Not possible</strong> with state verbs (haben, besitzen, wissen, kennen, wiegen in "it weighs 5 kg"). <em>Hier wird gewusst</em> does not exist.</li>
+<li>Reflexive versions (<em>Jetzt wird sich hingesetzt!</em>) are heard in speech but count as colloquial; avoid them in writing.</li>
+</ul>
+<p><strong>bekommen-passive (Rezipientenpassiv).</strong> With verbs of giving and taking away, the <em>receiver</em> (normally dative) becomes the subject: <strong>bekommen / kriegen + Partizip II</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Active</th>
+<th>werden-passive</th>
+<th>bekommen-passive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Man schenkte ihr ein Buch.</em></td>
+<td><em>Ihr wurde ein Buch geschenkt.</em></td>
+<td><em>Sie bekam ein Buch geschenkt.</em></td>
+</tr>
+<tr>
+<td><em>Man hat ihm den Führerschein entzogen.</em></td>
+<td><em>Ihm ist der Führerschein entzogen worden.</em></td>
+<td><em>Er hat den Führerschein entzogen bekommen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Common in speech and the press; <em>kriegen</em> is colloquial.</li>
+<li>Works only where a dative receiver exists: schenken, schicken, erklären, zeigen, entziehen, erstatten (<em>Ich bekomme die Kosten erstattet</em>).</li>
+<li><strong>Ukrainian:</strong> <em>цього тут не роблять</em> or <em>тут не курять</em> (3rd person plural, no subject) is the usual match for the subjectless passive.</li>
+</ul>
+<h3>One-word Konjunktiv II in written style</h3>
+<p>In good written German, and in careful speech, the one-word forms of frequent strong and mixed verbs replace <em>würde + infinitive</em>, especially in the <strong>wenn-clause</strong>. Form: Präteritum stem + umlaut where possible + <strong>-e</strong> (kam → käme).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Präteritum</th>
+<th>Konjunktiv II</th>
+<th>Example</th>
+<th>Register</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kommen</td>
+<td>kam</td>
+<td>käme</td>
+<td><em>Wenn er doch endlich käme!</em></td>
+<td>written and spoken</td>
+</tr>
+<tr>
+<td>gehen</td>
+<td>ging</td>
+<td>ginge</td>
+<td><em>Ginge es auch am Montag?</em></td>
+<td>written and spoken</td>
+</tr>
+<tr>
+<td>wissen</td>
+<td>wusste</td>
+<td>wüsste</td>
+<td><em>Ich wüsste nicht, warum.</em></td>
+<td>written and spoken</td>
+</tr>
+<tr>
+<td>brauchen</td>
+<td>brauchte</td>
+<td>bräuchte</td>
+<td><em>Du bräuchtest nur anzurufen.</em></td>
+<td>spoken; accepted as standard</td>
+</tr>
+<tr>
+<td>geben</td>
+<td>gab</td>
+<td>gäbe</td>
+<td><em>Es gäbe eine Lösung.</em></td>
+<td>written and spoken</td>
+</tr>
+<tr>
+<td>finden</td>
+<td>fand</td>
+<td>fände</td>
+<td><em>Ich fände das unfair.</em></td>
+<td>written and spoken</td>
+</tr>
+<tr>
+<td>bleiben</td>
+<td>blieb</td>
+<td>bliebe</td>
+<td><em>Es bliebe nur eine Frage.</em></td>
+<td>mainly written</td>
+</tr>
+<tr>
+<td>lassen</td>
+<td>ließ</td>
+<td>ließe</td>
+<td><em>Das ließe sich ändern.</em></td>
+<td>mainly written</td>
+</tr>
+<tr>
+<td>liegen</td>
+<td>lag</td>
+<td>läge</td>
+<td><em>Das läge an dir.</em></td>
+<td>mainly written</td>
+</tr>
+<tr>
+<td>tun</td>
+<td>tat</td>
+<td>täte</td>
+<td><em>Das täte mir leid.</em></td>
+<td>fixed phrases</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Formal rule of thumb:</strong> use one würde at most per sentence, and keep it out of the wenn-clause. <em>Wenn ich Zeit hätte, käme ich mit</em> reads better than <em>Wenn ich Zeit haben würde, würde ich mitkommen</em>.</li>
+<li><strong>Weak verbs</strong> have no separate form (<em>machte</em> = Präteritum and Konjunktiv II), so they keep würde: <em>Wenn er das machen würde, …</em></li>
+<li><strong>Verb-first conditionals without wenn</strong> are typical of writing: <em>Käme er heute, könnten wir alles klären.</em> <em>Hätte ich das gewusst, wäre ich nicht gekommen.</em></li>
+<li><strong>du / ihr</strong> forms may drop the e: <em>kämest / kämst, kämet / kämt</em>.</li>
+<li>Rarer and older forms (<em>stünde, hülfe, würfe, stürbe</em>) are listed in the B2+ section of <a href="../docs/irregular-verbs.html">Irregular verbs</a>.</li>
+</ul>
+<h3>Präteritum and Perfekt by region and register</h3>
+<p>The B1 rule (speech = Perfekt, writing = Präteritum) is a national average. The real split depends on where you are and what kind of text it is.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Region or text type</th>
+<th>Tendency</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Northern Germany, speech</td>
+<td>Präteritum is common for many verbs, not only sein/haben</td>
+<td><em>Dann kam er rein und sagte nichts.</em></td>
+</tr>
+<tr>
+<td>Southern Germany, Austria, speech</td>
+<td>Almost only Perfekt; Präteritum mainly for sein and modals</td>
+<td><em>Dann ist er reingekommen und hat nichts gesagt.</em></td>
+</tr>
+<tr>
+<td>Swiss German dialects</td>
+<td>No Präteritum at all, not even for sein</td>
+<td><em>Ich bi müed gsi</em> (= <em>Ich war müde</em>)</td>
+</tr>
+<tr>
+<td>Novels, history, reports</td>
+<td>Präteritum throughout</td>
+<td><em>Im Jahr 1990 fiel die Entscheidung.</em></td>
+</tr>
+<tr>
+<td>News</td>
+<td>Often Perfekt in the lead sentence (fresh result), then Präteritum for the details</td>
+<td><em>Die Polizei hat einen Verdächtigen festgenommen. Er wurde am Bahnhof gefasst.</em></td>
+</tr>
+<tr>
+<td>Emails, personal letters</td>
+<td>Mostly Perfekt, like speech</td>
+<td><em>Ich habe deine Nachricht bekommen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Doppelperfekt</strong> (<em>Ich habe es schon vergessen gehabt</em>) is common in southern speech but non-standard; don't write it.</li>
+<li>In a written narrative, keep Präteritum and use Plusquamperfekt for what happened earlier; switching to Perfekt mid-story sounds like speech.</li>
+<li><strong>Ukrainian</strong> has one past tense, so the southern habit (Perfekt for everything in speech) is the easier one to copy. For reading and writing, learn the Präteritum of every strong verb anyway.</li>
+</ul>
+<h3>Futur II, Konjunktiv I and passive alternatives (in the B2+ docs)</h3>
+<p>These belong to this topic but have their own B2+ docs; here is the short version.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Structure</th>
+<th>Form</th>
+<th>Example</th>
+<th>Full treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Futur II</td>
+<td>wird + Partizip II + haben / sein</td>
+<td><em>Bis Mai werde ich die Arbeit beendet haben.</em> — By May I will have finished. <em>Er wird es vergessen haben.</em> — He has probably forgotten it.</td>
+<td><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a></td>
+</tr>
+<tr>
+<td>Konjunktiv I</td>
+<td>stem + -e (er sei, er habe, er komme)</td>
+<td><em>Er sagt, er sei krank.</em> — He says he is ill.</td>
+<td><a href="../docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a></td>
+</tr>
+<tr>
+<td>Passive alternatives</td>
+<td>sein + zu + Inf., sich lassen + Inf., -bar</td>
+<td><em>Das ist leicht zu machen. Das lässt sich machen. Das ist machbar.</em></td>
+<td><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a></td>
+</tr>
+<tr>
+<td>lassen and the double infinitive</td>
+<td>hat … machen lassen</td>
+<td><em>Ich habe das Auto reparieren lassen.</em> — I had the car repaired.</td>
+<td><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>In speech, Futur II is mostly a <strong>guess about the past</strong>; for a completed future action Germans usually say Perfekt + time word: <em>Bis Mai habe ich die Arbeit beendet.</em></li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/irregular-verbs.html">Irregular verbs</a>: Präteritum, Partizip II and Konjunktiv II forms of the strong verbs</li>
+<li><a href="../docs/word-order.html">Word order</a>: verb position 2, the verb bracket and verb-last clauses</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: wenn, als, als ob and the clauses they open</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: Futur II, lassen, double infinitive, passive alternatives</li>
+<li><a href="../docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a>: Konjunktiv I and indirect speech</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: tense, passive and Konjunktiv choices in formal texts</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/tenses.html">Tenses quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

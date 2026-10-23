@@ -1,0 +1,2350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Word formation: roots and suffixes · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Word formation: roots and suffixes</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Word formation: roots and suffixes</h1></header>
+<article class="prose card">
+<p>One German root plus a handful of suffixes gives you a whole word family, and the suffix usually tells you the gender for free.</p>
+<h2>Word families</h2>
+<p>Learn a root once and you can guess a dozen words from it: prefixes shift the meaning, suffixes set the word class and gender, and strong verbs often change their vowel inside the family (sprechen → Spruch, nehmen → Ausnahme; see <a href="../docs/prefixes.html">Prefixes and vowel changes</a>). Ukrainian works the same way (писати → підпис → опис), so lean on that instinct.</p>
+<h3>fahren: to drive, travel (fuhr, ist gefahren)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Fahrt, -en</td>
+<td>trip, ride</td>
+<td>Gute Fahrt! = Have a good trip</td>
+</tr>
+<tr>
+<td>der Fahrer / die Fahrerin</td>
+<td>driver</td>
+<td>-er = the person who does it</td>
+</tr>
+<tr>
+<td>das Fahrrad, Fahrräder</td>
+<td>bicycle</td>
+<td>Rad = wheel</td>
+</tr>
+<tr>
+<td>das Fahrzeug, -e</td>
+<td>vehicle</td>
+<td>-zeug = gear, tool, stuff</td>
+</tr>
+<tr>
+<td>die Fahrkarte, -n</td>
+<td>ticket</td>
+<td></td>
+</tr>
+<tr>
+<td>der Fahrplan, Fahrpläne</td>
+<td>timetable</td>
+<td></td>
+</tr>
+<tr>
+<td>die Abfahrt / die Einfahrt / die Ausfahrt</td>
+<td>departure / entrance (for cars) / exit</td>
+<td>prefixes from abfahren, einfahren, ausfahren</td>
+</tr>
+<tr>
+<td>die Vorfahrt</td>
+<td>right of way</td>
+<td>traffic word</td>
+</tr>
+<tr>
+<td>die Fähre, -n</td>
+<td>ferry</td>
+<td>vowel goes a → ä</td>
+</tr>
+<tr>
+<td>erfahren</td>
+<td>to find out; to experience</td>
+<td>Ich habe es gestern erfahren. = I found out yesterday.</td>
+</tr>
+<tr>
+<td>die Erfahrung, -en</td>
+<td>experience (know-how)</td>
+<td>Ich habe Erfahrung mit Kindern.</td>
+</tr>
+<tr>
+<td>erfahren (adj.)</td>
+<td>experienced</td>
+<td>ein erfahrener Arzt</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Trap: die Gefahr and gefährlich (danger, dangerous) look like this family but come from a different old root (a cousin of English fear). Learn them as their own pair.</li>
+</ul>
+<h3>sprechen: to speak (sprach, gesprochen; du sprichst)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Sprache, -n</td>
+<td>language</td>
+<td>die Fremdsprache = foreign language</td>
+</tr>
+<tr>
+<td>die Aussprache</td>
+<td>pronunciation</td>
+<td>aussprechen = pronounce</td>
+</tr>
+<tr>
+<td>der Spruch, Sprüche</td>
+<td>saying, slogan</td>
+<td>vowel o → u</td>
+</tr>
+<tr>
+<td>das Gespräch, -e</td>
+<td>conversation</td>
+<td>Ge- noun, das</td>
+</tr>
+<tr>
+<td>gesprächig</td>
+<td>talkative</td>
+<td></td>
+</tr>
+<tr>
+<td>der Sprecher / die Sprecherin</td>
+<td>speaker, spokesperson</td>
+<td></td>
+</tr>
+<tr>
+<td>besprechen</td>
+<td>to discuss</td>
+<td>etwas besprechen, no preposition</td>
+</tr>
+<tr>
+<td>die Besprechung, -en</td>
+<td>meeting (at work)</td>
+<td></td>
+</tr>
+<tr>
+<td>versprechen / das Versprechen</td>
+<td>to promise / a promise</td>
+<td>sich versprechen = to misspeak</td>
+</tr>
+<tr>
+<td>der Anspruch, Ansprüche</td>
+<td>claim, demand</td>
+<td>Anspruch auf + Akk</td>
+</tr>
+<tr>
+<td>der Widerspruch</td>
+<td>contradiction, objection</td>
+<td>widersprechen + Dat</td>
+</tr>
+<tr>
+<td>sprachlos</td>
+<td>speechless</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>ziehen: to pull, move (zog, gezogen)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Zug, Züge</td>
+<td>train; pull; move (in a game)</td>
+<td>Ukrainian поїзд, but also тяга</td>
+</tr>
+<tr>
+<td>umziehen / der Umzug</td>
+<td>to move house / a move</td>
+<td>Wir sind umgezogen. (sein)</td>
+</tr>
+<tr>
+<td>sich umziehen</td>
+<td>to change clothes</td>
+<td>same verb, reflexive, haben</td>
+</tr>
+<tr>
+<td>anziehen / ausziehen</td>
+<td>to put on / take off (clothes); ausziehen also = move out</td>
+<td></td>
+</tr>
+<tr>
+<td>der Anzug, Anzüge</td>
+<td>suit</td>
+<td></td>
+</tr>
+<tr>
+<td>beziehen / die Beziehung, -en</td>
+<td>to cover, refer / relationship</td>
+<td>eine Beziehung haben</td>
+</tr>
+<tr>
+<td>der Bezug, Bezüge</td>
+<td>cover; reference</td>
+<td>in Bezug auf + Akk = regarding</td>
+</tr>
+<tr>
+<td>bezüglich + Gen</td>
+<td>regarding</td>
+<td>formal letters</td>
+</tr>
+<tr>
+<td>erziehen / die Erziehung</td>
+<td>to raise (children) / upbringing, education</td>
+<td>der Erzieher = nursery teacher</td>
+</tr>
+<tr>
+<td>vorziehen / der Vorzug</td>
+<td>to prefer / advantage, preference</td>
+<td>Ich ziehe Tee vor.</td>
+</tr>
+<tr>
+<td>anziehend</td>
+<td>attractive</td>
+<td>from anziehen = to attract</td>
+</tr>
+</tbody>
+</table></div>
+<h3>stehen: to stand (stand, gestanden)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Stand, Stände</td>
+<td>stand; level, state</td>
+<td>der Kenntnisstand = level of knowledge</td>
+</tr>
+<tr>
+<td>der Zustand, Zustände</td>
+<td>condition, state</td>
+<td>Ukrainian стан</td>
+</tr>
+<tr>
+<td>der Abstand, Abstände</td>
+<td>distance, gap</td>
+<td>Ukrainian від-стань = ab-stand, same build</td>
+</tr>
+<tr>
+<td>verstehen / der Verstand</td>
+<td>to understand / mind, reason</td>
+<td></td>
+</tr>
+<tr>
+<td>das Verständnis</td>
+<td>understanding, sympathy</td>
+<td>-nis, das</td>
+</tr>
+<tr>
+<td>verständlich</td>
+<td>understandable</td>
+<td></td>
+</tr>
+<tr>
+<td>der Gegenstand, Gegenstände</td>
+<td>object, item</td>
+<td>gegen + stand = what stands opposite you</td>
+</tr>
+<tr>
+<td>der Widerstand</td>
+<td>resistance</td>
+<td></td>
+</tr>
+<tr>
+<td>bestehen</td>
+<td>to pass (an exam); bestehen aus = to consist of</td>
+<td>Ich habe die Prüfung bestanden.</td>
+</tr>
+<tr>
+<td>entstehen / die Entstehung</td>
+<td>to arise / origin</td>
+<td>ist entstanden (sein)</td>
+</tr>
+<tr>
+<td>ständig</td>
+<td>constantly</td>
+<td></td>
+</tr>
+<tr>
+<td>zuständig (für)</td>
+<td>responsible (for), in charge</td>
+<td>Wer ist hier zuständig?</td>
+</tr>
+<tr>
+<td>selbstständig</td>
+<td>independent; self-employed</td>
+<td></td>
+</tr>
+<tr>
+<td>anständig</td>
+<td>decent</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>gehen: to go (ging, ist gegangen)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Gang, Gänge</td>
+<td>corridor; gear; course (of a meal)</td>
+<td></td>
+</tr>
+<tr>
+<td>der Eingang / der Ausgang</td>
+<td>entrance / exit</td>
+<td>Ukrainian вхід / вихід, same logic</td>
+</tr>
+<tr>
+<td>der Übergang</td>
+<td>crossing, transition</td>
+<td>Ukrainian перехід</td>
+</tr>
+<tr>
+<td>der Zugang</td>
+<td>access</td>
+<td>Zugang zum Internet</td>
+</tr>
+<tr>
+<td>der Spaziergang</td>
+<td>walk</td>
+<td>einen Spaziergang machen</td>
+</tr>
+<tr>
+<td>der Fußgänger / die Fußgängerin</td>
+<td>pedestrian</td>
+<td>a → ä</td>
+</tr>
+<tr>
+<td>der Umgang / umgehen mit</td>
+<td>dealing with / to handle</td>
+<td>Er kann gut mit Kindern umgehen.</td>
+</tr>
+<tr>
+<td>vergehen / vergangen</td>
+<td>to pass (time) / past</td>
+<td>die Zeit vergeht</td>
+</tr>
+<tr>
+<td>die Vergangenheit</td>
+<td>the past</td>
+<td></td>
+</tr>
+<tr>
+<td>gängig</td>
+<td>common, usual</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>schreiben: to write (schrieb, geschrieben)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Schrift, -en</td>
+<td>writing, script, font</td>
+<td></td>
+</tr>
+<tr>
+<td>schriftlich</td>
+<td>in writing</td>
+<td>schriftliche Prüfung</td>
+</tr>
+<tr>
+<td>unterschreiben / die Unterschrift</td>
+<td>to sign / signature</td>
+<td>Ukrainian під-пис = unter-schrift</td>
+</tr>
+<tr>
+<td>beschreiben / die Beschreibung</td>
+<td>to describe / description</td>
+<td>Ukrainian опис</td>
+</tr>
+<tr>
+<td>die Zeitschrift, -en</td>
+<td>magazine</td>
+<td>Zeit + Schrift</td>
+</tr>
+<tr>
+<td>die Vorschrift, -en</td>
+<td>rule, regulation</td>
+<td>Ukrainian припис</td>
+</tr>
+<tr>
+<td>die Anschrift</td>
+<td>postal address</td>
+<td>formal for Adresse</td>
+</tr>
+<tr>
+<td>die Rechtschreibung</td>
+<td>spelling</td>
+<td>recht = correct</td>
+</tr>
+<tr>
+<td>der Schriftsteller / die Schriftstellerin</td>
+<td>writer, author</td>
+<td></td>
+</tr>
+<tr>
+<td>der Schreibtisch, -e</td>
+<td>desk</td>
+<td>verb stem + noun</td>
+</tr>
+</tbody>
+</table></div>
+<h3>arbeiten: to work</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Arbeit, -en</td>
+<td>work; job; paper</td>
+<td></td>
+</tr>
+<tr>
+<td>der Arbeiter / die Arbeiterin</td>
+<td>(manual) worker</td>
+<td></td>
+</tr>
+<tr>
+<td>der Mitarbeiter / die Mitarbeiterin</td>
+<td>employee, colleague</td>
+<td>the normal office word</td>
+</tr>
+<tr>
+<td>die Zusammenarbeit</td>
+<td>cooperation</td>
+<td></td>
+</tr>
+<tr>
+<td>der Arbeitgeber / der Arbeitnehmer</td>
+<td>employer / employee</td>
+<td>literally work-giver / work-taker</td>
+</tr>
+<tr>
+<td>der Arbeitsplatz</td>
+<td>workplace; job</td>
+<td>linking -s-</td>
+</tr>
+<tr>
+<td>arbeitslos / die Arbeitslosigkeit</td>
+<td>unemployed / unemployment</td>
+<td></td>
+</tr>
+<tr>
+<td>bearbeiten / die Bearbeitung</td>
+<td>to edit, process / processing</td>
+<td>Ihr Antrag wird bearbeitet.</td>
+</tr>
+<tr>
+<td>erarbeiten</td>
+<td>to work out, achieve by effort</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>sehen: to see (sah, gesehen; du siehst)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Sicht</td>
+<td>view, visibility</td>
+<td>sehen → Sicht (h → ch + t)</td>
+</tr>
+<tr>
+<td>die Aussicht, -en</td>
+<td>view; prospect</td>
+<td>ein Zimmer mit Aussicht</td>
+</tr>
+<tr>
+<td>die Ansicht, -en</td>
+<td>opinion, view</td>
+<td>meiner Ansicht nach</td>
+</tr>
+<tr>
+<td>die Absicht, -en / absichtlich</td>
+<td>intention / on purpose</td>
+<td></td>
+</tr>
+<tr>
+<td>die Vorsicht / vorsichtig</td>
+<td>caution / careful</td>
+<td>Vorsicht! = Careful!</td>
+</tr>
+<tr>
+<td>die Rücksicht / rücksichtslos</td>
+<td>consideration / inconsiderate</td>
+<td>Rücksicht nehmen auf + Akk</td>
+</tr>
+<tr>
+<td>die Übersicht / übersichtlich</td>
+<td>overview / clearly laid out</td>
+<td></td>
+</tr>
+<tr>
+<td>sichtbar</td>
+<td>visible</td>
+<td></td>
+</tr>
+<tr>
+<td>das Gesicht, -er</td>
+<td>face</td>
+<td>Ge- noun, das</td>
+</tr>
+<tr>
+<td>das Fernsehen / der Fernseher</td>
+<td>TV (medium) / TV set</td>
+<td></td>
+</tr>
+<tr>
+<td>die Sehenswürdigkeit, -en</td>
+<td>sight, attraction</td>
+<td></td>
+</tr>
+<tr>
+<td>versehentlich</td>
+<td>by mistake</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>nehmen: to take (nahm, genommen; du nimmst)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Aufnahme, -n</td>
+<td>recording; photo; admission</td>
+<td>all -nahme nouns are die</td>
+</tr>
+<tr>
+<td>die Ausnahme, -n</td>
+<td>exception</td>
+<td></td>
+</tr>
+<tr>
+<td>die Teilnahme / der Teilnehmer</td>
+<td>participation / participant</td>
+<td>teilnehmen an + Dat</td>
+</tr>
+<tr>
+<td>die Maßnahme, -n</td>
+<td>measure, step</td>
+<td></td>
+</tr>
+<tr>
+<td>annehmen / die Annahme</td>
+<td>to accept, assume / assumption</td>
+<td></td>
+</tr>
+<tr>
+<td>zunehmen / abnehmen</td>
+<td>to gain / lose weight; increase / decrease</td>
+<td>Ich habe zwei Kilo abgenommen.</td>
+</tr>
+<tr>
+<td>die Zunahme / die Abnahme</td>
+<td>increase / decrease</td>
+<td></td>
+</tr>
+<tr>
+<td>angenehm / unangenehm</td>
+<td>pleasant / unpleasant</td>
+<td></td>
+</tr>
+<tr>
+<td>das Unternehmen / der Unternehmer</td>
+<td>company / entrepreneur</td>
+<td></td>
+</tr>
+<tr>
+<td>die Vernunft / vernünftig</td>
+<td>reason / sensible</td>
+<td>old noun from vernehmen</td>
+</tr>
+</tbody>
+</table></div>
+<h3>geben: to give (gab, gegeben; du gibst)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Gabe, -n</td>
+<td>gift, talent</td>
+<td>formal</td>
+</tr>
+<tr>
+<td>die Aufgabe, -n / aufgeben</td>
+<td>task / to give up; to post</td>
+<td>Ukrainian завдання</td>
+</tr>
+<tr>
+<td>die Ausgabe, -n / ausgeben</td>
+<td>expense, edition / to spend</td>
+<td>Ukrainian ви-дання = Aus-gabe</td>
+</tr>
+<tr>
+<td>die Angabe, -n / angeben</td>
+<td>piece of information / to state; to show off</td>
+<td>der Angeber = show-off</td>
+</tr>
+<tr>
+<td>die Umgebung</td>
+<td>surroundings, area</td>
+<td></td>
+</tr>
+<tr>
+<td>das Ergebnis, -se</td>
+<td>result</td>
+<td>-nis, das</td>
+</tr>
+<tr>
+<td>zugeben</td>
+<td>to admit</td>
+<td>Gib es zu!</td>
+</tr>
+<tr>
+<td>vergeben</td>
+<td>to forgive; to award</td>
+<td></td>
+</tr>
+<tr>
+<td>der Arbeitgeber</td>
+<td>employer</td>
+<td></td>
+</tr>
+<tr>
+<td>das Gift, -e</td>
+<td>poison</td>
+<td>false friend of English gift, old noun from geben</td>
+</tr>
+</tbody>
+</table></div>
+<h3>bauen: to build</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Bau, die Bauten</td>
+<td>building, construction</td>
+<td></td>
+</tr>
+<tr>
+<td>das Gebäude, -</td>
+<td>building</td>
+<td>Ge- + Umlaut, das</td>
+</tr>
+<tr>
+<td>die Baustelle, -n</td>
+<td>construction site; roadworks</td>
+<td></td>
+</tr>
+<tr>
+<td>aufbauen / der Aufbau</td>
+<td>to set up, build up / structure</td>
+<td></td>
+</tr>
+<tr>
+<td>abbauen</td>
+<td>to dismantle; to reduce</td>
+<td>Stress abbauen</td>
+</tr>
+<tr>
+<td>umbauen / der Umbau</td>
+<td>to renovate / renovation</td>
+<td></td>
+</tr>
+<tr>
+<td>anbauen / der Anbau</td>
+<td>to grow (crops); to add on / cultivation; extension</td>
+<td>Gemüse anbauen</td>
+</tr>
+<tr>
+<td>der Bauer, -n / die Bäuerin</td>
+<td>farmer</td>
+<td>weak noun: den Bauern</td>
+</tr>
+<tr>
+<td>der Bauernhof</td>
+<td>farm</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>leben: to live</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Leben, -</td>
+<td>life</td>
+<td></td>
+</tr>
+<tr>
+<td>lebendig</td>
+<td>alive</td>
+<td></td>
+</tr>
+<tr>
+<td>lebhaft</td>
+<td>lively</td>
+<td></td>
+</tr>
+<tr>
+<td>die Lebensmittel (pl.)</td>
+<td>food, groceries</td>
+<td>linking -s-</td>
+</tr>
+<tr>
+<td>der Lebenslauf</td>
+<td>CV</td>
+<td></td>
+</tr>
+<tr>
+<td>erleben / das Erlebnis, -se</td>
+<td>to experience / an experience (event)</td>
+<td>Ukrainian переживати / пригода</td>
+</tr>
+<tr>
+<td>überleben</td>
+<td>to survive</td>
+<td>inseparable: hat überlebt</td>
+</tr>
+<tr>
+<td>das Lebewesen</td>
+<td>living creature</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Erfahrung vs Erlebnis: Erfahrung = know-how gained over time (досвід); Erlebnis = one thing that happened to you (враження, пригода).</li>
+</ul>
+<h3>wohnen: to live, reside</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Wohnung, -en</td>
+<td>flat, apartment</td>
+<td></td>
+</tr>
+<tr>
+<td>das Wohnzimmer / der Wohnort</td>
+<td>living room / place of residence</td>
+<td></td>
+</tr>
+<tr>
+<td>die Wohngemeinschaft (WG)</td>
+<td>shared flat</td>
+<td></td>
+</tr>
+<tr>
+<td>der Einwohner / die Einwohnerin</td>
+<td>inhabitant (of a town)</td>
+<td></td>
+</tr>
+<tr>
+<td>der Bewohner / bewohnen</td>
+<td>resident / to inhabit</td>
+<td></td>
+</tr>
+<tr>
+<td>gewohnt</td>
+<td>used to</td>
+<td>Ich bin das gewohnt.</td>
+</tr>
+<tr>
+<td>sich gewöhnen an + Akk</td>
+<td>to get used to</td>
+<td>Ich gewöhne mich an das Wetter.</td>
+</tr>
+<tr>
+<td>die Gewohnheit, -en</td>
+<td>habit</td>
+<td></td>
+</tr>
+<tr>
+<td>gewöhnlich / ungewöhnlich</td>
+<td>usual / unusual</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Noun suffixes and gender</h2>
+<p>The suffix decides the gender, whatever the word means: every noun in -ung, -heit, -keit, -schaft, -ion, -tät, -ei or -ik is die; -ling and -ismus are der; -chen and -lein are always das. Learn the ending and you never need to memorise the article for that word (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>).</p>
+<h3>Always (or almost always) die</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-ung</td>
+<td>die Zeitung, die Wohnung, die Meinung, die Übung, die Rechnung, die Lösung, die Bedeutung, die Erfahrung</td>
+<td>from verbs: meinen → Meinung; plural always -en</td>
+</tr>
+<tr>
+<td>-heit</td>
+<td>die Freiheit, die Gesundheit, die Kindheit, die Sicherheit, die Wahrheit, die Schönheit, die Gelegenheit</td>
+<td>abstract quality or state, from adjectives and nouns; Ukrainian often -ість or -ство (Kindheit = дитинство)</td>
+</tr>
+<tr>
+<td>-keit</td>
+<td>die Möglichkeit, die Fähigkeit, die Schwierigkeit, die Höflichkeit, die Pünktlichkeit, die Geschwindigkeit, die Sauberkeit</td>
+<td>-keit after -ig, -lich, -bar, -sam, -er; -igkeit also appears: müde → die Müdigkeit</td>
+</tr>
+<tr>
+<td>-schaft</td>
+<td>die Freundschaft, die Mannschaft, die Gesellschaft, die Wissenschaft, die Landschaft, die Nachbarschaft, die Botschaft</td>
+<td>groups and relationships; Botschaft = message; embassy</td>
+</tr>
+<tr>
+<td>-ion</td>
+<td>die Information, die Situation, die Diskussion, die Region, die Religion, die Nation, die Lektion</td>
+<td>exceptions: der Spion, das Stadion (not this suffix)</td>
+</tr>
+<tr>
+<td>-tät</td>
+<td>die Universität, die Qualität, die Realität, die Nationalität, die Aktivität, die Identität</td>
+<td>= English -ity, Ukrainian -ітет (університет) but always die</td>
+</tr>
+<tr>
+<td>-ei</td>
+<td>die Bäckerei, die Metzgerei, die Bücherei, die Polizei, die Partei, die Türkei</td>
+<td>shops and workplaces; not a suffix in das Ei, der Papagei</td>
+</tr>
+<tr>
+<td>-ik</td>
+<td>die Musik, die Politik, die Technik, die Physik, die Kritik, die Grammatik, die Fabrik</td>
+<td>exceptions: der Atlantik, der Pazifik</td>
+</tr>
+<tr>
+<td>-ie / -ur / -enz / -anz</td>
+<td>die Familie, die Energie, die Kultur, die Natur, die Reparatur, die Konferenz, die Distanz</td>
+<td>loan suffixes, all die</td>
+</tr>
+<tr>
+<td>-in</td>
+<td>die Lehrerin, die Ärztin, die Freundin</td>
+<td>female persons</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Mostly der</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-ling</td>
+<td>der Frühling, der Liebling, der Schmetterling, der Lehrling, der Flüchtling, der Zwilling</td>
+<td>always der, even for women: Sie ist mein Liebling.</td>
+</tr>
+<tr>
+<td>-ismus</td>
+<td>der Tourismus, der Journalismus, der Optimismus, der Kapitalismus, der Rassismus</td>
+<td>always der; Ukrainian -ізм, also masculine</td>
+</tr>
+<tr>
+<td>-er (agent or device from a verb)</td>
+<td>der Lehrer, der Fahrer, der Fernseher, der Wecker, der Computer, der Drucker</td>
+<td>reliable only when it means "one who / thing that does"</td>
+</tr>
+<tr>
+<td>-or / -ant / -ent / -ist</td>
+<td>der Motor, der Autor, der Praktikant, der Student, der Journalist</td>
+<td>see the people section</td>
+</tr>
+<tr>
+<td>-ig / -ich</td>
+<td>der König, der Honig, der Essig, der Teppich</td>
+<td></td>
+</tr>
+<tr>
+<td>bare verb stem</td>
+<td>der Lauf, der Schlaf, der Kauf, der Besuch, der Anfang, der Sprung, der Flug, der Zug</td>
+<td>nouns made from a verb with no ending are mostly der</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Trap: -er that is not an agent can be anything: die Mutter, die Butter, die Nummer, das Fenster, das Zimmer, das Wasser.</li>
+</ul>
+<h3>Mostly das</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-chen</td>
+<td>das Mädchen, das Brötchen, das Hähnchen, das Kätzchen, das Würstchen, das Märchen</td>
+<td>always das, adds Umlaut where possible (die Katze → das Kätzchen); plural unchanged</td>
+</tr>
+<tr>
+<td>-lein</td>
+<td>das Fräulein, das Büchlein, das Tischlein</td>
+<td>always das; older, southern, fairy-tale flavour</td>
+</tr>
+<tr>
+<td>-um</td>
+<td>das Museum, das Zentrum, das Datum, das Studium, das Gymnasium, das Visum</td>
+<td>plural -en: die Museen, die Zentren, die Daten</td>
+</tr>
+<tr>
+<td>-ment</td>
+<td>das Dokument, das Medikament, das Instrument, das Parlament, das Experiment</td>
+<td>trap: der Moment (= moment in time), der Zement</td>
+</tr>
+<tr>
+<td>-nis</td>
+<td>das Ergebnis, das Erlebnis, das Zeugnis, das Gedächtnis, das Geheimnis, das Verhältnis, das Gefängnis, das Bedürfnis</td>
+<td>mostly das; but die Erlaubnis, die Kenntnis, die Erkenntnis, die Wildnis; plural -nisse</td>
+</tr>
+<tr>
+<td>-tum</td>
+<td>das Eigentum, das Wachstum, das Christentum</td>
+<td>exceptions: der Irrtum, der Reichtum</td>
+</tr>
+<tr>
+<td>Ge- (collective or result)</td>
+<td>das Gemüse, das Gepäck, das Geschirr, das Gebirge, das Gebäude, das Getränk, das Gefühl, das Geschenk, das Geräusch, das Gewitter</td>
+<td>many exceptions: der Geschmack, der Gedanke, der Gebrauch, die Geschichte, die Geduld, die Gefahr</td>
+</tr>
+<tr>
+<td>-o / -ma</td>
+<td>das Auto, das Kino, das Büro, das Radio, das Thema, das Klima</td>
+<td>loanwords</td>
+</tr>
+<tr>
+<td>infinitive as noun</td>
+<td>das Essen, das Lesen, das Treffen</td>
+<td>always das (see Nominalisation)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Shortcut: when you hear a new word ending in -ung, -heit, -keit, -schaft, say die without thinking. These four alone cover thousands of nouns.</li>
+</ul>
+<h2>People: -er, -erin, -ent, -ist</h2>
+<p>To name a person who does something, add -er to the verb stem (lehren → der Lehrer); for a woman add -in on top (die Lehrerin, plural Lehrerinnen). Latin-style suffixes -ent, -ant, -ist, -or work like their Ukrainian twins (студент, журналіст, автор).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Male / female</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-er</td>
+<td>der Lehrer / die Lehrerin</td>
+<td>teacher</td>
+<td>from lehren</td>
+</tr>
+<tr>
+<td>-er</td>
+<td>der Verkäufer / die Verkäuferin</td>
+<td>shop assistant</td>
+<td>from verkaufen</td>
+</tr>
+<tr>
+<td>-er</td>
+<td>der Spieler / die Spielerin</td>
+<td>player</td>
+<td></td>
+</tr>
+<tr>
+<td>-er</td>
+<td>der Bäcker / die Bäckerin</td>
+<td>baker</td>
+<td>from backen, with Umlaut</td>
+</tr>
+<tr>
+<td>-er</td>
+<td>der Sänger / die Sängerin</td>
+<td>singer</td>
+<td>from singen, sang</td>
+</tr>
+<tr>
+<td>-er (place)</td>
+<td>der Berliner / die Berlinerin; der Schweizer / die Schweizerin</td>
+<td>person from Berlin / Switzerland</td>
+<td>Ukrainian киянин / киянка</td>
+</tr>
+<tr>
+<td>-ler</td>
+<td>der Künstler / die Künstlerin; der Sportler; der Wissenschaftler</td>
+<td>artist; athlete; scientist</td>
+<td>from nouns: Kunst, Sport, Wissenschaft</td>
+</tr>
+<tr>
+<td>-iker</td>
+<td>der Politiker; der Musiker; der Techniker</td>
+<td>politician; musician; technician</td>
+<td>pairs with -ik nouns: Politik → Politiker</td>
+</tr>
+<tr>
+<td>-ent</td>
+<td>der Student / die Studentin; der Patient; der Präsident; der Dozent</td>
+<td>student; patient; president; lecturer</td>
+<td>weak noun: den, dem, des Studenten</td>
+</tr>
+<tr>
+<td>-ant</td>
+<td>der Praktikant; der Lieferant; der Demonstrant</td>
+<td>intern; supplier; protester</td>
+<td>weak noun</td>
+</tr>
+<tr>
+<td>-ist</td>
+<td>der Journalist; der Polizist; der Tourist; der Spezialist</td>
+<td>journalist; police officer; tourist; specialist</td>
+<td>weak noun: mit dem Polizisten</td>
+</tr>
+<tr>
+<td>-or</td>
+<td>der Autor; der Direktor; der Doktor; der Professor</td>
+<td>author; director; doctor; professor</td>
+<td>stress moves in plural: der Pro'fessor, die Profes'soren</td>
+</tr>
+<tr>
+<td>-eur</td>
+<td>der Friseur / die Friseurin; der Ingenieur / die Ingenieurin</td>
+<td>hairdresser; engineer</td>
+<td>French loans</td>
+</tr>
+<tr>
+<td>-ling</td>
+<td>der Lehrling; der Flüchtling; der Liebling</td>
+<td>apprentice; refugee; darling</td>
+<td>no -in form, der for everyone</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>der Kollege / die Kollegin; der Kunde / die Kundin; der Franzose / die Französin</td>
+<td>colleague; customer; Frenchman</td>
+<td>weak noun: den Kollegen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Umlaut in the feminine for some short words: der Arzt → die Ärztin, der Koch → die Köchin, der Bauer → die Bäuerin.</li>
+<li>Weak nouns (-ent, -ant, -ist, many -e) add -(e)n in every case except nominative singular: Ich frage den Studenten. Ich helfe dem Touristen.</li>
+<li>Gender-fair plurals you will see in writing: Lehrer*innen, Lehrer:innen, or a participle like die Studierenden (those studying).</li>
+<li>Ukrainian -ник / -ниця (працівник / працівниця) is the closest match to -er / -erin.</li>
+</ul>
+<h2>Adjective suffixes</h2>
+<p>Each adjective suffix carries a meaning: -bar = can be done (-able), -los = without, -voll = full of, -sam = tending to; -lich, -ig and -isch mostly just mean "having to do with". Ukrainian does the same job with -ний, -ський and без-.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Examples</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-lich</td>
+<td>freundlich, täglich, jährlich, persönlich, ärztlich, schriftlich, herzlich, ehrlich</td>
+<td>friendly, daily, yearly, personal, medical, written, warm, honest</td>
+<td>often adds Umlaut: Tag → täglich, Arzt → ärztlich</td>
+</tr>
+<tr>
+<td>-lich (from verbs)</td>
+<td>verständlich, unvermeidlich, erhältlich</td>
+<td>understandable, unavoidable, available</td>
+<td>can mean "-able", like -bar</td>
+</tr>
+<tr>
+<td>-ig</td>
+<td>lustig, ruhig, wichtig, fertig, schmutzig, sonnig, windig, eilig</td>
+<td>funny, quiet, important, ready, dirty, sunny, windy, urgent</td>
+<td>from nouns: die Sonne → sonnig, der Schmutz → schmutzig</td>
+</tr>
+<tr>
+<td>-ig (time)</td>
+<td>heutig, gestrig, morgig, dreijährig</td>
+<td>today's, yesterday's, tomorrow's, three-year-old</td>
+<td>trap: dreijährig = 3 years old / lasting 3 years; dreijährlich = every 3 years</td>
+</tr>
+<tr>
+<td>-isch</td>
+<td>typisch, praktisch, politisch, elektrisch, deutsch, ukrainisch, englisch</td>
+<td>typical, practical, political, electric, German, Ukrainian, English</td>
+<td>Ukrainian -ський / -чний (типовий, практичний)</td>
+</tr>
+<tr>
+<td>-bar</td>
+<td>essbar, trinkbar, machbar, lesbar, erreichbar, sichtbar, zahlbar</td>
+<td>edible, drinkable, doable, legible, reachable, visible, payable</td>
+<td>verb stem + -bar = "can be ...-ed"; un- in front: unbezahlbar = priceless, unaffordable</td>
+</tr>
+<tr>
+<td>-los</td>
+<td>arbeitslos, kostenlos, hoffnungslos, sprachlos, endlos, ahnungslos, obdachlos</td>
+<td>unemployed, free of charge, hopeless, speechless, endless, clueless, homeless</td>
+<td>= English -less, Ukrainian без- (безробітний)</td>
+</tr>
+<tr>
+<td>-voll</td>
+<td>wertvoll, sinnvoll, liebevoll, hoffnungsvoll, geschmackvoll, respektvoll</td>
+<td>valuable, sensible, loving, hopeful, tasteful, respectful</td>
+<td>opposite of -los: sinnvoll vs sinnlos</td>
+</tr>
+<tr>
+<td>-haft</td>
+<td>lebhaft, schmerzhaft, fehlerhaft, ernsthaft, vorteilhaft, zweifelhaft</td>
+<td>lively, painful, faulty, serious, advantageous, doubtful</td>
+<td>"having the quality of"</td>
+</tr>
+<tr>
+<td>-sam</td>
+<td>langsam, einsam, sparsam, gemeinsam, aufmerksam, seltsam, wirksam</td>
+<td>slow, lonely, thrifty, shared, attentive, strange, effective</td>
+<td>fixed words, learn as vocabulary</td>
+</tr>
+<tr>
+<td>-frei</td>
+<td>alkoholfrei, zuckerfrei, kostenfrei, rauchfrei, barrierefrei</td>
+<td>alcohol-free, sugar-free, free of charge, smoke-free, step-free</td>
+<td></td>
+</tr>
+<tr>
+<td>-reich</td>
+<td>erfolgreich, hilfreich, zahlreich, abwechslungsreich</td>
+<td>successful, helpful, numerous, varied</td>
+<td>= "rich in"</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>kindlich vs kindisch: kindlich = childlike (neutral, often positive); kindisch = childish (negative). -isch on a person-noun often sounds critical.</li>
+<li>Linking -s- appears before -los and -voll after -ung, -heit and similar: hoffnungslos, hoffnungsvoll, ahnungslos.</li>
+<li>Nouns from these adjectives take -keit or -heit: freundlich → die Freundlichkeit, dankbar → die Dankbarkeit, einsam → die Einsamkeit, arbeitslos → die Arbeitslosigkeit.</li>
+</ul>
+<h2>Verbs from nouns and adjectives</h2>
+<p>German makes new verbs in four main ways: -ieren for international words, plain -en on a noun, -eln / -ern for small or repeated actions, and Umlaut + -en on an adjective (warm → wärmen).</p>
+<h3>-ieren: international verbs</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>telefonieren</td>
+<td>to phone</td>
+<td>Ukrainian телефонувати</td>
+</tr>
+<tr>
+<td>fotografieren</td>
+<td>to photograph</td>
+<td>фотографувати</td>
+</tr>
+<tr>
+<td>studieren</td>
+<td>to study (at university)</td>
+<td>Ich studiere Informatik; for homework, vocabulary or exams use lernen</td>
+</tr>
+<tr>
+<td>reparieren</td>
+<td>to repair</td>
+<td>ремонтувати</td>
+</tr>
+<tr>
+<td>organisieren</td>
+<td>to organise</td>
+<td>організовувати</td>
+</tr>
+<tr>
+<td>diskutieren</td>
+<td>to discuss</td>
+<td>дискутувати</td>
+</tr>
+<tr>
+<td>funktionieren</td>
+<td>to work (of a machine)</td>
+<td>Das Handy funktioniert nicht.</td>
+</tr>
+<tr>
+<td>probieren</td>
+<td>to try, taste</td>
+<td></td>
+</tr>
+<tr>
+<td>passieren</td>
+<td>to happen</td>
+<td>ist passiert (sein)</td>
+</tr>
+<tr>
+<td>sich interessieren für</td>
+<td>to be interested in</td>
+<td></td>
+</tr>
+<tr>
+<td>kontrollieren</td>
+<td>to check</td>
+<td>not "control"</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>No ge- in the participle: Ich habe telefoniert, studiert, repariert. Stress is always on -ie-.</li>
+<li>Ukrainian -увати is a near-perfect match: if an international Ukrainian verb ends in -увати, the German one usually ends in -ieren.</li>
+</ul>
+<h3>Noun + -en</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Noun</th>
+<th>Verb</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Antwort</td>
+<td>antworten</td>
+<td>to answer</td>
+</tr>
+<tr>
+<td>das Frühstück</td>
+<td>frühstücken</td>
+<td>to have breakfast</td>
+</tr>
+<tr>
+<td>die Reise</td>
+<td>reisen</td>
+<td>to travel</td>
+</tr>
+<tr>
+<td>der Plan</td>
+<td>planen</td>
+<td>to plan</td>
+</tr>
+<tr>
+<td>der Regen / der Schnee</td>
+<td>regnen / schneien</td>
+<td>to rain / to snow</td>
+</tr>
+<tr>
+<td>der Kampf</td>
+<td>kämpfen</td>
+<td>to fight (with Umlaut)</td>
+</tr>
+<tr>
+<td>der Kuss</td>
+<td>küssen</td>
+<td>to kiss (with Umlaut)</td>
+</tr>
+<tr>
+<td>die Zahl</td>
+<td>zahlen / zählen</td>
+<td>to pay / to count (two different verbs)</td>
+</tr>
+<tr>
+<td>die Ruhe</td>
+<td>ruhen</td>
+<td>to rest</td>
+</tr>
+<tr>
+<td>der Schaden / die Schuld</td>
+<td>beschädigen / entschuldigen</td>
+<td>to damage / to excuse (with -igen)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>-eln and -ern: small or repeated actions</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lächeln</td>
+<td>to smile</td>
+<td>from lachen = to laugh, a "small laugh"</td>
+</tr>
+<tr>
+<td>klingeln</td>
+<td>to ring (a bell)</td>
+<td>from klingen</td>
+</tr>
+<tr>
+<td>sammeln</td>
+<td>to collect</td>
+<td>ich sammle (drops -e-)</td>
+</tr>
+<tr>
+<td>wechseln</td>
+<td>to change, exchange</td>
+<td>Geld wechseln</td>
+</tr>
+<tr>
+<td>handeln</td>
+<td>to act; to trade</td>
+<td>from die Hand</td>
+</tr>
+<tr>
+<td>streicheln</td>
+<td>to stroke, pet</td>
+<td></td>
+</tr>
+<tr>
+<td>schütteln</td>
+<td>to shake</td>
+<td>from schütten = to pour</td>
+</tr>
+<tr>
+<td>wandern</td>
+<td>to hike</td>
+<td>ich wand(e)re</td>
+</tr>
+<tr>
+<td>klettern</td>
+<td>to climb</td>
+<td></td>
+</tr>
+<tr>
+<td>zögern</td>
+<td>to hesitate</td>
+<td></td>
+</tr>
+<tr>
+<td>(sich) erinnern</td>
+<td>to remind, remember</td>
+<td>sich erinnern an + Akk</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Adjective + Umlaut + -en</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adjective</th>
+<th>Verb</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>warm</td>
+<td>wärmen</td>
+<td>to warm</td>
+<td></td>
+</tr>
+<tr>
+<td>kurz</td>
+<td>kürzen</td>
+<td>to shorten</td>
+<td>also verkürzen</td>
+</tr>
+<tr>
+<td>stark / schwach</td>
+<td>stärken / schwächen</td>
+<td>to strengthen / weaken</td>
+<td></td>
+</tr>
+<tr>
+<td>scharf</td>
+<td>schärfen</td>
+<td>to sharpen</td>
+<td></td>
+</tr>
+<tr>
+<td>hart</td>
+<td>härten</td>
+<td>to harden</td>
+<td></td>
+</tr>
+<tr>
+<td>glatt</td>
+<td>glätten</td>
+<td>to smooth</td>
+<td></td>
+</tr>
+<tr>
+<td>voll</td>
+<td>füllen</td>
+<td>to fill</td>
+<td>spelling shifts o → ü</td>
+</tr>
+<tr>
+<td>nah</td>
+<td>sich nähern</td>
+<td>to approach</td>
+<td></td>
+</tr>
+<tr>
+<td>kalt / kühl</td>
+<td>kühlen, abkühlen</td>
+<td>to cool</td>
+<td>kalt itself gives sich erkälten (to catch a cold), not a cooling verb</td>
+</tr>
+<tr>
+<td>lang / groß</td>
+<td>verlängern / vergrößern</td>
+<td>to lengthen / enlarge</td>
+<td>ver- + comparative + -n</td>
+</tr>
+<tr>
+<td>besser</td>
+<td>verbessern</td>
+<td>to improve</td>
+<td>Ukrainian покращувати</td>
+</tr>
+<tr>
+<td>leer / trocken / klar</td>
+<td>leeren / trocknen / klären</td>
+<td>to empty / dry / clarify</td>
+<td>erklären = to explain</td>
+</tr>
+<tr>
+<td>ruhig / fest</td>
+<td>beruhigen / festigen</td>
+<td>to calm / consolidate</td>
+<td>-igen</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian builds the same way with a prefix: короткий → скорочувати (verkürzen), сильний → посилювати (verstärken).</li>
+</ul>
+<h2>Nominalisation</h2>
+<p>Any infinitive becomes a neuter noun with a capital letter (lesen → das Lesen), and any adjective or participle becomes a noun that keeps adjective endings (bekannt → der/die Bekannte). Ukrainian has both: читання = das Lesen, знайомий / знайома = der / die Bekannte.</p>
+<h3>Infinitive → das + noun</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Essen</td>
+<td>food; meal</td>
+<td>Das Essen ist fertig. = The food is ready.</td>
+</tr>
+<tr>
+<td>das Leben</td>
+<td>life</td>
+<td></td>
+</tr>
+<tr>
+<td>das Wissen</td>
+<td>knowledge</td>
+<td></td>
+</tr>
+<tr>
+<td>das Treffen</td>
+<td>meeting</td>
+<td>Wir haben morgen ein Treffen.</td>
+</tr>
+<tr>
+<td>das Rauchen</td>
+<td>smoking</td>
+<td>Rauchen verboten. = No smoking.</td>
+</tr>
+<tr>
+<td>das Autofahren</td>
+<td>driving</td>
+<td>Beim Autofahren telefoniert man nicht. = You don't phone while driving.</td>
+</tr>
+<tr>
+<td>das Kochen</td>
+<td>cooking</td>
+<td>Ich helfe beim Kochen. = I help with the cooking.</td>
+</tr>
+<tr>
+<td>das Nachdenken</td>
+<td>thinking it over</td>
+<td>Ich brauche Zeit zum Nachdenken. = I need time to think.</td>
+</tr>
+<tr>
+<td>das Einkaufen</td>
+<td>shopping</td>
+<td>Ich gehe zum Einkaufen.</td>
+</tr>
+<tr>
+<td>das Schwimmen</td>
+<td>swimming</td>
+<td>Schwimmen ist gesund.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Always das, always capitalised, usually no plural.</li>
+<li>beim + infinitive = while / during: beim Essen, beim Lernen.</li>
+<li>zum + infinitive = for (the purpose of): eine Brille zum Lesen, Papier zum Schreiben.</li>
+<li>Separable verbs stay one word: das Aufstehen, das Fernsehen, das Einkaufen.</li>
+</ul>
+<h3>Adjective or participle → noun</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der / die Bekannte</td>
+<td>acquaintance</td>
+<td>from bekannt</td>
+</tr>
+<tr>
+<td>der / die Verwandte</td>
+<td>relative</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Erwachsene</td>
+<td>adult</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Deutsche</td>
+<td>German person</td>
+<td>but der Ukrainer / die Ukrainerin is a normal noun</td>
+</tr>
+<tr>
+<td>der / die Angestellte</td>
+<td>employee</td>
+<td>from angestellt</td>
+</tr>
+<tr>
+<td>der / die Kranke</td>
+<td>sick person, patient</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Jugendliche</td>
+<td>young person, teenager</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Arbeitslose</td>
+<td>unemployed person</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Reisende</td>
+<td>traveller</td>
+<td>present participle: reisend</td>
+</tr>
+<tr>
+<td>der / die Vorsitzende</td>
+<td>chair (of a meeting, party)</td>
+<td></td>
+</tr>
+<tr>
+<td>der / die Verlobte</td>
+<td>fiance(e)</td>
+<td></td>
+</tr>
+<tr>
+<td>der Beamte / die Beamtin</td>
+<td>civil servant</td>
+<td>exception: female form is a normal -in noun</td>
+</tr>
+</tbody>
+</table></div>
+<p>They decline exactly like adjectives, so the ending depends on the article (see <a href="../docs/articles.html">German article tables (B1)</a>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case / form</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with der / die</td>
+<td>der Bekannte</td>
+<td>die Bekannte</td>
+<td>die Bekannten</td>
+</tr>
+<tr>
+<td>with ein / eine / no article</td>
+<td>ein Bekannter</td>
+<td>eine Bekannte</td>
+<td>Bekannte</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td>den Bekannten / einen Bekannten</td>
+<td>die / eine Bekannte</td>
+<td>die Bekannten / Bekannte</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>dem Bekannten / einem Bekannten</td>
+<td>der / einer Bekannten</td>
+<td>den Bekannten / Bekannten</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Example: Ein Bekannter von mir wohnt in Wien. Ich treffe heute meine Bekannte.</li>
+<li>Neuter adjective nouns name an idea: das Gute, das Neue, alles Gute (best wishes), etwas Neues (something new), nichts Besonderes (nothing special), viel Schönes. After etwas / nichts / viel the ending is -es.</li>
+</ul>
+<h2>Compounds</h2>
+<p>The last part of a compound decides its gender, plural and core meaning; everything in front only narrows it down. das Haus + die Tür = die Haustür, but die Tür + das Schloss = das Türschloss.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Compound</th>
+<th>Parts</th>
+<th>Meaning</th>
+<th>Gender from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Haustür</td>
+<td>das Haus + die Tür</td>
+<td>front door</td>
+<td>die Tür</td>
+</tr>
+<tr>
+<td>das Türschloss</td>
+<td>die Tür + das Schloss</td>
+<td>door lock</td>
+<td>das Schloss</td>
+</tr>
+<tr>
+<td>der Kartoffelsalat</td>
+<td>die Kartoffel + der Salat</td>
+<td>potato salad</td>
+<td>der Salat</td>
+</tr>
+<tr>
+<td>die Salatkartoffel</td>
+<td>der Salat + die Kartoffel</td>
+<td>salad potato</td>
+<td>die Kartoffel</td>
+</tr>
+<tr>
+<td>der Kinderwagen</td>
+<td>die Kinder + der Wagen</td>
+<td>pram</td>
+<td>der Wagen</td>
+</tr>
+<tr>
+<td>die Krankenversicherungskarte</td>
+<td>Kranken + Versicherung + Karte</td>
+<td>health insurance card</td>
+<td>die Karte</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Linking letters (Fugenelemente)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Link</th>
+<th>When</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s-</td>
+<td>after -ung, -heit, -keit, -schaft, -ion, -tät, -ling and many masculine/neuter nouns</td>
+<td>das Arbeitszimmer, die Wohnungstür, das Gesundheitssystem, die Wirtschaftskrise, die Informationsquelle, die Universitätsstadt, der Frühlingsanfang, der Geburtstag, das Verkehrsmittel, die Lebensmittel</td>
+</tr>
+<tr>
+<td>-n- / -en-</td>
+<td>after most feminine nouns in -e and weak masculine nouns</td>
+<td>die Straßenbahn, die Sonnenbrille, der Blumenladen, das Taschengeld, das Studentenwohnheim, die Menschenrechte</td>
+</tr>
+<tr>
+<td>-es-</td>
+<td>after some short masculine/neuter nouns</td>
+<td>die Tageszeitung, die Jahreszeit, das Bundesland, der Freundeskreis</td>
+</tr>
+<tr>
+<td>-er-</td>
+<td>where the plural is -er</td>
+<td>das Kinderzimmer, der Kindergarten, das Wörterbuch, das Bilderbuch</td>
+</tr>
+<tr>
+<td>-e dropped</td>
+<td>some feminine nouns in -e</td>
+<td>das Schulbuch (Schule), der Sprachkurs (Sprache), die Erdbeere (Erde), das Endspiel (Ende)</td>
+</tr>
+<tr>
+<td>nothing</td>
+<td>most other nouns</td>
+<td>die Hausaufgabe, der Handschuh, der Kühlschrank, das Fahrrad</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The -s- is a sound habit, not a genitive: die Liebe still gives der Liebesbrief, and die Arbeit gives das Arbeitszimmer.</li>
+<li>Verb + noun: drop -en from the infinitive: der Schreibtisch, die Waschmaschine, das Esszimmer, die Fahrkarte, der Parkplatz, das Schlafzimmer; some add -e: das Wartezimmer.</li>
+<li>Adjective + noun: die Großstadt, das Kleingeld, das Hochhaus, der Rotwein, die Altstadt.</li>
+<li>When you read a long word, split it from the end: Straßen + bahn + halte + stelle = tram stop.</li>
+<li>Ukrainian usually uses adjective + noun where German uses one compound: Kinderzimmer = дитяча кімната, Arbeitszimmer = робочий кабінет, Straßenbahnhaltestelle = трамвайна зупинка.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Nominalisierung for formal style</h3>
+<p>Written German packs a whole clause into a noun phrase: the verb becomes a noun, its subject or object goes into the Genitiv, and a preposition replaces the conjunction. This Nominalstil is the backbone of official letters, reports and exam essays (see <a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spoken style (clause)</th>
+<th>Written style (noun phrase)</th>
+<th>Switch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wenn man das Formular abgibt, ...</td>
+<td>Bei Abgabe des Formulars ...</td>
+<td>wenn → bei</td>
+</tr>
+<tr>
+<td>Weil es stark regnete, ...</td>
+<td>Wegen des starken Regens ...</td>
+<td>weil → wegen + Gen</td>
+</tr>
+<tr>
+<td>Nachdem er angekommen war, ...</td>
+<td>Nach seiner Ankunft ...</td>
+<td>nachdem → nach</td>
+</tr>
+<tr>
+<td>Bevor die Reise beginnt, ...</td>
+<td>Vor Beginn der Reise ...</td>
+<td>bevor → vor</td>
+</tr>
+<tr>
+<td>Während wir arbeiten, ...</td>
+<td>Während der Arbeit ...</td>
+<td>während (conj.) → während + Gen</td>
+</tr>
+<tr>
+<td>Obwohl er krank war, ...</td>
+<td>Trotz seiner Krankheit ...</td>
+<td>obwohl → trotz + Gen</td>
+</tr>
+<tr>
+<td>Um Kosten zu sparen, ...</td>
+<td>Zur Einsparung von Kosten ...</td>
+<td>um ... zu → zur / zum</td>
+</tr>
+<tr>
+<td>Damit die Qualität besser wird, ...</td>
+<td>Zur Verbesserung der Qualität ...</td>
+<td>damit → zur / zum</td>
+</tr>
+<tr>
+<td>Falls Probleme auftreten, ...</td>
+<td>Beim Auftreten von Problemen ...</td>
+<td>falls → bei</td>
+</tr>
+</tbody>
+</table></div>
+<h4>How the verb becomes a noun</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Verb → noun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-ung (most common)</td>
+<td>entwickeln → die Entwicklung, prüfen → die Prüfung, verbessern → die Verbesserung</td>
+</tr>
+<tr>
+<td>bare stem, often with Ablaut (der)</td>
+<td>beginnen → der Beginn, besuchen → der Besuch, verzichten → der Verzicht, abschließen → der Abschluss</td>
+</tr>
+<tr>
+<td>-t / -ft (die)</td>
+<td>ankommen → die Ankunft, abfahren → die Abfahrt</td>
+</tr>
+<tr>
+<td>-e (die)</td>
+<td>suchen → die Suche, absagen → die Absage, helfen → die Hilfe</td>
+</tr>
+<tr>
+<td>-nahme / -gabe (die)</td>
+<td>teilnehmen → die Teilnahme, abgeben → die Abgabe</td>
+</tr>
+<tr>
+<td>-ation / -ierung (die)</td>
+<td>organisieren → die Organisation, reservieren → die Reservierung</td>
+</tr>
+<tr>
+<td>infinitive (das)</td>
+<td>in Kraft treten → das Inkrafttreten, auftreten → das Auftreten</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Subject and object both go into the Genitiv: Der Zug kommt an → die Ankunft des Zuges. Man repariert das Auto → die Reparatur des Autos. Without an article use von: die Reparatur von Autos.</li>
+<li>An adverb becomes an adjective: Er reagierte schnell → seine schnelle Reaktion.</li>
+<li>Use it in writing; in speech it sounds stiff. Avoid chains of more than two Genitivs (die Prüfung der Abrechnung des Kontos des Kunden).</li>
+</ul>
+<h3>Adverbs in -weise</h3>
+<p>-weise builds adverbs in two ways: noun + -weise means "by way of, in units of"; adjective + -er- + -weise is the speaker's comment on the whole sentence.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Examples</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noun + -weise</td>
+<td>beispielsweise, teilweise, schrittweise, stückweise, zeitweise, massenweise, kiloweise</td>
+<td>for example, partly, step by step, piece by piece, at times, in huge numbers, by the kilo</td>
+</tr>
+<tr>
+<td>noun + -s- + -weise</td>
+<td>ausnahmsweise, beziehungsweise (bzw.), vergleichsweise, versuchsweise</td>
+<td>as an exception, or rather / respectively, comparatively, on a trial basis</td>
+</tr>
+<tr>
+<td>adjective + -er- + -weise</td>
+<td>glücklicherweise, normalerweise, möglicherweise, überraschenderweise, dummerweise, erfreulicherweise, bedauerlicherweise, ironischerweise</td>
+<td>fortunately, normally, possibly, surprisingly, annoyingly, happily, regrettably, ironically</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Sentence adverbs judge the whole statement: Glücklicherweise hat es nicht geregnet = luckily, it didn't rain. Compare manner: Er hat glücklich gelächelt = he smiled happily.</li>
+<li>The noun type can also stand before a noun that names an action: ein schrittweiser Abbau, eine teilweise Zerstörung. The adjective type never can (not: ein glücklicherweiser Zufall).</li>
+<li>Ukrainian: на щастя = glücklicherweise, частково = teilweise, наприклад = beispielsweise, винятково = ausnahmsweise.</li>
+</ul>
+<h3>Adjective suffixes at B2</h3>
+<p>These suffixes work like half-words with a clear meaning; most attach to a noun, with a linking -s- or -(e)n- where that noun needs one.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Meaning</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-mäßig</td>
+<td>according to; (colloquial) as for</td>
+<td>regelmäßig, planmäßig, zweckmäßig, verhältnismäßig; wettermäßig, arbeitsmäßig</td>
+<td>Wie läuft's arbeitsmäßig? is casual; in writing use hinsichtlich + Gen</td>
+</tr>
+<tr>
+<td>-artig</td>
+<td>of the kind, like</td>
+<td>großartig (great), eigenartig (odd), neuartig (novel), schlagartig (suddenly), gleichartig</td>
+<td>from die Art</td>
+</tr>
+<tr>
+<td>-fähig</td>
+<td>able to, fit for</td>
+<td>arbeitsfähig, zahlungsfähig, konkurrenzfähig, lernfähig, teamfähig</td>
+<td>opposite -unfähig: zahlungsunfähig = insolvent</td>
+</tr>
+<tr>
+<td>-bedürftig</td>
+<td>in need of</td>
+<td>hilfsbedürftig, pflegebedürftig (needing care), reparaturbedürftig, erholungsbedürftig, erklärungsbedürftig</td>
+<td>from das Bedürfnis</td>
+</tr>
+<tr>
+<td>-wert</td>
+<td>worth doing</td>
+<td>sehenswert, lesenswert, empfehlenswert, wünschenswert, lobenswert, preiswert (good value)</td>
+<td>infinitive + s + wert</td>
+</tr>
+<tr>
+<td>-würdig</td>
+<td>deserving</td>
+<td>vertrauenswürdig, menschenwürdig, liebenswürdig (kind), fragwürdig (dubious), merkwürdig (strange)</td>
+<td>merkwürdig and fragwürdig are negative, not "remarkable"</td>
+</tr>
+<tr>
+<td>-arm</td>
+<td>low in</td>
+<td>kalorienarm, fettarm, verkehrsarm (with little traffic)</td>
+<td>opposite of -reich</td>
+</tr>
+<tr>
+<td>-reich</td>
+<td>rich in, full of</td>
+<td>vitaminreich, lehrreich (instructive), einflussreich, abwechslungsreich, kinderreich (with many children)</td>
+<td>fettarm / fettreich</td>
+</tr>
+<tr>
+<td>-frei</td>
+<td>free of (a selling point)</td>
+<td>bleifrei, steuerfrei, schulfrei, fehlerfrei, vorurteilsfrei</td>
+<td>-frei = absence as a feature; -los often = a lack (arbeitslos)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>-wert vs -würdig: sehenswert = worth seeing; die Sehenswürdigkeit (a sight) comes from the older sehenswürdig.</li>
+<li>Nouns take -keit: die Zahlungsfähigkeit, die Pflegebedürftigkeit, die Vertrauenswürdigkeit.</li>
+</ul>
+<h3>Fugenelemente in depth</h3>
+<p>No single rule decides the linking element, but four tendencies predict most of them, and a few first words change their link with the meaning.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tendency</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s- after suffix nouns (-ung, -heit, -keit, -schaft, -ion, -tät, -ling, -tum, -sicht) and after Monat, Geburt, Arbeit, Liebe</td>
+<td>die Zeitungsanzeige, das Freiheitsgefühl, die Rücksichtnahme, die Monatskarte, der Liebesbrief</td>
+</tr>
+<tr>
+<td>-s- often appears when the first part is itself a compound</td>
+<td>der Hof → das Hoftor, but der Bahnhof → die Bahnhofshalle; das Werkzeug, but das Handwerkszeug; das Tagebuch, but die Geburtstagsfeier</td>
+</tr>
+<tr>
+<td>-(e)n- after weak masculines and feminines in -e; -ens- after the mixed type</td>
+<td>das Studentenwohnheim, die Sonnenbrille; der Herzenswunsch, der Namenstag, die Glaubensfrage, der Friedensvertrag</td>
+</tr>
+<tr>
+<td>plural-looking links (-e-, -er-, Umlaut) where the meaning is plural</td>
+<td>die Hundehütte, der Pferdestall, das Gästezimmer, der Händedruck, das Bücherregal</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Same first word, different link</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>First word</th>
+<th>Compounds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Land</td>
+<td>die Landkarte (map), der Landsmann (compatriot), die Landesregierung (state government), das Länderspiel (international match)</td>
+</tr>
+<tr>
+<td>Kind</td>
+<td>der Kinderwagen (pram), das Kindesalter (childhood, formal), der Kindskopf (childish person)</td>
+</tr>
+<tr>
+<td>Tag</td>
+<td>das Tagebuch (diary), die Tageszeitung (daily paper), der Tagtraum (daydream)</td>
+</tr>
+<tr>
+<td>Schwein</td>
+<td>der Schweinebraten (Germany), der Schweinsbraten (Austria, Bavaria)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Austria uses -s- more often: die Zugsverspätung, der Schweinsbraten; but der Adventkalender where Germany says Adventskalender.</li>
+<li>The link belongs to each word: when unsure, look the compound up in a dictionary instead of guessing.</li>
+</ul>
+<h3>Rückbildung: verbs cut out of nouns</h3>
+<p>Normally the noun comes from the verb (landen → die Landung). In a Rückbildung (back-formation) it goes the other way: the compound noun existed first, and a verb was cut back out of it (die Notlandung → notlanden).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Noun first</th>
+<th>Back-formed verb</th>
+<th>How it is used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Notlandung</td>
+<td>notlanden</td>
+<td>Das Flugzeug musste notlanden. Es ist notgelandet.</td>
+</tr>
+<tr>
+<td>die Uraufführung</td>
+<td>uraufführen</td>
+<td>Das Stück wurde 1805 uraufgeführt.</td>
+</tr>
+<tr>
+<td>der Staubsauger</td>
+<td>staubsaugen</td>
+<td>Ich staubsauge / Ich sauge Staub; hat gestaubsaugt / hat Staub gesaugt</td>
+</tr>
+<tr>
+<td>der Bergsteiger</td>
+<td>bergsteigen</td>
+<td>Wir gehen bergsteigen.</td>
+</tr>
+<tr>
+<td>die Schlussfolgerung</td>
+<td>schlussfolgern</td>
+<td>Daraus schlussfolgere ich, dass ...; hat geschlussfolgert</td>
+</tr>
+<tr>
+<td>die Zwangsversteigerung</td>
+<td>zwangsversteigern</td>
+<td>Das Haus wurde zwangsversteigert.</td>
+</tr>
+<tr>
+<td>der Bausparer</td>
+<td>bausparen</td>
+<td>Wir wollen bausparen.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Many of these verbs are defective: they live mostly in the infinitive and the Partizip II. Use them with a modal, the Perfekt or the passive (musste notlanden, ist notgelandet, wurde uraufgeführt) and avoid splitting them.</li>
+<li>Compare a normal derivation: landen → die Landung, prüfen → die Prüfung, fahren → die Fahrt.</li>
+</ul>
+<h3>Kurzwörter: short words and their gender</h3>
+<p>German shortens long words in four ways, and the short word keeps the gender of the full word's last noun, even when that noun has gone: die Uni because of die Universität, der Pkw because of der Wagen.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Examples (full form)</th>
+<th>Gender from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kopfwort: the beginning</td>
+<td>die Uni (Universität), das Abi (Abitur), die Info (Information), die Demo (Demonstration), der Akku (Akkumulator), das Labor (Laboratorium)</td>
+<td>the full word</td>
+</tr>
+<tr>
+<td>Endwort: the end</td>
+<td>der Bus (Omnibus), das Rad (Fahrrad), die Bahn (Eisenbahn)</td>
+<td>the full word</td>
+</tr>
+<tr>
+<td>Silbenwort: syllables</td>
+<td>die Kita (Kindertagesstätte), der / die Azubi (Auszubildende), die Kripo (Kriminalpolizei), der Krimi (Kriminalroman, Kriminalfilm)</td>
+<td>the full word</td>
+</tr>
+<tr>
+<td>Initialwort, spoken as letters</td>
+<td>der Lkw / Pkw (Last- / Personenkraftwagen), das Kfz (Kraftfahrzeug), die GmbH (Gesellschaft mit beschränkter Haftung), die WG (Wohngemeinschaft), der ICE (Intercity-Express)</td>
+<td>the last noun: Wagen, Fahrzeug, Gesellschaft, Gemeinschaft, Express</td>
+</tr>
+<tr>
+<td>Initialwort, spoken as a word</td>
+<td>die NATO, die UNO (Organisation), das BAföG (Bundesausbildungsförderungsgesetz)</td>
+<td>Organisation, Gesetz</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Plural is usually -s: die Unis, die Kitas, die Azubis, die Infos, die Lkws (also die Lkw).</li>
+<li>Letter words stress the last letter: Lkw = el-ka-WE, GmbH = ge-em-be-HA.</li>
+<li>In formal letters write the full form the first time, then the short one.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>: gender by ending, plural patterns, foreign plurals</li>
+<li><a href="../docs/prefixes.html">Prefixes and vowel changes</a>: the prefix side of word families, and Ablaut</li>
+<li><a href="../docs/irregular-verbs.html">Irregular verbs</a>: the strong-verb vowels behind Spruch, Zug, Schluss</li>
+<li><a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>: more acronyms and their genders</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Nominalstil in letters and reports</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/word-formation.html">Word formation quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

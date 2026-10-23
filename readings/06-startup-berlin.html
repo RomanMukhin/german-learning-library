@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ein Start-up in Berlin · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "06-startup-berlin", "n": 6, "area": "IT", "level": "B1", "title_de": "Ein Start-up in Berlin", "title_en": "The story of a Berlin startup", "grammar": [{"name": "Präteritum in written stories", "explain": "Written stories, news and reports tell the past in the *Präteritum*; in conversation Germans mostly use the Perfekt (look at Mia's quote: *Wir haben ... auf die Beine gestellt*). Weak verbs add *-te*: *gründen → gründete* (*-ete* after d/t), *entwickeln → entwickelte*. Strong verbs change the vowel and have no ending for ich/er/sie: *kommen → kam, sitzen → saß, schreiben → schrieb, treffen → traf*. Mixed verbs do both: *wissen → wusste*. *sein, haben* and modal verbs are used in the Präteritum even in speech: *war, hatte, wollte, konnte*.", "examples": [{"de": "Oleh *kam* 2021 aus Kyjiw nach Berlin.", "en": "Oleh came from Kyiv to Berlin in 2021."}, {"de": "Ein halbes Jahr später *gründeten* sie ihr Start-up.", "en": "Six months later they founded their startup."}, {"de": "Mia *schrieb* an vierzig Investoren, aber die meisten *antworteten* nicht.", "en": "Mia wrote to forty investors, but most of them didn't reply."}], "links": [{"title": "Tenses, moods and the passive", "url": "../docs/tenses.html"}, {"title": "Irregular verbs (Präteritum forms)", "url": "../docs/irregular-verbs.html"}]}, {"name": "Relative clauses", "explain": "A relative clause describes a noun and is separated by a comma; the conjugated verb goes to the end. The relative pronoun looks like the article (*der, die, das*; plural *die*). Its *gender and number* come from the noun, its *case* from its job inside the relative clause: *eine Designerin, die träumte* (Nominativ). After a preposition the case follows the preposition: *eine App, mit der ...* (mit + Dat), *ein Coworking-Space, in dem ...*. Dativ plural is *denen*: *Nutzer, mit denen sie sprach*. Ukrainian uses *який/яка/яке* in the same way.", "examples": [{"de": "Mia war eine Designerin, *die* schon lange von einer eigenen Firma *träumte*.", "en": "Mia was a designer who had long dreamed of her own company."}, {"de": "eine App, *mit der* Nachbarn Werkzeuge teilen *können*", "en": "an app that neighbours can use to share tools"}, {"de": "ein Coworking-Space, *in dem* ein Schreibtisch 200 Euro im Monat *kostete*", "en": "a coworking space where a desk cost 200 euros a month"}], "links": [{"title": "Relative and demonstrative pronouns", "url": "../docs/relative-pronouns.html"}, {"title": "Word order", "url": "../docs/word-order.html"}]}], "vocab": [{"id": "gruender", "de": "Gründer", "gender": "m", "plural": "Gründer", "en": "founder", "uk": "засновник", "examples": [{"de": "Die beiden Gründer sind unter 30.", "en": "The two founders are under 30."}], "note": "Plural = singular; Dativ plural *den Gründern*. Female: *die Gründerin*. *die Gründung* = the founding (of a company)."}, {"id": "geschaeftsidee", "de": "Geschäftsidee", "gender": "f", "plural": "Geschäftsideen", "en": "business idea", "uk": "бізнес-ідея", "examples": [{"de": "Wir hatten eine gute Geschäftsidee.", "en": "We had a good business idea."}], "note": "*das Geschäft* + *s* + *die Idee* → feminine (the last part decides). Plural *Ideen*: you hear both e's."}, {"id": "investor", "de": "Investor", "gender": "m", "plural": "Investoren", "en": "investor", "uk": "інвестор", "examples": [{"de": "Wir suchen einen Investor.", "en": "We're looking for an investor."}, {"de": "Die Investoren waren skeptisch.", "en": "The investors were sceptical."}], "note": "Plural *-en*, and the stress moves: *der InVEStor → die InvesTOren* (like *Doktor → Doktoren*). Female: *die Investorin*."}, {"id": "finanzierung", "de": "Finanzierung", "gender": "f", "plural": "Finanzierungen", "en": "funding, financing", "uk": "фінансування", "examples": [{"de": "Die Finanzierung für das Projekt fehlt noch.", "en": "The funding for the project is still missing."}], "note": "*-ung* → feminine. Verb: *finanzieren* (verbs in *-ieren* have no ge-: *hat finanziert*)."}, {"id": "umsatz", "de": "Umsatz", "gender": "m", "plural": "Umsätze", "en": "revenue, turnover, sales", "uk": "виручка, оборот", "examples": [{"de": "Der Umsatz wächst jeden Monat.", "en": "Revenue grows every month."}], "note": "Not profit! *der Umsatz* = all the money coming in; *der Gewinn* = what is left after costs. Plural with umlaut: *Umsätze*."}, {"id": "gewinn", "de": "Gewinn", "gender": "m", "plural": "Gewinne", "en": "profit; prize, win", "uk": "прибуток; виграш", "examples": [{"de": "Die Firma macht noch keinen Gewinn.", "en": "The company isn't making a profit yet."}], "note": "From *gewinnen* (to win). *Gewinn machen* = to make a profit. Opposite: *der Verlust* (loss)."}, {"id": "nutzer", "de": "Nutzer", "gender": "m", "plural": "Nutzer", "en": "user", "uk": "користувач", "examples": [{"de": "Die App hat 80 000 Nutzer.", "en": "The app has 80,000 users."}, {"de": "Wir sprechen oft *mit den Nutzern*.", "en": "We often talk to the users."}], "note": "Plural = singular; Dativ plural *den Nutzern*. Female: *die Nutzerin*. Also *der Benutzer* or *der User*."}, {"id": "coworking", "de": "Coworking-Space", "gender": "m", "plural": "Coworking-Spaces", "en": "coworking space", "uk": "коворкінг", "examples": [{"de": "Ich arbeite *in einem Coworking-Space* in Kreuzberg.", "en": "I work in a coworking space in Kreuzberg."}], "note": "Usually masculine (*der Space*, like *der Raum*), plural with *-s*. Relative clause: *ein Coworking-Space, in dem ...*"}, {"id": "konkurrenz", "de": "Konkurrenz", "gender": "f", "plural": null, "en": "competition; competitors", "uk": "конкуренція; конкуренти", "examples": [{"de": "Die Konkurrenz ist groß.", "en": "There's a lot of competition."}], "note": "A collective noun, always singular: *die Konkurrenz* = all the competitors. One competitor = *der Konkurrent* (n-Deklination: *den Konkurrenten*)."}, {"id": "stimmung", "de": "Stimmung", "gender": "f", "plural": "Stimmungen", "en": "mood, atmosphere", "uk": "настрій, атмосфера", "examples": [{"de": "Die Stimmung im Team ist super.", "en": "The mood in the team is great."}], "note": "Used for groups and places. For one person's mood *die Laune* is more common: *Ich habe gute Laune.*"}, {"id": "entscheidung", "de": "Entscheidung", "gender": "f", "plural": "Entscheidungen", "en": "decision", "uk": "рішення", "examples": [{"de": "Wir müssen eine Entscheidung *treffen*.", "en": "We have to make a decision."}], "note": "*eine Entscheidung treffen* (not *machen*!). Präteritum: *Sie trafen eine Entscheidung.* From *entscheiden* (entschied, hat entschieden)."}, {"id": "gruenden", "de": "gründen", "gender": null, "plural": null, "en": "to found, to set up", "uk": "засновувати", "examples": [{"de": "Sie gründete 2022 eine Firma.", "en": "She founded a company in 2022."}], "note": "The stem ends in *-d*, so the Präteritum adds *-ete*: *gründete, gründeten*. Perfekt: *hat gegründet*."}, {"id": "entwickeln", "de": "entwickeln", "gender": null, "plural": null, "en": "to develop", "uk": "розробляти", "examples": [{"de": "Oleh entwickelte die App allein.", "en": "Oleh developed the app on his own."}], "note": "Inseparable *ent-*: *entwickelte, hat entwickelt* (no ge-). *der Entwickler* = developer. *sich entwickeln* = to develop (by itself)."}, {"id": "verdienen", "de": "verdienen", "gender": null, "plural": null, "en": "to earn; to deserve", "uk": "заробляти; заслуговувати", "examples": [{"de": "Am Anfang verdienten sie fast nichts.", "en": "At the beginning they earned almost nothing."}, {"de": "Das hast du verdient!", "en": "You deserve it!"}], "note": "Two meanings: *Geld verdienen* = to earn money; *Das hast du verdient* = you deserve it. Weak: *verdiente, hat verdient*."}, {"id": "aufgeben", "de": "aufgeben", "gender": null, "plural": null, "en": "to give up", "uk": "здаватися, кидати (справу)", "examples": [{"de": "Gib nicht auf!", "en": "Don't give up!"}, {"de": "Er wollte das Projekt aufgeben.", "en": "He wanted to give up the project."}], "note": "Separable and strong: *gibt auf, gab auf, hat aufgegeben*. Also = to post a parcel or place an ad: *eine Anzeige aufgeben*."}, {"id": "verlassen", "de": "sich verlassen auf + Akk", "gender": null, "plural": null, "en": "to rely on", "uk": "покладатися на", "examples": [{"de": "Auf Mia kann ich mich verlassen.", "en": "I can rely on Mia."}, {"de": "Wir verlassen uns *aufeinander*.", "en": "We rely on each other."}], "note": "Strong: *verlässt, verließ, hat verlassen*. Without *sich*, *verlassen* = to leave: *Er verließ Kyjiw.* *aufeinander* = on each other."}, {"id": "scheitern", "de": "scheitern (an + Dat)", "gender": null, "plural": null, "en": "to fail (because of)", "uk": "зазнавати невдачі (через)", "examples": [{"de": "Viele Start-ups scheitern *am* Geld.", "en": "Many startups fail because of money."}, {"de": "Das Projekt *ist* gescheitert.", "en": "The project failed."}], "note": "Perfekt with *sein*: *ist gescheitert*. The reason takes *an + Dativ*. Präteritum: *scheiterte*."}, {"id": "erfolgreich", "de": "erfolgreich", "gender": null, "plural": null, "en": "successful", "uk": "успішний", "examples": [{"de": "Die App ist sehr erfolgreich.", "en": "The app is very successful."}], "note": "*der Erfolg* (success) + *-reich* (rich in). *Viel Erfolg!* = Good luck! (for an exam or a project)."}, {"id": "risiko", "de": "ein Risiko eingehen", "gender": null, "plural": null, "en": "to take a risk", "uk": "іти на ризик", "examples": [{"de": "Ich gehe kein Risiko ein.", "en": "I'm not taking any risks."}], "note": "*eingehen* is separable and strong: *ging ein, ist eingegangen* (Perfekt with *sein*). Plural of *das Risiko*: *die Risiken*."}, {"id": "beine", "de": "etwas auf die Beine stellen", "gender": null, "plural": null, "en": "to get something off the ground, to build sth up", "uk": "поставити щось на ноги, організувати", "examples": [{"de": "In einem Jahr haben sie viel auf die Beine gestellt.", "en": "They built a lot in one year."}], "note": "Same image as Ukrainian *поставити на ноги*. Always *auf die Beine* (Akk, direction); Perfekt: *hat ... auf die Beine gestellt*."}], "text": "Oleh Marchenko kam 2021 aus Kyjiw nach Berlin. Dort lernte er Mia kennen, eine Designerin, die schon lange von einer eigenen Firma träumte. Eines Abends saßen die beiden in einer {{=Kneipe|pub · паб}} in Kreuzberg und hatten plötzlich eine {{geschaeftsidee|Geschäftsidee}}: eine App, mit der Nachbarn {{=Werkzeuge|tools · інструменти}} und Küchengeräte teilen können. Ein halbes Jahr später {{gruenden|gründeten}} sie ihr Start-up „Kiezkiste“.\n\nAm Anfang hatten die beiden {{gruender|Gründer}} kaum Geld. Sie arbeiteten in einem {{coworking|Coworking-Space}}, in dem ein Schreibtisch 200 Euro im Monat kostete. Oleh {{entwickeln|entwickelte}} die App, und Mia sprach mit den ersten {{nutzer|Nutzern}}, die alles testeten. Die beiden {{verdienen|verdienten}} fast nichts. Sie wussten, dass sie ein großes {{risiko|Risiko eingingen}}.\n\nDie {{finanzierung|Finanzierung}} war das größte Problem. Mia schrieb an vierzig {{investor|Investoren}}, aber die meisten antworteten nicht. Die {{konkurrenz|Konkurrenz}} aus den USA war stark, und die {{stimmung|Stimmung}} im Team wurde immer schlechter. Viele junge Firmen {{scheitern|scheitern}} genau an diesem Punkt. Im Winter wollte Oleh {{aufgeben|aufgeben}}. Doch Mia sagte: „Wir haben schon so viel {{beine|auf die Beine gestellt}}. Wir machen weiter!“\n\nDann kam die {{=Wende|turning point · поворотний момент}}: Eine Investorin, die selbst aus Odesa {{=stammte|came from · походила}}, glaubte an die Idee. Nach langen Gesprächen trafen die beiden eine wichtige {{entscheidung|Entscheidung}}: Sie nahmen das Geld und stellten zwei Entwickler ein. Heute hat die App 80 000 Nutzer in vier Städten. Der {{umsatz|Umsatz}} wächst jeden Monat, auch wenn es noch keinen echten {{gewinn|Gewinn}} gibt. Ist Kiezkiste {{erfolgreich|erfolgreich}}? „Ja“, sagt Oleh, „weil wir uns immer {{verlassen|aufeinander verlassen}} konnten.“", "quiz": [{"q": "Wann kam Oleh nach Berlin?", "options": ["2019", "2020", "2022", "2023", "2021"], "answer": 4, "explain": "„Oleh Marchenko *kam* 2021 aus Kyjiw nach Berlin.“ *kam* is the Präteritum of *kommen*."}, {"q": "Mia war eine Designerin, ___ schon lange von einer eigenen Firma träumte.", "options": ["die", "der", "das", "den", "dem"], "answer": 0, "explain": "*Designerin* is feminine and the pronoun is the subject (Nominativ) of the relative clause → *die*."}, {"q": "Was kann man mit der App „Kiezkiste“ machen?", "options": ["Wohnungen mieten", "Essen bestellen", "Kneipen in Berlin finden", "Werkzeuge und Küchengeräte mit Nachbarn teilen", "Designer suchen"], "answer": 3, "explain": "„eine App, *mit der* Nachbarn Werkzeuge und Küchengeräte teilen können“."}, {"q": "Ein halbes Jahr später ___ sie ihr Start-up. (Präteritum von gründen)", "options": ["gründen", "gründeten", "gründten", "gegründet", "gründete"], "answer": 1, "explain": "Stem ends in *-d* → *-ete*, plural *sie* → *gründeten*. *gründete* is singular, *gegründet* needs *haben*."}, {"q": "Sie arbeiteten in einem Coworking-Space, ___ ein Schreibtisch 200 Euro im Monat kostete.", "options": ["in den", "in der", "in dem", "in das", "in die"], "answer": 2, "explain": "*der Space* is masculine and *in* answers *wo?* → Dativ: *in dem*."}, {"q": "Was war am Anfang das größte Problem?", "options": ["das Design", "die Nutzer", "der Coworking-Space", "die Finanzierung", "die Sprache"], "answer": 3, "explain": "„Die Finanzierung *war* das größte Problem.“"}, {"q": "An wie viele Investoren schrieb Mia?", "options": ["an vier", "an vierzig", "an vierzehn", "an vierhundert", "an keinen"], "answer": 1, "explain": "„Mia *schrieb* an vierzig Investoren, aber die meisten antworteten nicht.“ *schrieb* = Präteritum of *schreiben*."}, {"q": "Was wollte Oleh im Winter machen?", "options": ["nach Kyjiw zurückfahren", "mehr Geld verdienen", "eine neue App entwickeln", "in die USA gehen", "aufgeben"], "answer": 4, "explain": "„Im Winter *wollte* Oleh aufgeben.“ Modal verbs use the Präteritum even in speech."}, {"q": "Wer glaubte an die Idee?", "options": ["eine Investorin aus Odesa", "ein Investor aus den USA", "Olehs Eltern", "die Nutzer in Kreuzberg", "eine Bank in Berlin"], "answer": 0, "explain": "„Eine Investorin, die selbst aus Odesa stammte, *glaubte* an die Idee.“"}, {"q": "Die ersten Nutzer, ___ Mia sprach, testeten alles.", "options": ["mit den", "mit die", "mit denen", "mit dem", "mit der"], "answer": 2, "explain": "*mit* + Dativ, plural (*Nutzer*) → *denen*. In the text: „Mia sprach mit den ersten Nutzern, die alles testeten.“"}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

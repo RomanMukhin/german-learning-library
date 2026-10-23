@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>B2+: Reported speech and Konjunktiv I · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">B2+: Reported speech and Konjunktiv I</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>B2+ · B2+</span><h1>B2+: Reported speech and Konjunktiv I</h1></header>
+<article class="prose card">
+<p>B2+ material: skip it until B1 feels solid.</p>
+<h2>Konjunktiv I forms</h2>
+<p>Konjunktiv I is built from the infinitive stem + the endings -e, -est, -e, -en, -et, -en. There is no vowel change and no umlaut: er könne, er müsse, er gebe (not <em>gibt</em>, not <em>gäbe</em>). Only <em>sein</em> is irregular.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>sein</th>
+<th>haben</th>
+<th>werden</th>
+<th>können</th>
+<th>müssen</th>
+<th>geben</th>
+<th>machen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>sei</td>
+<td>habe</td>
+<td>werde</td>
+<td>könne</td>
+<td>müsse</td>
+<td>gebe</td>
+<td>mache</td>
+</tr>
+<tr>
+<td>du</td>
+<td>sei(e)st</td>
+<td>habest</td>
+<td>werdest</td>
+<td>könnest</td>
+<td>müssest</td>
+<td>gebest</td>
+<td>machest</td>
+</tr>
+<tr>
+<td>er/sie/es</td>
+<td><strong>sei</strong></td>
+<td><strong>habe</strong></td>
+<td><strong>werde</strong></td>
+<td><strong>könne</strong></td>
+<td><strong>müsse</strong></td>
+<td><strong>gebe</strong></td>
+<td><strong>mache</strong></td>
+</tr>
+<tr>
+<td>wir</td>
+<td>seien</td>
+<td>haben</td>
+<td>werden</td>
+<td>können</td>
+<td>müssen</td>
+<td>geben</td>
+<td>machen</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>seiet</td>
+<td>habet</td>
+<td>werdet</td>
+<td>könnet</td>
+<td>müsset</td>
+<td>gebet</td>
+<td>machet</td>
+</tr>
+<tr>
+<td>sie/Sie</td>
+<td>seien</td>
+<td>haben</td>
+<td>werden</td>
+<td>können</td>
+<td>müssen</td>
+<td>geben</td>
+<td>machen</td>
+</tr>
+</tbody>
+</table></div>
+<p>Other useful er-forms: er dürfe, er wolle, er solle, er möge, er wisse, er komme, er gehe, es gebe.</p>
+<ul>
+<li>Compare the indicative: er <strong>ist</strong> / er <strong>sei</strong>, er <strong>hat</strong> / er <strong>habe</strong>, er <strong>kann</strong> / er <strong>könne</strong>, er <strong>gibt</strong> / er <strong>gebe</strong>, er <strong>weiß</strong> / er <strong>wisse</strong>.</li>
+<li>The 3rd person singular is the form you will meet 90% of the time, because reported speech is mostly about someone else.</li>
+</ul>
+<h2>Konjunktiv I or Konjunktiv II?</h2>
+<p>Rule: use Konjunktiv I when it looks different from the indicative. When Konjunktiv I = indicative, switch to Konjunktiv II; when that is also unclear or sounds old, use <em>würde</em> + infinitive.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Original</th>
+<th>Konj I</th>
+<th>Same as indicative?</th>
+<th>What you write</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Er ist krank.</td>
+<td>er sei</td>
+<td>no</td>
+<td>Er sagt, er <strong>sei</strong> krank.</td>
+</tr>
+<tr>
+<td>Er hat Zeit.</td>
+<td>er habe</td>
+<td>no</td>
+<td>Er sagt, er <strong>habe</strong> Zeit.</td>
+</tr>
+<tr>
+<td>Ich habe Zeit.</td>
+<td>ich habe</td>
+<td>yes</td>
+<td>Ich sagte, ich <strong>hätte</strong> Zeit.</td>
+</tr>
+<tr>
+<td>Wir haben kein Geld.</td>
+<td>wir haben</td>
+<td>yes</td>
+<td>Sie sagten, sie <strong>hätten</strong> kein Geld.</td>
+</tr>
+<tr>
+<td>Sie kommen morgen.</td>
+<td>sie kommen</td>
+<td>yes</td>
+<td>Er sagt, sie <strong>kämen</strong> morgen / sie <strong>würden</strong> morgen <strong>kommen</strong>.</td>
+</tr>
+<tr>
+<td>Sie arbeiten viel.</td>
+<td>sie arbeiten</td>
+<td>yes (Konj II <em>arbeiteten</em> = Präteritum too)</td>
+<td>Er sagt, sie <strong>würden</strong> viel <strong>arbeiten</strong>.</td>
+</tr>
+<tr>
+<td>Wir sind müde.</td>
+<td>wir seien</td>
+<td>no</td>
+<td>Sie sagen, sie <strong>seien</strong> müde.</td>
+</tr>
+</tbody>
+</table></div>
+<p>In practice:</p>
+<ul>
+<li><strong>sein</strong>: Konjunktiv I in every person (sei, seien).</li>
+<li><strong>er/sie/es</strong> (and <em>man</em>, <em>es</em>): Konjunktiv I almost always works (er komme, sie wisse, man müsse).</li>
+<li><strong>ich, wir, sie (plural)</strong>: usually identical to the indicative, so use Konjunktiv II (hätte, käme, könnte, müsste) or <em>würde</em>.</li>
+<li><strong>du, ihr</strong>: Konj I forms (du habest, ihr kommet) exist but sound stiff; written German usually uses Konj II here too.</li>
+</ul>
+<p>Konjunktiv II in reported speech is not "unreal" here; it just replaces a form that cannot be recognised.</p>
+<h2>Statements, questions and commands</h2>
+<p>The type of sentence decides the linking word; the verb goes into Konjunktiv I in all three.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Direct speech</th>
+<th>Indirect speech</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statement (no dass)</td>
+<td>„Ich bin müde.“</td>
+<td>Sie sagte, sie <strong>sei</strong> müde. (verb 2nd)</td>
+</tr>
+<tr>
+<td>Statement (with dass)</td>
+<td>„Ich bin müde.“</td>
+<td>Sie sagte, dass sie müde <strong>sei</strong>. (verb last)</td>
+</tr>
+<tr>
+<td>Yes/no question</td>
+<td>„Hast du Zeit?“</td>
+<td>Er fragte, <strong>ob</strong> ich Zeit <strong>hätte</strong>.</td>
+</tr>
+<tr>
+<td>W-question</td>
+<td>„Wann fährt der Zug?“</td>
+<td>Sie fragte, <strong>wann</strong> der Zug <strong>fahre</strong>.</td>
+</tr>
+<tr>
+<td>W-question</td>
+<td>„Wo wohnen Sie?“</td>
+<td>Er wollte wissen, <strong>wo</strong> ich <strong>wohnen würde (Konj. I "wohne" and Konj. II "wohnte" both look like the indicative, so würde takes over)</strong>.</td>
+</tr>
+<tr>
+<td>Command</td>
+<td>„Warte hier!“</td>
+<td>Er sagte, ich <strong>solle</strong> hier warten.</td>
+</tr>
+<tr>
+<td>Polite request</td>
+<td>„Bitte kommen Sie herein.“</td>
+<td>Sie bat, er <strong>möge</strong> hereinkommen.</td>
+</tr>
+<tr>
+<td>Command (infinitive)</td>
+<td>„Ruf mich an!“</td>
+<td>Sie bat mich, sie <strong>anzurufen</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>ob</em> and the W-word send the verb to the end, like any subordinate clause.</li>
+<li><em>solle</em> = a plain command or instruction; <em>möge</em> = a polite wish or request (formal, written).</li>
+<li>Verbs that introduce reported speech: sagen, erklären, behaupten, betonen, meinen, berichten, mitteilen, fragen, wissen wollen, bitten, auffordern.</li>
+</ul>
+<p><strong>Ukrainian comparison.</strong> Ukrainian keeps the indicative and the original tense: <em>Він сказав, що він хворий.</em> German spoken style does the same (<em>Er hat gesagt, dass er krank ist</em>). Written German marks the report with <em>sei</em>: <em>Er sagte, er sei krank.</em> Unlike English (<em>he said he <strong>was</strong> ill</em>), neither German nor Ukrainian shifts the tense back. For commands, Ukrainian is close to German <em>solle</em>: <em>Він сказав, щоб я почекав</em> = <em>Er sagte, ich solle warten.</em> And the distance that Konjunktiv I signals is what Ukrainian adds with <em>нібито</em>, <em>начебто</em> or <em>мовляв</em>.</p>
+<h2>Past and future in reported speech</h2>
+<p>Konjunktiv I has only three time levels. All past tenses of the original (Präteritum, Perfekt, Plusquamperfekt) collapse into one form: <em>habe/sei</em> + Partizip II.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Original</th>
+<th>Time</th>
+<th>Indirect speech</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>„Ich arbeite.“</td>
+<td>present</td>
+<td>Er sagte, er <strong>arbeite</strong>.</td>
+</tr>
+<tr>
+<td>„Ich arbeitete.“ / „Ich habe gearbeitet.“ / „Ich hatte gearbeitet.“</td>
+<td>past</td>
+<td>Er sagte, er <strong>habe gearbeitet</strong>.</td>
+</tr>
+<tr>
+<td>„Ich ging nach Hause.“ / „Ich bin nach Hause gegangen.“</td>
+<td>past (sein-verb)</td>
+<td>Er sagte, er <strong>sei</strong> nach Hause <strong>gegangen</strong>.</td>
+</tr>
+<tr>
+<td>„Wir haben es gewusst.“</td>
+<td>past, plural</td>
+<td>Sie sagten, sie <strong>hätten</strong> es <strong>gewusst</strong>. (Konj II, since <em>haben</em> = indicative)</td>
+</tr>
+<tr>
+<td>„Ich werde anrufen.“</td>
+<td>future</td>
+<td>Sie sagte, sie <strong>werde anrufen</strong>.</td>
+</tr>
+<tr>
+<td>„Wir werden kommen.“</td>
+<td>future, plural</td>
+<td>Sie sagten, sie <strong>würden kommen</strong>.</td>
+</tr>
+<tr>
+<td>„Das Haus wird gebaut.“</td>
+<td>passive, present</td>
+<td>Es heißt, das Haus <strong>werde gebaut</strong>.</td>
+</tr>
+<tr>
+<td>„Das Haus wurde gebaut.“</td>
+<td>passive, past</td>
+<td>Es heißt, das Haus <strong>sei gebaut worden</strong>.</td>
+</tr>
+<tr>
+<td>„Ich musste gehen.“</td>
+<td>modal, past</td>
+<td>Er sagte, er <strong>habe gehen müssen</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The tense of the reporting verb does not matter: <em>Er sagt / sagte / hat gesagt, er sei krank</em> all report the same present fact.</li>
+<li>Choose the time level from the original sentence, never from <em>sagte</em>.</li>
+</ul>
+<h2>Shifting pronouns, places and time words</h2>
+<p>Reported speech is told from the reporter's point of view, so persons, possessives, places and time words change (as in English and Ukrainian).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Direct speech</th>
+<th>Indirect speech</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anna: „<strong>Ich</strong> helfe <strong>dir</strong>.“</td>
+<td>Anna sagte, <strong>sie</strong> helfe <strong>mir</strong>.</td>
+</tr>
+<tr>
+<td>Tom: „Das ist <strong>mein</strong> Auto.“</td>
+<td>Tom sagte, das sei <strong>sein</strong> Auto.</td>
+</tr>
+<tr>
+<td>„Wir treffen uns <strong>hier</strong>.“</td>
+<td>Sie sagten, sie träfen sich <strong>dort</strong>.</td>
+</tr>
+<tr>
+<td>„Ich komme <strong>morgen</strong>.“</td>
+<td>Er sagte, er komme <strong>am nächsten Tag</strong> / <strong>am folgenden Tag</strong>.</td>
+</tr>
+<tr>
+<td>„Ich war <strong>gestern</strong> krank.“</td>
+<td>Sie sagte, sie sei <strong>am Vortag</strong> / <strong>am Tag zuvor</strong> krank gewesen.</td>
+</tr>
+<tr>
+<td>„Ich habe <strong>heute</strong> frei.“</td>
+<td>Er sagte, er habe <strong>an diesem Tag</strong> / <strong>am selben Tag</strong> frei.</td>
+</tr>
+<tr>
+<td>„Ich bin <strong>jetzt</strong> zu Hause.“</td>
+<td>Sie sagte, sie sei <strong>in dem Moment</strong> / <strong>zu dem Zeitpunkt</strong> zu Hause.</td>
+</tr>
+<tr>
+<td>„<strong>Nächste Woche</strong> fliege ich.“</td>
+<td>Er sagte, er fliege <strong>in der folgenden Woche</strong>.</td>
+</tr>
+<tr>
+<td>„<strong>Letzte Woche</strong> war ich in Kyjiw.“</td>
+<td>Sie sagte, sie sei <strong>in der Woche davor</strong> in Kyjiw gewesen.</td>
+</tr>
+<tr>
+<td>„Vor zwei Tagen …“</td>
+<td>… <strong>zwei Tage zuvor</strong> / <strong>zwei Tage vorher</strong> …</td>
+</tr>
+</tbody>
+</table></div>
+<p>If the report happens on the same day and in the same place, keep <em>heute</em>, <em>morgen</em>, <em>hier</em>: <em>Er hat eben gesagt, er komme morgen.</em></p>
+<h2>Spoken German: what people actually say</h2>
+<p>In conversation, Konjunktiv I sounds bookish. Speakers use one of three alternatives, all correct in everyday German.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Example</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Written, neutral</td>
+<td>Er sagte, er <strong>sei</strong> krank.</td>
+<td>news, reports, essays</td>
+</tr>
+<tr>
+<td><em>dass</em> + indicative</td>
+<td>Er hat gesagt, <strong>dass</strong> er krank <strong>ist</strong>.</td>
+<td>everyday speech, emails</td>
+</tr>
+<tr>
+<td>No <em>dass</em>, indicative</td>
+<td>Er hat gesagt, er <strong>ist</strong> krank.</td>
+<td>casual speech</td>
+</tr>
+<tr>
+<td>Konjunktiv II</td>
+<td>Er hat gesagt, er <strong>wäre</strong> krank.</td>
+<td>speech; may hint at doubt</td>
+</tr>
+<tr>
+<td><em>würde</em> + infinitive</td>
+<td>Sie hat gesagt, sie <strong>würde</strong> später <strong>kommen</strong>.</td>
+<td>speech, replaces <em>komme</em> / <em>werde kommen</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Nuance:</p>
+<ul>
+<li>Indicative = the speaker treats the content as fact or does not care.</li>
+<li>Konjunktiv I = neutral distance: "this is what he said".</li>
+<li>Konjunktiv II in writing = often extra doubt: <em>Er behauptet, er hätte nichts gewusst</em> (and I am not sure I believe him). In speech this nuance is weak, since many people use <em>wäre/hätte</em> by default.</li>
+</ul>
+<p>For you: say <em>dass</em> + indicative; recognise Konjunktiv I when reading; write it in formal texts.</p>
+<h2>Reading the news</h2>
+<p>News texts (Tagesschau, Spiegel, Deutsche Welle) use Konjunktiv I to show that the journalist reports a claim without vouching for it. Once the speaker is named, whole paragraphs can run in Konjunktiv I without repeating <em>sagte</em>.</p>
+<blockquote>
+<p>Der Minister sagte, er <strong>sei</strong> mit dem Ergebnis zufrieden. Die Verhandlungen <strong>seien</strong> schwierig gewesen. Man <strong>werde</strong> die Vorschläge jetzt prüfen. Es <strong>gebe</strong> keine Alternative zu einer Einigung.</p>
+<p>Laut Polizei <strong>habe</strong> der Fahrer die Kontrolle über den Wagen verloren. Verletzt worden <strong>sei</strong> niemand.</p>
+<p>Die Regierung teilte mit, die Gespräche <strong>seien</strong> gescheitert. Ein Sprecher betonte, man <strong>wolle</strong> weiter verhandeln.</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Reporting phrase</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>laut + Dat (or Gen)</td>
+<td>according to</td>
+<td><em>laut Polizei</em>, <em>laut dem Bericht</em></td>
+</tr>
+<tr>
+<td>+ Dat + zufolge</td>
+<td>according to</td>
+<td>after the noun: <em>dem Bericht zufolge</em></td>
+</tr>
+<tr>
+<td>nach Angaben + Gen</td>
+<td>according to the data of</td>
+<td><em>nach Angaben des Ministeriums</em></td>
+</tr>
+<tr>
+<td>erklären / mitteilen</td>
+<td>state / announce</td>
+<td><em>teilte mit, …</em></td>
+</tr>
+<tr>
+<td>betonen / unterstreichen</td>
+<td>stress</td>
+<td></td>
+</tr>
+<tr>
+<td>einräumen / zugeben</td>
+<td>admit</td>
+<td><em>räumte ein, Fehler gemacht zu haben</em></td>
+</tr>
+<tr>
+<td>behaupten</td>
+<td>claim</td>
+<td>often signals doubt</td>
+</tr>
+<tr>
+<td>darauf hinweisen</td>
+<td>point out</td>
+<td><em>wies darauf hin, dass …</em></td>
+</tr>
+<tr>
+<td>angeblich / mutmaßlich</td>
+<td>allegedly / suspected</td>
+<td>adverbs of distance: <em>der mutmaßliche Täter</em></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Konjunktiv I in fixed phrases</h2>
+<p>Outside reported speech, Konjunktiv I survives as a wish or instruction form (like Ukrainian <em>хай</em> + verb: <em>Хай живе …</em>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Meaning</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gott sei Dank!</td>
+<td>thank God</td>
+<td>wish, everyday</td>
+</tr>
+<tr>
+<td>Es lebe die Freiheit! / Lang lebe der König!</td>
+<td>long live freedom / the king</td>
+<td>wish</td>
+</tr>
+<tr>
+<td>Möge die Macht mit dir sein.</td>
+<td>may the Force be with you</td>
+<td>wish</td>
+</tr>
+<tr>
+<td>Wie dem auch sei, …</td>
+<td>be that as it may</td>
+<td>fixed, formal</td>
+</tr>
+<tr>
+<td>Es sei denn, …</td>
+<td>unless</td>
+<td>connector: <em>Wir gehen, es sei denn, es regnet.</em></td>
+</tr>
+<tr>
+<td>Man nehme 200 g Mehl.</td>
+<td>take 200 g of flour</td>
+<td>recipes, instructions</td>
+</tr>
+<tr>
+<td>Es sei darauf hingewiesen, dass …</td>
+<td>it should be noted that</td>
+<td>academic</td>
+</tr>
+<tr>
+<td>Gegeben sei ein Dreieck ABC.</td>
+<td>let ABC be a triangle</td>
+<td>maths</td>
+</tr>
+<tr>
+<td>Seien Sie bitte pünktlich!</td>
+<td>please be on time</td>
+<td>the Sie-imperative of <em>sein</em> is Konj I</td>
+</tr>
+<tr>
+<td>Gott bewahre!</td>
+<td>God forbid</td>
+<td>wish</td>
+</tr>
+</tbody>
+</table></div>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: Konjunktiv II forms and <em>würde</em> + infinitive</li>
+<li><a href="../docs/irregular-verbs.html">Irregular verbs</a>: stems and Partizip II for <em>habe/sei</em> + Partizip</li>
+<li><a href="../docs/word-order.html">Word order</a>: verb-last after <em>dass</em>, <em>ob</em> and W-words</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: the written register news reports use</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: <em>soll</em> and <em>will</em> for reported claims</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/b2-reported-speech.html">Reported speech quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Word order · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Word order</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Word order</h1></header>
+<article class="prose card">
+<p>German word order is built around fixed verb slots: the conjugated verb sits in position 2 in main clauses, at the very end in subordinate clauses, and everything else moves around it.</p>
+<h2>V2 rule: the verb is always second</h2>
+<p>In a main clause the conjugated verb is the second element. Position 1 can hold almost anything (subject, time, place, object, even a whole subordinate clause); if it is not the subject, the subject moves to right after the verb (inversion).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Position 1</th>
+<th>Verb (2)</th>
+<th>Subject / rest</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich</td>
+<td>gehe</td>
+<td>heute ins Kino.</td>
+<td>I'm going to the cinema today.</td>
+</tr>
+<tr>
+<td>Heute</td>
+<td>gehe</td>
+<td>ich ins Kino.</td>
+<td>Today I'm going to the cinema.</td>
+</tr>
+<tr>
+<td>Ins Kino</td>
+<td>gehe</td>
+<td>ich heute.</td>
+<td>(It's) to the cinema I'm going today.</td>
+</tr>
+<tr>
+<td>Am Wochenende</td>
+<td>arbeitet</td>
+<td>mein Bruder nicht.</td>
+<td>My brother doesn't work at the weekend.</td>
+</tr>
+<tr>
+<td>Den Film</td>
+<td>kenne</td>
+<td>ich schon.</td>
+<td>I already know that film.</td>
+</tr>
+<tr>
+<td>Leider</td>
+<td>habe</td>
+<td>ich keine Zeit.</td>
+<td>Unfortunately I don't have time.</td>
+</tr>
+<tr>
+<td>Wenn es regnet,</td>
+<td>bleiben</td>
+<td>wir zu Hause.</td>
+<td>If it rains, we stay at home.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Position 1 is one element, but that element can be long: <em>Am letzten Samstag im Oktober</em> counts as one block.</li>
+<li>Classic mistake: ~~Heute ich gehe ins Kino~~. English allows "Today I go", German does not: only one element before the verb.</li>
+<li>Position 1 is the emphasis/topic slot. Putting something there highlights it or links it to the previous sentence: <em>Den Film kenne ich schon</em> = "that film, I already know".</li>
+<li>Words that do NOT take position 1 (position 0): <em>und, aber, oder, denn, sondern</em>, plus interjections like <em>ja, nein, na ja</em> followed by a comma: <em>Ja, ich komme.</em></li>
+</ul>
+<h2>Verb bracket (Satzklammer)</h2>
+<p>When a main clause has two verb parts, the conjugated part stays in position 2 and the second part goes to the very end, closing a bracket around the middle field.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Position 1</th>
+<th>Verb 1 (conjugated)</th>
+<th>Middle field</th>
+<th>Verb 2 (end)</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich</td>
+<td>muss</td>
+<td>heute lange</td>
+<td>arbeiten.</td>
+<td>I have to work late today. (modal)</td>
+</tr>
+<tr>
+<td>Ich</td>
+<td>habe</td>
+<td>gestern einen Film</td>
+<td>gesehen.</td>
+<td>I watched a film yesterday. (Perfekt)</td>
+</tr>
+<tr>
+<td>Sie</td>
+<td>ist</td>
+<td>am Montag nach Wien</td>
+<td>gefahren.</td>
+<td>She went to Vienna on Monday. (Perfekt with sein)</td>
+</tr>
+<tr>
+<td>Der Zug</td>
+<td>fährt</td>
+<td>um 8 Uhr</td>
+<td>ab.</td>
+<td>The train leaves at 8. (separable verb)</td>
+</tr>
+<tr>
+<td>Ich</td>
+<td>rufe</td>
+<td>dich morgen</td>
+<td>an.</td>
+<td>I'll call you tomorrow. (separable verb)</td>
+</tr>
+<tr>
+<td>Wir</td>
+<td>werden</td>
+<td>nächstes Jahr nach Berlin</td>
+<td>ziehen.</td>
+<td>We will move to Berlin next year. (Futur I)</td>
+</tr>
+<tr>
+<td>Das Haus</td>
+<td>wird</td>
+<td>gerade</td>
+<td>renoviert.</td>
+<td>The house is being renovated right now. (passive)</td>
+</tr>
+<tr>
+<td>Morgen</td>
+<td>möchte</td>
+<td>ich früh</td>
+<td>aufstehen.</td>
+<td>Tomorrow I'd like to get up early. (modal + separable)</td>
+</tr>
+<tr>
+<td>Gestern</td>
+<td>habe</td>
+<td>ich dich zweimal</td>
+<td>angerufen.</td>
+<td>I called you twice yesterday. (Perfekt of separable)</td>
+</tr>
+<tr>
+<td>Das Haus</td>
+<td>ist</td>
+<td>1990</td>
+<td>gebaut worden.</td>
+<td>The house was built in 1990. (Perfekt passive, B1+)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The bracket can be very wide: <em>Ich habe gestern Abend mit meiner Schwester im Restaurant lange über ihre neue Arbeit <strong>gesprochen</strong>.</em> Keep the participle for the end, even if it feels far away.</li>
+<li>Separable verbs split only when the verb is conjugated in position 2. As an infinitive or participle they stay joined: <em>aufstehen</em>, <em>aufgestanden</em>.</li>
+<li>Modal in the past: normally use Präteritum, which has no bracket problem: <em>Ich <strong>musste</strong> gestern arbeiten.</em> (Perfekt <em>Ich habe arbeiten müssen</em> exists but is less common; see <a href="../docs/tenses.html">Tenses, moods and the passive</a>.)</li>
+<li>After the bracket (Nachfeld) you can still put comparisons and subordinate clauses: <em>Ich habe mehr <strong>gegessen</strong> als du.</em> / <em>Er hat <strong>gesagt</strong>, dass er kommt.</em></li>
+</ul>
+<h2>Questions</h2>
+<p>Yes/no questions put the verb in position 1; W-questions put the question word in position 1 and the verb in position 2. The bracket still closes at the end.</p>
+<p><strong>Yes/no questions (verb first)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb (1)</th>
+<th>Subject</th>
+<th>Middle field</th>
+<th>End</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kommst</td>
+<td>du</td>
+<td>morgen?</td>
+<td></td>
+<td>Are you coming tomorrow?</td>
+</tr>
+<tr>
+<td>Hast</td>
+<td>du</td>
+<td>das Buch schon</td>
+<td>gelesen?</td>
+<td>Have you read the book yet?</td>
+</tr>
+<tr>
+<td>Kannst</td>
+<td>du</td>
+<td>mir bitte</td>
+<td>helfen?</td>
+<td>Can you help me, please?</td>
+</tr>
+<tr>
+<td>Rufst</td>
+<td>du</td>
+<td>ihn heute</td>
+<td>an?</td>
+<td>Are you calling him today?</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>W-questions (question word first, verb second)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Position 1</th>
+<th>Verb (2)</th>
+<th>Subject / middle</th>
+<th>End</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wann</td>
+<td>kommst</td>
+<td>du?</td>
+<td></td>
+<td>When are you coming?</td>
+</tr>
+<tr>
+<td>Warum</td>
+<td>hast</td>
+<td>du nichts</td>
+<td>gesagt?</td>
+<td>Why didn't you say anything?</td>
+</tr>
+<tr>
+<td>Wo</td>
+<td>kann</td>
+<td>man hier Tickets</td>
+<td>kaufen?</td>
+<td>Where can you buy tickets here?</td>
+</tr>
+<tr>
+<td>Mit wem</td>
+<td>fährst</td>
+<td>du in Urlaub?</td>
+<td></td>
+<td>Who are you going on holiday with?</td>
+</tr>
+<tr>
+<td>Wie lange</td>
+<td>wohnst</td>
+<td>du schon hier?</td>
+<td></td>
+<td>How long have you been living here?</td>
+</tr>
+<tr>
+<td>Wer</td>
+<td>hat</td>
+<td>das</td>
+<td>gemacht?</td>
+<td>Who did that? (wer = subject)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>A preposition stays glued to its question word in position 1: <em>Mit wem…?</em>, <em>Für wen…?</em>, <em>Seit wann…?</em> Never ~~Wem fährst du mit?~~</li>
+<li>For things, use a <em>wo(r)-</em> word: <em>Worüber sprecht ihr?</em> (What are you talking about?), <em>Woran denkst du?</em></li>
+<li>No <em>do</em>-support: <em>Wohnst du hier?</em>, never a helper verb like English "Do you live here?". Same as Ukrainian <em>Ти тут живеш?</em> — except German must move the verb to the front, while Ukrainian often keeps the order and uses intonation or <em>чи</em>.</li>
+</ul>
+<h2>Subordinate clauses: verb last</h2>
+<p>In a subordinate clause the conjunction takes the front, the subject usually comes right after it, and the conjugated verb goes to the very end. A comma always separates it from the main clause.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Main clause</th>
+<th>Conjunction</th>
+<th>Subject + middle field</th>
+<th>Verb (end)</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich bleibe zu Hause,</td>
+<td>weil</td>
+<td>ich krank</td>
+<td>bin.</td>
+<td>I'm staying home because I'm ill.</td>
+</tr>
+<tr>
+<td>Ich glaube,</td>
+<td>dass</td>
+<td>er heute</td>
+<td>kommt.</td>
+<td>I think (that) he's coming today.</td>
+</tr>
+<tr>
+<td>Weißt du,</td>
+<td>ob</td>
+<td>sie morgen Zeit</td>
+<td>hat?</td>
+<td>Do you know if she has time tomorrow?</td>
+</tr>
+<tr>
+<td>Ruf mich an,</td>
+<td>wenn</td>
+<td>du</td>
+<td>angekommen bist.</td>
+<td>Call me when you've arrived.</td>
+</tr>
+<tr>
+<td>Ich wohnte in Kyjiw,</td>
+<td>als</td>
+<td>ich ein Kind</td>
+<td>war.</td>
+<td>I lived in Kyiv when I was a child.</td>
+</tr>
+<tr>
+<td>Sie geht arbeiten,</td>
+<td>obwohl</td>
+<td>sie müde</td>
+<td>ist.</td>
+<td>She goes to work although she's tired.</td>
+</tr>
+<tr>
+<td>Ich spreche langsam,</td>
+<td>damit</td>
+<td>alle mich</td>
+<td>verstehen.</td>
+<td>I speak slowly so that everyone understands me.</td>
+</tr>
+<tr>
+<td>Ich dusche,</td>
+<td>bevor</td>
+<td>ich</td>
+<td>frühstücke.</td>
+<td>I shower before I have breakfast.</td>
+</tr>
+<tr>
+<td>Er ging spazieren,</td>
+<td>nachdem</td>
+<td>er</td>
+<td>gegessen hatte.</td>
+<td>He went for a walk after he had eaten.</td>
+</tr>
+<tr>
+<td>Er hört Musik,</td>
+<td>während</td>
+<td>ich</td>
+<td>koche.</td>
+<td>He listens to music while I cook.</td>
+</tr>
+<tr>
+<td>Ich lerne Deutsch,</td>
+<td>seit</td>
+<td>ich in Deutschland</td>
+<td>lebe.</td>
+<td>I've been learning German since I've lived in Germany.</td>
+</tr>
+<tr>
+<td>Warte hier,</td>
+<td>bis</td>
+<td>ich</td>
+<td>zurückkomme.</td>
+<td>Wait here until I come back.</td>
+</tr>
+<tr>
+<td>Ich weiß nicht,</td>
+<td>wann</td>
+<td>der Film</td>
+<td>anfängt.</td>
+<td>I don't know when the film starts. (indirect question)</td>
+</tr>
+<tr>
+<td>Kannst du mir sagen,</td>
+<td>wo</td>
+<td>der Bahnhof</td>
+<td>ist?</td>
+<td>Can you tell me where the station is? (indirect question)</td>
+</tr>
+<tr>
+<td>Das ist der Mann,</td>
+<td>der</td>
+<td>hier</td>
+<td>wohnt.</td>
+<td>That's the man who lives here. (relative clause)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Separable verbs are written as one word again at the end: <em>…weil ich früh <strong>aufstehe</strong></em>, <em>…bis ich <strong>zurückkomme</strong></em>.</li>
+<li>Indirect questions use the W-word (or <em>ob</em> for yes/no) as the conjunction: <em>Wo ist der Bahnhof?</em> becomes <em>…, wo der Bahnhof ist.</em></li>
+<li>Pronouns still come early, right after the conjunction: <em>…, weil <strong>ihn</strong> <strong>mein Chef</strong> nicht kennt</em> is possible; the safe default is <em>…, weil mein Chef ihn nicht kennt.</em></li>
+</ul>
+<p><strong>Several verbs at the end</strong></p>
+<p>The conjugated verb is the last word; the other verb forms stand in front of it.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modal</td>
+<td>…, dass er morgen kommen <strong>kann</strong>.</td>
+<td>…that he can come tomorrow.</td>
+</tr>
+<tr>
+<td>Perfekt</td>
+<td>…, dass er gestern gekommen <strong>ist</strong>.</td>
+<td>…that he came yesterday.</td>
+</tr>
+<tr>
+<td>Futur</td>
+<td>…, dass es bald regnen <strong>wird</strong>.</td>
+<td>…that it will rain soon.</td>
+</tr>
+<tr>
+<td>Passive</td>
+<td>…, weil das Haus renoviert <strong>wird</strong>.</td>
+<td>…because the house is being renovated.</td>
+</tr>
+<tr>
+<td>Passive + modal</td>
+<td>…, dass das heute gemacht werden <strong>muss</strong>.</td>
+<td>…that this has to be done today.</td>
+</tr>
+<tr>
+<td>Perfekt of separable</td>
+<td>…, ob du ihn angerufen <strong>hast</strong>.</td>
+<td>…whether you called him.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Subordinate clause first: verb, comma, verb</h2>
+<p>A subordinate clause at the start counts as position 1, so the main-clause verb comes straight after the comma, followed by the subject. The result is the typical German pattern: verb, comma, verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Position 1 (whole clause)</th>
+<th>Verb (2)</th>
+<th>Subject + rest</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wenn ich Zeit habe,</td>
+<td>komme</td>
+<td>ich.</td>
+<td>If I have time, I'll come.</td>
+</tr>
+<tr>
+<td>Weil es regnet,</td>
+<td>bleiben</td>
+<td>wir zu Hause.</td>
+<td>Because it's raining, we're staying home.</td>
+</tr>
+<tr>
+<td>Als ich nach Hause kam,</td>
+<td>war</td>
+<td>niemand da.</td>
+<td>When I came home, nobody was there.</td>
+</tr>
+<tr>
+<td>Obwohl er müde ist,</td>
+<td>arbeitet</td>
+<td>er weiter.</td>
+<td>Although he's tired, he keeps working.</td>
+</tr>
+<tr>
+<td>Nachdem wir gegessen hatten,</td>
+<td>sind</td>
+<td>wir ins Kino gegangen.</td>
+<td>After we had eaten, we went to the cinema.</td>
+</tr>
+<tr>
+<td>Ob das stimmt,</td>
+<td>weiß</td>
+<td>ich nicht.</td>
+<td>Whether that's true, I don't know.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wrong: ~~Wenn ich Zeit habe, ich komme.~~ This is the most common mistake for English and Ukrainian speakers, because both languages put the subject first here.</li>
+<li>Same rule for zu-clauses at the start: <em>Um Geld zu sparen, <strong>fahre</strong> ich mit dem Rad.</em></li>
+</ul>
+<p><strong>The "two verbs collide" effect</strong></p>
+<p>When a relative clause sits inside position 1, its last verb meets the main verb, so two verbs can stand side by side, separated by a comma.</p>
+<ul>
+<li><em>Der Mann, der hier <strong>war</strong>, <strong>war</strong> mein Nachbar.</em> — The man who was here was my neighbour.</li>
+<li><em>Das Buch, das du mir gegeben <strong>hast</strong>, <strong>ist</strong> super.</em> — The book you gave me is great.</li>
+<li><em>Die Frau, die gestern angerufen <strong>hat</strong>, <strong>heißt</strong> Anna.</em> — The woman who called yesterday is called Anna.</li>
+</ul>
+<p>Read it as: [subject with its relative clause] = position 1, then the main verb in position 2. It looks odd at first, but it is perfectly correct (see <a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>).</p>
+<h2>Middle field order</h2>
+<p>Between the two verb slots the default order is: pronouns first, then nouns; adverbials in the order time, cause, manner, place (TeKaMoLo). Anything can be moved to position 1 instead for emphasis.</p>
+<p><strong>TeKaMoLo: Temporal – Kausal – Modal – Lokal</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Te (when?)</th>
+<th>Ka (why?)</th>
+<th>Mo (how?)</th>
+<th>Lo (where?)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>morgen</td>
+<td>wegen der Arbeit</td>
+<td>mit dem Zug</td>
+<td>nach Berlin</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Ich fahre <strong>morgen</strong> <strong>wegen der Arbeit</strong> <strong>mit dem Zug</strong> <strong>nach Berlin</strong>.</em> — Tomorrow I'm going to Berlin by train because of work.</li>
+<li><em>Wir sind <strong>gestern</strong> <strong>mit dem Auto</strong> <strong>ans Meer</strong> gefahren.</em> — We drove to the sea yesterday.</li>
+<li>Most useful short version: <strong>time before place</strong>. <em>Ich gehe heute ins Kino</em>, not ~~Ich gehe ins Kino heute~~ (English order).</li>
+<li>Place of direction (<em>nach Berlin</em>, <em>ins Kino</em>) likes to be last, right before the end verb.</li>
+</ul>
+<p><strong>Objects: pronouns before nouns</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Objects</th>
+<th>Rule</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>noun + noun</td>
+<td>Dative before accusative</td>
+<td>Ich gebe <strong>dem Mann</strong> <strong>das Buch</strong>.</td>
+<td>I give the man the book.</td>
+</tr>
+<tr>
+<td>pronoun + noun</td>
+<td>Pronoun first (whatever its case)</td>
+<td>Ich gebe <strong>ihm</strong> <strong>das Buch</strong>.</td>
+<td>I give him the book.</td>
+</tr>
+<tr>
+<td>noun + pronoun</td>
+<td>Pronoun first (whatever its case)</td>
+<td>Ich gebe <strong>es</strong> <strong>dem Mann</strong>.</td>
+<td>I give it to the man.</td>
+</tr>
+<tr>
+<td>pronoun + pronoun</td>
+<td>Accusative before dative</td>
+<td>Ich gebe <strong>es</strong> <strong>ihm</strong>.</td>
+<td>I give it to him.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Memory hook: two nouns = "Dat-Akk"; two pronouns = "Akk-Dat"; mixed = pronoun wins.</li>
+<li>Unstressed pronouns even jump in front of a noun subject: <em>Gestern hat <strong>mir</strong> mein Freund geholfen.</em> (Yesterday my friend helped me.) The plain order <em>Gestern hat mein Freund mir geholfen</em> is also fine.</li>
+<li>Reflexive pronouns behave the same: <em>Heute muss <strong>sich</strong> der Chef entscheiden.</em> / <em>Ich habe <strong>mir</strong> die Haare geschnitten.</em></li>
+<li>General tendency: known information (pronouns, definite nouns) early, new or important information late, close to the end verb.</li>
+</ul>
+<h2>Position of nicht, and kein vs nicht</h2>
+<p>To negate the whole sentence, <em>nicht</em> goes as late as possible in the middle field: after the objects and time words, but before the end verb, separable prefix, adjectives after <em>sein</em>, places/directions and prepositional objects. Ukrainian <em>не</em> sits before the verb; German <em>nicht</em> usually does not.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Before what?</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(sentence end) after object</td>
+<td>Ich kenne den Mann <strong>nicht</strong>.</td>
+<td>I don't know the man.</td>
+</tr>
+<tr>
+<td>(sentence end) after time word</td>
+<td>Er kommt heute <strong>nicht</strong>.</td>
+<td>He isn't coming today.</td>
+</tr>
+<tr>
+<td>participle / infinitive</td>
+<td>Ich habe das Buch <strong>nicht</strong> gelesen. / Ich kann heute <strong>nicht</strong> kommen.</td>
+<td>I haven't read the book. / I can't come today.</td>
+</tr>
+<tr>
+<td>separable prefix</td>
+<td>Ich rufe dich <strong>nicht</strong> an.</td>
+<td>I won't call you.</td>
+</tr>
+<tr>
+<td>adjective / noun after sein</td>
+<td>Das ist <strong>nicht</strong> teuer.</td>
+<td>That isn't expensive.</td>
+</tr>
+<tr>
+<td>place / direction</td>
+<td>Ich fahre <strong>nicht</strong> nach Berlin.</td>
+<td>I'm not going to Berlin.</td>
+</tr>
+<tr>
+<td>manner adverb</td>
+<td>Sie singt <strong>nicht</strong> gut.</td>
+<td>She doesn't sing well.</td>
+</tr>
+<tr>
+<td>prepositional object</td>
+<td>Ich warte <strong>nicht</strong> auf dich.</td>
+<td>I'm not waiting for you.</td>
+</tr>
+<tr>
+<td>subordinate clause</td>
+<td>…, weil ich ihn <strong>nicht</strong> kenne. / …, dass er <strong>nicht</strong> kommen kann.</td>
+<td>…because I don't know him. / …that he can't come.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Partial negation</strong>: put <em>nicht</em> directly before the part you deny, usually with <em>sondern</em>.</p>
+<ul>
+<li><em>Ich fahre <strong>nicht heute</strong>, sondern morgen.</em> — I'm not going today but tomorrow.</li>
+<li><em><strong>Nicht ich</strong> habe das gemacht, sondern mein Bruder.</em> — It wasn't me who did that, it was my brother.</li>
+</ul>
+<p><strong>kein or nicht?</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Noun has…</th>
+<th>Use</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ein / eine</td>
+<td>kein(e)</td>
+<td>Ich habe <strong>kein</strong> Auto.</td>
+<td>I don't have a car.</td>
+</tr>
+<tr>
+<td>no article (uncountable, plural)</td>
+<td>kein(e)</td>
+<td>Ich habe <strong>keine</strong> Zeit. / Wir haben <strong>keine</strong> Kinder.</td>
+<td>I have no time. / We have no children.</td>
+</tr>
+<tr>
+<td>der / die / das</td>
+<td>nicht</td>
+<td>Ich habe <strong>das</strong> Auto <strong>nicht</strong>.</td>
+<td>I don't have the car.</td>
+</tr>
+<tr>
+<td>possessive (mein, dein…)</td>
+<td>nicht</td>
+<td>Das ist <strong>nicht mein</strong> Handy.</td>
+<td>That isn't my phone.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Shortcut: <em>kein</em> = <em>nicht + ein</em>. If you could say "a" or nothing in English, use <em>kein</em>.</li>
+<li>Fixed verb + noun combinations often take <em>nicht</em>: <em>Ich fahre <strong>nicht</strong> Auto.</em> <em>Er spielt <strong>nicht</strong> Klavier.</em> (With <em>Deutsch</em>, the usual form is <em>Ich spreche <strong>kein</strong> Deutsch.</em>)</li>
+</ul>
+<h2>Infinitive clauses with zu</h2>
+<p>A zu-infinitive clause has no subject and no conjugated verb: <em>zu</em> + infinitive goes to the very end, everything else stands before it.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Main clause</th>
+<th>Intro</th>
+<th>Middle field</th>
+<th>zu + infinitive (end)</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich habe keine Lust,</td>
+<td></td>
+<td>heute</td>
+<td>zu kochen.</td>
+<td>I don't feel like cooking today.</td>
+</tr>
+<tr>
+<td>Es ist schwer,</td>
+<td></td>
+<td>Deutsch</td>
+<td>zu lernen.</td>
+<td>It's hard to learn German.</td>
+</tr>
+<tr>
+<td>Vergiss nicht,</td>
+<td></td>
+<td>die Tür</td>
+<td>abzuschließen.</td>
+<td>Don't forget to lock the door.</td>
+</tr>
+<tr>
+<td>Ich lerne Deutsch,</td>
+<td>um</td>
+<td>in Deutschland</td>
+<td>zu arbeiten.</td>
+<td>I'm learning German (in order) to work in Germany.</td>
+</tr>
+<tr>
+<td>Er ist gegangen,</td>
+<td>ohne</td>
+<td>etwas</td>
+<td>zu sagen.</td>
+<td>He left without saying anything.</td>
+</tr>
+<tr>
+<td>Er spielt Computerspiele,</td>
+<td>statt</td>
+<td>für die Prüfung</td>
+<td>zu lernen.</td>
+<td>He plays video games instead of studying for the exam.</td>
+</tr>
+<tr>
+<td>Ich hoffe,</td>
+<td></td>
+<td>morgen</td>
+<td>kommen zu können.</td>
+<td>I hope to be able to come tomorrow. (B1+)</td>
+</tr>
+<tr>
+<td>Ich freue mich,</td>
+<td></td>
+<td>Sie</td>
+<td>kennengelernt zu haben.</td>
+<td>I'm glad to have met you. (B1+)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Separable verbs put <em>zu</em> between prefix and stem, written as one word: <em>an<strong>zu</strong>rufen</em>, <em>auf<strong>zu</strong>stehen</em>, <em>ein<strong>zu</strong>kaufen</em>, <em>fern<strong>zu</strong>sehen</em>. Inseparable verbs keep it separate: <em>zu besuchen</em>, <em>zu verstehen</em>.</li>
+<li><em>um/ohne/statt</em> stand at the start of the clause, <em>zu</em> at the end: <em>um … zu</em>, never ~~um zu arbeiten in Deutschland~~.</li>
+<li>The clause can come first, then the main verb follows directly: <em>Um Geld zu sparen, fahre ich mit dem Rad.</em></li>
+<li>No <em>zu</em> after modal verbs and a few others (<em>werden, lassen, sehen, hören, gehen, bleiben</em>): <em>Ich muss arbeiten.</em> <em>Ich gehe schwimmen.</em> <em>Ich lasse mein Auto reparieren.</em></li>
+<li><em>um…zu</em>, <em>ohne…zu</em>, <em>statt…zu</em> need the same subject in both parts. Different subjects → <em>damit</em>, <em>ohne dass</em>, <em>statt dass</em> (see the connectors doc).</li>
+</ul>
+<h2>Imperative order</h2>
+<p>The imperative verb goes in position 1; a separable prefix still goes to the end. Only the <em>Sie</em> and <em>wir</em> forms keep a pronoun, right after the verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Verb (1)</th>
+<th>Pronoun</th>
+<th>Middle field</th>
+<th>End</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du</td>
+<td>Ruf</td>
+<td></td>
+<td>mich bitte morgen</td>
+<td>an!</td>
+<td>Call me tomorrow, please!</td>
+</tr>
+<tr>
+<td>du</td>
+<td>Mach</td>
+<td></td>
+<td>bitte die Tür</td>
+<td>zu!</td>
+<td>Close the door, please!</td>
+</tr>
+<tr>
+<td>du (reflexive)</td>
+<td>Setz</td>
+<td></td>
+<td>dich!</td>
+<td></td>
+<td>Sit down!</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>Kommt</td>
+<td></td>
+<td>doch</td>
+<td>rein!</td>
+<td>Come on in!</td>
+</tr>
+<tr>
+<td>Sie</td>
+<td>Rufen</td>
+<td>Sie</td>
+<td>mich morgen</td>
+<td>an!</td>
+<td>Call me tomorrow!</td>
+</tr>
+<tr>
+<td>Sie</td>
+<td>Warten</td>
+<td>Sie</td>
+<td>bitte kurz!</td>
+<td></td>
+<td>Wait a moment, please!</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>Fangen</td>
+<td>wir</td>
+<td></td>
+<td>an!</td>
+<td>Let's start!</td>
+</tr>
+<tr>
+<td>negated</td>
+<td>Ruf</td>
+<td></td>
+<td>mich <strong>nicht</strong></td>
+<td>an!</td>
+<td>Don't call me!</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>bitte</em> is flexible: <em>Komm bitte!</em> / <em>Bitte komm!</em> / <em>Komm her, bitte!</em></li>
+<li>"Let's…" has two forms: <em>Gehen wir!</em> or <em>Lass uns gehen!</em> (to one person) / <em>Lasst uns gehen!</em> (to several).</li>
+<li>Softeners <em>doch, mal</em> go right after the verb or pronoun: <em>Komm <strong>doch mal</strong> vorbei!</em> (Do drop by!)</li>
+</ul>
+<h2>Ukrainian comparison</h2>
+<p>Ukrainian word order is free and the verb can stand almost anywhere; German is free only around fixed verb slots. Both languages use case endings, so German, like Ukrainian, can put the object first without confusion: only the verb position is locked.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>Ukrainian</th>
+<th>German</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Today I'm going to the cinema.</td>
+<td>Сьогодні я йду в кіно.</td>
+<td>Heute <strong>gehe</strong> ich ins Kino.</td>
+<td>Ukrainian keeps я before the verb; German inverts.</td>
+</tr>
+<tr>
+<td>I bought this book yesterday.</td>
+<td>Цю книжку я купив вчора.</td>
+<td>Dieses Buch <strong>habe</strong> ich gestern <strong>gekauft</strong>.</td>
+<td>Object first works in both; German adds the bracket.</td>
+</tr>
+<tr>
+<td>…because I'm ill.</td>
+<td>…бо я хворий.</td>
+<td>…, weil ich krank <strong>bin</strong>.</td>
+<td>Ukrainian keeps normal order after бо/тому що; German sends the verb to the end.</td>
+</tr>
+<tr>
+<td>If I have time, I'll come.</td>
+<td>Якщо в мене буде час, я прийду.</td>
+<td>Wenn ich Zeit habe, <strong>komme</strong> ich.</td>
+<td>Verb directly after the comma in German.</td>
+</tr>
+<tr>
+<td>I don't know him.</td>
+<td>Я його <strong>не</strong> знаю.</td>
+<td>Ich kenne ihn <strong>nicht</strong>.</td>
+<td>не before the verb vs nicht near the end.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Emphasis</strong>: Ukrainian moves words around freely and uses stress (<em>Вчора я це зробив</em> / <em>Я це зробив вчора</em>). German mainly uses <strong>position 1</strong> for the topic or emphasis and the <strong>end of the middle field</strong> for new information.</li>
+<li><strong>Pronoun clusters</strong>: Ukrainian also likes short pronouns early (<em>Я йому це дав</em>), which matches German <em>Ich habe es ihm gegeben</em>.</li>
+<li><strong>Practical habit</strong>: when you build a German sentence, first place the verb(s), then fill the slots. Ukrainian instinct is fine for the middle field; it fails only at the verb slots.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Double infinitive: ob er hat kommen können</h3>
+<p>In the Perfekt of a modal verb (and of lassen, often of sehen and hören), the modal stays an infinitive instead of a participle. In a subordinate clause the conjugated haben then jumps in front of both infinitives instead of going last.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Main clause</th>
+<th>Subordinate clause</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Er hat nicht kommen können.</td>
+<td>Ich weiß nicht, ob er <strong>hat</strong> kommen können.</td>
+<td>I don't know whether he was able to come.</td>
+</tr>
+<tr>
+<td>Ich habe länger arbeiten müssen.</td>
+<td>..., weil ich länger <strong>habe</strong> arbeiten müssen.</td>
+<td>... because I had to work longer.</td>
+</tr>
+<tr>
+<td>Wir haben das Auto reparieren lassen.</td>
+<td>..., dass wir das Auto <strong>haben</strong> reparieren lassen.</td>
+<td>... that we had the car repaired.</td>
+</tr>
+<tr>
+<td>Ich hätte das machen sollen.</td>
+<td>..., dass ich das <strong>hätte</strong> machen sollen.</td>
+<td>... that I should have done that.</td>
+</tr>
+<tr>
+<td>Ich habe ihn kommen sehen.</td>
+<td>..., dass ich ihn <strong>habe</strong> kommen sehen.</td>
+<td>... that I saw him coming (also: kommen gesehen habe).</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The participle of a modal (gemusst, gekonnt, gewollt) appears only when the modal stands alone: Das habe ich nicht gewollt.</li>
+<li>In everyday speech and writing you can avoid the whole cluster with the Präteritum: ..., weil ich länger arbeiten musste.</li>
+<li>The hätte + double infinitive pattern is the standard way to say "should have / could have": Du hättest mich anrufen können.</li>
+</ul>
+<h3>Nachfeld and Ausklammerung</h3>
+<p>The Nachfeld is the space after the closing verb. Some elements belong there almost always; others are moved there for style or in relaxed speech (Ausklammerung).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Element after the end verb</th>
+<th>Status</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dass-, weil-, ob- and other subordinate clauses</td>
+<td>normal</td>
+<td>Er hat gesagt, dass er später kommt.</td>
+</tr>
+<tr>
+<td>zu-infinitive clauses</td>
+<td>normal</td>
+<td>Ich habe vergessen, dich anzurufen.</td>
+</tr>
+<tr>
+<td>comparisons with als / wie</td>
+<td>normal</td>
+<td>Er hat mehr gearbeitet als ich. / Ich bin genauso schnell gelaufen wie du.</td>
+</tr>
+<tr>
+<td>relative clauses, when little is left after them</td>
+<td>normal</td>
+<td>Ich habe den Mann getroffen, der gestern angerufen hat.</td>
+</tr>
+<tr>
+<td>long prepositional phrases</td>
+<td>stylistic, to lighten a long bracket</td>
+<td>Wir müssen heute noch sprechen über die neuen Regeln für das Homeoffice.</td>
+</tr>
+<tr>
+<td>afterthoughts: time, place</td>
+<td>colloquial</td>
+<td>Ich habe ihn angerufen, gestern Abend um zehn.</td>
+</tr>
+<tr>
+<td>a noun picked up after a pronoun</td>
+<td>colloquial, emphatic</td>
+<td>Ich habe ihn schon gesehen, den neuen Chef.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Never moved out: accusative objects (wrong: Ich habe gekauft ein Auto), pronouns, nicht, and separable prefixes.</li>
+<li>In formal writing, the Nachfeld is a tool: put a long clause there so the reader is not left waiting for the verb.</li>
+</ul>
+<h3>Vorfeld: topicalisation and the placeholder es</h3>
+<p>Position 1 (the Vorfeld) is the slot for the topic, a link to the previous sentence, or a contrast. Almost any single sentence part can go there, even a verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What goes in position 1</th>
+<th>Example</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>an object</td>
+<td>Diesen Fehler mache ich nie wieder.</td>
+<td>contrast: this mistake, not others</td>
+</tr>
+<tr>
+<td>a participle</td>
+<td>Gelesen habe ich das Buch, aber nicht verstanden.</td>
+<td>contrast between two actions</td>
+</tr>
+<tr>
+<td>an infinitive</td>
+<td>Kaufen will ich das Auto nicht, nur mieten.</td>
+<td>contrast between two actions</td>
+</tr>
+<tr>
+<td>a predicate adjective</td>
+<td>Müde bin ich nicht, nur hungrig.</td>
+<td>contrast</td>
+</tr>
+<tr>
+<td>part of a noun phrase</td>
+<td>Geld habe ich keins. / Zeit habe ich keine.</td>
+<td>colloquial, very common</td>
+</tr>
+<tr>
+<td>a prepositional object</td>
+<td>Auf dich habe ich lange gewartet!</td>
+<td>emphasis</td>
+</tr>
+<tr>
+<td>a dass-clause</td>
+<td>Dass er kommt, glaube ich nicht.</td>
+<td>the clause is the topic</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Unstressed es as an object cannot stand in position 1: wrong Es habe ich gelesen, right Das habe ich gelesen.</li>
+</ul>
+<p><strong>es as a placeholder.</strong> Some es only fill position 1 so the verb can stay second; they disappear when anything else takes that slot. Others are real subjects and stay.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type of es</th>
+<th>Example</th>
+<th>With something else in position 1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>placeholder before a late subject</td>
+<td>Es kamen viele Leute.</td>
+<td>Zur Party kamen viele Leute. (es gone; verb agrees with Leute)</td>
+</tr>
+<tr>
+<td>placeholder in a passive without a subject</td>
+<td>Es wurde bis spät in die Nacht getanzt.</td>
+<td>Bis spät in die Nacht wurde getanzt. (es gone)</td>
+</tr>
+<tr>
+<td>placeholder for a dass-clause</td>
+<td>Es ist wichtig, dass du kommst.</td>
+<td>Wichtig ist, dass du kommst. / Dass du kommst, ist wichtig. (es gone)</td>
+</tr>
+<tr>
+<td>real subject: weather, es gibt</td>
+<td>Es regnet. / Es gibt ein Problem.</td>
+<td>Heute regnet es. / Hier gibt es ein Problem. (es stays)</td>
+</tr>
+<tr>
+<td>fixed expressions</td>
+<td>Es geht mir gut.</td>
+<td>Mir geht es gut. (es stays)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The verb agrees with the real subject, not with es: Es kamen viele Leute, Es war einmal ein König.</li>
+</ul>
+<h3>Pronoun order in detail</h3>
+<p>Unstressed pronouns cluster right after the conjugated verb (main clause) or the conjunction (subordinate clause), in the order subject, accusative, dative; nouns come after this cluster.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subject + Akk + Dat pronoun</td>
+<td>Gestern hat er es ihr gegeben.</td>
+<td>He gave it to her yesterday.</td>
+</tr>
+<tr>
+<td>same in a subordinate clause</td>
+<td>..., weil er es ihr nicht gesagt hat.</td>
+<td>... because he didn't tell her.</td>
+</tr>
+<tr>
+<td>reflexive Dat + Akk es</td>
+<td>Ich kann es mir nicht leisten.</td>
+<td>I can't afford it.</td>
+</tr>
+<tr>
+<td>pronoun before a noun subject</td>
+<td>Morgen ruft dich der Chef an.</td>
+<td>The boss will call you tomorrow.</td>
+</tr>
+<tr>
+<td>reflexive and noun subject</td>
+<td>Dann hat sich der Chef entschuldigt.</td>
+<td>Then the boss apologised (der Chef sich is also fine).</td>
+</tr>
+<tr>
+<td>es shortened in speech</td>
+<td>Ich hab's ihm gesagt. / Gibst du's mir?</td>
+<td>I told him. / Will you give it to me?</td>
+</tr>
+<tr>
+<td>stressed or demonstrative pronoun</td>
+<td>Ich habe dem Chef DAS gesagt.</td>
+<td>A stressed das behaves like a noun and can stand late.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Two nouns: known before new beats Dat before Akk. Ich habe das Buch einem Freund gegeben (the book is known, the friend is new).</li>
+<li>Definite objects usually stand before time adverbs and nicht, indefinite ones after: Ich habe den Film gestern gesehen vs Ich habe gestern einen Film gesehen.</li>
+</ul>
+<h3>nicht: scope and contrastive negation</h3>
+<p>nicht negates what stands right after it. Moving it changes the meaning, not just the style.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ich habe ihn gestern nicht angerufen.</td>
+<td>the call did not happen</td>
+</tr>
+<tr>
+<td>Ich habe ihn nicht gestern angerufen, sondern heute.</td>
+<td>the call happened, but not yesterday</td>
+</tr>
+<tr>
+<td>Er ist absichtlich nicht gekommen.</td>
+<td>he did not come, on purpose</td>
+</tr>
+<tr>
+<td>Er ist nicht absichtlich zu spät gekommen.</td>
+<td>he was late, but not on purpose</td>
+</tr>
+<tr>
+<td>Ich habe nicht alle Bücher gelesen.</td>
+<td>some, not all</td>
+</tr>
+<tr>
+<td>Er ist nicht immer pünktlich.</td>
+<td>sometimes late (compare: Er ist nie pünktlich)</td>
+</tr>
+<tr>
+<td>Nicht jeder kann das.</td>
+<td>not everyone can</td>
+</tr>
+<tr>
+<td>Du musst nicht kommen.</td>
+<td>you don't have to come (= не мусиш)</td>
+</tr>
+<tr>
+<td>Du darfst nicht kommen.</td>
+<td>you must not come (= не можна)</td>
+</tr>
+<tr>
+<td>Das ist kein Fehler, sondern Absicht.</td>
+<td>kein + sondern for a noun</td>
+</tr>
+<tr>
+<td>Das Thema ist nicht unwichtig.</td>
+<td>understatement: it is fairly important</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>English "must not" is darf nicht, never muss nicht: a classic trap for English speakers.</li>
+<li>Nicht dass ich wüsste. = Not that I know of (fixed phrase, Konjunktiv II).</li>
+</ul>
+<h3>Verb-first sentences: Hätte ich Zeit, ...</h3>
+<p>Apart from yes/no questions and imperatives, the verb can open a sentence in several fixed patterns. The most useful in writing is the conditional without wenn.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unreal condition, no wenn</td>
+<td>Hätte ich Zeit, würde ich mitkommen.</td>
+<td>If I had time, I would come along.</td>
+</tr>
+<tr>
+<td>unreal past condition</td>
+<td>Hätte ich das gewusst, wäre ich früher gekommen.</td>
+<td>Had I known that, I would have come earlier.</td>
+</tr>
+<tr>
+<td>real condition (written)</td>
+<td>Kommt der Zug zu spät, nehmen wir ein Taxi.</td>
+<td>If the train is late, we'll take a taxi.</td>
+</tr>
+<tr>
+<td>sollte = should it happen</td>
+<td>Sollten Sie Fragen haben, rufen Sie uns gern an.</td>
+<td>Should you have any questions, feel free to call us.</td>
+</tr>
+<tr>
+<td>jokes and stories</td>
+<td>Kommt ein Mann zum Arzt ...</td>
+<td>A man goes to the doctor ...</td>
+</tr>
+<tr>
+<td>exclamations</td>
+<td>Ist das schön! / War das ein Tag!</td>
+<td>How beautiful! / What a day!</td>
+</tr>
+<tr>
+<td>dropped das in speech</td>
+<td>Weiß ich nicht. / Kenn ich schon.</td>
+<td>(I) don't know. / (I) know it already.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>After a verb-first condition, the main clause also starts with its verb (verb, comma, verb), or with dann / so: Hätte ich Zeit, dann würde ich mitkommen.</li>
+<li>Sollten Sie ... is the standard opening for conditions in formal letters and emails.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: which connectors send the verb to position 1, 2 or the end</li>
+<li><a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>: relative clauses and demonstratives in position 1</li>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: the Perfekt, passive and Konjunktiv II forms that fill the verb bracket</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: modal and lassen constructions behind the double infinitive</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: long middle fields, participle attributes and nominal style</li>
+<li><a href="../docs/particles-expressions.html">Particles, expressions and everyday German</a>: where doch, mal and ja sit in the middle field</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/word-order.html">Word order quiz</a> has 32 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

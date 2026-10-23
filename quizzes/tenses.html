@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Tenses quiz · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs hide-sm"><span class="sep">/</span><span class="hide-sm">Quizzes</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" id="doclink" target="_blank" rel="noopener">Open the doc</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="quiz">
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="copy" type="button" hidden>Copy results</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <p class="note-copy" id="copynote" hidden></p>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"id": "tenses", "title": "Tenses quiz", "level": "B1", "doc": {"title": "Tenses, moods and the passive", "url": "../docs/tenses.html"}, "questions": [{"q": "Er *___* jeden Morgen die Zeitung. (lesen)", "options": ["liest", "lest", "lesst", "liesst", "lieset"], "answer": 0, "explain": "*lesen* changes e → ie in du and er/sie/es: er *liest*. The stem ends in -s, so du also just adds -t: du *liest*. *lest* is the ihr-form."}, {"q": "Translate, you still live there: *I have lived in Berlin for two years.*", "options": ["Ich habe seit zwei Jahren in Berlin gewohnt.", "Ich wohne seit zwei Jahren in Berlin.", "Ich bin seit zwei Jahren in Berlin gewohnt.", "Ich wohne für zwei Jahre in Berlin.", "Ich werde seit zwei Jahren in Berlin wohnen."], "answer": 1, "explain": "*seit* + Präsens for something that is still true, exactly like Ukrainian *Я живу тут два роки*. The English 'have lived' is the trap."}, {"q": "Du *___* hier nicht rauchen. Das ist verboten.", "options": ["musst", "möchtest", "darfst", "magst", "weißt"], "answer": 2, "explain": "*nicht dürfen* = must not (не можна). *Du musst nicht rauchen* would mean 'you don't have to smoke' (не мусиш)."}, {"q": "Wir haben das Problem schon *___*. (diskutieren)", "options": ["gediskutiert", "diskutieren", "gediskutieren", "diskutiert", "diskutierte"], "answer": 3, "explain": "Verbs in *-ieren* take no ge- in the Partizip II and end in -t: *diskutiert*, like studiert, telefoniert."}, {"q": "Pick the correct question: *What happened yesterday?*", "options": ["Was hat gestern passiert?", "Was ist gestern passieren?", "Was hat gestern passieren?", "Was wurde gestern passiert?", "Was ist gestern passiert?"], "answer": 4, "explain": "*passieren* is one of the sein-verbs to memorise: *Was ist passiert?*, never hat passiert. The Partizip II has no ge- because of -ieren."}, {"q": "I'm cooking right now. Which sentence says this in German?", "options": ["Ich koche gerade.", "Ich bin kochend.", "Ich werde kochen.", "Ich habe gekocht.", "Ich tue kochen."], "answer": 0, "explain": "German has no progressive form: Präsens + *gerade* does the job (я саме готую). There is no 'to be + -ing' and no do-support."}, {"q": "Ich habe das leider nicht *___*. (verstehen)", "options": ["geverstanden", "verstanden", "verstandet", "geversteht", "verstand"], "answer": 1, "explain": "Inseparable prefixes (be-, ver-, er-, ent-…) block ge-. *verstehen* is strong, so the participle is *verstanden*."}, {"q": "Er *___* mich gestern zum Bahnhof gefahren.", "options": ["ist", "wird", "hat", "war", "wurde"], "answer": 2, "explain": "*fahren* takes sein when the subject itself moves, but *haben* when there is an accusative object: here *mich*. So: Er *hat* mich gefahren."}, {"q": "Gestern *___* ich keine Zeit, weil ich arbeiten musste.", "options": ["hat", "hattet", "habte", "hatte", "hattest"], "answer": 3, "explain": "In speech, *haben* and *sein* use Präteritum rather than Perfekt: ich *hatte*, ich war. haben is weak-like in Präteritum (hatte, with -te)."}, {"q": "Als Kind *___* ich keinen Fisch.", "options": ["möchte", "mag", "mögte", "möchtete", "mochte"], "answer": 4, "explain": "Präteritum of modals drops the umlaut and adds -te: mögen → *mochte*. *möchte* has no past of its own and *mag* is present."}, {"q": "Nachdem er *___*, ging er ins Bett.", "options": ["gegessen hatte", "gegessen hat", "aß", "isst", "gegessen war"], "answer": 0, "explain": "*nachdem* wants a tense shift: Plusquamperfekt (hatte + Partizip II) in the nachdem-clause, Präteritum in the main clause. *essen* takes haben."}, {"q": "*Es wird kalt.* Which job does *werden* do here?", "options": ["Future (helper + infinitive)", "become (full verb)", "Passive (helper + Partizip II)", "Konjunktiv II", "Präteritum"], "answer": 1, "explain": "Nothing verbal stands at the end, so *werden* is the full verb 'become', like Ukrainian *стає холодно*. Infinitive at the end = future, Partizip II = passive."}, {"q": "He became a doctor: Er ist Arzt *___*.", "options": ["worden", "gewurden", "geworden", "werden", "wurde"], "answer": 2, "explain": "Perfekt of full-verb werden is *ist geworden*. The short form *worden* is only for the passive: Das Haus ist gebaut worden."}, {"q": "Polite request with Konjunktiv II: *___* Sie mir bitte helfen?", "options": ["Können", "Konnten", "Kannst", "Könnten", "Kann"], "answer": 3, "explain": "Konjunktiv II of können is *könnten* (Präteritum konnten + umlaut). *Können Sie…?* is correct too, but it is the indicative, not Konjunktiv II."}, {"q": "Wenn ich mehr Zeit *___*, würde ich öfter Sport machen.", "options": ["habe", "hatte", "hat", "hättet", "hätte"], "answer": 4, "explain": "Unreal condition: both halves take Konjunktiv II, and for haben use the one-word form *hätte* (Ukrainian *якби в мене був час*)."}, {"q": "Er tut so, als ob er alles *___*.", "options": ["wüsste", "weißt", "wüsstet", "gewusst", "wissen"], "answer": 0, "explain": "*als ob* + Konjunktiv II with the verb at the end: er *wüsste* (wusste + umlaut). Ukrainian *ніби він усе знав*."}, {"q": "Translate: *If I had known that, I would have come earlier.*", "options": ["Wenn ich das gewusst habe, wäre ich früher gekommen.", "Wenn ich das gewusst hätte, wäre ich früher gekommen.", "Wenn ich das wüsste, wäre ich früher gekommen.", "Wenn ich das gewusst hätte, hätte ich früher gekommen.", "Wenn ich das gewusst wäre, wäre ich früher gekommen."], "answer": 1, "explain": "Unreal past = *hätte / wäre* + Partizip II, both halves. wissen takes haben (*gewusst hätte*), kommen takes sein (*wäre gekommen*)."}, {"q": "To a friend (du): *___* bitte langsam! (fahren)", "options": ["Fähr", "Fährst", "Fahr", "Fahrst", "Fahren"], "answer": 2, "explain": "The du-imperative drops -st and the pronoun. a → ä verbs do NOT keep the umlaut in the imperative: *Fahr!*, *Schlaf!* (but e → i verbs do: Nimm!)."}, {"q": "The car has been repaired: Das Auto *___* repariert *___*.", "options": ["hat … worden", "ist … geworden", "hat … geworden", "ist … worden", "wird … worden"], "answer": 3, "explain": "Passive Perfekt = *ist* + Partizip II + *worden*: always sein, and worden without ge-."}, {"q": "Pick the correct sentence: *I was helped.*", "options": ["Ich wurde geholfen.", "Mich wurde geholfen.", "Ich bin geholfen worden.", "Mir ist geholfen geworden.", "Mir wurde geholfen."], "answer": 4, "explain": "*helfen* takes the dative, and the dative stays dative in the passive: *Mir wurde geholfen* (impersonal passive, no subject). Like Ukrainian *мені допомогли*."}, {"q": "Du *___* morgen bis spät. (arbeiten)", "options": ["arbeitest", "arbeitst", "arbeitet", "arbeiten", "arbeits"], "answer": 0, "explain": "Stems ending in -t or -d insert -e- before the ending: du *arbeitest*, er arbeitet. *arbeitet* is the er/ihr-form."}, {"q": "Er *___* das Baby im Arm. (halten)", "options": ["hältet", "hält", "haltet", "hältst", "halt"], "answer": 1, "explain": "*halten* changes a → ä in du and er, and the er-form takes no extra -t: er *hält* (du hältst). *haltet* is the ihr-form."}, {"q": "Ich *___* Anna schon seit der Schule.", "options": ["weiß", "wisse", "kenne", "kann", "kennt"], "answer": 2, "explain": "Being familiar with a person = *kennen*: ich *kenne* Anna. *wissen* is for facts (Ich weiß, dass…), like Ukrainian знати факт vs бути знайомим."}, {"q": "Wir haben gestern im Supermarkt *___*. (einkaufen)", "options": ["geeinkauft", "einkauft", "eingekaufen", "eingekauft", "eingegekauft"], "answer": 3, "explain": "Separable verbs put ge- between prefix and stem: ein + ge + kauft = *eingekauft*. kaufen is weak, so it ends in -t."}, {"q": "Ich *___* mich sehr über dein Geschenk gefreut.", "options": ["bin", "hat", "wurde", "werde", "habe"], "answer": 4, "explain": "Reflexive verbs always form the Perfekt with haben: Ich *habe* mich gefreut."}, {"q": "Perfekt: *I had to work yesterday.*", "options": ["Ich habe gestern arbeiten müssen.", "Ich habe gestern arbeiten gemusst.", "Ich bin gestern arbeiten müssen.", "Ich habe gestern gemusst arbeiten.", "Ich habe gestern müssen arbeiten."], "answer": 0, "explain": "A modal with another verb takes haben and a double infinitive at the end: *arbeiten müssen*. In speech *Ich musste gestern arbeiten* is more common."}, {"q": "Gestern *___* wir erst spät nach Hause. (kommen, Präteritum)", "options": ["kommten", "kamen", "kamten", "kamt", "kammen"], "answer": 1, "explain": "*kommen* is strong: new stem *kam*, no -te. wir take -en: wir *kamen*. *kamt* is the ihr-form."}, {"q": "Past of *möchte*: *I wanted to ask you something.*", "options": ["Ich möchtete dich etwas fragen.", "Ich mochte dich etwas fragen.", "Ich wollte dich etwas fragen.", "Ich habe dich etwas fragen gemöchtet.", "Ich möchte dich etwas gefragt."], "answer": 2, "explain": "*möchte* has no past of its own, so use *wollte*. *mochte* is the past of mögen and means 'liked'."}, {"q": "Peter ist heute nicht da. *Er wird wohl krank sein.* What does the second sentence mean?", "options": ["He will get ill later.", "He is becoming ill.", "He was ill.", "He's probably ill.", "He would be ill."], "answer": 3, "explain": "Futur I with *wohl* (or sicher) is a guess about the present: *He's probably ill*, like Ukrainian *він, мабуть, хворий*."}, {"q": "Translate: *You should have asked.*", "options": ["Du hättest fragen gesollt.", "Du hättest gefragt sollen.", "Du wärst fragen sollen.", "Du würdest fragen sollen.", "Du hättest fragen sollen."], "answer": 4, "explain": "Modal in the unreal past = *hätte* + infinitive + modal infinitive: *hättest fragen sollen*. Ukrainian *треба було спитати*."}, {"q": "To a friend (du): *___* mir bitte schnell! (antworten)", "options": ["Antworte", "Antwort", "Antwortest", "Antwortet", "Antworten"], "answer": 0, "explain": "du-imperative: drop -st and the pronoun; stems in -t/-d add -e: *Antworte!*, Warte! *Antwortet!* is the ihr-form."}, {"q": "To a friend (du): *___* vorsichtig! (sein)", "options": ["Bist", "Sei", "Seid", "Seist", "Sein"], "answer": 1, "explain": "The imperative of sein is irregular: du → *Sei!*, ihr → Seid!, Sie → Seien Sie!"}, {"q": "*The bridge was built in 1990.* Die Brücke *___* 1990 gebaut.", "options": ["wird", "hat", "wurde", "worden", "wurden"], "answer": 2, "explain": "Process passive in the past = *wurde* + Partizip II. Singular subject (die Brücke), so *wurde*, not wurden."}, {"q": "Die Stadt wurde *___* ein Erdbeben zerstört.", "options": ["von", "mit", "bei", "durch", "aus"], "answer": 3, "explain": "A means or indirect cause in the passive takes *durch* + Akkusativ (*ein Erdbeben*). von would need the dative: von einem Erdbeben."}, {"q": "*The shop is closed* (it is shut right now). Der Laden *___*.", "options": ["wird geschlossen", "wurde geschlossen", "schließt gerade", "hat geschlossen worden", "ist geschlossen"], "answer": 4, "explain": "A state after the action = Zustandspassiv, *sein* + Partizip II: *ist geschlossen* (Ukrainian *зачинений*). *wird geschlossen* is the process: is being closed."}, {"q": "With *man*: *How do you spell that?*", "options": ["Wie schreibt man das?", "Wie schreiben man das?", "Wie wird man das geschrieben?", "Wie man schreibt das?", "Wie schreibt das man?"], "answer": 0, "explain": "*man* takes the er-form and stands in the subject slot after the verb: *Wie schreibt man das?* Like Ukrainian *як це пишеться*."}, {"q": "Which sentence stresses that the coffee is all gone (я допив каву)?", "options": ["Ich habe den Kaffee getrunken.", "Ich habe den Kaffee ausgetrunken.", "Ich trank gerade den Kaffee.", "Ich habe den Kaffee stundenlang getrunken.", "Ich bin den Kaffee ausgetrunken."], "answer": 1, "explain": "German has no aspect; the prefix *aus-* adds the sense of completion, like Ukrainian до- in допити: *ausgetrunken*. trinken takes haben."}, {"q": "Translate: *I used to live in Lviv.*", "options": ["Ich wurde in Lwiw wohnen.", "Ich würde in Lwiw wohnen.", "Früher habe ich in Lwiw gewohnt.", "Ich bin früher in Lwiw gewohnt.", "Ich brauchte in Lwiw zu wohnen."], "answer": 2, "explain": "'Used to' = *früher* + a past tense. wohnen takes haben: *habe … gewohnt*."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+  document.getElementById('title').textContent = data.title;
+  document.getElementById('crumb').textContent = data.title;
+  var dl = document.getElementById('doclink');
+  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+  var intro = document.getElementById('intro');
+  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+  if (data.doc && data.doc.url) {
+    intro.appendChild(document.createTextNode(' Based on '));
+    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

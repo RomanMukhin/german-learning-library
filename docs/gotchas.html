@@ -1,0 +1,1858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Gotchas and false friends · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Gotchas and false friends</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Everyday · A2–B1</span><h1>Gotchas and false friends</h1></header>
+<article class="prose card">
+<p>Most learner mistakes at A2–B1 come from a short list of look-alike words, confusable pairs and literal translations from English or Ukrainian; this sheet lists them with the correct German.</p>
+<h2>False friends for English speakers</h2>
+<p>These German words look like English ones but mean something else; the third column gives the German you actually want for the English meaning.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Real meaning</th>
+<th>English look-alike in German</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bekommen</td>
+<td>to get, receive</td>
+<td>to become = werden</td>
+<td>Ich bekomme ein Geschenk. / Ich werde Arzt.</td>
+</tr>
+<tr>
+<td>das Gift</td>
+<td>poison</td>
+<td>gift = das Geschenk</td>
+<td>Das ist Gift für deine Gesundheit.</td>
+</tr>
+<tr>
+<td>der Chef / die Chefin</td>
+<td>boss</td>
+<td>chef = der Koch / die Köchin</td>
+<td>Mein Chef ist im Urlaub.</td>
+</tr>
+<tr>
+<td>das Handy</td>
+<td>mobile phone</td>
+<td>handy = praktisch</td>
+<td>Mein Handy ist leer.</td>
+</tr>
+<tr>
+<td>der Rat</td>
+<td>advice; council</td>
+<td>rat = die Ratte</td>
+<td>Kannst du mir einen Rat geben?</td>
+</tr>
+<tr>
+<td>also</td>
+<td>so, therefore, well</td>
+<td>also = auch</td>
+<td>Es regnet, also bleiben wir zu Hause.</td>
+</tr>
+<tr>
+<td>eventuell</td>
+<td>possibly, maybe</td>
+<td>eventually = schließlich, irgendwann</td>
+<td>Ich komme eventuell später.</td>
+</tr>
+<tr>
+<td>sensibel</td>
+<td>sensitive</td>
+<td>sensible = vernünftig</td>
+<td>Sie ist sehr sensibel.</td>
+</tr>
+<tr>
+<td>aktuell</td>
+<td>current, up to date</td>
+<td>actual = tatsächlich, eigentlich</td>
+<td>aktuelle Nachrichten / die tatsächlichen Kosten</td>
+</tr>
+<tr>
+<td>die Art</td>
+<td>kind, type, way</td>
+<td>art = die Kunst</td>
+<td>eine Art Kuchen / Er hat eine nette Art.</td>
+</tr>
+<tr>
+<td>die Fabrik</td>
+<td>factory</td>
+<td>fabric = der Stoff</td>
+<td>Er arbeitet in einer Fabrik.</td>
+</tr>
+<tr>
+<td>spenden</td>
+<td>to donate</td>
+<td>to spend = ausgeben (money), verbringen (time)</td>
+<td>Ich spende Blut. / Ich gebe viel Geld aus.</td>
+</tr>
+<tr>
+<td>das Kind</td>
+<td>child</td>
+<td>kind = nett, freundlich</td>
+<td>Sie hat zwei Kinder.</td>
+</tr>
+<tr>
+<td>brav</td>
+<td>well-behaved (of children, dogs)</td>
+<td>brave = mutig</td>
+<td>Sei brav! / Er war sehr mutig.</td>
+</tr>
+<tr>
+<td>die Mappe</td>
+<td>folder, portfolio</td>
+<td>map = die Karte, der Stadtplan</td>
+<td>Die Unterlagen sind in der Mappe.</td>
+</tr>
+<tr>
+<td>bald</td>
+<td>soon</td>
+<td>bald = kahl, glatzköpfig</td>
+<td>Bis bald!</td>
+</tr>
+<tr>
+<td>das Gymnasium</td>
+<td>academic secondary school (grammar school)</td>
+<td>gym = das Fitnessstudio, die Turnhalle</td>
+<td>Meine Tochter geht aufs Gymnasium.</td>
+</tr>
+<tr>
+<td>die Note</td>
+<td>grade (school mark); musical note</td>
+<td>(bank)note = der Geldschein</td>
+<td>Ich habe eine gute Note bekommen.</td>
+</tr>
+<tr>
+<td>die Rente</td>
+<td>(old-age) pension</td>
+<td>rent = die Miete</td>
+<td>Mein Vater ist in Rente.</td>
+</tr>
+<tr>
+<td>die Billion</td>
+<td>trillion (10^12)</td>
+<td>billion = die Milliarde (10^9)</td>
+<td>Eine Milliarde Euro, nicht eine Billion!</td>
+</tr>
+<tr>
+<td>die Sympathie</td>
+<td>liking, affinity</td>
+<td>sympathy = das Mitgefühl, das Beileid</td>
+<td>Herzliches Beileid. – My condolences.</td>
+</tr>
+<tr>
+<td>sympathisch</td>
+<td>likeable, nice</td>
+<td>sympathetic = mitfühlend, verständnisvoll</td>
+<td>Er ist mir sympathisch. – I like him.</td>
+</tr>
+<tr>
+<td>will (ich will)</td>
+<td>want</td>
+<td>will (future) = werden</td>
+<td>Ich will schlafen. / Ich werde schlafen.</td>
+</tr>
+<tr>
+<td>fast</td>
+<td>almost</td>
+<td>fast = schnell</td>
+<td>Ich bin fast fertig.</td>
+</tr>
+<tr>
+<td>hell</td>
+<td>bright, light</td>
+<td>hell = die Hölle</td>
+<td>Das Zimmer ist hell.</td>
+</tr>
+<tr>
+<td>das Bad</td>
+<td>bathroom; bath</td>
+<td>bad = schlecht</td>
+<td>Das Bad ist oben.</td>
+</tr>
+<tr>
+<td>der Brief</td>
+<td>letter</td>
+<td>brief = kurz</td>
+<td>Ich schreibe einen Brief.</td>
+</tr>
+<tr>
+<td>das Boot</td>
+<td>boat</td>
+<td>boot = der Stiefel</td>
+<td></td>
+</tr>
+<tr>
+<td>der Mist</td>
+<td>dung; "damn", rubbish</td>
+<td>mist = der Nebel</td>
+<td>Mist! / So ein Mist!</td>
+</tr>
+<tr>
+<td>die Kaution</td>
+<td>(rental) deposit</td>
+<td>caution = die Vorsicht</td>
+<td>Die Kaution beträgt drei Monatsmieten.</td>
+</tr>
+<tr>
+<td>das Rezept</td>
+<td>recipe; (doctor's) prescription</td>
+<td>receipt = die Quittung, der Kassenbon</td>
+<td>Der Arzt gibt mir ein Rezept.</td>
+</tr>
+<tr>
+<td>konsequent</td>
+<td>consistent, firm</td>
+<td>consequently = folglich</td>
+<td>Du musst konsequent bleiben.</td>
+</tr>
+<tr>
+<td>die Promotion</td>
+<td>doctorate (PhD)</td>
+<td>promotion = die Beförderung</td>
+<td></td>
+</tr>
+<tr>
+<td>das Lokal</td>
+<td>pub, restaurant</td>
+<td>local = örtlich, lokal (adjective)</td>
+<td>Wir treffen uns im Lokal an der Ecke.</td>
+</tr>
+<tr>
+<td>das Menü</td>
+<td>set meal; (software) menu</td>
+<td>restaurant menu = die Speisekarte</td>
+<td>Die Speisekarte, bitte!</td>
+</tr>
+<tr>
+<td>ordinär</td>
+<td>vulgar, common</td>
+<td>ordinary = gewöhnlich</td>
+<td></td>
+</tr>
+<tr>
+<td>der Beamer</td>
+<td>projector</td>
+<td>pseudo-English; in English a projector is a projector</td>
+<td>Der Beamer funktioniert nicht.</td>
+</tr>
+<tr>
+<td>der Smoking</td>
+<td>tuxedo</td>
+<td>smoking = das Rauchen</td>
+<td>Rauchen verboten!</td>
+</tr>
+<tr>
+<td>der Oldtimer</td>
+<td>vintage car</td>
+<td>old-timer (person) = alter Hase</td>
+<td></td>
+</tr>
+<tr>
+<td>die Chips</td>
+<td>crisps (UK)</td>
+<td>chips (UK) = die Pommes</td>
+<td></td>
+</tr>
+<tr>
+<td>der Pickel</td>
+<td>pimple</td>
+<td>pickle = die Gewürzgurke</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Pseudo-English words exist too: das Handy, der Beamer, das Public Viewing, der Shootingstar; native English speakers won't understand them.</li>
+</ul>
+<h2>False friends and traps for Ukrainian speakers</h2>
+<p>Many international words exist in both languages with a shifted meaning; trust the German meaning, not the Ukrainian echo.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Real meaning</th>
+<th>Ukrainian look-alike in German</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Familie</td>
+<td>family</td>
+<td>фамілія (surname) = der Nachname, der Familienname</td>
+<td>Wie ist Ihr Nachname?</td>
+</tr>
+<tr>
+<td>der Akademiker</td>
+<td>university graduate</td>
+<td>академік (academician) = das Mitglied der Akademie der Wissenschaften</td>
+<td>Sie ist Akademikerin, sie hat Jura studiert.</td>
+</tr>
+<tr>
+<td>das Kabinett</td>
+<td>(government) cabinet; small exhibition room</td>
+<td>кабінет = das Büro, das Arbeitszimmer; doctor's: das Sprechzimmer; school: der Fachraum</td>
+<td>Bitte warten Sie, Sie werden ins Sprechzimmer gerufen.</td>
+</tr>
+<tr>
+<td>das Magazin</td>
+<td>magazine; storeroom; gun magazine</td>
+<td>магазин (shop) = das Geschäft, der Laden</td>
+<td>Ich gehe in den Laden.</td>
+</tr>
+<tr>
+<td>die Dose</td>
+<td>can, tin; (power) socket = Steckdose</td>
+<td>доза (dose) = die Dosis</td>
+<td>eine Dose Cola / die richtige Dosis</td>
+</tr>
+<tr>
+<td>die Bilanz</td>
+<td>balance sheet; taking stock</td>
+<td>баланс (phone, account) = das Guthaben, der Kontostand; equilibrium = das Gleichgewicht</td>
+<td>Mein Guthaben ist leer. / Bilanz ziehen – take stock</td>
+</tr>
+<tr>
+<td>der Artist / die Artistin</td>
+<td>circus performer, acrobat</td>
+<td>артист (actor, performer) = der Schauspieler, der Künstler</td>
+<td>Er ist Schauspieler am Theater.</td>
+</tr>
+<tr>
+<td>die Anekdote</td>
+<td>anecdote, a (true) funny story</td>
+<td>анекдот (joke) = der Witz</td>
+<td>Erzähl mal einen Witz!</td>
+</tr>
+<tr>
+<td>der Konkurs</td>
+<td>bankruptcy</td>
+<td>конкурс (contest) = der Wettbewerb</td>
+<td>Die Firma ist in Konkurs gegangen.</td>
+</tr>
+<tr>
+<td>der Termin</td>
+<td>appointment</td>
+<td>термін (deadline) = die Frist; (word, term) = der Begriff</td>
+<td>Ich habe einen Termin beim Arzt. / Die Frist endet am Freitag.</td>
+</tr>
+<tr>
+<td>der Prospekt</td>
+<td>brochure, leaflet</td>
+<td>проспект (avenue) = die Allee, die breite Straße</td>
+<td></td>
+</tr>
+<tr>
+<td>der Kran</td>
+<td>crane (machine)</td>
+<td>кран (tap) = der Wasserhahn</td>
+<td>Der Wasserhahn tropft.</td>
+</tr>
+<tr>
+<td>die Pension</td>
+<td>guesthouse; pension (for civil servants)</td>
+<td>пенсія (old-age) = die Rente</td>
+<td>Meine Oma ist in Rente.</td>
+</tr>
+<tr>
+<td>das Kostüm</td>
+<td>costume; women's skirt suit</td>
+<td>костюм (men's suit) = der Anzug</td>
+<td>Er trägt einen Anzug.</td>
+</tr>
+<tr>
+<td>das Butterbrot</td>
+<td>bread with butter (only)</td>
+<td>бутерброд (any open sandwich) = das belegte Brot, das (belegte) Brötchen</td>
+<td>Ein Käsebrot, bitte.</td>
+</tr>
+<tr>
+<td>akkurat</td>
+<td>careful, precise, also neat (partial false friend: the meanings overlap a lot)</td>
+<td>акуратний (neat, tidy): ordentlich is the everyday word; akkurat sounds more formal</td>
+<td>Sein Zimmer ist immer ordentlich.</td>
+</tr>
+<tr>
+<td>die Kompetenz</td>
+<td>skill; area of authority</td>
+<td>(fine, but компетентний person = kompetent, fachkundig)</td>
+<td></td>
+</tr>
+<tr>
+<td>das Gymnasium</td>
+<td>academic secondary school, grades 5–12/13</td>
+<td>гімназія is close, but sport hall = die Turnhalle</td>
+<td></td>
+</tr>
+<tr>
+<td>die Akademie</td>
+<td>academy, often a college or training institute</td>
+<td>академія is broader; university = die Universität, die Hochschule</td>
+<td></td>
+</tr>
+<tr>
+<td>der Student</td>
+<td>university student only</td>
+<td>учень (school pupil) = der Schüler</td>
+<td>Mein Sohn ist Schüler, meine Tochter Studentin.</td>
+</tr>
+<tr>
+<td>die Klasse</td>
+<td>school class; grade; "great!" (Klasse!)</td>
+<td>клас room = das Klassenzimmer</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Ukrainian habits that also transfer badly: у мене є = Ich habe (never "bei mir ist"); дзвонити тобі = dich anrufen (accusative).</li>
+</ul>
+<h2>Confusing pairs</h2>
+<p>Each row splits one English or Ukrainian idea into several German words; pick by the rule in the middle column.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Words</th>
+<th>Which one when</th>
+<th>Ukrainian / English hint</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kennen / wissen / können</td>
+<td>kennen = be familiar with a person, place, thing; wissen = know a fact (often + dass/ob/wer); können = know how to, be able</td>
+<td>знати (когось) / знати (що) / вміти</td>
+<td>Ich kenne Berlin. / Ich weiß, wo er wohnt. / Ich kann schwimmen. Ich kann Deutsch.</td>
+</tr>
+<tr>
+<td>lernen / lehren / studieren</td>
+<td>lernen = learn, study for school; lehren = teach (formal, usually unterrichten); studieren = study at university</td>
+<td>вчити / викладати / навчатися в університеті</td>
+<td>Ich lerne für die Prüfung. / Sie unterrichtet Mathe. / Er studiert Informatik.</td>
+</tr>
+<tr>
+<td>wer / wo / wohin / woher</td>
+<td>wer = who; wo = where (location); wohin = where to; woher = where from</td>
+<td>хто / де / куди / звідки; English "where" covers three</td>
+<td>Wo wohnst du? Wohin fährst du? Woher kommst du? Wer ist das?</td>
+</tr>
+<tr>
+<td>seit / seid</td>
+<td>seit = since, for (time); seid = (ihr) are</td>
+<td></td>
+<td>Ich wohne seit 2023 hier. / Seid ihr müde?</td>
+</tr>
+<tr>
+<td>das / dass</td>
+<td>das = the, that (article, pronoun, relative); dass = conjunction "that"</td>
+<td>той / що</td>
+<td>Das Buch, das ich lese. / Ich denke, dass es regnet.</td>
+</tr>
+<tr>
+<td>wenn / als / ob</td>
+<td>als = one past event; wenn = whenever (repeated) or if/when (now, future); ob = whether</td>
+<td>коли (одноразово) / коли, якщо / чи</td>
+<td>Als ich klein war, ... / Wenn es regnet, bleibe ich hier. / Ich weiß nicht, ob er kommt.</td>
+</tr>
+<tr>
+<td>fragen / bitten / beten</td>
+<td>fragen = ask a question; bitten (um) = ask for, request; beten = pray</td>
+<td>питати / просити / молитися</td>
+<td>Ich frage ihn nach dem Weg. / Ich bitte dich um Hilfe.</td>
+</tr>
+<tr>
+<td>leihen / borgen / ausleihen</td>
+<td>leihen and borgen = lend or borrow (jemandem etwas = lend; sich etwas = borrow); ausleihen = borrow, esp. from a library</td>
+<td>позичати / позичити</td>
+<td>Kannst du mir 10 Euro leihen? / Ich leihe mir ein Buch aus.</td>
+</tr>
+<tr>
+<td>legen / liegen</td>
+<td>legen = put down flat (action, + Akk, regular: legte); liegen = lie, be lying (state, + Dat, lag, gelegen)</td>
+<td>класти / лежати</td>
+<td>Ich lege das Buch auf den Tisch. Das Buch liegt auf dem Tisch.</td>
+</tr>
+<tr>
+<td>stellen / stehen</td>
+<td>stellen = put upright (action, Akk); stehen = stand (state, Dat)</td>
+<td>ставити / стояти</td>
+<td>Ich stelle die Flasche in den Kühlschrank. Sie steht im Kühlschrank.</td>
+</tr>
+<tr>
+<td>setzen / sitzen</td>
+<td>sich setzen = sit down (action, Akk); sitzen = be sitting (state, Dat)</td>
+<td>сідати / сидіти</td>
+<td>Setz dich auf das Sofa! Ich sitze auf dem Sofa.</td>
+</tr>
+<tr>
+<td>hängen (hängte) / hängen (hing)</td>
+<td>Same verb, action = hängte (Akk); state = hing (Dat)</td>
+<td>вішати / висіти</td>
+<td>Ich hängte das Bild an die Wand. Das Bild hing an der Wand.</td>
+</tr>
+<tr>
+<td>mögen / möchten / gefallen / gern</td>
+<td>mögen = like in general (+ noun); möchten = would like (polite wish); gefallen = appeal to (Dat, looks, impressions); gern = like doing (with a verb)</td>
+<td>любити / хотіти б / подобатися / любити + inf</td>
+<td>Ich mag Kaffee. / Ich möchte einen Kaffee. / Die Jacke gefällt mir. / Ich trinke gern Kaffee.</td>
+</tr>
+<tr>
+<td>sondern / aber</td>
+<td>sondern = "but rather" after a negative, replacing it; aber = but (contrast, both true)</td>
+<td>а / але (Ukrainian makes the same split)</td>
+<td>Nicht heute, sondern morgen. / Es ist teuer, aber gut.</td>
+</tr>
+<tr>
+<td>schon / noch / erst</td>
+<td>schon = already; noch = still, yet; erst = only (so far, later than expected), not until</td>
+<td>вже / ще / лише (тільки що)</td>
+<td>Es ist schon 10 Uhr. / Er schläft noch. / Er kommt erst morgen. Ich bin erst 20.</td>
+</tr>
+<tr>
+<td>nicht mehr / noch nicht</td>
+<td>nicht mehr = no longer; noch nicht = not yet. Answers: schon ↔ noch nicht; noch ↔ nicht mehr</td>
+<td>вже не / ще не</td>
+<td>Ich rauche nicht mehr. / Ich bin noch nicht fertig.</td>
+</tr>
+<tr>
+<td>nur / erst</td>
+<td>nur = only (amount, final); erst = only so far, more may come</td>
+<td>тільки / лише ще</td>
+<td>Ich habe nur 5 Euro. / Ich habe erst drei Seiten gelesen.</td>
+</tr>
+<tr>
+<td>Uhr / Stunde / Mal / Zeit</td>
+<td>die Uhr = clock, o'clock; die Stunde = hour, lesson; das Mal = time (occurrence); die Zeit = time (in general)</td>
+<td>годинник, о ... / година / раз / час</td>
+<td>Um 3 Uhr. / Zwei Stunden. / Das erste Mal. / Ich habe keine Zeit.</td>
+</tr>
+<tr>
+<td>spät / später / zu spät</td>
+<td>spät = late; später = later; zu spät = too late (for something)</td>
+<td></td>
+<td>Es ist spät. / Bis später! / Ich komme zu spät.</td>
+</tr>
+<tr>
+<td>Wie spät ist es?</td>
+<td>What time is it? (= Wie viel Uhr ist es?), not "how late"</td>
+<td>Котра година?</td>
+<td></td>
+</tr>
+<tr>
+<td>sehr / viel</td>
+<td>sehr = very (+ adjective, + verb); viel = much, a lot (+ noun, + verb)</td>
+<td>дуже / багато</td>
+<td>sehr gut / Danke sehr! / viel Geld / Ich arbeite viel. / Ich mag dich sehr.</td>
+</tr>
+<tr>
+<td>man / Mann</td>
+<td>man = one, people, you (pronoun, one n, lowercase); der Mann = man, husband</td>
+<td>неозначено-особове (кажуть, тут не палять)</td>
+<td>Hier darf man nicht rauchen. / Mein Mann kocht.</td>
+</tr>
+<tr>
+<td>zu / nach / in</td>
+<td>nach = towns, countries without article, nach Hause; zu = people, shops, places, events; in = into a building or a country with article</td>
+<td>до / в</td>
+<td>Ich fahre nach Wien, zu meiner Tante, in die Schweiz, zum Arzt.</td>
+</tr>
+<tr>
+<td>zu Hause / nach Hause</td>
+<td>zu Hause = at home (location); nach Hause = home (direction)</td>
+<td>вдома / додому</td>
+<td>Ich bin zu Hause. Ich gehe nach Hause.</td>
+</tr>
+<tr>
+<td>ziemlich</td>
+<td>quite, rather (fairly strong, not "pretty" as in beautiful)</td>
+<td>досить</td>
+<td>Das ist ziemlich teuer.</td>
+</tr>
+<tr>
+<td>eventuell / endlich / schließlich</td>
+<td>eventuell = maybe; endlich = finally (at last, relief); schließlich = in the end, after all</td>
+<td>можливо / нарешті / зрештою</td>
+<td>Endlich Wochenende! / Schließlich hat er Ja gesagt.</td>
+</tr>
+<tr>
+<td>das Ende / zu Ende / am Ende</td>
+<td>das Ende = the end; zu Ende = finished, over; am Ende = at the end, in the end</td>
+<td></td>
+<td>Der Film ist zu Ende. / Am Ende hat er gewonnen.</td>
+</tr>
+<tr>
+<td>denken / glauben / meinen</td>
+<td>denken = think (about = an + Akk); glauben = believe, guess; meinen = have an opinion, mean</td>
+<td></td>
+<td>Ich denke an dich. / Ich glaube, er kommt. / Was meinst du?</td>
+</tr>
+<tr>
+<td>sagen / sprechen / reden / erzählen</td>
+<td>sagen = say (words, + Dat); sprechen = speak (language, to someone); reden = talk, chat; erzählen = tell (a story)</td>
+<td>казати / говорити / розмовляти / розповідати</td>
+<td>Er sagt nichts. / Ich spreche Deutsch. / Wir reden über Politik. / Erzähl mal!</td>
+</tr>
+<tr>
+<td>gehen / fahren</td>
+<td>gehen = walk, go on foot (also general "go"); fahren = go by vehicle</td>
+<td>йти / їхати (same split as Ukrainian)</td>
+<td>Ich fahre mit dem Bus zur Arbeit.</td>
+</tr>
+<tr>
+<td>bringen / nehmen / holen</td>
+<td>bringen = bring, take to; nehmen = take; holen = fetch, go and get</td>
+<td>приносити / брати / приносити (за чимось сходивши)</td>
+<td>Ich hole Brötchen.</td>
+</tr>
+<tr>
+<td>warten / erwarten</td>
+<td>warten auf = wait for; erwarten = expect</td>
+<td>чекати на / очікувати</td>
+<td>Ich warte auf den Bus. / Ich erwarte ein Kind.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Spelling and pronunciation traps</h2>
+<p>German spelling is regular once you know about a dozen rules; most traps come from reading letters the English way.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Trap</th>
+<th>Rule</th>
+<th>Ukrainian / English hint</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ei vs ie</td>
+<td>ei = "ai" [aɪ]; ie = long "i" [iː]. Say the second letter in English</td>
+<td>ei ≈ ай, ie ≈ іі</td>
+<td>mein, Wein, drei / Liebe, vier, Brief, sieben</td>
+</tr>
+<tr>
+<td>eu / äu</td>
+<td>Both = "oi" [ɔʏ]</td>
+<td>≈ ой</td>
+<td>neu, heute, Leute, Häuser</td>
+</tr>
+<tr>
+<td>ß vs ss</td>
+<td>ß after a long vowel or diphthong; ss after a short vowel</td>
+<td></td>
+<td>Straße, groß, weiß, Fuß / Wasser, Klasse, muss, dass</td>
+</tr>
+<tr>
+<td>ß in Switzerland</td>
+<td>Swiss German writes ss everywhere</td>
+<td></td>
+<td>Strasse</td>
+</tr>
+<tr>
+<td>Capital nouns</td>
+<td>Every noun and nominalisation is capitalised</td>
+<td></td>
+<td>das Haus, die Liebe, beim Essen, etwas Gutes</td>
+</tr>
+<tr>
+<td>Sie vs sie</td>
+<td>Sie = formal you (always capitalised); sie = she, they; verb shows which</td>
+<td></td>
+<td>Kommen Sie? (you) / Sie kommt. (she) / Sie kommen. (they or you)</td>
+</tr>
+<tr>
+<td>du / dein in letters</td>
+<td>Lowercase is standard; capital Du allowed in letters and messages</td>
+<td></td>
+<td>Wie geht es dir / Dir?</td>
+</tr>
+<tr>
+<td>v = f</td>
+<td>v is usually [f] in German words; [v] in loanwords</td>
+<td>ф</td>
+<td>Vater, viel, vier / Vase, Video, Klavier</td>
+</tr>
+<tr>
+<td>w = v</td>
+<td>w is always [v]</td>
+<td>в</td>
+<td>Wasser, wie, Wien</td>
+</tr>
+<tr>
+<td>z = ts</td>
+<td>z (and tz) = [ts]</td>
+<td>ц</td>
+<td>Zeit, zehn, Katze, Pizza</td>
+</tr>
+<tr>
+<td>s before a vowel</td>
+<td>s at the start of a syllable before a vowel = [z] (voiced)</td>
+<td>з</td>
+<td>Sonne, sie, Hose</td>
+</tr>
+<tr>
+<td>st / sp at the start</td>
+<td>st- and sp- at the beginning of a word or stem = "scht", "schp"</td>
+<td>шт / шп</td>
+<td>Stadt, Straße, versteht, sprechen, Sport / but: Fenster, Wespe (middle)</td>
+</tr>
+<tr>
+<td>sch</td>
+<td>[ʃ] like sh</td>
+<td>ш</td>
+<td>Schule, schnell</td>
+</tr>
+<tr>
+<td>ch after a, o, u, au</td>
+<td>Throaty [x], like Ukrainian х</td>
+<td>х</td>
+<td>Bach, Buch, auch, noch</td>
+</tr>
+<tr>
+<td>ch after e, i, ä, ö, ü, consonants, -chen</td>
+<td>Soft [ç], х said with the tongue high, "hissing"</td>
+<td>хь (м'яке)</td>
+<td>ich, nicht, Mädchen, München, durch, Märchen</td>
+</tr>
+<tr>
+<td>-ig at the end</td>
+<td>Pronounced like -ich in standard German</td>
+<td></td>
+<td>billig, zwanzig, König</td>
+</tr>
+<tr>
+<td>j</td>
+<td>[j] like y in yes</td>
+<td>й</td>
+<td>ja, Jahr, jung</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Usually throaty [ʁ]; after a vowel at the end almost an "a"</td>
+<td></td>
+<td>rot, Brot / Vater, hier, der</td>
+</tr>
+<tr>
+<td>h after a vowel</td>
+<td>Silent; marks a long vowel</td>
+<td></td>
+<td>gehen, Uhr, Sohn, fahren</td>
+</tr>
+<tr>
+<td>Final devoicing</td>
+<td>b, d, g, s at the end of a syllable sound p, t, k, s</td>
+<td>Standard Ukrainian keeps voiced endings (дуб ends in a real б); German devoices them</td>
+<td>Hund [t], Tag [k], gelb [p], Kind [t], ab [p]</td>
+</tr>
+<tr>
+<td>Long vowel signs</td>
+<td>Doubled vowel, vowel + h, or ie: long</td>
+<td></td>
+<td>Meer, Boot, Zahn, Bier</td>
+</tr>
+<tr>
+<td>Short vowel signs</td>
+<td>Vowel + double consonant or two consonants: short</td>
+<td></td>
+<td>Bett, kommen, Mutter, Kind</td>
+</tr>
+<tr>
+<td>Minimal pairs</td>
+<td>Length changes meaning</td>
+<td></td>
+<td>Staat / Stadt, bieten / bitten, Miete / Mitte, Ofen / offen</td>
+</tr>
+<tr>
+<td>Umlaut ä, ö, ü</td>
+<td>ä ≈ open e; ö = e with rounded lips; ü = i with rounded lips; never drop the dots</td>
+<td>ü ≈ ю without the й</td>
+<td>schön vs schon, würde vs wurde, Brüder vs Bruder</td>
+</tr>
+<tr>
+<td>ae, oe, ue</td>
+<td>Replace ä, ö, ü when the keyboard has none</td>
+<td></td>
+<td>Mueller = Müller</td>
+</tr>
+<tr>
+<td>Glottal stop</td>
+<td>Words starting with a vowel get a tiny break, no linking</td>
+<td></td>
+<td>am Abend (am + tiny break + Abend), not "a-ma-bend"</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Gender traps</h2>
+<p>German grammatical gender often ignores real-world sex and rarely matches Ukrainian; learn every noun with its article (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>), and watch the words whose meaning changes with the article.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Noun</th>
+<th>Gender and meaning</th>
+<th>Why it trips you</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Mädchen</td>
+<td>neuter: girl</td>
+<td>-chen makes every noun neuter (дівчина is feminine)</td>
+<td>Das Mädchen spielt. (pronoun in speech: es or, increasingly, sie)</td>
+</tr>
+<tr>
+<td>das Kind</td>
+<td>neuter: child</td>
+<td>дитина is feminine</td>
+<td>Das Kind schläft.</td>
+</tr>
+<tr>
+<td>der See / die See</td>
+<td>der See = lake; die See = sea (= das Meer)</td>
+<td>Same word, two genders</td>
+<td>Wir baden im See. / Er fährt zur See.</td>
+</tr>
+<tr>
+<td>das Band / der Band / die Band</td>
+<td>das Band = ribbon, tape, bond; der Band = volume (book); die Band = music band</td>
+<td>Three meanings</td>
+<td>der erste Band von Harry Potter / Die Band spielt live.</td>
+</tr>
+<tr>
+<td>der Teil / das Teil</td>
+<td>der Teil = part, share; das Teil = a piece, a separate item (also colloquial "thing")</td>
+<td>Both mean part, nuance differs</td>
+<td>Der größte Teil der Arbeit. / Das Teil ist kaputt.</td>
+</tr>
+<tr>
+<td>die Butter</td>
+<td>feminine: butter</td>
+<td>масло is neuter</td>
+<td>Die Butter ist im Kühlschrank.</td>
+</tr>
+<tr>
+<td>das Gehalt / der Gehalt</td>
+<td>das Gehalt = salary; der Gehalt = content (Alkoholgehalt)</td>
+<td>Same word, two genders</td>
+<td>Mein Gehalt kommt am Ende des Monats.</td>
+</tr>
+<tr>
+<td>die Steuer / das Steuer</td>
+<td>die Steuer = tax; das Steuer = steering wheel</td>
+<td></td>
+<td>Wer sitzt am Steuer?</td>
+</tr>
+<tr>
+<td>der Leiter / die Leiter</td>
+<td>der Leiter = head, manager; die Leiter = ladder</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>der Kunde / die Kunde</td>
+<td>der Kunde = customer; die Kunde = news (old-fashioned)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>die Sonne / der Mond</td>
+<td>sun is feminine, moon masculine</td>
+<td>сонце n, місяць m; Sonne differs from Ukrainian; Mond happens to match (masculine)</td>
+<td></td>
+</tr>
+<tr>
+<td>das Problem, das Thema, das System, das Programm</td>
+<td>neuter</td>
+<td>Greek -a/-em words: feminine in Ukrainian (проблема, тема, система, програма)</td>
+<td>Kein Problem!</td>
+</tr>
+<tr>
+<td>die Milch</td>
+<td>feminine</td>
+<td>молоко is neuter</td>
+<td></td>
+</tr>
+<tr>
+<td>der Tee, der Kaffee</td>
+<td>masculine</td>
+<td>кава feminine</td>
+<td></td>
+</tr>
+<tr>
+<td>das Bier, das Wasser</td>
+<td>neuter</td>
+<td>вода feminine</td>
+<td></td>
+</tr>
+<tr>
+<td>die Person</td>
+<td>feminine, also for men</td>
+<td>Pronoun follows the noun: sie</td>
+<td>Die Person ist mein Bruder.</td>
+</tr>
+<tr>
+<td>das Mitglied</td>
+<td>neuter, for any member</td>
+<td></td>
+<td>Er ist ein neues Mitglied.</td>
+</tr>
+<tr>
+<td>der Junge</td>
+<td>masculine: boy (weak noun: den Jungen)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>das Auto, das Handy, das Kino</td>
+<td>neuter</td>
+<td>Loanwords in -o / -y are mostly neuter</td>
+<td></td>
+</tr>
+<tr>
+<td>die Uni, die Kita</td>
+<td>feminine</td>
+<td>Short forms keep the full word's gender (die Universität)</td>
+<td></td>
+</tr>
+<tr>
+<td>der Joghurt / das Joghurt</td>
+<td>both correct; Austria also die</td>
+<td>Regional variation</td>
+<td></td>
+</tr>
+<tr>
+<td>Endings that help</td>
+<td>-ung, -heit, -keit, -schaft, -ion, -tät: die; -chen, -lein, -um, -ment: das; -er (people), -ling, -ismus: der</td>
+<td>Most reliable shortcut</td>
+<td>die Zeitung, die Freiheit, das Zentrum, der Lehrer</td>
+</tr>
+<tr>
+<td>Compound nouns</td>
+<td>The last part decides the gender</td>
+<td></td>
+<td>die Hand + der Schuh = der Handschuh</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Grammar traps</h2>
+<p>These are the literal translations from Ukrainian or English that Germans notice at once; the right column is what a native speaker says.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Trap</th>
+<th>Wrong (literal)</th>
+<th>Right German</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yes to a negative question</td>
+<td>Kommst du nicht? – Ja.</td>
+<td>Doch! (yes, I am) / Nein. (no, I'm not)</td>
+<td>Ja after a negative is confusing; Doch contradicts it</td>
+</tr>
+<tr>
+<td>kein vs nicht</td>
+<td>Ich habe nicht Auto.</td>
+<td>Ich habe kein Auto.</td>
+<td>kein negates nouns with ein or no article; nicht negates verbs, adjectives, definite nouns: Ich habe das Auto nicht.</td>
+</tr>
+<tr>
+<td>Double negation</td>
+<td>Ich habe nicht nichts gesagt. / Niemand nicht kommt.</td>
+<td>Ich habe nichts gesagt. / Niemand kommt.</td>
+<td>Ukrainian ніхто не / нічого не doubles; German uses one negative only</td>
+</tr>
+<tr>
+<td>mögen without object</td>
+<td>Ich mag. / Magst du?</td>
+<td>Ich mag das. / Magst du es? / Ja, gern.</td>
+<td>mögen needs an object; for activities use gern: Ich schwimme gern</td>
+</tr>
+<tr>
+<td>Being cold, hot, bored</td>
+<td>Ich bin kalt. / Ich bin heiß. / Ich bin langweilig.</td>
+<td>Mir ist kalt. / Mir ist heiß. / Mir ist langweilig.</td>
+<td>Ich bin kalt = I am cold-hearted; ich bin heiß = I'm sexually excited (slang); ich bin langweilig = I'm boring (like мені холодно)</td>
+</tr>
+<tr>
+<td>Asking a name</td>
+<td>Was ist dein Name?</td>
+<td>Wie heißt du? / Wie heißen Sie?</td>
+<td>Was ist dein Name is understood but sounds translated</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>Ich habe 30 Jahre.</td>
+<td>Ich bin 30 (Jahre alt).</td>
+<td>sein, like English, not haben</td>
+</tr>
+<tr>
+<td>Hunger, thirst, fear</td>
+<td>Ich bin hungrig. (OK but bookish)</td>
+<td>Ich habe Hunger / Durst / Angst.</td>
+<td>haben + noun is the everyday form</td>
+</tr>
+<tr>
+<td>How are you</td>
+<td>Wie bist du?</td>
+<td>Wie geht es dir? / Wie geht's?</td>
+<td>Wie bist du? means "what are you like?"</td>
+</tr>
+<tr>
+<td>Having something</td>
+<td>Bei mir ist ein Auto.</td>
+<td>Ich habe ein Auto.</td>
+<td>у мене є = haben</td>
+</tr>
+<tr>
+<td>seit + tense</td>
+<td>Ich wohne hier seit zwei Jahre. / Ich habe hier seit 2 Jahren gewohnt.</td>
+<td>Ich wohne seit zwei Jahren hier.</td>
+<td>seit + present tense for something still true; seit takes dative</td>
+</tr>
+<tr>
+<td>Verb second</td>
+<td>Heute ich gehe ins Kino.</td>
+<td>Heute gehe ich ins Kino.</td>
+<td>The conjugated verb is always in position 2 in statements</td>
+</tr>
+<tr>
+<td>Verb at the end</td>
+<td>..., weil ich habe keine Zeit.</td>
+<td>..., weil ich keine Zeit habe.</td>
+<td>weil, dass, wenn, ob, als send the verb to the end (see <a href="../docs/word-order.html">Word order</a>) (spoken weil + V2 is common but informal)</td>
+</tr>
+<tr>
+<td>anrufen + case</td>
+<td>Ich rufe dir an.</td>
+<td>Ich rufe dich an.</td>
+<td>дзвонити тобі is dative; anrufen takes accusative</td>
+</tr>
+<tr>
+<td>fragen + case</td>
+<td>Ich frage dir.</td>
+<td>Ich frage dich.</td>
+<td>Accusative, like питати тебе</td>
+</tr>
+<tr>
+<td>helfen, danken, gratulieren</td>
+<td>Ich helfe dich.</td>
+<td>Ich helfe dir. / Ich danke dir. / Ich gratuliere dir.</td>
+<td>Dative verbs, like допомагати тобі</td>
+</tr>
+<tr>
+<td>heiraten</td>
+<td>Ich heirate mit ihr.</td>
+<td>Ich heirate sie. / Ich bin mit ihr verheiratet.</td>
+<td>heiraten takes a direct object</td>
+</tr>
+<tr>
+<td>Professions</td>
+<td>Ich bin ein Lehrer.</td>
+<td>Ich bin Lehrer.</td>
+<td>No article with jobs and nationalities (Ich bin Ukrainer)</td>
+</tr>
+<tr>
+<td>Languages</td>
+<td>Ich spreche das Deutsch. / Ich spreche auf Deutsch.</td>
+<td>Ich spreche Deutsch. / Sag das auf Deutsch.</td>
+<td>auf Deutsch = in German (saying something); no article for speaking a language</td>
+</tr>
+<tr>
+<td>I will</td>
+<td>Ich will morgen kommen. (= I want)</td>
+<td>Ich komme morgen. / Ich werde morgen kommen.</td>
+<td>will = want; future uses present tense + time word or werden</td>
+</tr>
+<tr>
+<td>Present for future</td>
+<td>Ich werde morgen arbeiten gehen. (OK but heavy)</td>
+<td>Morgen gehe ich arbeiten.</td>
+<td>Germans mostly use present tense with a time word</td>
+</tr>
+<tr>
+<td>Going home vs at home</td>
+<td>Ich bin nach Hause. / Ich gehe zu Hause.</td>
+<td>Ich bin zu Hause. / Ich gehe nach Hause.</td>
+<td>location vs direction</td>
+</tr>
+<tr>
+<td>Two-way prepositions</td>
+<td>Ich gehe in der Stadt. (= I walk around inside town)</td>
+<td>Ich gehe in die Stadt.</td>
+<td>Wohin? = accusative; Wo? = dative (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>)</td>
+</tr>
+<tr>
+<td>"It is" there is</td>
+<td>Hier ist viele Leute.</td>
+<td>Hier sind viele Leute. / Es gibt viele Leute hier.</td>
+<td>Es gibt + Akk = there is/are (in general)</td>
+</tr>
+<tr>
+<td>"I'm finished"</td>
+<td>Not wrong, but ambiguous: Ich bin fertig.</td>
+<td>Ich bin fertig. (done) / Ich bin fix und fertig. (exhausted)</td>
+<td>Ich bin fertig alone can also mean worn out; context decides</td>
+</tr>
+<tr>
+<td>"I'm right"</td>
+<td>Ich bin richtig.</td>
+<td>Ich habe recht. / Du hast recht.</td>
+<td>recht haben, like твоя правда = du hast recht</td>
+</tr>
+<tr>
+<td>"I agree"</td>
+<td>Ich bin einverstanden mit dir. (OK) / Ich stimme.</td>
+<td>Ich stimme dir zu. / Einverstanden! / Da hast du recht.</td>
+<td>zustimmen + Dat</td>
+</tr>
+<tr>
+<td>"It's my turn"</td>
+<td>Es ist meine Reihe.</td>
+<td>Ich bin dran. / Ich bin an der Reihe.</td>
+<td></td>
+</tr>
+<tr>
+<td>"I miss you"</td>
+<td>Ich fehle dich.</td>
+<td>Ich vermisse dich. / Du fehlst mir.</td>
+<td>fehlen reverses subject and object, like мені тебе бракує</td>
+</tr>
+<tr>
+<td>"Make a photo"</td>
+<td>Ich mache ein Foto.</td>
+<td>Correct! Ich mache ein Foto.</td>
+<td>German is like Ukrainian (зробити фото), not English take</td>
+</tr>
+<tr>
+<td>"Take a decision"</td>
+<td>Ich mache eine Entscheidung.</td>
+<td>Ich treffe eine Entscheidung. / Ich entscheide mich.</td>
+<td>Fixed verb + noun pair (Funktionsverbgefüge)</td>
+</tr>
+<tr>
+<td>"I'm sorry"</td>
+<td>Ich bin sorry. / Es tut mich leid.</td>
+<td>Es tut mir leid. / Sorry!</td>
+<td>leid tun + Dat</td>
+</tr>
+</tbody>
+</table></div>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>B2 confusables</h3>
+<p>At B2 the traps get subtler: both words are real and close in meaning, but Germans hear the difference at once.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Words</th>
+<th>Which one when</th>
+<th>Ukrainian / English hint</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scheinbar / anscheinend</td>
+<td>scheinbar = only seemingly, but in fact not; anscheinend = apparently, it looks like it is true</td>
+<td>удавано, на перший погляд / мабуть, схоже</td>
+<td>Er ist nur scheinbar ruhig, innerlich kocht er. / Er ist anscheinend krank, er ist nicht gekommen.</td>
+</tr>
+<tr>
+<td>wohl / wahrscheinlich / vermutlich</td>
+<td>wohl = unstressed particle for the speaker's guess, mid-sentence only; wahrscheinlich = probably, can start the sentence or be a one-word answer; vermutlich = presumably, more formal</td>
+<td>мабуть / ймовірно / певно</td>
+<td>Er hat wohl den Zug verpasst. / Kommt er? – Wahrscheinlich. (not: Wohl.)</td>
+</tr>
+<tr>
+<td>sich erinnern an / jdn erinnern an / sich merken / merken</td>
+<td>sich erinnern an + Akk = remember; jdn an etw erinnern = remind someone; sich (Dat) etw merken = memorise, keep in mind; merken = notice</td>
+<td>пам'ятати / нагадувати / запам'ятати / помічати</td>
+<td>Ich erinnere mich an den Urlaub. / Erinnerst du mich an den Termin? / Ich merke mir deine Nummer. / Ich habe nicht gemerkt, dass er weg war.</td>
+</tr>
+<tr>
+<td>nicht müssen / nicht brauchen zu / nicht dürfen</td>
+<td>nicht müssen = no obligation; nicht brauchen + zu = the same, more idiomatic; nicht dürfen = must not</td>
+<td>не треба / не можна</td>
+<td>Du musst nicht kommen. = Du brauchst nicht zu kommen. / Du darfst nicht kommen. (forbidden)</td>
+</tr>
+<tr>
+<td>brauchen + zu (positive)</td>
+<td>Only with nur or erst: you only need to</td>
+<td>досить лише</td>
+<td>Du brauchst nur anzurufen. / Perfect: Du hättest nicht zu kommen brauchen.</td>
+</tr>
+<tr>
+<td>ändern / verändern / wechseln</td>
+<td>ändern = modify, adjust; verändern = change deeply (character, appearance, the world); wechseln = swap one thing for another</td>
+<td>змінювати / змінюватися докорінно / міняти</td>
+<td>Ich habe meine Meinung geändert. / Du hast dich verändert. / Ich wechsle den Job, Geld, das Thema.</td>
+</tr>
+<tr>
+<td>"change" elsewhere</td>
+<td>change trains = umsteigen; change clothes = sich umziehen; move house = umziehen</td>
+<td>пересідати / переодягатися / переїжджати</td>
+<td>In Köln müssen Sie umsteigen. / Ich ziehe mich schnell um.</td>
+</tr>
+<tr>
+<td>lehnen / ablehnen / leihen</td>
+<td>lehnen = lean; ablehnen = reject, decline; leihen = lend, borrow</td>
+<td>ставити, спирати / відхиляти / позичати</td>
+<td>Er lehnt sich an die Wand. / Sie hat das Angebot abgelehnt. / Leihst du mir dein Rad?</td>
+</tr>
+<tr>
+<td>lassen / verlassen / weggehen</td>
+<td>lassen = leave something somewhere, let; verlassen = leave a place or person (+ Akk); weggehen = leave, go away (no object)</td>
+<td>залишати / покидати / йти</td>
+<td>Ich habe den Schirm im Zug liegen lassen. / Er hat das Büro um 5 verlassen. / Ich gehe jetzt weg.</td>
+</tr>
+<tr>
+<td>bitten um / fragen nach / eine Frage stellen</td>
+<td>bitten um + Akk = ask for (a favour, a thing); fragen nach + Dat = ask about, ask after; a question is gestellt, not gemacht</td>
+<td>просити про / питати про</td>
+<td>Ich bitte Sie um Geduld. / Er fragt nach dem Preis. / Sie hat nach dir gefragt. / Darf ich eine Frage stellen?</td>
+</tr>
+<tr>
+<td>der Gewinn / der Gewinner / verdienen</td>
+<td>der Gewinn = profit, prize, winnings; der Gewinner = winner; verdienen = earn, deserve (gewinnen = win only)</td>
+<td>прибуток, виграш / переможець / заробляти</td>
+<td>Die Firma macht Gewinn. / Wer ist der Gewinner? / Ich verdiene 3.000 Euro.</td>
+</tr>
+<tr>
+<td>die Kritik / der Kritiker</td>
+<td>die Kritik = criticism, also a review (Filmkritik); der Kritiker = the critic (person)</td>
+<td>критика / критик; English critique = Kritik, critic = Kritiker</td>
+<td>Die Kritik war hart. / Er ist Filmkritiker. / Sie übt Kritik an der Regierung.</td>
+</tr>
+<tr>
+<td>sensibel / sensitiv / empfindlich</td>
+<td>sensibel = sensitive (people, topics, data); sensitiv = highly perceptive, rare; empfindlich = touchy, delicate (skin, devices)</td>
+<td>чутливий / вразливий</td>
+<td>ein sensibles Thema, sensible Daten / empfindliche Haut / Sei nicht so empfindlich!</td>
+</tr>
+<tr>
+<td>konsequent / folgerichtig / folglich</td>
+<td>konsequent = consistent, firm, rigorous; folgerichtig = logical, following logically; folglich = consequently</td>
+<td>послідовний / логічний / отже</td>
+<td>Eltern müssen konsequent sein. / Die Entscheidung war folgerichtig. / Er war krank, folglich fehlte er.</td>
+</tr>
+<tr>
+<td>effektiv / effizient / wirksam</td>
+<td>effektiv = effective, it works (colloquially also "in real terms"); effizient = efficient, little waste; wirksam = effective (medicine, measures)</td>
+<td>ефективний covers both: split it</td>
+<td>Die Methode ist effektiv. / Er arbeitet effizient. / Das Mittel ist sehr wirksam.</td>
+</tr>
+</tbody>
+</table></div>
+<p>die Konsequenz means both "consequence" and "consistency": Konsequenzen ziehen = take action, draw conclusions.</p>
+<h3>More false friends at B2</h3>
+<p>These show up in work, news and official German. eventuell, der Prospekt, die Promotion and ordinär are in the tables above; note that in marketing die Promotion is now also used in the English sense (a sales promotion).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Real meaning</th>
+<th>Look-alike: what you actually want</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Konkurrenz</td>
+<td>competition, the competitors (rivals in business or sport)</td>
+<td>competition as a contest = der Wettbewerb; English concurrence = die Übereinstimmung</td>
+<td>Die Konkurrenz schläft nicht. / Sie nimmt an einem Wettbewerb teil.</td>
+</tr>
+<tr>
+<td>die Provision</td>
+<td>commission (fee for selling or brokering)</td>
+<td>provision (supply) = die Versorgung, der Vorrat; (contract clause) = die Bestimmung</td>
+<td>Der Verkäufer bekommt 5 % Provision.</td>
+</tr>
+<tr>
+<td>realisieren</td>
+<td>carry out, implement (a project, a plan)</td>
+<td>realise (understand) = merken, erkennen, begreifen; realisieren in this sense is spreading but sounds anglicised</td>
+<td>Das Projekt wurde 2024 realisiert. / Erst später habe ich gemerkt, dass ich falsch lag.</td>
+</tr>
+<tr>
+<td>das Engagement</td>
+<td>commitment, involvement; a performer's booking</td>
+<td>engagement (to marry) = die Verlobung; (appointment) = der Termin</td>
+<td>Vielen Dank für Ihr Engagement! / Die beiden haben sich verlobt.</td>
+</tr>
+<tr>
+<td>genial</td>
+<td>brilliant, ingenious</td>
+<td>genial (friendly) = freundlich, herzlich</td>
+<td>Das ist eine geniale Idee!</td>
+</tr>
+<tr>
+<td>seriös</td>
+<td>reputable, trustworthy</td>
+<td>serious = ernst, ernsthaft</td>
+<td>Ist die Firma seriös? / Das ist ein ernstes Problem.</td>
+</tr>
+<tr>
+<td>irritieren</td>
+<td>confuse, unsettle</td>
+<td>irritate (annoy) = ärgern, nerven</td>
+<td>Seine Frage hat mich irritiert.</td>
+</tr>
+<tr>
+<td>kontrollieren</td>
+<td>check, inspect</td>
+<td>control (steer, have power over) = steuern, beherrschen</td>
+<td>Der Schaffner kontrolliert die Fahrkarten. / Er konnte seine Wut nicht beherrschen.</td>
+</tr>
+<tr>
+<td>blamieren</td>
+<td>embarrass, make (yourself) look foolish</td>
+<td>blame = beschuldigen, jdm die Schuld geben</td>
+<td>Ich habe mich total blamiert. / Gib mir nicht die Schuld!</td>
+</tr>
+<tr>
+<td>das Personal</td>
+<td>staff, personnel</td>
+<td>personal = persönlich</td>
+<td>Das Personal ist sehr freundlich.</td>
+</tr>
+<tr>
+<td>das Formular</td>
+<td>form (to fill in)</td>
+<td>formula = die Formel</td>
+<td>Füllen Sie bitte das Formular aus.</td>
+</tr>
+<tr>
+<td>die Konfession</td>
+<td>religious denomination</td>
+<td>confession = das Geständnis (police), die Beichte (church)</td>
+<td>Welche Konfession haben Sie?</td>
+</tr>
+<tr>
+<td>der Dom</td>
+<td>cathedral</td>
+<td>dome = die Kuppel</td>
+<td>der Kölner Dom</td>
+</tr>
+<tr>
+<td>die Kanzlei</td>
+<td>law firm, chancellery</td>
+<td>канцелярія (stationery) = die Schreibwaren, der Bürobedarf</td>
+<td>Sie arbeitet in einer Kanzlei.</td>
+</tr>
+<tr>
+<td>die Charakteristik</td>
+<td>typical feature (of a thing)</td>
+<td>характеристика з місця роботи = das Arbeitszeugnis; reference letter = das Empfehlungsschreiben</td>
+<td>Ich brauche ein Arbeitszeugnis von meinem alten Arbeitgeber.</td>
+</tr>
+<tr>
+<td>die Fraktion</td>
+<td>parliamentary group</td>
+<td>fraction = der Bruchteil (part), der Bruch (maths)</td>
+<td>Die Fraktion stimmt dagegen. / ein Bruchteil der Kosten</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Verb + preposition traps</h3>
+<p>Many verbs take a fixed preposition with a fixed case, and it is rarely the one English or Ukrainian suggests; learn the verb, the preposition and the case as one unit. For hypotheticals with Konjunktiv II (Wenn ich Zeit hätte, würde ich ...) and the werden passive, see <a href="../docs/tenses.html">Tenses, moods and the passive</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Wrong (literal)</th>
+<th>Right German</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sich freuen auf + Akk / über + Akk</td>
+<td>Ich freue mich über den Urlaub nächste Woche.</td>
+<td>Ich freue mich auf den Urlaub. / Ich freue mich über das Geschenk.</td>
+<td>auf = looking forward (future); über = glad about (now, past)</td>
+</tr>
+<tr>
+<td>Angst haben vor + Dat</td>
+<td>Ich habe Angst von Hunden.</td>
+<td>Ich habe Angst vor Hunden.</td>
+<td>боятися (від) does not transfer</td>
+</tr>
+<tr>
+<td>warten auf + Akk</td>
+<td>Ich warte für dich.</td>
+<td>Ich warte auf dich.</td>
+<td>English "wait for" misleads</td>
+</tr>
+<tr>
+<td>sich interessieren für + Akk / interessiert sein an + Dat</td>
+<td>Ich interessiere mich an Kunst.</td>
+<td>Ich interessiere mich für Kunst. / Ich bin an der Stelle interessiert.</td>
+<td>Two constructions, two prepositions</td>
+</tr>
+<tr>
+<td>teilnehmen an + Dat</td>
+<td>Ich nehme in dem Kurs teil.</td>
+<td>Ich nehme an dem Kurs teil.</td>
+<td>брати участь у = an</td>
+</tr>
+<tr>
+<td>abhängen von + Dat</td>
+<td>Das hängt auf das Wetter ab.</td>
+<td>Das hängt vom Wetter ab.</td>
+<td>English "depend on" misleads</td>
+</tr>
+<tr>
+<td>denken an / halten von / nachdenken über</td>
+<td>Was denkst du von der Idee?</td>
+<td>Was hältst du von der Idee? / Ich denke an dich. / Ich denke über dein Angebot nach.</td>
+<td>halten von = have an opinion of</td>
+</tr>
+<tr>
+<td>sich beschäftigen mit + Dat</td>
+<td>Ich beschäftige mich über das Thema.</td>
+<td>Ich beschäftige mich mit dem Thema.</td>
+<td>deal with, work on</td>
+</tr>
+<tr>
+<td>sich beschweren bei + Dat über + Akk</td>
+<td>Ich beschwere mich zu dem Vermieter.</td>
+<td>Ich beschwere mich beim Vermieter über den Lärm.</td>
+<td>bei = the person, über = the problem</td>
+</tr>
+<tr>
+<td>sich bewerben bei + Dat um + Akk</td>
+<td>Ich bewerbe mich für eine Stelle in Siemens.</td>
+<td>Ich bewerbe mich bei Siemens um eine Stelle.</td>
+<td>Also correct: sich auf eine Stelle bewerben (job ad)</td>
+</tr>
+<tr>
+<td>sich kümmern um + Akk</td>
+<td>Wer kümmert sich über die Kinder?</td>
+<td>Wer kümmert sich um die Kinder?</td>
+<td>look after, take care of</td>
+</tr>
+<tr>
+<td>sich verlassen auf + Akk</td>
+<td>Du kannst dich an mich verlassen.</td>
+<td>Du kannst dich auf mich verlassen.</td>
+<td>rely on</td>
+</tr>
+<tr>
+<td>sich gewöhnen an + Akk</td>
+<td>Ich habe mich zu dem Wetter gewöhnt.</td>
+<td>Ich habe mich an das Wetter gewöhnt.</td>
+<td>get used to</td>
+</tr>
+<tr>
+<td>bestehen aus + Dat / auf + Dat</td>
+<td>Das Team besteht von fünf Leuten.</td>
+<td>Das Team besteht aus fünf Leuten. / Er besteht auf einer Antwort.</td>
+<td>aus = consist of; auf = insist on</td>
+</tr>
+</tbody>
+</table></div>
+<p>Questions and pointers: for things use wo(r)- and da(r)- (Worauf wartest du? – Darauf, dass er anruft.); for people use preposition + pronoun (Auf wen wartest du? – Auf ihn.), never Worauf for a person.</p>
+<h3>Comma rules</h3>
+<p>German commas follow grammar, not breathing: every subordinate clause is fenced off by commas, even short ones, so many more commas appear than in English. Ukrainian works much the same way (що, який, тому що always take a comma).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Comma?</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before a subordinate clause (dass, weil, ob, wenn, als, obwohl, damit, während, question words)</td>
+<td>Always</td>
+<td>Ich glaube, dass er recht hat. / Ich weiß nicht, wann er kommt.</td>
+</tr>
+<tr>
+<td>Subordinate clause first</td>
+<td>Always, then the verb</td>
+<td>Wenn es regnet, bleibe ich zu Hause.</td>
+</tr>
+<tr>
+<td>Relative clause</td>
+<td>Always, on both sides</td>
+<td>Das Buch, das ich lese, ist spannend.</td>
+</tr>
+<tr>
+<td>Infinitive group with um, ohne, statt / anstatt, außer, als</td>
+<td>Must</td>
+<td>Er kam, um zu helfen. / Sie ging, ohne sich zu verabschieden.</td>
+</tr>
+<tr>
+<td>Infinitive group that depends on a noun</td>
+<td>Must</td>
+<td>Ich habe keine Lust, heute zu arbeiten. / Er hatte die Idee, ein Café zu eröffnen.</td>
+</tr>
+<tr>
+<td>Infinitive group announced by es, daran, damit, darauf (a pointer word)</td>
+<td>Must</td>
+<td>Ich liebe es, im Regen spazieren zu gehen. / Er denkt daran, das Studium abzubrechen.</td>
+</tr>
+<tr>
+<td>Other infinitive groups</td>
+<td>Optional (use one if it helps reading)</td>
+<td>Ich versuche(,) pünktlich zu sein. / Er hat versprochen(,) mir zu helfen.</td>
+</tr>
+<tr>
+<td>Before aber, sondern, doch, jedoch (connecting)</td>
+<td>Always</td>
+<td>Es ist teuer, aber gut. / Nicht heute, sondern morgen.</td>
+</tr>
+<tr>
+<td>Two main clauses with und / oder</td>
+<td>Optional, usually none</td>
+<td>Ich koche und du deckst den Tisch.</td>
+</tr>
+<tr>
+<td>Lists</td>
+<td>Between items, not before the last und</td>
+<td>Äpfel, Birnen und Bananen</td>
+</tr>
+<tr>
+<td>Comparison with als / wie</td>
+<td>Only if a full clause follows</td>
+<td>Er ist größer als ich. / Es war teurer, als ich dachte.</td>
+</tr>
+<tr>
+<td>Ja, nein, bitte, address</td>
+<td>After ja / nein at the start; around a name</td>
+<td>Ja, das stimmt. / Anna, kommst du?</td>
+</tr>
+<tr>
+<td>Email greeting</td>
+<td>Comma after it, next line starts lowercase (unless a noun)</td>
+<td>Sehr geehrte Frau Müller, / vielen Dank für Ihre Nachricht.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The most common learner error is the missing comma before dass or weil, and the second is a comma before a plain und.</p>
+<h3>Getrennt- und Zusammenschreibung (one word or two?)</h3>
+<p>The rule of thumb: write two words when each keeps its literal meaning, one word when together they mean something new. Duden allows both spellings in a few cases, marked below.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Separate</th>
+<th>Together</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verb + verb</td>
+<td>spazieren gehen, schwimmen gehen, laufen lassen</td>
+<td>kennenlernen (also kennen lernen); sitzenbleiben = repeat a school year (also sitzen bleiben)</td>
+<td>Literal meaning: always separate (Bleib sitzen!)</td>
+</tr>
+<tr>
+<td>Noun + verb</td>
+<td>Auto fahren, Rad fahren, Ski fahren, Klavier spielen</td>
+<td>teilnehmen, stattfinden, leidtun, eislaufen</td>
+<td>Together when the noun has faded: Es tut mir leid (lowercase leid)</td>
+</tr>
+<tr>
+<td>Adjective + verb, literal vs new meaning</td>
+<td>frei sprechen (speak without notes), schwer fallen (fall heavily), klein schreiben (write small)</td>
+<td>freisprechen (acquit), schwerfallen (be hard for someone), kleinschreiben (write lowercase), schwarzfahren, krankschreiben</td>
+<td>Es fällt mir schwer. / Er fährt schwarz.</td>
+</tr>
+<tr>
+<td>sein</td>
+<td>da sein, zusammen sein, fertig sein, vorbei sein</td>
+<td>never joined</td>
+<td>Ich bin gleich da.</td>
+</tr>
+<tr>
+<td>Adverbs and pronouns</td>
+<td>wie viel, zu viel, so viel, gar nicht, zu Ende</td>
+<td>irgendwann, irgendwo, irgendetwas, irgendjemand, stattdessen</td>
+<td>wieviel is wrong</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>zu Hause, nach Hause</td>
+<td>zuhause, nachhause (both allowed); the noun is das Zuhause</td>
+<td>Ich bin zu Hause. / Mein Zuhause ist hier.</td>
+</tr>
+<tr>
+<td>zurzeit / zur Zeit</td>
+<td>zur Zeit Goethes (in Goethe's time)</td>
+<td>zurzeit (currently)</td>
+<td>Er ist zurzeit krank.</td>
+</tr>
+<tr>
+<td>Nominalised verb groups</td>
+<td>–</td>
+<td>beim Autofahren, das Kennenlernen, zum Spazierengehen</td>
+<td>Turned into a noun: one word, capital letter</td>
+</tr>
+</tbody>
+</table></div>
+<p>When unsure, check the Duden entry; where the table gives two spellings ("also", "both allowed"), either is accepted in exams.</p>
+<h3>Writing traps: das / dass, seit / seid and other sound-alikes</h3>
+<p>These pairs sound the same (or almost), so spellcheckers miss them and even native speakers mix them up; each has a quick test.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Test</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das / dass</td>
+<td>If you can replace it with dieses, welches or dies, write das; if not, it is the conjunction dass (comma before it)</td>
+<td>Ich hoffe, dass das Auto, das ich gekauft habe, läuft.</td>
+</tr>
+<tr>
+<td>seit / seid</td>
+<td>seit = since, for (time), think Zeit (both end in t); seid = ihr form of sein, also the ihr imperative</td>
+<td>Ich wohne seit 2023 hier. / Seid ihr fertig? / Seid leise!</td>
+</tr>
+<tr>
+<td>wieder / wider</td>
+<td>wieder = again (wiederholen, Wiedersehen); wider = against (widersprechen, der Widerstand, erwidern = reply)</td>
+<td>Auf Wiedersehen! / Ich muss dir widersprechen.</td>
+</tr>
+<tr>
+<td>der Tod / tot</td>
+<td>Tod = noun (death) and the prefix tod- = "extremely" (todmüde, todsicher); tot = adjective (dead) and verbs with tot- (totschlagen, sich totlachen)</td>
+<td>Er ist tot. / Ich bin todmüde. / Wir haben uns totgelacht.</td>
+</tr>
+<tr>
+<td>end- / ent-</td>
+<td>end- comes from Ende (endlich, endgültig, das Endspiel); ent- is a prefix (entscheiden, entlassen, entwickeln)</td>
+<td>Endlich habe ich mich entschieden.</td>
+</tr>
+<tr>
+<td>den / denn, wen / wenn</td>
+<td>den, wen = articles and pronouns (accusative); denn, wenn = conjunctions and particles</td>
+<td>Wen hast du gesehen? / Wenn du willst, komm mit.</td>
+</tr>
+<tr>
+<td>Stadt / statt / Staat</td>
+<td>Stadt = city (short a); statt = instead of; Staat = state (long a)</td>
+<td>Statt in der Stadt wohnt er auf dem Land.</td>
+</tr>
+<tr>
+<td>malen / mahlen, das Mal / das Mahl</td>
+<td>malen = paint, das Mal = time (occurrence); mahlen = grind, das Mahl = meal (formal)</td>
+<td>Ich male ein Bild. / Kaffee mahlen / zum ersten Mal</td>
+</tr>
+<tr>
+<td>viel / fiel</td>
+<td>viel = much; fiel = past of fallen</td>
+<td>Es fiel viel Schnee.</td>
+</tr>
+<tr>
+<td>die Lehre / die Leere</td>
+<td>Lehre = apprenticeship, lesson (from lehren); Leere = emptiness (from leer)</td>
+<td>Er macht eine Lehre als Koch.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Read your text once only for das/dass: it is the error teachers and HR departments notice first.</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: two-way prepositions and their cases</li>
+<li><a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>: the gender rules behind the gender traps</li>
+<li><a href="../docs/word-order.html">Word order</a>: verb second and verb at the end after weil and dass</li>
+<li><a href="../docs/particles-expressions.html">Particles, expressions and everyday German</a>: doch, wohl, schon and other small words</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: written register, where comma and spelling rules matter most</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: more verb patterns beyond brauchen zu and fixed prepositions</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/gotchas.html">Gotchas quiz</a> has 38 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

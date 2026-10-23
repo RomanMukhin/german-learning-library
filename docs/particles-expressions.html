@@ -1,0 +1,2096 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Particles, expressions and everyday German · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Particles, expressions and everyday German</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Everyday · A2–B1</span><h1>Particles, expressions and everyday German</h1></header>
+<article class="prose card">
+<p>Spoken German sounds natural because of small words (doch, mal, halt) and fixed phrases, not grammar; this sheet collects the ones you will hear daily, with register marked.</p>
+<h2>Modal particles</h2>
+<p>Modal particles add tone (impatience, softness, surprise, shared knowledge) without changing the facts; they are unstressed, sit after the verb and the pronouns (see <a href="../docs/word-order.html">Word order</a>), and rarely translate word for word. Ukrainian does the same job with ж, же, таки, ну, хіба, вже.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Doch! (as an answer)</td>
+<td>"Yes, it is / yes, I do" after a negative question or statement</td>
+<td>Neutral, very common</td>
+<td>Du kommst nicht mit? – Doch! ("Yes, I am coming.")</td>
+</tr>
+<tr>
+<td>doch (in an imperative)</td>
+<td>Softens or urges: "go on, why don't you"</td>
+<td>Friendly; with a sharp tone it sounds impatient</td>
+<td>Komm doch rein! – Do come in!</td>
+</tr>
+<tr>
+<td>doch (reminding)</td>
+<td>"As you know / after all", the listener should know it</td>
+<td>Neutral, slight reproach possible</td>
+<td>Das habe ich dir doch gesagt! – I told you that, didn't I! (Я ж тобі казав!)</td>
+</tr>
+<tr>
+<td>doch (contradicting / surprise)</td>
+<td>"But actually", the opposite of what was expected</td>
+<td>Neutral</td>
+<td>Das ist doch nicht so schwer. – That's not that hard, really.</td>
+</tr>
+<tr>
+<td>ja</td>
+<td>Shared, obvious knowledge; also surprise when stressed differently</td>
+<td>Neutral</td>
+<td>Du weißt ja, wie er ist. – You know what he's like. / Das ist ja toll! – That's really great!</td>
+</tr>
+<tr>
+<td>JA (stressed)</td>
+<td>Warning: "make sure you"</td>
+<td>Neutral, a bit strict</td>
+<td>Mach das JA nicht wieder! – Don't you dare do that again!</td>
+</tr>
+<tr>
+<td>mal</td>
+<td>Softens a request or imperative: "just, for a sec" (from einmal)</td>
+<td>Neutral, everyday</td>
+<td>Kannst du mal kurz helfen? / Schau mal!</td>
+</tr>
+<tr>
+<td>halt</td>
+<td>"That's just how it is", resignation</td>
+<td>Colloquial, more south/Austria</td>
+<td>Das ist halt so. – That's just the way it is. (Ну так воно вже є.)</td>
+</tr>
+<tr>
+<td>eben</td>
+<td>Same as halt, more northern; also "exactly!" as a reply</td>
+<td>Neutral</td>
+<td>Dann musst du eben früher aufstehen. / Eben! – Exactly!</td>
+</tr>
+<tr>
+<td>schon</td>
+<td>Reassurance ("it'll be fine") or "admittedly, but"</td>
+<td>Neutral</td>
+<td>Das wird schon. – It'll work out. / Das ist schon teuer, aber gut. – It is pricey, but good.</td>
+</tr>
+<tr>
+<td>schon (impatience)</td>
+<td>"Come on, already"</td>
+<td>Colloquial</td>
+<td>Mach schon! / Komm schon!</td>
+</tr>
+<tr>
+<td>denn (in questions)</td>
+<td>Makes a question softer, more interested; or puzzled</td>
+<td>Neutral, extremely common</td>
+<td>Wie geht's dir denn? / Was ist denn los? – What's wrong, then?</td>
+</tr>
+<tr>
+<td>eigentlich</td>
+<td>"Actually, by the way" in questions; "in principle" in statements</td>
+<td>Neutral</td>
+<td>Wie heißt du eigentlich? – What's your name, by the way? / Eigentlich wollte ich zu Hause bleiben.</td>
+</tr>
+<tr>
+<td>wohl</td>
+<td>Assumption: "probably, I suppose"</td>
+<td>Neutral</td>
+<td>Er ist wohl krank. – He's probably ill. / Du spinnst wohl! – You must be crazy!</td>
+</tr>
+<tr>
+<td>bloß / nur (in questions)</td>
+<td>Worried or desperate: "on earth"</td>
+<td>Neutral</td>
+<td>Wo ist bloß mein Schlüssel? – Where on earth is my key?</td>
+</tr>
+<tr>
+<td>bloß / nur (imperative)</td>
+<td>Warning or strong advice</td>
+<td>Neutral, emphatic</td>
+<td>Sei bloß vorsichtig! / Mach nur keinen Fehler!</td>
+</tr>
+<tr>
+<td>nur (encouraging)</td>
+<td>"Go ahead"</td>
+<td>Neutral</td>
+<td>Komm nur rein!</td>
+</tr>
+<tr>
+<td>etwa</td>
+<td>In yes/no questions: "surely not...?", speaker hopes the answer is no</td>
+<td>Neutral</td>
+<td>Hast du etwa mein Bier getrunken? – You didn't drink my beer, did you? (Ти що, випив...?)</td>
+</tr>
+<tr>
+<td>ruhig</td>
+<td>Permission, "feel free, go ahead"</td>
+<td>Friendly</td>
+<td>Du kannst ruhig fragen. – Feel free to ask. / Nimm ruhig noch ein Stück!</td>
+</tr>
+<tr>
+<td>einfach</td>
+<td>"Just, simply", no complications</td>
+<td>Neutral</td>
+<td>Ruf mich einfach an. / Das ist einfach super.</td>
+</tr>
+<tr>
+<td>ja mal / doch mal / halt mal</td>
+<td>Particles stack: order is roughly ja → denn/doch → eben/halt → mal</td>
+<td>Spoken</td>
+<td>Komm doch mal vorbei! – Drop by sometime!</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>A particle never starts the sentence (except Doch!/Eben! as one-word replies).</li>
+<li>Unsure? Use mal in requests and denn in questions: both are hard to get wrong.</li>
+<li>Stress the content word, not the particle: Das ist ja TOLL, not Das ist JA toll (that changes meaning).</li>
+</ul>
+<h2>Greetings, wishes and set phrases</h2>
+<p>Most wishes are fixed formulas, often with no verb (Viel Spaß! = [Ich wünsche dir] viel Spaß); say them as one chunk, like Смачного! or Успіхів!</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Herzlichen Glückwunsch (zum Geburtstag)!</td>
+<td>Congratulations (happy birthday)</td>
+<td>Neutral, also in writing</td>
+<td>Herzlichen Glückwunsch zur bestandenen Prüfung!</td>
+</tr>
+<tr>
+<td>Alles Gute (zum Geburtstag)!</td>
+<td>All the best (happy birthday)</td>
+<td>Neutral, the most common birthday wish</td>
+<td>Alles Gute und bleib gesund!</td>
+</tr>
+<tr>
+<td>Gute Besserung!</td>
+<td>Get well soon (Одужуй!)</td>
+<td>Neutral, to anyone who is ill</td>
+<td>Du bist erkältet? Gute Besserung!</td>
+</tr>
+<tr>
+<td>Viel Erfolg!</td>
+<td>Good luck (with a task, exam, job)</td>
+<td>Neutral</td>
+<td>Viel Erfolg bei der Prüfung!</td>
+</tr>
+<tr>
+<td>Viel Glück!</td>
+<td>Good luck (chance matters)</td>
+<td>Neutral</td>
+<td>Viel Glück beim Lotto!</td>
+</tr>
+<tr>
+<td>Viel Spaß!</td>
+<td>Have fun</td>
+<td>Neutral</td>
+<td>Viel Spaß im Kino! – Danke, dir auch!</td>
+</tr>
+<tr>
+<td>Schönes Wochenende!</td>
+<td>Have a nice weekend</td>
+<td>Neutral, Friday at work</td>
+<td>Schönes Wochenende! – Danke, gleichfalls!</td>
+</tr>
+<tr>
+<td>Schönen Tag / Abend noch!</td>
+<td>Have a nice day / evening</td>
+<td>Neutral, shops, phone calls</td>
+<td>Danke, Ihnen auch einen schönen Tag!</td>
+</tr>
+<tr>
+<td>Gleichfalls! / Danke, ebenso!</td>
+<td>Same to you</td>
+<td>Neutral</td>
+<td>Guten Appetit! – Gleichfalls!</td>
+</tr>
+<tr>
+<td>Gesundheit!</td>
+<td>Bless you (after a sneeze) (Будь здоров!)</td>
+<td>Neutral; reply: Danke!</td>
+<td>Hatschi! – Gesundheit!</td>
+</tr>
+<tr>
+<td>Prost! / Zum Wohl!</td>
+<td>Cheers</td>
+<td>Prost = casual (beer); Zum Wohl = more polite (wine, formal)</td>
+<td>Look people in the eye when you clink.</td>
+</tr>
+<tr>
+<td>Guten Appetit!</td>
+<td>Enjoy your meal</td>
+<td>Neutral, said before eating together</td>
+<td>Guten Appetit! – Danke, gleichfalls!</td>
+</tr>
+<tr>
+<td>Mahlzeit!</td>
+<td>Lunchtime greeting at work, roughly "enjoy lunch / hi"</td>
+<td>Colloquial, offices and factories, around 11:30–14:00</td>
+<td>Colleague in the corridor: Mahlzeit! – Mahlzeit!</td>
+</tr>
+<tr>
+<td>Hallo! / Hi!</td>
+<td>Hello</td>
+<td>Neutral / casual</td>
+<td>Hallo, wie geht's?</td>
+</tr>
+<tr>
+<td>Guten Morgen / Tag / Abend</td>
+<td>Good morning / day / evening</td>
+<td>Neutral to polite</td>
+<td>Guten Tag, ich habe einen Termin um zehn.</td>
+</tr>
+<tr>
+<td>Gute Nacht!</td>
+<td>Good night (going to bed only)</td>
+<td>Neutral</td>
+<td>Not a greeting when you arrive in the evening.</td>
+</tr>
+<tr>
+<td>Tschüss!</td>
+<td>Bye</td>
+<td>Neutral-casual, standard everywhere</td>
+<td>Tschüss, bis morgen!</td>
+</tr>
+<tr>
+<td>Auf Wiedersehen! / Auf Wiederhören!</td>
+<td>Goodbye (in person / on the phone)</td>
+<td>Polite</td>
+<td>Vielen Dank, auf Wiederhören!</td>
+</tr>
+<tr>
+<td>Bis gleich!</td>
+<td>See you in a moment (minutes)</td>
+<td>Neutral</td>
+<td>Ich hole nur Kaffee, bis gleich!</td>
+</tr>
+<tr>
+<td>Bis später!</td>
+<td>See you later (today)</td>
+<td>Neutral</td>
+<td>Bis später beim Training!</td>
+</tr>
+<tr>
+<td>Bis bald!</td>
+<td>See you soon (days)</td>
+<td>Neutral</td>
+<td>Bis bald und gute Reise!</td>
+</tr>
+<tr>
+<td>Bis morgen / Montag!</td>
+<td>See you tomorrow / Monday</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Mach's gut!</td>
+<td>Take care</td>
+<td>Casual, du</td>
+<td>Mach's gut, und melde dich!</td>
+</tr>
+<tr>
+<td>Pass auf dich auf!</td>
+<td>Look after yourself</td>
+<td>Warm, casual</td>
+<td></td>
+</tr>
+<tr>
+<td>Gute Reise! / Gute Fahrt!</td>
+<td>Have a good trip / drive</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Frohe Weihnachten! / Frohe Ostern!</td>
+<td>Merry Christmas / Happy Easter</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Guten Rutsch (ins neue Jahr)!</td>
+<td>Happy New Year (said before 1 January)</td>
+<td>Neutral; after midnight: Frohes neues Jahr!</td>
+<td></td>
+</tr>
+<tr>
+<td>Servus!</td>
+<td>Hi and bye</td>
+<td>Bavaria, Austria; casual</td>
+<td>Servus, Franz!</td>
+</tr>
+<tr>
+<td>Moin! / Moin moin!</td>
+<td>Hi (any time of day)</td>
+<td>North Germany; casual</td>
+<td>Moin! Alles klar?</td>
+</tr>
+<tr>
+<td>Grüß Gott!</td>
+<td>Hello</td>
+<td>South Germany, Austria; neutral-polite</td>
+<td>In a Munich bakery: Grüß Gott!</td>
+</tr>
+<tr>
+<td>Grüezi!</td>
+<td>Hello</td>
+<td>Switzerland</td>
+<td></td>
+</tr>
+<tr>
+<td>Grüß dich! / Grüß euch!</td>
+<td>Hi (to one / several friends)</td>
+<td>Casual, mostly south</td>
+<td></td>
+</tr>
+<tr>
+<td>Tschö! / Ciao! / Ade!</td>
+<td>Bye</td>
+<td>Casual; Ade = southwest</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Danke, gleichfalls covers almost every wish said back to you.</li>
+<li>Guten Tag is reliable all day; Mahlzeit is a workplace thing, not a restaurant phrase.</li>
+</ul>
+<h2>Everyday reactions</h2>
+<p>Short reactions carry most of a casual conversation; the rude and slang ones are fine with friends but not with your landlord or a Behörde (government office).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Genau!</td>
+<td>Exactly, right</td>
+<td>Neutral, constant in speech</td>
+<td>Du kommst um acht? – Genau.</td>
+</tr>
+<tr>
+<td>Stimmt. / Das stimmt.</td>
+<td>True, that's right</td>
+<td>Neutral</td>
+<td>Es ist spät. – Stimmt.</td>
+</tr>
+<tr>
+<td>Stimmt so.</td>
+<td>Keep the change (tipping)</td>
+<td>Neutral, restaurants</td>
+<td>18,50? Hier sind 20, stimmt so.</td>
+</tr>
+<tr>
+<td>Ach so!</td>
+<td>Oh, I see / oh, that's why (А, зрозуміло!)</td>
+<td>Neutral</td>
+<td>Er ist krank. – Ach so, deshalb ist er nicht da.</td>
+</tr>
+<tr>
+<td>Alles klar.</td>
+<td>OK, got it; also "all good?" as a question</td>
+<td>Neutral-casual</td>
+<td>Alles klar bei dir? – Ja, alles klar.</td>
+</tr>
+<tr>
+<td>Na klar! / Klar! / Klar doch!</td>
+<td>Sure, of course</td>
+<td>Casual</td>
+<td>Hilfst du mir? – Klar doch!</td>
+</tr>
+<tr>
+<td>Kein Problem.</td>
+<td>No problem</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Passt. / Passt schon.</td>
+<td>OK, that works; "never mind, it's fine"</td>
+<td>Casual, south especially</td>
+<td>Ist 15 Uhr okay? – Passt!</td>
+</tr>
+<tr>
+<td>Läuft. / Läuft bei dir!</td>
+<td>It's going fine / you're doing great</td>
+<td>Casual; Läuft bei dir = slangy praise</td>
+<td>Wie läuft's? – Läuft.</td>
+</tr>
+<tr>
+<td>Echt? / Wirklich?</td>
+<td>Really?</td>
+<td>Echt = casual; wirklich = neutral</td>
+<td>Ich habe gekündigt. – Echt jetzt?</td>
+</tr>
+<tr>
+<td>Krass!</td>
+<td>Wow, extreme (good or bad)</td>
+<td>Colloquial, young people</td>
+<td>Er ist 100 km gelaufen? Krass!</td>
+</tr>
+<tr>
+<td>Geil!</td>
+<td>Awesome</td>
+<td>Colloquial; old meaning is sexual, avoid with older or formal people</td>
+<td>Das Konzert war geil!</td>
+</tr>
+<tr>
+<td>Cool! / Super! / Toll!</td>
+<td>Great</td>
+<td>Cool/super casual; toll neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Na ja.</td>
+<td>Well... (doubt, so-so) (Ну, таке...)</td>
+<td>Neutral</td>
+<td>Wie war der Film? – Na ja, geht so.</td>
+</tr>
+<tr>
+<td>Geht so.</td>
+<td>So-so</td>
+<td>Casual</td>
+<td></td>
+</tr>
+<tr>
+<td>Schade!</td>
+<td>What a pity</td>
+<td>Neutral</td>
+<td>Du kannst nicht kommen? Schade!</td>
+</tr>
+<tr>
+<td>Mist!</td>
+<td>Damn</td>
+<td>Colloquial, mild</td>
+<td>Mist, ich habe den Bus verpasst!</td>
+</tr>
+<tr>
+<td>Scheiße!</td>
+<td>Shit</td>
+<td>Rude but extremely common</td>
+<td>Avoid at work.</td>
+</tr>
+<tr>
+<td>Quatsch! / So ein Quatsch!</td>
+<td>Nonsense, rubbish</td>
+<td>Colloquial</td>
+<td>Quatsch, das stimmt doch nicht!</td>
+</tr>
+<tr>
+<td>Keine Ahnung.</td>
+<td>No idea</td>
+<td>Neutral-casual</td>
+<td>Wo ist Tom? – Keine Ahnung.</td>
+</tr>
+<tr>
+<td>Egal. / Ist mir egal.</td>
+<td>Whatever, I don't care</td>
+<td>Neutral; can sound dismissive</td>
+<td>Pizza oder Pasta? – Egal.</td>
+</tr>
+<tr>
+<td>Was auch immer.</td>
+<td>Whatever (dismissive)</td>
+<td>Casual, a calque from English</td>
+<td></td>
+</tr>
+<tr>
+<td>Das ist mir Wurst. / Wurscht.</td>
+<td>I couldn't care less (lit. "it's sausage to me")</td>
+<td>Colloquial, humorous</td>
+<td></td>
+</tr>
+<tr>
+<td>Na und?</td>
+<td>So what?</td>
+<td>Casual, a bit provocative</td>
+<td>Er ist reich. – Na und?</td>
+</tr>
+<tr>
+<td>Hä?</td>
+<td>Huh? What?</td>
+<td>Casual; rude to strangers, say Wie bitte?</td>
+<td>Hä? Was hast du gesagt?</td>
+</tr>
+<tr>
+<td>Wie bitte?</td>
+<td>Sorry, pardon?</td>
+<td>Polite</td>
+<td></td>
+</tr>
+<tr>
+<td>Spinnst du?</td>
+<td>Are you crazy?</td>
+<td>Casual, can be rude</td>
+<td>Du fährst mit 200? Spinnst du?</td>
+</tr>
+<tr>
+<td>Keine Lust.</td>
+<td>I don't feel like it</td>
+<td>Casual</td>
+<td>Kommst du mit? – Keine Lust.</td>
+</tr>
+<tr>
+<td>(keinen) Bock haben (auf)</td>
+<td>(not) be in the mood for</td>
+<td>Colloquial</td>
+<td>Ich hab heute null Bock auf Arbeit.</td>
+</tr>
+<tr>
+<td>Feierabend!</td>
+<td>End of the working day; "that's it for today"</td>
+<td>Neutral</td>
+<td>Endlich Feierabend! / Schönen Feierabend!</td>
+</tr>
+<tr>
+<td>Ich bin fix und fertig.</td>
+<td>I'm completely exhausted</td>
+<td>Colloquial</td>
+<td>Nach dem Umzug war ich fix und fertig.</td>
+</tr>
+<tr>
+<td>Ich bin total kaputt / platt.</td>
+<td>I'm wiped out</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich drücke dir die Daumen.</td>
+<td>Fingers crossed for you (lit. "I press my thumbs for you")</td>
+<td>Neutral</td>
+<td>Morgen ist dein Interview? Ich drücke dir die Daumen!</td>
+</tr>
+<tr>
+<td>Toi, toi, toi!</td>
+<td>Good luck (knocking on wood)</td>
+<td>Neutral, before exams and performances; do not say Danke back in theatre</td>
+<td></td>
+</tr>
+<tr>
+<td>Zum Glück.</td>
+<td>Luckily</td>
+<td>Neutral</td>
+<td>Zum Glück war niemand verletzt.</td>
+</tr>
+<tr>
+<td>Oh je! / Oje!</td>
+<td>Oh dear</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Na?</td>
+<td>Hey, how's it going? (one-word greeting)</td>
+<td>Very casual, friends</td>
+<td>Na? – Na?</td>
+</tr>
+<tr>
+<td>Ohne Witz!</td>
+<td>No joke, seriously</td>
+<td>Casual</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich bin dabei.</td>
+<td>I'm in</td>
+<td>Casual</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Common idioms</h2>
+<p>These idioms are alive in everyday speech, not just textbooks; the literal translation is in quotes, the real meaning after the arrow.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomaten auf den Augen haben</td>
+<td>"have tomatoes on your eyes" → not see something obvious</td>
+<td>Colloquial, teasing</td>
+<td>Der Schlüssel liegt vor dir! Hast du Tomaten auf den Augen?</td>
+</tr>
+<tr>
+<td>Ich verstehe nur Bahnhof.</td>
+<td>"I only understand train station" → I don't understand a thing</td>
+<td>Colloquial</td>
+<td>Physik? Ich verstehe nur Bahnhof.</td>
+</tr>
+<tr>
+<td>Da steppt der Bär.</td>
+<td>"the bear tap-dances there" → it's a wild party, lots going on</td>
+<td>Colloquial</td>
+<td>Freitag im Club, da steppt der Bär!</td>
+</tr>
+<tr>
+<td>jemandem die Daumen drücken</td>
+<td>"press thumbs" → keep fingers crossed</td>
+<td>Neutral</td>
+<td>Ich drücke dir die Daumen!</td>
+</tr>
+<tr>
+<td>ins Fettnäpfchen treten</td>
+<td>"step into the little fat bowl" → put your foot in it, faux pas</td>
+<td>Neutral</td>
+<td>Ich habe nach seiner Ex gefragt, voll ins Fettnäpfchen getreten.</td>
+</tr>
+<tr>
+<td>Schwein haben</td>
+<td>"have pig" → be lucky</td>
+<td>Colloquial</td>
+<td>Der Zug hatte Verspätung, da hatte ich Schwein!</td>
+</tr>
+<tr>
+<td>Das ist nicht mein Bier.</td>
+<td>"that's not my beer" → not my problem / business</td>
+<td>Colloquial</td>
+<td>Wie du das löst, ist nicht mein Bier.</td>
+</tr>
+<tr>
+<td>Ich glaub, mein Schwein pfeift!</td>
+<td>"I think my pig is whistling" → I can't believe it! (indignant)</td>
+<td>Colloquial, humorous</td>
+<td>Du willst 500 Euro dafür? Ich glaub, mein Schwein pfeift!</td>
+</tr>
+<tr>
+<td>Ich glaub, ich spinne!</td>
+<td>I think I'm going mad → unbelievable</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Das ist mir Wurst.</td>
+<td>"that's sausage to me" → I don't care</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Es geht um die Wurst.</td>
+<td>"it's about the sausage" → it's now or never, everything is at stake</td>
+<td>Colloquial</td>
+<td>Letztes Spiel, jetzt geht's um die Wurst.</td>
+</tr>
+<tr>
+<td>Alles hat ein Ende, nur die Wurst hat zwei.</td>
+<td>"everything has an end, only the sausage has two" → everything ends</td>
+<td>Humorous saying</td>
+<td></td>
+</tr>
+<tr>
+<td>die Nase voll haben</td>
+<td>"have the nose full" → be fed up (ситий по горло)</td>
+<td>Colloquial</td>
+<td>Ich habe die Nase voll vom Regen.</td>
+</tr>
+<tr>
+<td>auf den Wecker gehen</td>
+<td>"go on the alarm clock" → get on someone's nerves</td>
+<td>Colloquial</td>
+<td>Du gehst mir auf den Wecker!</td>
+</tr>
+<tr>
+<td>auf dem Schlauch stehen</td>
+<td>"stand on the hose" → be slow on the uptake, not get it</td>
+<td>Colloquial</td>
+<td>Sorry, ich stehe gerade auf dem Schlauch.</td>
+</tr>
+<tr>
+<td>Daumen hoch</td>
+<td>thumbs up → approval</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Hals- und Beinbruch!</td>
+<td>"break neck and leg" → break a leg, good luck</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>die Katze im Sack kaufen</td>
+<td>"buy the cat in the sack" → buy without looking (купити кота в мішку, same in Ukrainian)</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Ende gut, alles gut.</td>
+<td>All's well that ends well</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Das ist ein Katzensprung.</td>
+<td>"a cat's jump" → very close by</td>
+<td>Neutral</td>
+<td>Der Bahnhof ist nur ein Katzensprung von hier.</td>
+</tr>
+<tr>
+<td>Das ist nicht das Gelbe vom Ei.</td>
+<td>"not the yellow of the egg" → not ideal</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich könnte ein Pferd essen.</td>
+<td>I could eat a horse → I'm starving (as in English)</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Kopf hoch!</td>
+<td>"head up" → chin up, don't be sad</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>unter vier Augen</td>
+<td>"under four eyes" → privately, one to one (віч-на-віч)</td>
+<td>Neutral</td>
+<td>Können wir unter vier Augen sprechen?</td>
+</tr>
+<tr>
+<td>Da liegt der Hund begraben.</td>
+<td>"that's where the dog is buried" → that's the real problem</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>Jetzt mal Butter bei die Fische!</td>
+<td>"butter with the fish" → get to the point, be concrete (deliberately wrong grammar)</td>
+<td>Colloquial, north</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich bin total im Eimer. / Das ist im Eimer.</td>
+<td>"in the bucket" → I'm wrecked / it's broken</td>
+<td>Colloquial</td>
+<td>Mein Handy ist im Eimer.</td>
+</tr>
+<tr>
+<td>einen Kater haben</td>
+<td>"have a tomcat" → have a hangover</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>sich zum Affen machen</td>
+<td>"make yourself into a monkey" → make a fool of yourself</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Das kannst du knicken.</td>
+<td>"you can fold that" → forget it, no chance</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Youth slang</h2>
+<p>All of these are slang: understand them, use them only with friends your age, and expect them to sound odd from a learner at work. Many come from English or from Kiezdeutsch (multi-ethnic urban German).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Digga / Diggi</td>
+<td>Dude, bro</td>
+<td>Slang, from Hamburg, now everywhere among teens</td>
+<td>Digga, was geht?</td>
+</tr>
+<tr>
+<td>Alter!</td>
+<td>Dude! / Wow! (address or exclamation, used for any gender)</td>
+<td>Slang, very common; rude to an older stranger</td>
+<td>Alter, wie krass ist das denn!</td>
+</tr>
+<tr>
+<td>Was geht (ab)?</td>
+<td>What's up?</td>
+<td>Slang</td>
+<td>Was geht, Leute?</td>
+</tr>
+<tr>
+<td>cringe</td>
+<td>Embarrassing, makes you wince</td>
+<td>Slang, Jugendwort 2021</td>
+<td>Das Video ist voll cringe.</td>
+</tr>
+<tr>
+<td>lost</td>
+<td>Clueless, confused</td>
+<td>Slang, Jugendwort 2020</td>
+<td>Ich war in der Matheklausur komplett lost.</td>
+</tr>
+<tr>
+<td>sus</td>
+<td>Suspicious, sketchy</td>
+<td>Slang, from gaming</td>
+<td>Der Typ ist voll sus.</td>
+</tr>
+<tr>
+<td>Ehrenmann / Ehrenfrau</td>
+<td>A decent, stand-up person</td>
+<td>Slang</td>
+<td>Du hast mir Kaffee mitgebracht? Ehrenmann!</td>
+</tr>
+<tr>
+<td>wild</td>
+<td>Crazy, unbelievable</td>
+<td>Slang</td>
+<td>Das ist ja wild.</td>
+</tr>
+<tr>
+<td>safe</td>
+<td>Sure, definitely</td>
+<td>Slang</td>
+<td>Kommst du? – Safe!</td>
+</tr>
+<tr>
+<td>chillen / abhängen</td>
+<td>Relax, hang out</td>
+<td>Colloquial (chillen) / neutral-casual</td>
+<td>Wir chillen heute einfach.</td>
+</tr>
+<tr>
+<td>Bock</td>
+<td>Mood, desire (Null Bock = zero interest)</td>
+<td>Colloquial</td>
+<td>Hast du Bock auf Kino?</td>
+</tr>
+<tr>
+<td>Bro / Bruder</td>
+<td>Bro</td>
+<td>Slang</td>
+<td></td>
+</tr>
+<tr>
+<td>Wallah</td>
+<td>I swear (from Arabic)</td>
+<td>Slang, urban</td>
+<td></td>
+</tr>
+<tr>
+<td>Ich schwöre!</td>
+<td>I swear!</td>
+<td>Colloquial</td>
+<td></td>
+</tr>
+<tr>
+<td>Lass mal</td>
+<td>Let's not / never mind</td>
+<td>Casual</td>
+<td>Lass mal, ich zahle.</td>
+</tr>
+<tr>
+<td>abgefahren</td>
+<td>Crazy, awesome</td>
+<td>Colloquial, a bit 90s</td>
+<td></td>
+</tr>
+<tr>
+<td>Verpeilt</td>
+<td>Scatterbrained</td>
+<td>Colloquial</td>
+<td>Ich bin heute total verpeilt.</td>
+</tr>
+<tr>
+<td>Tschau / Ciao</td>
+<td>Bye</td>
+<td>Casual</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Voll intensifies everything in speech: voll gut, voll cringe, voll nett ("totally").</li>
+<li>Slang changes fast; "Jugendwort des Jahres" lists are a fun but unreliable guide to what teens actually say.</li>
+</ul>
+<h2>Polite vs informal register</h2>
+<p>German splits address like Ukrainian ти/Ви: Sie for strangers, officials, older people and most work contacts; du for friends, family, children, students, and many startups or sports clubs. When unsure, start with Sie and let the other person offer du.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>du / ihr / Sie</td>
+<td>you (one, informal) / you (several, informal) / you (formal, one or many)</td>
+<td>Sie is always capitalised and takes 3rd person plural verbs</td>
+<td>Kommst du? / Kommt ihr? / Kommen Sie?</td>
+</tr>
+<tr>
+<td>Wollen wir uns duzen? / Sollen wir du sagen?</td>
+<td>Shall we switch to du?</td>
+<td>Usually offered by the older or more senior person</td>
+<td>Ich bin übrigens Anna. (an implicit offer)</td>
+</tr>
+<tr>
+<td>siezen / duzen</td>
+<td>to address with Sie / du</td>
+<td>Neutral</td>
+<td>Im Büro duzen sich alle.</td>
+</tr>
+<tr>
+<td>Könnten Sie mir bitte helfen?</td>
+<td>Could you please help me?</td>
+<td>Polite (Konjunktiv II; see <a href="../docs/tenses.html">Tenses, moods and the passive</a>)</td>
+<td>Much softer than Können Sie...?</td>
+</tr>
+<tr>
+<td>Würden Sie bitte...?</td>
+<td>Would you please...?</td>
+<td>Polite</td>
+<td>Würden Sie bitte das Fenster schließen?</td>
+</tr>
+<tr>
+<td>Hätten Sie kurz Zeit? / Hättest du kurz Zeit?</td>
+<td>Do you have a minute?</td>
+<td>Polite / friendly-polite</td>
+<td>Hättest du kurz Zeit für eine Frage?</td>
+</tr>
+<tr>
+<td>Ich hätte gern... / Ich möchte...</td>
+<td>I'd like...</td>
+<td>Polite, shops and restaurants</td>
+<td>Ich hätte gern einen Kaffee, bitte.</td>
+</tr>
+<tr>
+<td>Ich will...</td>
+<td>I want...</td>
+<td>Can sound blunt when ordering</td>
+<td>Use hätte gern / möchte instead.</td>
+</tr>
+<tr>
+<td>Kannst du mal...?</td>
+<td>Can you just...?</td>
+<td>Casual, friendly</td>
+<td>Kannst du mal das Salz geben?</td>
+</tr>
+<tr>
+<td>Gib mal... / Gib her!</td>
+<td>Give me...</td>
+<td>Casual / brusque</td>
+<td></td>
+</tr>
+<tr>
+<td>Entschuldigung! / Entschuldigen Sie!</td>
+<td>Excuse me (attention or apology)</td>
+<td>Neutral / polite</td>
+<td>Entschuldigung, wo ist der Bahnhof?</td>
+</tr>
+<tr>
+<td>Sorry! / 'Tschuldigung!</td>
+<td>Sorry</td>
+<td>Casual</td>
+<td></td>
+</tr>
+<tr>
+<td>Darf ich...?</td>
+<td>May I...?</td>
+<td>Polite</td>
+<td>Darf ich kurz stören? – May I interrupt for a moment?</td>
+</tr>
+<tr>
+<td>Wissen Sie vielleicht, ...?</td>
+<td>Do you happen to know...?</td>
+<td>Polite indirect question</td>
+<td>Wissen Sie vielleicht, wann der Zug fährt?</td>
+</tr>
+<tr>
+<td>Vielen Dank! / Danke schön!</td>
+<td>Thank you very much</td>
+<td>Neutral-polite</td>
+<td>Reply: Bitte schön! / Gern geschehen! / Gerne!</td>
+</tr>
+<tr>
+<td>Danke! – Bitte! / Gerne! / Kein Ding!</td>
+<td>Thanks – you're welcome / no prob</td>
+<td>Neutral / casual (Kein Ding)</td>
+<td></td>
+</tr>
+<tr>
+<td>Sehr geehrte Frau Müller, ... / Mit freundlichen Grüßen</td>
+<td>Dear Ms Müller ... / Kind regards</td>
+<td>Formal letters and emails</td>
+<td></td>
+</tr>
+<tr>
+<td>Liebe Anna, ... / Viele Grüße / LG</td>
+<td>Dear Anna ... / Best wishes</td>
+<td>Informal emails and messages</td>
+<td></td>
+</tr>
+<tr>
+<td>Hallo Herr Schmidt, ... / Beste Grüße</td>
+<td>Semi-formal work emails</td>
+<td>Common at work today</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Herr/Frau + surname, never + first name; Fräulein for women is outdated.</li>
+<li>bitte goes almost anywhere and turns an order into a request: Zwei Brötchen, bitte.</li>
+</ul>
+<h2>Filler words</h2>
+<p>Fillers buy thinking time and make you sound fluent; one or two per sentence is natural, more sounds nervous. Prefer ähm over English "uhm" and also over "so".</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+<th>Register/when</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>also</td>
+<td>so, well (starting or resuming); NOT "also" (that is auch; see <a href="../docs/gotchas.html">Gotchas and false friends</a>)</td>
+<td>Neutral, very common</td>
+<td>Also, ich denke, wir sollten gehen.</td>
+</tr>
+<tr>
+<td>ähm / äh</td>
+<td>um, uh</td>
+<td>Neutral, spoken</td>
+<td>Ich wohne, ähm, in Köln.</td>
+</tr>
+<tr>
+<td>na ja</td>
+<td>well...</td>
+<td>Neutral</td>
+<td>Na ja, das ist kompliziert.</td>
+</tr>
+<tr>
+<td>quasi</td>
+<td>sort of, basically</td>
+<td>Colloquial, overused</td>
+<td>Das ist quasi fertig.</td>
+</tr>
+<tr>
+<td>sozusagen</td>
+<td>so to speak</td>
+<td>Neutral</td>
+<td>Er ist sozusagen mein Chef.</td>
+</tr>
+<tr>
+<td>irgendwie</td>
+<td>somehow, kind of</td>
+<td>Colloquial</td>
+<td>Das ist irgendwie komisch.</td>
+</tr>
+<tr>
+<td>eigentlich</td>
+<td>actually, really</td>
+<td>Neutral</td>
+<td>Eigentlich weiß ich es nicht.</td>
+</tr>
+<tr>
+<td>halt / eben</td>
+<td>just, that's how it is</td>
+<td>Colloquial</td>
+<td>Das ist halt so.</td>
+</tr>
+<tr>
+<td>so</td>
+<td>like (quoting, approximating)</td>
+<td>Colloquial</td>
+<td>Und er so: "Nein!" / So um acht.</td>
+</tr>
+<tr>
+<td>oder? / ne? / gell?</td>
+<td>right? isn't it? (tag questions)</td>
+<td>Neutral / north (ne) / south (gell)</td>
+<td>Das ist gut, oder?</td>
+</tr>
+<tr>
+<td>weißt du / weißt du was</td>
+<td>you know / you know what</td>
+<td>Casual</td>
+<td>Weißt du was? Ich komme mit.</td>
+</tr>
+<tr>
+<td>sag mal</td>
+<td>tell me, say (opening a question)</td>
+<td>Casual</td>
+<td>Sag mal, hast du morgen Zeit?</td>
+</tr>
+<tr>
+<td>guck mal / schau mal</td>
+<td>look</td>
+<td>Casual</td>
+<td></td>
+</tr>
+<tr>
+<td>ich meine</td>
+<td>I mean</td>
+<td>Neutral</td>
+<td></td>
+</tr>
+<tr>
+<td>wie gesagt</td>
+<td>as I said</td>
+<td>Neutral</td>
+<td>Wie gesagt, ich habe keine Zeit.</td>
+</tr>
+<tr>
+<td>übrigens</td>
+<td>by the way</td>
+<td>Neutral</td>
+<td>Übrigens, morgen ist frei.</td>
+</tr>
+<tr>
+<td>ehrlich gesagt</td>
+<td>to be honest</td>
+<td>Neutral</td>
+<td>Ehrlich gesagt mag ich das nicht.</td>
+</tr>
+<tr>
+<td>wie heißt das noch mal?</td>
+<td>what's it called again?</td>
+<td>Neutral, a lifesaver for learners</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Particle combinations and stress</h3>
+<p>Natives stack two particles to fine-tune tone; each pair has its own meaning, so learn it as one chunk, in this order. Typical order in the middle of the sentence: ja before denn/doch, then wohl, eben/halt, then mal last.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Combination</th>
+<th>Meaning</th>
+<th>Tone</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doch mal</td>
+<td>Friendly push: "why don't you just..."</td>
+<td>Warm, encouraging</td>
+<td>Probier doch mal den Kuchen! / Frag doch mal Herrn Weber.</td>
+</tr>
+<tr>
+<td>ja wohl</td>
+<td>Indignant "surely, obviously": the speaker can't believe it</td>
+<td>Annoyed, reproachful</td>
+<td>Das ist ja wohl nicht dein Ernst! / Das kann ja wohl nicht wahr sein!</td>
+</tr>
+<tr>
+<td>doch wohl</td>
+<td>"Surely...?": the speaker expects agreement and is a bit worried</td>
+<td>Insistent</td>
+<td>Du kommst doch wohl mit? / Das ist doch wohl klar.</td>
+</tr>
+<tr>
+<td>halt eben / eben halt</td>
+<td>Double resignation: "that's just how it is, nothing to be done"</td>
+<td>Spoken, shrugging</td>
+<td>Das ist halt eben so.</td>
+</tr>
+<tr>
+<td>nun mal</td>
+<td>"That's simply the way it is, accept it"</td>
+<td>Firm, a bit final</td>
+<td>Ich bin nun mal kein Morgenmensch. / Regeln sind nun mal Regeln.</td>
+</tr>
+<tr>
+<td>denn eigentlich</td>
+<td>Interested question: "actually, if I may ask"</td>
+<td>Curious, friendly</td>
+<td>Was machst du denn eigentlich beruflich?</td>
+</tr>
+<tr>
+<td>schon mal (1)</td>
+<td>"Ever" in questions</td>
+<td>Neutral</td>
+<td>Warst du schon mal in Wien?</td>
+</tr>
+<tr>
+<td>schon mal (2)</td>
+<td>"Go ahead, in the meantime"</td>
+<td>Neutral</td>
+<td>Fang schon mal an, ich komme gleich.</td>
+</tr>
+<tr>
+<td>schon mal (3)</td>
+<td>"For a start, at least"</td>
+<td>Positive</td>
+<td>Das ist schon mal ein guter Anfang.</td>
+</tr>
+<tr>
+<td>mal eben / eben mal</td>
+<td>"Quickly, just for a second"</td>
+<td>Casual, more northern</td>
+<td>Kannst du mal eben die Tür aufmachen?</td>
+</tr>
+<tr>
+<td>ja doch</td>
+<td>Impatient "yes, all right!"</td>
+<td>Irritated</td>
+<td>Ja doch, ich komme ja schon!</td>
+</tr>
+<tr>
+<td>denn schon</td>
+<td>"So what, what's the big deal?"</td>
+<td>Dismissive</td>
+<td>Was ist denn schon dabei?</td>
+</tr>
+<tr>
+<td>aber auch</td>
+<td>"Really, of all things" (exasperated surprise)</td>
+<td>Emotional</td>
+<td>Du hast aber auch immer Pech!</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Stress changes meaning.</strong> Unstressed particles colour the tone; the same word stressed becomes a content word with its own meaning.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Unstressed</th>
+<th>Stressed</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Er ist doch gekommen. (He came, as you know.)</td>
+<td>Er ist DOCH gekommen. (He came after all.)</td>
+<td>DOCH = contrary to expectation, "after all, nevertheless" (Ukrainian таки: він таки прийшов)</td>
+</tr>
+<tr>
+<td>Du weißt ja, wie er ist. (You know what he's like.)</td>
+<td>Komm JA pünktlich! (Make sure you're on time!)</td>
+<td>JA = warning, only in imperatives and wishes</td>
+</tr>
+<tr>
+<td>Er ist wohl krank. (He's probably ill.)</td>
+<td>Ich weiß WOHL, dass es schwer ist, aber... (I'm well aware it's hard, but...)</td>
+<td>WOHL = "indeed, certainly", often before a "but"</td>
+</tr>
+<tr>
+<td>Das wird schon. (It'll be fine.)</td>
+<td>Das ist SCHON schön, aber zu teuer. (It is nice, admittedly, but too expensive.)</td>
+<td>SCHON + aber = concession: "true, but"</td>
+</tr>
+<tr>
+<td>Er ist eben geGANgen. (Well, he left; that's that.)</td>
+<td>Er ist EBEN gegangen. (He left just now.)</td>
+<td>Stressed eben = time adverb "just now"</td>
+</tr>
+</tbody>
+</table></div>
+<p>If you stress the wrong word, Germans hear a different message: Er ist DOCH gekommen is news, Er ist doch gekommen is a reminder.</p>
+<h3>Discourse words: allerdings, immerhin, überhaupt, sowieso</h3>
+<p>These words steer an argument (contrast, concession, "anyway"); they sound educated in speech and are everywhere in writing. Unlike modal particles, most can start the sentence, and then the verb comes next.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>allerdings (1)</td>
+<td>However, though (mild contrast)</td>
+<td>Das Hotel war schön, allerdings etwas laut.</td>
+</tr>
+<tr>
+<td>allerdings (2)</td>
+<td>As a reply: "absolutely, I'll say!"</td>
+<td>War es teuer? – Allerdings!</td>
+</tr>
+<tr>
+<td>immerhin</td>
+<td>At least, after all (something positive despite everything)</td>
+<td>Wir haben verloren, aber immerhin ein Tor geschossen. / Immerhin! – Well, that's something.</td>
+</tr>
+<tr>
+<td>überhaupt (1)</td>
+<td>At all (with a negative)</td>
+<td>Ich habe überhaupt keine Zeit. / Überhaupt nicht!</td>
+</tr>
+<tr>
+<td>überhaupt (2)</td>
+<td>In questions: "actually, even, anyway" (questions the basis)</td>
+<td>Kennst du ihn überhaupt? / Was willst du überhaupt?</td>
+</tr>
+<tr>
+<td>sowieso / eh / ohnehin</td>
+<td>Anyway, in any case (it was going to happen regardless)</td>
+<td>Ich muss sowieso in die Stadt, ich nehme dich mit. / Das ist eh egal. (eh = colloquial, south and Austria; ohnehin = formal)</td>
+</tr>
+<tr>
+<td>jedenfalls</td>
+<td>Anyway, at any rate (closing a topic, getting back to the point)</td>
+<td>Jedenfalls hat es am Ende geklappt.</td>
+</tr>
+<tr>
+<td>zumindest / wenigstens</td>
+<td>At least</td>
+<td>Er hat zumindest angerufen. / Sag wenigstens Hallo!</td>
+</tr>
+<tr>
+<td>ausgerechnet</td>
+<td>Of all (days, people, things)</td>
+<td>Ausgerechnet heute regnet es! (Як навмисно, саме сьогодні)</td>
+</tr>
+<tr>
+<td>nämlich</td>
+<td>"You see, because" (gives the reason after the fact)</td>
+<td>Ich komme nicht, ich bin nämlich krank.</td>
+</tr>
+<tr>
+<td>schließlich</td>
+<td>After all (a reason everyone should accept)</td>
+<td>Er muss es wissen, er ist schließlich Arzt.</td>
+</tr>
+</tbody>
+</table></div>
+<p>nämlich never starts a sentence: Nämlich bin ich krank is wrong. Also do not confuse sowieso (anyway) with English "so-so" (that is geht so).</p>
+<h3>Idioms by theme: work, money, emotions, food</h3>
+<p>These go beyond the everyday idioms above; grouping them by topic makes them easier to recall in the right situation. Literal sense in quotes, real meaning after the arrow.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Idiom</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Work</td>
+<td>blaumachen</td>
+<td>"make blue" → skip work, call in sick without being ill</td>
+<td>Er hat am Montag schon wieder blaugemacht.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>ein alter Hase sein</td>
+<td>"be an old hare" → be an old hand, very experienced</td>
+<td>In der Buchhaltung ist sie ein alter Hase.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>die Ärmel hochkrempeln</td>
+<td>roll up your sleeves → get to work seriously</td>
+<td>Jetzt müssen wir die Ärmel hochkrempeln.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>etwas auf die lange Bank schieben</td>
+<td>"push it onto the long bench" → put it off, procrastinate</td>
+<td>Die Steuererklärung schiebe ich schon seit Wochen auf die lange Bank.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>Hand und Fuß haben</td>
+<td>"have hand and foot" → be well thought out</td>
+<td>Dein Konzept hat Hand und Fuß.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>die Kuh vom Eis holen</td>
+<td>"get the cow off the ice" → defuse a tricky situation</td>
+<td>Nur ein Kompromiss kann jetzt die Kuh vom Eis holen.</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>Dienst nach Vorschrift machen</td>
+<td>work to rule → do the bare minimum</td>
+<td>Seit der Kürzung macht das Team nur noch Dienst nach Vorschrift.</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>pleite sein</td>
+<td>be broke</td>
+<td>Am Monatsende bin ich immer pleite.</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>Kohle</td>
+<td>"coal" → money (slang)</td>
+<td>Hast du noch Kohle?</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>Geld wie Heu haben</td>
+<td>"have money like hay" → be rolling in money (грошей кури не клюють)</td>
+<td>Seine Eltern haben Geld wie Heu.</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>auf großem Fuß leben</td>
+<td>"live on a big foot" → live extravagantly</td>
+<td>Sie leben auf großem Fuß, aber woher kommt das Geld?</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>den Gürtel enger schnallen</td>
+<td>tighten your belt (затягнути паски)</td>
+<td>Nach der Mieterhöhung müssen wir den Gürtel enger schnallen.</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>jemandem das Fell über die Ohren ziehen</td>
+<td>"pull the fur over someone's ears" → rip someone off (обдерти як липку)</td>
+<td>Der Händler hat dir das Fell über die Ohren gezogen.</td>
+</tr>
+<tr>
+<td>Money</td>
+<td>ein Fass ohne Boden</td>
+<td>"a barrel without a bottom" → a money pit</td>
+<td>Das alte Haus ist ein Fass ohne Boden.</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>aus der Haut fahren</td>
+<td>"jump out of your skin" → lose your temper (вийти з себе)</td>
+<td>Wenn er zu spät kommt, könnte ich aus der Haut fahren.</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>jemanden auf die Palme bringen</td>
+<td>"drive someone up the palm tree" → make someone furious</td>
+<td>Dieser Lärm bringt mich auf die Palme!</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>jemandem auf den Keks gehen</td>
+<td>"go on someone's biscuit" → get on someone's nerves</td>
+<td>Du gehst mir auf den Keks.</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>auf Wolke sieben schweben</td>
+<td>float on cloud seven → be on cloud nine (на сьомому небі)</td>
+<td>Seit sie verliebt ist, schwebt sie auf Wolke sieben.</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>Mir fällt ein Stein vom Herzen.</td>
+<td>"a stone falls from my heart" → what a relief (як камінь з душі спав)</td>
+<td>Du bist gesund? Mir fällt ein Stein vom Herzen!</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>Ist dir eine Laus über die Leber gelaufen?</td>
+<td>"did a louse run over your liver?" → why are you in such a bad mood?</td>
+<td>Was ist los, ist dir eine Laus über die Leber gelaufen?</td>
+</tr>
+<tr>
+<td>Emotions</td>
+<td>ein Brett vor dem Kopf haben</td>
+<td>"have a board in front of your head" → be unable to think, be dense</td>
+<td>Sorry, ich habe heute ein Brett vor dem Kopf.</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>seinen Senf dazugeben</td>
+<td>"add your mustard" → give your (unwanted) opinion</td>
+<td>Muss er zu allem seinen Senf dazugeben?</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>Das ist (doch) Käse!</td>
+<td>"that's cheese" → that's nonsense</td>
+<td>Das ist doch Käse, so war das nicht.</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>in den sauren Apfel beißen</td>
+<td>"bite into the sour apple" → bite the bullet, do the unpleasant thing</td>
+<td>Ich muss in den sauren Apfel beißen und zum Zahnarzt gehen.</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>Alles in Butter.</td>
+<td>"all in butter" → everything's fine</td>
+<td>Keine Sorge, alles in Butter!</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>eine Extrawurst wollen</td>
+<td>"want an extra sausage" → want special treatment</td>
+<td>Er will immer eine Extrawurst.</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>um den heißen Brei herumreden</td>
+<td>"talk around the hot porridge" → beat around the bush</td>
+<td>Red nicht um den heißen Brei herum!</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>Das ist kein Zuckerschlecken.</td>
+<td>"that's no sugar-licking" → it's no picnic</td>
+<td>Ein Umzug mit Kindern ist kein Zuckerschlecken.</td>
+</tr>
+<tr>
+<td>Food</td>
+<td>das Sahnehäubchen</td>
+<td>"the little cream cap" → the icing on the cake</td>
+<td>Das Dessert war das Sahnehäubchen des Abends.</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Redewendungen and Sprichwörter</h3>
+<p>A Redewendung is an idiom you build into your own sentence (die Nase voll haben); a Sprichwort is a complete saying with a lesson, quoted as it stands. Germans often say only the first half and let you finish it: Wer A sagt... Ende gut, alles gut is already in Common idioms above.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Sprichwort</th>
+<th>Meaning / English</th>
+<th>Ukrainian equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wer A sagt, muss auch B sagen.</td>
+<td>If you start something, you have to see it through; in for a penny, in for a pound</td>
+<td>Взявся за гуж, не кажи, що не дуж.</td>
+</tr>
+<tr>
+<td>Morgenstund hat Gold im Mund.</td>
+<td>The early bird catches the worm</td>
+<td>Хто рано встає, тому Бог дає.</td>
+</tr>
+<tr>
+<td>Übung macht den Meister.</td>
+<td>Practice makes perfect</td>
+<td>Повторення – мати навчання.</td>
+</tr>
+<tr>
+<td>Aller Anfang ist schwer.</td>
+<td>Every beginning is hard</td>
+<td>Лиха біда початок.</td>
+</tr>
+<tr>
+<td>Der Apfel fällt nicht weit vom Stamm.</td>
+<td>Like father, like son</td>
+<td>Яблуко від яблуні недалеко падає.</td>
+</tr>
+<tr>
+<td>Wer zuletzt lacht, lacht am besten.</td>
+<td>He who laughs last laughs best</td>
+<td>Добре сміється той, хто сміється останнім.</td>
+</tr>
+<tr>
+<td>Lügen haben kurze Beine.</td>
+<td>Lies don't get you far</td>
+<td>У брехні короткі ноги.</td>
+</tr>
+<tr>
+<td>Ohne Fleiß kein Preis.</td>
+<td>No pain, no gain</td>
+<td>Щоб рибку з'їсти, треба у воду лізти.</td>
+</tr>
+<tr>
+<td>Wer nicht wagt, der nicht gewinnt.</td>
+<td>Nothing ventured, nothing gained</td>
+<td>Хто не ризикує, той не п'є шампанського.</td>
+</tr>
+<tr>
+<td>Reden ist Silber, Schweigen ist Gold.</td>
+<td>Speech is silver, silence is golden</td>
+<td>Слово – срібло, мовчання – золото.</td>
+</tr>
+<tr>
+<td>Wo gehobelt wird, da fallen Späne.</td>
+<td>You can't make an omelette without breaking eggs</td>
+<td>Ліс рубають – тріски летять.</td>
+</tr>
+<tr>
+<td>Alle guten Dinge sind drei.</td>
+<td>Third time lucky (said before a third try)</td>
+<td>Бог любить трійцю.</td>
+</tr>
+<tr>
+<td>Kleider machen Leute.</td>
+<td>Clothes make the man</td>
+<td>По одежі зустрічають.</td>
+</tr>
+<tr>
+<td>Was Hänschen nicht lernt, lernt Hans nimmermehr.</td>
+<td>You can't teach an old dog new tricks; learn while you're young</td>
+<td>Чого Івась не навчився, того Іван не знатиме.</td>
+</tr>
+<tr>
+<td>Viele Köche verderben den Brei.</td>
+<td>Too many cooks spoil the broth</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Den Letzten beißen die Hunde.</td>
+<td>The last one pays the price (whoever comes last gets the blame)</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<p>Note the old forms frozen in proverbs: Morgenstund (for Morgenstunde), der nicht gewinnt (der = "he"), nimmermehr (= nie wieder). Don't "correct" them, and don't copy them into normal sentences.</p>
+<h3>Regional colloquialisms</h3>
+<p>Standard German (Hochdeutsch) works everywhere, but in Munich, Vienna, Zurich or Berlin you will hear these daily; understand them first, use them only where they belong. Even everyday food words change by region: a bread roll is Brötchen (standard), Semmel (Bavaria, Austria), Schrippe (Berlin), Weckle or Weck (Swabia, southwest), Rundstück (Hamburg).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Word or phrase</th>
+<th>Standard German</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bavaria, Austria</td>
+<td>Pfiat di! / Pfiat eich!</td>
+<td>Tschüss! (from behüt dich Gott)</td>
+<td>Bye (to one / several)</td>
+</tr>
+<tr>
+<td>Bavaria, Austria</td>
+<td>a bissl</td>
+<td>ein bisschen</td>
+<td>a bit</td>
+</tr>
+<tr>
+<td>Bavaria</td>
+<td>die Maß</td>
+<td>ein Liter Bier</td>
+<td>a one-litre beer (beer garden, Oktoberfest)</td>
+</tr>
+<tr>
+<td>Bavaria</td>
+<td>Obacht!</td>
+<td>Vorsicht!</td>
+<td>Watch out!</td>
+</tr>
+<tr>
+<td>Bavaria, Franconia</td>
+<td>fei (particle)</td>
+<td>wirklich, aber</td>
+<td>"really, you know": Des is fei guad. = Das ist wirklich gut.</td>
+</tr>
+<tr>
+<td>Bavaria, Austria, Switzerland</td>
+<td>heuer</td>
+<td>dieses Jahr</td>
+<td>this year</td>
+</tr>
+<tr>
+<td>Austria</td>
+<td>der Paradeiser / die Erdäpfel / die Marille / der Topfen</td>
+<td>die Tomate / die Kartoffeln / die Aprikose / der Quark</td>
+<td>tomato / potatoes / apricot / quark</td>
+</tr>
+<tr>
+<td>Austria</td>
+<td>der Jänner</td>
+<td>der Januar</td>
+<td>January (also in official use)</td>
+</tr>
+<tr>
+<td>Austria</td>
+<td>das Sackerl</td>
+<td>die Tüte</td>
+<td>(plastic or paper) bag</td>
+</tr>
+<tr>
+<td>Vienna</td>
+<td>leiwand / Oida! / Baba!</td>
+<td>super / Alter! / Tschüss!</td>
+<td>great / dude! / bye</td>
+</tr>
+<tr>
+<td>Switzerland</td>
+<td>Hoi! / Uf Widerluege! / Merci vielmal!</td>
+<td>Hallo! / Auf Wiedersehen! / Vielen Dank!</td>
+<td>hi / goodbye / thanks a lot</td>
+</tr>
+<tr>
+<td>Switzerland</td>
+<td>En Guete!</td>
+<td>Guten Appetit!</td>
+<td>Enjoy your meal</td>
+</tr>
+<tr>
+<td>Switzerland</td>
+<td>das Velo / das Billett / parkieren / grillieren</td>
+<td>das Fahrrad / die Fahrkarte / parken / grillen</td>
+<td>bike / ticket / to park / to grill</td>
+</tr>
+<tr>
+<td>Switzerland</td>
+<td>das Natel</td>
+<td>das Handy</td>
+<td>mobile phone (a little dated)</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>icke / ick, det, wat</td>
+<td>ich, das, was</td>
+<td>I, that, what: Ick wees nich. = Ich weiß nicht.</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>..., wa?</td>
+<td>..., nicht wahr?</td>
+<td>right? (tag question)</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>der Späti / der Kiez</td>
+<td>der Spätkauf (late shop) / das Viertel</td>
+<td>corner shop open late / neighbourhood</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td>der Pfannkuchen</td>
+<td>der Berliner (Bavaria: der Krapfen)</td>
+<td>jam doughnut</td>
+</tr>
+<tr>
+<td>Berlin, north</td>
+<td>die Stulle</td>
+<td>das (belegte) Brot</td>
+<td>slice of bread, sandwich</td>
+</tr>
+<tr>
+<td>North</td>
+<td>klönen / der Schnack</td>
+<td>plaudern / das Gespräch</td>
+<td>to chat / a chat</td>
+</tr>
+<tr>
+<td>North, east</td>
+<td>der Sonnabend</td>
+<td>der Samstag</td>
+<td>Saturday</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two grammar differences you will notice: in the south, Austria and Switzerland people say ich bin gestanden / gesessen / gelegen (standard north: habe), and in parts of the east and south viertel acht means 7:15 (standard: Viertel nach sieben).</p>
+<h3>Register shifts in emails and meetings</h3>
+<p>At work, German politeness comes from Konjunktiv II (könnte, wäre, hätte, würde) and from indirect phrasing, not from extra "please"; the plain form in the left column is grammatical but sounds like an order.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Plain (sounds blunt)</th>
+<th>Polite, professional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asking for a document</td>
+<td>Schicken Sie mir den Vertrag.</td>
+<td>Könnten Sie mir bitte den Vertrag zukommen lassen?</td>
+</tr>
+<tr>
+<td>Asking for something by a date</td>
+<td>Ich brauche das bis Freitag.</td>
+<td>Ich wäre Ihnen dankbar, wenn ich die Unterlagen bis Freitag erhalten könnte.</td>
+</tr>
+<tr>
+<td>Making an appointment</td>
+<td>Ich will einen Termin.</td>
+<td>Ich würde gern einen Termin mit Ihnen vereinbaren.</td>
+</tr>
+<tr>
+<td>Finding a time</td>
+<td>Wann haben Sie Zeit?</td>
+<td>Wann würde es Ihnen passen? / Wäre Ihnen Dienstag um 10 Uhr recht?</td>
+</tr>
+<tr>
+<td>Sending an attachment</td>
+<td>Hier ist die Datei.</td>
+<td>Anbei sende ich Ihnen die Datei. / Im Anhang finden Sie die Datei.</td>
+</tr>
+<tr>
+<td>Following up</td>
+<td>Sie haben nicht geantwortet.</td>
+<td>Ich wollte kurz nachfragen, ob Sie meine E-Mail erhalten haben.</td>
+</tr>
+<tr>
+<td>Apologising for a delay</td>
+<td>Sorry für die späte Antwort.</td>
+<td>Entschuldigen Sie bitte die späte Antwort. / Vielen Dank für Ihre Geduld.</td>
+</tr>
+<tr>
+<td>Closing an email</td>
+<td>Fragen Sie, wenn was ist.</td>
+<td>Bei Rückfragen stehe ich Ihnen gern zur Verfügung. / Ich freue mich auf Ihre Rückmeldung.</td>
+</tr>
+<tr>
+<td>Suggesting (meeting)</td>
+<td>Wir machen das so.</td>
+<td>Ich würde vorschlagen, dass wir ... / Wie wäre es, wenn wir ...?</td>
+</tr>
+<tr>
+<td>Disagreeing</td>
+<td>Das ist falsch.</td>
+<td>Da bin ich anderer Meinung. / Das sehe ich etwas anders.</td>
+</tr>
+<tr>
+<td>Partly agreeing</td>
+<td>Ja, aber ...</td>
+<td>Da gebe ich Ihnen recht, allerdings ...</td>
+</tr>
+<tr>
+<td>Interrupting</td>
+<td>Moment mal!</td>
+<td>Darf ich kurz einhaken? / Wenn ich kurz unterbrechen darf: ...</td>
+</tr>
+<tr>
+<td>Checking understanding</td>
+<td>Was meinen Sie?</td>
+<td>Habe ich Sie richtig verstanden, dass ...?</td>
+</tr>
+<tr>
+<td>Postponing</td>
+<td>Das machen wir später.</td>
+<td>Könnten wir das auf die nächste Besprechung verschieben?</td>
+</tr>
+<tr>
+<td>Promising to get back</td>
+<td>Ich sage Bescheid.</td>
+<td>Ich melde mich bis Mittwoch bei Ihnen.</td>
+</tr>
+<tr>
+<td>Wrapping up</td>
+<td>Okay, fertig.</td>
+<td>Lassen Sie uns kurz zusammenfassen.</td>
+</tr>
+</tbody>
+</table></div>
+<p>With colleagues who say du, the same softeners work: Könntest du mir bitte ... schicken? / Ich würde vorschlagen, ... Overdoing it (Ich würde Sie höflichst bitten ...) sounds stiff or ironic in a normal office.</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/word-order.html">Word order</a>: where particles sit in the middle field, after the verb and pronouns</li>
+<li><a href="../docs/connectors.html">Connectors and sentence starters</a>: linking words and sentence openers, and what they do to the verb</li>
+<li><a href="../docs/tenses.html">Tenses, moods and the passive</a>: Konjunktiv II forms behind könnten, hätte gern, wäre</li>
+<li><a href="../docs/gotchas.html">Gotchas and false friends</a>: also vs auch, wohl vs wahrscheinlich and other traps</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: letters, emails and the formal register in depth</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/particles-expressions.html">Particles and expressions quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

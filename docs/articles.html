@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>German article tables (B1) · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">German article tables (B1)</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>German article tables (B1)</h1></header>
+<article class="prose card">
+<h2>Definite article: der, die, das</h2>
+<p>Only masculine changes in the Akkusativ. The red flags to remember are <strong>den</strong> (masculine Akk and plural Dat) and <strong>dem</strong> (masculine and neuter Dat).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ (who?)</td>
+<td>der Mann</td>
+<td>die Frau</td>
+<td>das Kind</td>
+<td>die Kinder</td>
+</tr>
+<tr>
+<td>Akkusativ (whom?)</td>
+<td><strong>den</strong> Mann</td>
+<td>die Frau</td>
+<td>das Kind</td>
+<td>die Kinder</td>
+</tr>
+<tr>
+<td>Dativ (to whom?)</td>
+<td><strong>dem</strong> Mann</td>
+<td><strong>der</strong> Frau</td>
+<td><strong>dem</strong> Kind</td>
+<td><strong>den</strong> Kinder<strong>n</strong></td>
+</tr>
+<tr>
+<td>Genitiv (whose?)</td>
+<td><strong>des</strong> Mann<strong>es</strong></td>
+<td><strong>der</strong> Frau</td>
+<td><strong>des</strong> Kind<strong>es</strong></td>
+<td><strong>der</strong> Kinder</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Dativ plural adds <strong>-n</strong> to the noun if it doesn't already end in -n or -s: <em>den Kindern</em>, but <em>den Autos</em> (see <a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>).</li>
+<li>Genitiv masculine and neuter add <strong>-s</strong> or <strong>-es</strong> to the noun: <em>des Vaters</em>, <em>des Hauses</em>.</li>
+<li>The same endings work for <strong>dieser, jeder, welcher, jener</strong>: dies<strong>er</strong> Mann, dies<strong>en</strong> Mann, dies<strong>em</strong> Mann, dies<strong>es</strong> Mann<strong>es</strong>.</li>
+</ul>
+<h2>Indefinite article: ein, eine, kein</h2>
+<p><em>Ein</em> has no plural, just like English <em>a</em>. <strong>Kein</strong> (no, not a) has the same endings as <em>ein</em> and adds a plural.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ</td>
+<td>ein / kein</td>
+<td>eine / keine</td>
+<td>ein / kein</td>
+<td>— / keine</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td><strong>einen</strong> / <strong>keinen</strong></td>
+<td>eine / keine</td>
+<td>ein / kein</td>
+<td>— / keine</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td><strong>einem</strong> / <strong>keinem</strong></td>
+<td><strong>einer</strong> / <strong>keiner</strong></td>
+<td><strong>einem</strong> / <strong>keinem</strong></td>
+<td>— / <strong>keinen</strong> (+n)</td>
+</tr>
+<tr>
+<td>Genitiv</td>
+<td><strong>eines</strong> / <strong>keines</strong> (+s)</td>
+<td><strong>einer</strong> / <strong>keiner</strong></td>
+<td><strong>eines</strong> / <strong>keines</strong> (+s)</td>
+<td>— / <strong>keiner</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The endings on the <em>ein</em>-words are the same as on <em>der</em>-words (dem → ein<strong>em</strong>, der → ein<strong>er</strong>). There are only three gaps: masculine Nom and neuter Nom/Akk have no ending at all (<em>ein Mann, ein Kind</em>).</p>
+<h3>Possessives use the same endings</h3>
+<p>Every possessive works exactly like <em>kein</em>: mein<strong>en</strong> Bruder, mit mein<strong>er</strong> Mutter, mein<strong>e</strong> Eltern.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Possessive</th>
+<th>Ukrainian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td>mein</td>
+<td>мій</td>
+</tr>
+<tr>
+<td>du</td>
+<td>dein</td>
+<td>твій</td>
+</tr>
+<tr>
+<td>er / es</td>
+<td>sein</td>
+<td>його</td>
+</tr>
+<tr>
+<td>sie (she)</td>
+<td>ihr</td>
+<td>її</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>unser</td>
+<td>наш</td>
+</tr>
+<tr>
+<td>ihr (you all)</td>
+<td>euer (eur<strong>e</strong>, eur<strong>en</strong>…)</td>
+<td>ваш</td>
+</tr>
+<tr>
+<td>sie (they)</td>
+<td>ihr</td>
+<td>їхній</td>
+</tr>
+<tr>
+<td>Sie (formal)</td>
+<td>Ihr</td>
+<td>Ваш</td>
+</tr>
+</tbody>
+</table></div>
+<p>German possessives change ending for case like Ukrainian ones do (<em>мій брат → мого брата</em>). The difference is that <em>sein</em> and <em>ihr</em> depend on the owner's gender, like English <em>his/her</em>. Ukrainian <em>свій</em> has no German equivalent, so <em>Er liebt seine Frau</em> covers both <em>свою</em> and <em>його</em>.</p>
+<h2>Adjective endings</h2>
+<p>The rule behind all three tables: <strong>the gender and case signal has to appear once.</strong> If the article already shows it, the adjective takes a lazy <em>-e</em> or <em>-en</em>. If the article doesn't, the adjective carries the signal itself.</p>
+<h3>After der / die / das (and dieser, jeder, welcher)</h3>
+<p>The article shows everything, so the adjective only takes <strong>-e</strong> or <strong>-en</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>der alt<strong>e</strong> Mann</td>
+<td>die alt<strong>e</strong> Frau</td>
+<td>das alt<strong>e</strong> Haus</td>
+<td>die alt<strong>en</strong> Leute</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>den alt<strong>en</strong> Mann</td>
+<td>die alt<strong>e</strong> Frau</td>
+<td>das alt<strong>e</strong> Haus</td>
+<td>die alt<strong>en</strong> Leute</td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>dem alt<strong>en</strong> Mann</td>
+<td>der alt<strong>en</strong> Frau</td>
+<td>dem alt<strong>en</strong> Haus</td>
+<td>den alt<strong>en</strong> Leuten</td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>des alt<strong>en</strong> Mannes</td>
+<td>der alt<strong>en</strong> Frau</td>
+<td>des alt<strong>en</strong> Hauses</td>
+<td>der alt<strong>en</strong> Leute</td>
+</tr>
+</tbody>
+</table></div>
+<p>Shortcut: <strong>-e</strong> in the five cells of Nom singular plus feminine/neuter Akk. Every other cell is <strong>-en</strong>.</p>
+<h3>After ein / kein / mein</h3>
+<p>This is the same as the table above, except where <em>ein</em> has no ending. In those three cells the adjective takes the signal: <strong>-er</strong> (masculine) or <strong>-es</strong> (neuter).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural (keine, meine)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>ein alt<strong>er</strong> Mann</td>
+<td>eine alt<strong>e</strong> Frau</td>
+<td>ein alt<strong>es</strong> Haus</td>
+<td>keine alt<strong>en</strong> Leute</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>einen alt<strong>en</strong> Mann</td>
+<td>eine alt<strong>e</strong> Frau</td>
+<td>ein alt<strong>es</strong> Haus</td>
+<td>keine alt<strong>en</strong> Leute</td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>einem alt<strong>en</strong> Mann</td>
+<td>einer alt<strong>en</strong> Frau</td>
+<td>einem alt<strong>en</strong> Haus</td>
+<td>keinen alt<strong>en</strong> Leuten</td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>eines alt<strong>en</strong> Mannes</td>
+<td>einer alt<strong>en</strong> Frau</td>
+<td>eines alt<strong>en</strong> Hauses</td>
+<td>keiner alt<strong>en</strong> Leute</td>
+</tr>
+</tbody>
+</table></div>
+<h3>No article</h3>
+<p>This comes up with plurals, materials and food: <em>kaltes Wasser, frische Brötchen, mit großer Freude</em>. The adjective takes the <em>der</em>-endings itself. The only exception is Genitiv masculine and neuter, which uses <strong>-en</strong> because the noun's <em>-s</em> already shows the case.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>kalt<strong>er</strong> Kaffee</td>
+<td>kalt<strong>e</strong> Milch</td>
+<td>kalt<strong>es</strong> Wasser</td>
+<td>kalt<strong>e</strong> Getränke</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>kalt<strong>en</strong> Kaffee</td>
+<td>kalt<strong>e</strong> Milch</td>
+<td>kalt<strong>es</strong> Wasser</td>
+<td>kalt<strong>e</strong> Getränke</td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>kalt<strong>em</strong> Kaffee</td>
+<td>kalt<strong>er</strong> Milch</td>
+<td>kalt<strong>em</strong> Wasser</td>
+<td>kalt<strong>en</strong> Getränken</td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>kalt<strong>en</strong> Kaffees</td>
+<td>kalt<strong>er</strong> Milch</td>
+<td>kalt<strong>en</strong> Wassers</td>
+<td>kalt<strong>er</strong> Getränke</td>
+</tr>
+</tbody>
+</table></div>
+<p>Compare Ukrainian: there the adjective always carries the full ending (<em>стар<strong>ий</strong> чоловік, стар<strong>ого</strong> чоловіка</em>). German shares that work out between the article and the adjective.</p>
+<h2>Which case when</h2>
+<p>The tables only help once you know the case. Most B1 errors come from the trigger, not the ending (see <a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Case</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subject</td>
+<td>Nom</td>
+<td><strong>Der</strong> Hund schläft.</td>
+</tr>
+<tr>
+<td>Direct object</td>
+<td>Akk</td>
+<td>Ich sehe <strong>den</strong> Hund.</td>
+</tr>
+<tr>
+<td>durch, für, gegen, ohne, um, bis</td>
+<td>Akk always</td>
+<td>für <strong>den</strong> Freund, ohne <strong>einen</strong> Plan</td>
+</tr>
+<tr>
+<td>aus, bei, mit, nach, seit, von, zu, gegenüber</td>
+<td>Dat always</td>
+<td>mit <strong>dem</strong> Bus, zu <strong>der</strong> (zur) Arbeit</td>
+</tr>
+<tr>
+<td>an, auf, hinter, in, neben, über, unter, vor, zwischen</td>
+<td>Akk for movement (wohin?), Dat for location (wo?)</td>
+<td>Ich gehe in <strong>die</strong> Stadt. / Ich bin in <strong>der</strong> Stadt.</td>
+</tr>
+<tr>
+<td>wegen, trotz, während, statt</td>
+<td>Gen (Dat in speech)</td>
+<td>wegen <strong>des</strong> Wetters</td>
+</tr>
+<tr>
+<td>helfen, danken, gefallen, gehören, antworten, gratulieren</td>
+<td>Dat object</td>
+<td>Ich helfe <strong>dem</strong> Kind. Das gefällt <strong>mir</strong>.</td>
+</tr>
+<tr>
+<td>geben, schenken, zeigen, erklären</td>
+<td>Dat person + Akk thing</td>
+<td>Ich gebe <strong>dem</strong> Mann <strong>das</strong> Buch.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Ukrainian comparisons that help:</p>
+<ul>
+<li><strong>Akk</strong> ≈ знахідний (бачу <strong>собаку</strong>). <strong>Dat</strong> ≈ давальний (даю <strong>чоловікові</strong>). <strong>Gen</strong> ≈ родовий for possession (книга <strong>батька</strong> = das Buch <strong>des Vaters</strong>).</li>
+<li>German has no instrumental. <em>з другом</em> and <em>автобусом</em> both become <strong>mit + Dat</strong>: <em>mit dem Freund, mit dem Bus</em>.</li>
+<li>German has no locative either. <em>У місті</em> becomes <strong>in + Dat</strong>: <em>in der Stadt</em>.</li>
+<li>The two-way prepositions work like Ukrainian <em>в місто</em> vs <em>в місті</em>. Direction takes Akk, as in Ukrainian, and location takes Dat.</li>
+<li>Many verbs match Ukrainian: <em>дякувати кому</em> = <strong>danken + Dat</strong>, <em>допомагати кому</em> = <strong>helfen + Dat</strong>, <em>питати кого</em> = <strong>fragen + Akk</strong>.</li>
+</ul>
+<p>Useful contractions: an dem = <strong>am</strong>, in dem = <strong>im</strong>, zu dem = <strong>zum</strong>, zu der = <strong>zur</strong>, von dem = <strong>vom</strong>, bei dem = <strong>beim</strong>, in das = <strong>ins</strong>, an das = <strong>ans</strong>.</p>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Genitiv in depth: -s or -es, names, and von + Dativ</h3>
+<p>At B2 the Genitiv is mainly a written case: speech replaces it with von + Dativ, but news, letters and exams use it all the time. The hard part is the noun ending, not the article.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Noun type</th>
+<th>Genitiv ending</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ends in -s, -ß, -x, -z, -tz</td>
+<td><strong>-es</strong> (required)</td>
+<td>des Hauses, des Fußes, des Reflexes, des Satzes</td>
+</tr>
+<tr>
+<td>Ends in -nis</td>
+<td><strong>-ses</strong></td>
+<td>des Ergebnisses, des Zeugnisses</td>
+</tr>
+<tr>
+<td>One syllable</td>
+<td>-es usual, -s also correct</td>
+<td>des Tag(e)s, des Buch(e)s, des Jahr(e)s</td>
+</tr>
+<tr>
+<td>Several syllables, unstressed ending</td>
+<td><strong>-s</strong> only</td>
+<td>des Lehrers, des Wagens, des Mädchens, des Computers</td>
+</tr>
+<tr>
+<td>Weak masculine (n-Deklination)</td>
+<td><strong>-en / -n</strong>, never -s</td>
+<td>des Studenten, des Kollegen, des Menschen, des Herrn</td>
+</tr>
+<tr>
+<td>Name, Gedanke, Glaube, Buchstabe; neuter Herz</td>
+<td><strong>-ens</strong></td>
+<td>des Namens, des Gedankens, des Glaubens, des Herzens</td>
+</tr>
+<tr>
+<td>Feminine and plural</td>
+<td>no ending</td>
+<td>der Frau, der Kinder</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fixed Genitiv phrases with no article: <strong>eines Tages</strong> (one day), <strong>meines Wissens</strong> (as far as I know), <strong>letzten Endes</strong> (in the end), <strong>guter Laune sein</strong> (be in a good mood), <strong>des Weiteren</strong> (furthermore).</p>
+<p><strong>Adjective edge case.</strong> With no article, masculine and neuter Genitiv adjectives take <strong>-en</strong>, not -es, because the noun's -s already shows the case: wegen schlecht<strong>en</strong> Wetters, trotz groß<strong>en</strong> Interesses. Feminine and plural keep the strong <strong>-er</strong>: trotz groß<strong>er</strong> Mühe, die Meinung erfahren<strong>er</strong> Experten.</p>
+<p><strong>Names.</strong> A name takes <strong>-s</strong> with no apostrophe and goes before the noun: Annas Handy, Goethes Gedichte, Deutschlands Hauptstadt. Names ending in -s, -ß, -x or -z take only an apostrophe: Hans' Auto, Max' Fahrrad, Franz' Idee. "Anna's" is English style; avoid it. With a full name only the last part changes: Angela Merkels Rede. With Herr, both change: Herrn Müllers Büro.</p>
+<p><strong>Word order.</strong> Only names go in front. An ordinary noun in the Genitiv follows its noun: das Auto meines Vaters. "Meines Vaters Auto" sounds old-fashioned or poetic.</p>
+<p><strong>When von + Dativ replaces the Genitiv</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Everyday speech, any noun</td>
+<td>von + Dat is normal</td>
+<td>das Auto von meinem Vater</td>
+</tr>
+<tr>
+<td>Plural with no article or adjective (the Genitiv would be invisible)</td>
+<td>von + Dat required</td>
+<td>der Preis von Häusern (not "der Preis Häuser")</td>
+</tr>
+<tr>
+<td>Pronouns and numbers</td>
+<td>von + Dat</td>
+<td>ein Freund von mir, die Hälfte von zehn</td>
+</tr>
+<tr>
+<td>Names ending in -s, in speech</td>
+<td>von + Dat</td>
+<td>das Fahrrad von Max</td>
+</tr>
+<tr>
+<td>Writing and exams</td>
+<td>Genitiv</td>
+<td>das Auto meines Vaters, der Preis neuer Häuser</td>
+</tr>
+</tbody>
+</table></div>
+<p>You will also hear "dem Vater sein Auto" (Dativ + possessive). It is regional and very colloquial: understand it, never write it. Ukrainian родовий (книга батька) works like the written Genitiv and has no von-style alternative, so the case itself will feel natural; only the endings need drilling.</p>
+<h3>Adjective endings after alle, beide, viele, einige and other quantifiers</h3>
+<p>Plural quantifiers fall into two groups. Words that act like <strong>die</strong> show the plural signal themselves, so the adjective goes weak (<strong>-en</strong>). Words that act like numbers leave the signal to the adjective, so it goes strong, as with no article.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Words</th>
+<th>Nom / Akk</th>
+<th>Dat</th>
+<th>Gen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Like die: weak -en</td>
+<td>alle, beide, sämtliche, diese, welche, keine, meine</td>
+<td>alle neu<strong>en</strong> Kollegen</td>
+<td>mit allen neu<strong>en</strong> Kollegen</td>
+<td>die Arbeit aller neu<strong>en</strong> Kollegen</td>
+</tr>
+<tr>
+<td>Like numbers: strong</td>
+<td>viele, wenige, einige, mehrere, etliche, ein paar, zwei, drei</td>
+<td>viele neu<strong>e</strong> Kollegen</td>
+<td>mit vielen neu<strong>en</strong> Kollegen</td>
+<td>die Arbeit vieler neu<strong>er</strong> Kollegen</td>
+</tr>
+<tr>
+<td>Both are correct</td>
+<td>manche, solche, irgendwelche</td>
+<td>manche alt<strong>en</strong> / manche alt<strong>e</strong> Leute</td>
+<td>mit manchen alt<strong>en</strong> Leuten</td>
+<td>rare; use von + Dat</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>The quantifier itself takes der-word endings: viele, vielen (Dat), vieler (Gen); alle, allen, aller.</li>
+<li>Dativ plural is -en in both groups, so only Nom, Akk and Gen show the difference.</li>
+<li><strong>andere</strong> behaves like an ordinary adjective: alle ander<strong>en</strong> Leute, viele ander<strong>e</strong> Leute.</li>
+<li><strong>folgende</strong> is strong on its own and weak after die: folgend<strong>e</strong> neu<strong>e</strong> Regeln, die folgend<strong>en</strong> neu<strong>en</strong> Regeln.</li>
+<li>Singular <strong>viel, wenig, mehr</strong> usually stay uninflected, and the adjective is strong: viel frisch<strong>es</strong> Obst, mit wenig kalt<strong>em</strong> Wasser, mehr frei<strong>e</strong> Zeit.</li>
+</ul>
+<p>Ukrainian trap: after багато the noun goes into родовий (багато нових колег). German viele does not change the case: <strong>Viele neue Kollegen sind da</strong> stays Nominativ.</p>
+<h3>Apposition, titles and adjectives in a row</h3>
+<p>An apposition (a second noun phrase that renames the first) copies its case, exactly as in Ukrainian: з паном Мюллером, моїм шефом. Commas go on both sides.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>Herr Müller, <strong>unser</strong> neu<strong>er</strong> Chef, kommt morgen.</td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>Kennst du Herrn Müller, <strong>unseren</strong> neu<strong>en</strong> Chef?</td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>Ich spreche mit Herrn Müller, <strong>unserem</strong> neu<strong>en</strong> Chef.</td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>das Büro meines Kollegen, <strong>eines</strong> erfahren<strong>en</strong> Anwalts</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Dates:</strong> am Montag, de<strong>m</strong> 5. Mai (Dativ, matching am) and am Montag, de<strong>n</strong> 5. Mai (Akkusativ, common in letters) are both correct.</li>
+<li><strong>als + noun</strong> takes the case of the word it describes: Ihm als erfahren<strong>em</strong> Lehrer fiel das sofort auf. Ich kenne ihn als zuverlässig<strong>en</strong> Kollegen.</li>
+</ul>
+<p><strong>Titles and names in the Genitiv</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Example</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Title + name, no article</td>
+<td>Präsident Obamas Rede, die Rede Präsident Obamas</td>
+<td>only the name takes -s</td>
+</tr>
+<tr>
+<td>Article + title + name</td>
+<td>die Rede des Präsidenten Obama</td>
+<td>article and title change; the name stays bare</td>
+</tr>
+<tr>
+<td>Herr + name</td>
+<td>Herrn Müllers Büro, mit Herrn Müller</td>
+<td>Herr becomes Herrn in every case but Nom</td>
+</tr>
+<tr>
+<td>Frau + name</td>
+<td>Frau Schmidts Büro</td>
+<td>only the name takes -s</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Several adjectives in a row</strong> all take the same ending: ein groß<strong>er</strong>, schwer<strong>er</strong> Koffer; der groß<strong>e</strong>, schwer<strong>e</strong> Koffer; bei schön<strong>em</strong>, warm<strong>em</strong> Wetter.</p>
+<p><strong>Personal pronoun + adjective.</strong> After wir and ihr the adjective is usually weak: wir jung<strong>en</strong> Leute (wir jung<strong>e</strong> Leute is also heard), wir Deutsch<strong>en</strong> or wir Deutsch<strong>e</strong>. After singular ich and du it is strong, as with no article: ich dumm<strong>er</strong> Mensch, du arm<strong>es</strong> Kind.</p>
+<h3>Zero article and the extra article</h3>
+<p>Ukrainian has no articles, so both directions are traps: German drops the article where English has "a", and adds one where Ukrainian and English have none.</p>
+<p><strong>No article</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Profession, nationality, religion after sein, werden, als</td>
+<td>Sie ist Ärztin. Er wird Lehrer. Ich bin Ukrainer. Er arbeitet als Ingenieur.</td>
+<td>with an adjective the article returns: Sie ist eine sehr gute Ärztin.</td>
+</tr>
+<tr>
+<td>Indefinite amounts: mass nouns and plurals</td>
+<td>Ich brauche Geld. Wir haben Zeit. Kinder brauchen Ruhe.</td>
+<td>the plural of ein is simply nothing</td>
+</tr>
+<tr>
+<td>Fixed verb phrases</td>
+<td>Angst haben, Hunger haben, Recht haben, Auto fahren, Klavier spielen, Bescheid sagen</td>
+<td>learn them as one chunk</td>
+</tr>
+<tr>
+<td>Most countries, cities, continents</td>
+<td>in Deutschland, aus Berlin, nach Europa</td>
+<td>with an adjective: das heutige Deutschland, im alten Rom</td>
+</tr>
+<tr>
+<td>Materials, after ohne, fixed pairs</td>
+<td>ein Ring aus Gold, ohne Zucker, Tag und Nacht, mit Messer und Gabel</td>
+<td></td>
+</tr>
+<tr>
+<td>Languages as a skill</td>
+<td>Ich spreche Deutsch.</td>
+<td>but: aus dem Deutschen übersetzen</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>An article where Ukrainian and English have none</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abstract nouns in a general statement (often)</td>
+<td>Das Leben ist kurz. Die Zeit vergeht schnell. Die Natur ist wichtig.</td>
+</tr>
+<tr>
+<td>Months, seasons, days, meals</td>
+<td>im Mai, im Winter, am Montag, nach dem Frühstück</td>
+</tr>
+<tr>
+<td>Countries with an article</td>
+<td>die Schweiz, die Ukraine, die USA, der Iran</td>
+</tr>
+<tr>
+<td>Streets, institutions, transport</td>
+<td>in der Hauptstraße, in der Schule, mit dem Bus</td>
+</tr>
+<tr>
+<td>Body parts and clothes, instead of a possessive</td>
+<td>Ich putze mir die Zähne. Er zieht sich die Jacke an. (not "meine Zähne")</td>
+</tr>
+<tr>
+<td>First names in speech (informal, especially in the south)</td>
+<td>Der Peter kommt auch. Ich habe die Anna gesehen. (never in formal writing)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Nominalised adjectives: der Deutsche, etwas Neues, alles Gute</h3>
+<p>An adjective used as a noun is capitalised but keeps its adjective endings, so it changes with the article in front of it. This is why it is <strong>der</strong> Deutsche but <strong>ein</strong> Deutsch<strong>er</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nom</td>
+<td>der Bekannte / ein Bekannt<strong>er</strong></td>
+<td>die Bekannte / eine Bekannte</td>
+<td>die Bekannten / Bekannt<strong>e</strong></td>
+</tr>
+<tr>
+<td>Akk</td>
+<td>den Bekannten / einen Bekannten</td>
+<td>die Bekannte / eine Bekannte</td>
+<td>die Bekannten / Bekannt<strong>e</strong></td>
+</tr>
+<tr>
+<td>Dat</td>
+<td>dem Bekannten / einem Bekannten</td>
+<td>der Bekannten / einer Bekannten</td>
+<td>den Bekannten / Bekannten</td>
+</tr>
+<tr>
+<td>Gen</td>
+<td>des Bekannten / eines Bekannten</td>
+<td>der Bekannten / einer Bekannten</td>
+<td>der Bekannten / Bekannt<strong>er</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Common words that work this way: der/die Deutsche, Bekannte, Verwandte, Erwachsene, Angestellte, Jugendliche, Kranke, Arbeitslose, Reisende, Vorsitzende, Abgeordnete. <strong>der Beamte / ein Beamter</strong> too, but the feminine <strong>die Beamtin</strong> is an ordinary noun. So: ein Deutscher, eine Deutsche, zwei Deutsche, die Deutschen.</p>
+<p><strong>Neuter after etwas, nichts, viel, wenig, mehr.</strong> The adjective becomes a neuter noun with the strong ending <strong>-es</strong>: etwas Neues, nichts Besonderes, viel Gutes, wenig Interessantes. Dativ: mit etwas Neu<strong>em</strong>.</p>
+<p><strong>After alles</strong> (a der-word) the ending is weak: alles Gute, alles Neue, mit allem Nötig<strong>en</strong>. With das: das Gute, das Beste, das Wichtigste ist …</p>
+<p><strong>Exception:</strong> andere usually stays lowercase (capitals are also allowed): etwas anderes, nichts anderes, alles andere.</p>
+<p>Ukrainian works the same way (щось нове, нічого особливого); German just adds the capital letter.</p>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a>: which case each preposition takes, contractions, Genitiv prepositions</li>
+<li><a href="../docs/noun-gender-plurals.html">Noun gender and plurals</a>: the gender that picks der, die or das, and plural forms behind Dativ -n</li>
+<li><a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>: pronouns built on these article forms</li>
+<li><a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>: which names take an article</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv chains and noun style in writing</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/articles.html">Articles quiz</a> has 30 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

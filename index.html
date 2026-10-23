@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner"><div class="crumbs"><span class="cur">German library</span></div></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>A2 – B1+</span><h1>German library</h1><p class="sub">Reference docs, reading texts and quizzes for learning German from A2 to B1+, explained in English with Ukrainian comparisons.</p></header>
+<nav class="tabs" aria-label="Sections"><a href="#grammar">Docs</a><a href="#readings">Reading</a><a href="#quizzes">Quizzes</a></nav>
+<section id="grammar"><div class="sec-head"><h2>Grammar</h2></div><div class="home-grid"><div class="home-card card"><a class="t" href="docs/articles.html">German article tables (B1)</a><span class="d">der/den/dem/des, ein/einen/einem, kein, mein/dein, adjective endings, which case a preposition or verb takes</span><span class="k"><a href="quizzes/articles.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/tenses.html">Tenses, moods and the passive</a><span class="d">Perfekt with haben or sein, Präteritum, Futur, würde/wäre/hätte, commands, passive with werden, no aspect (робив vs зробив)</span><span class="k"><a href="quizzes/tenses.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/irregular-verbs.html">Irregular verbs</a><span class="d">past forms of a strong verb, Ablaut patterns, modal verbs, mixed verbs like bringen/denken</span><span class="k"><a href="quizzes/irregular-verbs.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/word-order.html">Word order</a><span class="d">where the verb goes, verb at the end, two verbs in a row, where nicht goes, um…zu</span><span class="k"><a href="quizzes/word-order.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/connectors.html">Connectors and sentence starters</a><span class="d">übrigens, jedoch, trotzdem, deshalb, weil vs denn, wenn vs als, weder…noch</span><span class="k"><a href="quizzes/connectors.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/prepositions.html">Prepositions: in, an, auf, vor and the rest</a><span class="d">in vs an vs auf, nach vs zu, time words (am, um, im, vor, seit), warten auf, darauf/worauf</span><span class="k"><a href="quizzes/prepositions.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a><span class="d">der/die/das as &quot;who/which&quot;, denen, dessen, deren, was vs wo, Den kenne ich</span><span class="k"><a href="quizzes/relative-pronouns.html">Quiz →</a></span></div></div></section>
+<section><div class="sec-head"><h2>Words and vocabulary</h2></div><div class="home-grid"><div class="home-card card"><a class="t" href="docs/noun-gender-plurals.html">Noun gender and plurals</a><span class="d">guessing der/die/das from the ending, plural forms, der Junge → den Jungen, der/die See</span><span class="k"><a href="quizzes/noun-gender-plurals.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/word-formation.html">Word formation: roots and suffixes</a><span class="d">word families (fahren → Fahrt, Fahrer, Erfahrung), -ung/-heit/-keit, -lich/-ig/-bar, compounds</span><span class="k"><a href="quizzes/word-formation.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/prefixes.html">Prefixes and vowel changes</a><span class="d">separable vs inseparable verbs, an-/be-/ver-/ent-, umfahren vs umfahren, sprechen → Sprache → Spruch</span><span class="k"><a href="quizzes/prefixes.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/names.html">Names: countries, cities, rivers, seas and acronyms</a><span class="d">die Schweiz vs Deutschland, nationalities and languages, die Donau vs der Rhein, die EU, z. B./usw.</span><span class="k"><a href="quizzes/names.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/numbers-dates.html">Numbers, dates, time and money</a><span class="d">einundzwanzig, der 3. Mai, halb drei, 3,50 €, Prozent, Milliarde vs Billion</span><span class="k"><a href="quizzes/numbers-dates.html">Quiz →</a></span></div></div></section>
+<section><div class="sec-head"><h2>Everyday German</h2></div><div class="home-grid"><div class="home-card card"><a class="t" href="docs/particles-expressions.html">Particles, expressions and everyday German</a><span class="d">doch, mal, halt, ja, eben; Herzlichen Glückwunsch, Gute Besserung; was auch immer, egal, Quatsch; idioms and slang; du vs Sie</span><span class="k"><a href="quizzes/particles-expressions.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/gotchas.html">Gotchas and false friends</a><span class="d">bekommen ≠ become, Magazin ≠ магазин, kennen vs wissen, das vs dass, Mir ist kalt, spelling and pronunciation traps</span><span class="k"><a href="quizzes/gotchas.html">Quiz →</a></span></div></div></section>
+<section id="readings"><div class="sec-head"><h2>Reading topics</h2><p class="hint">40 B1 texts: 20 words each with gender and examples, 2–3 grammar points, hover translations and a 10-question quiz.</p></div><div class="filter" role="group" aria-label="Filter by area"><button type="button" aria-pressed="true" data-a="">All</button><button type="button" aria-pressed="false" data-a="Everyday">Everyday</button><button type="button" aria-pressed="false" data-a="Work">Work</button><button type="button" aria-pressed="false" data-a="IT">IT</button><button type="button" aria-pressed="false" data-a="Ukraine">Ukraine</button><button type="button" aria-pressed="false" data-a="Georgia">Georgia</button><button type="button" aria-pressed="false" data-a="Social">Social</button><button type="button" aria-pressed="false" data-a="Health">Health</button><button type="button" aria-pressed="false" data-a="Travel">Travel</button><button type="button" aria-pressed="false" data-a="Leisure">Leisure</button><button type="button" aria-pressed="false" data-a="Society">Society</button><button type="button" aria-pressed="false" data-a="Money">Money</button><button type="button" aria-pressed="false" data-a="Learning">Learning</button></div><div class="home-grid" id="rgrid"><a class="home-card card" data-area="Everyday" href="readings/01-wg-zimmer.html"><span class="k">01 · Everyday</span><span class="t">Die erste WG</span><span class="d">Finding a room in a flat share</span><span class="d">Two-way prepositions (Wechselpräpositionen) · Perfekt with haben or sein</span></a><a class="home-card card" data-area="Work" href="readings/02-vorstellungsgespraech.html"><span class="k">02 · Work</span><span class="t">Das Vorstellungsgespräch</span><span class="d">A job interview in Hamburg</span><span class="d">Konjunktiv II for politeness · weil and dass: verb at the end</span></a><a class="home-card card" data-area="Work" href="readings/03-homeoffice.html"><span class="k">03 · Work</span><span class="t">Homeoffice</span><span class="d">A day working from home</span><span class="d">Separable verbs (trennbare Verben) · Time prepositions: um, am, seit, ab</span></a><a class="home-card card" data-area="IT" href="readings/04-scrum-team.html"><span class="k">04 · IT</span><span class="t">Im Scrum-Team</span><span class="d">A week in a software team</span><span class="d">Modal verbs · da- and wo-compounds</span></a><a class="home-card card" data-area="IT" href="readings/05-cybersicherheit.html"><span class="k">05 · IT</span><span class="t">Passwörter und Cybersicherheit</span><span class="d">A phishing e-mail at work</span><span class="d">Passive with werden · The imperative (du, ihr, Sie)</span></a><a class="home-card card" data-area="IT" href="readings/06-startup-berlin.html"><span class="k">06 · IT</span><span class="t">Ein Start-up in Berlin</span><span class="d">The story of a Berlin startup</span><span class="d">Präteritum in written stories · Relative clauses</span></a><a class="home-card card" data-area="IT" href="readings/07-ki-im-alltag.html"><span class="k">07 · IT</span><span class="t">KI im Alltag</span><span class="d">AI in everyday life</span><span class="d">Comparative and superlative · wenn vs als</span></a><a class="home-card card" data-area="IT" href="readings/08-digital-detox.html"><span class="k">08 · IT</span><span class="t">Digital Detox</span><span class="d">A week without the phone</span><span class="d">Reflexive verbs · um … zu and ohne … zu</span></a><a class="home-card card" data-area="IT" href="readings/09-gaming.html"><span class="k">09 · IT</span><span class="t">Gaming und E-Sport</span><span class="d">Gaming and esports</span><span class="d">Adjective endings after der- and ein-words · Verbs with prepositions</span></a><a class="home-card card" data-area="IT" href="readings/10-programmieren-lernen.html"><span class="k">10 · IT</span><span class="t">Programmieren lernen</span><span class="d">From nurse to developer: learning to code</span><span class="d">Infinitive with zu · Connectors deshalb and trotzdem</span></a><a class="home-card card" data-area="Ukraine" href="readings/11-kyjiw.html"><span class="k">11 · Ukraine</span><span class="t">Ein Wochenende in Kyjiw</span><span class="d">A weekend in Kyiv</span><span class="d">Prepositions with cities and countries: in, nach, aus · Präteritum vs Perfekt</span></a><a class="home-card card" data-area="Ukraine" href="readings/12-ukrainische-kueche.html"><span class="k">12 · Ukraine</span><span class="t">Ukrainische Küche</span><span class="d">A Ukrainian dinner in Leipzig</span><span class="d">Noun plurals · mögen, gern, lieber, am liebsten</span></a><a class="home-card card" data-area="Ukraine" href="readings/13-karpaten.html"><span class="k">13 · Ukraine</span><span class="t">Wandern in den Karpaten</span><span class="d">Hiking up Hoverla in the Carpathians</span><span class="d">Dativ plural: -n on the noun · Perfekt with sein for movement</span></a><a class="home-card card" data-area="Ukraine" href="readings/14-lwiw-kaffee.html"><span class="k">14 · Ukraine</span><span class="t">Kaffeehauskultur in Lwiw</span><span class="d">Café hopping in Lviv</span><span class="d">Genitiv · Relative clauses with prepositions</span></a><a class="home-card card" data-area="Ukraine" href="readings/15-ukrainische-musik.html"><span class="k">15 · Ukraine</span><span class="t">Ukrainische Musik heute</span><span class="d">A Ukrainian concert in Cologne</span><span class="d">Adjective endings without an article · nicht vs kein</span></a><a class="home-card card" data-area="Ukraine" href="readings/16-neuanfang-deutschland.html"><span class="k">16 · Ukraine</span><span class="t">Neuanfang in Deutschland</span><span class="d">Starting over in Nuremberg</span><span class="d">seit + Präsens · obwohl vs trotzdem</span></a><a class="home-card card" data-area="Georgia" href="readings/17-tiflis.html"><span class="k">17 · Georgia</span><span class="t">Tiflis entdecken</span><span class="d">Discovering Tbilisi on your own</span><span class="d">Two-way prepositions (Wechselpräpositionen) · Superlative (der älteste, am schönsten)</span></a><a class="home-card card" data-area="Georgia" href="readings/18-georgische-kueche.html"><span class="k">18 · Georgia</span><span class="t">Supra, Chatschapuri und Wein</span><span class="d">A Georgian feast: food, wine and toasts</span><span class="d">Passive with werden (wird serviert) · Quantities (Mengenangaben)</span></a><a class="home-card card" data-area="Georgia" href="readings/19-kasbegi-swanetien.html"><span class="k">19 · Georgia</span><span class="t">Berge in Georgien</span><span class="d">Planning a trip to Kazbegi and Svaneti</span><span class="d">Future with werden (Futur I) · Two-way prepositions: Wohin? (Akk) or Wo? (Dat)</span></a><a class="home-card card" data-area="Georgia" href="readings/20-georgische-gastfreundschaft.html"><span class="k">20 · Georgia</span><span class="t">Gastfreundschaft und Alphabet</span><span class="d">Georgian hospitality and a new alphabet</span><span class="d">Verbs with the Dativ (helfen, gefallen, schmecken) · Indirect questions (ob, wie, wann …)</span></a><a class="home-card card" data-area="Social" href="readings/21-dating-apps.html"><span class="k">21 · Social</span><span class="t">Dating-Apps</span><span class="d">From match to first date</span><span class="d">Reflexive verbs (sich freuen, sich melden, sich verlieben) · wenn vs falls</span></a><a class="home-card card" data-area="Social" href="readings/22-freunde-finden.html"><span class="k">22 · Social</span><span class="t">Neue Freunde in einer neuen Stadt</span><span class="d">Making friends after a move</span><span class="d">Modal particles: doch, mal, ja · Reflexive pronouns: sich + Akkusativ or Dativ</span></a><a class="home-card card" data-area="Health" href="readings/23-fitnessstudio.html"><span class="k">23 · Health</span><span class="t">Im Fitnessstudio</span><span class="d">First weeks at the gym</span><span class="d">The imperative (du, ihr, Sie) · Separable verbs</span></a><a class="home-card card" data-area="Health" href="readings/24-gesund-kochen.html"><span class="k">24 · Health</span><span class="t">Gesund kochen</span><span class="d">Cooking healthy for the week</span><span class="d">Quantities (Mengenangaben) · Noun plurals in the kitchen · Passive in recipes (werden + Partizip II)</span></a><a class="home-card card" data-area="Health" href="readings/25-arztbesuch.html"><span class="k">25 · Health</span><span class="t">Beim Arzt</span><span class="d">A doctor&#x27;s visit and health insurance</span><span class="d">Dativ for pain and how you feel · Modal verbs müssen, dürfen, sollen</span></a><a class="home-card card" data-area="Travel" href="readings/26-deutschlandticket.html"><span class="k">26 · Travel</span><span class="t">Mit dem Deutschlandticket unterwegs</span><span class="d">A day trip by regional train</span><span class="d">Prepositions of place and direction (wo? wohin? woher?) · Separable verbs for travelling</span></a><a class="home-card card" data-area="Travel" href="readings/27-reiseplanung.html"><span class="k">27 · Travel</span><span class="t">Günstig reisen</span><span class="d">Planning a trip on a budget</span><span class="d">Präsens for the future · Futur I: werden + infinitive · Comparative (-er + als, je … desto)</span></a><a class="home-card card" data-area="Leisure" href="readings/28-festival.html"><span class="k">28 · Leisure</span><span class="t">Festivalsommer</span><span class="d">A weekend at a music festival</span><span class="d">Perfekt with haben and sein · Time expressions</span></a><a class="home-card card" data-area="Leisure" href="readings/29-serien-streaming.html"><span class="k">29 · Leisure</span><span class="t">Serien und Streaming</span><span class="d">Series, streaming and binge-watching</span><span class="d">Relative clauses · Adjective endings</span></a><a class="home-card card" data-area="Social" href="readings/30-social-media.html"><span class="k">30 · Social</span><span class="t">Social Media und Influencer</span><span class="d">Life as a small influencer</span><span class="d">Indirect speech with dass, ob and question words · Konjunktiv II for advice: sollte</span></a><a class="home-card card" data-area="Society" href="readings/31-nachhaltig-leben.html"><span class="k">31 · Society</span><span class="t">Nachhaltig leben</span><span class="d">Living more sustainably</span><span class="d">um … zu and damit (purpose) · Passive with werden (Präsens)</span></a><a class="home-card card" data-area="Money" href="readings/32-geld-sparen.html"><span class="k">32 · Money</span><span class="t">Geld und Sparen</span><span class="d">Money, budgeting and saving up</span><span class="d">Numbers and money · Konjunktiv II for wishes and unreal conditions</span></a><a class="home-card card" data-area="Everyday" href="readings/33-anmeldung-amt.html"><span class="k">33 · Everyday</span><span class="t">Anmeldung und Bürokratie</span><span class="d">Registering your address: German bureaucracy</span><span class="d">Passive with a modal verb · Prepositions with the Genitiv: wegen, während, trotz, innerhalb</span></a><a class="home-card card" data-area="Learning" href="readings/34-sprachen-lernen.html"><span class="k">34 · Learning</span><span class="t">Sprachen lernen</span><span class="d">Learning languages with a tandem partner</span><span class="d">Verbs with fixed prepositions · Infinitive with zu</span></a><a class="home-card card" data-area="Everyday" href="readings/35-fahrrad-stadt.html"><span class="k">35 · Everyday</span><span class="t">Mit dem Fahrrad durch die Stadt</span><span class="d">Cycling in the city: rules and tips</span><span class="d">Two-way prepositions (Wechselpräpositionen) · Imperative and dürfen / müssen</span></a><a class="home-card card" data-area="Everyday" href="readings/36-secondhand.html"><span class="k">36 · Everyday</span><span class="t">Secondhand und Online-Shopping</span><span class="d">Flea markets, second-hand and online shopping</span><span class="d">Comparing: comparative and superlative · Demonstratives: dieser and der da</span></a><a class="home-card card" data-area="Leisure" href="readings/37-brunch-cafe.html"><span class="k">37 · Leisure</span><span class="t">Sonntagsbrunch</span><span class="d">Sunday brunch in a café</span><span class="d">Ordering politely: hätte gern, möchte, würde gern · Akkusativ vs Dativ articles</span></a><a class="home-card card" data-area="Leisure" href="readings/38-wochenende-nachtleben.html"><span class="k">38 · Leisure</span><span class="t">Das Wochenende in der Stadt</span><span class="d">A night out in Hamburg</span><span class="d">Perfekt with sein · als vs wenn in the past</span></a><a class="home-card card" data-area="Everyday" href="readings/39-haustiere.html"><span class="k">39 · Everyday</span><span class="t">Haustiere in der Stadt</span><span class="d">A dog in a city flat</span><span class="d">Possessive articles (mein, sein, ihr …) · n-Deklination (der Junge, der Nachbar)</span></a><a class="home-card card" data-area="Work" href="readings/40-work-life-balance.html"><span class="k">40 · Work</span><span class="t">Work-Life-Balance</span><span class="d">Overtime, burnout and learning to rest</span><span class="d">Konjunktiv II for advice: du solltest, an deiner Stelle würde ich · weil, denn, deshalb: same logic, different word order</span></a></div></section>
+<section><div class="sec-head"><h2>B2+ <span class="badge">Later: skip until B1 is solid</span></h2><p class="hint">Each doc above also ends with its own B2+ section.</p></div><div class="home-grid"><div class="home-card card"><a class="t" href="docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a><span class="d">news-style German: er sei, sie habe gesagt, reported questions and commands</span><span class="k"><a href="quizzes/b2-reported-speech.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/b2-formal-german.html">B2+: Formal and written German</a><span class="d">Nominalstil, zur Verfügung stehen, die im Jahr 2020 veröffentlichte Studie, formal letters and essays</span><span class="k"><a href="quizzes/b2-formal-german.html">Quiz →</a></span></div><div class="home-card card"><a class="t" href="docs/b2-verb-structures.html">B2+: Advanced verb structures</a><span class="d">lassen, hat kommen müssen, Er muss krank sein, Das lässt sich machen, Futur II</span><span class="k"><a href="quizzes/b2-verb-structures.html">Quiz →</a></span></div></div></section>
+<section id="quizzes"><div class="sec-head"><h2>Quizzes</h2><p class="hint">One fixed quiz per doc. Answer everything, then check: each answer comes with a short explanation.</p></div><div class="home-grid"><a class="home-card card" href="quizzes/articles.html"><span class="t">Articles quiz</span><span class="d">30 questions · B1</span></a><a class="home-card card" href="quizzes/tenses.html"><span class="t">Tenses quiz</span><span class="d">38 questions · B1</span></a><a class="home-card card" href="quizzes/irregular-verbs.html"><span class="t">Irregular verbs quiz</span><span class="d">34 questions · B1</span></a><a class="home-card card" href="quizzes/word-order.html"><span class="t">Word order quiz</span><span class="d">32 questions · B1</span></a><a class="home-card card" href="quizzes/connectors.html"><span class="t">Connectors quiz</span><span class="d">36 questions · B1</span></a><a class="home-card card" href="quizzes/prepositions.html"><span class="t">Prepositions quiz</span><span class="d">40 questions · B1</span></a><a class="home-card card" href="quizzes/relative-pronouns.html"><span class="t">Relative pronouns quiz</span><span class="d">30 questions · B1</span></a><a class="home-card card" href="quizzes/noun-gender-plurals.html"><span class="t">Noun gender and plurals quiz</span><span class="d">34 questions · B1</span></a><a class="home-card card" href="quizzes/word-formation.html"><span class="t">Word formation quiz</span><span class="d">36 questions · B1</span></a><a class="home-card card" href="quizzes/prefixes.html"><span class="t">Prefixes quiz</span><span class="d">32 questions · B1</span></a><a class="home-card card" href="quizzes/names.html"><span class="t">Names quiz</span><span class="d">36 questions · B1</span></a><a class="home-card card" href="quizzes/numbers-dates.html"><span class="t">Numbers, dates and time quiz</span><span class="d">38 questions · B1</span></a><a class="home-card card" href="quizzes/particles-expressions.html"><span class="t">Particles and expressions quiz</span><span class="d">34 questions · B1</span></a><a class="home-card card" href="quizzes/gotchas.html"><span class="t">Gotchas quiz</span><span class="d">38 questions · B1</span></a><a class="home-card card" href="quizzes/b2-reported-speech.html"><span class="t">Reported speech quiz</span><span class="d">30 questions · B2+</span></a><a class="home-card card" href="quizzes/b2-formal-german.html"><span class="t">Formal German quiz</span><span class="d">38 questions · B2+</span></a><a class="home-card card" href="quizzes/b2-verb-structures.html"><span class="t">Verb structures quiz</span><span class="d">34 questions · B2+</span></a></div></section>
+
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.filter button'), cards = document.querySelectorAll('#rgrid [data-area]');
+  btns.forEach(function (b) { b.addEventListener('click', function () {
+    btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    cards.forEach(function (c) { c.hidden = !!b.dataset.a && c.dataset.area !== b.dataset.a; });
+  }); });
+})();
+</script>
+</body>
+</html>

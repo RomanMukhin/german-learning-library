@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Programmieren lernen · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "10-programmieren-lernen", "n": 10, "area": "IT", "level": "B1", "title_de": "Programmieren lernen", "title_en": "From nurse to developer: learning to code", "grammar": [{"name": "Infinitive with zu", "explain": "After many verbs (*versuchen, beschließen, vorhaben, anfangen, vergessen*), after nouns (*Lust haben, Zeit haben*) and after *es ist schwer / leicht / wichtig*, the second verb comes at the very end as *zu* + infinitive: *Sie hat beschlossen, Programmieren zu lernen.* With separable verbs, *zu* goes between prefix and stem: *beizubringen, aufzugeben, anzufangen*. A comma usually separates the zu-clause. Modal verbs never take *zu*: *Sie will lernen* (not *zu lernen*). Ukrainian simply uses the infinitive (*вирішила вивчати*), so the *zu* is easy to forget.", "examples": [{"de": "Sie hat beschlossen, etwas Neues *zu lernen*.", "en": "She decided to learn something new."}, {"de": "Sie hat versucht, sich Python selbst *beizubringen*.", "en": "She tried to teach herself Python."}, {"de": "Sie hat vor, im Sommer eine kleine App *zu entwickeln*.", "en": "She plans to develop a small app in the summer."}], "links": [{"title": "Word order (zu-infinitive at the end)", "url": "../docs/word-order.html"}, {"title": "Prefixes and vowel changes (separable prefixes)", "url": "../docs/prefixes.html"}]}, {"name": "Connectors deshalb and trotzdem", "explain": "*deshalb* (that's why, so) introduces a result; *trotzdem* (nevertheless, still) introduces something unexpected. Both are adverbs, not conjunctions: when they start the sentence, they take position 1 and the verb comes straight after them: *Deshalb hat sie …*, *Trotzdem ist sie …*. Compare *weil* and *obwohl*, which send the verb to the end: *weil die Arbeit anstrengend war* / *obwohl sie wenig Erfahrung hat*. *denn* and *aber* take position 0 and change nothing: *denn sie hat viel Geduld*.", "examples": [{"de": "Die Schichten waren lang. *Deshalb hat* sie beschlossen, Programmieren zu lernen.", "en": "The shifts were long. That's why she decided to learn to code."}, {"de": "Manchmal wollte sie aufgeben. *Trotzdem hat* sie jeden Abend weitergemacht.", "en": "Sometimes she wanted to give up. Still, she kept going every evening."}, {"de": "Sie hat wenig Erfahrung. *Trotzdem ist* sie optimistisch.", "en": "She has little experience. Nevertheless, she is optimistic."}], "links": [{"title": "Connectors and sentence starters", "url": "../docs/connectors.html"}, {"title": "Word order (verb in position 2)", "url": "../docs/word-order.html"}]}], "vocab": [{"id": "quereinsteiger", "de": "Quereinsteiger", "gender": "m", "plural": "Quereinsteiger", "en": "career changer", "uk": "людина, що змінила професію", "examples": [{"de": "In der IT gibt es viele *Quereinsteiger*.", "en": "There are many career changers in IT."}, {"de": "Sie ist *Quereinsteigerin*.", "en": "She is a career changer."}], "note": "Literally \"someone who gets in sideways\" (*quer einsteigen*). Female *die Quereinsteigerin, -nen*. No article after *sein*: *Sie ist Quereinsteigerin*."}, {"id": "loesung", "de": "Lösung", "gender": "f", "plural": "Lösungen", "en": "solution", "uk": "рішення, розв'язок", "examples": [{"de": "Sie sucht stundenlang *nach einer Lösung*.", "en": "She searches for a solution for hours."}], "note": "*-ung* → feminine. *suchen nach + Dat* = to look for. Ukrainian *рішення* also means \"decision\", German splits: decision = *die Entscheidung*."}, {"id": "umschulung", "de": "Umschulung", "gender": "f", "plural": "Umschulungen", "en": "retraining (for a new profession)", "uk": "перекваліфікація", "examples": [{"de": "Sie macht eine *Umschulung zur* Fachinformatikerin.", "en": "She is retraining as an IT specialist."}], "note": "*eine Umschulung zu + Dat* (*zum / zur*) + the new job. Often paid by the *Agentur für Arbeit*. Verb: *umschulen* (separable)."}, {"id": "aufwand", "de": "Aufwand", "gender": "m", "plural": null, "en": "effort, amount of work", "uk": "зусилля, витрати (часу, сил)", "examples": [{"de": "Der *Aufwand* ist groß.", "en": "It takes a lot of effort."}, {"de": "Das lohnt den Aufwand.", "en": "It's worth the effort."}], "note": "Masculine, normally singular. More \"cost in time/work\" than *die Mühe*. *mit viel Aufwand* = with a lot of effort."}, {"id": "programmiersprache", "de": "Programmiersprache", "gender": "f", "plural": "Programmiersprachen", "en": "programming language", "uk": "мова програмування", "examples": [{"de": "Python ist eine beliebte *Programmiersprache*.", "en": "Python is a popular programming language."}], "note": "Compound: *programmieren + die Sprache* → feminine. Names of languages are used without an article: *Python ist beliebt*, *in Java programmieren*."}, {"id": "herausforderung", "de": "Herausforderung", "gender": "f", "plural": "Herausforderungen", "en": "challenge", "uk": "виклик", "examples": [{"de": "Jede neue Sprache ist eine *Herausforderung*.", "en": "Every new language is a challenge."}], "note": "*-ung* → feminine. Verb: *herausfordern* (separable: *er fordert ihn heraus*)."}, {"id": "fortschritt", "de": "Fortschritt", "gender": "m", "plural": "Fortschritte", "en": "progress", "uk": "прогрес, успіхи", "examples": [{"de": "Sie macht schnell *Fortschritte*.", "en": "She is making quick progress."}], "note": "English *progress* is uncountable, German usually uses the plural: *Fortschritte machen* (not *Fortschritt geben*)."}, {"id": "geduld", "de": "Geduld", "gender": "f", "plural": null, "en": "patience", "uk": "терпіння", "examples": [{"de": "Dafür braucht man viel *Geduld*.", "en": "You need a lot of patience for that."}], "note": "Feminine and uncountable (Ukrainian *терпіння* is neuter). Adjective: *geduldig*; opposite *ungeduldig*. *Geduld haben mit + Dat*."}, {"id": "bewerbung", "de": "Bewerbung", "gender": "f", "plural": "Bewerbungen", "en": "application (for a job)", "uk": "заявка на вакансію", "examples": [{"de": "Sie schreibt *Bewerbungen für* ein Praktikum.", "en": "She is writing applications for an internship."}], "note": "Verb: *sich bewerben um + Akk* (for a position) / *bei + Dat* (at a company). The documents you send are *die Bewerbungsunterlagen*."}, {"id": "lebenslauf", "de": "Lebenslauf", "gender": "m", "plural": "Lebensläufe", "en": "CV, résumé", "uk": "резюме, життєпис", "examples": [{"de": "Ihr *Lebenslauf* ist ungewöhnlich.", "en": "Her CV is unusual."}], "note": "Masculine (*der Lauf*), plural with umlaut: *die Lebensläufe*. The linking *-s-*: *Leben-s-lauf*. In Germany a CV often has a photo."}, {"id": "erfahrung", "de": "Erfahrung", "gender": "f", "plural": "Erfahrungen", "en": "experience", "uk": "досвід", "examples": [{"de": "Als Entwicklerin hat sie noch wenig *Erfahrung*.", "en": "She still has little experience as a developer."}], "note": "Experience you gain = *Erfahrung*; a single memorable event = *das Erlebnis*. *Erfahrungen sammeln* = to gain experience."}, {"id": "beschliessen", "de": "beschließen", "gender": null, "plural": null, "en": "to decide", "uk": "вирішувати, ухвалювати рішення", "examples": [{"de": "Sie hat *beschlossen*, Programmieren zu lernen.", "en": "She decided to learn to code."}], "note": "Strong: *beschloss, hat beschlossen* (no *ge-*). Followed by a zu-infinitive. More formal or firm than *sich entscheiden*."}, {"id": "beibringen", "de": "jemandem etwas beibringen", "gender": null, "plural": null, "en": "to teach sb sth", "uk": "навчати когось чогось", "examples": [{"de": "Sie hat *sich* Python selbst *beigebracht*.", "en": "She taught herself Python."}, {"de": "Kannst du mir das beibringen?", "en": "Can you teach me that?"}], "note": "The person is Dativ (*mir, sich*), the thing Akkusativ. Separable and irregular like *bringen*: *brachte … bei, hat beigebracht*, zu-infinitive *beizubringen*."}, {"id": "aufgeben", "de": "aufgeben", "gender": null, "plural": null, "en": "to give up, to quit", "uk": "здаватися, кидати", "examples": [{"de": "Manchmal wollte sie *aufgeben*.", "en": "Sometimes she wanted to give up."}, {"de": "Gib nicht auf!", "en": "Don't give up!"}], "note": "Separable: *gibt … auf*, Perfekt *hat aufgegeben*, zu-infinitive *aufzugeben*. Also means \"to post\" a parcel or \"to place\" an order: *ein Paket aufgeben*."}, {"id": "vorhaben", "de": "vorhaben", "gender": null, "plural": null, "en": "to plan, to intend", "uk": "мати намір, планувати", "examples": [{"de": "Sie *hat vor*, eine App zu entwickeln.", "en": "She plans to develop an app."}, {"de": "Was hast du am Wochenende vor?", "en": "What are you up to at the weekend?"}], "note": "Separable: *hat … vor*. Often with a zu-infinitive. Noun: *das Vorhaben* (plan, project)."}, {"id": "kostenlos", "de": "kostenlos", "gender": null, "plural": null, "en": "free (of charge)", "uk": "безкоштовний", "examples": [{"de": "Sie lernt mit *kostenlosen* Videos.", "en": "She learns with free videos."}], "note": "*frei* does NOT mean \"free of charge\" (it means free/available: *Ist der Platz frei?*). Synonym: *gratis, umsonst*."}, {"id": "muehsam", "de": "mühsam", "gender": null, "plural": null, "en": "tedious, laborious", "uk": "виснажливий, клопіткий", "examples": [{"de": "Das Lernen war am Anfang *mühsam*.", "en": "Learning was tedious at first."}], "note": "From *die Mühe* (effort). *sich Mühe geben* = to make an effort. The *h* is silent: [MÜH-sam]."}, {"id": "schritt", "de": "Schritt für Schritt", "gender": null, "plural": null, "en": "step by step", "uk": "крок за кроком", "examples": [{"de": "Sie lernt *Schritt für Schritt*.", "en": "She learns step by step."}], "note": "Fixed phrase, no article. *der Schritt, die Schritte*. Similar: *nach und nach* (bit by bit)."}, {"id": "ball", "de": "am Ball bleiben", "gender": null, "plural": null, "en": "to keep at it, to stay on the ball", "uk": "не здаватися, продовжувати старатися", "examples": [{"de": "Wer *am Ball bleibt*, schafft es.", "en": "If you keep at it, you'll make it."}], "note": "Colloquial, from football. Perfekt with *sein*: *Sie ist am Ball geblieben*."}, {"id": "lohnen", "de": "sich lohnen", "gender": null, "plural": null, "en": "to be worth it, to pay off", "uk": "бути вартим, окупатися", "examples": [{"de": "Es *lohnt sich*!", "en": "It's worth it!"}, {"de": "Die Mühe hat sich gelohnt.", "en": "The effort paid off."}], "note": "Reflexive, usually with a thing or *es* as subject: *Das lohnt sich* (not *Das ist wert*). Adjective: *lohnenswert*."}], "text": "Sofia ist 31 und hat sechs Jahre als Krankenpflegerin in Dresden gearbeitet. Die Arbeit war wichtig, aber sehr {{=anstrengend|exhausting · виснажливий}}, und die {{=Schichten|shifts · зміни}} waren lang. Deshalb hat sie letzten Winter {{beschliessen|beschlossen}}, etwas Neues zu lernen: Programmieren. Sie ist eine typische {{quereinsteiger|Quereinsteigerin}}.\n\nZuerst hat sie versucht, sich Python mit {{kostenlos|kostenlosen}} Videos selbst {{beibringen|beizubringen}}. Am Anfang hat es Spaß gemacht. Aber bald kamen die ersten {{=Fehlermeldungen|error messages · повідомлення про помилки}}, und sie hat oft stundenlang nach einer {{loesung|Lösung}} gesucht. Das war {{muehsam|mühsam}}. Manchmal wollte sie {{aufgeben|aufgeben}}. Trotzdem hat sie jeden Abend weitergemacht, {{schritt|Schritt für Schritt}}.\n\nNach drei Monaten hat sich Sofia für eine {{umschulung|Umschulung}} zur Fachinformatikerin angemeldet. Die Agentur für Arbeit bezahlt die Kosten. Der {{aufwand|Aufwand}} ist groß: acht Stunden Unterricht am Tag und viele Hausaufgaben. Ihre Mitschüler kommen aus ganz unterschiedlichen Berufen, und alle helfen sich gegenseitig. Für Sofia ist jede neue {{programmiersprache|Programmiersprache}} eine {{herausforderung|Herausforderung}}. Aber sie macht schnell {{fortschritt|Fortschritte}}, denn sie hat viel {{geduld|Geduld}}.\n\nHeute schreibt sie {{bewerbung|Bewerbungen}} für ein Praktikum. Ihr {{lebenslauf|Lebenslauf}} ist ungewöhnlich, und als Entwicklerin hat sie noch wenig {{erfahrung|Erfahrung}}. Trotzdem ist sie optimistisch: Die Zeit im Krankenhaus hat ihr gezeigt, wie man unter Stress ruhig bleibt. Sie {{vorhaben|hat}} schon {{=konkret|concretely, specifically · конкретно}} vor, im Sommer eine kleine App für {{=Pflegekräfte|nursing staff · доглядовий персонал}} zu entwickeln. „Wer {{ball|am Ball bleibt}}, schafft es“, sagt sie. „Es {{lohnen|lohnt sich}}.“", "quiz": [{"q": "Als was hat Sofia früher gearbeitet?", "options": ["als Lehrerin", "als Ärztin", "als Verkäuferin", "als Entwicklerin", "als Krankenpflegerin"], "answer": 4, "explain": "\"Sofia … hat sechs Jahre *als Krankenpflegerin* in Dresden gearbeitet.\""}, {"q": "Die Arbeit war sehr anstrengend. *___* hat Sofia beschlossen, Programmieren zu lernen.", "options": ["Trotzdem", "Deshalb", "Obwohl", "Weil", "Aber"], "answer": 1, "explain": "A result → *Deshalb*, verb straight after it: \"*Deshalb hat* sie … beschlossen\". *Obwohl/Weil* would need the verb at the end, *Aber* would need *aber sie hat*."}, {"q": "Wie hat Sofia am Anfang gelernt?", "options": ["mit kostenlosen Videos", "in einer Umschulung", "an der Uni", "mit einem Freund", "in einem Praktikum"], "answer": 0, "explain": "\"Zuerst hat sie versucht, sich Python *mit kostenlosen Videos* selbst beizubringen.\""}, {"q": "Sofia hat versucht, sich Python selbst *___*.", "options": ["beibringen", "zu beibringen", "beigebracht", "beizubringen", "beibringt"], "answer": 3, "explain": "After *versuchen* comes a zu-infinitive; with a separable verb *zu* goes inside: *bei-zu-bringen*."}, {"q": "Manchmal wollte sie aufgeben. *___* hat sie jeden Abend weitergemacht.", "options": ["Deshalb", "Denn", "Trotzdem", "Weil", "Damit"], "answer": 2, "explain": "Something unexpected → *Trotzdem*: \"*Trotzdem hat* sie jeden Abend weitergemacht.\""}, {"q": "Wer bezahlt die Umschulung?", "options": ["die Agentur für Arbeit", "Sofia selbst", "das Krankenhaus", "ihre Eltern", "eine IT-Firma"], "answer": 0, "explain": "\"*Die Agentur für Arbeit* bezahlt die Kosten.\""}, {"q": "Warum macht Sofia schnell Fortschritte?", "options": ["Weil die Kurse kurz sind.", "Weil sie schon viel Erfahrung hat.", "Weil ihr Freund ihr hilft.", "Weil der Aufwand klein ist.", "Weil sie viel Geduld hat."], "answer": 4, "explain": "\"Aber sie macht schnell Fortschritte, *denn sie hat viel Geduld*.\""}, {"q": "Was macht Sofia heute?", "options": ["Sie arbeitet wieder im Krankenhaus.", "Sie unterrichtet Python.", "Sie schreibt Bewerbungen für ein Praktikum.", "Sie macht Urlaub.", "Sie studiert Medizin."], "answer": 2, "explain": "\"Heute schreibt sie *Bewerbungen* für ein Praktikum.\""}, {"q": "Sie hat vor, im Sommer eine kleine App *___* entwickeln.", "options": ["um", "zu", "für", "mit", "ohne"], "answer": 1, "explain": "*vorhaben* + zu-infinitive: \"Sie hat schon konkret vor, … eine kleine App für Pflegekräfte *zu* entwickeln.\""}, {"q": "Was hat Sofia im Krankenhaus gelernt?", "options": ["wie man programmiert", "wie man Bewerbungen schreibt", "wie man Apps entwickelt", "wie man unter Stress ruhig bleibt", "wie man Geld spart"], "answer": 3, "explain": "\"Die Zeit im Krankenhaus hat ihr gezeigt, *wie man unter Stress ruhig bleibt*.\""}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

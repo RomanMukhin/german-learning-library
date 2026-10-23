@@ -1,0 +1,1772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Noun gender and plurals · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Noun gender and plurals</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Words · A2–B1</span><h1>Noun gender and plurals</h1></header>
+<article class="prose card">
+<p>Gender is not random: meaning and ending predict der, die or das for a large share of nouns, and the gender in turn predicts most plurals; learn every noun as article + noun + plural (der Tisch, die Tische).</p>
+<h2>Gender by meaning</h2>
+<p>Some meaning groups fix the gender: male persons, time words and weather are der; female persons, trees, flowers and numbers are die; metals, colours, infinitives and diminutives are das.</p>
+<h3>der</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+<th>Exceptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Male persons and animals</td>
+<td>der Mann, der Vater, der Onkel, der Arzt, der Hahn, der Stier</td>
+<td>das Kind, das Baby (neutral words)</td>
+</tr>
+<tr>
+<td>Days, months, seasons</td>
+<td>der Montag, der Mai, der Winter</td>
+<td>das Jahr, die Woche, die Nacht</td>
+</tr>
+<tr>
+<td>Weather</td>
+<td>der Regen, der Schnee, der Wind, der Nebel, der Sturm, der Hagel</td>
+<td>das Gewitter, das Eis, die Sonne, die Wolke</td>
+</tr>
+<tr>
+<td>Directions</td>
+<td>der Norden, der Süden, der Osten, der Westen</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Car brands</td>
+<td>der BMW, der Audi, der VW, der Opel, der Tesla</td>
+<td>– (the model: der Golf)</td>
+</tr>
+<tr>
+<td>Alcoholic drinks</td>
+<td>der Wein, der Wodka, der Whisky, der Sekt, der Schnaps</td>
+<td>das Bier</td>
+</tr>
+<tr>
+<td>Currencies</td>
+<td>der Euro, der Dollar, der Franken, der Cent</td>
+<td>das Pfund, die Krone, die Hrywnja</td>
+</tr>
+<tr>
+<td>Rocks and minerals</td>
+<td>der Stein, der Granit, der Diamant, der Quarz</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<h3>die</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+<th>Exceptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Female persons and animals</td>
+<td>die Frau, die Mutter, die Tante, die Ärztin, die Kuh, die Henne</td>
+<td>das Mädchen, das Fräulein (diminutives)</td>
+</tr>
+<tr>
+<td>Most trees</td>
+<td>die Eiche, die Birke, die Buche, die Tanne, die Linde, die Kiefer</td>
+<td>der Baum, der Ahorn</td>
+</tr>
+<tr>
+<td>Most flowers</td>
+<td>die Rose, die Tulpe, die Lilie, die Nelke, die Orchidee</td>
+<td>das Veilchen, das Gänseblümchen (diminutives), der Kaktus</td>
+</tr>
+<tr>
+<td>Ships and aircraft</td>
+<td>die Titanic, die Gorch Fock, die Boeing 747, die Cessna</td>
+<td>der Airbus (but die A380)</td>
+</tr>
+<tr>
+<td>Motorbike brands</td>
+<td>die BMW, die Harley, die Yamaha, die Ducati</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Numbers as nouns</td>
+<td>die Eins, die Drei, die Sieben, die Hundert, die Million</td>
+<td>das Dutzend, das Tausend (as a noun group)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>das</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+<th>Exceptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metals and most chemical elements</td>
+<td>das Gold, das Silber, das Eisen, das Kupfer, das Uran</td>
+<td>der Stahl, die Bronze, der Sauerstoff, der Wasserstoff</td>
+</tr>
+<tr>
+<td>Colours as nouns</td>
+<td>das Rot, das Blau, das Grün</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Infinitives as nouns</td>
+<td>das Essen, das Lesen, das Schwimmen, das Leben</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Hotels, cafés, cinemas</td>
+<td>das Hilton, das Adlon, das Café, das Kino, das Cinemaxx</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Diminutives -chen, -lein</td>
+<td>das Mädchen, das Brötchen, das Häuschen, das Büchlein</td>
+<td>– (always das)</td>
+</tr>
+<tr>
+<td>Young animals</td>
+<td>das Kind, das Kalb, das Lamm, das Ferkel, das Küken, das Fohlen, das Kätzchen</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Letters, languages</td>
+<td>das A, das Deutsch(e), das Ukrainisch(e)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Countries and cities</td>
+<td>(das) Deutschland, (das) Berlin</td>
+<td>die Ukraine, die Schweiz, der Iran</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Gender by ending</h2>
+<p>The ending is the strongest clue: -ung, -heit, -keit, -schaft, -ion are always die; -chen and -lein are always das; -ling and -ismus are always der (see <a href="../docs/word-formation.html">Word formation: roots and suffixes</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gender</th>
+<th>Ending</th>
+<th>Reliability</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der</td>
+<td>-er (person or tool from a verb)</td>
+<td>high</td>
+<td>der Lehrer, der Fahrer, der Computer, der Wecker</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-ig</td>
+<td>\~100%</td>
+<td>der Honig, der Käfig, der König, der Essig</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-ling</td>
+<td>\~100%</td>
+<td>der Frühling, der Schmetterling, der Lehrling, der Flüchtling</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-ismus</td>
+<td>\~100%</td>
+<td>der Tourismus, der Optimismus, der Kapitalismus</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-or</td>
+<td>high</td>
+<td>der Motor, der Faktor, der Direktor, der Traktor (das Labor)</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-ant, -ent (persons)</td>
+<td>high</td>
+<td>der Praktikant, der Elefant, der Student, der Patient</td>
+</tr>
+<tr>
+<td>der</td>
+<td>-ist, -eur</td>
+<td>high</td>
+<td>der Polizist, der Tourist, der Friseur, der Ingenieur</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ung</td>
+<td>100%</td>
+<td>die Zeitung, die Wohnung, die Meinung, die Übung</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-heit, -keit</td>
+<td>100%</td>
+<td>die Freiheit, die Gesundheit, die Möglichkeit, die Sauberkeit</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-schaft</td>
+<td>100%</td>
+<td>die Freundschaft, die Mannschaft, die Wirtschaft</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ion</td>
+<td>\~100%</td>
+<td>die Information, die Region, die Religion, die Nation</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-tät</td>
+<td>100%</td>
+<td>die Universität, die Qualität, die Realität</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ie</td>
+<td>high</td>
+<td>die Familie, die Energie, die Biologie, die Fotografie</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ik</td>
+<td>high</td>
+<td>die Musik, die Politik, die Technik, die Grammatik</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ei</td>
+<td>high</td>
+<td>die Bäckerei, die Polizei, die Türkei (das Ei is the exception)</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-ur</td>
+<td>high</td>
+<td>die Natur, die Kultur, die Temperatur, die Reparatur (der Flur)</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-enz, -anz</td>
+<td>high</td>
+<td>die Konferenz, die Konkurrenz, die Distanz, die Toleranz</td>
+</tr>
+<tr>
+<td>die</td>
+<td>-e (two syllables or more)</td>
+<td>\~90%</td>
+<td>die Lampe, die Tasche, die Straße, die Reise (der Name, der Käse, das Auge, das Ende)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-chen, -lein</td>
+<td>100%</td>
+<td>das Mädchen, das Brötchen, das Fräulein, das Täubchen</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-um</td>
+<td>high</td>
+<td>das Museum, das Zentrum, das Studium, das Datum (der Irrtum, der Konsum)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-ment</td>
+<td>high</td>
+<td>das Dokument, das Instrument, das Medikament (der Zement)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-ma</td>
+<td>high</td>
+<td>das Thema, das Klima, das Drama, das Komma (die Firma, die Oma)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>Ge- (collective)</td>
+<td>\~70%</td>
+<td>das Gebäude, das Geschäft, das Gemüse, das Gesicht, das Geschenk (der Geburtstag, die Geschichte, der Geschmack)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-nis</td>
+<td>\~70%</td>
+<td>das Ergebnis, das Zeugnis, das Erlebnis, das Geheimnis (die Erlaubnis, die Kenntnis)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-tum</td>
+<td>\~80%</td>
+<td>das Eigentum, das Christentum, das Wachstum (der Reichtum, der Irrtum)</td>
+</tr>
+<tr>
+<td>das</td>
+<td>-o (often)</td>
+<td>medium</td>
+<td>das Auto, das Kino, das Büro, das Konto, das Radio</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Exceptions are in brackets. The \~% are rough guides, not statistics to quote.</li>
+<li>Many one-syllable nouns are der (der Tisch, der Stuhl, der Zug), but there are too many exceptions to rely on it (die Tür, das Haus).</li>
+</ul>
+<h2>Compounds and double-gender nouns</h2>
+<p>A compound noun always takes the gender and plural of its LAST part: das Haus + die Tür = die Haustür (pl. die Haustüren).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Compound</th>
+<th>Parts</th>
+<th>Gender from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Haustür</td>
+<td>das Haus + die Tür</td>
+<td>die Tür</td>
+</tr>
+<tr>
+<td>der Bahnhof</td>
+<td>die Bahn + der Hof</td>
+<td>der Hof</td>
+</tr>
+<tr>
+<td>das Kinderzimmer</td>
+<td>die Kinder + das Zimmer</td>
+<td>das Zimmer</td>
+</tr>
+<tr>
+<td>der Handschuh</td>
+<td>die Hand + der Schuh</td>
+<td>der Schuh</td>
+</tr>
+<tr>
+<td>die Geburtstagsfeier</td>
+<td>der Geburtstag + die Feier</td>
+<td>die Feier</td>
+</tr>
+<tr>
+<td>das Wochenende</td>
+<td>die Woche + das Ende</td>
+<td>das Ende</td>
+</tr>
+<tr>
+<td>der Fußball</td>
+<td>der Fuß + der Ball</td>
+<td>der Ball</td>
+</tr>
+<tr>
+<td>die Fahrkarte</td>
+<td>fahren + die Karte</td>
+<td>die Karte</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Linking letters (-s-, -n-, -er-) do not change this: der Arbeit-s-platz (der Platz), die Tasche-n-lampe (die Lampe), der Kind-er-garten (der Garten) (see <a href="../docs/word-formation.html">Word formation: roots and suffixes</a> for the linking rules).</li>
+</ul>
+<h3>Same word, different gender, different meaning</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning 1</th>
+<th>Meaning 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>See</td>
+<td>der See: lake (pl. Seen)</td>
+<td>die See: sea (pl. Seen, rare)</td>
+</tr>
+<tr>
+<td>Band</td>
+<td>der Band: volume of a book (pl. Bände)</td>
+<td>das Band: ribbon, tape (pl. Bänder); also die Band: music group (pl. Bands)</td>
+</tr>
+<tr>
+<td>Leiter</td>
+<td>der Leiter: manager, head (pl. Leiter)</td>
+<td>die Leiter: ladder (pl. Leitern)</td>
+</tr>
+<tr>
+<td>Teil</td>
+<td>der Teil: part, share (Der größte Teil ...)</td>
+<td>das Teil: a piece, a separate item (das Ersatzteil); pl. Teile for both</td>
+</tr>
+<tr>
+<td>Kiefer</td>
+<td>der Kiefer: jaw (pl. Kiefer)</td>
+<td>die Kiefer: pine tree (pl. Kiefern)</td>
+</tr>
+<tr>
+<td>Schild</td>
+<td>der Schild: shield (pl. Schilde)</td>
+<td>das Schild: sign, plate (pl. Schilder)</td>
+</tr>
+<tr>
+<td>Steuer</td>
+<td>die Steuer: tax (pl. Steuern)</td>
+<td>das Steuer: steering wheel (pl. Steuer)</td>
+</tr>
+<tr>
+<td>Gehalt</td>
+<td>der Gehalt: content (pl. Gehalte)</td>
+<td>das Gehalt: salary (pl. Gehälter)</td>
+</tr>
+<tr>
+<td>Erbe</td>
+<td>der Erbe: heir (n-Deklination, pl. Erben)</td>
+<td>das Erbe: inheritance (no plural)</td>
+</tr>
+<tr>
+<td>Moment</td>
+<td>der Moment: moment in time</td>
+<td>das Moment: factor, element (formal)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Same meaning, two genders allowed</h3>
+<ul>
+<li>der / das Joghurt, das / der Virus (das in standard use), der / das Liter, der / das Meter (der is usual), der / das Zentimeter, die / das Cola (die Cola in most of Germany; das Cola in the south and Austria).</li>
+<li>Tip: pick one and use it consistently; both are correct.</li>
+</ul>
+<h2>Plural patterns</h2>
+<p>German has six plural patterns; the plural article is always "die" (die Tische, die Frauen, die Kinder), whatever the singular gender.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Typical nouns</th>
+<th>Examples (singular → plural)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-e</td>
+<td>masculine and neuter, one syllable</td>
+<td>der Tisch → Tische, der Hund → Hunde, der Tag → Tage, der Brief → Briefe, der Schuh → Schuhe, der Monat → Monate, das Jahr → Jahre, das Bein → Beine, das Spiel → Spiele, das Problem → Probleme, das Geschenk → Geschenke</td>
+</tr>
+<tr>
+<td>¨e (umlaut + e)</td>
+<td>many masculine, some feminine one-syllable nouns</td>
+<td>der Stuhl → Stühle, der Zug → Züge, der Baum → Bäume, der Sohn → Söhne, der Platz → Plätze, der Arzt → Ärzte, die Hand → Hände, die Stadt → Städte, die Nacht → Nächte, die Wand → Wände, die Wurst → Würste</td>
+</tr>
+<tr>
+<td>-er / ¨er</td>
+<td>mostly neuter one-syllable nouns, a few masculine</td>
+<td>das Kind → Kinder, das Bild → Bilder, das Lied → Lieder, das Ei → Eier, das Haus → Häuser, das Buch → Bücher, das Land → Länder, das Dorf → Dörfer, das Glas → Gläser, der Mann → Männer, der Wald → Wälder</td>
+</tr>
+<tr>
+<td>-(e)n</td>
+<td>almost all feminine, n-Deklination masculine, a few neuter</td>
+<td>die Frau → Frauen, die Zeitung → Zeitungen, die Lampe → Lampen, die Blume → Blumen, die Tür → Türen, die Uhr → Uhren, die Schwester → Schwestern, die Lehrerin → Lehrerinnen, der Student → Studenten, der Junge → Jungen, das Auge → Augen, das Bett → Betten</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>words ending in a vowel (not -e), foreign words, short words, acronyms, names</td>
+<td>das Auto → Autos, das Kino → Kinos, das Hotel → Hotels, das Handy → Handys, das Baby → Babys, das Restaurant → Restaurants, der Park → Parks, der Chef → Chefs, die Oma → Omas, die Kamera → Kameras, die Uni → Unis, der Lkw → Lkws</td>
+</tr>
+<tr>
+<td>no ending / ¨ only</td>
+<td>masculine and neuter in -er, -el, -en, plus -chen, -lein</td>
+<td>der Lehrer → Lehrer, der Computer → Computer, das Zimmer → Zimmer, das Fenster → Fenster, der Kuchen → Kuchen, der Löffel → Löffel, das Mädchen → Mädchen; with umlaut: der Vater → Väter, der Bruder → Brüder, der Garten → Gärten, der Apfel → Äpfel, der Vogel → Vögel, die Mutter → Mütter, die Tochter → Töchter</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Umlaut only changes a, o, u, au: a → ä, o → ö, u → ü, au → äu.</li>
+<li>Mutter and Tochter are the only two feminine nouns with the umlaut-only plural.</li>
+<li>-in doubles the n: die Freundin → Freundinnen, die Ärztin → Ärztinnen.</li>
+<li>Dictionaries write it as: Tisch, der; -(e)s, -e or Stuhl, der; -s, ¨e. Learn to read that line.</li>
+</ul>
+<h2>Predicting the plural</h2>
+<p>Know the gender and the ending and you can guess most plurals: feminine nouns take -(e)n about 90% of the time, masculine and neuter nouns in -er, -el, -en take no ending.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>If the noun is ...</th>
+<th>Then the plural is usually ...</th>
+<th>Examples</th>
+<th>Main exceptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feminine</td>
+<td>-(e)n (about 90%)</td>
+<td>die Tasche → Taschen, die Zahl → Zahlen, die Wohnung → Wohnungen</td>
+<td>¨e: Hand, Stadt, Nacht, Wand, Wurst, Kuh, Maus (Mäuse); ¨: Mutter, Tochter; -s: Oma, Kamera</td>
+</tr>
+<tr>
+<td>feminine in -e</td>
+<td>-n</td>
+<td>die Lampe → Lampen, die Reise → Reisen</td>
+<td>–</td>
+</tr>
+<tr>
+<td>masculine / neuter in -er, -el, -en</td>
+<td>no ending (sometimes umlaut)</td>
+<td>der Koffer → Koffer, der Schlüssel → Schlüssel, der Wagen → Wagen, der Laden → Läden</td>
+<td>der Bauer → Bauern, der Muskel → Muskeln, der Stachel → Stacheln</td>
+</tr>
+<tr>
+<td>-chen, -lein</td>
+<td>no ending</td>
+<td>das Brötchen → Brötchen</td>
+<td>–</td>
+</tr>
+<tr>
+<td>masculine, one syllable</td>
+<td>-e or ¨e</td>
+<td>der Tag → Tage, der Zug → Züge</td>
+<td>der Mann → Männer, der Wald → Wälder, der Staat → Staaten</td>
+</tr>
+<tr>
+<td>neuter, one syllable</td>
+<td>-e or -er / ¨er</td>
+<td>das Jahr → Jahre, das Kind → Kinder, das Buch → Bücher</td>
+<td>das Bett → Betten, das Ohr → Ohren</td>
+</tr>
+<tr>
+<td>masculine in -e (persons, animals)</td>
+<td>-n (n-Deklination)</td>
+<td>der Kollege → Kollegen, der Löwe → Löwen</td>
+<td>–</td>
+</tr>
+<tr>
+<td>foreign, ends in a vowel (not -e), abbreviation</td>
+<td>-s</td>
+<td>das Sofa → Sofas, das Foto → Fotos, der Pkw → Pkws</td>
+<td>das Museum → Museen, das Thema → Themen, das Visum → Visa</td>
+</tr>
+<tr>
+<td>Latin -um, Greek -ma</td>
+<td>-en</td>
+<td>das Zentrum → Zentren, das Studium → Studien, das Datum → Daten, das Thema → Themen, die Firma → Firmen</td>
+<td>das Klima → Klimata / Klimas</td>
+</tr>
+<tr>
+<td>-nis</td>
+<td>-nisse</td>
+<td>das Ergebnis → Ergebnisse, die Erlaubnis → Erlaubnisse</td>
+<td>–</td>
+</tr>
+<tr>
+<td>-in (female persons)</td>
+<td>-innen</td>
+<td>die Kollegin → Kolleginnen</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Hard cases are mostly masculine and neuter one-syllable nouns: learn their plural with the noun.</li>
+<li>The plural "die Daten" covers two meanings: dates (of das Datum) and data.</li>
+</ul>
+<h2>n-Deklination and the Dativ plural -n</h2>
+<p>A group of masculine nouns (n-Deklination) adds -(e)n in every form except the Nominativ singular: der Junge, but den Jungen, dem Jungen, des Jungen (for the article forms, see <a href="../docs/articles.html">German article tables (B1)</a>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>der Junge</th>
+<th>der Student</th>
+<th>der Herr</th>
+<th>der Mensch</th>
+<th>der Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominativ</td>
+<td>der Junge</td>
+<td>der Student</td>
+<td>der Herr</td>
+<td>der Mensch</td>
+<td>der Name</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td>den Jungen</td>
+<td>den Studenten</td>
+<td>den Herrn</td>
+<td>den Menschen</td>
+<td>den Namen</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>dem Jungen</td>
+<td>dem Studenten</td>
+<td>dem Herrn</td>
+<td>dem Menschen</td>
+<td>dem Namen</td>
+</tr>
+<tr>
+<td>Genitiv</td>
+<td>des Jungen</td>
+<td>des Studenten</td>
+<td>des Herrn</td>
+<td>des Menschen</td>
+<td>des Namens</td>
+</tr>
+<tr>
+<td>Plural</td>
+<td>die Jungen</td>
+<td>die Studenten</td>
+<td>die Herren</td>
+<td>die Menschen</td>
+<td>die Namen</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Which nouns?</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Masculine in -e (persons, animals)</td>
+<td>der Junge, der Kollege, der Kunde, der Neffe, der Russe, der Pole, der Franzose, der Löwe, der Hase, der Affe</td>
+</tr>
+<tr>
+<td>Foreign masc. in -ent, -ant, -ist, -at, -oge, -af</td>
+<td>der Student, der Praktikant, der Polizist, der Tourist, der Soldat, der Kandidat, der Biologe, der Fotograf, der Präsident</td>
+</tr>
+<tr>
+<td>Some other everyday nouns</td>
+<td>der Herr (-n, pl. -en), der Mensch, der Held, der Bauer, der Nachbar, der Bär, der Prinz</td>
+</tr>
+<tr>
+<td>Genitiv -ns (mixed type)</td>
+<td>der Name (des Namens), der Gedanke, der Glaube, der Buchstabe, der Wille, der Friede(n)</td>
+</tr>
+<tr>
+<td>One neuter, irregular</td>
+<td>das Herz: dem Herzen, des Herzens (Akk. das Herz)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Typical errors: Ich frage den Lehrer (normal noun) but Ich frage den Kollegen (n). Sehr geehrter Herr Müller, but Ich schreibe Herrn Müller.</li>
+<li>On letters: "Herrn" is the Akkusativ / Dativ form: An Herrn Max Müller.</li>
+<li>Not n-Deklination: der Käse (des Käses), der Lehrer, der Arzt.</li>
+</ul>
+<h3>Dativ plural always ends in -n</h3>
+<ul>
+<li>Every noun in the Dativ plural adds -n if the plural does not already end in -n or -s: die Kinder → mit den Kindern; die Freunde → mit den Freunden; die Bücher → in den Büchern.</li>
+<li>Already -n or -s, nothing added: mit den Frauen, mit den Autos.</li>
+<li>Ukrainian comparison: like the instrumental -ами (з дітьми, з друзями), the case shows on the noun itself.</li>
+</ul>
+<h2>Plural-only and singular-only nouns</h2>
+<p>Some nouns exist only in the plural (die Leute, die Eltern) and take a plural verb; others are only singular (das Obst, die Polizei) and take a singular verb, even when the English or Ukrainian word is plural.</p>
+<h3>Only plural</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Ukrainian</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Leute</td>
+<td>people</td>
+<td>люди</td>
+<td>Die Leute sind nett. (one person: ein Mensch, eine Person)</td>
+</tr>
+<tr>
+<td>die Eltern</td>
+<td>parents</td>
+<td>батьки</td>
+<td>one parent: ein Elternteil (der)</td>
+</tr>
+<tr>
+<td>die Geschwister</td>
+<td>siblings</td>
+<td>брати і сестри</td>
+<td>Hast du Geschwister?</td>
+</tr>
+<tr>
+<td>die Ferien</td>
+<td>holidays (school, uni)</td>
+<td>канікули</td>
+<td>in den Ferien</td>
+</tr>
+<tr>
+<td>die Kosten</td>
+<td>costs</td>
+<td>витрати</td>
+<td>Die Kosten sind hoch.</td>
+</tr>
+<tr>
+<td>die Möbel</td>
+<td>furniture</td>
+<td>меблі</td>
+<td>Die Möbel sind neu. One piece: ein Möbelstück</td>
+</tr>
+<tr>
+<td>die Lebensmittel</td>
+<td>groceries</td>
+<td>продукти</td>
+<td>(das Lebensmittel exists, but the plural is normal)</td>
+</tr>
+<tr>
+<td>die Jeans</td>
+<td>jeans</td>
+<td>джинси</td>
+<td>also singular: eine Jeans</td>
+</tr>
+<tr>
+<td>die Alpen, die USA</td>
+<td>the Alps, the USA</td>
+<td>Альпи, США</td>
+<td>names</td>
+</tr>
+<tr>
+<td>die Shorts, die Masern</td>
+<td>shorts, measles</td>
+<td>шорти, кір</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Only singular</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>English</th>
+<th>Ukrainian</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Obst</td>
+<td>fruit</td>
+<td>фрукти</td>
+<td>Das Obst ist frisch. One piece: eine Frucht, ein Stück Obst</td>
+</tr>
+<tr>
+<td>das Gemüse</td>
+<td>vegetables</td>
+<td>овочі</td>
+<td>Gemüse ist gesund. Types: die Gemüsesorten</td>
+</tr>
+<tr>
+<td>die Polizei</td>
+<td>the police</td>
+<td>поліція</td>
+<td>Die Polizei kommt. (English: the police are coming)</td>
+</tr>
+<tr>
+<td>die Milch</td>
+<td>milk</td>
+<td>молоко</td>
+<td></td>
+</tr>
+<tr>
+<td>das Geld</td>
+<td>money</td>
+<td>гроші</td>
+<td>Das Geld ist weg. (plural in Ukrainian)</td>
+</tr>
+<tr>
+<td>das Wetter</td>
+<td>weather</td>
+<td>погода</td>
+<td></td>
+</tr>
+<tr>
+<td>der Zucker, das Mehl, der Reis</td>
+<td>sugar, flour, rice</td>
+<td>цукор, борошно, рис</td>
+<td>kinds: Zuckersorten, Reissorten</td>
+</tr>
+<tr>
+<td>das Gepäck</td>
+<td>luggage</td>
+<td>багаж</td>
+<td>one piece: ein Gepäckstück</td>
+</tr>
+<tr>
+<td>die Hilfe</td>
+<td>help</td>
+<td>допомога</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Trap: "die Möbel" and "die Kosten" are plural, while English furniture is singular; "das Geld" is singular, while Ukrainian гроші is plural.</li>
+<li>Trap: "die Information" is countable in German, unlike English information.</li>
+</ul>
+<h2>Adjectival nouns</h2>
+<p>Nouns made from adjectives or participles keep adjective endings: der Deutsche but ein Deutscher; die Bekannte, eine Bekannte; die Angestellten but viele Angestellte.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Man</th>
+<th>Woman</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>with der / die</td>
+<td>der Deutsche</td>
+<td>die Deutsche</td>
+<td>die Deutschen</td>
+</tr>
+<tr>
+<td>with ein / eine / kein</td>
+<td>ein Deutscher</td>
+<td>eine Deutsche</td>
+<td>(keine Deutschen)</td>
+</tr>
+<tr>
+<td>no article</td>
+<td>Er ist Deutscher.</td>
+<td>Sie ist Deutsche.</td>
+<td>viele Deutsche, zwei Deutsche</td>
+</tr>
+<tr>
+<td>Akkusativ</td>
+<td>den / einen Deutschen</td>
+<td>die / eine Deutsche</td>
+<td>die Deutschen</td>
+</tr>
+<tr>
+<td>Dativ</td>
+<td>dem / einem Deutschen</td>
+<td>der / einer Deutschen</td>
+<td>den Deutschen</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Common adjectival nouns</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>From</th>
+<th>Man</th>
+<th>Woman</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>angestellt</td>
+<td>der Angestellte / ein Angestellter</td>
+<td>die / eine Angestellte</td>
+<td>employee</td>
+</tr>
+<tr>
+<td>bekannt</td>
+<td>der Bekannte / ein Bekannter</td>
+<td>die / eine Bekannte</td>
+<td>acquaintance</td>
+</tr>
+<tr>
+<td>verwandt</td>
+<td>der Verwandte / ein Verwandter</td>
+<td>die / eine Verwandte</td>
+<td>relative</td>
+</tr>
+<tr>
+<td>erwachsen</td>
+<td>der Erwachsene / ein Erwachsener</td>
+<td>die / eine Erwachsene</td>
+<td>adult</td>
+</tr>
+<tr>
+<td>arbeitslos</td>
+<td>der Arbeitslose / ein Arbeitsloser</td>
+<td>die / eine Arbeitslose</td>
+<td>unemployed person</td>
+</tr>
+<tr>
+<td>reisend</td>
+<td>der Reisende / ein Reisender</td>
+<td>die / eine Reisende</td>
+<td>traveller</td>
+</tr>
+<tr>
+<td>auszubildend</td>
+<td>der Auszubildende / ein Auszubildender</td>
+<td>die / eine Auszubildende</td>
+<td>apprentice (der Azubi)</td>
+</tr>
+<tr>
+<td>jugendlich</td>
+<td>der Jugendliche / ein Jugendlicher</td>
+<td>die / eine Jugendliche</td>
+<td>teenager</td>
+</tr>
+<tr>
+<td>fremd</td>
+<td>der Fremde / ein Fremder</td>
+<td>die / eine Fremde</td>
+<td>stranger</td>
+</tr>
+<tr>
+<td>vorgesetzt</td>
+<td>der Vorgesetzte / ein Vorgesetzter</td>
+<td>die / eine Vorgesetzte</td>
+<td>boss, superior</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Abstract neuter: das Gute, etwas Neues, nichts Besonderes, alles Gute (with etwas / nichts: capital and -es).</li>
+<li>Exception: der Beamte works the same way (ein Beamter), but the woman is die Beamtin (a normal noun).</li>
+</ul>
+<h2>Ukrainian comparison and how to learn nouns</h2>
+<p>Ukrainian also has three genders, but they match German only by chance, so never transfer the Ukrainian gender; learn article + noun + plural as one unit.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>German</th>
+<th>Ukrainian</th>
+<th>Match?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Sonne</td>
+<td>сонце (n)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Mond</td>
+<td>місяць (m)</td>
+<td>yes, by chance</td>
+</tr>
+<tr>
+<td>das Mädchen</td>
+<td>дівчина (f)</td>
+<td>no: grammar beats meaning (-chen)</td>
+</tr>
+<tr>
+<td>das Kind</td>
+<td>дитина (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Buch</td>
+<td>книга (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Wasser</td>
+<td>вода (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>die Milch</td>
+<td>молоко (n)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Messer</td>
+<td>ніж (m)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Löffel</td>
+<td>ложка (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>die Zeit</td>
+<td>час (m)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>die Stadt</td>
+<td>місто (n)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Land</td>
+<td>країна (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Kaffee</td>
+<td>кава (f)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>der Wein</td>
+<td>вино (n)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>die Tür</td>
+<td>двері (plural only)</td>
+<td>no</td>
+</tr>
+<tr>
+<td>das Fenster</td>
+<td>вікно (n)</td>
+<td>yes, by chance</td>
+</tr>
+<tr>
+<td>das Meer</td>
+<td>море (n)</td>
+<td>yes, by chance</td>
+</tr>
+<tr>
+<td>die Nacht</td>
+<td>ніч (f)</td>
+<td>yes, by chance</td>
+</tr>
+</tbody>
+</table></div>
+<h3>How to learn nouns</h3>
+<ul>
+<li>Always write and say three things: der Tisch, die Tische. Never just "Tisch".</li>
+<li>Colour-code: blue for der, red for die, green for das (or any fixed system) in notes and flashcards.</li>
+<li>Check the ending first (section Gender by ending), then the meaning group; only memorise what is left.</li>
+<li>Learn nouns in short phrases with a case: mit dem Zug, in der Stadt, auf das Dach.</li>
+<li>In Duolingo and Anki, add the plural to every new card: das Buch, die Bücher.</li>
+</ul>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>Foreign-word plurals</h3>
+<p>Latin, Greek and Italian loans often keep a foreign plural: the ending -um, -us, -on, -a or -o is dropped and -en, -a or -ien is added. Many also have a newer -s plural; the foreign one is the safe written choice.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Museum, das Studium, das Zentrum</td>
+<td>die Museen, die Studien, die Zentren</td>
+<td>-um → -en</td>
+</tr>
+<tr>
+<td>das Gymnasium, das Stadion</td>
+<td>die Gymnasien, die Stadien</td>
+<td>-ium / -ion → -ien</td>
+</tr>
+<tr>
+<td>das Praktikum</td>
+<td>die Praktika</td>
+<td>-um → -a (CV word: Ich habe zwei Praktika gemacht.)</td>
+</tr>
+<tr>
+<td>das Visum</td>
+<td>die Visa or die Visen</td>
+<td>both standard</td>
+</tr>
+<tr>
+<td>das Thema, die Firma</td>
+<td>die Themen, die Firmen</td>
+<td>-a → -en</td>
+</tr>
+<tr>
+<td>das Komma, das Schema</td>
+<td>die Kommas / Kommata, die Schemas / Schemata</td>
+<td>-s or -ata</td>
+</tr>
+<tr>
+<td>das Konto</td>
+<td>die Konten (also Kontos, Konti)</td>
+<td>-o → -en</td>
+</tr>
+<tr>
+<td>das Risiko</td>
+<td>die Risiken (also Risikos)</td>
+<td>-o → -en</td>
+</tr>
+<tr>
+<td>das Album, das Virus</td>
+<td>die Alben, die Viren</td>
+<td>-um / -us → -en</td>
+</tr>
+<tr>
+<td>der Rhythmus, der Organismus</td>
+<td>die Rhythmen, die Organismen</td>
+<td>-us → -en (all -ismus nouns)</td>
+</tr>
+<tr>
+<td>das Lexikon</td>
+<td>die Lexika (also Lexiken)</td>
+<td>-on → -a</td>
+</tr>
+<tr>
+<td>das Prinzip, das Material, das Fossil</td>
+<td>die Prinzipien, die Materialien, die Fossilien</td>
+<td>+ -ien</td>
+</tr>
+<tr>
+<td>der Kaktus, der Atlas</td>
+<td>die Kakteen, die Atlanten / Atlasse</td>
+<td>irregular</td>
+</tr>
+<tr>
+<td>der Index</td>
+<td>die Indizes / Indexe</td>
+<td>irregular</td>
+</tr>
+<tr>
+<td>die Praxis (doctor's practice)</td>
+<td>die Praxen</td>
+<td>Praxis = "practice" in general has no plural</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Dativ plural adds nothing to these: in den Museen, mit den Visa, auf den Konten.</li>
+<li>Ukrainian keeps none of this (музеї, теми, фірми), so the German forms must be learned one by one.</li>
+</ul>
+<h3>Plurals that change the meaning</h3>
+<p>A few nouns have two plurals, and each plural belongs to a different meaning. Ukrainian knows the idea: листи (letters) vs листя (leaves).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural 1</th>
+<th>Plural 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Bank</td>
+<td>die Bänke: benches</td>
+<td>die Banken: banks (money)</td>
+</tr>
+<tr>
+<td>das Wort</td>
+<td>die Wörter: separate words (20 Wörter, das Wörterbuch)</td>
+<td>die Worte: words as a statement (mit anderen Worten, Worte des Dankes)</td>
+</tr>
+<tr>
+<td>die Mutter</td>
+<td>die Mütter: mothers</td>
+<td>die Muttern: nuts (for screws)</td>
+</tr>
+<tr>
+<td>der Strauß</td>
+<td>die Sträuße: bouquets</td>
+<td>die Strauße: ostriches</td>
+</tr>
+<tr>
+<td>der Bau</td>
+<td>die Bauten: buildings</td>
+<td>die Baue: burrows (of animals)</td>
+</tr>
+<tr>
+<td>der Block</td>
+<td>die Blöcke: blocks (stone, political)</td>
+<td>die Blocks: blocks of flats, notepads (also Blöcke)</td>
+</tr>
+<tr>
+<td>die Sau</td>
+<td>die Säue: sows</td>
+<td>die Sauen: wild boars (hunters' word)</td>
+</tr>
+<tr>
+<td>das Gesicht</td>
+<td>die Gesichter: faces</td>
+<td>die Gesichte: visions (literary)</td>
+</tr>
+<tr>
+<td>der Rat</td>
+<td>die Räte: councils, councillors</td>
+<td>die Ratschläge: pieces of advice</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Plural borrowed from a compound</h4>
+<p>Some nouns have no normal plural; German uses a compound instead.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural used</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>der Rat (advice)</td>
+<td>die Ratschläge</td>
+<td>pieces of advice</td>
+</tr>
+<tr>
+<td>der Streit</td>
+<td>die Streitigkeiten</td>
+<td>disputes</td>
+</tr>
+<tr>
+<td>das Glück</td>
+<td>die Glücksfälle</td>
+<td>strokes of luck</td>
+</tr>
+<tr>
+<td>der Sport</td>
+<td>die Sportarten</td>
+<td>sports, kinds of sport</td>
+</tr>
+<tr>
+<td>der Regen / der Schnee</td>
+<td>die Regenfälle / die Schneefälle</td>
+<td>rainfalls / snowfalls</td>
+</tr>
+<tr>
+<td>der Tod</td>
+<td>die Todesfälle</td>
+<td>deaths</td>
+</tr>
+<tr>
+<td>der Stock (floor)</td>
+<td>die Stockwerke</td>
+<td>floors (die Stöcke = sticks)</td>
+</tr>
+<tr>
+<td>das Lob</td>
+<td>die Lobsprüche</td>
+<td>words of praise</td>
+</tr>
+</tbody>
+</table></div>
+<h3>More double-gender nouns</h3>
+<p>B1 covered the common pairs (der See / die See, das Steuer / die Steuer). B2 reading brings many more, and the plural often differs too.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Masculine or feminine</th>
+<th>Neuter or other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mark</td>
+<td>die Mark: old German currency; border region</td>
+<td>das Mark: marrow, pulp (bis ins Mark = to the core)</td>
+</tr>
+<tr>
+<td>Tau</td>
+<td>der Tau: dew</td>
+<td>das Tau: rope (pl. Taue)</td>
+</tr>
+<tr>
+<td>Verdienst</td>
+<td>der Verdienst: earnings, income</td>
+<td>das Verdienst: merit, credit (pl. Verdienste)</td>
+</tr>
+<tr>
+<td>Bund</td>
+<td>der Bund: federation, alliance; waistband (pl. Bünde)</td>
+<td>das Bund: bunch (ein Bund Petersilie; pl. Bunde)</td>
+</tr>
+<tr>
+<td>Flur</td>
+<td>der Flur: hallway (pl. Flure)</td>
+<td>die Flur: fields, open country (allein auf weiter Flur)</td>
+</tr>
+<tr>
+<td>Golf</td>
+<td>der Golf: gulf (der Persische Golf)</td>
+<td>das Golf: golf (the sport)</td>
+</tr>
+<tr>
+<td>Hut</td>
+<td>der Hut: hat (pl. Hüte)</td>
+<td>die Hut: guard (auf der Hut sein = be on one's guard)</td>
+</tr>
+<tr>
+<td>Mangel</td>
+<td>der Mangel: lack; defect (pl. Mängel)</td>
+<td>die Mangel: mangle (jemanden in die Mangel nehmen = grill someone)</td>
+</tr>
+<tr>
+<td>Tor</td>
+<td>der Tor: fool (literary, n-Deklination)</td>
+<td>das Tor: gate; goal (pl. Tore)</td>
+</tr>
+<tr>
+<td>Laster</td>
+<td>der Laster: lorry (colloquial for Lastwagen)</td>
+<td>das Laster: vice (pl. Laster)</td>
+</tr>
+<tr>
+<td>Heide</td>
+<td>der Heide: heathen (n-Deklination)</td>
+<td>die Heide: heath (die Lüneburger Heide)</td>
+</tr>
+<tr>
+<td>Kristall</td>
+<td>der Kristall: crystal (mineral)</td>
+<td>das Kristall: crystal glass (no plural)</td>
+</tr>
+<tr>
+<td>Pony</td>
+<td>der Pony: fringe (hair)</td>
+<td>das Pony: pony</td>
+</tr>
+<tr>
+<td>Ekel</td>
+<td>der Ekel: disgust</td>
+<td>das Ekel: horrible person (colloquial)</td>
+</tr>
+<tr>
+<td>Junge</td>
+<td>der Junge: boy</td>
+<td>das Junge: young animal (adjectival: Die Katze hat fünf Junge.)</td>
+</tr>
+<tr>
+<td>Lama</td>
+<td>der Lama: Tibetan monk</td>
+<td>das Lama: llama</td>
+</tr>
+<tr>
+<td>Wehr</td>
+<td>die Wehr: defence (sich zur Wehr setzen)</td>
+<td>das Wehr: weir</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>In set phrases the gender is fixed, so learn the phrase: auf der Hut sein, allein auf weiter Flur, bis ins Mark.</li>
+</ul>
+<h3>Weak masculine nouns from foreign words</h3>
+<p>Masculine loans with a stressed ending -ant, -ent, -ist, -at, -oge, -graf, -nom, -soph, -et or -it are almost all weak nouns: -en in every form except the Nominativ singular, and no -s in the Genitiv.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Examples</th>
+<th>In a sentence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-ant</td>
+<td>der Praktikant, der Lieferant, der Demonstrant, der Elefant, der Diamant</td>
+<td>Wir haben den Praktikanten eingestellt.</td>
+</tr>
+<tr>
+<td>-ent</td>
+<td>der Student, der Präsident, der Patient, der Konkurrent, der Assistent, der Dirigent</td>
+<td>ein Interview mit dem Präsidenten</td>
+</tr>
+<tr>
+<td>-ist</td>
+<td>der Journalist, der Spezialist, der Pianist, der Realist</td>
+<td>Fragen Sie einen Spezialisten.</td>
+</tr>
+<tr>
+<td>-at</td>
+<td>der Soldat, der Kandidat, der Diplomat, der Bürokrat, der Automat</td>
+<td>die Rede des Kandidaten</td>
+</tr>
+<tr>
+<td>-oge</td>
+<td>der Biologe, der Psychologe, der Pädagoge, der Soziologe</td>
+<td>Ich war beim Psychologen.</td>
+</tr>
+<tr>
+<td>-graf / -graph</td>
+<td>der Fotograf, der Geograf, der Paragraf</td>
+<td>in diesem Paragrafen</td>
+</tr>
+<tr>
+<td>-nom / -soph</td>
+<td>der Astronom, der Ökonom, der Philosoph</td>
+<td>die Ideen des Philosophen</td>
+</tr>
+<tr>
+<td>-et / -it</td>
+<td>der Athlet, der Planet, der Prophet, der Satellit, der Bandit</td>
+<td>auf einem fremden Planeten</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Not only people: der Planet, der Satellit, der Automat, der Diamant and der Elefant are weak too.</li>
+<li>Same-looking but strong (normal): der Kontinent, der Moment, der Akzent, der Zement, der Advent: des Kontinents, im Moment. der Magnet allows both (des Magnets / des Magneten).</li>
+<li>Wrong: des Studentens. Right: des Studenten. Speech often drops the ending (mit dem Präsident), but in writing and exams it counts as a mistake.</li>
+<li>The feminine is an ordinary -in noun: die Studentin, die Präsidentin, die Psychologin.</li>
+</ul>
+<h3>Genitiv singular: -s, -es, -ns, -en or nothing</h3>
+<p>Masculine and neuter nouns mark the Genitiv singular in several ways, and the ending of the noun decides which; feminine nouns never add anything (der Frau, der Zeitung).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Genitiv form</th>
+<th>When</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-es (required)</td>
+<td>after -s, -ß, -x, -z, -tz</td>
+<td>des Hauses, des Fußes, des Reflexes, des Satzes</td>
+</tr>
+<tr>
+<td>-s (required)</td>
+<td>after unstressed -el, -en, -er, -em, after -chen, -lein, and after a vowel</td>
+<td>des Onkels, des Wagens, des Lehrers, des Atems, des Mädchens, des Autos</td>
+</tr>
+<tr>
+<td>-s or -es</td>
+<td>most one-syllable nouns; -es sounds more formal</td>
+<td>des Tag(e)s, des Buch(e)s, des Freund(e)s, des Tisch(e)s</td>
+</tr>
+<tr>
+<td>-ns (and -n in Akk / Dat)</td>
+<td>mixed type: Name, Gedanke, Glaube, Buchstabe, Wille, Friede, Funke, Same; and das Herz</td>
+<td>des Namens, des Gedankens, des Glaubens, des Willens, des Friedens, des Herzens</td>
+</tr>
+<tr>
+<td>-en / -n, never -s</td>
+<td>n-Deklination</td>
+<td>des Studenten, des Kollegen, des Herrn, des Menschen</td>
+</tr>
+<tr>
+<td>-ses</td>
+<td>-nis nouns (and -us nouns that double the s)</td>
+<td>des Ergebnisses, des Zeugnisses, des Busses</td>
+</tr>
+<tr>
+<td>no ending</td>
+<td>-ismus and many Latin -us nouns</td>
+<td>des Tourismus, des Rhythmus, des Kaktus, des Globus (also Globusses)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Old -es survives in fixed phrases: eines Tages (one day), letzten Endes (in the end), meines Erachtens (in my opinion), im Laufe des Tages.</li>
+<li>Names take -s with no apostrophe: Annas Buch, Peters Auto. After -s, -x, -z use an apostrophe instead: Hans' Buch, Max' Auto.</li>
+</ul>
+<h4>Fixed phrases where the article shows gender</h4>
+<p>zum = zu dem (der or das), zur = zu der (die), im = in dem: the contraction gives the gender away, so learn the phrase whole.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Phrase</th>
+<th>Noun and gender</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zum Glück</td>
+<td>das Glück</td>
+<td>luckily</td>
+</tr>
+<tr>
+<td>im Großen und Ganzen</td>
+<td>das Große, das Ganze (adjectival nouns)</td>
+<td>on the whole</td>
+</tr>
+<tr>
+<td>zum Beispiel</td>
+<td>das Beispiel</td>
+<td>for example</td>
+</tr>
+<tr>
+<td>zum Teil</td>
+<td>der Teil</td>
+<td>partly</td>
+</tr>
+<tr>
+<td>zum Schluss</td>
+<td>der Schluss</td>
+<td>finally, at the end</td>
+</tr>
+<tr>
+<td>zur Verfügung</td>
+<td>die Verfügung</td>
+<td>available</td>
+</tr>
+<tr>
+<td>zur Not</td>
+<td>die Not</td>
+<td>if need be</td>
+</tr>
+<tr>
+<td>im Allgemeinen</td>
+<td>das Allgemeine</td>
+<td>in general</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Gender of anglicisms</h3>
+<p>English loans need a German gender, and three things decide most of them: the gender of the German word they replace, their ending, and habit. The plural is almost always -s, except for nouns in -er.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Examples</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gender of the German equivalent</td>
+<td>die E-Mail (die Post, die Nachricht), die App (die Anwendung), die Homepage (die Seite), die Party (die Feier), die Show (die Schau); das Meeting (das Treffen), das Smartphone (das Telefon); der Laptop (der Rechner, der Computer)</td>
+<td>the strongest rule</td>
+</tr>
+<tr>
+<td>-ing → das</td>
+<td>das Meeting, das Training, das Marketing, das Shopping, das Recycling, das Camping</td>
+<td>exception: die Holding</td>
+</tr>
+<tr>
+<td>-er → der, plural unchanged</td>
+<td>der Computer, der Browser, der Scanner, der Manager, der Container, der Thriller</td>
+<td>die Computer, die Manager</td>
+</tr>
+<tr>
+<td>-ness, -ity, -tion → die</td>
+<td>die Fitness, die Wellness, die Community, die Location</td>
+<td>like German -heit, -tät, -ion</td>
+</tr>
+<tr>
+<td>-ment → das</td>
+<td>das Management, das Statement, das Commitment</td>
+<td>like German -ment</td>
+</tr>
+<tr>
+<td>short words, no clear model → mostly der</td>
+<td>der Job, der Trend, der Chat, der Deal, der Song, der Hit</td>
+<td>but das Team</td>
+</tr>
+<tr>
+<td>two genders in use</td>
+<td>der / das Blog, das / der Event, das / der Start-up, der / das Account</td>
+<td>the first is more common</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Plural: -s (die E-Mails, die Apps, die Meetings, die Laptops); -y becomes -ys, never -ies (die Partys, die Hobbys, die Babys).</li>
+<li>Regional: in Austria and Switzerland das E-Mail is common; in Germany it is die E-Mail.</li>
+<li>Capitalise them like any German noun: das Meeting, der Laptop.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/articles.html">German article tables (B1)</a>: the case forms every noun here combines with</li>
+<li><a href="../docs/word-formation.html">Word formation: roots and suffixes</a>: the suffixes that fix gender, and Fugenelemente in compounds</li>
+<li><a href="../docs/names.html">Names: countries, cities, rivers, seas and acronyms</a>: gender of country, river and acronym names</li>
+<li><a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>: the pronoun follows the noun's gender and number</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: Genitiv and nominal style in writing</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/noun-gender-plurals.html">Noun gender and plurals quiz</a> has 34 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

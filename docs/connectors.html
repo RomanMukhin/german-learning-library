@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Connectors and sentence starters · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Docs</span><span class="sep hide-sm">/</span><span class="cur">Connectors and sentence starters</span></div>
+</div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Connectors and sentence starters</h1></header>
+<article class="prose card">
+<p>Every German connector belongs to one of three groups, and the group decides where the verb goes: right after the connector's slot, after the subject, or at the end.</p>
+<h2>The three groups at a glance</h2>
+<p>Same idea, three word orders: the connector's group, not its meaning, decides where the verb goes.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Slot</th>
+<th>Verb goes…</th>
+<th>Example (I'm tired but I keep working)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) Position 0</td>
+<td>before position 1</td>
+<td>normal order: subject, verb</td>
+<td>Ich bin müde, <strong>aber</strong> ich <strong>arbeite</strong> weiter.</td>
+</tr>
+<tr>
+<td>(b) Adverb</td>
+<td>is position 1</td>
+<td>directly after it, then subject</td>
+<td>Ich bin müde, <strong>trotzdem</strong> <strong>arbeite</strong> ich weiter.</td>
+</tr>
+<tr>
+<td>(c) Subordinating</td>
+<td>starts a clause</td>
+<td>to the end</td>
+<td>Ich arbeite weiter, <strong>obwohl</strong> ich müde <strong>bin</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Quick test: if the word can also stand in the middle of a sentence (<em>Ich arbeite <strong>trotzdem</strong> weiter</em>), it is an adverb (group b). Group (a) and (c) words cannot.</p>
+<h2>(a) Position 0: und, aber, oder, denn, sondern (ADUSO)</h2>
+<p>These five join two main clauses without taking a slot, so the second clause keeps its normal order: position 1, verb, rest. Memory word: <strong>ADUSO</strong> (aber, denn, und, sondern, oder).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Connector</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>und</td>
+<td>and</td>
+<td>і, та</td>
+<td>Ich koche, <strong>und</strong> du deckst den Tisch.</td>
+<td>I'll cook and you set the table.</td>
+</tr>
+<tr>
+<td>aber</td>
+<td>but</td>
+<td>але</td>
+<td>Das Hotel ist teuer, <strong>aber</strong> es ist sehr schön.</td>
+<td>The hotel is expensive, but it's very nice.</td>
+</tr>
+<tr>
+<td>oder</td>
+<td>or</td>
+<td>або, чи</td>
+<td>Kommst du mit, <strong>oder</strong> bleibst du hier?</td>
+<td>Are you coming along or staying here?</td>
+</tr>
+<tr>
+<td>denn</td>
+<td>because (since)</td>
+<td>бо</td>
+<td>Ich bleibe zu Hause, <strong>denn</strong> ich bin krank.</td>
+<td>I'm staying home, because I'm ill.</td>
+</tr>
+<tr>
+<td>sondern</td>
+<td>but (rather), after a negation</td>
+<td>а</td>
+<td>Ich komme nicht heute, <strong>sondern</strong> morgen.</td>
+<td>I'm not coming today but tomorrow.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pos. 0</th>
+<th>Position 1</th>
+<th>Verb</th>
+<th>Rest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aber</td>
+<td>es</td>
+<td>ist</td>
+<td>sehr schön.</td>
+</tr>
+<tr>
+<td>denn</td>
+<td>ich</td>
+<td>bin</td>
+<td>krank.</td>
+</tr>
+<tr>
+<td>und</td>
+<td>morgen</td>
+<td>fahren</td>
+<td>wir nach Hamburg.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Position 1 after the connector can be anything, so inversion is still possible: <em>…, <strong>und morgen fahren wir</strong> nach Hamburg.</em> The connector itself does not cause it.</li>
+<li>Same subject after <em>und / aber / oder</em> can be dropped: <em>Ich stehe auf <strong>und</strong> gehe ins Bad.</em> (I get up and go to the bathroom.)</li>
+<li>Commas: before <em>aber, denn, sondern</em> always; before <em>und / oder</em> between two full clauses it is optional, and usually left out.</li>
+<li>A <em>denn</em> clause never comes first and needs a full sentence before it: ~~Denn ich bin krank, bleibe ich zu Hause.~~ Use <em>Weil ich krank bin, bleibe ich zu Hause.</em></li>
+<li><em>aber</em> can also sit inside the middle field as an adverb: <em>Ich habe <strong>aber</strong> keine Zeit.</em> (But I don't have time.) Then it is not position 0.</li>
+</ul>
+<h2>(b) Adverbs in position 1: verb comes next</h2>
+<p>These words are adverbs, so they take position 1 themselves: the verb follows immediately, then the subject (inversion). They can also stand in the middle field instead.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adverb</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Result / reason</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>deshalb, deswegen, darum</td>
+<td>that's why, therefore</td>
+<td>тому, через це</td>
+<td>Es regnet, <strong>deshalb bleiben wir</strong> zu Hause.</td>
+<td>It's raining, so we're staying home.</td>
+</tr>
+<tr>
+<td>also</td>
+<td>so, therefore</td>
+<td>отже, тож</td>
+<td>Ich habe kein Auto, <strong>also fahre ich</strong> mit dem Bus.</td>
+<td>I don't have a car, so I take the bus.</td>
+</tr>
+<tr>
+<td>sonst</td>
+<td>otherwise</td>
+<td>інакше</td>
+<td>Beeil dich, <strong>sonst verpassen wir</strong> den Zug.</td>
+<td>Hurry up, otherwise we'll miss the train.</td>
+</tr>
+<tr>
+<td><strong>Contrast</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>trotzdem</td>
+<td>anyway, nevertheless</td>
+<td>все одно, попри це</td>
+<td>Es regnet, <strong>trotzdem gehen wir</strong> spazieren.</td>
+<td>It's raining, but we're going for a walk anyway.</td>
+</tr>
+<tr>
+<td>dennoch</td>
+<td>nevertheless (formal)</td>
+<td>проте, все ж</td>
+<td>Die Aufgabe war schwer, <strong>dennoch hat er</strong> sie gelöst.</td>
+<td>The task was hard; nevertheless he solved it.</td>
+</tr>
+<tr>
+<td>jedoch</td>
+<td>however</td>
+<td>однак, проте</td>
+<td>Das Angebot klingt gut, <strong>jedoch ist es</strong> zu teuer.</td>
+<td>The offer sounds good; however, it's too expensive.</td>
+</tr>
+<tr>
+<td>allerdings</td>
+<td>though, admittedly</td>
+<td>щоправда, але</td>
+<td>Die Wohnung ist schön, <strong>allerdings ist sie</strong> sehr klein.</td>
+<td>The flat is nice, though it's very small.</td>
+</tr>
+<tr>
+<td>stattdessen</td>
+<td>instead</td>
+<td>натомість</td>
+<td>Ich wollte joggen, <strong>stattdessen habe ich</strong> geschlafen.</td>
+<td>I wanted to go jogging; instead I slept.</td>
+</tr>
+<tr>
+<td>im Gegenteil</td>
+<td>on the contrary</td>
+<td>навпаки</td>
+<td>Er ist nicht faul. <strong>Im Gegenteil, er arbeitet</strong> sehr viel.</td>
+<td>He isn't lazy. On the contrary, he works a lot.</td>
+</tr>
+<tr>
+<td><strong>Sequence / time</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zuerst</td>
+<td>first</td>
+<td>спочатку</td>
+<td><strong>Zuerst muss ich</strong> das Formular ausfüllen.</td>
+<td>First I have to fill in the form.</td>
+</tr>
+<tr>
+<td>dann</td>
+<td>then</td>
+<td>потім, тоді</td>
+<td>Ich frühstücke, <strong>dann gehe ich</strong> zur Arbeit.</td>
+<td>I have breakfast, then I go to work.</td>
+</tr>
+<tr>
+<td>danach</td>
+<td>afterwards</td>
+<td>після цього</td>
+<td>Wir waren im Kino, <strong>danach sind wir</strong> essen gegangen.</td>
+<td>We were at the cinema; afterwards we went out to eat.</td>
+</tr>
+<tr>
+<td>inzwischen</td>
+<td>meanwhile, by now</td>
+<td>тим часом, вже</td>
+<td><strong>Inzwischen spreche ich</strong> ganz gut Deutsch.</td>
+<td>By now I speak German quite well.</td>
+</tr>
+<tr>
+<td>schließlich</td>
+<td>finally; after all</td>
+<td>зрештою, нарешті</td>
+<td><strong>Schließlich haben wir</strong> eine Wohnung gefunden.</td>
+<td>Finally we found a flat.</td>
+</tr>
+<tr>
+<td><strong>Adding / commenting</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>außerdem</td>
+<td>besides, also</td>
+<td>крім того</td>
+<td>Die Wohnung ist zentral, <strong>außerdem ist sie</strong> günstig.</td>
+<td>The flat is central; besides, it's cheap.</td>
+</tr>
+<tr>
+<td>zum Beispiel</td>
+<td>for example</td>
+<td>наприклад</td>
+<td><strong>Zum Beispiel kann man</strong> mit dem Rad fahren.</td>
+<td>For example, you can go by bike.</td>
+</tr>
+<tr>
+<td>übrigens</td>
+<td>by the way</td>
+<td>до речі</td>
+<td><strong>Übrigens habe ich</strong> gestern Anna gesehen.</td>
+<td>By the way, I saw Anna yesterday.</td>
+</tr>
+<tr>
+<td>eigentlich</td>
+<td>actually, really</td>
+<td>взагалі-то, власне</td>
+<td><strong>Eigentlich wollte ich</strong> heute früh schlafen gehen.</td>
+<td>Actually I wanted to go to bed early today.</td>
+</tr>
+<tr>
+<td>leider</td>
+<td>unfortunately</td>
+<td>на жаль</td>
+<td><strong>Leider kann ich</strong> morgen nicht kommen.</td>
+<td>Unfortunately I can't come tomorrow.</td>
+</tr>
+<tr>
+<td>zum Glück</td>
+<td>luckily</td>
+<td>на щастя</td>
+<td><strong>Zum Glück hat es</strong> nicht geregnet.</td>
+<td>Luckily it didn't rain.</td>
+</tr>
+<tr>
+<td>ehrlich gesagt</td>
+<td>to be honest</td>
+<td>чесно кажучи</td>
+<td><strong>Ehrlich gesagt finde ich</strong> den Film langweilig.</td>
+<td>To be honest, I find the film boring.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wrong: ~~Es regnet, deshalb wir bleiben zu Hause.~~ This is the classic group (b) mistake.</li>
+<li>Middle-field position works too, with normal order: <em>Wir bleiben <strong>deshalb</strong> zu Hause.</em> / <em>Ich kann <strong>leider</strong> nicht kommen.</em></li>
+<li>After <em>und</em>, an adverb starts a new position 1: <em>…, <strong>und deshalb</strong> bin ich zu Hause geblieben.</em></li>
+<li>With a comma after them, <em>im Gegenteil</em>, <em>ehrlich gesagt</em> and <em>übrigens</em> can stand outside the sentence (position 0), so normal order follows: <em>Ehrlich gesagt, ich finde den Film langweilig.</em> Common in speech; for ehrlich gesagt and übrigens the inverted version is the safe choice in writing, while im Gegenteil is normally followed by a comma (as in the table).</li>
+<li>False friend: German <em>also</em> = "so, therefore", not English "also" (that is <em>auch</em>).</li>
+<li><em>jedoch</em> can also be used like <em>aber</em> in position 0 (<em>…, jedoch es ist zu teuer</em>), but this is rare; inversion is the normal choice.</li>
+</ul>
+<h2>(c) Subordinating conjunctions: verb to the end</h2>
+<p>These start a subordinate clause, so the conjugated verb goes to the end of that clause. If the clause comes first, the main verb follows straight after the comma.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Conjunction</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reason / result</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>weil</td>
+<td>because</td>
+<td>бо, тому що</td>
+<td>Ich lerne Deutsch, <strong>weil</strong> ich in Berlin <strong>arbeite</strong>.</td>
+<td>I'm learning German because I work in Berlin.</td>
+</tr>
+<tr>
+<td>da</td>
+<td>since, as (known reason)</td>
+<td>оскільки, так як</td>
+<td><strong>Da</strong> es schon spät <strong>ist</strong>, fahren wir nach Hause.</td>
+<td>Since it's already late, we're going home.</td>
+</tr>
+<tr>
+<td>sodass / so dass</td>
+<td>so that (result)</td>
+<td>так що</td>
+<td>Es hat stark geregnet, <strong>sodass</strong> das Spiel ausfallen <strong>musste</strong>.</td>
+<td>It rained heavily, so the match had to be cancelled.</td>
+</tr>
+<tr>
+<td><strong>Contrast / condition</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>obwohl</td>
+<td>although</td>
+<td>хоча</td>
+<td><strong>Obwohl</strong> er krank <strong>ist</strong>, geht er zur Arbeit.</td>
+<td>Although he's ill, he goes to work.</td>
+</tr>
+<tr>
+<td>wenn</td>
+<td>if; whenever</td>
+<td>якщо; коли</td>
+<td><strong>Wenn</strong> du Zeit <strong>hast</strong>, ruf mich an.</td>
+<td>If you have time, call me.</td>
+</tr>
+<tr>
+<td>falls</td>
+<td>in case, if</td>
+<td>якщо раптом</td>
+<td>Nimm einen Schirm mit, <strong>falls</strong> es <strong>regnet</strong>.</td>
+<td>Take an umbrella in case it rains.</td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>damit</td>
+<td>so that (purpose)</td>
+<td>щоб</td>
+<td>Ich erkläre es noch einmal, <strong>damit</strong> du es <strong>verstehst</strong>.</td>
+<td>I'll explain it again so that you understand.</td>
+</tr>
+<tr>
+<td><strong>Content</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dass</td>
+<td>that</td>
+<td>що</td>
+<td>Ich weiß, <strong>dass</strong> du recht <strong>hast</strong>.</td>
+<td>I know (that) you're right.</td>
+</tr>
+<tr>
+<td>ob</td>
+<td>whether, if</td>
+<td>чи</td>
+<td>Ich frage ihn, <strong>ob</strong> er morgen <strong>kommt</strong>.</td>
+<td>I'll ask him whether he's coming tomorrow.</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>als</td>
+<td>when (one past event)</td>
+<td>коли</td>
+<td><strong>Als</strong> ich klein <strong>war</strong>, hatte ich einen Hund.</td>
+<td>When I was little, I had a dog.</td>
+</tr>
+<tr>
+<td>während</td>
+<td>while; whereas</td>
+<td>поки, тоді як</td>
+<td><strong>Während</strong> ich <strong>koche</strong>, deckst du den Tisch.</td>
+<td>While I cook, you set the table.</td>
+</tr>
+<tr>
+<td>bevor</td>
+<td>before</td>
+<td>перш ніж</td>
+<td><strong>Bevor</strong> wir <strong>gehen</strong>, müssen wir aufräumen.</td>
+<td>Before we leave, we have to tidy up.</td>
+</tr>
+<tr>
+<td>nachdem</td>
+<td>after</td>
+<td>після того як</td>
+<td><strong>Nachdem</strong> ich die Prüfung bestanden <strong>hatte</strong>, habe ich gefeiert.</td>
+<td>After I had passed the exam, I celebrated.</td>
+</tr>
+<tr>
+<td>seit / seitdem</td>
+<td>since (ongoing)</td>
+<td>відтоді як</td>
+<td><strong>Seitdem</strong> ich hier <strong>wohne</strong>, fahre ich mehr Rad.</td>
+<td>Since I've lived here, I cycle more.</td>
+</tr>
+<tr>
+<td>bis</td>
+<td>until</td>
+<td>доки не</td>
+<td>Ich warte, <strong>bis</strong> du <strong>kommst</strong>.</td>
+<td>I'll wait until you come.</td>
+</tr>
+<tr>
+<td>sobald</td>
+<td>as soon as</td>
+<td>щойно, як тільки</td>
+<td>Ich rufe dich an, <strong>sobald</strong> ich zu Hause <strong>bin</strong>.</td>
+<td>I'll call you as soon as I'm home.</td>
+</tr>
+<tr>
+<td>solange</td>
+<td>as long as</td>
+<td>поки</td>
+<td><strong>Solange</strong> es <strong>regnet</strong>, bleiben wir drinnen.</td>
+<td>As long as it rains, we're staying inside.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wrong: ~~…, weil ich arbeite in Berlin.~~ You will hear it in casual speech, but in exams and writing the verb must go last.</li>
+<li>A comma always separates the subordinate clause from the main clause, front or back.</li>
+<li>Several verbs at the end (see <a href="../docs/word-order.html">Word order</a>): conjugated verb last, <em>…, weil ich morgen früh aufstehen <strong>muss</strong>.</em></li>
+<li>Ukrainian: <em>бо</em>, <em>хоча</em>, <em>щоб</em> do not change word order; German <em>weil</em>, <em>obwohl</em>, <em>damit</em> do.</li>
+</ul>
+<h2>Two-part connectors</h2>
+<p>Two-part connectors frame two items or two clauses; most just link words, and only <em>je…desto</em> and the clause versions of <em>entweder…oder</em> and <em>zwar…aber</em> change word order.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Connector</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sowohl … als auch</td>
+<td>both … and</td>
+<td>як … так і</td>
+<td>Ich spreche <strong>sowohl</strong> Englisch <strong>als auch</strong> Ukrainisch.</td>
+<td>I speak both English and Ukrainian.</td>
+</tr>
+<tr>
+<td>weder … noch</td>
+<td>neither … nor</td>
+<td>ні … ні</td>
+<td>Ich habe <strong>weder</strong> Zeit <strong>noch</strong> Geld.</td>
+<td>I have neither time nor money.</td>
+</tr>
+<tr>
+<td>entweder … oder</td>
+<td>either … or</td>
+<td>або … або</td>
+<td><strong>Entweder</strong> kommst du mit, <strong>oder</strong> du bleibst hier.</td>
+<td>Either you come along or you stay here.</td>
+</tr>
+<tr>
+<td>nicht nur … sondern auch</td>
+<td>not only … but also</td>
+<td>не лише … а й</td>
+<td>Er spricht <strong>nicht nur</strong> Deutsch, <strong>sondern auch</strong> Französisch.</td>
+<td>He speaks not only German but also French.</td>
+</tr>
+<tr>
+<td>zwar … aber</td>
+<td>admittedly … but</td>
+<td>хоч і … але</td>
+<td>Das Auto ist <strong>zwar</strong> alt, <strong>aber</strong> es fährt noch gut.</td>
+<td>The car is old, it's true, but it still runs well.</td>
+</tr>
+<tr>
+<td>je … desto / umso</td>
+<td>the more … the more</td>
+<td>чим … тим</td>
+<td><strong>Je</strong> mehr ich übe, <strong>desto</strong> besser spreche ich.</td>
+<td>The more I practise, the better I speak.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Word order inside them</strong></p>
+<ul>
+<li><em>je…desto</em>: the <em>je</em> part is a subordinate clause (verb last); the <em>desto</em> part starts with <em>desto</em> + comparative as position 1, then the verb: <em>Je <strong>älter</strong> er <strong>wird</strong>, desto <strong>ruhiger</strong> <strong>wird</strong> er.</em> (The older he gets, the calmer he becomes.)</li>
+<li><em>entweder</em>: either position 1 with inversion (<em>Entweder <strong>kommst du</strong> mit…</em>) or position 0 with normal order (<em>Entweder <strong>du kommst</strong> mit…</em>). Both are correct. The <em>oder</em> part is always position 0.</li>
+<li><em>zwar</em> usually sits in the middle field (<em>Das Auto ist zwar alt</em>), but can take position 1: <em><strong>Zwar ist</strong> das Auto alt, aber es fährt noch gut.</em></li>
+<li>Verb agreement: <em>sowohl…als auch</em> takes plural (<em>Sowohl Anna als auch Max <strong>kommen</strong>.</em>). With <em>weder…noch</em> and <em>entweder…oder</em> the verb usually agrees with the nearest subject.</li>
+<li><em>weder…noch</em> is already negative: never add <em>nicht</em> or <em>kein</em> (~~Ich habe weder keine Zeit…~~).</li>
+</ul>
+<h2>Sentence starters for speaking and writing</h2>
+<p>Most starters take position 1, so the verb comes next; the ones with a comma after them (spoken fillers) stand outside the sentence and leave normal order. The order column tells you which.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Starter</th>
+<th>Ukrainian</th>
+<th>Order after it</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Giving an opinion</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Meiner Meinung nach</td>
+<td>на мою думку</td>
+<td>verb next</td>
+<td><strong>Meiner Meinung nach ist</strong> das zu teuer.</td>
+<td>In my opinion that's too expensive.</td>
+</tr>
+<tr>
+<td>Ich finde, dass …</td>
+<td>я вважаю, що</td>
+<td>verb last</td>
+<td>Ich finde, dass wir mehr Sport machen <strong>sollten</strong>.</td>
+<td>I think we should do more sport.</td>
+</tr>
+<tr>
+<td>Ich finde, … (no dass)</td>
+<td>я вважаю</td>
+<td>normal main clause</td>
+<td>Ich finde, wir <strong>sollten</strong> mehr Sport machen.</td>
+<td>I think we should do more sport.</td>
+</tr>
+<tr>
+<td>Ich bin der Meinung, dass …</td>
+<td>я дотримуюсь думки, що</td>
+<td>verb last</td>
+<td>Ich bin der Meinung, dass Rauchen verboten werden <strong>sollte</strong>.</td>
+<td>I'm of the opinion that smoking should be banned.</td>
+</tr>
+<tr>
+<td>Was mich betrifft, …</td>
+<td>що стосується мене</td>
+<td>verb next</td>
+<td><strong>Was mich betrifft, bin ich</strong> dagegen.</td>
+<td>As far as I'm concerned, I'm against it.</td>
+</tr>
+<tr>
+<td>Ehrlich gesagt</td>
+<td>чесно кажучи</td>
+<td>verb next</td>
+<td><strong>Ehrlich gesagt habe ich</strong> keine Lust.</td>
+<td>To be honest, I don't feel like it.</td>
+</tr>
+<tr>
+<td><strong>Weighing two sides</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Auf der einen Seite … auf der anderen Seite</td>
+<td>з одного боку … з іншого боку</td>
+<td>verb next (both)</td>
+<td><strong>Auf der einen Seite ist</strong> Berlin teuer, <strong>auf der anderen Seite gibt es</strong> dort viele Jobs.</td>
+<td>On the one hand Berlin is expensive; on the other, there are lots of jobs there.</td>
+</tr>
+<tr>
+<td>Einerseits … andererseits</td>
+<td>з одного боку … з іншого</td>
+<td>verb next (both)</td>
+<td><strong>Einerseits möchte ich</strong> reisen, <strong>andererseits muss ich</strong> sparen.</td>
+<td>On the one hand I'd like to travel; on the other I need to save.</td>
+</tr>
+<tr>
+<td><strong>Wrapping up</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Am Ende</td>
+<td>зрештою, у підсумку</td>
+<td>verb next</td>
+<td><strong>Am Ende haben wir</strong> das kleinere Auto gekauft.</td>
+<td>In the end we bought the smaller car.</td>
+</tr>
+<tr>
+<td>Zum Schluss</td>
+<td>наостанок</td>
+<td>verb next</td>
+<td><strong>Zum Schluss möchte ich</strong> mich bedanken.</td>
+<td>Finally, I'd like to say thank you.</td>
+</tr>
+<tr>
+<td>Kurz gesagt</td>
+<td>коротше кажучи</td>
+<td>verb next, or colon + normal</td>
+<td><strong>Kurz gesagt war</strong> der Urlaub super. / Kurz gesagt: Der Urlaub war super.</td>
+<td>In short, the holiday was great.</td>
+</tr>
+<tr>
+<td><strong>Changing topic (speech)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Übrigens</td>
+<td>до речі</td>
+<td>verb next</td>
+<td><strong>Übrigens hat</strong> Max angerufen.</td>
+<td>By the way, Max called.</td>
+</tr>
+<tr>
+<td>Apropos …</td>
+<td>до речі про</td>
+<td>+ noun, then colon</td>
+<td><strong>Apropos Urlaub:</strong> Wohin fahrt ihr dieses Jahr?</td>
+<td>Speaking of holidays, where are you going this year?</td>
+</tr>
+<tr>
+<td><strong>Fillers and reactions (speech)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Na ja, …</td>
+<td>ну…</td>
+<td>comma + normal order</td>
+<td>Na ja, so schlimm <strong>war</strong> es nicht.</td>
+<td>Well, it wasn't that bad.</td>
+</tr>
+<tr>
+<td>Also, …</td>
+<td>так от, отже</td>
+<td>comma + normal order</td>
+<td>Also, ich <strong>finde</strong> die Idee gut.</td>
+<td>So, I like the idea.</td>
+</tr>
+<tr>
+<td>Ach so!</td>
+<td>а, зрозуміло!</td>
+<td>standalone</td>
+<td>Ach so, jetzt verstehe ich das.</td>
+<td>Oh, I see, now I get it.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><em>Also</em> without a comma is the adverb "therefore" and takes position 1: <em>Also <strong>fahren wir</strong> morgen.</em> (So we're leaving tomorrow.) With a comma it is just a filler.</li>
+<li>In the <em>Ach so</em> example, <em>Ach so</em> stands outside, and <em>jetzt</em> is position 1: <em>jetzt <strong>verstehe</strong> ich</em>.</li>
+<li>For B1 letters and opinion texts, a solid frame is: <em>Meiner Meinung nach… Einerseits… andererseits… Außerdem… Zum Schluss möchte ich sagen, dass…</em></li>
+</ul>
+<h2>Nuance notes</h2>
+<p>The pairs below are the ones learners mix up most; the Ukrainian parallel often solves them directly.</p>
+<p><strong>weil vs denn vs da</strong> (all "because")</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>weil</th>
+<th>denn</th>
+<th>da</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Group / order</td>
+<td>(c) verb last</td>
+<td>(a) position 0, normal order</td>
+<td>(c) verb last</td>
+</tr>
+<tr>
+<td>Can come first?</td>
+<td>yes</td>
+<td>never</td>
+<td>yes, very often</td>
+</tr>
+<tr>
+<td>Short answer to <em>Warum?</em></td>
+<td>yes: <em>Weil ich krank bin.</em></td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Register</td>
+<td>neutral, everyday</td>
+<td>slightly written</td>
+<td>more formal; reason already known</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Ich komme nicht, <strong>weil</strong> ich krank <strong>bin</strong>.</td>
+<td>Ich komme nicht, <strong>denn</strong> ich <strong>bin</strong> krank.</td>
+<td><strong>Da</strong> ich krank <strong>bin</strong>, komme ich nicht.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>jedoch vs aber</strong>: same meaning. <em>aber</em> is everyday and position 0 (<em>…, aber es ist teuer</em>); <em>jedoch</em> is more formal/written and normally an adverb with inversion (<em>…, jedoch ist es teuer</em>) or in the middle field (<em>Es ist jedoch teuer</em>).</p>
+<p><strong>wenn vs als vs ob</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Use</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>als</td>
+<td>one event or period in the past</td>
+<td>коли (один раз у минулому)</td>
+<td><strong>Als</strong> ich in Kyjiw <strong>war</strong>, habe ich Olena getroffen.</td>
+<td>When I was in Kyiv, I met Olena.</td>
+</tr>
+<tr>
+<td>wenn</td>
+<td>present / future; repeated in the past; condition</td>
+<td>коли (завжди), якщо</td>
+<td><strong>Wenn</strong> ich in Kyjiw <strong>war</strong>, habe ich immer Olena getroffen.</td>
+<td>Whenever I was in Kyiv, I always met Olena.</td>
+</tr>
+<tr>
+<td>ob</td>
+<td>whether (yes/no indirect question)</td>
+<td>чи</td>
+<td>Ich weiß nicht, <strong>ob</strong> sie in Kyjiw <strong>ist</strong>.</td>
+<td>I don't know if (whether) she's in Kyiv.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Test for <em>ob</em>: if English "if" can be replaced by "whether", use <em>ob</em>. Ukrainian makes it easy: <em>чи</em> = <em>ob</em>, <em>якщо</em> = <em>wenn</em>.</li>
+</ul>
+<p><strong>nachdem: one tense step back</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Main clause</th>
+<th>nachdem clause</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Präsens / Futur</td>
+<td>Perfekt</td>
+<td><strong>Nachdem</strong> ich <strong>gegessen habe</strong>, gehe ich spazieren.</td>
+<td>After I've eaten, I go for a walk.</td>
+</tr>
+<tr>
+<td>Präteritum / Perfekt</td>
+<td>Plusquamperfekt</td>
+<td><strong>Nachdem</strong> ich <strong>gegessen hatte</strong>, ging ich spazieren.</td>
+<td>After I had eaten, I went for a walk.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Never the same tense in both (see <a href="../docs/tenses.html">Tenses, moods and the passive</a>): ~~Nachdem ich aß, ging ich spazieren.~~ In speech, avoid it with <em>nach dem Essen</em> or <em>danach</em>.</li>
+</ul>
+<p><strong>damit vs um…zu</strong> (both "so that / in order to")</p>
+<ul>
+<li>Same subject in both parts: <em>um…zu</em> is preferred. <em>Ich lerne viel, <strong>um</strong> die Prüfung <strong>zu bestehen</strong>.</em> (I study a lot to pass the exam.)</li>
+<li>Different subjects: only <em>damit</em>. <em>Ich erkläre es langsam, <strong>damit</strong> du es <strong>verstehst</strong>.</em> (I explain it slowly so that you understand.)</li>
+<li>Ukrainian <em>щоб</em> covers both; ask "same person?" to choose.</li>
+<li>Do not confuse with the adverb <em>damit</em> = "with it": <em>Was machst du <strong>damit</strong>?</em> (What are you doing with it?)</li>
+</ul>
+<p><strong>sondern vs aber</strong> (both "but")</p>
+<ul>
+<li><em>sondern</em> corrects a negation (not X, but Y instead): <em>Er ist nicht arm, <strong>sondern</strong> reich.</em> (He isn't poor, but rich.)</li>
+<li><em>aber</em> adds a contrast and keeps both: <em>Er ist nicht reich, <strong>aber</strong> glücklich.</em> (He isn't rich, but he's happy.)</li>
+<li>Exact Ukrainian parallel: <em>не сьогодні, <strong>а</strong> завтра</em> = <em>sondern</em>; <em>не багатий, <strong>але</strong> щасливий</em> = <em>aber</em>.</li>
+</ul>
+<p><strong>weil vs deshalb</strong> (same logic, opposite direction): <em>weil</em> introduces the reason, <em>deshalb</em> the consequence. <em>Ich bin müde, <strong>weil</strong> ich wenig geschlafen <strong>habe</strong>.</em> = <em>Ich habe wenig geschlafen, <strong>deshalb bin ich</strong> müde.</em></p>
+<h2 class="b2">B2+ (later: skip until B1 is solid)</h2>
+<p>Everything below is B2 and above. Come back once the B1 parts above feel easy.</p>
+<h3>More subordinating conjunctions: verb to the end</h3>
+<p>These work exactly like weil and obwohl (group c): the conjugated verb goes to the end, and a clause in front is followed directly by the main verb.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Conjunction</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indem</td>
+<td>by (doing)</td>
+<td>тим, що; завдяки тому, що</td>
+<td>Man lernt eine Sprache am besten, <strong>indem</strong> man viel spricht.</td>
+<td>You learn a language best by speaking a lot.</td>
+</tr>
+<tr>
+<td>sofern</td>
+<td>provided that</td>
+<td>за умови, що; якщо</td>
+<td><strong>Sofern</strong> nichts dazwischenkommt, sind wir um acht da.</td>
+<td>Provided nothing comes up, we'll be there at eight.</td>
+</tr>
+<tr>
+<td>soweit</td>
+<td>as far as</td>
+<td>наскільки</td>
+<td><strong>Soweit</strong> ich weiß, ist das Büro heute geschlossen.</td>
+<td>As far as I know, the office is closed today.</td>
+</tr>
+<tr>
+<td>insofern ... als</td>
+<td>in that, insofar as</td>
+<td>в тому сенсі, що</td>
+<td>Der Plan ist <strong>insofern</strong> gut, <strong>als</strong> er wenig kostet.</td>
+<td>The plan is good in that it costs little.</td>
+</tr>
+<tr>
+<td>wohingegen</td>
+<td>whereas</td>
+<td>тоді як</td>
+<td>Mein Bruder ist sehr ordentlich, <strong>wohingegen</strong> ich eher chaotisch bin.</td>
+<td>My brother is very tidy, whereas I am rather chaotic.</td>
+</tr>
+<tr>
+<td>zumal</td>
+<td>especially since</td>
+<td>тим більше що</td>
+<td>Ich bleibe heute zu Hause, <strong>zumal</strong> ich noch erkältet bin.</td>
+<td>I'm staying home today, especially since I still have a cold.</td>
+</tr>
+<tr>
+<td>ohne dass</td>
+<td>without (someone) doing</td>
+<td>так, що ... не</td>
+<td>Er ist gegangen, <strong>ohne dass</strong> ich es gemerkt habe.</td>
+<td>He left without my noticing.</td>
+</tr>
+<tr>
+<td>anstatt dass</td>
+<td>instead of (someone) doing</td>
+<td>замість того щоб</td>
+<td><strong>Anstatt dass</strong> die Firma neue Leute einstellt, müssen wir Überstunden machen.</td>
+<td>Instead of the company hiring new people, we have to work overtime.</td>
+</tr>
+<tr>
+<td>als dass</td>
+<td>(too ...) for / to</td>
+<td>щоб (після занадто)</td>
+<td>Das Problem ist zu kompliziert, <strong>als dass</strong> wir es heute lösen könnten.</td>
+<td>The problem is too complicated for us to solve today.</td>
+</tr>
+<tr>
+<td>je nachdem, ob / wie</td>
+<td>depending on whether / how</td>
+<td>залежно від того, чи / як</td>
+<td>Wir fahren mit dem Rad oder mit dem Bus, <strong>je nachdem, wie</strong> das Wetter ist.</td>
+<td>We'll go by bike or by bus, depending on the weather.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>indem answers Wie? (how?): Wie lernt man das? Indem man übt. Alternative with the same meaning: dadurch, dass ...</li>
+<li>ohne dass and anstatt dass are for different subjects. Same subject: ohne ... zu, statt ... zu (B1): Er ist gegangen, ohne etwas zu sagen.</li>
+<li>als dass follows zu + adjective and almost always takes Konjunktiv II (könnten, wäre).</li>
+<li>soweit is about extent (as far as I know), sofern about a condition (provided that); in practice sofern is close to falls.</li>
+<li>insofern ... als is normally split: insofern in the main clause, als starting the subordinate clause.</li>
+</ul>
+<h3>Formal adverb connectors: verb comes next</h3>
+<p>These are adverbs (group b): in position 1 they are followed straight away by the verb; they can also sit in the middle field.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adverb</th>
+<th>Meaning</th>
+<th>Ukrainian</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>folglich</td>
+<td>consequently</td>
+<td>отже, відтак</td>
+<td>Die Nachfrage ist gesunken, <strong>folglich</strong> sind die Preise gefallen.</td>
+<td>Demand has dropped; consequently prices have fallen.</td>
+</tr>
+<tr>
+<td>somit</td>
+<td>thus</td>
+<td>таким чином</td>
+<td>Alle haben zugestimmt, <strong>somit</strong> ist der Vorschlag angenommen.</td>
+<td>Everyone agreed, so the proposal is accepted.</td>
+</tr>
+<tr>
+<td>demnach</td>
+<td>according to that, so</td>
+<td>відповідно, отже</td>
+<td>Laut Wetterbericht kommt am Abend ein Gewitter. <strong>Demnach</strong> sollten wir früher zurückfahren.</td>
+<td>The forecast says a storm is coming tonight, so we should head back earlier.</td>
+</tr>
+<tr>
+<td>infolgedessen</td>
+<td>as a result</td>
+<td>внаслідок цього</td>
+<td>Es hat tagelang geregnet, <strong>infolgedessen</strong> sind viele Straßen überflutet.</td>
+<td>It rained for days; as a result many roads are flooded.</td>
+</tr>
+<tr>
+<td>nichtsdestotrotz</td>
+<td>nonetheless</td>
+<td>попри все</td>
+<td>Die Kritik war hart, <strong>nichtsdestotrotz</strong> hat sie weitergemacht.</td>
+<td>The criticism was harsh; nonetheless she carried on.</td>
+</tr>
+<tr>
+<td>zudem</td>
+<td>moreover</td>
+<td>до того ж</td>
+<td>Die Wohnung ist zu teuer, <strong>zudem</strong> liegt sie weit vom Zentrum entfernt.</td>
+<td>The flat is too expensive; moreover it is far from the centre.</td>
+</tr>
+<tr>
+<td>darüber hinaus</td>
+<td>furthermore</td>
+<td>понад те</td>
+<td><strong>Darüber hinaus</strong> bietet die Firma flexible Arbeitszeiten.</td>
+<td>Furthermore, the company offers flexible hours.</td>
+</tr>
+<tr>
+<td>ebenso</td>
+<td>likewise, just as</td>
+<td>так само</td>
+<td>Gute Noten sind wichtig. <strong>Ebenso</strong> wichtig ist praktische Erfahrung.</td>
+<td>Good grades matter. Practical experience is just as important.</td>
+</tr>
+<tr>
+<td>hingegen</td>
+<td>by contrast</td>
+<td>натомість</td>
+<td>Im Norden regnet es, im Süden <strong>hingegen</strong> scheint die Sonne.</td>
+<td>It's raining in the north; in the south, by contrast, the sun is shining.</td>
+</tr>
+<tr>
+<td>vielmehr</td>
+<td>rather</td>
+<td>радше, скоріше</td>
+<td>Es geht nicht um Geld, <strong>vielmehr</strong> geht es um Respekt.</td>
+<td>It's not about money; rather, it's about respect.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>hingegen (like jedoch and allerdings) can follow the first element and still belong to position 1: im Süden hingegen + scheint.</li>
+<li>vielmehr usually follows a negation, like sondern, but it is an adverb: verb next.</li>
+<li>ebenso also works without a verb: Die Mieten steigen, ebenso die Strompreise.</li>
+</ul>
+<h3>es sei denn, geschweige denn, je nachdem: their own rules</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Connector</th>
+<th>Pattern</th>
+<th>Example</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>es sei denn</td>
+<td>comma + normal main clause, or + dass + verb last</td>
+<td>Wir treffen uns um acht, <strong>es sei denn</strong>, es regnet. / ..., es sei denn, dass es regnet.</td>
+<td>... unless it rains. (хіба що)</td>
+</tr>
+<tr>
+<td>geschweige denn</td>
+<td>after a negative clause, usually + a word or phrase</td>
+<td>Ich spreche kaum Englisch, <strong>geschweige denn</strong> Chinesisch.</td>
+<td>... let alone Chinese. (не кажучи вже про)</td>
+</tr>
+<tr>
+<td>geschweige denn</td>
+<td>the same, + a phrase with zu</td>
+<td>Er hat keine Zeit zum Essen, <strong>geschweige denn</strong> zum Kochen.</td>
+<td>... let alone to cook.</td>
+</tr>
+<tr>
+<td>je nachdem</td>
+<td>alone as an answer, or + ob / wie / wann</td>
+<td>Kommst du mit? - <strong>Je nachdem.</strong> / Je nachdem, wann ich fertig bin.</td>
+<td>It depends. / Depending on when I finish.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>es sei denn never starts a sentence: it always follows the main clause.</li>
+<li>geschweige denn needs a negative or near-negative first part (nicht, kein, kaum).</li>
+</ul>
+<h3>From everyday to formal: register swaps</h3>
+<p>In B2 essays and formal emails, swap the B1 connector for its formal partner. The word order group often stays the same; where it changes, the group is given.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Everyday (B1)</th>
+<th>Formal (B2+)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>weil</td>
+<td>da, zumal (both verb last)</td>
+</tr>
+<tr>
+<td>aber</td>
+<td>jedoch, hingegen, allerdings (adverbs: verb next)</td>
+</tr>
+<tr>
+<td>deshalb, also</td>
+<td>folglich, somit, infolgedessen</td>
+</tr>
+<tr>
+<td>außerdem</td>
+<td>zudem, darüber hinaus, ferner</td>
+</tr>
+<tr>
+<td>trotzdem</td>
+<td>dennoch, nichtsdestotrotz</td>
+</tr>
+<tr>
+<td>wenn, falls</td>
+<td>sofern, vorausgesetzt, dass</td>
+</tr>
+<tr>
+<td>während (contrast)</td>
+<td>wohingegen</td>
+</tr>
+<tr>
+<td>statt ... zu</td>
+<td>anstatt dass (different subject)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Argumentation phrases for essays and discussions</h3>
+<p>A B2 opinion essay (Erörterung) or discussion is built from fixed phrases for each move. Most end in dass, so the verb goes last.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Move</th>
+<th>Phrase</th>
+<th>Order after it</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>introduce</td>
+<td>Heutzutage wird viel darüber diskutiert, ob ...</td>
+<td>verb last</td>
+<td>Heutzutage wird viel darüber diskutiert, ob Homeoffice sinnvoll ist.</td>
+</tr>
+<tr>
+<td>argue for</td>
+<td>Es lässt sich nicht leugnen, dass ...</td>
+<td>verb last</td>
+<td>Es lässt sich nicht leugnen, dass soziale Medien unseren Alltag verändert haben.</td>
+</tr>
+<tr>
+<td>argue for</td>
+<td>Ein wichtiges Argument dafür ist, dass ...</td>
+<td>verb last</td>
+<td>Ein wichtiges Argument dafür ist, dass man Zeit für den Arbeitsweg spart.</td>
+</tr>
+<tr>
+<td>add</td>
+<td>Hinzu kommt, dass ...</td>
+<td>verb last</td>
+<td>Hinzu kommt, dass die Mieten in den Städten ständig steigen.</td>
+</tr>
+<tr>
+<td>concede</td>
+<td>Es ist zwar richtig, dass ..., aber ...</td>
+<td>verb last, then normal</td>
+<td>Es ist zwar richtig, dass Homeoffice flexibel ist, aber viele fühlen sich isoliert.</td>
+</tr>
+<tr>
+<td>report the other side</td>
+<td>Kritiker wenden ein, dass ...</td>
+<td>verb last</td>
+<td>Kritiker wenden ein, dass der Kontakt zu Kollegen fehlt.</td>
+</tr>
+<tr>
+<td>counter</td>
+<td>Dem ist entgegenzuhalten, dass ...</td>
+<td>verb last</td>
+<td>Dem ist entgegenzuhalten, dass nicht jeder zu Hause einen ruhigen Arbeitsplatz hat.</td>
+</tr>
+<tr>
+<td>counter</td>
+<td>Dagegen spricht, dass ...</td>
+<td>verb last</td>
+<td>Dagegen spricht, dass die Kosten sehr hoch sind.</td>
+</tr>
+<tr>
+<td>conclude</td>
+<td>Abschließend lässt sich sagen, dass ...</td>
+<td>verb last</td>
+<td>Abschließend lässt sich sagen, dass die Vorteile überwiegen.</td>
+</tr>
+<tr>
+<td>conclude</td>
+<td>Alles in allem ...</td>
+<td>verb next</td>
+<td>Alles in allem überwiegen die Vorteile.</td>
+</tr>
+<tr>
+<td>conclude</td>
+<td>Zusammenfassend kann man festhalten, dass ...</td>
+<td>verb last</td>
+<td>Zusammenfassend kann man festhalten, dass beide Seiten gute Argumente haben.</td>
+</tr>
+<tr>
+<td>discussion</td>
+<td>Da muss ich Ihnen widersprechen.</td>
+<td>standalone</td>
+<td>Da muss ich Ihnen widersprechen: Das stimmt so nicht.</td>
+</tr>
+<tr>
+<td>discussion</td>
+<td>Wenn ich Sie richtig verstehe, meinen Sie, dass ...</td>
+<td>verb last</td>
+<td>Wenn ich Sie richtig verstehe, meinen Sie, dass das zu teuer ist.</td>
+</tr>
+<tr>
+<td>discussion</td>
+<td>Das sehe ich anders, denn ...</td>
+<td>normal after denn</td>
+<td>Das sehe ich anders, denn viele Firmen sparen dadurch Bürokosten.</td>
+</tr>
+</tbody>
+</table></div>
+<p>A model paragraph that chains them:</p>
+<blockquote>
+<p>Heutzutage wird viel darüber diskutiert, ob Homeoffice sinnvoll ist. Es lässt sich nicht leugnen, dass man viel Zeit spart, zumal der Arbeitsweg wegfällt. Zudem kann man sich die Arbeit freier einteilen. Kritiker wenden hingegen ein, dass der Kontakt zu Kollegen fehlt. Dem ist entgegenzuhalten, dass regelmäßige Teamtreffen dieses Problem lösen können, sofern sie gut organisiert sind. Abschließend lässt sich sagen, dass die Vorteile überwiegen.</p>
+</blockquote>
+<ul>
+<li>Es lässt sich ... sagen / nicht leugnen = man kann ...: sich lassen + infinitive as a passive alternative.</li>
+<li>Dem ist entgegenzuhalten = sein + zu-infinitive, meaning "one must reply to this"; dem is Dativ (entgegenhalten + Dat).</li>
+<li>To report the other side's words precisely, written German uses Konjunktiv I: Kritiker meinen, der Kontakt fehle.</li>
+</ul>
+<h2>See also</h2>
+<ul>
+<li><a href="../docs/word-order.html">Word order</a>: V2, verb-last and the verb, comma, verb pattern behind the three groups</li>
+<li><a href="../docs/relative-pronouns.html">Relative and demonstrative pronouns: der, denen, dessen</a>: relative clauses and wo(r)- words, another verb-last clause</li>
+<li><a href="../docs/b2-formal-german.html">B2+: Formal and written German</a>: nominal style and formal connectors in writing</li>
+<li><a href="../docs/b2-reported-speech.html">B2+: Reported speech and Konjunktiv I</a>: reporting the other side's arguments in an essay</li>
+<li><a href="../docs/b2-verb-structures.html">B2+: Advanced verb structures</a>: sich lassen and sein + zu behind Es lässt sich sagen and Dem ist entgegenzuhalten</li>
+<li><a href="../docs/particles-expressions.html">Particles, expressions and everyday German</a>: spoken fillers and reactions beyond na ja and ach so</li>
+</ul>
+<h2>Quiz</h2>
+<p>Test yourself on this doc: <a href="../quizzes/connectors.html">Connectors quiz</a> has 36 questions with five options each. Answer them all, press Check answers, and reload the page to start over.</p>
+</article>
+<footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+</body>
+</html>

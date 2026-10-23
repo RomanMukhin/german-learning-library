@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Formal German quiz · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs hide-sm"><span class="sep">/</span><span class="hide-sm">Quizzes</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" id="doclink" target="_blank" rel="noopener">Open the doc</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="quiz">
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="copy" type="button" hidden>Copy results</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <p class="note-copy" id="copynote" hidden></p>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"id": "b2-formal-german", "title": "Formal German quiz", "level": "B2", "doc": {"title": "B2+: Formal and written German", "url": "../docs/b2-formal-german.html"}, "questions": [{"q": "weil er krank war → ___ seiner Krankheit", "options": ["wegen", "trotz", "bei", "durch", "seit"], "answer": 0, "explain": "A reason clause (*weil*) becomes *wegen* + genitive in nominal style."}, {"q": "obwohl es regnete → ___ des Regens", "options": ["wegen", "während", "trotz", "bei", "statt"], "answer": 2, "explain": "A concession (*obwohl*) becomes *trotz* + genitive: *trotz des Regens*."}, {"q": "Nominal style for *Der Minister tritt zurück*:", "options": ["der Zurücktritt des Ministers", "die Rücktretung des Ministers", "der Rücktritt dem Minister", "der Rücktritt den Ministers", "der Rücktritt des Ministers"], "answer": 4, "explain": "The verb becomes the noun *der Rücktritt*, and the subject becomes a genitive: *des Ministers*."}, {"q": "damit die Kosten sinken → ___ der Kosten", "options": ["wegen der Senkung", "zur Senkung", "trotz der Senkung", "seit der Senkung", "nach der Senkung"], "answer": 1, "explain": "A purpose clause (*damit*, *um … zu*) becomes *zu* + dative noun: *zur Senkung der Kosten*."}, {"q": "Das Gesetz ___ am 1. Januar in Kraft.", "options": ["kommt", "geht", "steht", "tritt", "nimmt"], "answer": 3, "explain": "Fixed Funktionsverbgefüge: *in Kraft treten* = come into force (Ukrainian *набирати чинності*)."}, {"q": "Wir müssen bis Freitag eine Entscheidung ___.", "options": ["nehmen", "machen", "geben", "treffen", "stellen"], "answer": 3, "explain": "German says *eine Entscheidung treffen*. Ukrainian *приймати рішення* tempts you to say *nehmen*, and English \"make\" tempts *machen*."}, {"q": "Die Firma stellt den Mitarbeitern Laptops zur ___.", "options": ["Kenntnis", "Verfügung", "Sprache", "Hilfe", "Folge"], "answer": 1, "explain": "*etwas zur Verfügung stellen* = make available, provide (= *bereitstellen*)."}, {"q": "Which simple verb has the same meaning as *etwas in Betracht ziehen*?", "options": ["ablehnen", "beantragen", "bereitstellen", "ansprechen", "erwägen"], "answer": 4, "explain": "*in Betracht ziehen* = *erwägen*, to consider (Ukrainian *брати до уваги*)."}, {"q": "*die im Jahr 2020 veröffentlichte Studie* means:", "options": ["die Studie, die 2020 veröffentlicht hat", "die Studie, die 2020 veröffentlichen muss", "die Studie, die 2020 veröffentlicht wurde", "die Studie, die gerade veröffentlicht wird", "die Studie, die 2020 veröffentlicht werden soll"], "answer": 2, "explain": "Partizip II of a transitive verb before a noun is passive and completed: published in 2020."}, {"q": "*das zu lösende Problem* means:", "options": ["das Problem, das gelöst werden muss", "das Problem, das gelöst wurde", "das Problem, das gerade gelöst wird", "das Problem, das man nicht lösen darf", "das Problem, das sich selbst löst"], "answer": 0, "explain": "*zu* + Partizip I before a noun = must (or can) be done: the problem that has to be solved."}, {"q": "Die bis Freitag ___ Unterlagen (= that must be submitted, *einreichen*)", "options": ["zu einreichenden", "einzureichenden", "einreichenden", "eingereichten", "einzureichende"], "answer": 1, "explain": "With a separable verb *zu* goes inside: *einzureichend*; after *die* (plural) the ending is *-en*."}, {"q": "der seit Jahren in Berlin ___ Autor (= who lives)", "options": ["lebender", "gelebte", "lebenden", "lebende", "zu lebende"], "answer": 3, "explain": "Partizip I (*lebend*) is active and happening now. After *der* in the nominative singular the ending is *-e*."}, {"q": "Die Kosten stiegen; folglich ___.", "options": ["wurde das Projekt gestoppt", "das Projekt wurde gestoppt", "das Projekt gestoppt wurde", "gestoppt das Projekt wurde", "wurde gestoppt das Projekt"], "answer": 0, "explain": "*folglich* is an adverb in position 1, so the verb comes next (inversion), like *deshalb*."}, {"q": "Which phrase is correct in formal written German?", "options": ["aufgrund dem schlechten Wetter", "angesichts die Lage", "infolge dem Unfall", "zugunsten den Opfern", "gemäß dem Vertrag"], "answer": 4, "explain": "*gemäß* takes the dative. *aufgrund, angesichts, infolge, zugunsten* take the genitive in writing (*aufgrund des schlechten Wetters*)."}, {"q": "*Er sagte ab, zumal er ohnehin krank war.* What does *zumal* add?", "options": ["a contrast (whereas)", "a concession (although)", "an extra reason (especially since)", "a condition (if)", "a time (as soon as)"], "answer": 2, "explain": "*zumal* adds a further, reinforcing reason, and sends the verb to the end like *weil*."}, {"q": "Which is the correct start of a formal letter?", "options": ["Sehr geehrter Frau Kovalenko, vielen Dank für Ihre Nachricht.", "Sehr geehrte Frau Kovalenko, Vielen Dank für Ihre Nachricht.", "Sehr geehrte Frau Kovalenko, vielen Dank für Ihre Nachricht.", "Sehr geehrte Frau Kovalenko vielen Dank für Ihre Nachricht.", "Sehr geehrte Kovalenko, vielen Dank für Ihre Nachricht."], "answer": 2, "explain": "*geehrte* agrees with *Frau*, *Frau* is needed before the name, and after the comma the text starts with a small letter."}, {"q": "*Die Gebühr ist im Voraus zu zahlen.* means:", "options": ["The fee has been paid in advance.", "The fee cannot be paid in advance.", "The fee is being paid in advance.", "The fee was paid in advance.", "The fee must be paid in advance."], "answer": 4, "explain": "*sein + zu* + infinitive in rules and instructions means \"must be done\"."}, {"q": "Die Ergebnisse wurden ___ ein Gutachten bestätigt.", "options": ["durch", "von", "mit", "bei", "aus"], "answer": 0, "explain": "A means or process in the passive takes *durch* + accusative; *von* + dative is for a person (*von der Kommission*)."}, {"q": "nachdem der Vertrag unterschrieben wurde → ___ der Unterzeichnung des Vertrags", "options": ["vor", "nach", "seit", "bei", "während"], "answer": 1, "explain": "A time clause with *nachdem* becomes *nach* + dative: *nach der Unterzeichnung*."}, {"q": "wenn man das Gerät benutzt → ___ der Benutzung des Geräts", "options": ["mit", "durch", "für", "bei", "wegen"], "answer": 3, "explain": "A *wenn* clause (when, whenever) becomes *bei* + dative: *bei der Benutzung des Geräts*."}, {"q": "indem man die Preise erhöht → ___ die Erhöhung der Preise", "options": ["durch", "mit", "bei", "trotz", "zur"], "answer": 0, "explain": "A clause of means (*indem*) becomes *durch* + accusative: *durch die Erhöhung*."}, {"q": "er reagierte schnell → ___", "options": ["seine schnell Reaktion", "seine schnelle Reaktion", "seine schnellen Reaktion", "seine Reaktion schnelle", "seiner schnelle Reaktion"], "answer": 1, "explain": "The adverb becomes an adjective with a normal ending: *seine schnelle Reaktion* (nominative feminine after *seine*: *-e*)."}, {"q": "Die Opposition übt scharfe Kritik ___ der Regierung.", "options": ["über", "gegen", "an", "auf", "für"], "answer": 2, "explain": "Fixed Funktionsverbgefüge: *Kritik üben an* + dative = to criticise."}, {"q": "Ich nehme Bezug ___ Ihr Schreiben vom 3. März.", "options": ["an", "zu", "über", "auf", "für"], "answer": 3, "explain": "*Bezug nehmen auf* + accusative = to refer to (= *sich beziehen auf*)."}, {"q": "Endlich ist ihr Wunsch in ___ gegangen.", "options": ["Kraft", "Frage", "Betracht", "Verfügung", "Erfüllung"], "answer": 4, "explain": "*in Erfüllung gehen* = to come true (= *sich erfüllen*). *In Kraft* goes with *treten*, not *gehen*."}, {"q": "die gestern ___ Gäste (= who arrived, *ankommen*)", "options": ["angekommenen", "ankommenden", "angekommene", "anzukommenden", "angekommen"], "answer": 0, "explain": "Partizip II of a *sein*-verb before a noun is active and completed: the guests who have arrived. After *die* (plural) the ending is *-en*."}, {"q": "*die stark steigenden Preise* means:", "options": ["die Preise, die stark gestiegen sind", "die Preise, die stark steigen", "die Preise, die stark gesteigert werden müssen", "die Preise, die stark gesteigert wurden", "die Preise, die nicht steigen dürfen"], "answer": 1, "explain": "Partizip I (*steigend*) is active and happening now: prices that are rising sharply."}, {"q": "Die Mieten steigen, die Löhne ___ stagnieren.", "options": ["wohingegen", "obgleich", "hingegen", "zumal", "deshalb"], "answer": 2, "explain": "*hingegen* can follow the subject and leaves the verb in 2nd position. *wohingegen, obgleich, zumal* would send the verb to the end, and *deshalb* would need inversion."}, {"q": "Pick the correct sentence with *wohingegen*.", "options": ["Die Regierung stimmte zu, wohingegen stimmte die Opposition dagegen.", "Die Regierung stimmte zu, wohingegen die Opposition stimmte dagegen.", "Die Regierung stimmte zu, die Opposition wohingegen dagegen stimmte.", "Die Regierung stimmte zu, wohingegen die Opposition dagegen stimmte.", "Die Regierung stimmte zu, wohingegen dagegen stimmte die Opposition."], "answer": 3, "explain": "*wohingegen* is a subordinating conjunction (= whereas), so the finite verb goes last."}, {"q": "___ nichts dagegen spricht, beginnen wir im Mai.", "options": ["Folglich", "Dennoch", "Hingegen", "Somit", "Sofern"], "answer": 4, "explain": "*Sofern* (= provided that) is a conjunction and sends the verb to the end. The other four are adverbs and would need the verb right after them."}, {"q": "___ der Kritik hielt die Regierung am Plan fest. (= regardless of)", "options": ["Ungeachtet", "Zugunsten", "Anhand", "Zwecks", "Anlässlich"], "answer": 0, "explain": "*ungeachtet* + genitive = regardless of, despite (Ukrainian *попри*)."}, {"q": "Die Preise verstehen sich ___ der Mehrwertsteuer. (= plus VAT)", "options": ["anhand", "zuzüglich", "seitens", "anlässlich", "innerhalb"], "answer": 1, "explain": "*zuzüglich* + genitive = plus, in addition to (abbreviated *zzgl.*). Its opposite is *einschließlich* (including)."}, {"q": "How do you end a formal German letter?", "options": ["Mit freundlichen Grüßen, – comma, name on the next line", "Mit freundliche Grüße – no comma, name on the next line", "Mit freundlichen Grüßen – no comma, name on the next line", "Mit freundlichen Grüße, – comma, name on the next line", "Mit freundlichem Grüßen! – exclamation mark"], "answer": 2, "explain": "The closing is *Mit freundlichen Grüßen* (dative plural), with no comma after it, and your name goes on the next line."}, {"q": "Hiermit bewerbe ich mich ___ die Stelle als Softwareentwickler.", "options": ["für", "auf", "an", "um", "nach"], "answer": 3, "explain": "*sich bewerben um* + accusative = to apply for. Ukrainian *на посаду* tempts *auf*, English \"for\" tempts *für*."}, {"q": "Which sentence is correct in a formal letter?", "options": ["Könnten sie mir bitte mitteilen, ob ihr Büro am Freitag geöffnet ist?", "Könnten Sie mir bitte mitteilen, ob ihr Büro am Freitag geöffnet ist?", "Könnten sie mir bitte mitteilen, ob Ihr Büro am Freitag geöffnet ist?", "Könnten Sie Mir bitte mitteilen, ob Ihr Büro am Freitag geöffnet ist?", "Könnten Sie mir bitte mitteilen, ob Ihr Büro am Freitag geöffnet ist?"], "answer": 4, "explain": "The polite *Sie, Ihnen, Ihr* are always capitalised; *mir* is not."}, {"q": "Pick the correct sentence with *zwar … aber*.", "options": ["Zwar ist die Lösung teuer, aber sie wirkt.", "Zwar die Lösung ist teuer, aber sie wirkt.", "Zwar die Lösung teuer ist, aber sie wirkt.", "Zwar ist teuer die Lösung, aber wirkt sie.", "Zwar teuer die Lösung ist, aber sie wirkt."], "answer": 0, "explain": "*zwar* in position 1 counts as a normal element, so the verb follows (*Zwar ist …*). After *aber* the word order is normal: *aber sie wirkt*."}, {"q": "Das Problem ist ___. (= kann gelöst werden)", "options": ["löslich", "lösbar", "lösend", "gelöst", "lösig"], "answer": 1, "explain": "*-bar* on a verb stem means \"can be done\": *lösbar* = solvable. *löslich* means soluble (in water), and *gelöst* means already solved."}, {"q": "*Der Antrag ist geprüft.* means:", "options": ["The application is being checked right now.", "The application must be checked.", "The check is finished; the application has been checked.", "The application can be checked.", "The application will be checked later."], "answer": 2, "explain": "The *sein*-passive describes a state, the result of a finished action. *Der Antrag wird geprüft* would mean it is being checked."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+  document.getElementById('title').textContent = data.title;
+  document.getElementById('crumb').textContent = data.title;
+  var dl = document.getElementById('doclink');
+  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+  var intro = document.getElementById('intro');
+  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+  if (data.doc && data.doc.url) {
+    intro.appendChild(document.createTextNode(' Based on '));
+    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>

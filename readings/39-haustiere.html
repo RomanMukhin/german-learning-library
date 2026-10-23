@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Haustiere in der Stadt · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "39-haustiere", "n": 39, "area": "Everyday", "level": "B1", "title_de": "Haustiere in der Stadt", "title_en": "A dog in a city flat", "grammar": [{"name": "Possessive articles (mein, sein, ihr …)", "explain": "Possessive articles are *mein, dein, sein* (er/es), *ihr* (sie, and also \"their\"), *unser, euer, Ihr* (formal). The stem depends on the *owner*: Dmytro and *sein* Hund, Anna and *ihr* Hund. The ending depends on the *noun* and its case, exactly like *ein/kein*: *sein Napf* (m Nom), *seinen Napf* (m Akk), *seine Leine* (f), *mit seinem Freund* (Dat). Ukrainian uses *свій* for any owner (*він любить свого собаку, вона любить свого собаку*); German has no such word, so you must always choose *sein* or *ihr*.", "examples": [{"de": "*Sein* Napf steht in der Küche, und *seine* Leine hängt an der Tür.", "en": "His bowl is in the kitchen, and his lead hangs on the door."}, {"de": "Zuerst mussten sie *ihren* Vermieter fragen.", "en": "First they had to ask their landlord."}, {"de": "Er bekommt ein Leckerli von *seinem* besten Freund.", "en": "He gets a treat from his best friend."}], "links": [{"title": "German article tables (B1)", "url": "../docs/articles.html"}, {"title": "Gotchas and false friends", "url": "../docs/gotchas.html"}]}, {"name": "n-Deklination (der Junge, der Nachbar)", "explain": "A small group of masculine nouns adds *-(e)n* in every form except the Nominativ singular: *der Junge → den Jungen, dem Jungen, des Jungen*. They are mostly people and animals ending in *-e* (*der Junge, der Kollege, der Kunde, der Löwe, der Hase*), plus some others like *der Mensch, der Nachbar, der Student, der Herr*. Most masculine nouns are \"normal\": *der Hund → den Hund, dem Hund*, *der Tierarzt → dem Tierarzt*. So *Leon liebt den Hund*, but *Bruno liebt den Jungen*.", "examples": [{"de": "Letzte Woche hat Dmytro mit dem *Nachbarn* gesprochen.", "en": "Last week Dmytro talked to the neighbour."}, {"de": "Ganz anders ist es mit dem *Jungen* aus dem dritten Stock.", "en": "It's completely different with the boy from the third floor."}, {"de": "Leon liebt den *Hund*. (no -n: normal noun)", "en": "Leon loves the dog."}], "links": [{"title": "Noun gender and plurals", "url": "../docs/noun-gender-plurals.html"}, {"title": "German article tables (B1)", "url": "../docs/articles.html"}]}], "vocab": [{"id": "haustier", "de": "Haustier", "gender": "n", "plural": "Haustiere", "en": "pet", "uk": "домашня тварина, улюбленець", "examples": [{"de": "Habt ihr ein Haustier?", "en": "Do you have a pet?"}], "note": "Neuter because of *das Tier*. Farm animals are *Nutztiere*, not *Haustiere*."}, {"id": "tierheim", "de": "Tierheim", "gender": "n", "plural": "Tierheime", "en": "animal shelter", "uk": "притулок для тварин", "examples": [{"de": "Wir haben unsere Katze aus dem Tierheim geholt.", "en": "We got our cat from the shelter."}], "note": "*das Heim* (home, hostel) makes it neuter. *aus dem Tierheim holen / adoptieren* (aus + Dat)."}, {"id": "tierarzt", "de": "Tierarzt", "gender": "m", "plural": "Tierärzte", "en": "vet", "uk": "ветеринар", "examples": [{"de": "Morgen müssen wir zum Tierarzt.", "en": "Tomorrow we have to go to the vet."}], "note": "Plural with umlaut: *die Tierärzte*; female *die Tierärztin*. To a person you go *zu + Dat*: *zum Tierarzt*. Not n-Deklination: *dem Tierarzt*."}, {"id": "leine", "de": "Leine", "gender": "f", "plural": "Leinen", "en": "lead, leash", "uk": "повідець", "examples": [{"de": "Im Park muss der Hund an der Leine bleiben.", "en": "In the park the dog has to stay on the lead."}], "note": "*an der Leine* (an + Dat). *die Leinenpflicht* = rule that dogs must be on a lead."}, {"id": "napf", "de": "Napf", "gender": "m", "plural": "Näpfe", "en": "(pet) bowl", "uk": "миска (для тварини)", "examples": [{"de": "Der Napf ist schon wieder leer.", "en": "The bowl is empty again."}], "note": "Plural with umlaut: *die Näpfe*. Only for animals; a bowl for people is *die Schüssel*."}, {"id": "futter", "de": "Futter", "gender": "n", "plural": null, "en": "pet food, animal feed", "uk": "корм", "examples": [{"de": "Das Futter kaufen wir online.", "en": "We buy the food online."}], "note": "Only for animals (*das Hundefutter, das Katzenfutter*). Food for people is *das Essen*; calling it *Futter* is a joke."}, {"id": "nachbar", "de": "Nachbar", "gender": "m", "plural": "Nachbarn", "en": "neighbour", "uk": "сусід", "examples": [{"de": "Ich habe den Nachbarn um Hilfe gebeten.", "en": "I asked the neighbour for help."}], "note": "n-Deklination: *den Nachbarn, dem Nachbarn* (Genitiv *des Nachbarn*, colloquially also *des Nachbars*). Plural *die Nachbarn*. Female: *die Nachbarin*."}, {"id": "junge", "de": "Junge", "gender": "m", "plural": "Jungen", "en": "boy", "uk": "хлопчик, хлопець", "examples": [{"de": "Der Hund spielt mit dem Jungen.", "en": "The dog is playing with the boy."}], "note": "n-Deklination: *den / dem / des Jungen*. Colloquial plural: *die Jungs*. Don't confuse with the adjective *jung* (young)."}, {"id": "vermieter", "de": "Vermieter", "gender": "m", "plural": "Vermieter", "en": "landlord", "uk": "орендодавець", "examples": [{"de": "Unser Vermieter erlaubt keine Katzen.", "en": "Our landlord doesn't allow cats."}], "note": "*vermieten* = to rent out, *mieten* = to rent. So *der Mieter* = tenant, *der Vermieter* = landlord. Plural has no ending."}, {"id": "erlaubnis", "de": "Erlaubnis", "gender": "f", "plural": "Erlaubnisse", "en": "permission", "uk": "дозвіл", "examples": [{"de": "Dafür brauchst du die Erlaubnis des Vermieters.", "en": "You need the landlord's permission for that."}], "note": "Plural doubles the *s*: *Erlaubnisse*. Most *-nis* nouns are neuter (*das Ergebnis*), but *die Erlaubnis* is feminine (Ukrainian *дозвіл* is masculine)."}, {"id": "hundesteuer", "de": "Hundesteuer", "gender": "f", "plural": "Hundesteuern", "en": "dog tax", "uk": "податок на собаку", "examples": [{"de": "Die Hundesteuer zahlt man jedes Jahr an die Stadt.", "en": "You pay the dog tax to the city every year."}], "note": "*die Steuer* = tax, but *das Steuer* = steering wheel. Same word, different gender and meaning."}, {"id": "fuettern", "de": "füttern", "gender": null, "plural": null, "en": "to feed (an animal)", "uk": "годувати", "examples": [{"de": "Wer füttert die Katze, wenn wir im Urlaub sind?", "en": "Who feeds the cat when we're on holiday?"}], "note": "Regular: *hat gefüttert*. Direct object in the Akkusativ: *den Hund füttern*. Related noun: *das Futter*."}, {"id": "erziehen", "de": "erziehen", "gender": null, "plural": null, "en": "to train (a dog), to bring up (a child)", "uk": "виховувати, дресирувати", "examples": [{"de": "Einen jungen Hund zu erziehen braucht Zeit.", "en": "Training a young dog takes time."}], "note": "Inseparable *er-*, irregular: *erzog, hat erzogen*. Noun: *die Erziehung*."}, {"id": "streicheln", "de": "streicheln", "gender": null, "plural": null, "en": "to stroke, to pet", "uk": "гладити", "examples": [{"de": "Darf ich Ihren Hund streicheln?", "en": "May I stroke your dog?"}], "note": "Always ask first, using formal *Ihren* (capital I). Forms: *ich streichle, du streichelst*, Perfekt *hat gestreichelt*."}, {"id": "bellen", "de": "bellen", "gender": null, "plural": null, "en": "to bark", "uk": "гавкати", "examples": [{"de": "Der Hund bellt, wenn es klingelt.", "en": "The dog barks when the doorbell rings."}], "note": "Regular: *bellt, hat gebellt*. Cats *miauen*."}, {"id": "aufpassen", "de": "aufpassen auf + Akk", "gender": null, "plural": null, "en": "to look after, to keep an eye on", "uk": "наглядати за, пильнувати", "examples": [{"de": "Kannst du am Samstag auf den Hund aufpassen?", "en": "Can you look after the dog on Saturday?"}, {"de": "Pass auf!", "en": "Watch out!"}], "note": "Separable: *Er passt auf ihn auf.* Preposition *auf + Akkusativ*, with a thing: *darauf aufpassen*."}, {"id": "gewoehnen", "de": "sich gewöhnen an + Akk", "gender": null, "plural": null, "en": "to get used to", "uk": "звикати до", "examples": [{"de": "Ich habe mich an die neue Wohnung gewöhnt.", "en": "I've got used to the new flat."}, {"de": "Daran gewöhnt man sich schnell.", "en": "You get used to that quickly."}], "note": "Reflexive, *an + Akkusativ*. Perfekt: *hat sich gewöhnt*. Ukrainian *звикати* is not reflexive."}, {"id": "stubenrein", "de": "stubenrein", "gender": null, "plural": null, "en": "house-trained", "uk": "привчений до туалету (надворі)", "examples": [{"de": "Der Welpe ist noch nicht stubenrein.", "en": "The puppy isn't house-trained yet."}], "note": "From *die Stube* (old word for living room). Figuratively, a joke that is *nicht stubenrein* is a bit rude."}, {"id": "gassi", "de": "Gassi gehen (mit + Dat)", "gender": null, "plural": null, "en": "to walk the dog", "uk": "вигулювати собаку", "examples": [{"de": "Ich gehe mit dem Hund Gassi.", "en": "I'm taking the dog for a walk."}], "note": "Colloquial fixed phrase. Perfekt with *sein*: *Ich bin mit ihm Gassi gegangen.* Capital *G*."}, {"id": "nase", "de": "die Nase voll haben (von + Dat)", "gender": null, "plural": null, "en": "to be fed up (with)", "uk": "мати по горло, набриднути", "examples": [{"de": "Ich habe die Nase voll vom Lärm.", "en": "I'm fed up with the noise."}], "note": "Colloquial. *von + Dativ*; with a thing: *davon*. Literally \"to have one's nose full\"."}], "text": "Dmytro wohnt mit seiner Freundin Anna in einer Zweizimmerwohnung in Köln-Ehrenfeld. Lange haben die beiden über ein {{haustier|Haustier}} gesprochen. Zuerst mussten sie ihren {{vermieter|Vermieter}} fragen, denn ohne seine {{erlaubnis|Erlaubnis}} darf man in vielen Mietwohnungen keinen Hund {{=halten|keep (an animal) · тримати}}. Zum Glück hat er Ja gesagt.\n\nIm {{tierheim|Tierheim}} haben sie Bruno gefunden, einen schwarzen {{=Mischling|mixed-breed dog · метис}} mit großen Ohren. Am Anfang war er sehr {{=schüchtern|shy · сором'язливий}}, aber er hat sich schnell an seine neue Familie {{gewoehnen|gewöhnt}}. {{=Inzwischen|By now · Тепер уже}} ist er auch {{stubenrein|stubenrein}}. Sein {{napf|Napf}} steht in der Küche, und seine {{leine|Leine}} hängt an der Tür. Anna {{fuettern|füttert}} ihn morgens, Dmytro abends. Das {{futter|Futter}} kostet etwa vierzig Euro im Monat, dazu kommt die {{hundesteuer|Hundesteuer}}.\n\nNicht alle im Haus freuen sich über Bruno. Wenn er allein ist, {{bellen|bellt}} er manchmal laut. Der {{nachbar|Nachbar}} von unten, Herr Schulz, hat davon schon {{nase|die Nase voll}}. Letzte Woche hat Dmytro mit dem Nachbarn gesprochen und ihm Pralinen geschenkt. Jetzt ist die Stimmung {{=entspannter|more relaxed · спокійніша}}.\n\nGanz anders ist es mit dem {{junge|Jungen}} aus dem dritten Stock. Leon ist zehn und liebt den Hund. Am Wochenende darf er mit Bruno {{gassi|Gassi gehen}}, und seine Mutter sagt, dass er sehr gut auf ihn {{aufpassen|aufpasst}}. Er {{streicheln|streichelt}} ihn, wirft Bälle und hilft sogar, ihn zu {{erziehen|erziehen}}. Nur zum {{tierarzt|Tierarzt}} will Bruno nie gehen. Aber danach bekommt er immer ein {{=Leckerli|treat · ласощі}} von seinem besten Freund.", "quiz": [{"q": "Wo wohnen Dmytro und Anna?", "options": ["in Bonn", "in Berlin", "in Köln-Ehrenfeld", "in einem Haus auf dem Land", "in Düsseldorf"], "answer": 2, "explain": "\"… in einer Zweizimmerwohnung *in Köln-Ehrenfeld*.\""}, {"q": "Zuerst mussten Dmytro und Anna *___* Vermieter fragen.", "options": ["ihren", "ihre", "seinen", "ihrem", "unser"], "answer": 0, "explain": "The owners are *sie* (plural) → *ihr-*; *der Vermieter* is masculine Akkusativ → *ihren*: \"Zuerst mussten sie *ihren* Vermieter fragen.\""}, {"q": "Woher kommt Bruno?", "options": ["von einem Züchter", "von Herrn Schulz", "von Leons Familie", "aus dem Tierheim", "aus dem Internet"], "answer": 3, "explain": "\"*Im Tierheim* haben sie Bruno gefunden.\""}, {"q": "Brunos Napf: *___* Napf steht in der Küche.", "options": ["Ihr", "Seine", "Seinen", "Ihre", "Sein"], "answer": 4, "explain": "The owner is Bruno (er) → *sein-*; *der Napf* is masculine Nominativ → no ending: \"*Sein* Napf steht in der Küche.\""}, {"q": "Wer füttert Bruno abends?", "options": ["Anna", "Dmytro", "Leon", "Herr Schulz", "Leons Mutter"], "answer": 1, "explain": "\"Anna füttert ihn morgens, *Dmytro abends*.\""}, {"q": "Letzte Woche hat Dmytro mit dem *___* gesprochen.", "options": ["Nachbar", "Nachbarn", "Nachbars", "Nachbare", "Nachbaren"], "answer": 1, "explain": "*der Nachbar* belongs to the n-Deklination, so after *mit dem* (Dativ) it is *Nachbarn*."}, {"q": "Warum hat Herr Schulz die Nase voll?", "options": ["Bruno ist nicht stubenrein.", "Dmytro hört laut Musik.", "Bruno hat ihn gebissen.", "Anna parkt vor seiner Tür.", "Bruno bellt manchmal laut, wenn er allein ist."], "answer": 4, "explain": "\"Wenn er allein ist, *bellt er manchmal laut*. Der Nachbar von unten … hat davon schon die Nase voll.\""}, {"q": "Ganz anders ist es mit dem *___* aus dem dritten Stock.", "options": ["Junge", "Jungs", "Jungen", "Jung", "Junges"], "answer": 2, "explain": "*der Junge* is n-Deklination: Dativ singular *dem Jungen*."}, {"q": "Was darf Leon am Wochenende machen?", "options": ["mit Bruno Gassi gehen", "Bruno allein füttern", "mit Bruno zum Tierarzt fahren", "bei Dmytro übernachten", "Bruno baden"], "answer": 0, "explain": "\"Am Wochenende *darf er mit Bruno Gassi gehen*.\""}, {"q": "Was mag Bruno gar nicht?", "options": ["Bälle", "Leon", "Leckerlis", "zum Tierarzt gehen", "gestreichelt werden"], "answer": 3, "explain": "\"Nur *zum Tierarzt* will Bruno nie gehen.\""}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

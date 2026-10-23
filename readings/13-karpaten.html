@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Wandern in den Karpaten · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>der</span><span><span class="g g-f">f</span>die</span><span><span class="g g-n">n</span>das</span><span><span class="g g-pl">pl</span>plural only</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "13-karpaten", "n": 13, "area": "Ukraine", "level": "B1", "title_de": "Wandern in den Karpaten", "title_en": "Hiking up Hoverla in the Carpathians", "grammar": [{"name": "Dativ plural: -n on the noun", "explain": "In the Dativ plural the article is *den* (or *ihren, seinen, keinen* ...), a strong adjective ends in *-en*, and the noun itself gets an extra *-n*: die Rucksäcke → *in den Rucksäcken*, die Schafe → *mit seinen Schafen*, die Steine → *zwischen den Steinen*. If the plural already ends in *-n* (die Wiesen, die Karpaten) nothing is added, and plurals in *-s* never take it (*mit den Fotos*). Many learners forget this -n because it is easy to miss when speaking, but it is a clear sign of good German. Ukrainian also marks the case on the noun (*з вівцями, у рюкзаках*); German does it with *den* + *-n*.", "examples": [{"de": "In ihren *Rucksäcken* hatten sie die ganze Ausrüstung.", "en": "They had all their gear in their rucksacks."}, {"de": "Sie haben einen Hirten mit seinen *Schafen* getroffen.", "en": "They met a shepherd with his sheep."}, {"de": "*Mit vollen Flaschen* sind sie weitergewandert.", "en": "With full bottles they hiked on."}], "links": [{"title": "German article tables (B1)", "url": "../docs/articles.html"}, {"title": "Noun gender and plurals", "url": "../docs/noun-gender-plurals.html"}]}, {"name": "Perfekt with sein for movement", "explain": "Verbs of movement from A to B and verbs of change form the Perfekt with *sein*: *fahren → ist gefahren*, *wandern → ist gewandert*, *steigen → ist gestiegen*, *aufbrechen → ist aufgebrochen*, *ankommen → ist angekommen*, *aufziehen* (fog, clouds) *→ ist aufgezogen*. *sein* and *bleiben* also take *sein*. Reflexive verbs always take *haben*, even if they are about moving: *Sie haben sich verlaufen*. If a movement verb has a direct object, it takes *haben*: *Ich habe das Auto gefahren* but *Ich bin nach Lwiw gefahren*.", "examples": [{"de": "Am ersten Morgen *sind* die beiden um sechs Uhr *aufgebrochen*.", "en": "On the first morning the two of them set off at six."}, {"de": "Um zehn Uhr *sind* sie endlich auf dem Gipfel *angekommen*.", "en": "At ten o'clock they finally reached the summit."}, {"de": "Sie *haben* sich kurz *verlaufen*. (reflexive → haben)", "en": "They got lost for a short time."}], "links": [{"title": "Tenses, moods and the passive", "url": "../docs/tenses.html"}, {"title": "Irregular verbs", "url": "../docs/irregular-verbs.html"}]}], "vocab": [{"id": "gipfel", "de": "Gipfel", "gender": "m", "plural": "Gipfel", "en": "summit, peak", "uk": "вершина", "examples": [{"de": "Vom Gipfel sieht man bis nach Rumänien.", "en": "From the summit you can see as far as Romania."}], "note": "Masculine (Ukrainian *вершина* is feminine). Plural without ending: *die Gipfel*, Dativ *auf den Gipfeln*. Also a political summit: *der G7-Gipfel*."}, {"id": "wanderweg", "de": "Wanderweg", "gender": "m", "plural": "Wanderwege", "en": "hiking trail", "uk": "туристична стежка", "examples": [{"de": "Der Wanderweg ist rot markiert.", "en": "The trail is marked in red."}], "note": "Compound: *wandern + der Weg*, so masculine. Dativ plural: *auf den Wanderwegen*."}, {"id": "rucksack", "de": "Rucksack", "gender": "m", "plural": "Rucksäcke", "en": "rucksack, backpack", "uk": "рюкзак", "examples": [{"de": "Mein Rucksack ist zu schwer.", "en": "My backpack is too heavy."}, {"de": "*in den Rucksäcken*", "en": "in the rucksacks"}], "note": "Plural with umlaut: *die Rucksäcke*, Dativ *den Rucksäcken*. English borrowed this word from German."}, {"id": "huette", "de": "Hütte", "gender": "f", "plural": "Hütten", "en": "hut, mountain lodge", "uk": "хатина, притулок", "examples": [{"de": "Wir übernachten in einer Hütte.", "en": "We're staying overnight in a hut."}], "note": "In the mountains *die Hütte* (or *Berghütte*) is a simple lodge with beds and food. Not to be confused with *der Hut* (hat)."}, {"id": "aussicht", "de": "Aussicht", "gender": "f", "plural": "Aussichten", "en": "view; prospect", "uk": "краєвид, вид", "examples": [{"de": "Die Aussicht auf die Berge ist fantastisch.", "en": "The view of the mountains is fantastic."}], "note": "*die Aussicht auf + Akk* = the view of. In the plural it often means prospects: *gute Aussichten*."}, {"id": "wiese", "de": "Wiese", "gender": "f", "plural": "Wiesen", "en": "meadow", "uk": "луг, галявина", "examples": [{"de": "Auf den Wiesen blühen Blumen.", "en": "Flowers are blooming in the meadows."}], "note": "German says *auf der Wiese* (on), not *in*. The plural already ends in *-n*, so the Dativ plural stays *Wiesen*. The mountain meadows of the Carpathians are called *полонини*."}, {"id": "hirte", "de": "Hirte", "gender": "m", "plural": "Hirten", "en": "shepherd, herdsman", "uk": "пастух, вівчар", "examples": [{"de": "Wir haben *einen Hirten* getroffen.", "en": "We met a shepherd."}], "note": "n-Deklination: every form except Nominativ singular ends in *-n*: *den Hirten, dem Hirten, des Hirten*."}, {"id": "schaf", "de": "Schaf", "gender": "n", "plural": "Schafe", "en": "sheep", "uk": "вівця", "examples": [{"de": "Der Hirte zählt seine Schafe.", "en": "The shepherd counts his sheep."}], "note": "Neuter (Ukrainian *вівця* is feminine). Unlike English *sheep*, it has a plural: *die Schafe*, Dativ *mit den Schafen*."}, {"id": "nebel", "de": "Nebel", "gender": "m", "plural": "Nebel", "en": "fog, mist", "uk": "туман", "examples": [{"de": "Im Nebel sieht man den Weg kaum.", "en": "You can hardly see the path in the fog."}], "note": "Masculine like Ukrainian *туман*. Usually singular. Fog *zieht auf* (rolls in): *Nebel ist aufgezogen* (Perfekt with sein)."}, {"id": "blase", "de": "Blase", "gender": "f", "plural": "Blasen", "en": "blister; bubble; bladder", "uk": "пухир, мозоль", "examples": [{"de": "Ich habe eine Blase am Fuß.", "en": "I've got a blister on my foot."}], "note": "Same word for a blister, a soap bubble and the bladder. You get one *am Fuß* (an + Dativ)."}, {"id": "quelle", "de": "Quelle", "gender": "f", "plural": "Quellen", "en": "spring; source", "uk": "джерело", "examples": [{"de": "Das Wasser aus der Quelle ist kalt und klar.", "en": "The water from the spring is cold and clear."}], "note": "Feminine (Ukrainian *джерело* is neuter). Like *джерело*, it is also a source of information: *eine zuverlässige Quelle*."}, {"id": "ausruestung", "de": "Ausrüstung", "gender": "f", "plural": "Ausrüstungen", "en": "equipment, gear", "uk": "спорядження", "examples": [{"de": "Für die Tour braucht man eine gute Ausrüstung.", "en": "You need good gear for the hike."}], "note": "Almost always singular, like English *equipment*: *die ganze Ausrüstung*, not *Ausrüstungen*. *-ung* → feminine."}, {"id": "aufbrechen", "de": "aufbrechen", "gender": null, "plural": null, "en": "to set off, to start out", "uk": "вирушати", "examples": [{"de": "Wir *brechen* um sechs Uhr *auf*.", "en": "We set off at six."}, {"de": "Sie sind früh aufgebrochen.", "en": "They set off early."}], "note": "Separable and irregular: *brach auf, ist aufgebrochen* (Perfekt with sein). With an object it means \"to break open\" and takes haben: *Er hat die Tür aufgebrochen*."}, {"id": "steigen", "de": "steigen (auf + Akk)", "gender": null, "plural": null, "en": "to climb, to go up", "uk": "підніматися", "examples": [{"de": "Wir sind auf den Gipfel gestiegen.", "en": "We climbed to the summit."}, {"de": "Die Preise steigen.", "en": "Prices are rising."}], "note": "Irregular: *stieg, ist gestiegen* (sein). Direction is *auf + Akkusativ*: *auf den Berg steigen*. Also *in den Zug steigen* = to get on the train."}, {"id": "verlaufen", "de": "sich verlaufen", "gender": null, "plural": null, "en": "to get lost (on foot)", "uk": "заблукати", "examples": [{"de": "Im Nebel haben wir uns verlaufen.", "en": "We got lost in the fog."}], "note": "Reflexive, so Perfekt with *haben*: *Ich habe mich verlaufen* (not *bin*). By car: *sich verfahren*."}, {"id": "uebernachten", "de": "übernachten", "gender": null, "plural": null, "en": "to stay the night", "uk": "ночувати", "examples": [{"de": "Wo übernachtet ihr?", "en": "Where are you staying overnight?"}], "note": "Inseparable (*über-* is not stressed here): *Wir übernachten*, Perfekt *haben übernachtet* (no ge-)."}, {"id": "steil", "de": "steil", "gender": null, "plural": null, "en": "steep", "uk": "крутий", "examples": [{"de": "Der letzte Teil des Weges ist sehr steil.", "en": "The last part of the trail is very steep."}], "note": "Ukrainian *крутий* also means \"cool\", but *steil* is only about slopes (and, colloquially, *eine steile Karriere* = a fast career)."}, {"id": "erschoepft", "de": "erschöpft", "gender": null, "plural": null, "en": "exhausted", "uk": "виснажений", "examples": [{"de": "Nach acht Stunden waren wir völlig erschöpft.", "en": "After eight hours we were completely exhausted."}], "note": "Stronger than *müde* (tired). It is the participle of *erschöpfen*, used as an adjective."}, {"id": "auf_den_weg", "de": "sich auf den Weg machen", "gender": null, "plural": null, "en": "to set out, to head off", "uk": "вирушати в дорогу", "examples": [{"de": "Wir machen uns um acht auf den Weg.", "en": "We're heading off at eight."}], "note": "Reflexive with *machen*, so Perfekt with *haben*: *Sie haben sich auf den Weg gemacht*. Always *auf den* (Akkusativ)."}, {"id": "lohnen", "de": "sich lohnen", "gender": null, "plural": null, "en": "to be worth it", "uk": "бути вартим, окупатися", "examples": [{"de": "Der Aufstieg lohnt sich.", "en": "The climb is worth it."}, {"de": "Hat es sich gelohnt?", "en": "Was it worth it?"}], "note": "Reflexive and usually with *es* or a thing as subject: *Es lohnt sich*. Not a person: \"I am worth it\" is not *ich lohne mich*."}], "text": "Im August sind Andrij und seine Freundin Mia aus Freiburg mit dem Zug von Lwiw nach Worochta gefahren. Ihr Ziel war die Howerla, mit 2061 Metern der höchste Berg der Ukraine. In ihren {{rucksack|Rucksäcken}} hatten sie die ganze {{ausruestung|Ausrüstung}}: Zelt, Regenjacken, Wasserflaschen und {{=Proviant|provisions · провізія}} für drei Tage.\n\nAm ersten Morgen sind die beiden schon um sechs Uhr {{aufbrechen|aufgebrochen}}. Der {{wanderweg|Wanderweg}} hat sie zuerst durch {{=dichte|dense · густі}} Wälder geführt, später über grüne {{wiese|Wiesen}}. Auf den Wiesen haben sie einen alten {{hirte|Hirten}} mit seinen {{schaf|Schafen}} getroffen. Er hat ihnen frischen Käse {{=angeboten|offered · запропонував}} und den Weg zu einer {{quelle|Quelle}} gezeigt. Mit vollen Flaschen sind sie weitergewandert.\n\nAm Nachmittag ist plötzlich dichter {{nebel|Nebel}} {{=aufgezogen|rolled in · насунув}}. Mia und Andrij haben sich kurz {{verlaufen|verlaufen}}, aber mit dem Handy haben sie den Weg schnell wiedergefunden. In einer einfachen {{huette|Hütte}} am Fuß des Berges haben sie {{uebernachten|übernachtet}}. Mias Füße waren voller {{blase|Blasen}}, und beide waren völlig {{erschoepft|erschöpft}}.\n\nAm nächsten Tag haben sie sich früh {{auf_den_weg|auf den Weg gemacht}}. Der letzte Teil war sehr {{steil|steil}}, und sie sind langsam zwischen den Steinen nach oben {{steigen|gestiegen}}. Um zehn Uhr sind sie endlich auf dem {{gipfel|Gipfel}} angekommen. Die {{aussicht|Aussicht}} auf die Berge und {{=Täler|valleys · долини}} war fantastisch. „Hat es sich {{lohnen|gelohnt}}?“, hat Andrij gefragt. Mia hat gelacht: „Natürlich! Aber nächstes Mal nehme ich bessere Schuhe mit.“", "quiz": [{"q": "Woher kommt Mia?", "options": ["aus Lwiw", "aus Freiburg", "aus Worochta", "aus Wien", "aus Berlin"], "answer": 1, "explain": "\"Andrij und seine Freundin Mia *aus Freiburg*\"."}, {"q": "Wie sind die beiden nach Worochta gekommen?", "options": ["Sie sind geflogen.", "Sie sind mit dem Bus gefahren.", "Sie sind zu Fuß gegangen.", "Sie sind mit dem Auto gefahren.", "Sie sind mit dem Zug gefahren."], "answer": 4, "explain": "\"... sind Andrij und seine Freundin Mia *mit dem Zug* von Lwiw nach Worochta *gefahren*.\" fahren → Perfekt with *sein*."}, {"q": "Am ersten Morgen *___* die beiden um sechs Uhr aufgebrochen.", "options": ["sind", "haben", "hat", "ist", "werden"], "answer": 0, "explain": "*aufbrechen* (to set off) is movement, so Perfekt with *sein*; the subject *die beiden* is plural → *sind*."}, {"q": "Wen haben sie auf den Wiesen getroffen?", "options": ["einen Förster", "eine Wandergruppe", "einen alten Hirten mit seinen Schafen", "andere Studenten", "einen Bergführer"], "answer": 2, "explain": "\"Auf den Wiesen haben sie *einen alten Hirten* mit seinen Schafen getroffen.\" (n-Deklination: Hirte → Hirten)"}, {"q": "Der Hirte war mit seinen *___* auf der Wiese.", "options": ["Schaf", "Schafe", "Schafes", "Schafen", "Schafs"], "answer": 3, "explain": "*mit* + Dativ plural: the noun adds *-n* → *mit seinen Schafen*, as in the text."}, {"q": "Was ist am Nachmittag passiert?", "options": ["Es hat geschneit.", "Dichter Nebel ist aufgezogen.", "Mia ist krank geworden.", "Sie haben den Zug verpasst.", "Ein Gewitter ist gekommen."], "answer": 1, "explain": "\"Am Nachmittag ist plötzlich *dichter Nebel aufgezogen*.\""}, {"q": "Mia und Andrij *___* sich kurz verlaufen.", "options": ["sind", "ist", "hat", "haben", "wurden"], "answer": 3, "explain": "*sich verlaufen* is reflexive, and reflexive verbs always take *haben*: \"Mia und Andrij *haben* sich kurz verlaufen.\""}, {"q": "Wo haben sie übernachtet?", "options": ["in einer einfachen Hütte am Fuß des Berges", "im Zelt auf dem Gipfel", "in einem Hotel in Worochta", "beim Hirten", "im Zug"], "answer": 0, "explain": "\"*In einer einfachen Hütte am Fuß des Berges* haben sie übernachtet.\""}, {"q": "Wann sind sie auf dem Gipfel angekommen?", "options": ["um sechs Uhr", "am Nachmittag", "um zehn Uhr", "am Abend", "um Mitternacht"], "answer": 2, "explain": "\"*Um zehn Uhr* sind sie endlich auf dem Gipfel angekommen.\""}, {"q": "Sie sind langsam zwischen den *___* nach oben gestiegen.", "options": ["Stein", "Steine", "Steins", "Steinern", "Steinen"], "answer": 4, "explain": "*zwischen* + Dativ (where?) plural: *den Steinen* with the extra *-n*."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', n: 'n', pl: 'pl' };
+  var ART = { m: 'der', f: 'die', n: 'das', pl: 'die' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + g, g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + g, ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wÄÖÜäöüß]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

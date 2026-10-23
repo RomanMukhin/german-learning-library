@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Noun gender and plurals quiz · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to the main page">← Main page</a>
+  <div class="crumbs hide-sm"><span class="sep">/</span><span class="hide-sm">Quizzes</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" id="doclink" target="_blank" rel="noopener">Open the doc</a>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="quiz">
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="copy" type="button" hidden>Copy results</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <p class="note-copy" id="copynote" hidden></p>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the German library</span><a class="btn" href="../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"id": "noun-gender-plurals", "title": "Noun gender and plurals quiz", "level": "B1", "doc": {"title": "Noun gender and plurals", "url": "../docs/noun-gender-plurals.html"}, "questions": [{"q": "Which of these nouns is neuter (*das*)?", "options": ["Freundschaft", "Tourismus", "Lehrling", "Ergebnis", "Universität"], "answer": 3, "explain": "Nouns in *-nis* are mostly das: *das Ergebnis*. -schaft and -tät are always die; -ismus and -ling are always der."}, {"q": "Which of these nouns is masculine (*der*)?", "options": ["Meinung", "Frühling", "Museum", "Information", "Brötchen"], "answer": 1, "explain": "*-ling* is always der: *der Frühling*. -ung and -ion are die; -um and -chen are das."}, {"q": "Which meaning group is (almost) always *der*?", "options": ["days, months and seasons (Montag, Mai, Winter)", "metals (Gold, Silber, Eisen)", "infinitives used as nouns (Essen, Lesen)", "numbers as nouns (Eins, Drei)", "most trees (Eiche, Birke, Tanne)"], "answer": 0, "explain": "Time words are der: *der Montag, der Mai, der Winter*. Metals and infinitives are das; numbers and most trees are die."}, {"q": "Mir gefällt *___* Blau dieses Kleides.", "options": ["der", "die", "das", "den", "dem"], "answer": 2, "explain": "Colours used as nouns are always neuter: *das Blau, das Rot, das Grün*."}, {"q": "Which weather word is *not* masculine?", "options": ["Regen", "Schnee", "Wind", "Nebel", "Gewitter"], "answer": 4, "explain": "Weather words are mostly der, but *das Gewitter* (thunderstorm) is an exception, like das Eis and die Sonne."}, {"q": "Which compound has the correct article?", "options": ["der Haustür", "das Bahnhof", "die Handschuh", "das Wochenende", "der Fahrkarte"], "answer": 3, "explain": "A compound takes the gender of its *last* part: die Woche + das Ende = *das Wochenende*. So also die Haustür, der Bahnhof, der Handschuh, die Fahrkarte."}, {"q": "Which one means *the ladder*?", "options": ["der Leiter", "das Leiter", "die Leitern", "der Leiters", "die Leiter"], "answer": 4, "explain": "*die Leiter* = ladder (pl. Leitern); *der Leiter* = manager, head. Same word, different gender, different meaning."}, {"q": "What is the plural of *der Stuhl*?", "options": ["die Stuhle", "die Stühler", "die Stühle", "die Stuhlen", "die Stuhls"], "answer": 2, "explain": "Many one-syllable masculine nouns take umlaut + e: *Stuhl → Stühle*, like Zug → Züge, Baum → Bäume."}, {"q": "Die Wohnung hat drei *___*.", "options": ["Zimmern", "Zimmers", "Zimmeren", "Zimmere", "Zimmer"], "answer": 4, "explain": "Masculine and neuter nouns in -er, -el, -en take no plural ending: *drei Zimmer*. Zimmern is only the Dativ plural (in den Zimmern)."}, {"q": "What is the plural of *die Lehrerin*?", "options": ["die Lehrerinen", "die Lehrerinnen", "die Lehrerin", "die Lehrerinne", "die Lehrerins"], "answer": 1, "explain": "Feminine *-in* doubles the n in the plural: *Lehrerinnen*, Freundinnen, Ärztinnen."}, {"q": "Which feminine noun forms its plural with umlaut only, no ending?", "options": ["die Hand", "die Nacht", "die Tochter", "die Schwester", "die Wurst"], "answer": 2, "explain": "Only *Mutter → Mütter* and *Tochter → Töchter* do this. Hand → Hände, Nacht → Nächte, Wurst → Würste add -e; Schwester → Schwestern."}, {"q": "Which singular → plural pair is correct?", "options": ["das Handy → die Handys", "das Hotel → die Hotele", "das Baby → die Babies", "die Oma → die Omen", "der Park → die Parke"], "answer": 0, "explain": "Words ending in a vowel (not -e) and many loanwords take *-s*: *Handys, Hotels, Omas, Parks*. German writes -ys, never -ies: *die Babys*."}, {"q": "What is the plural of *das Museum*?", "options": ["die Museumen", "die Museums", "die Musea", "die Museen", "die Museume"], "answer": 3, "explain": "Latin nouns in *-um* replace -um with -en: *Museum → Museen*, Zentrum → Zentren, Datum → Daten."}, {"q": "Ich frage *___*.", "options": ["den Kollege", "den Kollegen", "dem Kollegen", "der Kollegen", "den Kollegens"], "answer": 1, "explain": "*der Kollege* is n-Deklination: -n in every form except Nominativ singular. fragen takes Akkusativ, so *den Kollegen*."}, {"q": "Ich schreibe *___* Müller eine E-Mail.", "options": ["Herren", "Herre", "Herr", "Herrn", "Herrns"], "answer": 3, "explain": "*Herr* is n-Deklination: Dativ singular *Herrn* (Ich schreibe Herrn Müller). *Herren* is the plural."}, {"q": "Which noun is *not* n-Deklination?", "options": ["der Käse", "der Junge", "der Student", "der Mensch", "der Löwe"], "answer": 0, "explain": "*der Käse* is a normal noun (des Käses), even though it ends in -e: n-Deklination nouns in -e are persons and animals. The others take -n: den Jungen, den Studenten, den Menschen, den Löwen."}, {"q": "Ich spiele mit den *___*.", "options": ["Kindes", "Kinder", "Kindere", "Kinds", "Kindern"], "answer": 4, "explain": "In the Dativ plural every noun adds *-n* unless the plural already ends in -n or -s: die Kinder → *mit den Kindern*. Like Ukrainian з дітьми, the case shows on the noun."}, {"q": "Which sentence is correct?", "options": ["Die Möbel ist neu.", "Die Polizei kommt gleich.", "Das Obst sind frisch.", "Die Leute ist nett.", "Das Geld sind weg."], "answer": 1, "explain": "*die Polizei*, *das Obst* and *das Geld* are singular (verb ist / kommt), even though Ukrainian гроші is plural; *die Möbel* and *die Leute* are plural (sind)."}, {"q": "*___* von mir wohnt in Wien.", "options": ["Ein Bekannte", "Ein Bekannten", "Ein Bekannter", "Ein Bekanntes", "Ein Bekannt"], "answer": 2, "explain": "Adjectival nouns keep adjective endings: after *ein* (masculine Nominativ) the ending is -er: *ein Bekannter*, but der Bekannte."}, {"q": "Why is it *das Mädchen*, although a girl is female?", "options": ["The suffix -chen always makes a noun das.", "All nouns for young people are das.", "Nouns ending in -en are always das.", "It follows the Ukrainian gender of дівчина.", "It is a loanword, and loanwords are das."], "answer": 0, "explain": "Grammar beats meaning: *-chen* and *-lein* are always das (das Mädchen, das Fräulein). Never transfer the Ukrainian gender: дівчина is feminine."}, {"q": "Which of these nouns is feminine (*die*)?", "options": ["Eisen", "Eiche", "Ahorn", "Kalb", "Regen"], "answer": 1, "explain": "Most trees are die: *die Eiche*, die Birke, die Tanne. Metals and young animals are das (das Eisen, das Kalb); der Ahorn is an exception among trees, and weather words like der Regen are der."}, {"q": "Which drink is neuter (*das*)?", "options": ["Wein", "Wodka", "Bier", "Sekt", "Schnaps"], "answer": 2, "explain": "Alcoholic drinks are der (der Wein, der Wodka, der Sekt, der Schnaps), with one big exception: *das Bier*."}, {"q": "Wir fahren nächsten Sommer in *___* Ukraine.", "options": ["die", "der", "das", "den", "dem"], "answer": 0, "explain": "Most countries have no article, but *die Ukraine* (like die Schweiz, die Türkei) is feminine; for a direction in + Akk keeps it: *in die Ukraine* (в Україну)."}, {"q": "Which of these nouns is masculine (*der*)?", "options": ["Thema", "Dokument", "Natur", "König", "Konferenz"], "answer": 3, "explain": "*-ig* is (almost) always der: *der König*, der Honig, der Essig. -ma and -ment are das; -ur and -enz are die."}, {"q": "Which noun has the correct article?", "options": ["der Lampe", "das Tasche", "der Straße", "das Reise", "der Name"], "answer": 4, "explain": "Nouns in -e are usually die (die Lampe, die Tasche, die Straße, die Reise), but *der Name* is one of the exceptions, like der Käse, das Auge, das Ende."}, {"q": "In Deutschland sind die *___* (taxes) sehr hoch.", "options": ["Steuern", "Steuer", "Steuers", "Steueren", "Steuerer"], "answer": 0, "explain": "*die Steuer* = tax, plural *die Steuern*. *das Steuer* = steering wheel, with the plural die Steuer."}, {"q": "Which pair of word and meaning is correct?", "options": ["der See = sea", "das Gehalt = salary", "der Leiter = ladder", "die Steuer = steering wheel", "das Band = volume of a book"], "answer": 1, "explain": "*das Gehalt* = salary (pl. Gehälter). der See = lake, der Leiter = manager, die Steuer = tax, das Band = ribbon (der Band = volume)."}, {"q": "What is the plural of *das Haus*?", "options": ["die Hause", "die Hausen", "die Häuser", "die Häuse", "die Hauses"], "answer": 2, "explain": "Neuter one-syllable nouns often take -er with umlaut: *Haus → Häuser*, like Buch → Bücher, Land → Länder."}, {"q": "What is the plural of *der Vater*?", "options": ["die Vaters", "die Vatern", "die Vater", "die Väter", "die Väters"], "answer": 3, "explain": "Masculine nouns in -er add no ending, but some take umlaut: *Vater → Väter*, Bruder → Brüder, Garten → Gärten."}, {"q": "What is the plural of *das Ergebnis*?", "options": ["die Ergebnise", "die Ergebnissen", "die Ergebnis", "die Ergebnisen", "die Ergebnisse"], "answer": 4, "explain": "Nouns in *-nis* double the s and add -e: *die Ergebnisse*, die Erlaubnisse. Ergebnissen is only the Dativ plural (in den Ergebnissen)."}, {"q": "Die Schreibweise des *___* ist falsch.", "options": ["Namens", "Namen", "Name", "Names", "Namenes"], "answer": 0, "explain": "*der Name* is the mixed type: -n in Akk and Dativ, but Genitiv *des Namens*, like des Gedankens, des Glaubens."}, {"q": "Which phrase is correct?", "options": ["mit den Kinder", "mit den Autos", "in den Bücher", "mit den Freunde", "bei den Lehrer"], "answer": 1, "explain": "In the Dativ plural nouns add -n, unless the plural already ends in -n or -s: *mit den Autos* stays, but mit den Kindern, in den Büchern, mit den Freunden, bei den Lehrern."}, {"q": "How do you say *one parent* in German?", "options": ["ein Parent", "eine Eltern", "ein Elternteil", "ein Eltern", "die Eltern"], "answer": 2, "explain": "*die Eltern* exists only in the plural, so one parent is *ein Elternteil* (der), just as one piece of furniture is ein Möbelstück."}, {"q": "In unserer Firma arbeiten viele *___*.", "options": ["Angestellten", "Angestellter", "Angestellt", "Angestellte", "Angestellts"], "answer": 3, "explain": "Adjectival nouns take adjective endings; after *viele* there is no article, so the strong plural ending -e: *viele Angestellte* (but die Angestellten)."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+  document.getElementById('title').textContent = data.title;
+  document.getElementById('crumb').textContent = data.title;
+  var dl = document.getElementById('doclink');
+  if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+  var intro = document.getElementById('intro');
+  intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+  if (data.doc && data.doc.url) {
+    intro.appendChild(document.createTextNode(' Based on '));
+    var a = el('a', null, data.doc.title); a.href = data.doc.url; 
+    intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the doc, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + data.title + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + q.options[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + q.options[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+</body>
+</html>
