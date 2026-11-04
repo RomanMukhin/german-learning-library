@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="df1ad34d5976">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Modal verbs and modality · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Modal verbs and modality</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Verbs</span><h1>Modal verbs and modality</h1><p class="sub">Can, could, may, might, must, need, ought to, shall, should, will, would, dare and had better, plus how modality works and other ways to express it.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#modality-forms">Modality: forms</a></li><li><a href="#modality-meanings-and-uses">Modality: meanings and uses</a></li><li><a href="#modality-tense">Modality: tense</a></li><li><a href="#modality-other-verbs">Modality: other verbs</a></li><li><a href="#modality-other-modal-words-and-expressions">Modality: other modal words and expressions</a></li><li><a href="#can">Can</a></li><li><a href="#could">Could</a></li><li><a href="#could-may-and-might">Could, may and might</a></li><li><a href="#dare">Dare</a></li><li><a href="#had-better">Had better</a></li><li><a href="#may">May</a></li><li><a href="#might">Might</a></li><li><a href="#must">Must</a></li><li><a href="#need">Need</a></li><li><a href="#ought-to">Ought to</a></li><li><a href="#shall">Shall</a></li><li><a href="#should">Should</a></li><li><a href="#will">Will</a></li><li><a href="#would">Would</a></li></ol></nav>
+<article class="prose card">
+<h2 id="modality-forms">Modality: forms</h2>
+<h3 id="modal-verbs">Modal verbs</h3>
+<p>The core modal verbs are <em>can, could, may, might, must, shall, should, will, would</em>. They:</p>
+<ul class="ex">
+<li>have <strong>one form</strong> for all persons (no <em>-s</em>): <em>She <strong>can</strong> swim.</em> Not: <del>She cans</del></li>
+<li>are followed by the <strong>bare infinitive</strong>: <em>You <strong>must</strong> go.</em> Not: <del>must to go</del></li>
+<li>make negatives with <em>not</em> and questions by inversion, without <em>do</em>: <em>I <strong>can't</strong>.</em> <em><strong>Can</strong> you?</em></li>
+<li>have contracted forms: <em>can't, couldn't, won't, wouldn't, shouldn't, mustn't, 'll, 'd</em></li>
+</ul>
+<p>Adverbs go after the modal: <em>You <strong>can always</strong> call me.</em></p>
+<h3 id="semi-modal-verbs">Semi-modal verbs</h3>
+<p><em>Dare, need, ought to</em> and <em>used to</em> behave partly like modals: <em>You <strong>needn't</strong> come.</em> / <em>You <strong>don't need to</strong> come.</em></p>
+<h2 id="modality-meanings-and-uses">Modality: meanings and uses</h2>
+<p>Modal verbs show the speaker's attitude to how <strong>likely</strong>, <strong>necessary</strong>, <strong>possible</strong> or <strong>desirable</strong> something is.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>Modals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ability</td>
+<td>can, could, be able to</td>
+</tr>
+<tr>
+<td>permission</td>
+<td>can, could, may</td>
+</tr>
+<tr>
+<td>possibility, probability</td>
+<td>may, might, could, will, should, must, can't</td>
+</tr>
+<tr>
+<td>obligation, necessity</td>
+<td>must, have to, need to, should, ought to</td>
+</tr>
+<tr>
+<td>advice</td>
+<td>should, ought to, had better</td>
+</tr>
+<tr>
+<td>offers, requests</td>
+<td>can, could, will, would, shall</td>
+</tr>
+<tr>
+<td>prediction, willingness</td>
+<td>will, would</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="modality-tense">Modality: tense</h2>
+<h3 id="past-present-and-future-time">Past, present and future time</h3>
+<p>Modals don't have normal past forms. For the past we use <strong><em>modal + have + past participle</em></strong> or other verbs: <em>She <strong>must have</strong> forgotten.</em> <em>I <strong>could have</strong> helped.</em> <em>I <strong>had to</strong> work.</em> (past of <em>must</em> for obligation) <em>I <strong>was able to</strong> finish.</em></p>
+<h3 id="politeness">Politeness</h3>
+<p>Past forms are more polite: <em><strong>Could</strong> you…?</em> <em><strong>Would</strong> you…?</em> <em><strong>Might</strong> I suggest…?</em></p>
+<h3 id="reported-clauses">Reported clauses</h3>
+<p><em>Will → would</em>, <em>can → could</em>, <em>may → might</em>, <em>shall → should</em> in reported speech: <em>She said she <strong>would</strong> come.</em></p>
+<h3 id="continuous">Continuous</h3>
+<p><em>Modal + be + -ing</em>: <em>He <strong>might be sleeping</strong>.</em> <em>She <strong>must have been working</strong>.</em></p>
+<h2 id="modality-other-verbs">Modality: other verbs</h2>
+<h3 id="possibility">Possibility</h3>
+<p><em>appear, seem, look, sound, feel</em>: <em>It <strong>seems</strong> that he's left.</em> <em>It <strong>looks as if</strong> it's going to rain.</em> <em>She <strong>appears to be</strong> ill.</em></p>
+<h3 id="obligation">Obligation</h3>
+<p><em>have (got) to, need to, be required to, be supposed to</em>: <em>I <strong>have to</strong> work on Saturday.</em> <em>You'<strong>re supposed to</strong> wear a tie.</em></p>
+<h2 id="modality-other-modal-words-and-expressions">Modality: other modal words and expressions</h2>
+<h3 id="degrees-of-certainty">Degrees of certainty</h3>
+<p><em>certainly, definitely, probably, possibly, perhaps, maybe; certain, sure, likely, unlikely, possible</em>: <em>It's <strong>likely</strong> to rain.</em> <em>She'll <strong>probably</strong> be late.</em> <em><strong>There's a chance</strong> that…</em></p>
+<h3 id="degrees-of-obligation">Degrees of obligation</h3>
+<p><em>necessary, essential, compulsory, optional, forbidden, obliged</em>: <em>It's <strong>essential</strong> to book in advance.</em></p>
+<h3 id="certainly-and-surely">Certainly and surely</h3>
+<p><em>Certainly</em> = without doubt. <em>Surely</em> expresses strong belief and surprise at the possibility of being wrong: <em><strong>Surely</strong> you know that!</em></p>
+<h3 id="expressions-with-be">Expressions with be</h3>
+<p><em>be able to, be allowed to, be bound to, be certain / sure to, be likely to, be supposed to, be due to</em>: <em>It's <strong>bound to</strong> rain.</em> (= certain)</p>
+<h2 id="can">Can</h2>
+<h3 id="forms">Forms</h3>
+<p><em>can / cannot (can't)</em>: <em>I <strong>can</strong> come.</em> <em>She <strong>can't</strong> swim.</em> <em><strong>Can</strong> you help?</em></p>
+<h3 id="uses">Uses</h3>
+<ul class="ex">
+<li><strong>ability</strong>: <em>She <strong>can</strong> speak four languages.</em></li>
+<li><strong>permission</strong> (informal): <em><strong>Can</strong> I go now?</em> <em>You <strong>can</strong> use my car.</em></li>
+<li><strong>general truths and possibility</strong>: <em>It <strong>can</strong> be very cold here in winter.</em></li>
+<li><strong>deduction</strong> (negative): <em>That <strong>can't</strong> be Tom — he's in Paris.</em> (opposite of <em>must</em>)</li>
+<li><strong>requests and offers</strong>: <em><strong>Can</strong> you pass the salt?</em> <em><strong>Can</strong> I help?</em></li>
+<li><strong>reproaches</strong>: <em>You <strong>can</strong> be so annoying!</em></li>
+</ul>
+<h3 id="past-and-other-forms">Past and other forms</h3>
+<p>Past ability: <strong><em>could</em></strong> or <strong><em>was able to</em></strong>. Future / infinitive / perfect: <strong><em>be able to</em></strong>: <em>I'<strong>ll be able to</strong> come.</em> <em>I'd like <strong>to be able to</strong> swim.</em></p>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>I can to swim</del> → <em>I can <strong>swim</strong></em>; <del>I will can</del> → <em>I'<strong>ll be able to</strong></em></li>
+</ul>
+<h2 id="could">Could</h2>
+<h3 id="forms_1">Forms</h3>
+<p><em>could / could not (couldn't)</em></p>
+<h3 id="uses_1">Uses</h3>
+<ul class="ex">
+<li><strong>possibility</strong>: <em>It <strong>could</strong> rain later.</em> <em>That <strong>could</strong> be the answer.</em></li>
+<li><strong>suggestions</strong>: <em>We <strong>could</strong> go to the cinema.</em></li>
+<li><strong>polite permission and requests</strong>: <em><strong>Could</strong> I sit here?</em> <em><strong>Could</strong> you help me?</em></li>
+<li><strong>past ability</strong> (general): <em>I <strong>could</strong> swim when I was five.</em> For a single past achievement, use <strong><em>was able to / managed to</em></strong>: <em>I <strong>was able to</strong> fix it</em> (not <del>I could fix it</del> for one success); but <em>couldn't</em> is fine for single events: <em>I <strong>couldn't</strong> open it.</em></li>
+<li><strong>deduction</strong> (negative): <em>He <strong>couldn't</strong> have done it — he was with me.</em></li>
+<li><strong>with senses and thinking</strong>: <em>I <strong>could</strong> smell gas.</em> <em>I <strong>couldn't</strong> believe it.</em></li>
+<li><strong>unreal situations, conditionals</strong>: <em>I <strong>could</strong> buy a house if I had money.</em></li>
+<li><strong>past possibility / missed opportunity</strong>: <em>You <strong>could have</strong> told me!</em></li>
+</ul>
+<h2 id="could-may-and-might">Could, may and might</h2>
+<p>All three express <strong>possibility</strong>. <em>May</em> is slightly more formal and a little more certain; <em>might</em> and <em>could</em> are a little less certain:</p>
+<ul class="ex">
+<li><em>It <strong>may / might / could</strong> rain.</em></li>
+</ul>
+<p>In negatives, the meaning differs: <em>It <strong>may not / might not</strong> rain</em> (possibly not) but <em>It <strong>couldn't</strong> rain</em> (= impossible). In questions about possibility, use <em>might</em> or <em>could</em>, not <em>may</em>: <em><strong>Could</strong> it be true?</em></p>
+<h2 id="dare">Dare</h2>
+<p><em>Dare</em> means "be brave enough". It can be a modal (no <em>to</em>, no <em>do</em>) or a main verb:</p>
+<ul class="ex">
+<li>affirmative: <em>He <strong>dared to</strong> ask.</em> (main verb)</li>
+<li>negative: <em>I <strong>daren't</strong> tell her.</em> (modal, Br) / <em>I <strong>don't dare (to)</strong> tell her.</em></li>
+<li>question: <em><strong>Dare</strong> you ask?</em> (formal) / <em><strong>Do</strong> you <strong>dare</strong> (to) ask?</em></li>
+<li>fixed expressions: <em><strong>How dare you</strong>!</em> <em><strong>Don't you dare</strong>!</em> <strong><em>I dare say</em></strong> (= probably)</li>
+</ul>
+<h3 id="typical-error">Typical error</h3>
+<ul class="ex">
+<li><del>I daren't to tell</del> → <em>I daren't <strong>tell</strong></em></li>
+</ul>
+<h2 id="had-better">Had better</h2>
+<h3 id="form-and-meaning">Form and meaning</h3>
+<p><em>Had better</em> (<em>'d better</em>) + bare infinitive gives strong advice or a warning about the present or future: <em>You'<strong>d better</strong> take an umbrella.</em> (or you'll get wet)</p>
+<h3 id="negative-and-questions">Negative and questions</h3>
+<p>Negative: <em>You'<strong>d better not</strong> be late.</em> Questions are rare: <em><strong>Hadn't</strong> we <strong>better</strong> go?</em></p>
+<h3 id="had-better-or-be-better-would-rather">Had better or be better / would rather?</h3>
+<p><em>It's better / best to…</em> is more general and less urgent: <em><strong>It's best to</strong> book early.</em> <em>Would rather</em> expresses preference, not advice.</p>
+<h3 id="typical-errors_1">Typical errors</h3>
+<ul class="ex">
+<li><del>You had better to go</del> → <em>had better <strong>go</strong></em>; <del>You'd better went</del> → <em>'d better <strong>go</strong></em> (past form, present meaning)</li>
+</ul>
+<h2 id="may">May</h2>
+<h3 id="forms_2">Forms</h3>
+<p><em>may / may not</em> (no common contraction)</p>
+<h3 id="uses_2">Uses</h3>
+<ul class="ex">
+<li><strong>formal permission</strong>: <em><strong>May</strong> I come in?</em> <em>Visitors <strong>may</strong> park here.</em></li>
+<li><strong>possibility</strong>: <em>She <strong>may</strong> be at home.</em> <em>It <strong>may</strong> be expensive.</em></li>
+<li><strong>general truths</strong> (formal): <em>Side effects <strong>may</strong> include headaches.</em></li>
+<li><strong>accepting a different view</strong>: <em>He <strong>may</strong> be rich, but he's not happy.</em></li>
+<li>wishes (formal): <em><strong>May</strong> you both be happy.</em></li>
+</ul>
+<h2 id="might">Might</h2>
+<h3 id="forms_3">Forms</h3>
+<p><em>might / might not (mightn't, rare)</em></p>
+<h3 id="uses_3">Uses</h3>
+<ul class="ex">
+<li><strong>possibility</strong> (often less certain than <em>may</em>): <em>I <strong>might</strong> go to the party.</em></li>
+<li><strong>very polite permission</strong>: <em><strong>Might</strong> I make a suggestion?</em></li>
+<li><strong>suggestions</strong>: <em>You <strong>might</strong> want to check the time.</em></li>
+<li><strong>criticism</strong>: <em>You <strong>might</strong> have warned me!</em> (you should have)</li>
+<li>reported <em>may</em>: <em>She said she <strong>might</strong> come.</em></li>
+</ul>
+<h3 id="typical-error_1">Typical error</h3>
+<ul class="ex">
+<li><del>I might to go</del> → <em>I might <strong>go</strong></em></li>
+</ul>
+<h2 id="must">Must</h2>
+<h3 id="forms_4">Forms</h3>
+<p><em>must / must not (mustn't)</em></p>
+<h3 id="uses_4">Uses</h3>
+<ul class="ex">
+<li><strong>deduction / conclusion</strong> (sure it is true): <em>You <strong>must</strong> be tired after the journey.</em> <em>She <strong>must have</strong> left already.</em></li>
+<li><strong>obligation from the speaker</strong>: <em>I <strong>must</strong> call my mother.</em> <em>You <strong>must</strong> wear a seat belt.</em></li>
+<li><strong>rules and laws</strong>: <em>Passengers <strong>must</strong> not smoke.</em></li>
+<li><strong>strong invitations and encouragement</strong>: <em>You <strong>must</strong> come and visit us!</em></li>
+<li><strong>prohibition</strong>: <em>You <strong>mustn't</strong> touch that.</em> (not allowed)</li>
+</ul>
+<h3 id="must-or-have-got-to">Must or have (got) to?</h3>
+<ul class="ex">
+<li><em>must</em> = obligation from the speaker; <em>have to</em> = external obligation (rules, other people): <em>I <strong>must</strong> stop smoking</em> (I've decided) / <em>I <strong>have to</strong> wear a uniform</em> (company rule)</li>
+<li>past and future: <em>had to</em>, <em>will have to</em> (must has no past)</li>
+<li><strong>don't have to</strong> = not necessary ≠ <strong>mustn't</strong> = not allowed: <em>You <strong>don't have to</strong> come</em> (it's optional) / <em>You <strong>mustn't</strong> come</em> (it's forbidden)</li>
+</ul>
+<h3 id="typical-errors_2">Typical errors</h3>
+<ul class="ex">
+<li><del>I must to go</del> → <em>I must <strong>go</strong></em>; <del>I musted</del> → <em>I <strong>had to</strong></em></li>
+</ul>
+<h2 id="need">Need</h2>
+<h3 id="forms_5">Forms</h3>
+<p><em>Need</em> can be a main verb (<em>need to</em>, with <em>do</em>) or, in negatives and questions, a modal (<em>needn't</em>):</p>
+<ul class="ex">
+<li><em>You <strong>need to</strong> finish it.</em> <em>You <strong>don't need to</strong> come.</em> <em><strong>Do</strong> I <strong>need to</strong> pay?</em></li>
+<li>modal (formal, Br): <em>You <strong>needn't</strong> come.</em> <em><strong>Need</strong> I say more?</em></li>
+</ul>
+<h3 id="uses_5">Uses</h3>
+<ul class="ex">
+<li><strong>no obligation</strong>: <em>You <strong>needn't</strong> / <strong>don't need to</strong> worry.</em></li>
+<li>past: <strong><em>didn't need to</em></strong> (it wasn't necessary, so maybe I didn't do it) vs <strong><em>needn't have</em></strong> + participle (I did it, but it was unnecessary): <em>I <strong>needn't have</strong> cooked so much.</em></li>
+<li><em>need</em> + <em>-ing</em> (passive meaning): <em>The walls <strong>need painting</strong>.</em></li>
+</ul>
+<h3 id="typical-error_2">Typical error</h3>
+<ul class="ex">
+<li><del>You needn't to come</del> → <em>You needn't <strong>come</strong></em> / <em>You <strong>don't need to</strong> come</em></li>
+</ul>
+<h2 id="ought-to">Ought to</h2>
+<h3 id="form">Form</h3>
+<p><em>ought to / ought not to (oughtn't to)</em> + base form. Questions (formal): <em><strong>Ought</strong> we <strong>to</strong> leave?</em> More often: <em><strong>Should</strong> we leave?</em></p>
+<h3 id="uses_6">Uses</h3>
+<ul class="ex">
+<li>what is right or ideal: <em>You <strong>ought to</strong> apologise.</em></li>
+<li>what is likely or expected: <em>She <strong>ought to</strong> be home by now.</em></li>
+</ul>
+<h3 id="ought-to-or-should">Ought to or should?</h3>
+<p>They mean nearly the same. <em>Should</em> is much more common, especially in questions and negatives. <em>Ought to</em> can sound a little stronger or more objective.</p>
+<h2 id="shall">Shall</h2>
+<h3 id="forms_6">Forms</h3>
+<p><em>shall / shall not (shan't, Br)</em></p>
+<h3 id="uses_7">Uses</h3>
+<ul class="ex">
+<li><strong>offers and suggestions</strong> with <em>I</em> and <em>we</em> in questions: <em><strong>Shall I</strong> help you?</em> <em><strong>Shall we</strong> dance?</em> <em>What <strong>shall</strong> we do?</em></li>
+<li><strong>predictions and intentions</strong> with <em>I</em> and <em>we</em> (formal, Br): <em>We <strong>shall</strong> see.</em> <em>I <strong>shall</strong> be away next week.</em></li>
+<li><strong>commands and rules</strong> (formal, legal): <em>The tenant <strong>shall</strong> pay the rent monthly.</em></li>
+</ul>
+<h3 id="typical-error_3">Typical error</h3>
+<ul class="ex">
+<li>Not for normal future with <em>you / they</em> in modern English: <del>They shall arrive at six</del> → <em>They'<strong>ll</strong> arrive…</em></li>
+</ul>
+<h2 id="should">Should</h2>
+<h3 id="forms_7">Forms</h3>
+<p><em>should / should not (shouldn't)</em></p>
+<h3 id="uses_8">Uses</h3>
+<ul class="ex">
+<li><strong>what is right or ideal</strong>: <em>We <strong>should</strong> recycle more.</em></li>
+<li><strong>advice and suggestions</strong>: <em>You <strong>should</strong> see a doctor.</em> <em>What <strong>should</strong> I do?</em></li>
+<li><strong>what is likely</strong>: <em>The parcel <strong>should</strong> arrive tomorrow.</em></li>
+<li><strong>conditional</strong> (formal, = if): <em><strong>Should</strong> you need help, call me.</em></li>
+<li><strong>thanking and surprise</strong>: <em>You <strong>shouldn't</strong> have!</em> (when given a present) <em>It's strange that he <strong>should</strong> say that.</em></li>
+<li><strong>past regret or criticism</strong>: <em>You <strong>should have</strong> told me.</em> <em>I <strong>shouldn't have</strong> eaten so much.</em></li>
+<li>after <em>suggest, insist, recommend</em> (British): <em>She suggested that we <strong>should</strong> leave.</em></li>
+</ul>
+<h3 id="should-and-would-should-and-ought-to">Should and would; should and ought to</h3>
+<p>In formal British English, <em>should</em> can replace <em>would</em> with <em>I/we</em>: <em>I <strong>should</strong> be grateful if…</em> <em>Should</em> and <em>ought to</em> are similar; <em>should</em> is more common.</p>
+<h2 id="will">Will</h2>
+<h3 id="forms_8">Forms</h3>
+<p><em>will / will not (won't)</em>; short form <em>'ll</em>. <em>'ll</em> is normal in speech; <em>will</em> in full adds emphasis.</p>
+<h3 id="uses_9">Uses</h3>
+<ul class="ex">
+<li><strong>certainty and prediction</strong>: <em>She'<strong>ll</strong> be 30 next year.</em> <em>I think it'<strong>ll</strong> rain.</em></li>
+<li><strong>conditional sentences</strong>: <em>If you heat ice, it <strong>will</strong> melt.</em></li>
+<li><strong>decisions, willingness, offers, promises</strong>: <em>I'<strong>ll</strong> help.</em> <em>I <strong>won't</strong> tell anyone.</em></li>
+<li><strong>requests and invitations</strong>: <em><strong>Will</strong> you marry me?</em> <em><strong>Will</strong> you have some tea?</em></li>
+<li><strong>commands</strong>: <em>You <strong>will</strong> do as I say!</em></li>
+<li><strong>general truths and habits</strong>: <em>Oil <strong>will</strong> float on water.</em> <em>She'<strong>ll</strong> sit there for hours.</em></li>
+<li><strong>disapproval of habits</strong> (stressed): <em>He <strong>will</strong> leave the door open!</em></li>
+<li><strong>assumptions</strong>: <em>That'<strong>ll</strong> be the postman.</em></li>
+</ul>
+<h2 id="would">Would</h2>
+<h3 id="forms_9">Forms</h3>
+<p><em>would / would not (wouldn't)</em>; short form <em>'d</em></p>
+<h3 id="uses_10">Uses</h3>
+<ul class="ex">
+<li><strong>polite requests and offers</strong>: <em><strong>Would</strong> you open the window?</em> <em><strong>Would</strong> you like a drink?</em></li>
+<li><strong>conditional sentences</strong>: <em>If I had time, I <strong>would</strong> help.</em> <em>I <strong>would have</strong> come if you had asked.</em></li>
+<li><strong>past habits</strong> (not states): <em>When I was a child, we <strong>would</strong> go fishing.</em></li>
+<li><strong>future in the past</strong>: <em>She said she <strong>would</strong> call.</em></li>
+<li><strong>past willingness / refusal</strong>: <em>The car <strong>wouldn't</strong> start.</em></li>
+<li><strong>being less direct</strong>: <em>I <strong>would</strong> say it's about ten metres.</em> <em>I'<strong>d</strong> think so.</em></li>
+</ul>
+<h3 id="would-or-will">Would or will?</h3>
+<p><em>Would</em> is more polite and tentative, and refers to imagined situations: <em>That <strong>would</strong> be nice</em> (if it happened) / <em>That <strong>will</strong> be nice</em> (it is going to happen).</p>
+</article>
+<nav class="pager"><a class="btn" href="passive-voice.html">← Passive voice</a><a class="btn" href="conditionals-and-wishes.html">Conditionals and wishes →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

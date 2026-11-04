@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="62be44b49f7f">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Using nouns · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Nouns, pronouns and determiners</a><span class="sep">/</span><span class="cur">Using nouns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Nouns, pronouns and determiners</span><h1>Using nouns</h1><p class="sub">Piece and group words, comparing amounts, gender, reporting nouns, and common nouns such as age, half, holiday, mind, reason, thing, way and work.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#piece-words-and-group-words">Piece words and group words</a></li><li><a href="#comparison-nouns-more-money-the-most-points">Comparison: nouns (more money, the most points)</a></li><li><a href="#nouns-and-gender">Nouns and gender</a></li><li><a href="#reported-speech-reporting-nouns">Reported speech: reporting nouns</a></li><li><a href="#age">Age</a></li><li><a href="#half">Half</a></li><li><a href="#holiday-and-holidays">Holiday and holidays</a></li><li><a href="#mind">Mind</a></li><li><a href="#opinion">Opinion</a></li><li><a href="#promise">Promise</a></li><li><a href="#reason">Reason</a></li><li><a href="#sort-type-and-kind">Sort, type and kind</a></li><li><a href="#thing-and-stuff">Thing and stuff</a></li><li><a href="#view">View</a></li><li><a href="#way">Way</a></li><li><a href="#work-noun">Work (noun)</a></li></ol></nav>
+<article class="prose card">
+<h2 id="piece-words-and-group-words">Piece words and group words</h2>
+<h3 id="piece-words">Piece words</h3>
+<p>They make uncountable nouns countable: <em><strong>a piece of</strong> advice / furniture / news</em>, <em><strong>a slice of</strong> bread</em>, <em><strong>a loaf of</strong> bread</em>, <em><strong>a bar of</strong> chocolate / soap</em>, <em><strong>a cup of</strong> tea</em>, <em><strong>a drop of</strong> water</em>, <em><strong>a sheet of</strong> paper</em>, <em><strong>an item of</strong> clothing</em>.</p>
+<h3 id="group-words">Group words</h3>
+<p>They name a group of people, animals or things: <em>a <strong>crowd</strong> of people</em>, <em>a <strong>team</strong> of experts</em>, <em>a <strong>herd</strong> of cows</em>, <em>a <strong>flock</strong> of sheep / birds</em>, <em>a <strong>bunch</strong> of flowers / keys</em>, <em>a <strong>set</strong> of tools</em>, <em>a <strong>pack</strong> of cards</em> (British) / <em>wolves</em>.</p>
+<h2 id="comparison-nouns-more-money-the-most-points">Comparison: nouns (more money, the most points)</h2>
+<h3 id="more-less-and-fewer">More, less and fewer</h3>
+<ul class="ex">
+<li><strong>more</strong> + plural or uncountable noun: <em><strong>more</strong> cars</em>, <em><strong>more</strong> money</em></li>
+<li><strong>less</strong> + uncountable: <em><strong>less</strong> time</em>; <strong>fewer</strong> + plural: <em><strong>fewer</strong> mistakes</em></li>
+<li><em>She has <strong>more</strong> friends <strong>than</strong> I do.</em></li>
+</ul>
+<h3 id="more-and-more-fewer-and-fewer">More and more, fewer and fewer</h3>
+<p><em>There are <strong>more and more</strong> cars on the roads.</em> <em>We have <strong>less and less</strong> free time.</em></p>
+<h3 id="most-least-and-fewest">Most, least and fewest</h3>
+<p><em>Who scored <strong>the most</strong> points?</em> <em>the <strong>least</strong> money</em>, <em>the <strong>fewest</strong> errors</em>.</p>
+<h2 id="nouns-and-gender">Nouns and gender</h2>
+<p>English nouns usually have no special female form. Many traditional <em>-ess</em> and <em>-man</em> words are now replaced by neutral words:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Older form</th>
+<th>Neutral form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>actress, waitress, air hostess</td>
+<td>actor, server, flight attendant</td>
+</tr>
+<tr>
+<td>chairman, fireman, policeman</td>
+<td>chair(person), firefighter, police officer</td>
+</tr>
+<tr>
+<td>mankind</td>
+<td>humankind, humanity</td>
+</tr>
+</tbody>
+</table></div>
+<p>Animal names sometimes have male and female forms: <em>lion / lioness</em>, <em>bull / cow</em>, <em>cock / hen</em>, <em>dog / bitch</em>. The general word is usually used for both.</p>
+<h2 id="reported-speech-reporting-nouns">Reported speech: reporting nouns</h2>
+<p>Nouns such as <em>claim, suggestion, belief, promise, warning, advice, idea, fact, news, rumour</em> can introduce reported clauses:</p>
+<ul class="ex">
+<li><strong>a claim that</strong> the product is safe</li>
+<li><strong>the suggestion that</strong> we leave early</li>
+<li><strong>a promise to</strong> help / <strong>a warning not to</strong> go</li>
+<li><strong>the question of whether</strong> to continue</li>
+</ul>
+<p>Adjectives can describe these nouns: <em>a <strong>reasonable</strong> suggestion</em>, <em>a <strong>wild</strong> rumour</em>.</p>
+<h2 id="age">Age</h2>
+<ul class="ex">
+<li><em>She's 25</em> / <em>She's <strong>25 years old</strong></em> / <em>She's <strong>25 years of age</strong></em> (formal). Not: <del>She has 25 years.</del></li>
+<li><em><strong>at the age of</strong> 18</em> / <em><strong>at</strong> 18</em></li>
+<li><em><strong>a 25-year-old</strong> woman</em> (singular <em>year</em> in the hyphenated adjective) / <em>a <strong>25-year-old</strong></em> (noun)</li>
+<li><em>What <strong>age</strong> is she?</em> / <em>How <strong>old</strong> is she?</em></li>
+</ul>
+<h2 id="half">Half</h2>
+<h3 id="in-noun-phrases">In noun phrases</h3>
+<p><strong><em>half (of)</em></strong> + determiner + noun: <em><strong>half (of) the</strong> time</em>, <em><strong>half of</strong> them</em> (<em>of</em> needed with pronouns). Without a determiner: <em><strong>half</strong> an hour</em>, <em><strong>half</strong> a kilo</em>. Not: <del>a half hour</del> (American), British uses <em>half an hour</em>.</p>
+<h3 id="as-an-adverb-noun-and-adjective">As an adverb, noun and adjective</h3>
+<ul class="ex">
+<li><em>I <strong>half</strong> expected it.</em> <em>It's <strong>half</strong> finished.</em></li>
+<li><em>two <strong>halves</strong></em>, <em>the second <strong>half</strong> of the match</em></li>
+<li><em>a <strong>half</strong> day</em>, <em>a <strong>half</strong> price</em> ticket</li>
+</ul>
+<p>The verb agrees with the noun after <em>of</em>: <em><strong>Half of</strong> the cake <strong>is</strong>…</em> / <em><strong>Half of</strong> the students <strong>are</strong>…</em></p>
+<h2 id="holiday-and-holidays">Holiday and holidays</h2>
+<p>In British English, a <strong>holiday</strong> is time off for travel or rest: <em>We're going on <strong>holiday</strong> to Spain.</em> (no article in <em>on holiday</em>) <strong>The holidays</strong> often means school holidays. A <strong>public holiday / bank holiday</strong> is a national day off. American English uses <strong>vacation</strong> for time away, and <em>holiday</em> for special days like Thanksgiving.</p>
+<h2 id="mind">Mind</h2>
+<h3 id="mind-as-a-verb">Mind as a verb</h3>
+<p><em>Mind</em> means "be annoyed by" and is used mainly in negatives and questions, followed by a noun or <em>-ing</em>:</p>
+<ul class="ex">
+<li><em>I <strong>don't mind</strong> waiting.</em> (= it's OK)</li>
+<li><em><strong>Would you mind</strong> opening the window?</em> (polite request) — answer <em>No, not at all</em> if you agree</li>
+<li><em><strong>Do you mind if</strong> I sit here?</em> (asking permission)</li>
+</ul>
+<h3 id="never-mind-mind-you">Never mind, mind you</h3>
+<p><strong><em>Never mind</em></strong> = it doesn't matter, don't worry. <strong><em>Mind you</em></strong> adds a contrasting point: <em>He's lazy. <strong>Mind you</strong>, he's very clever.</em> <em>Mind (out)!</em> / <em><strong>Mind</strong> the gap</em> = be careful (British).</p>
+<h3 id="mind-as-a-noun">Mind as a noun</h3>
+<p><em>Make up your <strong>mind</strong>.</em> <em>I've changed my <strong>mind</strong>.</em> <em>What's on your <strong>mind</strong>?</em></p>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>Would you mind to open</del> → <em>Would you mind <strong>opening</strong></em></li>
+</ul>
+<h2 id="opinion">Opinion</h2>
+<p><em>Opinion</em> is countable: <em>in <strong>my opinion</strong></em> (not <del>according to my opinion</del>), <em>What's your <strong>opinion</strong> of / on / about it?</em> <em>Have / hold / give / express an <strong>opinion</strong></em>. <em>Public <strong>opinion</strong></em> is uncountable. Avoid <del>In my opinion, I think</del> (repetition).</p>
+<h2 id="promise">Promise</h2>
+<p><em>Promise</em> is a verb and a noun. Patterns: <em><strong>promise to</strong> do</em>, <em><strong>promise (someone) that</strong> …</em>, <em><strong>promise</strong> someone something</em>.</p>
+<ul class="ex">
+<li>I <strong>promise to</strong> call you. / She <strong>promised</strong> (me) <strong>that</strong> she'd come.</li>
+<li><strong>make / keep / break a promise</strong></li>
+</ul>
+<h2 id="reason">Reason</h2>
+<h3 id="reason-for-and-reason-why">Reason for and reason why</h3>
+<p><strong><em>the reason for</em></strong> + noun: <em>the <strong>reason for</strong> the delay</em>. <strong><em>the reason why / that</em></strong> + clause: <em>That's <strong>the reason (why)</strong> I left.</em></p>
+<h3 id="reason-to-infinitive">Reason + to-infinitive</h3>
+<p><em>There's no <strong>reason to</strong> worry.</em> <em>We have every <strong>reason to</strong> believe her.</em></p>
+<p>Avoid <del>The reason is because…</del> in formal writing: <em>The reason is <strong>that</strong>…</em></p>
+<h2 id="sort-type-and-kind">Sort, type and kind</h2>
+<p>All mean "a group with similar qualities". Patterns: <strong><em>this sort / type / kind of</em></strong> + singular or uncountable noun; <strong><em>these sorts of</em></strong> + plural noun:</p>
+<ul class="ex">
+<li><em><strong>What kind of</strong> music do you like?</em></li>
+<li><em><strong>this type of</strong> car</em> / <em><strong>these kinds of</strong> problems</em></li>
+</ul>
+<p>In informal speech, <em>sort of</em> / <em>kind of</em> also mean "a little, in a way": <em>I'm <strong>sort of</strong> tired.</em></p>
+<h2 id="thing-and-stuff">Thing and stuff</h2>
+<h3 id="thing">Thing</h3>
+<p><em>Thing</em> is a countable noun for an object, idea, event or action you can't or don't want to name: <em>What's that <strong>thing</strong>?</em> <em>The <strong>thing</strong> is, I don't have time.</em> <em>I have a lot of <strong>things</strong> to do.</em></p>
+<h3 id="stuff">Stuff</h3>
+<p><em>Stuff</em> is uncountable and informal, used for things in general or material: <em>Leave your <strong>stuff</strong> here.</em> <em>What's this <strong>stuff</strong>?</em> Not: <del>stuffs</del>.</p>
+<h2 id="view">View</h2>
+<h3 id="as-a-noun">As a noun</h3>
+<p><em>View</em> means what you can see from a place (<em>a room with a <strong>view</strong></em>), or an opinion: <em>What are your <strong>views</strong> on this?</em> <strong><em>In my view</em></strong>, … (formal) <strong><em>With a view to</em></strong> + <em>-ing</em> = with the aim of.</p>
+<h3 id="as-a-verb">As a verb</h3>
+<p><em>View</em> (formal) = consider, or look at: <em>The plan was <strong>viewed</strong> as a success.</em> <em>Viewing</em> of a house.</p>
+<h2 id="way">Way</h2>
+<h3 id="way-as-a-noun">Way as a noun</h3>
+<p><em>Way</em> means route, method or manner:</p>
+<ul class="ex">
+<li><em>Is this the <strong>way</strong> to the station?</em> (route)</li>
+<li><em>What's the best <strong>way to</strong> learn / <strong>of</strong> learning English?</em> (method)</li>
+<li><em>I like <strong>the way</strong> she talks.</em> (manner; not <del>the way how</del>)</li>
+</ul>
+<h3 id="way-as-an-adverb">Way as an adverb</h3>
+<p>Informally, <em>way</em> means "very much": <em>It's <strong>way</strong> too expensive.</em> <em>way better</em>.</p>
+<h3 id="in-the-way-on-the-way">In the way, on the way</h3>
+<p><em>You're <strong>in the way</strong></em> (blocking) / <em>I'm <strong>on my way</strong></em> (travelling).</p>
+<h2 id="work-noun">Work (noun)</h2>
+<h3 id="work-as-an-uncountable-noun">Work as an uncountable noun</h3>
+<p><em>Work</em> (activity or job) is uncountable: <em>I have a lot of <strong>work</strong>.</em> <em>She's looking for <strong>work</strong>.</em> Not: <del>a work</del>, <del>works</del> for a job → <em>a <strong>job</strong></em>.</p>
+<h3 id="at-work">At work</h3>
+<p><em>He's <strong>at work</strong></em> (at the workplace). <em>go to <strong>work</strong></em>, <em>start / finish <strong>work</strong></em> (no article).</p>
+<h3 id="work-as-a-countable-noun">Work as a countable noun</h3>
+<p><em>A work</em> is a piece of art, music or literature: <em>a <strong>work</strong> of art</em>, <em>the complete <strong>works</strong> of Shakespeare</em>. <em>Roadworks</em> (British) are repairs on a road.</p>
+</article>
+<nav class="pager"><a class="btn" href="question-words.html">← Question words</a><a class="btn" href="index.html#quiz">Nouns, pronouns and determiners quiz →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

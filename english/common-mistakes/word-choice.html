@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="43ae431e6fb3">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Word choice mistakes · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Common mistakes in English</a><span class="sep">/</span><span class="cur">Word choice mistakes</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Common mistakes in English</span><h1>Word choice mistakes</h1><p class="sub">Pairs of words that learners mix up, from accept/agree and actual/current to win/beat, wish/hope and work/job.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#accept-or-agree">Accept or agree?</a></li><li><a href="#according-to">According to</a></li><li><a href="#actual-or-current">Actual or current?</a></li><li><a href="#advertisement-or-advertising">Advertisement or advertising?</a></li><li><a href="#all-or-everything">All or everything?</a></li><li><a href="#alone-or-lonely">Alone or lonely?</a></li><li><a href="#amount-of-or-number-of">Amount of or number of?</a></li><li><a href="#ancient-former-or-old">Ancient, former, or old?</a></li><li><a href="#announce-or-advertise">Announce or advertise?</a></li><li><a href="#another-or-other">Another or other?</a></li><li><a href="#as-or-like">As or like?</a></li><li><a href="#at-last-or-finally">At last or finally?</a></li><li><a href="#avoid-or-prevent">Avoid or prevent?</a></li><li><a href="#besides-or-also">Besides or also?</a></li><li><a href="#bored-or-boring">Bored or boring?</a></li><li><a href="#bring-or-take">Bring or take?</a></li><li><a href="#camping-or-campsite">Camping or campsite?</a></li><li><a href="#class-or-classroom">Class or classroom?</a></li><li><a href="#closed-or-close">Closed or close?</a></li><li><a href="#cloth-clothes-or-clothing">Cloth, clothes, or clothing?</a></li><li><a href="#come">Come</a></li><li><a href="#common-or-ordinary">Common or ordinary?</a></li><li><a href="#contain-or-include">Contain or include?</a></li><li><a href="#correct-or-right">Correct or right?</a></li><li><a href="#country-land-nation-or-state">Country, land, nation, or state?</a></li><li><a href="#drive-or-ride">Drive or ride?</a></li><li><a href="#during-or-for">During or for?</a></li><li><a href="#economical-or-economic">Economical or economic?</a></li><li><a href="#education-or-upbringing">Education or upbringing?</a></li><li><a href="#elder-or-elderly">Elder or elderly?</a></li><li><a href="#employer-or-employee">Employer or employee?</a></li><li><a href="#excited-or-exciting">Excited or exciting?</a></li><li><a href="#far-or-away">Far or away?</a></li><li><a href="#fault-or-mistake">Fault or mistake?</a></li><li><a href="#few-or-a-few">Few or a few?</a></li><li><a href="#find-out-or-find">Find out or find?</a></li><li><a href="#fit-or-suit">Fit or suit?</a></li><li><a href="#forget-or-leave">Forget or leave?</a></li><li><a href="#funny-or-fun">Funny or fun?</a></li><li><a href="#further-or-farther">Further or farther?</a></li><li><a href="#go-gone-and-been">Go, gone, and been</a></li><li><a href="#go-or-come">Go or come?</a></li><li><a href="#go-or-get">Go or get?</a></li><li><a href="#hardly-or-hard">Hardly or hard?</a></li><li><a href="#history-or-story">History or story?</a></li><li><a href="#hour-or-time">Hour or time?</a></li><li><a href="#how-or-what">How or what?</a></li><li><a href="#improve-or-increase">Improve or increase?</a></li><li><a href="#interesting">Interesting</a></li><li><a href="#interesting-or-interested">Interesting or interested?</a></li><li><a href="#its-or-its">Its or it's?</a></li><li><a href="#join-or-attend">Join or attend?</a></li><li><a href="#know-or-find-out">Know or find out?</a></li><li><a href="#know-or-get-to-know">Know or get to know?</a></li><li><a href="#last-or-latest">Last or latest?</a></li><li><a href="#lay-and-lie">Lay and lie</a></li><li><a href="#learn-teach-or-study">Learn, teach, or study?</a></li><li><a href="#leave-or-live">Leave or live?</a></li><li><a href="#lend-and-borrow">Lend and borrow</a></li><li><a href="#let-or-leave">Let or leave?</a></li><li><a href="#listen-listen-to-or-hear">Listen, listen to, or hear?</a></li><li><a href="#look-look-at-see-or-watch">Look, look at, see, or watch?</a></li><li><a href="#lose-or-miss">Lose or miss?</a></li><li><a href="#may-or-can">May or can?</a></li><li><a href="#meet-get-to-know-and-know">Meet, get to know, and know</a></li><li><a href="#meet-or-visit">Meet or visit?</a></li><li><a href="#miss-or-lack">Miss or lack?</a></li><li><a href="#move-or-travel">Move or travel?</a></li><li><a href="#needed-or-necessary">Needed or necessary?</a></li><li><a href="#nervous-agitated-or-irritable">Nervous, agitated, or irritable?</a></li><li><a href="#not-either">Not ... either</a></li><li><a href="#notice-or-news">Notice or news?</a></li><li><a href="#number-or-figure">Number or figure?</a></li><li><a href="#offer-or-give">Offer or give?</a></li><li><a href="#on-the-contrary-or-byin-contrast">On the contrary or by/in contrast?</a></li><li><a href="#parents-or-relationsrelatives">Parents or relations/relatives?</a></li><li><a href="#parking-or-car-park">Parking or car park?</a></li><li><a href="#place-or-roomspace">Place or room/space?</a></li><li><a href="#point-of-view-or-opinion">Point of view or opinion?</a></li><li><a href="#point-or-point-out">Point or point out?</a></li><li><a href="#possibility-occasion-or-opportunity">Possibility, occasion, or opportunity?</a></li><li><a href="#propose-or-offer">Propose or offer?</a></li><li><a href="#protect-or-prevent">Protect or prevent?</a></li><li><a href="#reach-or-achieve">Reach or achieve?</a></li><li><a href="#relation-or-relationship">Relation or relationship?</a></li><li><a href="#relevant">Relevant</a></li><li><a href="#remind-or-remember">Remind or remember?</a></li><li><a href="#require-or-request">Require or request?</a></li><li><a href="#rest-stay-or-remain">Rest, stay, or remain?</a></li><li><a href="#right-or-true">Right or true?</a></li><li><a href="#rise-or-raise">Rise or raise?</a></li><li><a href="#say-or-tell">Say or tell?</a></li><li><a href="#security-or-safety">Security or safety?</a></li><li><a href="#sensitive-or-sensible">Sensitive or sensible?</a></li><li><a href="#since-from-or-for">Since, from, or for?</a></li><li><a href="#some-or-any">Some or any?</a></li><li><a href="#something-or-anything">Something or anything?</a></li><li><a href="#sometime-or-sometimes">Sometime or sometimes?</a></li><li><a href="#station-or-stop">Station or stop?</a></li><li><a href="#staying-or-stay">Staying or stay?</a></li><li><a href="#strange-or-foreign">Strange or foreign?</a></li><li><a href="#stuff-or-staff">Stuff or staff?</a></li><li><a href="#sympathetic">Sympathetic</a></li><li><a href="#take-part-or-take-place">Take part or take place?</a></li><li><a href="#tell-or-say">Tell or say?</a></li><li><a href="#that-or-than">That or than?</a></li><li><a href="#think-about-think-of-or-think">Think about, think of, or think?</a></li><li><a href="#tired-of-or-tired-from">Tired of or tired from?</a></li><li><a href="#travel-trip-or-journey">Travel, trip, or journey?</a></li><li><a href="#trouble-or-problem">Trouble or problem?</a></li><li><a href="#unique-or-only">Unique or only?</a></li><li><a href="#until-now-or-so-far">Until now or so far?</a></li><li><a href="#used-to-and-be-used-to">Used to and be used to</a></li><li><a href="#various-or-varied">Various or varied?</a></li><li><a href="#view-or-sight">View or sight?</a></li><li><a href="#wait-or-expect">Wait or expect?</a></li><li><a href="#what-or-which">What or which?</a></li><li><a href="#when-or-if">When or if?</a></li><li><a href="#where-or-when">Where or when?</a></li><li><a href="#which-or-what">Which or what?</a></li><li><a href="#which-or-who">Which or who?</a></li><li><a href="#win-or-beat">Win or beat?</a></li><li><a href="#wish-or-hope">Wish or hope?</a></li><li><a href="#work-job-or-occupation">Work, job, or occupation?</a></li><li><a href="#would-or-should">Would or should?</a></li></ol></nav>
+<article class="prose card">
+<h2 id="accept-or-agree">Accept or agree?</h2>
+<ul class="ex">
+<li><del>I accept with you.</del> → <em>I <strong>agree</strong> with you.</em> (same opinion) / <em>I <strong>accept</strong> your offer.</em> (say yes to)</li>
+</ul>
+<h2 id="according-to">According to</h2>
+<ul class="ex">
+<li><del>According to me, …</del> → <em><strong>In my opinion</strong>, …</em> / <em>According to <strong>the report</strong>, …</em></li>
+</ul>
+<h2 id="actual-or-current">Actual or current?</h2>
+<ul class="ex">
+<li><del>the actual situation</del> (= now) → <em>the <strong>current</strong> situation</em></li>
+</ul>
+<p><em>Actual</em> = real; <em>current</em> = happening now.</p>
+<h2 id="advertisement-or-advertising">Advertisement or advertising?</h2>
+<ul class="ex">
+<li><del>an advertising</del> → <em>an <strong>advertisement</strong> / an ad / an advert</em> (one) / <strong><em>advertising</em></strong> (the industry, uncountable)</li>
+</ul>
+<h2 id="all-or-everything">All or everything?</h2>
+<ul class="ex">
+<li><del>All is ready.</del> → <em><strong>Everything</strong> is ready.</em></li>
+</ul>
+<p><em>All</em> alone as a subject usually means "the only thing": <em><strong>All</strong> I want is sleep.</em></p>
+<h2 id="alone-or-lonely">Alone or lonely?</h2>
+<ul class="ex">
+<li><del>I live lonely.</del> → <em>I live <strong>alone</strong>.</em> (without others) / <em>I feel <strong>lonely</strong>.</em> (unhappy because alone)</li>
+</ul>
+<h2 id="amount-of-or-number-of">Amount of or number of?</h2>
+<ul class="ex">
+<li><del>a large amount of people</del> → <em>a large <strong>number</strong> of people</em>; <em>a large <strong>amount</strong> of money</em></li>
+</ul>
+<h2 id="ancient-former-or-old">Ancient, former, or old?</h2>
+<ul class="ex">
+<li><del>my ancient teacher</del> → <em>my <strong>former</strong> / <strong>old</strong> teacher</em></li>
+</ul>
+<p><em>Ancient</em> = thousands of years old; <em>former</em> = previous; <em>old</em> = aged, or previous (informal).</p>
+<h2 id="announce-or-advertise">Announce or advertise?</h2>
+<ul class="ex">
+<li><del>They announced the job in the paper.</del> → <em>They <strong>advertised</strong> the job.</em> (to sell or offer) / <em>They <strong>announced</strong> the results.</em> (to tell publicly)</li>
+</ul>
+<h2 id="another-or-other">Another or other?</h2>
+<ul class="ex">
+<li><del>another books</del> → <em><strong>other</strong> books</em>; <del>other book</del> → <em><strong>another</strong> book</em></li>
+</ul>
+<h2 id="as-or-like">As or like?</h2>
+<ul class="ex">
+<li><del>He works like a teacher.</del> (= his job) → <em>He works <strong>as</strong> a teacher.</em> / <em>He sings <strong>like</strong> a professional.</em></li>
+</ul>
+<h2 id="at-last-or-finally">At last or finally?</h2>
+<ul class="ex">
+<li><del>At last, I want to thank…</del> → <em><strong>Finally</strong>, I want to thank…</em></li>
+</ul>
+<p><em>At last</em> expresses relief after waiting; <em>finally</em> also introduces the last point.</p>
+<h2 id="avoid-or-prevent">Avoid or prevent?</h2>
+<ul class="ex">
+<li><del>avoid an accident to happen</del> → <em><strong>prevent</strong> an accident (from happening)</em>; <em><strong>avoid</strong> crowds</em> (keep away from)</li>
+</ul>
+<h2 id="besides-or-also">Besides or also?</h2>
+<ul class="ex">
+<li><del>I play tennis and besides I swim.</del> → <em>…and I <strong>also</strong> swim.</em></li>
+</ul>
+<p><em>Besides</em> = in addition to (+ noun) or "and anyway" (linking): <em><strong>Besides</strong>, it's too late.</em></p>
+<h2 id="bored-or-boring">Bored or boring?</h2>
+<ul class="ex">
+<li><del>I'm boring.</del> (= I feel bored) → <em>I'm <strong>bored</strong>.</em></li>
+</ul>
+<h2 id="bring-or-take">Bring or take?</h2>
+<ul class="ex">
+<li><del>I'll bring you to the airport.</del> → <em>I'll <strong>take</strong> you to the airport.</em> (away from here)</li>
+</ul>
+<h2 id="camping-or-campsite">Camping or campsite?</h2>
+<ul class="ex">
+<li><del>We stayed at a camping.</del> → <em>We stayed at a <strong>campsite</strong>.</em> / <em>We went <strong>camping</strong>.</em></li>
+</ul>
+<h2 id="class-or-classroom">Class or classroom?</h2>
+<ul class="ex">
+<li><del>The class has 20 desks.</del> → <em>The <strong>classroom</strong> has 20 desks.</em> (the room) / <em>The <strong>class</strong> has 20 students.</em> (the group)</li>
+</ul>
+<h2 id="closed-or-close">Closed or close?</h2>
+<ul class="ex">
+<li><del>The shop is close.</del> → <em>The shop is <strong>closed</strong>.</em> / <em>The shop is <strong>close</strong> (to here).</em> (= near)</li>
+</ul>
+<h2 id="cloth-clothes-or-clothing">Cloth, clothes, or clothing?</h2>
+<ul class="ex">
+<li><del>I bought new cloths.</del> → <em>I bought new <strong>clothes</strong>.</em></li>
+</ul>
+<p><em>Cloth</em> = material; <em>clothes</em> = things you wear (plural); <em>clothing</em> = clothes in general (uncountable, formal).</p>
+<h2 id="come">Come</h2>
+<ul class="ex">
+<li><del>Come to here.</del> → <em><strong>Come here</strong>.</em>; <del>I'll come to home late.</del> → <em>I'll <strong>come home</strong> late.</em></li>
+</ul>
+<p>No <em>to</em> before <em>here, there, home</em>.</p>
+<h2 id="common-or-ordinary">Common or ordinary?</h2>
+<ul class="ex">
+<li><del>an common day</del> → <em>an <strong>ordinary</strong> day</em> (normal) / <em>a <strong>common</strong> problem</em> (happens often)</li>
+</ul>
+<h2 id="contain-or-include">Contain or include?</h2>
+<ul class="ex">
+<li><del>The price contains breakfast.</del> → <em>The price <strong>includes</strong> breakfast.</em> (part of a total) / <em>The box <strong>contains</strong> books.</em> (physically inside)</li>
+</ul>
+<h2 id="correct-or-right">Correct or right?</h2>
+<p>Both mean "not wrong": <em><strong>right / correct</strong> answer</em>. Only <em>right</em> is used for moral questions, directions and <em>be right</em> (person): <em>You're <strong>right</strong></em>, <em>turn <strong>right</strong></em>.</p>
+<h2 id="country-land-nation-or-state">Country, land, nation, or state?</h2>
+<ul class="ex">
+<li><del>my land is Poland</del> → <em>my <strong>country</strong> is Poland</em></li>
+</ul>
+<p><em>Country</em> = the normal word; <em>nation</em> = the people; <em>state</em> = the political organisation or part of a federal country; <em>land</em> = ground or literary.</p>
+<h2 id="drive-or-ride">Drive or ride?</h2>
+<ul class="ex">
+<li><del>drive a bike / a horse</del> → <em><strong>ride</strong> a bike / a horse / a motorbike</em>; <em><strong>drive</strong> a car / a bus</em></li>
+</ul>
+<h2 id="during-or-for">During or for?</h2>
+<ul class="ex">
+<li><del>during two hours</del> → <em><strong>for</strong> two hours</em>; <em><strong>during</strong> the night</em></li>
+</ul>
+<h2 id="economical-or-economic">Economical or economic?</h2>
+<ul class="ex">
+<li><del>economical crisis</del> → <em><strong>economic</strong> crisis</em>; <em>an <strong>economical</strong> car</em> (cheap to run)</li>
+</ul>
+<h2 id="education-or-upbringing">Education or upbringing?</h2>
+<ul class="ex">
+<li><del>My parents gave me a good education</del> (about manners) → <em>a good <strong>upbringing</strong></em></li>
+</ul>
+<p><em>Education</em> = school learning; <em>upbringing</em> = how parents raise a child.</p>
+<h2 id="elder-or-elderly">Elder or elderly?</h2>
+<ul class="ex">
+<li><del>elder people</del> → <em><strong>elderly</strong> people</em> (old, polite) / <em>my <strong>elder</strong> brother</em></li>
+</ul>
+<h2 id="employer-or-employee">Employer or employee?</h2>
+<ul class="ex">
+<li><del>I'm an employer at the bank.</del> (if you work there) → <em>I'm an <strong>employee</strong>.</em></li>
+</ul>
+<p><em>Employer</em> = the person or company that pays; <em>employee</em> = the worker.</p>
+<h2 id="excited-or-exciting">Excited or exciting?</h2>
+<ul class="ex">
+<li><del>I'm very exciting about the trip.</del> → <em>I'm very <strong>excited</strong>.</em> / <em>The trip is <strong>exciting</strong>.</em></li>
+</ul>
+<h2 id="far-or-away">Far or away?</h2>
+<ul class="ex">
+<li><del>It's 5 km far.</del> → <em>It's 5 km <strong>away</strong>.</em> / <em>Is it <strong>far</strong>?</em></li>
+</ul>
+<h2 id="fault-or-mistake">Fault or mistake?</h2>
+<ul class="ex">
+<li><del>It was my mistake that we were late</del> (blame) → <em>It was my <strong>fault</strong></em>; <del>I made three faults</del> → <em>three <strong>mistakes</strong></em></li>
+</ul>
+<p><em>Mistake</em> = something wrong; <em>fault</em> = responsibility for something bad.</p>
+<h2 id="few-or-a-few">Few or a few?</h2>
+<ul class="ex">
+<li><del>I have few friends, so I'm happy</del> → <em>I have <strong>a few</strong> friends</em> (some) / <em>I have <strong>few</strong> friends</em> (not many)</li>
+</ul>
+<h2 id="find-out-or-find">Find out or find?</h2>
+<ul class="ex">
+<li><del>I need to find the truth.</del> → <em><strong>find out</strong> the truth</em> (discover information) / <em><strong>find</strong> my keys</em> (locate)</li>
+</ul>
+<h2 id="fit-or-suit">Fit or suit?</h2>
+<ul class="ex">
+<li><del>That colour fits you.</del> → <em>That colour <strong>suits</strong> you.</em> (looks good) / <em>These shoes <strong>fit</strong>.</em> (right size)</li>
+</ul>
+<h2 id="forget-or-leave">Forget or leave?</h2>
+<ul class="ex">
+<li><del>I forgot my phone at home.</del> → <em>I <strong>left</strong> my phone at home.</em></li>
+</ul>
+<h2 id="funny-or-fun">Funny or fun?</h2>
+<ul class="ex">
+<li><del>The trip was very funny.</del> (enjoyable) → <em>The trip was great <strong>fun</strong></em>.</li>
+</ul>
+<h2 id="further-or-farther">Further or farther?</h2>
+<ul class="ex">
+<li><del>farther information</del> → <em><strong>further</strong> information</em></li>
+</ul>
+<h2 id="go-gone-and-been">Go, gone, and been</h2>
+<ul class="ex">
+<li><del>She has been to the shop and she is still there.</del> → <em>She has <strong>gone</strong> to the shop.</em> / <em>I have <strong>been</strong> to Paris</em> (and returned).</li>
+</ul>
+<h2 id="go-or-come">Go or come?</h2>
+<ul class="ex">
+<li><del>Can I go to your party?</del> → <em>Can I <strong>come</strong> to your party?</em> (towards the listener)</li>
+</ul>
+<h2 id="go-or-get">Go or get?</h2>
+<ul class="ex">
+<li><del>What time did you go home last night?</del> (= arrive) → <em>What time did you <strong>get</strong> home?</em>; <em>How do I <strong>get to</strong> the station?</em></li>
+</ul>
+<h2 id="hardly-or-hard">Hardly or hard?</h2>
+<ul class="ex">
+<li><del>She works hardly.</del> → <em>She works <strong>hard</strong>.</em></li>
+</ul>
+<p><em>Hardly</em> = almost not.</p>
+<h2 id="history-or-story">History or story?</h2>
+<ul class="ex">
+<li><del>He told me a funny history.</del> → <em>a funny <strong>story</strong></em></li>
+</ul>
+<p><em>History</em> = the past, the subject.</p>
+<h2 id="hour-or-time">Hour or time?</h2>
+<ul class="ex">
+<li><del>What hour is it?</del> → <em>What <strong>time</strong> is it?</em>; <del>I don't have hour</del> → <em>I don't have <strong>time</strong></em></li>
+</ul>
+<h2 id="how-or-what">How or what?</h2>
+<ul class="ex">
+<li><del>How is it called?</del> → <em><strong>What</strong> is it called?</em>; <del>How does it look like?</del> → <em><strong>What</strong> does it look like?</em></li>
+</ul>
+<h2 id="improve-or-increase">Improve or increase?</h2>
+<ul class="ex">
+<li><del>improve the number of students</del> → <em><strong>increase</strong> the number</em>; <em><strong>improve</strong> the quality</em></li>
+</ul>
+<h2 id="interesting">Interesting</h2>
+<ul class="ex">
+<li><del>It's very interesting for me.</del> → <em>I find it very <strong>interesting</strong></em> / <em>I'm very <strong>interested</strong> in it.</em></li>
+</ul>
+<h2 id="interesting-or-interested">Interesting or interested?</h2>
+<ul class="ex">
+<li><del>I'm interesting in music.</del> → <em>I'm <strong>interested in</strong> music.</em></li>
+</ul>
+<h2 id="its-or-its">Its or it's?</h2>
+<ul class="ex">
+<li><del>The company and it's staff</del> → <em>The company and <strong>its</strong> staff</em>; <strong><em>It's</em></strong> = it is / it has.</li>
+</ul>
+<h2 id="join-or-attend">Join or attend?</h2>
+<ul class="ex">
+<li><del>attend a club</del>, <del>join a lecture</del> → <em><strong>attend</strong> a meeting / a lecture / a school</em>; <em><strong>join</strong> a club / a team</em></li>
+</ul>
+<h2 id="know-or-find-out">Know or find out?</h2>
+<ul class="ex">
+<li><del>I knew yesterday that she was ill.</del> → <em>I <strong>found out</strong> yesterday…</em> (learned) / <em>I <strong>knew</strong> it already.</em></li>
+</ul>
+<h2 id="know-or-get-to-know">Know or get to know?</h2>
+<ul class="ex">
+<li><del>I knew him at university.</del> (first met) → <em>I <strong>got to know</strong> him at university.</em> / <em>I <strong>met</strong> him at university.</em></li>
+</ul>
+<h2 id="last-or-latest">Last or latest?</h2>
+<ul class="ex">
+<li><del>his last film</del> (if more will come) → <em>his <strong>latest</strong> film</em> (most recent); <em>his <strong>last</strong> film</em> (final, or the one before this)</li>
+</ul>
+<h2 id="lay-and-lie">Lay and lie</h2>
+<ul class="ex">
+<li><del>I'm going to lay down.</del> → <em>I'm going to <strong>lie</strong> down.</em> / <em><strong>Lay</strong> the table.</em> (put)</li>
+</ul>
+<h2 id="learn-teach-or-study">Learn, teach, or study?</h2>
+<ul class="ex">
+<li><del>She learnt me English.</del> → <em>She <strong>taught</strong> me English.</em></li>
+</ul>
+<p><em>Learn</em> = get knowledge; <em>teach</em> = give knowledge; <em>study</em> = spend time learning, often formally: <em>study law</em>.</p>
+<h2 id="leave-or-live">Leave or live?</h2>
+<ul class="ex">
+<li><del>I leave in Madrid.</del> → <em>I <strong>live</strong> /lɪv/ in Madrid.</em> / <em>I <strong>leave</strong> /liːv/ at six.</em></li>
+</ul>
+<h2 id="lend-and-borrow">Lend and borrow</h2>
+<ul class="ex">
+<li><del>Can I lend your pen?</del> → <em>Can I <strong>borrow</strong> your pen?</em> / <em>Can you <strong>lend</strong> me your pen?</em></li>
+</ul>
+<h2 id="let-or-leave">Let or leave?</h2>
+<ul class="ex">
+<li><del>Let me alone!</del> → <em><strong>Leave</strong> me alone!</em>; <del>Leave me go</del> → <em><strong>Let</strong> me go</em></li>
+</ul>
+<p><em>Let</em> = allow; <em>leave</em> = go away from, or not disturb.</p>
+<h2 id="listen-listen-to-or-hear">Listen, listen to, or hear?</h2>
+<ul class="ex">
+<li><del>I listen music.</del> → <em>I <strong>listen to</strong> music.</em>; <del>I'm listening a noise</del> → <em>I <strong>hear</strong> a noise.</em></li>
+</ul>
+<h2 id="look-look-at-see-or-watch">Look, look at, see, or watch?</h2>
+<ul class="ex">
+<li><del>Look this!</del> → <em><strong>Look at</strong> this!</em>; <del>see a football match on TV</del> → <em><strong>watch</strong> a match</em></li>
+</ul>
+<h2 id="lose-or-miss">Lose or miss?</h2>
+<ul class="ex">
+<li><del>I lost the bus.</del> → <em>I <strong>missed</strong> the bus.</em> / <em>I <strong>lost</strong> my wallet.</em></li>
+</ul>
+<h2 id="may-or-can">May or can?</h2>
+<ul class="ex">
+<li><del>May you help me?</del> → <em><strong>Can / Could</strong> you help me?</em></li>
+</ul>
+<p><em>May I…?</em> is for asking permission, not for requests to others.</p>
+<h2 id="meet-get-to-know-and-know">Meet, get to know, and know</h2>
+<ul class="ex">
+<li><del>I knew her last year at a party</del> → <em>I <strong>met</strong> her last year</em> (first time) / <em>I <strong>got to know</strong> her</em> (became familiar) / <em>I <strong>know</strong> her</em> (state)</li>
+</ul>
+<h2 id="meet-or-visit">Meet or visit?</h2>
+<ul class="ex">
+<li><del>I'll meet the museum.</del> → <em>I'll <strong>visit</strong> the museum.</em> / <em>I'll <strong>meet</strong> my friend there.</em></li>
+</ul>
+<h2 id="miss-or-lack">Miss or lack?</h2>
+<ul class="ex">
+<li><del>The team misses experience.</del> → <em>The team <strong>lacks</strong> experience.</em> (doesn't have enough) / <em>I <strong>miss</strong> my family.</em> (feel sad they're absent)</li>
+</ul>
+<h2 id="move-or-travel">Move or travel?</h2>
+<ul class="ex">
+<li><del>We travelled to a new flat.</del> → <em>We <strong>moved</strong> to a new flat.</em> (changed home) / <em>We <strong>travelled</strong> around Asia.</em></li>
+</ul>
+<h2 id="needed-or-necessary">Needed or necessary?</h2>
+<ul class="ex">
+<li><del>It is needed to book.</del> → <em>It is <strong>necessary</strong> to book.</em> / <em>Help is <strong>needed</strong>.</em></li>
+</ul>
+<h2 id="nervous-agitated-or-irritable">Nervous, agitated, or irritable?</h2>
+<ul class="ex">
+<li><del>He gets nervous easily (= angry)</del> → <em>He gets <strong>irritable</strong> / <strong>annoyed</strong></em></li>
+</ul>
+<p><em>Nervous</em> = worried, anxious; <em>agitated</em> = very worried and unable to stay calm; <em>irritable</em> = easily annoyed.</p>
+<h2 id="not-either">Not ... either</h2>
+<ul class="ex">
+<li><del>I don't like it too.</del> → <em>I don't like it <strong>either</strong>.</em></li>
+</ul>
+<h2 id="notice-or-news">Notice or news?</h2>
+<ul class="ex">
+<li><del>I have a good notice.</del> → <em>I have some good <strong>news</strong>.</em></li>
+</ul>
+<p><em>A notice</em> = a written sign or warning; <em>notice</em> (verb) = see.</p>
+<h2 id="number-or-figure">Number or figure?</h2>
+<ul class="ex">
+<li><del>the sales numbers for May</del> (formal reports) → <em>the sales <strong>figures</strong> for May</em></li>
+</ul>
+<p><em>Figures</em> = written numbers and official statistics; <em>number</em> = an amount or a value: <em>a large <strong>number</strong> of people</em>, <em>phone <strong>number</strong></em>.</p>
+<h2 id="offer-or-give">Offer or give?</h2>
+<ul class="ex">
+<li><del>She offered me a present on my birthday.</del> (if she handed it over) → <em>She <strong>gave</strong> me a present.</em></li>
+</ul>
+<p><em>Offer</em> = ask if someone wants something.</p>
+<h2 id="on-the-contrary-or-byin-contrast">On the contrary or by/in contrast?</h2>
+<ul class="ex">
+<li><del>London is big. On the contrary, Bath is small.</del> → <em><strong>By / In contrast</strong>, Bath is small.</em></li>
+</ul>
+<p><em>On the contrary</em> rejects a statement as untrue.</p>
+<h2 id="parents-or-relationsrelatives">Parents or relations/relatives?</h2>
+<ul class="ex">
+<li><del>I have many parents in Spain.</del> → <em>I have many <strong>relatives / relations</strong> in Spain.</em></li>
+</ul>
+<p><em>Parents</em> = mother and father only.</p>
+<h2 id="parking-or-car-park">Parking or car park?</h2>
+<ul class="ex">
+<li><del>a parking</del> → <em>a <strong>car park</strong></em> (Br) / <em>a <strong>parking lot</strong></em> (US); <strong><em>parking</em></strong> = the activity (uncountable)</li>
+</ul>
+<h2 id="place-or-roomspace">Place or room/space?</h2>
+<ul class="ex">
+<li><del>There is no place in the car.</del> → <em>There is no <strong>room / space</strong> in the car.</em></li>
+</ul>
+<p><em>Place</em> = a location.</p>
+<h2 id="point-of-view-or-opinion">Point of view or opinion?</h2>
+<ul class="ex">
+<li><del>In my point of view</del> → <strong><em>In my opinion</em></strong> / <strong><em>From my point of view</em></strong></li>
+</ul>
+<h2 id="point-or-point-out">Point or point out?</h2>
+<ul class="ex">
+<li><del>She pointed that the plan was risky.</del> → <em>She <strong>pointed out</strong> that…</em> (mentioned) / <em>She <strong>pointed at</strong> the map.</em></li>
+</ul>
+<h2 id="possibility-occasion-or-opportunity">Possibility, occasion, or opportunity?</h2>
+<ul class="ex">
+<li><del>I had the possibility to work abroad.</del> → <em>the <strong>opportunity</strong> to work abroad</em>; <em>a special <strong>occasion</strong></em> (event)</li>
+</ul>
+<h2 id="propose-or-offer">Propose or offer?</h2>
+<ul class="ex">
+<li><del>He proposed to drive me home.</del> → <em>He <strong>offered</strong> to drive me home.</em></li>
+</ul>
+<p><em>Propose</em> = suggest a plan, or ask to marry.</p>
+<h2 id="protect-or-prevent">Protect or prevent?</h2>
+<ul class="ex">
+<li><del>protect the disease</del> → <em><strong>prevent</strong> the disease</em>; <em><strong>protect</strong> people from the disease</em></li>
+</ul>
+<h2 id="reach-or-achieve">Reach or achieve?</h2>
+<ul class="ex">
+<li><del>achieve the station</del> → <em><strong>reach</strong> the station</em> (arrive) / <em><strong>achieve</strong> a goal</em> (succeed); <em>reach</em> also works with goals and agreements.</li>
+</ul>
+<h2 id="relation-or-relationship">Relation or relationship?</h2>
+<ul class="ex">
+<li><del>a good relation with my boss</del> → <em>a good <strong>relationship</strong> with my boss</em></li>
+</ul>
+<p><em>Relations</em> (plural) = contacts between countries or groups.</p>
+<h2 id="relevant">Relevant</h2>
+<ul class="ex">
+<li><del>relevant</del> = important? → <em>Relevant</em> = connected with the subject: <em>This is not <strong>relevant</strong> to the discussion.</em> For "important", use <em>important</em>, <em>significant</em>.</li>
+</ul>
+<h2 id="remind-or-remember">Remind or remember?</h2>
+<ul class="ex">
+<li><del>Remember me to call him.</del> → <em><strong>Remind</strong> me to call him.</em></li>
+</ul>
+<h2 id="require-or-request">Require or request?</h2>
+<ul class="ex">
+<li><del>I require you to send</del> (rude) → <em>I <strong>request</strong> that you send</em> / <em>Please send</em></li>
+</ul>
+<p><em>Require</em> = need, or demand (formal); <em>request</em> = ask politely.</p>
+<h2 id="rest-stay-or-remain">Rest, stay, or remain?</h2>
+<ul class="ex">
+<li><del>We rested in a hotel for a week.</del> → <em>We <strong>stayed</strong> in a hotel.</em></li>
+</ul>
+<p><em>Rest</em> = relax; <em>remain</em> = continue to exist or be (formal).</p>
+<h2 id="right-or-true">Right or true?</h2>
+<ul class="ex">
+<li><del>Is it right that she left?</del> (= correct fact) → <em>Is it <strong>true</strong> that she left?</em></li>
+</ul>
+<h2 id="rise-or-raise">Rise or raise?</h2>
+<ul class="ex">
+<li><del>raise up</del>, <del>prices raised</del> → <em>prices <strong>rose</strong></em>; <em>they <strong>raised</strong> prices</em></li>
+</ul>
+<h2 id="say-or-tell">Say or tell?</h2>
+<ul class="ex">
+<li><del>She said me</del> → <em>She <strong>told</strong> me</em> / <em>She <strong>said to</strong> me</em></li>
+</ul>
+<h2 id="security-or-safety">Security or safety?</h2>
+<ul class="ex">
+<li><del>for your security, wear a helmet</del> → <em>for your <strong>safety</strong></em></li>
+</ul>
+<p><em>Safety</em> = protection from accidents; <em>security</em> = protection from crime and attack.</p>
+<h2 id="sensitive-or-sensible">Sensitive or sensible?</h2>
+<ul class="ex">
+<li><del>She's very sensible (= easily hurt)</del> → <em>She's very <strong>sensitive</strong>.</em> / <em>a <strong>sensible</strong> decision</em> (practical)</li>
+</ul>
+<h2 id="since-from-or-for">Since, from, or for?</h2>
+<ul class="ex">
+<li><del>I've lived here from 2010.</del> → <em>…<strong>since</strong> 2010.</em>; <del>since three years</del> → <em><strong>for</strong> three years</em></li>
+</ul>
+<h2 id="some-or-any">Some or any?</h2>
+<ul class="ex">
+<li><del>I don't have some money.</del> → <em>I don't have <strong>any</strong> money.</em></li>
+</ul>
+<h2 id="something-or-anything">Something or anything?</h2>
+<ul class="ex">
+<li><del>I didn't buy something.</del> → <em>I didn't buy <strong>anything</strong>.</em></li>
+</ul>
+<h2 id="sometime-or-sometimes">Sometime or sometimes?</h2>
+<ul class="ex">
+<li><del>Sometime I go swimming.</del> → <em><strong>Sometimes</strong> I go swimming.</em> / <em>Let's meet <strong>sometime</strong>.</em></li>
+</ul>
+<h2 id="station-or-stop">Station or stop?</h2>
+<ul class="ex">
+<li><del>the bus station near my house</del> (just a sign by the road) → <em>the <strong>bus stop</strong></em>; <em>bus / train <strong>station</strong></em> = a building</li>
+</ul>
+<h2 id="staying-or-stay">Staying or stay?</h2>
+<ul class="ex">
+<li><del>I enjoyed my staying in London.</del> → <em>I enjoyed my <strong>stay</strong> in London.</em></li>
+</ul>
+<h2 id="strange-or-foreign">Strange or foreign?</h2>
+<ul class="ex">
+<li><del>Do you speak strange languages?</del> → <em><strong>foreign</strong> languages</em></li>
+</ul>
+<p><em>Strange</em> = unusual; <em>a stranger</em> = a person you don't know.</p>
+<h2 id="stuff-or-staff">Stuff or staff?</h2>
+<ul class="ex">
+<li><del>The stuff are friendly.</del> → <em>The <strong>staff</strong> are friendly.</em> (employees) / <em>Put your <strong>stuff</strong> here.</em> (things)</li>
+</ul>
+<h2 id="sympathetic">Sympathetic</h2>
+<ul class="ex">
+<li><del>She's very sympathetic (= nice)</del> → <em>She's very <strong>nice / friendly / likeable</strong></em></li>
+</ul>
+<p><em>Sympathetic</em> = understanding someone's problems.</p>
+<h2 id="take-part-or-take-place">Take part or take place?</h2>
+<ul class="ex">
+<li><del>The concert will take part in the park.</del> → <em>…will <strong>take place</strong> in the park.</em> / <em>I'll <strong>take part</strong> in the race.</em></li>
+</ul>
+<h2 id="tell-or-say">Tell or say?</h2>
+<ul class="ex">
+<li><del>tell hello</del> → <em><strong>say</strong> hello</em>; <del>say a story</del> → <em><strong>tell</strong> a story</em></li>
+</ul>
+<h2 id="that-or-than">That or than?</h2>
+<ul class="ex">
+<li><del>She's taller that me.</del> → <em>She's taller <strong>than</strong> me.</em></li>
+</ul>
+<h2 id="think-about-think-of-or-think">Think about, think of, or think?</h2>
+<ul class="ex">
+<li><del>I think to go</del> → <em>I'm <strong>thinking of / about going</strong></em>; <del>What do you think about?</del> (opinion) → <em>What do you <strong>think of</strong> it?</em></li>
+</ul>
+<h2 id="tired-of-or-tired-from">Tired of or tired from?</h2>
+<ul class="ex">
+<li><del>I'm tired of walking all day</del> (physically) → <em>I'm <strong>tired from</strong> walking all day</em> / <em><strong>tired of</strong> waiting</em> (bored and annoyed)</li>
+</ul>
+<h2 id="travel-trip-or-journey">Travel, trip, or journey?</h2>
+<ul class="ex">
+<li><del>a nice travel</del> → <em>a nice <strong>trip</strong> / <strong>journey</strong></em></li>
+</ul>
+<p><em>Travel</em> is usually a verb or uncountable noun; <em>trip</em> = a visit and return; <em>journey</em> = going from one place to another.</p>
+<h2 id="trouble-or-problem">Trouble or problem?</h2>
+<ul class="ex">
+<li><del>I have a trouble.</del> → <em>I have a <strong>problem</strong>.</em> / <em>I'm <strong>in trouble</strong>.</em> / <em>I have <strong>trouble</strong> sleeping.</em> (uncountable)</li>
+</ul>
+<h2 id="unique-or-only">Unique or only?</h2>
+<ul class="ex">
+<li><del>She is my unique sister.</del> → <em>She is my <strong>only</strong> sister.</em></li>
+</ul>
+<p><em>Unique</em> = very special, the only one of its kind.</p>
+<h2 id="until-now-or-so-far">Until now or so far?</h2>
+<ul class="ex">
+<li><del>Until now everything is fine.</del> → <em><strong>So far</strong>, everything is fine.</em> (<em>until now</em> suggests a change: <em>Until now, I lived alone</em>)</li>
+</ul>
+<h2 id="used-to-and-be-used-to">Used to and be used to</h2>
+<ul class="ex">
+<li><del>I'm used to get up early.</del> → <em>I'm used to <strong>getting</strong> up early.</em> / <em>I <strong>used to</strong> get up early</em> (past habit).</li>
+</ul>
+<h2 id="various-or-varied">Various or varied?</h2>
+<ul class="ex">
+<li><del>a various diet</del> → <em>a <strong>varied</strong> diet</em> (with variety) / <em><strong>various</strong> reasons</em> (several different)</li>
+</ul>
+<h2 id="view-or-sight">View or sight?</h2>
+<ul class="ex">
+<li><del>the sights from my window</del> → <em>the <strong>view</strong> from my window</em>; <em>see the <strong>sights</strong></em> (famous places)</li>
+</ul>
+<h2 id="wait-or-expect">Wait or expect?</h2>
+<ul class="ex">
+<li><del>I'm waiting a baby.</del> → <em>I'm <strong>expecting</strong> a baby.</em>; <del>I expected for an hour</del> → <em>I <strong>waited</strong> for an hour.</em></li>
+</ul>
+<h2 id="what-or-which">What or which?</h2>
+<ul class="ex">
+<li><del>What of these do you want?</del> → <em><strong>Which</strong> of these do you want?</em></li>
+</ul>
+<h2 id="when-or-if">When or if?</h2>
+<ul class="ex">
+<li><del>When I win the lottery…</del> (unlikely) → <em><strong>If</strong> I win the lottery…</em></li>
+</ul>
+<h2 id="where-or-when">Where or when?</h2>
+<ul class="ex">
+<li><del>the day where we met</del> → <em>the day <strong>when</strong> we met</em>; <em>the place <strong>where</strong> we met</em></li>
+</ul>
+<h2 id="which-or-what">Which or what?</h2>
+<ul class="ex">
+<li><del>Which is your name?</del> → <em><strong>What</strong> is your name?</em></li>
+</ul>
+<h2 id="which-or-who">Which or who?</h2>
+<ul class="ex">
+<li><del>the man which</del> → <em>the man <strong>who</strong></em></li>
+</ul>
+<h2 id="win-or-beat">Win or beat?</h2>
+<ul class="ex">
+<li><del>We won the other team.</del> → <em>We <strong>beat</strong> the other team.</em> / <em>We <strong>won</strong> the match.</em></li>
+</ul>
+<h2 id="wish-or-hope">Wish or hope?</h2>
+<ul class="ex">
+<li><del>I wish you will pass.</del> → <em>I <strong>hope</strong> you pass.</em> / <em>I <strong>wish</strong> you luck.</em></li>
+</ul>
+<h2 id="work-job-or-occupation">Work, job, or occupation?</h2>
+<ul class="ex">
+<li><del>I'm looking for a work.</del> → <em>I'm looking for a <strong>job</strong> / for <strong>work</strong></em></li>
+</ul>
+<p><em>Occupation</em> = a formal word for job, used on forms.</p>
+<h2 id="would-or-should">Would or should?</h2>
+<ul class="ex">
+<li><del>You would see a doctor.</del> (advice) → <em>You <strong>should</strong> see a doctor.</em></li>
+</ul>
+<p><em>Would</em> = imagined situations, polite requests.</p>
+</article>
+<nav class="pager"><a class="btn" href="spelling.html">← Spelling mistakes</a><a class="btn" href="word-order.html">Word order mistakes →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

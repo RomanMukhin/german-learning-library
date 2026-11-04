@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="5014b43dfaa0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Spoken English · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Using English</a><span class="sep">/</span><span class="cur">Spoken English</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Using English</span><h1>Spoken English</h1><p class="sub">Pronunciation, intonation, tags, chunks, ellipsis, vague language, hedges, substitution and the small words of conversation: well, so, just, oh, anyway, okay, you know.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#pronunciation">Pronunciation</a></li><li><a href="#intonation">Intonation</a></li><li><a href="#interjections-ouch-hooray">Interjections (ouch, hooray)</a></li><li><a href="#tags">Tags</a></li><li><a href="#chunks">Chunks</a></li><li><a href="#ellipsis">Ellipsis</a></li><li><a href="#headers-and-tails">Headers and tails</a></li><li><a href="#hyperbole">Hyperbole</a></li><li><a href="#vague-expressions">Vague expressions</a></li><li><a href="#downtoners">Downtoners</a></li><li><a href="#hedges-just">Hedges (just)</a></li><li><a href="#substitution">Substitution</a></li><li><a href="#all-right-and-alright">All right and alright</a></li><li><a href="#please-and-thank-you">Please and thank you</a></li><li><a href="#here-and-there">Here and there</a></li><li><a href="#just">Just</a></li><li><a href="#kind-of-and-sort-of">Kind of and sort of</a></li><li><a href="#oh">Oh</a></li><li><a href="#so-and-not-with-expect-hope-think-etc">So and not with expect, hope, think, etc.</a></li><li><a href="#so">So</a></li><li><a href="#yes">Yes</a></li><li><a href="#anyway">Anyway</a></li><li><a href="#discourse-markers-so-right-okay">Discourse markers (so, right, okay)</a></li><li><a href="#in-fact">In fact</a></li><li><a href="#okay-ok">Okay, OK</a></li><li><a href="#well">Well</a></li><li><a href="#you-know">You know</a></li><li><a href="#you-see">You see</a></li></ol></nav>
+<article class="prose card">
+<h2 id="pronunciation">Pronunciation</h2>
+<p>English spelling doesn't show pronunciation reliably, so learn the sound of each new word. Key features of natural speech:</p>
+<ul class="ex">
+<li><strong>word stress</strong>: one syllable is stronger: <em>PHOtograph, phoTOgrapher, photoGRAphic</em></li>
+<li><strong>weak forms</strong>: small grammar words are reduced in normal speech: <em>to</em> /tə/, <em>and</em> /ən/, <em>can</em> /kən/, <em>of</em> /əv/</li>
+<li><strong>schwa</strong> /ə/: the most common English vowel, in unstressed syllables: <em>a<strong>bout</strong>, sof<strong>a</strong></em></li>
+<li><strong>linking</strong>: words run together: <em>an apple</em> → /əˈnæpl/</li>
+<li><strong>sentence stress</strong>: content words (nouns, main verbs, adjectives) are stressed, grammar words aren't</li>
+</ul>
+<h2 id="intonation">Intonation</h2>
+<p>Intonation is the rise and fall of the voice. It shows whether we are finished, asking, or uncertain.</p>
+<ul class="ex">
+<li><strong>falling</strong> ↘: statements, <em>wh</em>-questions, commands, certainty — <em>I live in ↘London.</em> <em>Where do you ↘live?</em></li>
+<li><strong>rising</strong> ↗: yes/no questions, surprise, checking, lists not finished — <em>Are you ↗ready?</em> <em>↗Really?</em></li>
+<li><strong>fall-rise</strong> ↘↗: something unsaid, reservations, politeness — <em>Well, it's ↘↗possible…</em> (but I doubt it)</li>
+</ul>
+<h2 id="interjections-ouch-hooray">Interjections (ouch, hooray)</h2>
+<p>Interjections are short words that express feelings: <em>ouch</em> (pain), <em>oops</em> (small mistake), <em>hooray</em> (joy), <em>ugh</em> / <em>yuck</em> (disgust), <em>wow</em> (surprise, admiration), <em>phew</em> (relief), <em>er / um</em> (hesitation), <em>shh</em> (be quiet), <em>aha</em> (understanding), <em>hmm</em> (thinking, doubt). They are typical of speech and informal writing.</p>
+<h2 id="tags">Tags</h2>
+<h3 id="uses-and-form">Uses and form</h3>
+<p>Tags are short structures added to the end of a sentence to check, invite agreement, or emphasise.</p>
+<h3 id="question-tags">Question tags</h3>
+<p>Form: auxiliary (or <em>be</em>) + pronoun, usually opposite in polarity to the main clause:</p>
+<ul class="ex">
+<li><strong>Type 1</strong> (positive + negative tag): <em>It's cold, <strong>isn't it</strong>?</em> <em>You live here, <strong>don't you</strong>?</em></li>
+<li><strong>Type 2</strong> (negative + positive tag): <em>You aren't busy, <strong>are you</strong>?</em> <em>She didn't come, <strong>did she</strong>?</em></li>
+</ul>
+<p>Falling intonation = I expect agreement; rising = a real question. Note: <em>I'm late, <strong>aren't I</strong>?</em> <em>Let's go, <strong>shall we</strong>?</em> <em>Nobody called, <strong>did they</strong>?</em></p>
+<p>Same-polarity tags (positive + positive) show interest or surprise: <em>So you're leaving, <strong>are you</strong>?</em></p>
+<h3 id="imperative-tags">Imperative tags</h3>
+<p><em>Sit down, <strong>will you</strong>?</em> <em>Pass the salt, <strong>would you</strong>?</em> <em>Don't forget, <strong>will you</strong>?</em></p>
+<h3 id="statement-tags">Statement tags</h3>
+<p>They repeat or add emphasis: <em>He's a good player, <strong>Tom is</strong>.</em> <em>I'm hungry, <strong>I am</strong>.</em> (informal British)</p>
+<h3 id="universal-tags">Universal tags</h3>
+<p>Informal speech uses invariable tags: <em>right?</em>, <em>yeah?</em>, <em>eh?</em> (Br): <em>You're coming, <strong>right</strong>?</em></p>
+<h2 id="chunks">Chunks</h2>
+<p>Chunks are groups of words that speakers store and use as single units: <em>at the end of the day</em>, <em>I don't know if…</em>, <em>Do you know what I mean?</em>, <em>as far as I know</em>, <em>the thing is…</em></p>
+<h3 id="in-speaking-and-writing">In speaking and writing</h3>
+<p>In speech, chunks give us time and sound fluent: <em><strong>I don't know if</strong> you remember…</em> <em><strong>You know the</strong> shop next to the bank?</em> In writing, fixed chunks organise text: <em>on the other hand</em>, <em>in addition to</em>, <em>as a result</em>.</p>
+<h3 id="chunks-as-frames">Chunks as frames</h3>
+<p>Some chunks are frames with a slot: <em>the ___ thing is…</em>, <em>It's not that ___, it's just that ___</em>.</p>
+<h2 id="ellipsis">Ellipsis</h2>
+<p>Ellipsis means leaving out words that are understood.</p>
+<h3 id="textual-ellipsis">Textual ellipsis</h3>
+<p>Words are left out because they appear earlier in the text: <em>"Are you coming?" "Yes, I am (coming)."</em> <em>She can swim, but I can't (swim).</em></p>
+<h3 id="situational-ellipsis">Situational ellipsis</h3>
+<p>In informal speech, words that are clear from the situation are left out:</p>
+<ul class="ex">
+<li>subject pronouns: <em>(I) Hope you're well.</em> <em>(It) Sounds good.</em></li>
+<li>subject + auxiliary: <em>(Are you) Ready?</em> <em>(Have you) Seen Tom?</em></li>
+<li>articles: <em>(The) Problem is, we're late.</em></li>
+<li>questions with tags: <em>(It's a) Nice day, isn't it?</em></li>
+<li>fixed expressions: <em>(I'll) See you later.</em> <em>(Thank you.)</em></li>
+</ul>
+<h2 id="headers-and-tails">Headers and tails</h2>
+<p><strong>Headers</strong> put a topic at the start of a sentence, then refer back to it with a pronoun: <em><strong>That woman</strong> in the red coat, <strong>she</strong>'s my teacher.</em> <strong>Tails</strong> add a noun phrase at the end to clarify or comment: <em><strong>It</strong>'s very nice, <strong>that restaurant</strong>.</em> <em>He's a good guy, <strong>Tom</strong>.</em> Both are typical of informal spoken English.</p>
+<h2 id="hyperbole">Hyperbole</h2>
+<p>Hyperbole is deliberate exaggeration for effect: <em>I've told you <strong>a million times</strong>!</em> <em>I'm <strong>starving</strong>.</em> <em>This bag weighs <strong>a ton</strong>.</em> <em>I nearly <strong>died</strong> laughing.</em> It is common in speech and not meant literally.</p>
+<h2 id="vague-expressions">Vague expressions</h2>
+<h3 id="when-we-dont-know-the-name">When we don't know the name</h3>
+<p><em>thing, thingy, stuff, whatsit, whatsername</em>: <em>Pass me that <strong>thing</strong>.</em></p>
+<h3 id="sounding-less-factual">Sounding less factual</h3>
+<p><em>sort of, kind of, about, around, -ish, or so, more or less</em>: <em>It's <strong>kind of</strong> blue.</em> <em>We'll be there <strong>around</strong> six<strong>ish</strong></em>.</p>
+<h3 id="groups-and-categories">Groups and categories</h3>
+<p><em>and things (like that), and stuff, and so on, or something, or whatever, and everything</em>: <em>We had sandwiches <strong>and stuff</strong>.</em></p>
+<h3 id="when-vague-language-is-impolite">When vague language is impolite</h3>
+<p>Too much vagueness can sound careless or unclear in formal writing or professional situations. Use precise words there.</p>
+<h2 id="downtoners">Downtoners</h2>
+<p>Downtoners reduce the force of what we say: <em>a bit, a little, slightly, rather, fairly, somewhat, kind of, sort of</em>. <em>It's <strong>a bit</strong> late.</em> <em>I'm <strong>slightly</strong> worried.</em> They make complaints and criticism sound more polite.</p>
+<h2 id="hedges-just">Hedges (just)</h2>
+<p>Hedges make what we say less direct or less certain, so that it sounds polite or careful.</p>
+<ul class="ex">
+<li><strong>tense and aspect</strong>: <em>I <strong>was wondering</strong> if…</em> / <em>I <strong>wanted</strong> to ask…</em></li>
+<li><strong>modals</strong>: <em>It <strong>might</strong> be a problem.</em> <em>That <strong>could</strong> be right.</em></li>
+<li><strong>vague language</strong>: <strong><em>just</em></strong>, <strong><em>sort of</em></strong>, <strong><em>a bit</em></strong>: <em>I <strong>just</strong> need a minute.</em></li>
+<li><strong>verbs</strong>: <em>I <strong>feel</strong> / <strong>think</strong> / <strong>guess</strong> / <strong>suppose</strong> it's too expensive.</em> <em>It <strong>seems</strong> that…</em></li>
+<li><strong>academic writing</strong>: <em>The results <strong>suggest</strong> that…</em>, <em>This <strong>may</strong> indicate…</em>, <strong><em>It appears that</em></strong>…, <strong><em>to some extent</em></strong></li>
+</ul>
+<h2 id="substitution">Substitution</h2>
+<h3 id="purpose">Purpose</h3>
+<p>Substitution replaces a word or phrase with a shorter one to avoid repetition.</p>
+<h3 id="substituting-with-do-and-so">Substituting with do and so</h3>
+<ul class="ex">
+<li><strong><em>do / does / did</em></strong>: <em>"She likes jazz." "So <strong>do</strong> I."</em> <em>I don't play tennis, but my sister <strong>does</strong>.</em></li>
+<li><strong><em>do so</em></strong> (formal): <em>He promised to help, and he <strong>did so</strong>.</em></li>
+<li><strong><em>so</em></strong> after <em>think, hope, expect, suppose, be afraid</em>: <em>"Is it raining?" "I think <strong>so</strong>."</em></li>
+</ul>
+<h3 id="substitution-for-nouns-one-some-ones-that-those">Substitution for nouns: one, some, ones, that, those</h3>
+<ul class="ex">
+<li><em>I need a pen. Have you got <strong>one</strong>?</em> / <em>I like the red <strong>ones</strong>.</em></li>
+<li><em>"Any milk?" "There's <strong>some</strong> in the fridge."</em></li>
+<li>indefinite quantifiers: <em>little, all, both, neither, many</em>: <em>I invited them, but <strong>neither</strong> came.</em></li>
+<li><em>that / those</em> in formal comparisons: <em>The population of Tokyo is larger than <strong>that</strong> of London.</em></li>
+</ul>
+<h2 id="all-right-and-alright">All right and alright</h2>
+<p><em>All right</em> is the standard spelling; <em>alright</em> is common, especially in informal writing, but some readers see it as incorrect.</p>
+<ul class="ex">
+<li>adjective: <em>Are you <strong>all right</strong>?</em> (OK, not hurt) / <em>The food was <strong>all right</strong>.</em> (acceptable)</li>
+<li>adverb: <em>Did you sleep <strong>all right</strong>?</em></li>
+<li>discourse marker: <em><strong>All right</strong>, let's begin.</em> (agreement, starting) / <em>"Can you help?" "<strong>All right</strong>."</em></li>
+</ul>
+<h2 id="please-and-thank-you">Please and thank you</h2>
+<h3 id="please">Please</h3>
+<p><em>Please</em> makes requests polite: <em>Can I have a coffee, <strong>please</strong>?</em> <em><strong>Please</strong> sit down.</em> It goes at the start, end, or before the verb: <em>Could you <strong>please</strong> wait?</em> <em>Yes, <strong>please</strong>.</em> (accepting an offer) As a verb, <em>please</em> means "make happy": <em>It's hard to <strong>please</strong> him.</em></p>
+<h3 id="thank-you-and-thanks">Thank you and thanks</h3>
+<p><em>Thank you</em> is neutral; <em>thanks</em> is informal; <em>thanks a lot / thanks very much</em> / <em>cheers</em> (Br informal). <em>Thank you <strong>for</strong> + noun / -ing</em>: <em>Thank you <strong>for helping</strong> me.</em> <em>Thank-you</em> as a noun: <em>a <strong>thank-you</strong> card</em>.</p>
+<h3 id="replying-to-thanks">Replying to thanks</h3>
+<p><em>You're welcome.</em> <em>Not at all.</em> (Br) <em>No problem.</em> <em>That's OK / all right.</em> <em>My pleasure.</em> <em>Don't mention it.</em></p>
+<h3 id="thanks-to">Thanks to</h3>
+<p><em>Thanks to</em> = because of (good or ironic): <em><strong>Thanks to</strong> your help, we finished early.</em></p>
+<h2 id="here-and-there">Here and there</h2>
+<h3 id="meanings">Meanings</h3>
+<p><em>Here</em> = this place, near the speaker; <em>there</em> = that place, further away. They match <em>this/that</em>, <em>come/go</em> and <em>bring/take</em>: <em><strong>Bring</strong> it <strong>here</strong>.</em> <em><strong>Take</strong> it <strong>there</strong>.</em></p>
+<h3 id="after-prepositions-and-at-the-front">After prepositions and at the front</h3>
+<p><em>from <strong>here</strong>, up <strong>there</strong>, near <strong>here</strong>, in <strong>here</strong></em>. At the front, a noun subject comes after the verb, a pronoun before: <em><strong>Here comes</strong> the bus!</em> <strong><em>Here it comes!</em></strong> <em><strong>There goes</strong> my train.</em></p>
+<h3 id="fixed-phrases">Fixed phrases</h3>
+<ul class="ex">
+<li><strong><em>Here you are / Here you go</em></strong> (giving something)</li>
+<li><strong><em>There you are</em></strong> (giving, or "I told you so")</li>
+<li><strong><em>Here it is! / There he is!</em></strong> (finding)</li>
+<li><strong><em>Hello there!</em></strong> (friendly greeting)</li>
+</ul>
+<h2 id="just">Just</h2>
+<ul class="ex">
+<li>"simply, absolutely": <em>It's <strong>just</strong> wonderful.</em> <em>I <strong>just</strong> don't understand.</em></li>
+<li>"exactly": <em>That's <strong>just</strong> what I wanted.</em> <em><strong>just</strong> like her mother</em></li>
+<li>"only": <em>It's <strong>just</strong> a scratch.</em> <em><strong>Just</strong> a moment.</em></li>
+<li>time: <em>I've <strong>just</strong> arrived.</em> (very recently) <em>I'm <strong>just</strong> leaving.</em> (now) <em><strong>just</strong> before / after</em></li>
+<li>emphasis: <em><strong>Just</strong> look at this!</em></li>
+<li>softening: <em>Could I <strong>just</strong> ask a question?</em></li>
+</ul>
+<h2 id="kind-of-and-sort-of">Kind of and sort of</h2>
+<p>In informal speech, <em>kind of</em> and <em>sort of</em> (written <em>kinda / sorta</em> in very informal texts) make what we say less precise or less direct: <em>It's <strong>kind of</strong> strange.</em> <em>I <strong>sort of</strong> understand.</em> They can also be literal: <em>What <strong>kind of</strong> music?</em></p>
+<h2 id="oh">Oh</h2>
+<h3 id="as-an-interjection-and-discourse-marker">As an interjection and discourse marker</h3>
+<p><em>Oh</em> shows surprise, understanding or a sudden thought: <em><strong>Oh</strong>, I forgot!</em> <em><strong>Oh</strong>, that's a shame.</em> <em><strong>Oh</strong>, by the way…</em></p>
+<h3 id="common-combinations">Common combinations</h3>
+<ul class="ex">
+<li><strong><em>oh yes / oh no</em></strong> — remembering, emphasising, disappointment</li>
+<li><strong><em>oh right</em></strong> — I understand now</li>
+<li><strong><em>oh yeah?</em></strong> — interest or doubt</li>
+<li><strong><em>oh well</em></strong> — accepting something you can't change</li>
+<li><strong><em>oh dear</em></strong> — mild worry or sympathy</li>
+</ul>
+<h2 id="so-and-not-with-expect-hope-think-etc">So and not with expect, hope, think, etc.</h2>
+<p>After <em>think, believe, expect, suppose, guess, hope, be afraid</em>, use <strong><em>so</em></strong> to replace a positive clause and <strong><em>not</em></strong> for a negative one:</p>
+<ul class="ex">
+<li><em>"Will it rain?" "I think <strong>so</strong>." / "I hope <strong>not</strong>." / "I'm afraid <strong>so</strong>."</em></li>
+<li>With <em>think, believe, expect</em> the negative is usually <em>I <strong>don't</strong> think so</em>, rather than <em>I think not</em> (formal).</li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>I think it.</del> / <del>I hope it.</del> → <em>I think <strong>so</strong>. / I hope <strong>so</strong>.</em></li>
+</ul>
+<h2 id="so">So</h2>
+<h3 id="so-adjectiveadverb-so-much-so-many">So + adjective/adverb, so much, so many</h3>
+<p><em>It's <strong>so</strong> difficult.</em> <em>She speaks <strong>so</strong> slowly.</em> <em><strong>so much</strong> money</em>, <em><strong>so many</strong> people</em>.</p>
+<h3 id="so-as-a-substitute">So as a substitute</h3>
+<p><em>"Is she coming?" "I think <strong>so</strong>."</em> <em>If <strong>so</strong>, …</em> <em>It's expensive, <strong>more so</strong> than I expected.</em> <em>He said <strong>so</strong>.</em></p>
+<h3 id="so-am-i-so-do-i-neither-do-i">So am I, so do I, neither do I</h3>
+<p>Agreeing with positive statements: <em>"I'm tired." "<strong>So am I</strong>."</em> <em>"I love it." "<strong>So do I</strong>."</em> With negatives: <em>"I can't swim." "<strong>Neither / Nor can I</strong>."</em></p>
+<h3 id="in-exclamations">In exclamations</h3>
+<p><em>It was <strong>so</strong> good!</em> <em>I'm <strong>so</strong> sorry!</em></p>
+<h3 id="as-a-conjunction-and-with-that-clauses">As a conjunction and with that-clauses</h3>
+<ul class="ex">
+<li>result: <em>It was late, <strong>so</strong> we went home.</em></li>
+<li><em>so … that</em>: <em>It was <strong>so</strong> cold <strong>that</strong> the river froze.</em></li>
+<li>purpose: <strong><em>so (that)</em></strong>: <em>I left early <strong>so (that)</strong> I wouldn't miss the bus.</em></li>
+</ul>
+<h3 id="as-a-discourse-marker">As a discourse marker</h3>
+<p><em>So</em> starts a topic, sums up, or asks for more: <em><strong>So</strong>, what did you do at the weekend?</em> <em><strong>So</strong> that's it.</em></p>
+<h2 id="yes">Yes</h2>
+<p><em>Yes</em> is the normal answer agreeing or saying something is true. In informal speech: <em>yeah, yep, uh-huh, sure</em>. When answering negative questions, <em>yes</em> agrees with the positive fact: <em>"Aren't you coming?" "<strong>Yes</strong>, I am."</em> / <em>"<strong>No</strong>, I'm not."</em> <em>Yes</em> with rising intonation can mean "Can I help you?" or "Go on".</p>
+<h2 id="anyway">Anyway</h2>
+<ul class="ex">
+<li>"in spite of that": <em>It was raining, but we went out <strong>anyway</strong>.</em></li>
+<li>returning to the main topic after an interruption: <em><strong>Anyway</strong>, as I was saying…</em></li>
+<li>moving on in a story: <em><strong>Anyway</strong>, we finally got there.</em></li>
+<li>closing a conversation: <em><strong>Anyway</strong>, I'd better go.</em></li>
+<li>"at least, more accurately": <em>She's leaving — <strong>anyway</strong>, that's what she told me.</em></li>
+</ul>
+<h2 id="discourse-markers-so-right-okay">Discourse markers (so, right, okay)</h2>
+<p>Discourse markers are words and phrases that organise and manage conversation.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Markers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>starting</td>
+<td><em>Right, … / Okay, … / So, … / Well, …</em></td>
+</tr>
+<tr>
+<td>ending</td>
+<td><em>Anyway, … / Right then. / Okay, that's it.</em></td>
+</tr>
+<tr>
+<td>changing topic</td>
+<td><em>By the way, … / Anyway, … / Talking of …</em></td>
+</tr>
+<tr>
+<td>ordering</td>
+<td><em>First(ly), … / Then, … / Finally, …</em></td>
+</tr>
+<tr>
+<td>reformulating</td>
+<td><em>I mean, … / In other words, … / Or rather, …</em></td>
+</tr>
+<tr>
+<td>shared knowledge</td>
+<td><em>You know, … / You see, … / As you know, …</em></td>
+</tr>
+<tr>
+<td>responding, showing interest</td>
+<td><em>Really? / Right. / Absolutely. / I see. / Exactly. / Uh-huh.</em></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="in-fact">In fact</h2>
+<p><em>In fact</em> adds information that is more exact, surprising or that contrasts with what was said: <em>I don't mind. <strong>In fact</strong>, I'd love to help.</em> <em>He said he'd be late, but <strong>in fact</strong> he arrived early.</em> It is similar to <em>actually</em> and <em>as a matter of fact</em>.</p>
+<h2 id="okay-ok">Okay, OK</h2>
+<ul class="ex">
+<li>discourse marker: <em><strong>Okay</strong>, let's start.</em> / <em><strong>OK</strong>, see you tomorrow.</em></li>
+<li>agreeing: <em>"Shall we go?" "<strong>OK</strong>."</em></li>
+<li>checking understanding: <em>Turn left at the church, <strong>OK</strong>?</em></li>
+<li>adjective: <em>The film was <strong>OK</strong></em> (acceptable, not great). <em>Are you <strong>OK</strong>?</em></li>
+<li>adverb: <em>She's doing <strong>OK</strong>.</em></li>
+</ul>
+<p>Both spellings are correct; <em>OK</em> is more common.</p>
+<h2 id="well">Well</h2>
+<h3 id="as-a-discourse-marker_1">As a discourse marker</h3>
+<p><em>Well</em> gives thinking time, softens disagreement, or shows a change: <em><strong>Well</strong>, I'm not sure.</em> <em><strong>Well</strong>, actually, I disagree.</em> <em><strong>Well</strong>, well!</em> (surprise) <em><strong>Oh well</strong>.</em> (acceptance)</p>
+<h3 id="as-an-adverb-adjective-and-well-vs-good">As an adverb, adjective, and well vs good</h3>
+<ul class="ex">
+<li>adverb: <em>She sings <strong>well</strong>.</em> (<em>good</em> is the adjective: <em>She's a <strong>good</strong> singer.</em>)</li>
+<li>adjective (health): <em>I'm not <strong>well</strong>.</em> <em>Get <strong>well</strong> soon.</em></li>
+<li><em>well</em> + participle: <em>a <strong>well-known</strong> writer</em>, <em>well done</em></li>
+</ul>
+<h2 id="you-know">You know</h2>
+<p><em>You know</em> is a very common marker in informal speech. It checks shared knowledge, gives thinking time, or emphasises: <em>I met him at, <strong>you know</strong>, that café near the station.</em> <em><strong>You know</strong> what? I'm going to quit.</em> Too much <em>you know</em> sounds unconfident in formal speaking.</p>
+<h2 id="you-see">You see</h2>
+<p><em>You see</em> introduces an explanation, especially of something the listener might not know: <em>I can't come tomorrow. <strong>You see</strong>, my mother is ill.</em> It is softer than <em>because</em>.</p>
+</article>
+<nav class="pager"><a class="btn" href="reported-speech.html">← Reported speech</a><a class="btn" href="types-of-english.html">Types of English →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

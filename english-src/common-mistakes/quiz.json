@@ -1,0 +1,33 @@
+{
+  "title": "Common mistakes quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "Choose the correct sentence.", "options": ["I did a mistake.", "I made a mistake.", "I took a mistake.", "I had a mistake."], "answer": 1, "explain": "We *make* mistakes."},
+    {"q": "Can I *___* you a question?", "options": ["make", "ask", "do", "say"], "answer": 1, "explain": "We *ask* a question."},
+    {"q": "She *___* a great speech at the wedding.", "options": ["said", "told", "gave", "did"], "answer": 2, "explain": "We *give* or *make* a speech."},
+    {"q": "Choose the correct sentence.", "options": ["We need more informations.", "We need more information.", "We need an information.", "We need more of informations."], "answer": 1, "explain": "*information* is uncountable."},
+    {"q": "One of my *___* lives in Canada.", "options": ["friend", "friends", "friend's", "friendes"], "answer": 1, "explain": "*one of* + plural noun + singular verb."},
+    {"q": "*___* is full of surprises.", "options": ["The life", "Life", "A life", "Lives"], "answer": 1, "explain": "No article for *life* in general."},
+    {"q": "There were *___* people at the stadium.", "options": ["thousands of", "thousands", "thousand of", "thousands of the"], "answer": 0, "explain": "*thousands of* + noun when there's no number before it."},
+    {"q": "*___* people prefer summer to winter.", "options": ["Most of", "Most", "The most", "Mostly"], "answer": 1, "explain": "*most + noun* (no *of*) for people in general."},
+    {"q": "I want to *___* in Barcelona one day.", "options": ["life", "leave", "live", "living"], "answer": 2, "explain": "*live* /lɪv/ is the verb; *life* is the noun; *leave* means go away."},
+    {"q": "She plays the violin really *___*.", "options": ["good", "well", "goodly", "better"], "answer": 1, "explain": "*well* is the adverb of *good*."},
+    {"q": "I'm sorry for the *___*.", "options": ["inconvenient", "inconvenience", "inconveniently", "inconvenienced"], "answer": 1, "explain": "After *the* we need the noun *inconvenience*."},
+    {"q": "Prices rose *___* 5% last year.", "options": ["of", "by", "in", "with"], "answer": 1, "explain": "A rise *in* prices; prices rise *by* an amount."},
+    {"q": "*___* my opinion, the film was too long.", "options": ["According to", "In", "On", "From"], "answer": 1, "explain": "*in my opinion*; *from my point of view*."},
+    {"q": "Who is responsible *___* this project?", "options": ["of", "for", "about", "to"], "answer": 1, "explain": "*responsible for*."},
+    {"q": "Which word is spelt correctly?", "options": ["accomodation", "accommodation", "acommodation", "accommadation"], "answer": 1, "explain": "Double *c* and double *m*: *accommodation*."},
+    {"q": "Which word is spelt correctly?", "options": ["definately", "definitly", "definitely", "difinitely"], "answer": 2, "explain": "Think of *finite*: *de-FINITE-ly*."},
+    {"q": "Could you *___* me some money until Friday?", "options": ["borrow", "lend", "rent", "loan to"], "answer": 1, "explain": "You *lend* something to someone; you *borrow* it from them."},
+    {"q": "Our team *___* them 3–0.", "options": ["won", "beat", "gained", "earned"], "answer": 1, "explain": "You *win* a match or a game; you *beat* a person or team."},
+    {"q": "The concert will *___* in the park.", "options": ["take part", "take place", "happen to", "be taken"], "answer": 1, "explain": "Events *take place*; people *take part in* them."},
+    {"q": "The hotel *___* were very friendly.", "options": ["stuff", "staff", "stafs", "staffs"], "answer": 1, "explain": "*staff* = employees; *stuff* = things."},
+    {"q": "I like *___* very much.", "options": ["very much it", "it", "much it very", "very it"], "answer": 1, "explain": "*very much* goes after the object: *I like it very much*."},
+    {"q": "Can you tell me where *___*?", "options": ["is the post office", "the post office is", "does the post office", "the post office"], "answer": 1, "explain": "Indirect questions use statement word order."},
+    {"q": "I *___* go to the gym on Mondays.", "options": ["go always", "always", "always do", "am always"], "answer": 1, "explain": "Frequency adverbs go before the main verb: *I always go…*"},
+    {"q": "We discussed *___* for hours.", "options": ["about the plan", "the plan", "on the plan", "of the plan"], "answer": 1, "explain": "*discuss* takes a direct object; no preposition."},
+    {"q": "I'm looking forward to *___* from you.", "options": ["hear", "hearing", "heard", "be hearing"], "answer": 1, "explain": "*to* is a preposition here, so *-ing*; and *hear from* someone."},
+    {"q": "Have you ever considered *___* abroad?", "options": ["to work", "working", "work", "to working"], "answer": 1, "explain": "*consider* + *-ing*."},
+    {"q": "I would appreciate *___* if you could reply soon.", "options": ["—", "it", "that", "this"], "answer": 1, "explain": "*I would appreciate it if…* needs *it*."}
+  ]
+}

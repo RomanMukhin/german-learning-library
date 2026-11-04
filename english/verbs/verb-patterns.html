@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="807e13829510">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Verb patterns · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Verb patterns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Verbs</span><h1>Verb patterns</h1><p class="sub">What follows a verb: to-infinitive or -ing, that-clauses, objects, and the patterns of like, love, prefer, help, stop, hear, see, would like and would rather.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#hate-like-love-and-prefer">Hate, like, love and prefer</a></li><li><a href="#hear-see-etc-object-infinitive-or-ing">Hear, see, etc. + object + infinitive or -ing</a></li><li><a href="#help-somebody-to-do">Help somebody (to) do</a></li><li><a href="#look-forward-to">Look forward to</a></li><li><a href="#stop-ing-form-or-to-infinitive">Stop + -ing form or to-infinitive</a></li><li><a href="#verb-patterns-verb-infinitive-or-verb-ing">Verb patterns: verb + infinitive or verb + -ing?</a></li><li><a href="#verb-patterns-verb-that-clause">Verb patterns: verb + that-clause</a></li><li><a href="#verb-patterns-with-and-without-objects">Verb patterns: with and without objects</a></li><li><a href="#would-like">Would like</a></li><li><a href="#would-rather-would-sooner">Would rather, would sooner</a></li></ol></nav>
+<article class="prose card">
+<h2 id="hate-like-love-and-prefer">Hate, like, love and prefer</h2>
+<p>These verbs can take <strong><em>-ing</em></strong> or a <strong><em>to</em>-infinitive</strong> with little difference in British English: <em>I <strong>like swimming / to swim</strong>.</em> <em>-ing</em> often stresses enjoyment of the activity; <em>to</em> + infinitive can suggest a habit or choice: <em>I <strong>like to go</strong> to the dentist twice a year</em> (it's a good idea, not fun).</p>
+<h3 id="would-hate-like-love-prefer">Would + hate, like, love, prefer</h3>
+<p>With <em>would</em>, use the <strong><em>to</em>-infinitive</strong>, for a specific occasion: <em>I <strong>would love to</strong> come.</em> <em>I'<strong>d prefer to</strong> stay home.</em> <em>I'<strong>d hate to</strong> be late.</em></p>
+<h2 id="hear-see-etc-object-infinitive-or-ing">Hear, see, etc. + object + infinitive or -ing</h2>
+<p>With verbs of perception (<em>see, hear, watch, notice, feel, smell</em>):</p>
+<ul class="ex">
+<li>object + <strong>bare infinitive</strong> = the whole action, from start to finish: <em>I <strong>saw</strong> her <strong>cross</strong> the road.</em></li>
+<li>object + <strong>-ing</strong> = part of an action in progress: <em>I <strong>saw</strong> her <strong>crossing</strong> the road.</em> (when I looked, she was in the middle)</li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>I heard him to sing.</del> → <em>I heard him <strong>sing / singing</strong>.</em> (passive: <em>He was heard <strong>to</strong> sing</em>)</li>
+</ul>
+<h2 id="help-somebody-to-do">Help somebody (to) do</h2>
+<p><em>Help</em> can be followed by an object + infinitive <strong>with or without <em>to</em></strong>: <em>She <strong>helped</strong> me <strong>(to) move</strong> house.</em> The form without <em>to</em> is more common, especially in American English. <em>Help</em> can also be followed directly by an infinitive: <em>This will <strong>help (to) reduce</strong> costs.</em> <em>Can't help + -ing</em> means "can't stop yourself": <em>I <strong>can't help laughing</strong>.</em></p>
+<h2 id="look-forward-to">Look forward to</h2>
+<p>In <em>look forward to</em>, <em>to</em> is a <strong>preposition</strong>, so it is followed by a noun or <strong><em>-ing</em></strong>: <em>I'<strong>m looking forward to the holiday</strong>.</em> <em>I <strong>look forward to hearing</strong> from you.</em> (formal letters) Not: <del>look forward to hear</del>.</p>
+<h2 id="stop-ing-form-or-to-infinitive">Stop + -ing form or to-infinitive</h2>
+<p>The meaning changes:</p>
+<ul class="ex">
+<li><strong><em>stop + -ing</em></strong> = finish doing an activity: <em>I <strong>stopped smoking</strong> last year.</em></li>
+<li><strong><em>stop + to</em>-infinitive</strong> = stop one activity in order to do another: <em>We <strong>stopped to have</strong> lunch.</em> (we stopped walking, to eat)</li>
+</ul>
+<h2 id="verb-patterns-verb-infinitive-or-verb-ing">Verb patterns: verb + infinitive or verb + -ing?</h2>
+<h3 id="verbs-followed-by-a-to-infinitive">Verbs followed by a to-infinitive</h3>
+<p><em>afford, agree, arrange, ask, choose, decide, expect, fail, hope, learn, manage, need, offer, plan, pretend, promise, refuse, seem, threaten, want, would like</em></p>
+<ul class="ex">
+<li><em>She <strong>agreed to</strong> help.</em> <em>I can't <strong>afford to</strong> buy it.</em></li>
+</ul>
+<h3 id="verbs-followed-by-ing">Verbs followed by -ing</h3>
+<p><em>admit, avoid, consider, deny, dislike, enjoy, finish, imagine, involve, keep, mind, miss, practise, recommend, risk, suggest, can't stand, give up, put off</em></p>
+<ul class="ex">
+<li><em>I <strong>enjoy reading</strong>.</em> <em>Would you <strong>mind waiting</strong>?</em> Not: <del>enjoy to read</del></li>
+</ul>
+<h3 id="new-subject-before-ing">New subject before -ing</h3>
+<p><em>I don't mind <strong>him / his</strong> coming.</em> (object pronoun is more common in speech; possessive is formal)</p>
+<h3 id="verbs-followed-by-either-with-a-change-in-meaning">Verbs followed by either, with a change in meaning</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>+ -ing</th>
+<th>+ to-infinitive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remember</td>
+<td>memory of the past: <em>I <strong>remember locking</strong> the door.</em></td>
+<td>not forgetting a task: <em><strong>Remember to lock</strong> the door.</em></td>
+</tr>
+<tr>
+<td>forget</td>
+<td>(negative) memory: <em>I'll never <strong>forget seeing</strong> her.</em></td>
+<td>not do a task: <em>I <strong>forgot to call</strong> her.</em></td>
+</tr>
+<tr>
+<td>try</td>
+<td>experiment: <em><strong>Try restarting</strong> the computer.</em></td>
+<td>make an effort: <em>I <strong>tried to open</strong> it, but it was stuck.</em></td>
+</tr>
+<tr>
+<td>regret</td>
+<td>sorry about the past: <em>I <strong>regret saying</strong> that.</em></td>
+<td>(formal) sorry to announce: <em>We <strong>regret to inform</strong> you…</em></td>
+</tr>
+<tr>
+<td>go on</td>
+<td>continue: <em>She <strong>went on talking</strong>.</em></td>
+<td>change to a new activity: <em>She <strong>went on to become</strong> a doctor.</em></td>
+</tr>
+<tr>
+<td>mean</td>
+<td>involve: <em>It <strong>means getting</strong> up early.</em></td>
+<td>intend: <em>I <strong>meant to</strong> call.</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="verbs-followed-by-either-with-little-change">Verbs followed by either, with little change</h3>
+<p><em>begin, start, continue, like, love, hate, prefer</em>: <em>It <strong>started raining / to rain</strong>.</em></p>
+<h3 id="to-infinitive-after-an-object">To-infinitive after an object</h3>
+<p><em>advise, allow, ask, encourage, expect, forbid, force, invite, order, persuade, remind, teach, tell, want, warn</em>: <em>She <strong>told me to</strong> wait.</em> <em>I <strong>want you to</strong> come.</em></p>
+<h2 id="verb-patterns-verb-that-clause">Verb patterns: verb + that-clause</h2>
+<h3 id="reporting-verbs-that-clause">Reporting verbs + that-clause</h3>
+<p><em>say, think, believe, know, hope, explain, agree, decide, suggest, promise, realise, admit</em>: <em>She <strong>said (that)</strong> she was busy.</em> <em>That</em> is often left out in speech.</p>
+<h3 id="indirect-object-that-clause">Indirect object + that-clause</h3>
+<p><em>tell, inform, remind, promise, assure, convince, persuade, warn</em> + person + <em>that</em>: <em>He <strong>told me that</strong> he was leaving.</em> <em>She <strong>assured us that</strong> it was safe.</em></p>
+<h3 id="prepositional-phrase-that-clause">Prepositional phrase + that-clause</h3>
+<p><em>explain, admit, mention, suggest, complain, say</em> + <em>to</em> someone + <em>that</em>: <em>She <strong>explained to me that</strong> the shop was closed.</em> Not: <del>She explained me that</del>.</p>
+<h2 id="verb-patterns-with-and-without-objects">Verb patterns: with and without objects</h2>
+<h3 id="transitive-and-intransitive">Transitive and intransitive</h3>
+<ul class="ex">
+<li><strong>transitive</strong> verbs need an object: <em>She <strong>bought</strong> a car.</em> <del>She bought.</del> (<em>buy, enjoy, make, need, want, describe, discuss</em>)</li>
+<li><strong>intransitive</strong> verbs have no object: <em>He <strong>arrived</strong>.</em> <em>The baby <strong>is sleeping</strong>.</em> (<em>arrive, come, go, happen, sleep, die, fall, wait</em>)</li>
+<li>many verbs are both: <em>She <strong>opened</strong> the door</em> / <em>The door <strong>opened</strong>.</em> <em>I'm <strong>reading</strong> (a book)</em>.</li>
+</ul>
+<h3 id="direct-and-indirect-objects">Direct and indirect objects</h3>
+<p>Verbs like <em>give, send, show, tell, offer, lend, buy, bring, teach</em> can take two objects:</p>
+<ul class="ex">
+<li>person + thing: <em>She <strong>gave me the book</strong>.</em></li>
+<li>thing + <em>to / for</em> + person: <em>She <strong>gave the book to me</strong>.</em> <em>He <strong>bought flowers for her</strong>.</em></li>
+</ul>
+<p>With <em>explain, describe, suggest, say, announce</em>, only the second pattern is possible: <em>Explain <strong>the rule to me</strong>.</em> Not: <del>Explain me the rule</del>.</p>
+<h3 id="object-complement">Object + complement</h3>
+<p><em>They <strong>elected</strong> her <strong>president</strong>.</em> <em>The news <strong>made</strong> him <strong>angry</strong>.</em> <em>We <strong>painted</strong> the room <strong>white</strong></em>.</p>
+<h2 id="would-like">Would like</h2>
+<p><em>Would like</em> is a polite way of saying <em>want</em>, for offers, requests and wishes: <em>I'<strong>d like</strong> a coffee, please.</em> <em><strong>Would</strong> you <strong>like</strong> to come?</em> It is followed by a noun or a <strong><em>to</em>-infinitive</strong>: <em>I'd like <strong>to</strong> go</em>, not <del>I'd like going</del>. <em>Would you like</em> (offer / invitation) ≠ <em>Do you like</em> (general preference).</p>
+<h3 id="would-like-to-have-past-participle">Would like to have + past participle</h3>
+<p>This refers to a past wish that didn't happen: <em>I <strong>would like to have seen</strong> the show</em> (= I didn't see it). Also: <em>I would have liked to see it.</em></p>
+<h3 id="id-like-to">I'd like to</h3>
+<p>As a reply: <em>"Would you like to join us?" "<strong>I'd like to</strong>, but I'm busy."</em> (no verb repeated)</p>
+<h2 id="would-rather-would-sooner">Would rather, would sooner</h2>
+<h3 id="same-subject">Same subject</h3>
+<p><em>Would rather</em> (<em>'d rather</em>) + <strong>bare infinitive</strong> expresses preference: <em>I'<strong>d rather stay</strong> at home tonight.</em> <em>I'd rather walk <strong>than</strong> take the bus.</em> Negative: <em>I'<strong>d rather not</strong> go.</em></p>
+<h3 id="different-subjects">Different subjects</h3>
+<p><em>Would rather</em> + subject + <strong>past simple</strong> (for present/future) or <strong>past perfect</strong> (for past): <em>I'<strong>d rather you didn't</strong> smoke here.</em> <em>I'd rather you <strong>had told</strong> me.</em></p>
+<h3 id="much-rather-and-short-responses">Much rather and short responses</h3>
+<p><em>I'd <strong>much rather</strong> go by train.</em> <em>"Shall we go?" "<strong>I'd rather not</strong>."</em></p>
+<h3 id="would-sooner-would-just-as-soon">Would sooner, would just as soon</h3>
+<p><em>Would sooner</em> means the same (more informal, British). <em>I'<strong>d just as soon</strong> stay here</em> = I don't mind, I'd be equally happy to.</p>
+<h3 id="typical-errors_1">Typical errors</h3>
+<ul class="ex">
+<li><del>I'd rather to stay.</del> → <em>I'd rather <strong>stay</strong>.</em></li>
+<li><del>I'd rather you don't go.</del> → <em>I'd rather you <strong>didn't</strong> go.</em></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="verb-forms.html">← Verb forms</a><a class="btn" href="phrasal-verbs.html">Phrasal verbs and multi-word verbs →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

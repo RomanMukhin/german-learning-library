@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="6bb5c734552f">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Pronouns · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Nouns, pronouns and determiners</a><span class="sep">/</span><span class="cur">Pronouns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Nouns, pronouns and determiners</span><h1>Pronouns</h1><p class="sub">Personal, possessive, reflexive, indefinite, relative and question pronouns, plus it, one, each other and gender-neutral they.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#pronouns">Pronouns</a></li><li><a href="#each-other-one-another">Each other, one another</a></li><li><a href="#everyone-everybody-everything-everywhere">Everyone, everybody, everything, everywhere</a></li><li><a href="#it">It</a></li><li><a href="#gender">Gender</a></li><li><a href="#no-one-nobody-nothing-nowhere">No one, nobody, nothing, nowhere</a></li><li><a href="#one">One</a></li><li><a href="#one-and-ones">One and one's</a></li><li><a href="#pronouns-personal-i-me-you-him-it-they">Pronouns: personal (I, me, you, him, it, they)</a></li><li><a href="#pronouns-possessive-my-mine-your-yours">Pronouns: possessive (my, mine, your, yours)</a></li><li><a href="#pronouns-reflexive-myself-themselves">Pronouns: reflexive (myself, themselves)</a></li><li><a href="#pronouns-indefinite-body-one-thing-where">Pronouns: indefinite (-body, -one, -thing, -where)</a></li><li><a href="#pronouns-one-you-we-they">Pronouns: one, you, we, they</a></li><li><a href="#relative-pronouns">Relative pronouns</a></li><li><a href="#questions-interrogative-pronouns-what-who">Questions: interrogative pronouns (what, who)</a></li><li><a href="#someone-somebody-something-somewhere">Someone, somebody, something, somewhere</a></li><li><a href="#that">That</a></li></ol></nav>
+<article class="prose card">
+<h2 id="pronouns">Pronouns</h2>
+<p>Pronouns replace nouns or noun phrases so we don't have to repeat them: <em>Anna called. <strong>She</strong> wanted to talk to <strong>you</strong>.</em> Main types:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>personal</td>
+<td>I, me, you, she, her, it, we, us, they, them</td>
+</tr>
+<tr>
+<td>possessive</td>
+<td>mine, yours, his, hers, ours, theirs</td>
+</tr>
+<tr>
+<td>reflexive</td>
+<td>myself, yourself, themselves</td>
+</tr>
+<tr>
+<td>indefinite</td>
+<td>someone, anything, nobody, everywhere</td>
+</tr>
+<tr>
+<td>demonstrative</td>
+<td>this, that, these, those</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>who, whom, whose, which, that</td>
+</tr>
+<tr>
+<td>interrogative</td>
+<td>who, what, which, whose</td>
+</tr>
+<tr>
+<td>reciprocal</td>
+<td>each other, one another</td>
+</tr>
+</tbody>
+</table></div>
+<p>Many determiners can also be pronouns: <em>some, any, both, all, each, neither, many</em>.</p>
+<h2 id="each-other-one-another">Each other, one another</h2>
+<p><em>Each other</em> and <em>one another</em> show that two or more people do the same thing to the other(s): <em>Tom and Sue love <strong>each other</strong>.</em> (= Tom loves Sue and Sue loves Tom). <em>One another</em> is a little more formal. Possessive: <em><strong>each other's</strong> houses</em>.</p>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li>Don't use a reflexive: <del>They looked at themselves</del> (= each in a mirror) ≠ <em>They looked at <strong>each other</strong></em>.</li>
+<li>Some verbs don't need <em>each other</em>: <em>They <strong>met</strong> in 2010</em>, <em>We <strong>kissed</strong></em>.</li>
+</ul>
+<h2 id="everyone-everybody-everything-everywhere">Everyone, everybody, everything, everywhere</h2>
+<p><em>Everyone</em> and <em>everybody</em> mean "all people" and are the same (<em>everybody</em> is a little more informal). They take a <strong>singular</strong> verb, but are referred back to with <strong>they/their</strong>:</p>
+<ul class="ex">
+<li><strong>Everyone has</strong> finished, haven't <strong>they</strong>?</li>
+<li><strong>Everything is</strong> ready. / I looked <strong>everywhere</strong>.</li>
+</ul>
+<h3 id="typical-error">Typical error</h3>
+<ul class="ex">
+<li><em>Everyone</em> (all people) ≠ <em>every one</em> (each single item): <em><strong>every one</strong> of the cakes</em>.</li>
+</ul>
+<h2 id="it">It</h2>
+<h3 id="empty-or-dummy-it">Empty or dummy it</h3>
+<p><em>It</em> can be a subject with no real meaning, for weather, time, distance and situations:</p>
+<ul class="ex">
+<li><strong>It</strong>'s raining. / <strong>It</strong>'s ten o'clock. / <strong>It</strong>'s 5 km to the station. / <strong>It</strong>'s nice here.</li>
+</ul>
+<h3 id="anticipatory-it">Anticipatory it</h3>
+<p>When the real subject is a long clause, we often put <em>it</em> first and the clause at the end:</p>
+<ul class="ex">
+<li><strong>It</strong>'s important <strong>to drink water</strong>. (more natural than <em>To drink water is important.</em>)</li>
+<li><strong>It</strong> was clear <strong>that she was tired</strong>.</li>
+<li>I find <strong>it</strong> amazing <strong>that he passed</strong>. (anticipatory object)</li>
+</ul>
+<h3 id="cleft-sentences-and-passives">Cleft sentences and passives</h3>
+<p><em>It</em> + <em>be</em> + focus + <em>who/that</em> emphasises one part: <em><strong>It was my sister who</strong> told me.</em> With reporting verbs in the passive: <em><strong>It is said that</strong> the house is haunted.</em></p>
+<h2 id="gender">Gender</h2>
+<p>English nouns have no grammatical gender. We use <em>he/she</em> for people and sometimes pets, <em>it</em> for things and most animals. When the sex is unknown or not important, use <strong>they/them/their</strong> (singular <em>they</em>): <em>If a student is ill, <strong>they</strong> should call the office.</em> Writers sometimes use <em>he or she</em>, but <em>they</em> is now standard. Some people also choose <em>they</em> as their personal pronoun.</p>
+<h2 id="no-one-nobody-nothing-nowhere">No one, nobody, nothing, nowhere</h2>
+<h3 id="no-one-or-nobody">No one or nobody?</h3>
+<p>Both mean "not anybody" and are the same; <em>nobody</em> is a little more informal. <em>No one</em> is usually written as two words (sometimes <em>no-one</em> in British English). They take a singular verb: <em><strong>Nobody knows</strong>.</em></p>
+<h3 id="nobody-or-not-anybody">Nobody or not … anybody?</h3>
+<p><em><strong>Nobody</strong> came</em> = <em>There was<strong>n't anybody</strong>.</em> Don't use two negatives: <del>I didn't see nobody</del> → <em>I didn't see <strong>anybody</strong></em> / <em>I saw <strong>nobody</strong></em>. At the start of a sentence only the <em>no-</em> form is possible: <em><strong>Nothing</strong> happened.</em> Not: <del>Anything didn't happen.</del></p>
+<h2 id="one">One</h2>
+<p><em>One</em> can be a number (<em>one apple</em>), a pronoun replacing a countable noun, or a general pronoun meaning "people in general".</p>
+<ul class="ex">
+<li>I don't like this shirt. Have you got a blue <strong>one</strong>? / I prefer the <strong>ones</strong> in the window.</li>
+<li>Not with uncountable nouns: <del>I like white wine, but not red one</del> → <em>…but not red</em>.</li>
+</ul>
+<p>Don't use <em>one</em> directly after a possessive or <em>a</em> without an adjective: <em>That's <strong>my</strong> car</em> (not <del>my one</del> in formal English), <em>I need <strong>a</strong> pen. Have you got <strong>one</strong>?</em></p>
+<h2 id="one-and-ones">One and one's</h2>
+<p>As a general pronoun, <em>one</em> means "any person, including me". It is very formal: <em><strong>One</strong> should always be polite.</em> The possessive is <strong><em>one's</em></strong>: <em>to do <strong>one's</strong> best</em>. The reflexive is <strong><em>oneself</em></strong>. In everyday English we use <em>you</em> instead.</p>
+<h2 id="pronouns-personal-i-me-you-him-it-they">Pronouns: personal (I, me, you, him, it, they)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>I</th>
+<th>you</th>
+<th>he</th>
+<th>she</th>
+<th>it</th>
+<th>we</th>
+<th>they</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td>me</td>
+<td>you</td>
+<td>him</td>
+<td>her</td>
+<td>it</td>
+<td>us</td>
+<td>them</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Subject pronouns</strong> go before the verb; <strong>object pronouns</strong> go after verbs and prepositions: <em><strong>She</strong> called <strong>me</strong>.</em> <em>Come with <strong>us</strong>.</em></p>
+<ul class="ex">
+<li>After <em>be</em>, <em>than</em> and <em>as</em>, informal English uses object pronouns: <em>It's <strong>me</strong>.</em> <em>She's taller than <strong>me</strong>.</em></li>
+<li>In pairs, put yourself last: <em>My friend and <strong>I</strong> went.</em> (subject) / <em>She invited my friend and <strong>me</strong>.</em> (object). Not: <del>Me and my friend went</del> in formal English.</li>
+<li><em>You</em> is both singular and plural. <em>They</em> can refer to one person of unknown gender.</li>
+<li><em>We</em> can include or exclude the listener: <em>Shall <strong>we</strong> go?</em> (you and me) / <em><strong>We</strong>'re open on Sundays.</em> (our company)</li>
+</ul>
+<h2 id="pronouns-possessive-my-mine-your-yours">Pronouns: possessive (my, mine, your, yours)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Determiner</th>
+<th>my</th>
+<th>your</th>
+<th>his</th>
+<th>her</th>
+<th>its</th>
+<th>our</th>
+<th>their</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pronoun</td>
+<td>mine</td>
+<td>yours</td>
+<td>his</td>
+<td>hers</td>
+<td>—</td>
+<td>ours</td>
+<td>theirs</td>
+</tr>
+</tbody>
+</table></div>
+<p>Possessive <strong>determiners</strong> go before a noun; possessive <strong>pronouns</strong> stand alone:</p>
+<ul class="ex">
+<li>This is <strong>my</strong> bag. / This bag is <strong>mine</strong>.</li>
+</ul>
+<h3 id="typical-errors_1">Typical errors</h3>
+<ul class="ex">
+<li>No apostrophe: <del>your's</del>, <del>her's</del>, <del>their's</del>, <del>it's</del> (possessive) → <em>yours, hers, theirs, its</em></li>
+<li>Possessives replace articles: <del>the my car</del> → <em>my car</em>; <em>a friend of mine</em>, not <del>a my friend</del></li>
+<li>Use possessives with body parts: <em>She broke <strong>her</strong> arm</em>, not <del>the arm</del>.</li>
+</ul>
+<h2 id="pronouns-reflexive-myself-themselves">Pronouns: reflexive (myself, themselves)</h2>
+<p><em>myself, yourself, himself, herself, itself, ourselves, yourselves, themselves</em></p>
+<h3 id="same-subject-and-object">Same subject and object</h3>
+<ul class="ex">
+<li>I cut <strong>myself</strong>. / Did you enjoy <strong>yourselves</strong>? / Behave <strong>yourself</strong>!</li>
+</ul>
+<p>Many verbs are <strong>not</strong> reflexive in English, unlike in other languages: <em>wash, dress, shave, relax, feel, meet, concentrate</em> usually have no reflexive: <em>I got up and <strong>washed</strong></em>, not <del>washed myself</del> (possible for emphasis).</p>
+<h3 id="for-emphasis">For emphasis</h3>
+<ul class="ex">
+<li>The manager <strong>herself</strong> came to apologise. / I made it <strong>myself</strong>.</li>
+</ul>
+<h3 id="by-reflexive-alone">By + reflexive = alone</h3>
+<ul class="ex">
+<li>She lives <strong>by herself</strong>. / I did it <strong>(all) by myself</strong>. (without help)</li>
+</ul>
+<h3 id="politeness">Politeness</h3>
+<p>Some speakers use <em>myself</em> instead of <em>I/me</em> to sound polite (<em>Contact John or <strong>myself</strong></em>), but many consider this incorrect: use <em>me</em>.</p>
+<h2 id="pronouns-indefinite-body-one-thing-where">Pronouns: indefinite (-body, -one, -thing, -where)</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>some-</th>
+<th>any-</th>
+<th>no-</th>
+<th>every-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>people</td>
+<td>someone / somebody</td>
+<td>anyone / anybody</td>
+<td>no one / nobody</td>
+<td>everyone / everybody</td>
+</tr>
+<tr>
+<td>things</td>
+<td>something</td>
+<td>anything</td>
+<td>nothing</td>
+<td>everything</td>
+</tr>
+<tr>
+<td>places</td>
+<td>somewhere</td>
+<td>anywhere</td>
+<td>nowhere</td>
+<td>everywhere</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Some-</em> forms are typical in affirmatives and offers; <em>any-</em> forms in questions and negatives; <em>no-</em> forms are negative already. They take singular verbs.</p>
+<h3 id="somewhere-nice-nothing-much">Somewhere nice, nothing much</h3>
+<p>Adjectives and <em>else</em> come <strong>after</strong> these pronouns: <em>something <strong>new</strong></em>, <em>somewhere <strong>warm</strong></em>, <em>nothing <strong>special</strong></em>, <em>someone <strong>else</strong></em>. Not: <del>new something</del>.</p>
+<h2 id="pronouns-one-you-we-they">Pronouns: one, you, we, they</h2>
+<p>To talk about people in general:</p>
+<ul class="ex">
+<li><strong>you</strong> (most common, informal): <em><strong>You</strong> can't smoke here.</em></li>
+<li><strong>one</strong> (very formal): <em><strong>One</strong> must be careful.</em></li>
+<li><strong>we</strong> (people including the speaker): <em><strong>We</strong> all need friends.</em></li>
+<li><strong>they</strong> (other people, authorities): <em><strong>They</strong>'re building a new road.</em> <em><strong>They</strong> say it will rain.</em></li>
+</ul>
+<h2 id="relative-pronouns">Relative pronouns</h2>
+<p>Relative pronouns introduce relative clauses, which give more information about a noun.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pronoun</th>
+<th>Refers to</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>who</td>
+<td>people</td>
+<td>the woman <strong>who</strong> lives next door</td>
+</tr>
+<tr>
+<td>whom</td>
+<td>people, as object (formal)</td>
+<td>the man <strong>whom</strong> I met</td>
+</tr>
+<tr>
+<td>whose</td>
+<td>possession</td>
+<td>the girl <strong>whose</strong> father is a pilot</td>
+</tr>
+<tr>
+<td>which</td>
+<td>things, animals, whole sentences</td>
+<td>the car <strong>which</strong> I bought</td>
+</tr>
+<tr>
+<td>that</td>
+<td>people or things (defining clauses only)</td>
+<td>the book <strong>that</strong> I read</td>
+</tr>
+<tr>
+<td>when / where / why</td>
+<td>time / place / reason</td>
+<td>the day <strong>when</strong> we met, the town <strong>where</strong> I grew up, the reason <strong>why</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="subjects-and-objects-leaving-out-the-pronoun">Subjects and objects; leaving out the pronoun</h3>
+<p>When the relative pronoun is the <strong>object</strong> of a defining clause, we can leave it out: <em>the book (<strong>that</strong>) I read</em>. When it is the <strong>subject</strong>, we can't: <em>the man <strong>who</strong> called</em> (not <del>the man called</del> in that meaning).</p>
+<h3 id="with-prepositions">With prepositions</h3>
+<p>Formal: <em>the person <strong>to whom</strong> I spoke</em>. Informal: <em>the person (who/that) I spoke <strong>to</strong></em>. After a preposition use <em>whom</em> or <em>which</em>, never <em>who</em> or <em>that</em>.</p>
+<h3 id="that-after-superlatives-which-for-whole-sentences">That after superlatives; which for whole sentences</h3>
+<p><em>It's the best film <strong>that</strong> I've ever seen.</em> (<em>that</em> is preferred after superlatives, <em>all, everything, nothing</em>) / <em>He passed the exam, <strong>which</strong> surprised everyone.</em> (refers to the whole clause; never <em>that</em> here)</p>
+<h3 id="typical-errors_2">Typical errors</h3>
+<ul class="ex">
+<li><del>the man which</del> → <em>the man <strong>who</strong></em></li>
+<li><del>the book that I read it</del> → <em>the book that I read</em> (no extra pronoun)</li>
+<li><del>My brother, that lives in Rome, …</del> → <em>My brother, <strong>who</strong> lives in Rome,</em> (no <em>that</em> in non-defining clauses)</li>
+</ul>
+<h2 id="questions-interrogative-pronouns-what-who">Questions: interrogative pronouns (what, who)</h2>
+<p><em>Who, whom, what, which</em> and <em>whose</em> can be pronouns that ask questions:</p>
+<ul class="ex">
+<li><strong>Who</strong> called? (subject) / <strong>Who</strong> did you call? (object)</li>
+<li><strong>What</strong> happened? / <strong>Which</strong> do you prefer?</li>
+</ul>
+<h3 id="who-or-whom">Who or whom?</h3>
+<p><em>Whom</em> is the formal object form, used mainly after prepositions: <em>To <strong>whom</strong> did you give it?</em> In everyday English we say <em><strong>Who</strong> did you give it <strong>to</strong>?</em></p>
+<h3 id="what-or-which">What or which?</h3>
+<p><em>What</em> asks about an open range of possibilities; <em>which</em> asks about a limited, known set: <em><strong>What</strong> would you like to drink?</em> / <em><strong>Which</strong> do you want, tea or coffee?</em></p>
+<h2 id="someone-somebody-something-somewhere">Someone, somebody, something, somewhere</h2>
+<h3 id="someone-and-somebody">Someone and somebody</h3>
+<p>Both mean "a person, not named"; <em>somebody</em> is a bit more informal. They take a singular verb but <em>they</em> as the pronoun: <em><strong>Someone</strong> left <strong>their</strong> umbrella.</em></p>
+<h3 id="something-and-anything">Something and anything</h3>
+<p>Use <em>something</em> in affirmatives, offers and requests, even in questions when you expect "yes": <em>Would you like <strong>something</strong> to drink?</em> Use <em>anything</em> in negatives and open questions: <em>I didn't buy <strong>anything</strong>.</em> <em>Is there <strong>anything</strong> I can do?</em></p>
+<h2 id="that">That</h2>
+<h3 id="determiner-and-pronoun">Determiner and pronoun</h3>
+<p><em>That</em> (plural <em>those</em>) points to something further away: <em><strong>That</strong> house is old.</em> <em>Is <strong>that</strong> yours?</em></p>
+<h3 id="relative-pronoun">Relative pronoun</h3>
+<p>In defining relative clauses: <em>The film <strong>that</strong> we saw was great.</em></p>
+<h3 id="that-clauses">That-clauses</h3>
+<p><em>That</em> introduces reported statements and clauses after many verbs and adjectives, and it is often left out in speech: <em>She said (<strong>that</strong>) she was tired.</em> <em>I'm sure (<strong>that</strong>) he'll come.</em></p>
+<h3 id="other-uses">Other uses</h3>
+<ul class="ex">
+<li><em><strong>That's</strong> great / That's right!</em> (that's + adjective in replies)</li>
+<li>intensifier = so (informal): <em>It wasn't <strong>that</strong> bad.</em> <em>I'm not <strong>that</strong> hungry.</em></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="noun-phrases.html">← Noun phrases</a><a class="btn" href="quantifiers.html">Quantifiers →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

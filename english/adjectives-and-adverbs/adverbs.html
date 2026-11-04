@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="02ead3311870">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Adverbs · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Adjectives and adverbs</a><span class="sep">/</span><span class="cur">Adverbs</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Adjectives and adverbs</span><h1>Adverbs</h1><p class="sub">Forms, types, positions and comparison of adverbs, plus the degree words (very, quite, rather) and time words (already, still, ever) learners use every day.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#adverbs">Adverbs</a></li><li><a href="#adverb-phrases">Adverb phrases</a></li><li><a href="#adverbs-and-adverb-phrases-position">Adverbs and adverb phrases: position</a></li><li><a href="#adverbs-and-adverb-phrases-typical-errors">Adverbs and adverb phrases: typical errors</a></li><li><a href="#adverbs-forms">Adverbs: forms</a></li><li><a href="#adverbs-functions">Adverbs: functions</a></li><li><a href="#adverbs-types">Adverbs: types</a></li><li><a href="#comparison-adverbs-worse-more-easily">Comparison: adverbs (worse, more easily)</a></li><li><a href="#fairly">Fairly</a></li><li><a href="#intensifiers-very-at-all">Intensifiers (very, at all)</a></li><li><a href="#largely">Largely</a></li><li><a href="#much-a-lot-lots-a-good-deal-adverbs">Much, a lot, lots, a good deal: adverbs</a></li><li><a href="#pretty">Pretty</a></li><li><a href="#quite">Quite</a></li><li><a href="#rather">Rather</a></li><li><a href="#really">Really</a></li><li><a href="#scarcely">Scarcely</a></li><li><a href="#very">Very</a></li><li><a href="#about">About</a></li><li><a href="#ago">Ago</a></li><li><a href="#already">Already</a></li><li><a href="#always">Always</a></li><li><a href="#early">Early</a></li><li><a href="#ever">Ever</a></li><li><a href="#hardly-ever-rarely-scarcely-seldom">Hardly ever, rarely, scarcely, seldom</a></li><li><a href="#next">Next</a></li><li><a href="#no-longer-not-any-longer">No longer, not any longer</a></li><li><a href="#no-more-not-any-more">No more, not any more</a></li><li><a href="#now">Now</a></li><li><a href="#often">Often</a></li><li><a href="#once">Once</a></li><li><a href="#soon">Soon</a></li><li><a href="#still">Still</a></li><li><a href="#then">Then</a></li><li><a href="#usually">Usually</a></li><li><a href="#eventually">Eventually</a></li><li><a href="#adverbs-as-discourse-markers-anyway-finally">Adverbs as discourse markers (anyway, finally)</a></li><li><a href="#adverbs-as-short-responses-definitely-certainly">Adverbs as short responses (definitely, certainly)</a></li></ol></nav>
+<article class="prose card">
+<h2 id="adverbs">Adverbs</h2>
+<p>Adverbs and adverb phrases tell us more about a verb, an adjective, another adverb or a whole clause. They answer questions such as <em>how?</em>, <em>when?</em>, <em>where?</em>, <em>how often?</em> and <em>how much?</em>.</p>
+<ul class="ex">
+<li>She spoke <strong>quietly</strong>. (verb)</li>
+<li>It was <strong>really</strong> good. (adjective)</li>
+<li>He drives <strong>very</strong> fast. (adverb)</li>
+<li><strong>Fortunately</strong>, we arrived on time. (whole clause)</li>
+</ul>
+<h3 id="meanings-and-functions">Meanings and functions</h3>
+<p>Adverbs can describe manner (<em>slowly</em>), place (<em>here</em>), time (<em>yesterday</em>), frequency (<em>often</em>), degree (<em>extremely</em>), give the speaker's attitude (<em>honestly</em>, <em>sadly</em>), focus on one part of a sentence (<em>only</em>, <em>even</em>) or link ideas (<em>however</em>, <em>then</em>).</p>
+<h2 id="adverb-phrases">Adverb phrases</h2>
+<p>An adverb phrase has an adverb as its main word, sometimes with words before or after it: <em>very slowly</em>, <em>quite often</em>, <em>luckily for us</em>, <em>more quickly than expected</em>.</p>
+<h3 id="types-and-functions">Types and functions</h3>
+<p>Adverb phrases can modify:</p>
+<ul class="ex">
+<li>a verb: She <strong>sang beautifully</strong>.</li>
+<li><em>be</em>: He <strong>is always</strong> late.</li>
+<li>an adjective or adverb: <strong>incredibly</strong> expensive, <strong>far too</strong> quickly</li>
+<li>another phrase: <strong>right</strong> behind the door, <strong>just</strong> after midnight</li>
+<li>a determiner or number: <strong>almost</strong> all, <strong>nearly</strong> twenty</li>
+</ul>
+<p>Prepositional phrases (<em>in the morning</em>, <em>with care</em>) and some noun phrases (<em>last week</em>, <em>this way</em>) often do the same job as adverbs.</p>
+<h2 id="adverbs-and-adverb-phrases-position">Adverbs and adverb phrases: position</h2>
+<p>Adverbs can go in three main positions:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Where</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>front</td>
+<td>before the subject</td>
+<td><strong>Suddenly</strong>, the lights went out.</td>
+</tr>
+<tr>
+<td>mid</td>
+<td>between subject and main verb, after <em>be</em> or the first auxiliary</td>
+<td>She <strong>often</strong> works late. / He is <strong>never</strong> on time. / I have <strong>just</strong> finished.</td>
+</tr>
+<tr>
+<td>end</td>
+<td>after the verb or the object</td>
+<td>They played <strong>well</strong>. / I'll see you <strong>tomorrow</strong>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="manner-place-and-time">Manner, place and time</h3>
+<p>These normally go at the <strong>end</strong>. When there are several, the usual order is <strong>manner → place → time</strong>:</p>
+<ul class="ex">
+<li>She sang <strong>beautifully</strong> <strong>at the concert</strong> <strong>last night</strong>.</li>
+<li>Not: <del>She sang last night beautifully.</del></li>
+</ul>
+<p>Don't put an adverb between a verb and its object: <em>She speaks English <strong>well</strong></em>, not <del>She speaks well English</del>.</p>
+<h3 id="frequency-degree-and-focusing-adverbs">Frequency, degree and focusing adverbs</h3>
+<p>These usually take <strong>mid</strong> position: <em>I <strong>usually</strong> walk to work</em>, <em>We've <strong>almost</strong> finished</em>, <em>She <strong>only</strong> wanted to help</em>.</p>
+<h3 id="evaluative-and-viewpoint-adverbs">Evaluative and viewpoint adverbs</h3>
+<p>These comment on the whole sentence and usually go at the <strong>front</strong>: <em><strong>Surprisingly</strong>, nobody complained.</em> <em><strong>Personally</strong>, I prefer tea.</em></p>
+<h3 id="here-and-there">Here and there</h3>
+<p>After <em>here</em> and <em>there</em> at the front, a noun subject comes after the verb, but a pronoun subject does not: <em><strong>Here comes the bus</strong>.</em> / <em><strong>Here it comes</strong>.</em></p>
+<h2 id="adverbs-and-adverb-phrases-typical-errors">Adverbs and adverb phrases: typical errors</h2>
+<ul class="ex">
+<li>Adverb between verb and object: <del>I like very much football.</del> → <em>I like football <strong>very much</strong>.</em></li>
+<li>Adjective instead of adverb: <del>She drives careful.</del> → <em>She drives <strong>carefully</strong>.</em></li>
+<li>Mid-position after <em>be</em>: <del>She always is late.</del> → <em>She is <strong>always</strong> late.</em></li>
+<li>Time before place: <del>We met yesterday in the park.</del> (possible, but neutral order is) → <em>We met <strong>in the park yesterday</strong>.</em></li>
+</ul>
+<h2 id="adverbs-forms">Adverbs: forms</h2>
+<h3 id="adverbs-ending-in-ly">Adverbs ending in -ly</h3>
+<p>Many adverbs are formed by adding <strong>-ly</strong> to an adjective:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adjective</th>
+<th>Rule</th>
+<th>Adverb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quick, sad</td>
+<td>+ ly</td>
+<td>quickly, sadly</td>
+</tr>
+<tr>
+<td>happy, easy</td>
+<td>y → ily</td>
+<td>happily, easily</td>
+</tr>
+<tr>
+<td>gentle, simple</td>
+<td>le → ly</td>
+<td>gently, simply</td>
+</tr>
+<tr>
+<td>basic, tragic</td>
+<td>ic → ically</td>
+<td>basically, tragically (but <em>publicly</em>)</td>
+</tr>
+<tr>
+<td>full</td>
+<td>+ y</td>
+<td>fully</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="adverbs-ending-in-wards-and-wise">Adverbs ending in -ward(s) and -wise</h3>
+<p><em>backward(s), forward(s), upward(s), homeward(s)</em> show direction; <em>clockwise, otherwise, likewise</em> show manner. <em>Backwards</em> is more common in British English, <em>backward</em> in American English.</p>
+<h3 id="adverbs-with-the-same-form-as-adjectives">Adverbs with the same form as adjectives</h3>
+<p>Some words are both adjectives and adverbs: <em>fast, hard, late, early, straight, high, low, daily, long, well</em>.</p>
+<ul class="ex">
+<li>a <strong>fast</strong> car / She runs <strong>fast</strong>.</li>
+<li>a <strong>hard</strong> exam / She works <strong>hard</strong>.</li>
+</ul>
+<p>Some have a second, -ly form with a <strong>different</strong> meaning:</p>
+<ul class="ex">
+<li><em>hard</em> (with effort) / <em>hardly</em> (almost not)</li>
+<li><em>late</em> (not on time) / <em>lately</em> (recently)</li>
+<li><em>near</em> (close) / <em>nearly</em> (almost)</li>
+<li><em>high</em> (height) / <em>highly</em> (very: <em>highly recommended</em>)</li>
+</ul>
+<h3 id="adjectives-ending-in-ly">Adjectives ending in -ly</h3>
+<p><em>friendly, lovely, lonely, silly, ugly, likely, costly</em> are adjectives, not adverbs. Use a phrase instead: <em>She spoke <strong>in a friendly way</strong></em>, not <del>She spoke friendly</del>.</p>
+<h3 id="adverbs-not-related-to-adjectives">Adverbs not related to adjectives</h3>
+<p>Many common adverbs have no adjective form: <em>very, quite, soon, often, here, there, now, then, always, never, just, still</em>.</p>
+<h3 id="gradable-adverbs">Gradable adverbs</h3>
+<p>Adverbs of manner can usually be graded: <em>very slowly</em>, <em>more slowly</em>, <em>too slowly</em>.</p>
+<h2 id="adverbs-functions">Adverbs: functions</h2>
+<p>Adverbs can modify words, phrases and whole sentences:</p>
+<ul class="ex">
+<li>verbs: <em>He <strong>slowly</strong> opened the door.</em></li>
+<li>adjectives: <em><strong>extremely</strong> hot</em>, <em><strong>fairly</strong> easy</em></li>
+<li>adverbs: <em><strong>quite</strong> often</em>, <em><strong>very</strong> well</em></li>
+<li>prepositional phrases: <em><strong>right</strong> into the room</em>, <em><strong>straight</strong> after lunch</em></li>
+<li>determiners and numbers: <em><strong>nearly</strong> everyone</em>, <em><strong>about</strong> fifty people</em></li>
+<li>nouns (a few adverbs): <em>the <strong>very</strong> idea</em>, <em>the meeting <strong>yesterday</strong></em></li>
+<li>clauses: <em><strong>Clearly</strong>, he's not coming.</em></li>
+</ul>
+<p>They can also act as complements of the verb <em>be</em>: <em>The children are <strong>outside</strong></em>.</p>
+<h2 id="adverbs-types">Adverbs: types</h2>
+<h3 id="time-place-and-manner-early-there-slowly">Time, place and manner (early, there, slowly)</h3>
+<ul class="ex">
+<li><strong>Time</strong> — when or how long: <em>now, soon, yesterday, recently, already, still, for ages</em></li>
+<li><strong>Place</strong> — where: <em>here, there, upstairs, abroad, nearby, everywhere</em></li>
+<li><strong>Manner</strong> — how: <em>slowly, carefully, well, badly, by hand</em></li>
+</ul>
+<h3 id="frequency">Frequency</h3>
+<p><em>always, usually, often, sometimes, occasionally, rarely, seldom, never, every day, once a week</em>. Single-word frequency adverbs usually take mid position; phrases like <em>every day</em> go at the end.</p>
+<h3 id="degree-slightly-and-focusing-generally">Degree (slightly) and focusing (generally)</h3>
+<p>Degree adverbs say how much: <em>very, extremely, quite, rather, slightly, completely, almost</em>. Focusing adverbs point to one part of the sentence: <em>only, just, even, also, especially, mainly, particularly, generally</em>.</p>
+<h3 id="evaluative-surprisingly-and-viewpoint-personally">Evaluative (surprisingly) and viewpoint (personally)</h3>
+<p>Evaluative adverbs give the speaker's opinion: <em>luckily, sadly, obviously, surprisingly, hopefully</em>. Viewpoint adverbs say from which angle something is seen: <em>personally, technically, financially, medically speaking</em>.</p>
+<h3 id="linking-adverbs-then-however">Linking adverbs (then, however)</h3>
+<p>They connect clauses and sentences: <em>however, therefore, also, then, besides, nevertheless, meanwhile, anyway</em>.</p>
+<ul class="ex">
+<li>It was late. <strong>However</strong>, we decided to go on.</li>
+</ul>
+<h2 id="comparison-adverbs-worse-more-easily">Comparison: adverbs (worse, more easily)</h2>
+<h3 id="forms">Forms</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adverb</th>
+<th>Comparative</th>
+<th>Superlative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>same as adjective: <em>fast, hard, late, early</em></td>
+<td>faster, harder</td>
+<td>(the) fastest, hardest</td>
+</tr>
+<tr>
+<td>-ly adverbs: <em>carefully, easily</em></td>
+<td>more carefully, more easily</td>
+<td>(the) most carefully</td>
+</tr>
+<tr>
+<td><em>well</em></td>
+<td>better</td>
+<td>(the) best</td>
+</tr>
+<tr>
+<td><em>badly</em></td>
+<td>worse</td>
+<td>(the) worst</td>
+</tr>
+<tr>
+<td><em>far</em></td>
+<td>further / farther</td>
+<td>(the) furthest / farthest</td>
+</tr>
+<tr>
+<td><em>much / little</em></td>
+<td>more / less</td>
+<td>(the) most / least</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li>She runs <strong>faster than</strong> her brother.</li>
+<li>Could you speak <strong>more slowly</strong>, please? Not: <del>slowlier</del></li>
+<li>Who sings <strong>the best</strong>?</li>
+</ul>
+<p>With adverbs, <em>the</em> before the superlative is often left out: <em>Who sang <strong>best</strong>?</em></p>
+<h2 id="fairly">Fairly</h2>
+<p><em>Fairly</em> is a weak degree adverb meaning "to some degree, but not very". It goes before gradable adjectives and adverbs and usually sounds <strong>less</strong> positive than <em>quite</em> or <em>pretty</em>.</p>
+<ul class="ex">
+<li>The film was <strong>fairly</strong> good. (OK, not great)</li>
+<li>I know him <strong>fairly</strong> well.</li>
+</ul>
+<p>It goes after <em>a/an</em>: <em>a <strong>fairly</strong> easy test</em>. <em>Fairly</em> is not normally used with comparatives (use <em>rather</em> or <em>a bit</em>).</p>
+<h2 id="intensifiers-very-at-all">Intensifiers (very, at all)</h2>
+<p>Intensifiers make the meaning of a word stronger or weaker.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Strengthen</th>
+<th>Weaken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>very, really, extremely, terribly, so, incredibly</td>
+<td>a bit, a little, slightly, fairly, rather, quite</td>
+</tr>
+<tr>
+<td>with extreme adjectives: absolutely, completely, totally, utterly</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>At all</strong> strengthens negatives and questions: <em>I didn't like it <strong>at all</strong>.</em> <em>Do you know him <strong>at all</strong>?</em> <strong>Not at all</strong> is also a polite reply to <em>thank you</em> (British English).</p>
+<aside class="callout hack"><p class="callout-title">Match the intensifier to the adjective</p><p>Gradable adjective → <em>very</em>: <em>very good</em>, <em>very tired</em>. Extreme adjective → <em>absolutely</em>: <em>absolutely wonderful</em>, <em>absolutely exhausted</em>. <em>Really</em> fits both.</p></aside>
+
+<h2 id="largely">Largely</h2>
+<p><em>Largely</em> means "mainly" or "to a great extent". It is common in more formal speech and writing.</p>
+<ul class="ex">
+<li>The success of the project was <strong>largely</strong> due to her work.</li>
+<li>The audience was <strong>largely</strong> made up of students.</li>
+</ul>
+<p>It does not mean "in a large way": <del>The house was built largely</del> → <em>The house was <strong>big</strong></em>.</p>
+<h2 id="much-a-lot-lots-a-good-deal-adverbs">Much, a lot, lots, a good deal: adverbs</h2>
+<h3 id="much">Much</h3>
+<p>As an adverb, <em>much</em> is mostly used in <strong>negatives and questions</strong>: <em>I don't go out <strong>much</strong>.</em> <em>Does it hurt <strong>much</strong>?</em> In affirmative sentences, <em>a lot</em> sounds more natural: <em>I go out <strong>a lot</strong></em>, not <del>I go out much</del>.</p>
+<p><em>Much</em> strengthens comparatives and <em>too</em>: <em><strong>much</strong> better</em>, <em><strong>much</strong> too expensive</em>.</p>
+<h3 id="very-much">Very much</h3>
+<p><em>Very much</em> is common in affirmative sentences with verbs like <em>like, enjoy, appreciate, thank</em>: <em>I enjoyed it <strong>very much</strong>.</em> <em>Thank you <strong>very much</strong>.</em> It goes after the object: <em>I like Italy <strong>very much</strong></em>, not <del>I very much like</del> (possible but formal).</p>
+<h3 id="too-much-so-much">Too much, so much</h3>
+<p><em>I've eaten <strong>too much</strong>.</em> <em>I miss you <strong>so much</strong>.</em></p>
+<h3 id="a-lot-lots-a-good-deal-a-great-deal">A lot, lots, a good deal, a great deal</h3>
+<p><em>A lot</em> and <em>lots</em> are informal; <em>a good deal</em> and <em>a great deal</em> are more formal.</p>
+<ul class="ex">
+<li>She travels <strong>a lot</strong>.</li>
+<li>It's <strong>lots</strong> easier now. (informal)</li>
+<li>Prices have risen <strong>a great deal</strong>.</li>
+</ul>
+<h2 id="pretty">Pretty</h2>
+<p>In informal speech, <em>pretty</em> is a degree adverb meaning "quite" or "fairly": <em>The test was <strong>pretty</strong> hard.</em> <em>She did <strong>pretty</strong> well.</em> <em>Pretty much</em> means "almost": <em>I've <strong>pretty much</strong> finished.</em></p>
+<p>Don't confuse it with the adjective <em>pretty</em> (= attractive).</p>
+<h2 id="quite">Quite</h2>
+<h3 id="quite-gradable-adjectives-and-adverbs">Quite + gradable adjectives and adverbs</h3>
+<p>With gradable words, <em>quite</em> in British English usually means "fairly, but not very":</p>
+<ul class="ex">
+<li>The restaurant was <strong>quite</strong> good. (OK, but not excellent)</li>
+</ul>
+<p>Stress and intonation matter: a falling tone on <em>quite</em> makes it weaker, a stress on the adjective makes it more positive.</p>
+<h3 id="quite-non-gradable-adjectives">Quite + non-gradable adjectives</h3>
+<p>With extreme or absolute words, <em>quite</em> means "completely": <em><strong>quite</strong> right</em>, <em><strong>quite</strong> impossible</em>, <em><strong>quite</strong> amazing</em>.</p>
+<h3 id="quite-nouns-a-bit-a-few-a-lot">Quite + nouns, a bit, a few, a lot</h3>
+<p><em>Quite</em> goes before <em>a/an</em>: <em>It was <strong>quite a</strong> good film.</em> <em>She's <strong>quite a</strong> character.</em> <em>Quite a few</em> and <em>quite a lot</em> mean "a fairly large number/amount": <em>There were <strong>quite a few</strong> people there.</em></p>
+<h3 id="quite-verbs-and-comparatives">Quite + verbs and comparatives</h3>
+<p><em>I <strong>quite</strong> like it</em> (= I like it a bit). With comparatives, use <em>quite a lot / quite a bit</em>: <em>She's <strong>quite a lot</strong> older than me</em>, not <del>quite older</del>.</p>
+<h3 id="not-quite">Not quite</h3>
+<p><em>Not quite</em> means "not completely": <em>I'm <strong>not quite</strong> ready.</em> <em>That's <strong>not quite</strong> what I meant.</em></p>
+<h2 id="rather">Rather</h2>
+<h3 id="rather-as-a-degree-adverb">Rather as a degree adverb</h3>
+<p><em>Rather</em> is a little stronger than <em>quite</em> and is often used for things that are surprising or not wanted: <em>It's <strong>rather</strong> cold today.</em> <em>The test was <strong>rather</strong> difficult.</em> With positive words it can show pleasant surprise: <em>The film was <strong>rather</strong> good.</em></p>
+<h3 id="rather-with-nouns-and-comparatives">Rather with nouns and comparatives</h3>
+<p><em>Rather</em> can come before or after <em>a</em>: <em>a <strong>rather</strong> long walk</em> / <em><strong>rather a</strong> long walk</em>. Unlike <em>quite</em>, it works with comparatives: <em>It's <strong>rather</strong> better than I expected.</em> <em>Rather a lot</em> means "quite a lot".</p>
+<h3 id="rather-verb">Rather + verb</h3>
+<p><em>I <strong>rather</strong> like it.</em> <em>I <strong>rather</strong> think you're right.</em> (polite, British)</p>
+<h3 id="rather-than-would-rather-or-rather">Rather than, would rather, or rather</h3>
+<ul class="ex">
+<li>I'll have tea <strong>rather than</strong> coffee. (alternatives)</li>
+<li>I'<strong>d rather</strong> stay at home tonight. (preference)</li>
+<li>He lives in London, <strong>or rather</strong>, just outside it. (correcting yourself)</li>
+</ul>
+<h2 id="really">Really</h2>
+<p><em>Really</em> is very common in speech. It can:</p>
+<ul class="ex">
+<li>strengthen adjectives and adverbs: <em>It's <strong>really</strong> hot.</em> <em>She sings <strong>really</strong> well.</em></li>
+<li>emphasise a verb: <em>I <strong>really</strong> want to go.</em></li>
+<li>mean "in fact": <em>Is she <strong>really</strong> 40?</em></li>
+<li>show interest or surprise as a response: <em>"I'm moving to Japan." "<strong>Really</strong>?"</em></li>
+</ul>
+<p>Position changes meaning: <em>I <strong>don't really</strong> like it</em> (= I don't like it much) vs. <em>I <strong>really don't</strong> like it</em> (= I strongly dislike it).</p>
+<h2 id="scarcely">Scarcely</h2>
+<p><em>Scarcely</em> means "almost not" or "only just". It is more formal than <em>hardly</em>.</p>
+<ul class="ex">
+<li>I could <strong>scarcely</strong> believe my eyes.</li>
+<li>There was <strong>scarcely</strong> any food left.</li>
+</ul>
+<p><em>Scarcely … when</em> describes one event happening immediately after another: <em>We had <strong>scarcely</strong> sat down <strong>when</strong> the phone rang.</em> In formal writing it can come first with inversion: <em><strong>Scarcely had we</strong> sat down when…</em></p>
+<h2 id="very">Very</h2>
+<h3 id="very-before-adjectives-and-adverbs">Very before adjectives and adverbs</h3>
+<p><em>Very</em> strengthens gradable adjectives and adverbs: <em>very tall</em>, <em>very quickly</em>.</p>
+<h3 id="when-not-to-use-very">When not to use very</h3>
+<ul class="ex">
+<li>Not with extreme or ungradable adjectives: <del>very excellent</del> → <em>absolutely excellent</em></li>
+<li>Not with comparatives: <del>very better</del> → <em>much better</em></li>
+<li>Not with verbs: <del>I very like it</del> → <em>I like it <strong>very much</strong></em></li>
+<li>Not normally with <em>-ed</em> forms used as passive verbs: <del>He was very admired</del> → <em>He was <strong>much / greatly</strong> admired</em> (but <em>very tired, very interested</em> are fine, because they work as adjectives)</li>
+</ul>
+<p><em>Very</em> can go before <em>best, first, last</em> to emphasise: <em>the <strong>very</strong> best</em>, <em>the <strong>very</strong> first time</em>.</p>
+<h3 id="not-very">Not very</h3>
+<p><em>Not very</em> is a polite way to say something negative: <em>It's <strong>not very</strong> good</em> (= quite bad).</p>
+<h2 id="about">About</h2>
+<h3 id="about-as-a-preposition">About as a preposition</h3>
+<p>It means "on the subject of": <em>a book <strong>about</strong> history</em>, <em>What are you talking <strong>about</strong>?</em></p>
+<h3 id="about-as-an-adverb">About as an adverb</h3>
+<p>It means "approximately": <em><strong>about</strong> 30 people</em>, <em>at <strong>about</strong> six o'clock</em>. In British English it can also mean "in different places": <em>There were clothes lying <strong>about</strong></em>.</p>
+<h3 id="be-about-to">Be about to</h3>
+<p><em>Be about to + infinitive</em> means something will happen very soon: <em>Hurry, the train <strong>is about to</strong> leave.</em></p>
+<h2 id="ago">Ago</h2>
+<p><em>Ago</em> shows how far back in the past something happened, counting from now. It comes <strong>after</strong> the time expression and is used with the <strong>past simple</strong>.</p>
+<ul class="ex">
+<li>I met her <strong>three years ago</strong>.</li>
+<li>How long <strong>ago</strong> did it happen?</li>
+<li>Not: <del>I have met her three years ago.</del> / <del>ago three years</del></li>
+</ul>
+<p>When counting back from a moment in the past, use <strong>before</strong> or <strong>earlier</strong>: <em>She had left two days <strong>before</strong></em>.</p>
+<h2 id="already">Already</h2>
+<h3 id="meaning">Meaning</h3>
+<p><em>Already</em> shows something has happened earlier than expected, or sooner than now: <em>I've <strong>already</strong> eaten.</em> In questions it shows surprise: <em>Have you finished <strong>already</strong>?</em></p>
+<h3 id="position">Position</h3>
+<ul class="ex">
+<li>mid position (most common): <em>She has <strong>already</strong> left.</em></li>
+<li>end position (emphasis or surprise): <em>Are you leaving <strong>already</strong>?</em></li>
+<li>front position (rare): <em><strong>Already</strong>, the first guests were arriving.</em></li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<p>British English normally uses the present perfect with <em>already</em>: <em>I've <strong>already</strong> seen it</em> (American English also allows <em>I already saw it</em>). Don't confuse <em>already</em> with <em>all ready</em> (= completely prepared).</p>
+<h2 id="always">Always</h2>
+<h3 id="meaning-and-position">Meaning and position</h3>
+<p><em>Always</em> means "every time" or "all the time". It goes in mid position: <em>I <strong>always</strong> walk to work.</em> <em>She's <strong>always</strong> cheerful.</em></p>
+<h3 id="always-with-continuous-forms">Always with continuous forms</h3>
+<p>With the present or past continuous, <em>always</em> often shows irritation: <em>He's <strong>always losing</strong> his keys!</em></p>
+<h3 id="commands-and-modals">Commands and modals</h3>
+<p>In instructions, <em>always</em> goes first: <em><strong>Always</strong> lock the door.</em> With <em>can/could</em> it suggests another possibility: <em>If it rains, we can <strong>always</strong> go to the cinema.</em></p>
+<h3 id="as-always-for-ever-all-the-time">As always, for ever, all the time</h3>
+<p><em>As always</em> = as usual. <em>Always</em> means repeatedly; <em>for ever</em> / <em>for good</em> means permanently: <em>She's left <strong>for good</strong></em>. <em>All the time</em> stresses frequency in a more informal or negative way: <em>It rains <strong>all the time</strong> here.</em></p>
+<h2 id="early">Early</h2>
+<p><em>Early</em> is both an adjective and an adverb: <em>an <strong>early</strong> train</em>, <em>I got up <strong>early</strong></em>. There is no form <del>earlily</del>.</p>
+<ul class="ex">
+<li>Not: <del>I arrived soon to the meeting.</del> → <em>I arrived <strong>early</strong> for the meeting.</em></li>
+</ul>
+<p>The opposite of <em>early</em> is <em>late</em>.</p>
+<h2 id="ever">Ever</h2>
+<h3 id="ever-at-any-time">Ever: at any time</h3>
+<p><em>Ever</em> means "at any time" and is used mainly in <strong>questions</strong>, <strong>negatives</strong> and after <em>if</em> and superlatives:</p>
+<ul class="ex">
+<li>Have you <strong>ever</strong> been to Scotland?</li>
+<li>Nobody <strong>ever</strong> calls me.</li>
+<li>If you <strong>ever</strong> need help, call me.</li>
+<li>It's the best film I've <strong>ever</strong> seen.</li>
+</ul>
+<p>It is not used in affirmative statements: <del>I have ever been to Rome</del>.</p>
+<h3 id="ever-so-ever-since-as-as-ever">Ever so, ever since, as … as ever</h3>
+<ul class="ex">
+<li><em>ever so</em> (informal British) = very: <em>That's <strong>ever so</strong> kind.</em></li>
+<li><em>ever since</em> = from then until now: <em>I've lived here <strong>ever since</strong>.</em></li>
+<li><em>as … as ever</em> = as before: <em>She's <strong>as busy as ever</strong>.</em></li>
+</ul>
+<h2 id="hardly-ever-rarely-scarcely-seldom">Hardly ever, rarely, scarcely, seldom</h2>
+<p>These frequency adverbs mean "not very often". <em>Rarely</em> and <em>seldom</em> are more formal than <em>hardly ever</em>. <em>Scarcely ever</em> is formal too.</p>
+<ul class="ex">
+<li>I <strong>hardly ever</strong> watch TV.</li>
+<li>We <strong>rarely</strong> see each other now.</li>
+</ul>
+<p><em>Hardly</em> and <em>scarcely</em> alone mean "almost not": <em>I can <strong>hardly</strong> hear you.</em></p>
+<h3 id="word-order">Word order</h3>
+<p>They take mid position. In formal writing they can come at the front, followed by inversion: <em><strong>Rarely have I</strong> seen such a mess.</em> Because they are already negative, don't add <em>not</em>: <del>I don't hardly ever</del>.</p>
+<h2 id="next">Next</h2>
+<h3 id="next-as-an-adjective">Next as an adjective</h3>
+<p><em>Next week</em>, <em>next year</em>, <em>next Monday</em> (without <em>the</em>) count from now. <em>The next week</em> means "the seven days after a particular time".</p>
+<ul class="ex">
+<li>I'm seeing her <strong>next Friday</strong>. Not: <del>the next Friday</del></li>
+<li>It rained for <strong>the next three days</strong>. (after a past moment)</li>
+</ul>
+<h3 id="next-as-adverb-linking-word-and-pronoun">Next as adverb, linking word and pronoun</h3>
+<ul class="ex">
+<li>adverb: <em>What should I do <strong>next</strong>?</em></li>
+<li>linking: <em>First, wash the rice. <strong>Next</strong>, add the water.</em></li>
+<li>pronoun: <em>Who's <strong>next</strong>?</em></li>
+</ul>
+<h3 id="next-to">Next to</h3>
+<p><em>Next to</em> means "beside": <em>She sat <strong>next to</strong> me.</em></p>
+<h2 id="no-longer-not-any-longer">No longer, not any longer</h2>
+<p>Both mean something that was true is not true now. <em>No longer</em> is more formal and goes in mid position; <em>not … any longer</em> is more common in speech and goes at the end.</p>
+<ul class="ex">
+<li>She <strong>no longer</strong> works here.</li>
+<li>She does<strong>n't</strong> work here <strong>any longer</strong>.</li>
+</ul>
+<p><em>Any more</em> means the same: <em>She doesn't work here <strong>any more</strong></em>.</p>
+<h2 id="no-more-not-any-more">No more, not any more</h2>
+<h3 id="as-determiners">As determiners</h3>
+<p><em>No more</em> / <em>not any more</em> + noun = no further amount: <em>There's <strong>no more</strong> milk.</em> / <em>There is<strong>n't any more</strong> milk.</em></p>
+<h3 id="as-adverbs">As adverbs</h3>
+<p>They mean "no longer": <em>I don't smoke <strong>any more</strong></em>. <em>No more</em> as an adverb is formal or literary.</p>
+<h3 id="no-more-than">No more … than</h3>
+<p><em>No more … than</em> means "equally not": <em>He's <strong>no more</strong> a doctor <strong>than</strong> I am</em> (= he's not a doctor).</p>
+<h3 id="any-more-or-anymore">Any more or anymore?</h3>
+<p>British English prefers two words, <em>any more</em>; American English usually writes <em>anymore</em> for the time meaning.</p>
+<h2 id="now">Now</h2>
+<h3 id="now-as-an-adverb-of-time">Now as an adverb of time</h3>
+<p><em>Now</em> means "at this moment" or "these days": <em>I'm busy <strong>now</strong>.</em> <em>She lives in Paris <strong>now</strong>.</em> <em>Right now</em> and <em>just now</em> add emphasis or mean "a moment ago".</p>
+<h3 id="now-as-a-discourse-marker">Now as a discourse marker</h3>
+<p>At the start of a sentence, <em>now</em> introduces a new topic or gets attention: <em><strong>Now</strong>, let's look at the next question.</em> <em><strong>Now then</strong>, what's the problem?</em></p>
+<h3 id="now-that">Now (that)</h3>
+<p><em>Now (that)</em> means "because, at this point": <em><strong>Now that</strong> you're here, we can start.</em></p>
+<h2 id="often">Often</h2>
+<p><em>Often</em> means "many times". It goes in mid position, or at the end with <em>very</em> or <em>quite</em>:</p>
+<ul class="ex">
+<li>I <strong>often</strong> go swimming.</li>
+<li>Do you come here <strong>often</strong>?</li>
+<li>We meet <strong>quite often</strong>.</li>
+</ul>
+<p>Comparatives: <em>more often</em> (common) or <em>oftener</em> (rare). <em>Every so often</em> means "sometimes".</p>
+<h2 id="once">Once</h2>
+<h3 id="once-as-an-adverb">Once as an adverb</h3>
+<p><em>Once</em> means "one time" or "at some time in the past": <em>I've been there <strong>once</strong>.</em> <em>She <strong>once</strong> lived in Rome.</em> <em>Once upon a time</em> begins fairy tales. <em>At once</em> means "immediately".</p>
+<h3 id="once-as-a-conjunction">Once as a conjunction</h3>
+<p>It means "as soon as" or "after": <em><strong>Once</strong> you've finished, you can go.</em> Use a present tense, not <em>will</em>, after <em>once</em>: <del>Once you will finish</del>.</p>
+<h2 id="soon">Soon</h2>
+<p><em>Soon</em> means "after a short time": <em>I'll see you <strong>soon</strong>.</em> <em>She <strong>soon</strong> realised her mistake.</em></p>
+<h3 id="soon-early-or-quickly">Soon, early or quickly?</h3>
+<ul class="ex">
+<li><em>soon</em> = a short time from now / from then: <em>They'll be here <strong>soon</strong>.</em></li>
+<li><em>early</em> = before the usual or planned time: <em>I got up <strong>early</strong>.</em></li>
+<li><em>quickly</em> = at speed: <em>She walked <strong>quickly</strong>.</em></li>
+</ul>
+<h3 id="soon-after-as-soon-as">Soon after, as soon as</h3>
+<p><em><strong>Soon after</strong> the war, they moved to Canada.</em> <em><strong>As soon as</strong> I get home, I'll call you.</em> (present tense after <em>as soon as</em> for the future)</p>
+<h2 id="still">Still</h2>
+<h3 id="still-as-an-adverb">Still as an adverb</h3>
+<p><em>Still</em> shows that a situation continues and hasn't stopped: <em>She's <strong>still</strong> asleep.</em> <em>Do you <strong>still</strong> live in Leeds?</em> In negatives it goes <strong>before</strong> the auxiliary: <em>He <strong>still</strong> hasn't called.</em></p>
+<p>It can also mean "even so" (contrast): <em>It was raining. <strong>Still</strong>, we had a good time.</em> And with comparatives it means "even more": <em>still better</em>.</p>
+<h3 id="still-as-an-adjective">Still as an adjective</h3>
+<p>As an adjective it means "not moving" or "without bubbles": <em>Stand <strong>still</strong>!</em> <em>still water</em>.</p>
+<h3 id="typical-errors_1">Typical errors</h3>
+<ul class="ex">
+<li><del>I have still not finished</del> is possible, but the usual form is <em>I <strong>still</strong> haven't finished</em>.</li>
+<li><em>Still</em> vs <em>yet</em>: <em>still</em> = continuing; <em>yet</em> = expected but not happened: <em>It's <strong>still</strong> raining.</em> / <em>It hasn't stopped <strong>yet</strong>.</em></li>
+</ul>
+<h2 id="then">Then</h2>
+<p><em>Then</em> has several meanings:</p>
+<ul class="ex">
+<li><strong>at that time</strong>: <em>I was a student <strong>then</strong>.</em></li>
+<li><strong>next</strong>: <em>We had dinner and <strong>then</strong> went to the cinema.</em></li>
+<li><strong>in addition</strong>: <em>It's too expensive, and <strong>then</strong> there's the travel cost.</em></li>
+<li><strong>in that case</strong>: <em>"I'm not hungry." "<strong>Then</strong> don't eat it."</em> / <em>If you're tired, <strong>then</strong> go to bed.</em></li>
+</ul>
+<h2 id="usually">Usually</h2>
+<p><em>Usually</em> means "in most cases" and goes in mid position, or at the front for emphasis: <em>I <strong>usually</strong> have toast for breakfast.</em> <em><strong>Usually</strong>, the shop opens at nine.</em></p>
+<h3 id="typical-errors_2">Typical errors</h3>
+<ul class="ex">
+<li>Use the present simple, not continuous, for habits: <del>I'm usually going to work by bus</del> → <em>I <strong>usually go</strong> to work by bus.</em></li>
+<li>For past habits use <em>used to</em>: <em>I <strong>used to</strong> live there</em> (not <del>I usually lived</del> for a finished habit you no longer have, though it's possible in narratives).</li>
+</ul>
+<h2 id="eventually">Eventually</h2>
+<p><em>Eventually</em> means "in the end, after a long time or a lot of effort": <em>After three hours we <strong>eventually</strong> found the hotel.</em></p>
+<aside class="callout trap"><p class="callout-title">False friend</p><p>In many European languages a similar word means "possibly" or "perhaps". In English <em>eventually</em> never means "possibly". For that meaning use <em>possibly</em> or <em>perhaps</em>: <em>We could <strong>possibly</strong> meet on Friday.</em></p></aside>
+
+<h2 id="adverbs-as-discourse-markers-anyway-finally">Adverbs as discourse markers (anyway, finally)</h2>
+<p>Some adverbs organise what we say and show how one part of a conversation or text relates to another.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Adverbs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ordering</td>
+<td>first(ly), secondly, finally, lastly</td>
+</tr>
+<tr>
+<td>changing the topic</td>
+<td>anyway, by the way, incidentally</td>
+</tr>
+<tr>
+<td>adding</td>
+<td>also, besides, moreover, furthermore</td>
+</tr>
+<tr>
+<td>contrast</td>
+<td>however, still, nevertheless, on the other hand</td>
+</tr>
+<tr>
+<td>summing up</td>
+<td>basically, in short, overall</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><strong>Anyway</strong>, I must go now.</li>
+<li><strong>Finally</strong>, I'd like to thank everyone for coming.</li>
+</ul>
+<h2 id="adverbs-as-short-responses-definitely-certainly">Adverbs as short responses (definitely, certainly)</h2>
+<p>In conversation, single adverbs often work as complete replies.</p>
+<h3 id="attitude-and-viewpoint">Attitude and viewpoint</h3>
+<ul class="ex">
+<li>"Will you come?" "<strong>Definitely</strong>." / "<strong>Probably</strong>." / "<strong>Possibly</strong>."</li>
+<li>"Was it expensive?" "<strong>Absolutely</strong>."</li>
+</ul>
+<h3 id="replies-to-requests">Replies to requests</h3>
+<ul class="ex">
+<li>"Could you help me?" "<strong>Certainly</strong>." / "<strong>Of course</strong>."</li>
+</ul>
+<h3 id="intensifying-adverbs-with-not">Intensifying adverbs with not</h3>
+<ul class="ex">
+<li>"Are you angry?" "<strong>Not really</strong>." / "<strong>Absolutely not</strong>." / "<strong>Definitely not</strong>."</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="adjectives.html">← Adjectives</a><a class="btn" href="using-adjectives-and-adverbs.html">Using adjectives and adverbs →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

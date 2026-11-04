@@ -1,0 +1,31 @@
+{
+  "title": "Nouns, pronouns and determiners quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "She wants to study at *___* university in Scotland.", "options": ["a", "an", "the", "—"], "answer": 0, "explain": "*university* starts with the sound /juː/, a consonant sound, so we use *a*."},
+    {"q": "*___* life is too short to worry about small things.", "options": ["The", "A", "—", "Some"], "answer": 2, "explain": "General statements with uncountable nouns take no article: *Life is short*."},
+    {"q": "My brother is *___* engineer.", "options": ["—", "a", "an", "the"], "answer": 2, "explain": "Jobs need *a/an*, and *engineer* starts with a vowel sound."},
+    {"q": "Can you give me some *___* about the course?", "options": ["informations", "information", "an information", "informations pieces"], "answer": 1, "explain": "*information* is uncountable: no plural, no *a/an*."},
+    {"q": "The news *___* very good today.", "options": ["are", "is", "were", "have been"], "answer": 1, "explain": "*news* is uncountable and takes a singular verb."},
+    {"q": "I need a new *___* of jeans.", "options": ["piece", "pair", "set", "couple"], "answer": 1, "explain": "Clothes with two legs are counted with *a pair of*."},
+    {"q": "This is my *___* room. (I have two sisters who share it.)", "options": ["sister's", "sisters'", "sisters", "sister"], "answer": 1, "explain": "For a plural noun ending in *-s*, add only the apostrophe: *sisters'*."},
+    {"q": "She's a friend of *___*.", "options": ["me", "my", "mine", "I"], "answer": 2, "explain": "The pattern is *a friend of + possessive pronoun*: *a friend of mine*."},
+    {"q": "Is this umbrella *___*?", "options": ["your", "yours", "your's", "you"], "answer": 1, "explain": "Possessive pronouns have no apostrophe: *yours, hers, theirs*."},
+    {"q": "I don't need any help. I can do it *___*.", "options": ["by me", "by myself", "myself by", "on me"], "answer": 1, "explain": "*by + reflexive* means *alone, without help*."},
+    {"q": "Tom and Lisa write to *___* every week.", "options": ["themselves", "each other", "theirselves", "them"], "answer": 1, "explain": "*each other* means Tom writes to Lisa and Lisa writes to Tom."},
+    {"q": "Let's go *___* this weekend.", "options": ["warm somewhere", "somewhere warm", "some warm where", "warm anywhere"], "answer": 1, "explain": "Adjectives come after *-where, -one, -thing* words: *somewhere warm*."},
+    {"q": "That's the man *___* car was stolen.", "options": ["who", "who's", "whose", "which"], "answer": 2, "explain": "*whose* shows possession in relative clauses; *who's* = who is."},
+    {"q": "*___* of the students passed the exam. It was too difficult.", "options": ["None", "No", "Nobody", "Not"], "answer": 0, "explain": "*none of* + determiner + noun; *no* must be followed directly by a noun."},
+    {"q": "I have *___* friends here, so I'm a bit lonely.", "options": ["a few", "few", "a little", "little"], "answer": 1, "explain": "*few* (without *a*) is negative: not many. *little* is for uncountable nouns."},
+    {"q": "Hurry up! We don't have *___* time.", "options": ["many", "much", "few", "a few"], "answer": 1, "explain": "*much* goes with uncountable nouns in negatives and questions."},
+    {"q": "*___* people like chocolate.", "options": ["The most", "Most of", "Most", "Mostly"], "answer": 2, "explain": "*most* + noun (no *the*, no *of*) means the majority."},
+    {"q": "Is your room big *___*?", "options": ["enough", "too", "plenty", "so"], "answer": 0, "explain": "*enough* goes after adjectives: *big enough*."},
+    {"q": "Would you like *___* coffee?", "options": ["any", "some", "a", "many"], "answer": 1, "explain": "We use *some* in offers and requests because we expect *yes*."},
+    {"q": "*___* is your favourite colour, red or blue?", "options": ["What", "Which", "Who", "How"], "answer": 1, "explain": "*which* asks about a choice from a limited, known set."},
+    {"q": "Do you know where *___*?", "options": ["is the station", "the station is", "does the station", "is station"], "answer": 1, "explain": "Indirect questions use normal statement word order: *where the station is*."},
+    {"q": "*___* does your new flat look like?", "options": ["How", "What", "Which", "Like"], "answer": 1, "explain": "*What … look like?* asks for a description. Not *How … like*."},
+    {"q": "Would you mind *___* the door?", "options": ["to close", "closing", "close", "closed"], "answer": 1, "explain": "*mind* is followed by the *-ing* form."},
+    {"q": "She's a *___* woman.", "options": ["30-years-old", "30-year-old", "30 years old", "30-years old"], "answer": 1, "explain": "In a hyphenated adjective before a noun, *year* stays singular."},
+    {"q": "Both *___* parents are doctors.", "options": ["the my", "my", "of my", "of"], "answer": 1, "explain": "*both* goes directly before a determiner + noun (*both my parents*), or *both of my parents*."}
+  ]
+}

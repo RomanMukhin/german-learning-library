@@ -1,0 +1,31 @@
+{
+  "title": "Words, sentences and clauses quiz",
+  "level": "B1–C1",
+  "questions": [
+    {"q": "Which prefix makes the opposite of *legal*?", "options": ["un-", "in-", "il-", "dis-"], "answer": 2, "explain": "*il-* is used before *l*: *illegal*."},
+    {"q": "Which word is a compound adjective?", "options": ["happiness", "well-known", "quickly", "unhappy"], "answer": 1, "explain": "*well-known* joins two words into one adjective; hyphenate it before a noun."},
+    {"q": "It's a *___* walk to the station.", "options": ["ten-minutes", "ten-minute", "ten minutes'", "ten-minute's"], "answer": 1, "explain": "In a compound adjective before a noun, the noun stays singular: *a ten-minute walk*."},
+    {"q": "*___* I need is a long holiday.", "options": ["That", "Which", "What", "It"], "answer": 2, "explain": "A *wh*-cleft: *What I need is…* focuses on *a long holiday*."},
+    {"q": "*___* was my sister who told me the news.", "options": ["There", "It", "What", "She"], "answer": 1, "explain": "An *it*-cleft: *It was … who/that …* puts focus on one element."},
+    {"q": "Never *___* such a beautiful sunset.", "options": ["I have seen", "have I seen", "I saw", "did I saw"], "answer": 1, "explain": "After a negative adverb at the front, the auxiliary comes before the subject (inversion)."},
+    {"q": "No sooner had we sat down *___* the phone rang.", "options": ["when", "than", "then", "that"], "answer": 1, "explain": "*no sooner … than*; *hardly / scarcely … when*."},
+    {"q": "She is not only clever *___* very kind.", "options": ["and also", "but also", "or also", "also but"], "answer": 1, "explain": "The pair is *not only … but (also)*."},
+    {"q": "*___* the rain, the match continued.", "options": ["Although", "Because of", "Despite", "Even though"], "answer": 2, "explain": "*despite* + noun; *although / even though* need a clause."},
+    {"q": "*___* it was late, we decided to walk home.", "options": ["Despite", "Even", "Although", "In spite of"], "answer": 2, "explain": "*although* + clause expresses contrast."},
+    {"q": "I'll lend you the car *___* you drive carefully.", "options": ["unless", "as long as", "in case", "whereas"], "answer": 1, "explain": "*as long as* = only if, on condition that."},
+    {"q": "We'll go for a walk *___* it rains.", "options": ["unless", "if", "as long as", "since"], "answer": 0, "explain": "*unless* = if not: we'll go if it doesn't rain."},
+    {"q": "I've known her *___* we were at school together.", "options": ["for", "since", "during", "from"], "answer": 1, "explain": "*since* + a point in time or a clause, with the present perfect."},
+    {"q": "I'm not sure *___* to accept the offer.", "options": ["if", "whether", "that", "weather"], "answer": 1, "explain": "Before a *to*-infinitive, use *whether*, not *if*."},
+    {"q": "*___* a beautiful day!", "options": ["How", "What", "Such", "So"], "answer": 1, "explain": "*What (a) + noun* in exclamations; *How + adjective*."},
+    {"q": "*___* many people at the concert.", "options": ["It was", "There were", "It had", "They were"], "answer": 1, "explain": "*there + be* introduces the existence of something; the verb agrees with *people*."},
+    {"q": "The list of names *___* very long.", "options": ["are", "is", "were", "have been"], "answer": 1, "explain": "The verb agrees with the head noun *list*, not with *names*."},
+    {"q": "My brother, *___* lives in Rome, is a chef.", "options": ["that", "who", "which", "what"], "answer": 1, "explain": "Non-defining relative clauses use *who* or *which*, never *that*."},
+    {"q": "He forgot my birthday, *___* really upset me.", "options": ["that", "what", "which", "who"], "answer": 2, "explain": "*which* refers back to a whole clause."},
+    {"q": "That's the girl *___* father is a pilot.", "options": ["who", "who's", "whose", "which"], "answer": 2, "explain": "*whose* shows possession in relative clauses."},
+    {"q": "I *___* she'll come.", "options": ["don't think", "think not", "not think", "think don't"], "answer": 0, "explain": "With *think*, we usually make the main verb negative: *I don't think she'll come*."},
+    {"q": "I can *___* hear you.", "options": ["not hardly", "hardly", "hardly not", "no hardly"], "answer": 1, "explain": "*hardly* is already negative; don't add *not*."},
+    {"q": "\"I don't like spiders.\" \"*___*\"", "options": ["So do I.", "Neither do I.", "I do too.", "Me too don't."], "answer": 1, "explain": "To agree with a negative statement: *Neither / Nor do I* (or *Me neither*)."},
+    {"q": "*___* called you last night?", "options": ["Who did", "Who", "Whom did", "Who was"], "answer": 1, "explain": "When *who* is the subject, there is no *do / did*: *Who called you?*"},
+    {"q": "Can you tell me where *___*?", "options": ["is the bank", "the bank is", "does the bank", "is bank"], "answer": 1, "explain": "Indirect questions use statement word order."}
+  ]
+}

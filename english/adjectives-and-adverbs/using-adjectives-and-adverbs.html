@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="b387a546202c">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Using adjectives and adverbs · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Adjectives and adverbs</a><span class="sep">/</span><span class="cur">Using adjectives and adverbs</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Adjectives and adverbs</span><h1>Using adjectives and adverbs</h1><p class="sub">Individual words that cause trouble: afraid, alike, hard, long, only, same, likely, as well, even, hardly, hopefully, surely, too and ultimately.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#afraid">Afraid</a></li><li><a href="#alike">Alike</a></li><li><a href="#hard">Hard</a></li><li><a href="#long">Long</a></li><li><a href="#only">Only</a></li><li><a href="#same-similar-identical">Same, similar, identical</a></li><li><a href="#likely-and-unlikely">Likely and unlikely</a></li><li><a href="#as-well-as">As well (as)</a></li><li><a href="#even">Even</a></li><li><a href="#hardly">Hardly</a></li><li><a href="#hopefully">Hopefully</a></li><li><a href="#surely">Surely</a></li><li><a href="#too">Too</a></li><li><a href="#ultimately">Ultimately</a></li></ol></nav>
+<article class="prose card">
+<h2 id="afraid">Afraid</h2>
+<h3 id="afraid-meaning-feeling-fear">Afraid meaning "feeling fear"</h3>
+<p><em>Afraid</em> comes after a verb, not before a noun: <em>The child <strong>was afraid</strong>.</em> Not: <del>an afraid child</del> (use <em>a frightened child</em>). It is followed by <strong>of</strong> + noun/-ing or by a <strong>to</strong>-infinitive:</p>
+<ul class="ex">
+<li>She's <strong>afraid of</strong> dogs.</li>
+<li>I'm <strong>afraid of</strong> losing my job. (fear of something that might happen)</li>
+<li>He was <strong>afraid to</strong> ask. (too frightened to do it)</li>
+</ul>
+<h3 id="afraid-softening">Afraid: softening</h3>
+<p><em><strong>I'm afraid</strong> (that)</em> is a polite way to give bad news or say no: <em><strong>I'm afraid</strong> we're closed.</em> <em>"Is there any cake left?" "<strong>I'm afraid not</strong>."</em> <em>"Do we have to pay?" "<strong>I'm afraid so</strong>."</em></p>
+<h2 id="alike">Alike</h2>
+<h3 id="alike-as-an-adjective">Alike as an adjective</h3>
+<p><em>Alike</em> means "similar" and comes after the verb, not before a noun: <em>The two sisters <strong>are</strong> very <strong>alike</strong>.</em> Not: <del>two alike sisters</del> (use <em>two similar sisters</em>).</p>
+<h3 id="alike-as-an-adverb">Alike as an adverb</h3>
+<p>It means "in the same way" or "equally": <em>The twins dress <strong>alike</strong>.</em> <em>The film was popular with adults and children <strong>alike</strong>.</em></p>
+<h2 id="hard">Hard</h2>
+<p><em>Hard</em> is both an adjective and an adverb. As an adjective it means "solid" or "difficult"; as an adverb it means "with a lot of effort or force".</p>
+<ul class="ex">
+<li>a <strong>hard</strong> chair / a <strong>hard</strong> question</li>
+<li>She works <strong>hard</strong>. / It's raining <strong>hard</strong>.</li>
+</ul>
+<p><em>Hardly</em> is a different word meaning "almost not": <em>He <strong>hardly</strong> works</em> (= he does very little work). See <a href="#hardly">Hardly</a>.</p>
+<h2 id="long">Long</h2>
+<h3 id="time">Time</h3>
+<p><em>Long</em> as an adverb is used mainly in questions and negatives: <em>How <strong>long</strong> did you wait?</em> <em>I won't be <strong>long</strong>.</em> In affirmative sentences use <em>a long time</em>: <em>I waited <strong>a long time</strong></em>, not <del>I waited long</del>.</p>
+<h3 id="distance-and-length">Distance and length</h3>
+<p><em>How <strong>long</strong> is the river?</em> <em>The film is three hours <strong>long</strong>.</em> For distance we usually say <em>far</em>: <em>How <strong>far</strong> is it?</em></p>
+<h3 id="as-long-as-no-longer">As long as, no longer</h3>
+<p><strong><em>As long as</em></strong> means "provided that": <em>You can borrow it <strong>as long as</strong> you bring it back.</em> <em>No longer</em> means "not any more": <em>She <strong>no longer</strong> lives here.</em></p>
+<h3 id="typical-error">Typical error</h3>
+<ul class="ex">
+<li><del>Since long I live here.</del> → <em>I've lived here <strong>for a long time</strong>.</em></li>
+</ul>
+<h2 id="only">Only</h2>
+<h3 id="only-as-an-adjective">Only as an adjective</h3>
+<p><em>Only</em> before a noun means "single, no others": <em>She's an <strong>only</strong> child.</em> <em>It's the <strong>only</strong> way.</em></p>
+<h3 id="only-as-an-adverb">Only as an adverb</h3>
+<p>It means "no more than" or "just": <em>It <strong>only</strong> costs £5.</em> <em>I <strong>only</strong> wanted to help.</em></p>
+<h3 id="position">Position</h3>
+<p>In speech <em>only</em> usually goes in mid position, and stress shows what it refers to. In careful writing, put it next to the word it focuses on:</p>
+<ul class="ex">
+<li><strong>Only</strong> Anna saw the accident. (nobody else)</li>
+<li>Anna <strong>only</strong> saw the accident. (she didn't do anything else)</li>
+<li>Anna saw <strong>only</strong> the end of the film.</li>
+</ul>
+<p>At the front of a sentence, <em>only</em> + time expression causes inversion: <em><strong>Only then did I</strong> understand.</em></p>
+<h2 id="same-similar-identical">Same, similar, identical</h2>
+<h3 id="the-same-as">The same as</h3>
+<p>We use <strong>the</strong> with <em>same</em>, and <strong>as</strong> before a noun or pronoun: <em>Your phone is <strong>the same as</strong> mine.</em> Not: <del>same like</del>, <del>the same that</del> (except before a clause).</p>
+<h3 id="the-same-noun-clause">The same + noun + clause</h3>
+<ul class="ex">
+<li>We went to <strong>the same school</strong>.</li>
+<li>She wore <strong>the same dress as</strong> I did / <strong>that</strong> she wore last year.</li>
+</ul>
+<h3 id="do-the-same">Do the same</h3>
+<p><em>Do the same</em> means "do the same thing": <em>She left early, and I <strong>did the same</strong>.</em></p>
+<h3 id="similar-and-identical">Similar and identical</h3>
+<p><em>Similar</em> means "alike but not exactly the same", and takes <strong>to</strong>: <em>Your bag is <strong>similar to</strong> mine.</em> <em>Identical</em> means "exactly the same", often with <strong>to</strong>: <em>The two pictures are <strong>identical</strong>.</em></p>
+<h2 id="likely-and-unlikely">Likely and unlikely</h2>
+<p><em>Likely</em> (= probable) is an adjective, not normally an adverb. It is followed by a <strong>to</strong>-infinitive or a <strong>that</strong>-clause:</p>
+<ul class="ex">
+<li>It's <strong>likely to</strong> rain later.</li>
+<li>She's <strong>unlikely to</strong> win.</li>
+<li><strong>It's likely that</strong> prices will rise.</li>
+</ul>
+<h3 id="typical-error_1">Typical error</h3>
+<ul class="ex">
+<li><del>He will likely come.</del> (common in American English) → British English: <em>He'<strong>s likely to</strong> come</em> or <em>He will <strong>probably</strong> come.</em></li>
+</ul>
+<h2 id="as-well-as">As well (as)</h2>
+<h3 id="meaning-in-addition">Meaning "in addition"</h3>
+<p><em>As well</em> goes at the end of a clause: <em>I like tennis, and I like golf <strong>as well</strong>.</em> <em>As well as</em> is followed by a noun or <em>-ing</em>: <em><strong>As well as</strong> French, she speaks Italian.</em> <em>She sings <strong>as well as playing</strong> the piano.</em></p>
+<h3 id="might-as-well-may-as-well">Might as well, may as well</h3>
+<p>These suggest doing something because there's no better option: <em>The last bus has gone, so we <strong>might as well</strong> walk.</em></p>
+<h3 id="as-well-too-and-also">As well, too and also</h3>
+<p><em>As well</em> and <em>too</em> go at the end; <em>also</em> usually goes in mid position. <em>As well</em> is a little more informal than <em>also</em>.</p>
+<h2 id="even">Even</h2>
+<h3 id="even-meaning-and-position">Even: meaning and position</h3>
+<p><em>Even</em> shows that something is surprising or more than expected. It usually goes in mid position, or before the word it focuses on:</p>
+<ul class="ex">
+<li>He <strong>even</strong> forgot his own birthday.</li>
+<li><strong>Even</strong> my grandmother uses a smartphone.</li>
+</ul>
+<h3 id="even-and-comparatives">Even and comparatives</h3>
+<p><em>Even</em> makes comparatives stronger: <em>Today is <strong>even hotter</strong> than yesterday.</em></p>
+<h3 id="even-though-even-if-even-so">Even though, even if, even so</h3>
+<ul class="ex">
+<li><strong><em>Even though</em></strong> it was raining, we went out. (= although, it really was raining)</li>
+<li><strong><em>Even if</em></strong> it rains, we'll go out. (= whether or not it rains)</li>
+<li><em>It was expensive. <strong>Even so</strong>, I bought it.</em> (= despite that)</li>
+</ul>
+<p>Don't use <em>even</em> alone as a conjunction: <del>Even it was late, we stayed</del>.</p>
+<h2 id="hardly">Hardly</h2>
+<p><em>Hardly</em> means "almost not". It does not mean "in a hard way".</p>
+<ul class="ex">
+<li>I can <strong>hardly</strong> hear you.</li>
+<li>We <strong>hardly</strong> know each other.</li>
+</ul>
+<h3 id="hardly-any-hardly-ever-hardly-at-all">Hardly any, hardly ever, hardly at all</h3>
+<ul class="ex">
+<li>There's <strong>hardly any</strong> milk left. (= very little)</li>
+<li>She <strong>hardly ever</strong> goes out. (= almost never)</li>
+<li>I slept <strong>hardly at all</strong>.</li>
+</ul>
+<p><em>Hardly any</em> is similar to <em>very little / very few</em>, but stronger.</p>
+<h3 id="word-order">Word order</h3>
+<p><em>Hardly</em> is negative, so don't use another negative with it: <del>I can't hardly</del>. In formal writing, <em>hardly … when</em> can start a sentence with inversion: <em><strong>Hardly had</strong> I arrived <strong>when</strong> it began to rain.</em></p>
+<h2 id="hopefully">Hopefully</h2>
+<p><em>Hopefully</em> is mostly used as a sentence adverb meaning "I hope that": <em><strong>Hopefully</strong>, the weather will be good tomorrow.</em> It can also mean "in a hopeful way": <em>The dog looked up <strong>hopefully</strong></em>.</p>
+<h2 id="surely">Surely</h2>
+<p><em>Surely</em> doesn't mean the same as <em>certainly</em>. It shows that the speaker believes something strongly and is surprised that someone might think differently:</p>
+<ul class="ex">
+<li><strong>Surely</strong> you're not going out in that rain!</li>
+<li>You've finished already? <strong>Surely</strong> not!</li>
+</ul>
+<p>In American English <em>surely</em> can also be a reply meaning "of course". For simple certainty, British English uses <em>certainly</em> or <em>definitely</em>.</p>
+<h2 id="too">Too</h2>
+<h3 id="too-meaning-more-than-enough">Too meaning "more than enough"</h3>
+<p><em>Too</em> before an adjective or adverb means "more than is good or necessary": <em>This coffee is <strong>too hot</strong>.</em> <em>You're driving <strong>too fast</strong>.</em></p>
+<ul class="ex">
+<li>It's <strong>too</strong> cold <strong>to</strong> swim. (too + adjective + to-infinitive)</li>
+<li>The box was too heavy <strong>for me to</strong> carry.</li>
+</ul>
+<h3 id="too-much-too-many-too-few-too-little">Too much, too many, too few, too little</h3>
+<ul class="ex">
+<li><strong>too much</strong> sugar / <strong>too many</strong> people / <strong>too few</strong> chairs / <strong>too little</strong> time</li>
+</ul>
+<h3 id="much-too-far-too">Much too, far too</h3>
+<p>To make <em>too</em> stronger, use <em>much</em>, <em>far</em> or <em>way</em> (informal): <em><strong>far too</strong> expensive</em>. Not: <del>very too</del>.</p>
+<h3 id="too-and-very">Too and very</h3>
+<p><em>Very</em> is just strong; <em>too</em> means it causes a problem: <em>It's <strong>very</strong> hot, but I'll wear it</em> / <em>It's <strong>too</strong> hot to wear</em>.</p>
+<h3 id="too-meaning-also">Too meaning "also"</h3>
+<p>At the end of a clause, <em>too</em> means "also": <em>I'm hungry. — Me <strong>too</strong>.</em> In negatives use <em>either</em>: <em>I'm not hungry either</em>, not <del>not hungry too</del>.</p>
+<h3 id="too-bad">Too bad</h3>
+<p><em>Too bad</em> (informal) means "that's unfortunate", often without real sympathy: <em>"I missed the bus." "<strong>Too bad</strong>."</em></p>
+<h2 id="ultimately">Ultimately</h2>
+<p><em>Ultimately</em> means "finally, in the end" or "most importantly, at the most basic level":</p>
+<ul class="ex">
+<li>They <strong>ultimately</strong> decided to sell the house.</li>
+<li><strong>Ultimately</strong>, it's your decision.</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="adverbs.html">← Adverbs</a><a class="btn" href="index.html#quiz">Adjectives and adverbs quiz →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

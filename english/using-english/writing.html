@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="037ebcfb4120">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Writing · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Using English</a><span class="sep">/</span><span class="cur">Writing</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Using English</span><h1>Writing</h1><p class="sub">Apostrophes, apposition, contractions, contrasts, impersonal style, emails and texts, paragraphs, punctuation, turning speech into writing, spelling and such as.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#apostrophe">Apostrophe (')</a></li><li><a href="#apposition">Apposition</a></li><li><a href="#contractions_1">Contractions</a></li><li><a href="#contrasts">Contrasts</a></li><li><a href="#detached-impersonal-style">Detached impersonal style</a></li><li><a href="#internet-discourse-and-text-messages">Internet discourse and text messages</a></li><li><a href="#it-this-and-that-in-paragraphs">It, this and that in paragraphs</a></li><li><a href="#paragraphs">Paragraphs</a></li><li><a href="#punctuation">Punctuation</a></li><li><a href="#speech-into-writing">Speech into writing</a></li><li><a href="#spelling">Spelling</a></li><li><a href="#such-as">Such as</a></li></ol></nav>
+<article class="prose card">
+<h2 id="apostrophe">Apostrophe (')</h2>
+<h3 id="contractions">Contractions</h3>
+<p>An apostrophe shows that letters are missing: <em>I'm</em> (I am), <em>don't</em> (do not), <em>it's</em> (it is / has), <em>we've</em>, <em>they'll</em>.</p>
+<h3 id="possession">Possession</h3>
+<ul class="ex">
+<li>singular noun + <strong>'s</strong>: <em>the dog's bowl</em>, <em>James's car</em> / <em>James' car</em></li>
+<li>plural ending in <em>-s</em> + <strong>'</strong>: <em>the girls' room</em></li>
+<li>irregular plural + <strong>'s</strong>: <em>the children's toys</em>, <em>men's clothes</em></li>
+</ul>
+<h3 id="time">Time</h3>
+<p><em>a week's holiday</em>, <em>two weeks' notice</em>, <em>today's news</em>, <em>in a year's time</em></p>
+<h3 id="typical-error">Typical error</h3>
+<ul class="ex">
+<li>Don't use an apostrophe for plurals: <del>apple's £1</del> → <em>apples £1</em>; <del>the 1990's</del> (accepted but <em>1990s</em> preferred)</li>
+<li><em>its</em> (possessive) has no apostrophe: <em>The company and <strong>its</strong> staff</em></li>
+</ul>
+<h2 id="apposition">Apposition</h2>
+<p>Apposition means two noun phrases next to each other refer to the same person or thing: <em>Ms Lee, <strong>our manager</strong>, will speak first.</em></p>
+<h3 id="types-of-apposition">Types of apposition</h3>
+<ul class="ex">
+<li><strong>non-restrictive</strong> (extra information, commas): <em>Rome, <strong>the capital of Italy</strong>, is beautiful.</em></li>
+<li><strong>restrictive</strong> (identifies, no commas): <em>the poet <strong>Byron</strong></em>, <em>my friend <strong>Sarah</strong></em></li>
+<li>with <em>namely, that is (i.e.), for example (e.g.)</em>: <em>two cities, <strong>namely</strong> Paris and Lyon</em></li>
+</ul>
+<h2 id="contractions_1">Contractions</h2>
+<h3 id="with-pronouns">With pronouns</h3>
+<p><em>I'm, you're, he's, she's, it's, we're, they're; I've, you've; I'll, you'll; I'd, you'd</em> (would / had)</p>
+<h3 id="with-auxiliaries-and-not">With auxiliaries and not</h3>
+<p><em>isn't, aren't, wasn't, weren't, don't, doesn't, didn't, haven't, hasn't, hadn't, won't</em> (will not), <em>can't, couldn't, shouldn't, wouldn't, mustn't</em> /ˈmʌsnt/, <em>needn't</em>. Note: <strong><em>I'm not</em></strong> (not <del>I amn't</del>), <strong><em>aren't I?</em></strong></p>
+<h3 id="other-contractions">Other contractions</h3>
+<p><em>let's</em> (let us), <em>there's, here's, what's, who's, where's, how's</em>, informal <em>gonna</em> (going to), <em>wanna</em> (want to), <em>y'all</em> (US).</p>
+<p>Contractions are normal in speech and informal writing; avoid them in formal writing.</p>
+<h2 id="contrasts">Contrasts</h2>
+<h3 id="on-the-one-hand-on-the-other-hand">On the one hand … on the other hand</h3>
+<p>Used to compare two sides of an argument: <em><strong>On the one hand</strong>, the job pays well. <strong>On the other hand</strong>, the hours are long.</em></p>
+<h3 id="on-the-contrary">On the contrary</h3>
+<p><em>On the contrary</em> rejects what was said and says the opposite is true: <em>"Was it boring?" "<strong>On the contrary</strong>, it was fascinating."</em> Not for a simple contrast between two facts.</p>
+<h3 id="in-comparison-by-comparison-in-contrast-by-contrast">In comparison / by comparison; in contrast / by contrast</h3>
+<p><em>Our town is small. <strong>In comparison</strong>, London is enormous.</em> <em>Sales rose in the north. <strong>By contrast</strong>, they fell in the south.</em> <em>In contrast to / with</em> + noun: <em><strong>In contrast to</strong> her sister, she is very shy.</em></p>
+<h2 id="detached-impersonal-style">Detached impersonal style</h2>
+<p>Formal writing (reports, academic texts, instructions) often avoids a personal tone by using:</p>
+<ul class="ex">
+<li><strong>few personal pronouns</strong>: <em>It is recommended that…</em> instead of <em>I recommend…</em></li>
+<li><strong>noun phrases</strong>: <em>the introduction of new rules</em> instead of <em>when they introduced new rules</em></li>
+<li><strong>the passive voice</strong>: <em>The samples <strong>were analysed</strong>.</em> <em>It <strong>is believed</strong> that…</em></li>
+</ul>
+<h2 id="internet-discourse-and-text-messages">Internet discourse and text messages</h2>
+<h3 id="emails">Emails</h3>
+<p>Emails range from formal (<em>Dear Mr Patel, … Kind regards</em>) to very informal (<em>Hi Sam, … Cheers</em>). Neutral openings and closings: <em>Hello / Hi + name</em>, <em>Best wishes</em>, <em>Thanks</em>. Keep paragraphs short and subject lines clear.</p>
+<h3 id="text-messages-and-chat">Text messages and chat</h3>
+<p>Texts use abbreviations and ellipsis: <em>lol, btw</em> (by the way), <em>thx, pls, u</em> (you), <em>gr8</em> (great), <em>idk</em> (I don't know), <em>omg</em>, emojis. Subjects and articles are often left out: <em>Running late, there in 10.</em> Don't use this style in formal writing.</p>
+<h2 id="it-this-and-that-in-paragraphs">It, this and that in paragraphs</h2>
+<p>These words refer back to earlier ideas and connect sentences:</p>
+<ul class="ex">
+<li><strong><em>it</em></strong> continues the same topic: <em>The company opened in 2010. <strong>It</strong> now has 500 staff.</em></li>
+<li><strong><em>this</em></strong> refers to a new idea just mentioned and focuses on it: <em>Prices rose by 20%. <strong>This</strong> caused protests.</em></li>
+<li><strong><em>that</em></strong> creates distance or contrast, or refers to a previous speaker's idea: <em>"Let's cancel." "<strong>That</strong>'s a good idea."</em></li>
+</ul>
+<p><em>This</em> + noun is very clear in writing: <em><strong>This decision</strong> caused problems.</em></p>
+<h2 id="paragraphs">Paragraphs</h2>
+<p>A paragraph is a group of sentences about one main idea. Typically it starts with a <strong>topic sentence</strong> that states the idea, continues with supporting sentences (examples, reasons, details), and may end with a concluding or linking sentence. Start a new paragraph for each new point, a new speaker in dialogue, or a change of time or place. In print, paragraphs are shown by indentation or a blank line.</p>
+<h2 id="punctuation">Punctuation</h2>
+<h3 id="capital-letters-and-full-stops">Capital letters and full stops</h3>
+<p>Capitals start sentences and are used for names, days, months, nationalities, languages and <em>I</em>: <em>On Monday, I met a French student called Marie.</em> A full stop (Br) / period (US) ends a statement and follows some abbreviations (<em>etc.</em>, <em>e.g.</em>).</p>
+<h3 id="question-marks-and-exclamation-marks">Question marks and exclamation marks</h3>
+<p><em>?</em> ends direct questions (not indirect: <em>I asked where she was.</em>). <em>!</em> shows strong feeling or emphasis; use it rarely in formal writing.</p>
+<h3 id="commas">Commas</h3>
+<p>Commas separate items in lists (<em>eggs, milk and bread</em>; the "Oxford comma" before <em>and</em> is optional in British English), and introductory phrases (<em>However, …</em>, <em>In 2010, …</em>).</p>
+<ul class="ex">
+<li>separating clauses: use a comma before <em>but, so, or</em> joining two clauses, and after a fronted subordinate clause: <em><strong>If it rains,</strong> we'll stay in.</em> Not before a <em>that</em>-clause: <del>She said, that</del>.</li>
+<li>relative clauses: commas around <strong>non-defining</strong> clauses only: <em>My brother<strong>,</strong> who lives in Rome<strong>,</strong> is a chef.</em></li>
+<li>speech: <em>"Wait," she said.</em></li>
+</ul>
+<h3 id="colons-and-semi-colons">Colons and semi-colons</h3>
+<p>A <strong>colon</strong> (:) introduces a list, explanation or quote: <em>You need three things: a pen, paper and time.</em> A <strong>semi-colon</strong> (;) joins two closely related independent clauses, or separates long list items: <em>It was late; we went home.</em></p>
+<h3 id="quotation-marks">Quotation marks</h3>
+<p>British English often uses single marks ('…'), American double ("…"). They show direct speech, quotations and titles of short works.</p>
+<h3 id="dashes-hyphens-and-brackets">Dashes, hyphens and brackets</h3>
+<p>A <strong>dash</strong> (–) adds a comment or a dramatic pause (informal): <em>He was late – again.</em> A <strong>hyphen</strong> (-) joins words: <em>well-known, twenty-one</em>. <strong>Brackets</strong> (…) add extra information.</p>
+<h2 id="speech-into-writing">Speech into writing</h2>
+<p>When we turn speech into writing, we usually: remove hesitations and fillers (<em>er, you know, like</em>), complete ellipted sentences, replace informal words with neutral ones, add clear linking words, and organise ideas into paragraphs. Direct speech is shown with quotation marks and reporting verbs; reported speech uses indirect forms.</p>
+<h2 id="spelling">Spelling</h2>
+<h3 id="prefixes">Prefixes</h3>
+<p>Adding a prefix doesn't change the spelling of the root: <em>un + necessary = <strong>unn</strong>ecessary</em>, <em>dis + appear = disappear</em>, <em>mis + spell = <strong>miss</strong>pell</em>. <em>Il-</em> goes before <em>l</em> (<em>illegal</em>), <em>im-</em> before <em>m, p, b</em> (<em>impossible</em>, <em>immature</em>), <em>ir-</em> before <em>r</em> (<em>irregular</em>).</p>
+<h3 id="plurals">Plurals</h3>
+<p><em>-s</em> normally, <em>-es</em> after <em>s, sh, ch, x, z</em> (<em>boxes</em>), consonant + <em>y</em> → <em>-ies</em> (<em>cities</em>), many <em>-f(e)</em> → <em>-ves</em> (<em>knives</em>).</p>
+<h3 id="doubling-consonants">Doubling consonants</h3>
+<p>Double a final single consonant after a single stressed vowel before <em>-ed, -ing, -er, -est</em>: <em>stop → stopped</em>, <em>big → bigger</em>, <em>begin → beginning</em> (stress on second syllable). Not when unstressed: <em>visit → visited</em>, <em>open → opening</em>. British English also doubles <em>l</em>: <em>travel → travelled</em> (US <em>traveled</em>).</p>
+<h3 id="dropping-and-adding-letters">Dropping and adding letters</h3>
+<ul class="ex">
+<li>final silent <em>-e</em> is dropped before a vowel suffix: <em>make → making</em>, <em>hope → hoped</em> (but kept before a consonant: <em>hopeful</em>, and in <em>agreeing, seeing</em>)</li>
+<li>adjectives ending in <em>-ic</em> take <em>-ally</em>: <em>basically, dramatically</em> (exception: <em>publicly</em>)</li>
+<li>consonant + <em>-y</em> → <em>-i-</em>: <em>happy → happiness, carry → carried</em> (but <em>carrying</em>)</li>
+</ul>
+<h3 id="ie-or-ei">ie or ei?</h3>
+<p>The rule "<em>i</em> before <em>e</em> except after <em>c</em>" works for the /iː/ sound: <em>believe, piece, field</em> but <em>receive, ceiling</em>. Exceptions: <em>seize, weird, either, neither, protein</em>.</p>
+<h3 id="verb-forms">Verb forms</h3>
+<p><em>-ed</em>: <em>played, stopped, tried, agreed</em>. <em>-ing</em>: <em>playing, stopping, trying, lying</em> (<em>lie → lying</em>, <em>die → dying</em>).</p>
+<h3 id="british-and-american-spelling">British and American spelling</h3>
+<p><em>-our / -or</em> (colour / color), <em>-re / -er</em> (centre / center), <em>-ise / -ize</em> (organise / organize; both used in Britain), <em>-ence / -ense</em> (licence noun / license), <em>programme / program</em>, <em>grey / gray</em>.</p>
+<h2 id="such-as">Such as</h2>
+<p><em>Such as</em> introduces one or more examples: <em>I like fruit <strong>such as</strong> apples and bananas.</em> <em>Big cities, <strong>such as</strong> London or Paris, are expensive.</em> Don't use <em>etc.</em> after a list with <em>such as</em> (it is already incomplete). Compare <em>like</em>, which is more informal: <em>fruit <strong>like</strong> apples</em>.</p>
+</article>
+<nav class="pager"><a class="btn" href="useful-phrases.html">← Useful phrases</a><a class="btn" href="index.html#quiz">Using English quiz →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

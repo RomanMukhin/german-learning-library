@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="5f4b319b9ad4">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Using verbs · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Using verbs</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Verbs</span><h1>Using verbs</h1><p class="sub">Types of verbs and verb phrases, and the patterns of common verbs like be, do, get, have, make, mean, take, think and want.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#verbs-types">Verbs: types</a></li><li><a href="#verb-phrases">Verb phrases</a></li><li><a href="#verbs-and-verb-phrases-typical-errors">Verbs and verb phrases: typical errors</a></li><li><a href="#appear">Appear</a></li><li><a href="#ask-and-ask-for">Ask and ask for</a></li><li><a href="#be">Be</a></li><li><a href="#be-expressions-be-able-to-be-due-to">Be expressions (be able to, be due to)</a></li><li><a href="#come">Come</a></li><li><a href="#do">Do</a></li><li><a href="#enable">Enable</a></li><li><a href="#enjoy">Enjoy</a></li><li><a href="#explain">Explain</a></li><li><a href="#get">Get</a></li><li><a href="#go">Go</a></li><li><a href="#happen">Happen</a></li><li><a href="#have">Have</a></li><li><a href="#have-got-and-have">Have got and have</a></li><li><a href="#hope">Hope</a></li><li><a href="#know">Know</a></li><li><a href="#let-lets">Let, let's</a></li><li><a href="#like">Like</a></li><li><a href="#look">Look</a></li><li><a href="#made-from-made-of-made-out-of-made-with">Made from, made of, made out of, made with</a></li><li><a href="#make">Make</a></li><li><a href="#marry-and-divorce">Marry and divorce</a></li><li><a href="#matter">Matter</a></li><li><a href="#mean">Mean</a></li><li><a href="#miss">Miss</a></li><li><a href="#prefer">Prefer</a></li><li><a href="#put">Put</a></li><li><a href="#see">See</a></li><li><a href="#seem">Seem</a></li><li><a href="#suggest">Suggest</a></li><li><a href="#take">Take</a></li><li><a href="#think">Think</a></li><li><a href="#want">Want</a></li></ol></nav>
+<article class="prose card">
+<h2 id="verbs-types">Verbs: types</h2>
+<h3 id="main-verbs-and-linking-verbs">Main verbs and linking verbs</h3>
+<p><strong>Main (lexical) verbs</strong> carry the meaning: <em>run, eat, think</em>. <strong>Linking verbs</strong> connect the subject to a description: <em>be, seem, become, look, feel, sound, taste, get, appear, remain</em>: <em>She <strong>seems</strong> tired.</em></p>
+<h3 id="auxiliary-verbs">Auxiliary verbs</h3>
+<ul class="ex">
+<li><strong>be</strong>: continuous forms and the passive: <em>I <strong>am</strong> working.</em> <em>It <strong>was</strong> built.</em></li>
+<li><strong>do</strong>: questions, negatives, emphasis: <em><strong>Do</strong> you know?</em> <em>I <strong>don't</strong> know.</em> <em>I <strong>do</strong> like it!</em></li>
+<li><strong>have</strong>: perfect forms: <em>She <strong>has</strong> left.</em></li>
+</ul>
+<p>Auxiliaries can stand alone in short answers and tags: <em>"Do you like it?" "Yes, I <strong>do</strong>."</em> <em>Be, do</em> and <em>have</em> are also main verbs: <em>I <strong>have</strong> a car.</em> <em>I <strong>did</strong> my homework.</em></p>
+<h3 id="modal-verbs">Modal verbs</h3>
+<p><em>can, could, may, might, must, shall, should, will, would</em> (see <a href="../verbs/modal-verbs.html">Modal verbs</a>).</p>
+<h3 id="state-and-action-verbs">State and action verbs</h3>
+<ul class="ex">
+<li><strong>action</strong> verbs describe things that happen and can be continuous: <em>eat, run, write</em></li>
+<li><strong>event</strong> verbs describe things that happen at a point: <em>arrive, find, break</em></li>
+<li><strong>state</strong> verbs describe states and are rarely continuous: <em>know, like, own, believe, seem</em></li>
+</ul>
+<h2 id="verb-phrases">Verb phrases</h2>
+<h3 id="simple-and-complex">Simple and complex</h3>
+<p>A <strong>simple</strong> verb phrase has one verb: <em>She <strong>works</strong>.</em> A <strong>complex</strong> verb phrase has auxiliaries or modals + a main verb: <em>She <strong>has been working</strong>.</em> <em>It <strong>might have been stolen</strong>.</em></p>
+<h3 id="order-and-the-first-verb">Order and the first verb</h3>
+<p>The order is: <strong>modal → perfect <em>have</em> → continuous <em>be</em> → passive <em>be</em> → main verb</strong>: <em>The house <strong>might have been being painted</strong>.</em> (rare but possible) Only the <strong>first</strong> verb shows tense and agrees with the subject, and it is the one used to make questions and negatives: <em><strong>Has</strong> she <strong>been</strong> working?</em> <em>She <strong>hasn't</strong> been working.</em></p>
+<h2 id="verbs-and-verb-phrases-typical-errors">Verbs and verb phrases: typical errors</h2>
+<ul class="ex">
+<li><del>She don't like it.</del> → <em>She <strong>doesn't</strong> like it.</em></li>
+<li><del>I am agree.</del> → <em>I <strong>agree</strong>.</em> (<em>agree</em> is a verb, not an adjective)</li>
+<li><del>It's depend.</del> → <em>It <strong>depends</strong>.</em></li>
+<li><del>I am knowing.</del> → <em>I <strong>know</strong>.</em></li>
+<li><del>Did you saw?</del> → <em>Did you <strong>see</strong>?</em></li>
+</ul>
+<h2 id="appear">Appear</h2>
+<h3 id="how-something-seems">How something seems</h3>
+<p><em>Appear</em> (formal) = seem: <em>She <strong>appears</strong> (<strong>to be</strong>) happy.</em> <em><strong>It appears that</strong> we were wrong.</em></p>
+<h3 id="come-into-sight">Come into sight</h3>
+<p><em>A face <strong>appeared</strong> at the window.</em> <em>She <strong>appears</strong> in a new film.</em></p>
+<h3 id="appear-or-seem">Appear or seem?</h3>
+<p>They are similar, but <em>seem</em> is more common and can describe feelings and impressions (<em>It <strong>seems</strong> a pity</em>); <em>appear</em> is more formal and tends to describe how things look from the outside.</p>
+<h2 id="ask-and-ask-for">Ask and ask for</h2>
+<h3 id="ask">Ask</h3>
+<p><em>Ask</em> (someone) a question / about something: <em>Can I <strong>ask</strong> (you) a question?</em> <em>She <strong>asked</strong> me <strong>about</strong> my job.</em> <em>Ask</em> + <em>if / wh</em>-: <em>He <strong>asked</strong> where I lived.</em></p>
+<h3 id="ask-to-infinitive">Ask + to-infinitive</h3>
+<p><em>Ask</em> (someone) <em>to</em> do something: <em>She <strong>asked</strong> me <strong>to</strong> help.</em> <em>I <strong>asked to</strong> see the manager.</em></p>
+<h3 id="ask-for">Ask for</h3>
+<p><em>Ask for</em> + the thing you want: <em>He <strong>asked for</strong> a glass of water.</em> <em>Ask</em> someone <em>for</em> something: <em>I <strong>asked</strong> her <strong>for</strong> advice.</em></p>
+<h3 id="typical-error">Typical error</h3>
+<ul class="ex">
+<li><del>She asked me a pen.</del> → <em>She asked me <strong>for</strong> a pen.</em></li>
+</ul>
+<h2 id="be">Be</h2>
+<h3 id="forms">Forms</h3>
+<p><em>am, is, are; was, were; been; being</em>. Contracted: <em>I'm, you're, he's; isn't, aren't, wasn't, weren't</em>.</p>
+<h3 id="be-as-a-main-verb">Be as a main verb</h3>
+<ul class="ex">
+<li>qualities: <em>She <strong>is</strong> clever.</em></li>
+<li>nationality and group: <em>They <strong>are</strong> Polish.</em></li>
+<li>jobs: <em>He <strong>is</strong> a nurse.</em> (with <em>a/an</em>)</li>
+<li>age: <em>I'<strong>m</strong> 30.</em> (not <del>I have 30</del>)</li>
+<li>relationships: <em>She'<strong>s</strong> my cousin.</em></li>
+<li>place: <em>The keys <strong>are</strong> on the table.</em></li>
+<li>time: <em>It'<strong>s</strong> six o'clock.</em></li>
+<li>temporary behaviour: <em>You'<strong>re being</strong> silly.</em></li>
+<li>feeling hot / cold / hungry / afraid: <em>I'<strong>m</strong> cold.</em> (not <del>I have cold</del>)</li>
+</ul>
+<h3 id="modal-expressions-and-auxiliary">Modal expressions and auxiliary</h3>
+<p><em>be able to, be going to, be to, be about to</em>; auxiliary in continuous forms and passives.</p>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>I have 25 years.</del> → <em>I <strong>am</strong> 25.</em> / <del>I have hunger.</del> → <em>I'<strong>m</strong> hungry.</em></li>
+</ul>
+<h2 id="be-expressions-be-able-to-be-due-to">Be expressions (be able to, be due to)</h2>
+<ul class="ex">
+<li><strong><em>be about to</em></strong> = very soon: <em>The show <strong>is about to</strong> begin.</em></li>
+<li><strong><em>be able to</em></strong> = ability, used where <em>can</em> has no form: <em>I'<strong>ll be able to</strong> come.</em> <em>I've <strong>never been able to</strong> swim.</em> For a <strong>single past achievement</strong>, use <em>was able to / managed to</em>, not <em>could</em>: <em>After hours, we <strong>were able to</strong> fix it.</em></li>
+<li><strong><em>be due to</em></strong> = scheduled: <em>The train <strong>is due to</strong> arrive at 6.</em> / because of: <em>The delay was <strong>due to</strong> fog.</em></li>
+<li><strong><em>be likely to</em></strong> = probably will: <em>Prices <strong>are likely to</strong> rise.</em></li>
+<li><strong><em>be meant to</em></strong> = intended / supposed to: <em>This <strong>is meant to</strong> be a joke.</em></li>
+<li><strong><em>be supposed to</em></strong> = expected because of a rule or plan (often not done): <em>You'<strong>re supposed to</strong> wear a helmet.</em> <em>The film <strong>is supposed to</strong> be good.</em> (people say so)</li>
+</ul>
+<h2 id="come">Come</h2>
+<h3 id="movement">Movement</h3>
+<p><em>Come</em> is movement <strong>towards</strong> the speaker or listener: <em><strong>Come</strong> here!</em> <em>I'll <strong>come</strong> to your party.</em> (towards the listener's place) Movement away is <em>go</em>.</p>
+<h3 id="come-meaning-arrive">Come meaning arrive</h3>
+<p><em>The bus <strong>came</strong> late.</em> <em>Winter <strong>is coming</strong>.</em></p>
+<h3 id="come-or-come-to">Come or come to?</h3>
+<p><em>Come to</em> + place: <em>Come <strong>to</strong> my office.</em> No <em>to</em> with <em>home, here, there</em>: <em>Come <strong>home</strong>.</em></p>
+<h3 id="informal-expressions">Informal expressions</h3>
+<p><strong><em>Come on!</em></strong> (hurry / encouragement / disbelief), <strong><em>How come?</em></strong> (why), <strong><em>Coming!</em></strong> (I'm on my way), <strong><em>come and</em></strong> + verb: <em>Come and see.</em></p>
+<h2 id="do">Do</h2>
+<h3 id="forms_1">Forms</h3>
+<p><em>do, does, did, done, doing</em>; <em>don't, doesn't, didn't</em></p>
+<h3 id="do-as-a-main-verb">Do as a main verb</h3>
+<ul class="ex">
+<li>actions in general: <em>What are you <strong>doing</strong>?</em> <em>I have nothing to <strong>do</strong>.</em></li>
+<li>work, tasks and study: <em><strong>do</strong> homework, <strong>do</strong> the housework, <strong>do</strong> a course, <strong>do</strong> maths</em></li>
+<li>activities: <em><strong>do</strong> yoga, <strong>do</strong> exercise, <strong>do</strong> the shopping</em></li>
+<li>achieve or deal with: <em><strong>do</strong> your best, <strong>do</strong> business</em></li>
+<li>clean or tidy: <em><strong>do</strong> the dishes, <strong>do</strong> your hair</em></li>
+<li>be enough: <em>Ten euros will <strong>do</strong>.</em> <em>That'll <strong>do</strong>!</em></li>
+</ul>
+<h3 id="do-as-an-auxiliary">Do as an auxiliary</h3>
+<ul class="ex">
+<li>questions and negatives in present and past simple: <em><strong>Do</strong> you smoke? I <strong>didn't</strong> see it.</em></li>
+<li>emphasis: <em>I <strong>do</strong> love you.</em> <em><strong>Do</strong> sit down.</em></li>
+<li>short answers, tags and substitution: <em>"Did you call?" "Yes, I <strong>did</strong>." She likes jazz, <strong>doesn't</strong> she? So <strong>do</strong> I.</em></li>
+</ul>
+<h2 id="enable">Enable</h2>
+<p><em>Enable</em> = make it possible for someone to do something. Pattern: <strong><em>enable</em> + object + <em>to</em>-infinitive</strong>: <em>The money <strong>enabled us to</strong> buy a house.</em> Not: <del>enabled us buying</del> / <del>enable to buy</del> without an object. It is more formal than <em>allow</em> or <em>let</em>.</p>
+<h2 id="enjoy">Enjoy</h2>
+<p><em>Enjoy</em> needs an <strong>object</strong> or a reflexive pronoun, and is followed by <strong><em>-ing</em></strong>, not the infinitive:</p>
+<ul class="ex">
+<li><em>I <strong>enjoyed</strong> the film.</em> <em>Did you <strong>enjoy yourselves</strong>?</em> <em><strong>Enjoy</strong> your meal!</em></li>
+<li><em>I <strong>enjoy swimming</strong>.</em> Not: <del>I enjoy to swim</del>, <del>I enjoyed very much</del> (needs object: <em>I enjoyed <strong>it</strong> very much</em>)</li>
+</ul>
+<h2 id="explain">Explain</h2>
+<p><em>Explain</em> something <strong>to</strong> someone. The person cannot be the direct object:</p>
+<ul class="ex">
+<li><em>Can you <strong>explain</strong> this word <strong>to me</strong>?</em> Not: <del>explain me this word</del></li>
+<li><em>She <strong>explained (to us) that</strong> the flight was cancelled.</em></li>
+<li><em>Explain</em> + <em>wh</em>-: <em>He <strong>explained how</strong> it worked.</em></li>
+</ul>
+<h2 id="get">Get</h2>
+<p><em>Get</em> is very common and has many meanings:</p>
+<ul class="ex">
+<li><strong>fetch, receive, obtain, buy</strong>: <em>I'll <strong>get</strong> some milk.</em> <em>I <strong>got</strong> a letter.</em> <em>She <strong>got</strong> a new job.</em></li>
+<li><strong>become</strong> (+ adjective or comparative): <em>It's <strong>getting</strong> dark.</em> <em>I'm <strong>getting</strong> better.</em> <em><strong>get</strong> married / dressed / lost</em></li>
+<li><strong>arrive</strong>: <em>What time did you <strong>get</strong> home / <strong>get to</strong> work?</em></li>
+<li><strong>negative events</strong> (get passive): <em>He <strong>got</strong> hurt.</em> <em>My bike <strong>got</strong> stolen.</em></li>
+<li><strong>cause something to happen</strong>: <em><strong>get</strong> + object + past participle</em>: <em>I <strong>got</strong> my hair cut.</em> / <em><strong>get</strong> + object + to-infinitive</em>: <em>I <strong>got</strong> him <strong>to</strong> help me.</em></li>
+<li><strong>understand</strong> (informal): <em>I don't <strong>get</strong> it.</em></li>
+</ul>
+<h2 id="go">Go</h2>
+<h3 id="go-ing">Go + -ing</h3>
+<p>For activities, especially sports and hobbies: <em><strong>go</strong> swimming / shopping / skiing / dancing</em>.</p>
+<h3 id="go-complement-become">Go + complement (become)</h3>
+<p>For changes, usually negative: <em><strong>go</strong> bad / grey / mad / wrong / blind / quiet</em>.</p>
+<h3 id="go-and-come-and">Go and, come and</h3>
+<p><em>Go and</em> / <em>come and</em> + verb (informal): <em>I'll <strong>go and</strong> get it.</em> <em>Come <strong>and</strong> see us.</em> In American English <em>and</em> is often left out: <em>Go get it.</em></p>
+<h2 id="happen">Happen</h2>
+<p><em>Happen</em> is intransitive (no object, no passive): <em>What <strong>happened</strong>?</em> <em>The accident <strong>happened</strong> at night.</em> Not: <del>was happened</del>. <em>Happen to</em> someone: <em>What <strong>happened to</strong> you?</em> <em>Happen</em> + <em>to</em>-infinitive = by chance: <em>I <strong>happened to</strong> see her.</em> <em>Do you <strong>happen to</strong> know…?</em> (polite question)</p>
+<h2 id="have">Have</h2>
+<h3 id="forms_2">Forms</h3>
+<p><em>have / has / had</em>; contracted <em>'ve, 's, 'd</em></p>
+<h3 id="have-as-a-main-verb">Have as a main verb</h3>
+<ul class="ex">
+<li><strong>possession</strong>: <em>I <strong>have</strong> two brothers.</em></li>
+<li><strong>meals and drinks</strong>: <em><strong>have</strong> breakfast / a coffee</em></li>
+<li><strong>events and experiences</strong>: <em><strong>have</strong> a party / a meeting / a good time / a problem</em></li>
+<li><strong>actions</strong>: <em><strong>have</strong> a shower / a rest / a look / a try / a chat / a dream / an accident</em></li>
+</ul>
+<p>In these action meanings, <em>have</em> can be continuous and uses <em>do</em> in questions: <em>I'<strong>m having</strong> a shower.</em> <em><strong>Did</strong> you <strong>have</strong> a good time?</em></p>
+<h3 id="have-as-an-auxiliary-and-in-have-to">Have as an auxiliary and in have to</h3>
+<p>Auxiliary in perfect forms: <em>I <strong>have</strong> finished.</em> Obligation: <em>I <strong>have to</strong> go.</em></p>
+<h3 id="typical-error_1">Typical error</h3>
+<ul class="ex">
+<li><del>Have you a car?</del> (old-fashioned) → <em><strong>Do</strong> you <strong>have</strong> a car?</em> / <em><strong>Have</strong> you <strong>got</strong> a car?</em></li>
+</ul>
+<h2 id="have-got-and-have">Have got and have</h2>
+<p><em>Have got</em> means <em>have</em> for possession, relationships, illnesses and features. It is common in British English, especially in speech:</p>
+<ul class="ex">
+<li><em>I'<strong>ve got</strong> a new phone.</em> = <em>I <strong>have</strong> a new phone.</em></li>
+<li>negative / question: <em>I <strong>haven't got</strong>…</em> <em><strong>Have</strong> you <strong>got</strong>…?</em> (or <em>I don't have…</em>, <em>Do you have…?</em>)</li>
+</ul>
+<p><em>Have got</em> is only used in the present; for the past use <em>had</em>: <em>I <strong>had</strong> a cold</em> (not <del>had got</del> for possession). Don't use <em>have got</em> for actions: <del>I've got a shower every day</del> → <em>I <strong>have</strong> a shower…</em></p>
+<h2 id="hope">Hope</h2>
+<h3 id="hope-as-a-verb">Hope as a verb</h3>
+<ul class="ex">
+<li><em>hope + that</em>-clause (often present for the future): <em>I <strong>hope</strong> you <strong>feel</strong> better soon.</em></li>
+<li><em>hope + to</em>-infinitive: <em>We <strong>hope to</strong> see you.</em></li>
+<li><em>I hope so / I hope not</em>: <em>"Will it be sunny?" "I <strong>hope so</strong>."</em></li>
+</ul>
+<p>Don't confuse with <em>wish</em>: <em>hope</em> is for possible things, <em>wish</em> for unreal ones: <em>I <strong>hope</strong> I pass.</em> / <em>I <strong>wish</strong> I were taller.</em></p>
+<h3 id="hope-as-a-noun">Hope as a noun</h3>
+<p><em>There's still <strong>hope</strong>.</em> <em>in the <strong>hope</strong> of / that…</em> <em>My <strong>hope</strong> is that…</em></p>
+<h2 id="know">Know</h2>
+<h3 id="know-how-infinitive">Know how + infinitive</h3>
+<p><em>Do you <strong>know how to</strong> swim?</em> Not: <del>know to swim</del>.</p>
+<h3 id="know-object-infinitive">Know + object + infinitive</h3>
+<p>Formal or passive: <em>He <strong>is known to be</strong> dishonest.</em> <em>I've <strong>known</strong> her <strong>(to) cry</strong> at films</em> (past experience).</p>
+<h3 id="know-without-an-object">Know without an object</h3>
+<p><em>"Where's Tom?" "I don't <strong>know</strong>."</em> <em>Let me <strong>know</strong>.</em> <em>I <strong>know</strong>!</em></p>
+<h3 id="you-know">You know</h3>
+<p>As a discourse marker: <em>It's, <strong>you know</strong>, complicated.</em></p>
+<p>Note: <em>know</em> is a state verb (<del>I'm knowing</del>). <em>Get to know</em> = become familiar with: <em>I'd like to <strong>get to know</strong> you better.</em></p>
+<h2 id="let-lets">Let, let's</h2>
+<h3 id="let-permission">Let: permission</h3>
+<p><em>Let</em> + object + <strong>bare infinitive</strong>: <em>My parents <strong>let</strong> me <strong>go</strong> to the party.</em> No passive: use <em>be allowed to</em>.</p>
+<h3 id="lets-suggestions-offers-imperatives">Let's: suggestions, offers, imperatives</h3>
+<p><em><strong>Let's</strong> go!</em> <em><strong>Let's not</strong> argue.</em> <em><strong>Let me</strong> help you.</em> <em><strong>Let me</strong> think.</em> <em>Let's</em> is only for suggestions including the speaker.</p>
+<h3 id="let-meaning-rent-br">Let meaning rent (Br)</h3>
+<p><em>We <strong>let</strong> our flat to students.</em> <em>Room to <strong>let</strong></em>.</p>
+<h2 id="like">Like</h2>
+<h3 id="like-as-a-verb-enjoy">Like as a verb (enjoy)</h3>
+<ul class="ex">
+<li>
+<ul>
+<li>noun: <em>I <strong>like</strong> chocolate.</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>-ing</em>: <em>I <strong>like</strong> reading.</em> (enjoyment)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>to</em>-infinitive: <em>I <strong>like to</strong> get up early.</em> (habit, choice)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>wh</em>-clause: <em>Do <strong>what</strong> you <strong>like</strong>.</em></li>
+</ul>
+</li>
+<li><strong><em>would like</em></strong> (offer / request): <em>Would you like a drink?</em> <em>I'd like to go.</em></li>
+</ul>
+<h3 id="like-as-a-preposition-and-conjunction">Like as a preposition and conjunction</h3>
+<ul class="ex">
+<li>preposition: <em>She looks <strong>like</strong> her mother.</em> <em>It's <strong>like</strong> a dream.</em> <em>What's it <strong>like</strong>?</em></li>
+<li>conjunction (informal, = as / as if): <em>Do it <strong>like</strong> I showed you.</em> <em>It looks <strong>like</strong> it's going to rain.</em></li>
+</ul>
+<h3 id="like-as-a-suffix-and-in-spoken-english">Like as a suffix and in spoken English</h3>
+<ul class="ex">
+<li>suffix: <em>child<strong>like</strong>, business<strong>like</strong></em></li>
+<li>filler and focusing (very informal): <em>It was, <strong>like</strong>, really expensive.</em></li>
+<li>quoting (very informal): <em>And I was <strong>like</strong>, "No way!"</em></li>
+</ul>
+<h2 id="look">Look</h2>
+<h3 id="look-as-a-linking-verb">Look as a linking verb</h3>
+<p><em>Look</em> + adjective = seem: <em>You <strong>look</strong> tired.</em> Not: <del>You look tiredly.</del></p>
+<h3 id="look-like-look-as-if">Look like, look as if</h3>
+<ul class="ex">
+<li><strong><em>look like</em></strong> + noun: <em>She <strong>looks like</strong> her father.</em> <em>It <strong>looks like</strong> rain.</em></li>
+<li><strong><em>look as if / as though</em></strong> + clause: <em>It <strong>looks as if</strong> it's going to rain.</em></li>
+</ul>
+<h3 id="look-as-a-discourse-marker">Look as a discourse marker</h3>
+<p><em><strong>Look</strong>, I'm sorry, but I can't help.</em> (getting attention, sometimes impatient)</p>
+<h2 id="made-from-made-of-made-out-of-made-with">Made from, made of, made out of, made with</h2>
+<ul class="ex">
+<li><strong><em>made from</em></strong> — the material has been changed and is not easy to recognise: <em>Paper is <strong>made from</strong> wood.</em> <em>Wine is <strong>made from</strong> grapes.</em></li>
+<li><strong><em>made of</em></strong> — the material is still recognisable: <em>The table is <strong>made of</strong> wood.</em> <em>a ring <strong>made of</strong> gold</em></li>
+<li><strong><em>made out of</em></strong> — a material or object turned into something unexpected: <em>a lamp <strong>made out of</strong> a bottle</em></li>
+<li><strong><em>made with</em></strong> — food, listing ingredients: <em>This cake is <strong>made with</strong> butter and honey.</em></li>
+</ul>
+<h2 id="make">Make</h2>
+<p><em>Make</em> means create, produce or cause. Main patterns:</p>
+<ul class="ex">
+<li>
+<ul>
+<li>object: <em><strong>make</strong> a cake, a mistake, a decision, a noise, money, friends, progress, an effort</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>object + adjective: <em>The news <strong>made</strong> me <strong>happy</strong>.</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>object + noun: <em>They <strong>made</strong> him <strong>captain</strong>.</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>two objects / <em>for</em>: <em>I'll <strong>make</strong> you a coffee.</em> / <em>I'll <strong>make</strong> a coffee <strong>for</strong> you.</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>object + <strong>bare infinitive</strong> (force or cause): <em>She <strong>made</strong> me <strong>laugh</strong>.</em> <em>They <strong>made</strong> us <strong>wait</strong>.</em> Passive with <em>to</em>: <em>We <strong>were made to</strong> wait.</em></li>
+</ul>
+</li>
+<li><em>make it</em> = succeed / arrive in time: <em>We <strong>made it</strong>!</em></li>
+</ul>
+<h2 id="marry-and-divorce">Marry and divorce</h2>
+<p><em>Marry</em> takes a direct object, without <em>with</em>: <em>She <strong>married</strong> an engineer.</em> Not: <del>married with</del>. More common is <strong><em>get married (to)</em></strong>: <em>They <strong>got married</strong> in June.</em> <em>She <strong>got married to</strong> Tom.</em> State: <strong><em>be married (to)</em></strong>: <em>I'<strong>ve been married</strong> for five years.</em> Same with <em>divorce</em>: <em>She <strong>divorced</strong> him.</em> / <em>They <strong>got divorced</strong>.</em></p>
+<h2 id="matter">Matter</h2>
+<h3 id="matter-as-a-verb">Matter as a verb</h3>
+<p><em>Matter</em> = be important. It is used mainly in negatives and questions, with <em>it</em> or <em>what</em> as subject: <em>It <strong>doesn't matter</strong>.</em> <em><strong>Does</strong> it <strong>matter</strong> if I'm late?</em> <em>What <strong>matters</strong> is that you're safe.</em> Not continuous, not passive.</p>
+<h3 id="matter-as-a-noun">Matter as a noun</h3>
+<ul class="ex">
+<li><strong><em>What's the matter (with you)?</em></strong> = What's wrong?</li>
+<li>countable: <em>a private <strong>matter</strong></em> (subject, situation)</li>
+<li>uncountable: <em>organic <strong>matter</strong></em> (substance)</li>
+<li><strong><em>as a matter of fact</em></strong> = actually; <em><strong>in a matter of</strong> minutes</em> = in only a few minutes; <em><strong>no matter</strong> what / how / who…</em> = it doesn't matter: <em><strong>No matter what</strong> happens, I'll be there.</em></li>
+</ul>
+<h2 id="mean">Mean</h2>
+<ul class="ex">
+<li><strong>understanding</strong>: <em>What does this word <strong>mean</strong>?</em> <em>What do you <strong>mean (by that)</strong>?</em></li>
+<li><strong>intention</strong>: <em>I <strong>meant to</strong> call you.</em> (+ <em>to</em>-infinitive) <em>I didn't <strong>mean</strong> it.</em> <em>She <strong>means</strong> well.</em></li>
+<li><strong>significance</strong>: <em>Your friendship <strong>means</strong> a lot to me.</em></li>
+<li><strong>result / involve</strong>: <em>A new job <strong>means moving</strong> house.</em> (+ <em>-ing</em>)</li>
+<li><strong>be meant to</strong> = be supposed to</li>
+<li><strong>means</strong> (noun) = method: <em>a <strong>means</strong> of transport</em></li>
+<li><strong><em>I mean</em></strong> (explaining or correcting), <strong><em>You know what I mean?</em></strong></li>
+</ul>
+<h3 id="typical-errors_1">Typical errors</h3>
+<ul class="ex">
+<li><del>What means this word?</del> → <em>What <strong>does</strong> this word <strong>mean</strong>?</em></li>
+<li><del>I mean that it's good</del> for an opinion → <em>I <strong>think</strong> it's good.</em></li>
+</ul>
+<h2 id="miss">Miss</h2>
+<p><em>Miss</em> has several meanings:</p>
+<ul class="ex">
+<li><strong>fail to catch, hit or do</strong>: <em>I <strong>missed</strong> the bus.</em> <em>He <strong>missed</strong> the goal.</em> <em>Don't <strong>miss</strong> the chance.</em></li>
+<li><strong>feel sad because someone or something is absent</strong>: <em>I <strong>miss</strong> you.</em> <em>I <strong>miss</strong> living by the sea.</em></li>
+<li><strong>notice something is not there / lose</strong>: <em>When did you <strong>miss</strong> your wallet?</em> (usually <em>lose</em> = not have any more: <em>I <strong>lost</strong> my wallet</em>)</li>
+<li><strong>lack</strong> (as <em>missing</em>): <em>There's a page <strong>missing</strong>.</em></li>
+</ul>
+<h2 id="prefer">Prefer</h2>
+<h3 id="expressing-preference">Expressing preference</h3>
+<ul class="ex">
+<li><em>prefer</em> + noun / <em>-ing</em>: <em>I <strong>prefer</strong> tea <strong>to</strong> coffee.</em> <em>I <strong>prefer walking to driving</strong>.</em> (<strong>to</strong>, not <em>than</em>)</li>
+<li><em>prefer</em> + <em>to</em>-infinitive: <em>I <strong>prefer to</strong> walk.</em> <em>I prefer to walk <strong>rather than</strong> drive.</em></li>
+</ul>
+<h3 id="would-prefer">Would prefer</h3>
+<p>For a particular situation: <em>I'<strong>d prefer to</strong> stay in tonight.</em> <em>I'd prefer you <strong>not to</strong> smoke.</em> / <em>I'd prefer it <strong>if</strong> you didn't smoke.</em></p>
+<h3 id="typical-errors_2">Typical errors</h3>
+<ul class="ex">
+<li><del>I prefer tea than coffee.</del> → <em>I prefer tea <strong>to</strong> coffee.</em></li>
+<li><del>I'd prefer staying</del> → <em>I'd prefer <strong>to stay</strong></em></li>
+</ul>
+<h2 id="put">Put</h2>
+<p><em>Put</em> (<em>put, put, put</em>) means move something to a place. It always needs an object and a place: <em><strong>Put</strong> your bag <strong>on the table</strong>.</em> Not: <del>Put it.</del> (alone) Common phrasal verbs: <em>put on</em> (clothes), <em>put off</em> (postpone), <em>put up with</em> (tolerate), <em>put out</em> (a fire), <em>put away</em> (tidy).</p>
+<h2 id="see">See</h2>
+<p><em>See</em> is about perception (the ability to see), understanding and meeting: <em>I can't <strong>see</strong> anything.</em> <em>I <strong>see</strong> what you mean.</em> <em><strong>See</strong> you tomorrow.</em> <em>I'm <strong>seeing</strong> the doctor at 3</em> (meeting — continuous possible). <em>See</em> + object + bare infinitive / <em>-ing</em> (see <a href="../verbs/verb-patterns.html">Verb patterns</a>). With <em>can</em>: <em>I <strong>can see</strong> the sea</em> (more natural than <em>I see</em> for a continuing perception).</p>
+<h2 id="seem">Seem</h2>
+<h3 id="seem-as-a-linking-verb">Seem as a linking verb</h3>
+<p><em>Seem</em> + adjective or noun: <em>You <strong>seem</strong> tired.</em> <em>It <strong>seems</strong> a good idea.</em> <em>She <strong>seems</strong> (<strong>to be</strong>) nice.</em></p>
+<h3 id="seem-to-infinitive">Seem + to-infinitive</h3>
+<p><em>He <strong>seems to know</strong> a lot.</em> <em>They <strong>seem to have left</strong>.</em> (perfect infinitive) <em><strong>It seems (that)</strong> she's right.</em> <em><strong>There seems to be</strong> a problem.</em> <em>Seem</em> is not used in the continuous.</p>
+<h2 id="suggest">Suggest</h2>
+<h3 id="patterns">Patterns</h3>
+<ul class="ex">
+<li>
+<ul>
+<li>noun: <em>Can you <strong>suggest</strong> a good hotel?</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>that</em>-clause: <em>I <strong>suggest (that)</strong> we <strong>leave</strong> now.</em> / <em>…that we <strong>should</strong> leave</em> (Br)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>-ing</em>: <em>She <strong>suggested going</strong> to the beach.</em></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><em>wh</em>-word: <em>Can you <strong>suggest where</strong> to eat?</em></li>
+</ul>
+</li>
+<li>someone something <strong>to</strong> someone: <em>She <strong>suggested</strong> a restaurant <strong>to me</strong>.</em></li>
+</ul>
+<h3 id="typical-errors_3">Typical errors</h3>
+<ul class="ex">
+<li><del>I suggest you to go.</del> → <em>I suggest <strong>(that) you go</strong></em>.</li>
+<li><del>She suggested me a book.</del> → <em>She suggested a book <strong>to me</strong></em>.</li>
+</ul>
+<h2 id="take">Take</h2>
+<p><em>Take</em> means move something away with you, or accept / use / need:</p>
+<ul class="ex">
+<li><em>Don't forget to <strong>take</strong> your keys.</em> (<em>take</em> away from here / <em>bring</em> to here)</li>
+<li><em>It <strong>takes</strong> two hours to get there.</em> (time) / <em>It <strong>took</strong> me an hour to finish.</em></li>
+<li><em><strong>take</strong> a bus / taxi</em> (transport), <em><strong>take</strong> medicine</em>, <em><strong>take</strong> a size 38</em></li>
+<li>fixed phrases: <em><strong>take</strong> a photo, a shower (Br also <em>have</em>), a break, a seat, an exam, part (in), place, care (of), notes, a decision (Br), a look</em></li>
+</ul>
+<h3 id="typical-errors_4">Typical errors</h3>
+<ul class="ex">
+<li><del>make a photo</del> → <em><strong>take</strong> a photo</em>; <del>take a coffee</del> (Br usually) → <em><strong>have</strong> a coffee</em></li>
+</ul>
+<h2 id="think">Think</h2>
+<ul class="ex">
+<li><strong>opinion</strong>: <em>I <strong>think</strong> it's a good idea.</em> (state verb, no continuous) <em>I <strong>don't think</strong> he's coming.</em> (not <del>I think he isn't</del> — less natural)</li>
+<li><strong>plans and decisions</strong> (continuous possible): <em>I'<strong>m thinking of / about</strong> moving to Spain.</em></li>
+<li><strong>remember / imagine</strong>: <em>I can't <strong>think of</strong> her name.</em> <em><strong>Think of</strong> a number.</em></li>
+<li><strong>consider</strong>: <em>Let me <strong>think about</strong> it.</em></li>
+<li><strong>softening</strong>: <em>I <strong>think</strong> we should go now.</em></li>
+<li><strong>uncertainty</strong>: <em>"Is she coming?" "I <strong>think so</strong> / I <strong>don't think so</strong>."</em></li>
+</ul>
+<h2 id="want">Want</h2>
+<h3 id="wish-or-desire">Wish or desire</h3>
+<p><em>Want</em> + noun / <em>to</em>-infinitive / object + <em>to</em>-infinitive: <em>I <strong>want</strong> a coffee.</em> <em>I <strong>want to</strong> go.</em> <em>I <strong>want you to</strong> stay.</em> Not: <del>I want that you stay</del>.</p>
+<h3 id="with-wh-words-and-if">With wh-words and if</h3>
+<p><em>Do <strong>whatever</strong> you <strong>want</strong>.</em> <em>You can come with us <strong>if</strong> you <strong>want</strong>.</em> (no <em>to</em> needed)</p>
+<h3 id="in-the-continuous">In the continuous</h3>
+<p>Rare, but possible for a temporary or polite desire: <em>I'<strong>ve been wanting</strong> to tell you…</em></p>
+<h3 id="need-advice-and-warnings">Need, advice and warnings</h3>
+<p>Informal British: <em>The car <strong>wants</strong> cleaning</em> (= needs). Advice: <em>You <strong>want to</strong> be careful there</em> (= should). <em>Would like</em> is more polite than <em>want</em> in requests.</p>
+</article>
+<nav class="pager"><a class="btn" href="conditionals-and-wishes.html">← Conditionals and wishes</a><a class="btn" href="irregular-verbs.html">Table of irregular verbs →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

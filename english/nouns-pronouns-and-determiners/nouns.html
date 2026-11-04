@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="dc7b7e8b29c3">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Nouns · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Nouns, pronouns and determiners</a><span class="sep">/</span><span class="cur">Nouns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Nouns, pronouns and determiners</span><h1>Nouns</h1><p class="sub">Types of nouns, plural forms, compounds, countable and uncountable nouns, and the uncountable words learners get wrong most often.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#nouns">Nouns</a></li><li><a href="#nouns-form">Nouns: form</a></li><li><a href="#nouns-and-prepositions">Nouns and prepositions</a></li><li><a href="#nouns-compound-nouns">Nouns: compound nouns</a></li><li><a href="#nouns-countable-and-uncountable">Nouns: countable and uncountable</a></li><li><a href="#nouns-forming-nouns-from-other-words">Nouns: forming nouns from other words</a></li><li><a href="#nouns-singular-and-plural">Nouns: singular and plural</a></li><li><a href="#accommodation">Accommodation</a></li><li><a href="#equipment">Equipment</a></li><li><a href="#furniture">Furniture</a></li><li><a href="#information">Information</a></li><li><a href="#luck-and-lucky">Luck and lucky</a></li><li><a href="#news">News</a></li><li><a href="#progress">Progress</a></li><li><a href="#weather">Weather</a></li></ol></nav>
+<article class="prose card">
+<h2 id="nouns">Nouns</h2>
+<h3 id="types-of-nouns">Types of nouns</h3>
+<ul class="ex">
+<li><strong>common nouns</strong> — general things: <em>city, dog, happiness</em></li>
+<li><strong>proper nouns</strong> — names, with a capital letter: <em>Paris, Maria, Monday, the Thames</em></li>
+<li><strong>concrete nouns</strong> — things you can see or touch: <em>table, rain</em></li>
+<li><strong>abstract nouns</strong> — ideas, feelings, qualities: <em>love, freedom, idea</em></li>
+<li><strong>collective nouns</strong> — groups: <em>team, family, audience</em></li>
+</ul>
+<p>Nouns for people often show the role: <em>teacher, driver, employee, cyclist</em>. Nouns for animals and things use <em>it</em> (pets may be <em>he/she</em>).</p>
+<h3 id="identifying-nouns">Identifying nouns</h3>
+<p>Nouns can follow a determiner (<em>the <strong>book</strong></em>), be plural (<em>books</em>), take an adjective before them (<em>a good <strong>book</strong></em>) and be the subject or object of a verb.</p>
+<h3 id="gerunds">Gerunds</h3>
+<p>The <em>-ing</em> form of a verb can work as a noun: <em><strong>Swimming</strong> is good exercise.</em> <em>I enjoy <strong>reading</strong>.</em></p>
+<h2 id="nouns-form">Nouns: form</h2>
+<p>Most nouns add <strong>-s</strong> for the plural. Spelling rules:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Rule</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s, -ss, -sh, -ch, -x, -z</td>
+<td>+ es</td>
+<td>bus<strong>es</strong>, class<strong>es</strong>, box<strong>es</strong>, watch<strong>es</strong></td>
+</tr>
+<tr>
+<td>consonant + y</td>
+<td>y → ies</td>
+<td>city → cit<strong>ies</strong></td>
+</tr>
+<tr>
+<td>vowel + y</td>
+<td>+ s</td>
+<td>day<strong>s</strong>, key<strong>s</strong></td>
+</tr>
+<tr>
+<td>-f / -fe (many)</td>
+<td>→ ves</td>
+<td>leaf → lea<strong>ves</strong>, knife → kni<strong>ves</strong> (but <em>roofs, chefs</em>)</td>
+</tr>
+<tr>
+<td>consonant + o (some)</td>
+<td>+ es</td>
+<td>potato<strong>es</strong>, tomato<strong>es</strong>, hero<strong>es</strong> (but <em>photos, pianos</em>)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Irregular plurals:</strong> <em>man → men, woman → women, child → children, person → people, foot → feet, tooth → teeth, mouse → mice</em>. Some nouns don't change: <em>sheep, fish, deer, aircraft, series, species</em>.</p>
+<h2 id="nouns-and-prepositions">Nouns and prepositions</h2>
+<p>Many nouns are followed by a particular preposition:</p>
+<ul class="ex">
+<li><em>a reason <strong>for</strong></em>, <em>the cause <strong>of</strong></em>, <em>an increase <strong>in</strong></em>, <em>a solution <strong>to</strong></em>, <em>an interest <strong>in</strong></em>, <em>damage <strong>to</strong></em>, <em>a demand <strong>for</strong></em>, <em>the difference <strong>between</strong></em>, <em>a relationship <strong>with</strong></em></li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>the reason of</del> → <em>the reason <strong>for</strong></em></li>
+<li><del>a solution of the problem</del> → <em>a solution <strong>to</strong> the problem</em></li>
+<li><del>an increase of prices</del> → <em>an increase <strong>in</strong> prices</em></li>
+</ul>
+<h2 id="nouns-compound-nouns">Nouns: compound nouns</h2>
+<p>A compound noun is made of two or more words that work as one noun.</p>
+<ul class="ex">
+<li>noun + noun: <em>bus stop, toothpaste, credit card</em></li>
+<li>adjective + noun: <em>blackboard, greenhouse, software</em></li>
+<li>verb + noun or -ing + noun: <em>swimming pool, washing machine, runway</em></li>
+</ul>
+<h3 id="writing-compound-nouns">Writing compound nouns</h3>
+<p>They can be one word (<em>bedroom</em>), two words (<em>post office</em>) or hyphenated (<em>mother-in-law</em>). Check a dictionary; there is no fixed rule.</p>
+<h3 id="plurals-and-stress">Plurals and stress</h3>
+<p>Usually the <strong>last</strong> word becomes plural: <em>bus stop<strong>s</strong></em>, <em>toothbrush<strong>es</strong></em>. With <em>-in-law</em> and <em>passer-by</em>, the first: <em>mother<strong>s</strong>-in-law</em>. The main stress usually falls on the <strong>first</strong> part: <em>/ˈbʌs stɒp/</em>, <em>GREENhouse</em> (a building) vs <em>green HOUSE</em> (a house painted green).</p>
+<h2 id="nouns-countable-and-uncountable">Nouns: countable and uncountable</h2>
+<h3 id="countable-nouns">Countable nouns</h3>
+<p>They have singular and plural forms and can follow <em>a/an</em> or a number: <em>a chair, two chairs</em>. A singular countable noun always needs a determiner: <del>I have car.</del> → <em>I have <strong>a</strong> car.</em></p>
+<h3 id="uncountable-nouns">Uncountable nouns</h3>
+<p>They have no plural and don't take <em>a/an</em>: <em>water, money, advice, information, music, luggage</em>. They take a singular verb: <em>The news <strong>is</strong> good.</em></p>
+<h3 id="quantity-expressions">Quantity expressions</h3>
+<p>To count them, use a piece word: <em><strong>a piece of</strong> advice</em>, <em><strong>a bit of</strong> luck</em>, <em><strong>a slice of</strong> bread</em>, <em><strong>a bottle of</strong> water</em>, <em><strong>an item of</strong> news</em>.</p>
+<h3 id="determiners">Determiners</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Countable plural</th>
+<th>Uncountable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>many, (a) few, fewer, several</td>
+<td>much, (a) little, less</td>
+</tr>
+<tr>
+<td>some, any, a lot of, plenty of, no, enough</td>
+<td>(same)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="different-meanings">Different meanings</h3>
+<p>Some nouns are countable with one meaning and uncountable with another:</p>
+<ul class="ex">
+<li><em>a <strong>glass</strong></em> (container) / <strong><em>glass</em></strong> (material)</li>
+<li><em>a <strong>paper</strong></em> (newspaper) / <strong><em>paper</em></strong> (material)</li>
+<li><em>a <strong>chicken</strong></em> (animal) / <strong><em>chicken</em></strong> (meat)</li>
+<li><em>a <strong>room</strong></em> / <em>There's no <strong>room</strong></em> (space)</li>
+<li><em>an <strong>experience</strong></em> (event) / <strong><em>experience</em></strong> (skill)</li>
+</ul>
+<h3 id="uncountable-nouns-used-countably">Uncountable nouns used countably</h3>
+<p>In informal speech, drinks and food can be counted as portions: <em>Two <strong>coffees</strong>, please.</em> Abstract nouns can become countable when they mean a type or instance: <em>a <strong>fear</strong> of spiders</em>, <em>a good <strong>education</strong></em>.</p>
+<h2 id="nouns-forming-nouns-from-other-words">Nouns: forming nouns from other words</h2>
+<p>Many nouns are formed with suffixes:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>From</th>
+<th>Suffix</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verbs</td>
+<td>-ment, -tion/-sion, -ance/-ence, -al, -er/-or</td>
+<td>development, decision, performance, arrival, driver, actor</td>
+</tr>
+<tr>
+<td>adjectives</td>
+<td>-ness, -ity, -ence, -dom</td>
+<td>happiness, ability, confidence, freedom</td>
+</tr>
+<tr>
+<td>nouns</td>
+<td>-ship, -hood, -ism, -ist</td>
+<td>friendship, childhood, tourism, artist</td>
+</tr>
+</tbody>
+</table></div>
+<p>Some verbs and nouns have the same form: <em>a walk, a call, a change, a visit</em>.</p>
+<h2 id="nouns-singular-and-plural">Nouns: singular and plural</h2>
+<h3 id="nouns-only-in-the-singular">Nouns only in the singular</h3>
+<p>Some nouns ending in <em>-s</em> take a singular verb: <em><strong>news</strong>, <strong>mathematics</strong>, <strong>physics</strong>, <strong>athletics</strong>, <strong>measles</strong></em>. <em>The news <strong>is</strong> on at six.</em></p>
+<h3 id="nouns-only-in-the-plural">Nouns only in the plural</h3>
+<ul class="ex">
+<li>tools and instruments with two parts: <em>scissors, glasses, binoculars, scales</em></li>
+<li>clothes with two legs: <em>trousers, jeans, shorts, pyjamas, tights</em></li>
+<li>others: <em>clothes, goods, outskirts, stairs, thanks, congratulations, belongings, surroundings</em></li>
+</ul>
+<p>To count them, use <strong><em>a pair of</em></strong>: <em>a pair of jeans</em>, <em>two pairs of scissors</em>.</p>
+<p><em>Police</em> and <em>people</em> are plural without <em>-s</em>: <em>The police <strong>are</strong> coming.</em></p>
+<h3 id="collective-nouns">Collective nouns</h3>
+<p>Group words like <em>team, family, government, staff, class, company, audience</em> can take a singular or plural verb in British English: <em>The team <strong>is / are</strong> playing well.</em> Use plural when you think of the members, singular when you think of the group as one unit. American English usually uses singular.</p>
+<h2 id="accommodation">Accommodation</h2>
+<p><em>Accommodation</em> (a place to live or stay) is <strong>uncountable</strong> in British English: <em>We need to find <strong>accommodation</strong>.</em> Not: <del>an accommodation</del>, <del>accommodations</del> (American English often uses <em>accommodations</em>).</p>
+<p><strong>Spelling:</strong> double <em>c</em> and double <em>m</em>: acco<strong>mm</strong>odation.</p>
+<h2 id="equipment">Equipment</h2>
+<p><em>Equipment</em> is <strong>uncountable</strong>: <em>The lab has modern <strong>equipment</strong>.</em> Not: <del>equipments</del>. Count it with <em><strong>a piece of</strong> equipment</em>.</p>
+<h2 id="furniture">Furniture</h2>
+<p><em>Furniture</em> is <strong>uncountable</strong>: <em>We bought new <strong>furniture</strong>.</em> Not: <del>furnitures</del>, <del>a furniture</del>. Use <em><strong>a piece of</strong> furniture</em> or name the item (<em>a chair, a table</em>).</p>
+<h2 id="information">Information</h2>
+<p><em>Information</em> is <strong>uncountable</strong>: <em>Can you give me some <strong>information</strong> about the course?</em> Not: <del>informations</del>, <del>an information</del>. Use <em><strong>a piece of</strong> information</em>. It is followed by <strong>about</strong> or <strong>on</strong>.</p>
+<h2 id="luck-and-lucky">Luck and lucky</h2>
+<p><em>Luck</em> is an uncountable noun: <em><strong>Good luck</strong>!</em> <em>It was <strong>bad luck</strong>.</em> Not: <del>a good luck</del>. <em>Lucky</em> is the adjective: <em>You're <strong>lucky</strong>.</em> <em>It's <strong>lucky</strong> that you came.</em> <em>Be in luck</em> = be lucky at a particular moment.</p>
+<h2 id="news">News</h2>
+<p><em>News</em> is <strong>uncountable</strong> and takes a <strong>singular</strong> verb, even though it ends in <em>-s</em>: <em>The <strong>news is</strong> good.</em> Not: <del>a news</del>, <del>The news are</del>. One item is <strong><em>a piece of news</em></strong> or <em>some news</em>.</p>
+<h2 id="progress">Progress</h2>
+<p><em>Progress</em> is <strong>uncountable</strong>: <em>She's making good <strong>progress</strong>.</em> Not: <del>a progress</del>, <del>progresses</del>. The verb is <strong>make</strong> progress, not <del>do progress</del>.</p>
+<h2 id="weather">Weather</h2>
+<p><em>Weather</em> is <strong>uncountable</strong>: <em>What lovely <strong>weather</strong>!</em> Not: <del>What a lovely weather!</del> Use <em>the weather</em> for the weather at a particular time: <em>How's <strong>the weather</strong>?</em>. Don't confuse with <em>whether</em> (= if).</p>
+</article>
+<nav class="pager"><a class="btn" href="determiners.html">← Determiners</a><a class="btn" href="noun-phrases.html">Noun phrases →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

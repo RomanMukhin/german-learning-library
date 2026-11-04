@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="81a7f6059136">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Verb forms · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Verb forms</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Verbs</span><h1>Verb forms</h1><p class="sub">Finite and non-finite verbs, imperatives, infinitives with and without to, active and passive infinitives, perfect infinitives and the basic verb forms.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#finite-and-non-finite-verbs">Finite and non-finite verbs</a></li><li><a href="#imperative-clauses-be-quiet">Imperative clauses (Be quiet!)</a></li><li><a href="#infinitives-with-and-without-to">Infinitives with and without to</a></li><li><a href="#infinitive-active-or-passive">Infinitive: active or passive?</a></li><li><a href="#perfect-infinitive-with-to-to-have-worked">Perfect infinitive with to (to have worked)</a></li><li><a href="#verbs-basic-forms">Verbs: basic forms</a></li><li><a href="#verbs-formation">Verbs: formation</a></li></ol></nav>
+<article class="prose card">
+<h2 id="finite-and-non-finite-verbs">Finite and non-finite verbs</h2>
+<p>A <strong>finite</strong> verb shows tense and agrees with a subject: <em>She <strong>works</strong>.</em> <em>They <strong>worked</strong>.</em> Every complete clause has a finite verb. <strong>Non-finite</strong> forms don't show tense: the <strong>infinitive</strong> (<em>(to) work</em>), the <strong><em>-ing</em> form</strong> (<em>working</em>) and the <strong>past participle</strong> (<em>worked</em>). They are used after other verbs and in non-finite clauses:</p>
+<ul class="ex">
+<li><em>I want <strong>to go</strong>.</em> <em>She enjoys <strong>swimming</strong>.</em> <em><strong>Built</strong> in 1900, the house is old.</em></li>
+</ul>
+<h2 id="imperative-clauses-be-quiet">Imperative clauses (Be quiet!)</h2>
+<p>The imperative uses the base form, usually with no subject: <em><strong>Be</strong> quiet!</em> <em><strong>Open</strong> the window.</em></p>
+<h3 id="with-subject-pronouns-and-do">With subject pronouns and do</h3>
+<ul class="ex">
+<li>a subject adds emphasis or contrast: <em><strong>You</strong> stay here.</em> <em><strong>Somebody</strong> call a doctor!</em></li>
+<li><em>do</em> + imperative is emphatic or polite: <em><strong>Do</strong> come in.</em> <em><strong>Do</strong> be careful.</em></li>
+</ul>
+<h3 id="lets-and-let">Let's and let</h3>
+<ul class="ex">
+<li>first person (suggestion): <em><strong>Let's</strong> go.</em> Negative: <em><strong>Let's not</strong> go.</em> (informal <em>Don't let's</em>)</li>
+<li>third person: <em><strong>Let</strong> them wait.</em></li>
+</ul>
+<h3 id="negative-imperatives">Negative imperatives</h3>
+<p><em><strong>Don't</strong> touch!</em> <em><strong>Don't</strong> you dare!</em> (with subject, strong) <em><strong>Never</strong> do that again.</em></p>
+<h3 id="tags-and-softening">Tags and softening</h3>
+<p><em>Sit down, <strong>will you</strong>?</em> <em>Help me, <strong>would you</strong>?</em> <em>Pass the salt, <strong>please</strong>.</em> Imperatives are also used for instructions, advice, warnings and invitations: <em><strong>Have</strong> a seat.</em> <em><strong>Turn</strong> left.</em></p>
+<h2 id="infinitives-with-and-without-to">Infinitives with and without to</h2>
+<h3 id="to-infinitive">To-infinitive</h3>
+<ul class="ex">
+<li>after many verbs: <em>want, decide, hope, plan, agree, refuse, promise, learn, manage</em>: <em>I <strong>decided to</strong> stay.</em></li>
+<li>after adjectives: <em>It's <strong>easy to</strong> learn.</em> <em>I'm <strong>happy to</strong> help.</em></li>
+<li>for purpose: <em>I came <strong>to</strong> see you.</em></li>
+<li>after question words: <em>I don't know <strong>what to</strong> do.</em></li>
+<li>after <em>too / enough</em>: <em>too cold <strong>to</strong> swim</em></li>
+</ul>
+<h3 id="infinitive-without-to-bare-infinitive">Infinitive without to (bare infinitive)</h3>
+<ul class="ex">
+<li>after modal verbs: <em>I <strong>can swim</strong>.</em> <em>You <strong>should go</strong>.</em></li>
+<li>after <em>make</em> and <em>let</em>: <em>She <strong>made</strong> me <strong>laugh</strong>.</em> <em>Let me <strong>help</strong>.</em></li>
+<li>after <em>had better, would rather</em>: <em>You'd better <strong>go</strong>.</em></li>
+<li>after <em>see, hear, watch, feel</em> + object (whole action): <em>I <strong>saw</strong> him <strong>leave</strong>.</em></li>
+<li><em>help</em> (with or without <em>to</em>): <em>Can you help me (<strong>to</strong>) <strong>carry</strong> this?</em></li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>I can to swim.</del> → <em>I can <strong>swim</strong>.</em></li>
+<li><del>She made me to cry.</del> → <em>She made me <strong>cry</strong>.</em> (but passive: <em>I was made <strong>to</strong> cry</em>)</li>
+<li><del>I want that you come.</del> → <em>I want <strong>you to</strong> come.</em></li>
+</ul>
+<h2 id="infinitive-active-or-passive">Infinitive: active or passive?</h2>
+<h3 id="focus-on-the-agent-or-on-the-receiver">Focus on the agent or on the receiver</h3>
+<p>The active infinitive (<em>to do</em>) focuses on who does the action; the passive (<em>to be done</em>) focuses on the receiver: <em>I need <strong>to clean</strong> the car</em> / <em>The car needs <strong>to be cleaned</strong></em> (or <em>needs cleaning</em>). <em>She hopes <strong>to be chosen</strong> for the team.</em></p>
+<h3 id="after-there-is-there-are">After there is / there are</h3>
+<p>Both are often possible: <em>There's a lot of work <strong>to do / to be done</strong>.</em> <em>There's nothing <strong>to eat</strong>.</em></p>
+<h2 id="perfect-infinitive-with-to-to-have-worked">Perfect infinitive with to (to have worked)</h2>
+<p><em>To have</em> + past participle refers to a time <strong>before</strong> the main verb, or to things that didn't happen:</p>
+<ul class="ex">
+<li><em>She seems <strong>to have left</strong>.</em> (= it seems she has left)</li>
+<li><em>I'm glad <strong>to have met</strong> you.</em></li>
+<li><em>I would like <strong>to have seen</strong> it.</em> (but I didn't)</li>
+<li>with modals: <em>You <strong>should have told</strong> me.</em> <em>He <strong>must have forgotten</strong>.</em> <em>They <strong>might have missed</strong> the bus.</em></li>
+</ul>
+<h2 id="verbs-basic-forms">Verbs: basic forms</h2>
+<h3 id="the-three-basic-forms">The three basic forms</h3>
+<p>English verbs have three main forms: <strong>base form</strong> (<em>work, take</em>), <strong>past simple</strong> (<em>worked, took</em>) and <strong>past participle</strong> (<em>worked, taken</em>). Dictionaries list them as <em>take, took, taken</em>. Regular verbs add <em>-ed</em> for both past forms.</p>
+<h3 id="spelling-rules-for-regular-verbs">Spelling rules for regular verbs</h3>
+<ul class="ex">
+<li>base ending in <em>-e</em>: add <em>-d</em>: <em>live → lived</em></li>
+<li>consonant + <em>y</em>: <em>y → ied</em>: <em>study → studied</em> (but <em>play → played</em>)</li>
+<li>single vowel + single consonant, stressed: double: <em>stop → stopped</em>, <em>prefer → preferred</em></li>
+<li>vowel + <em>l</em> (British): double: <em>travel → travelled</em> (US <em>traveled</em>)</li>
+</ul>
+<h3 id="person-and-number">Person and number</h3>
+<p>Only the present simple 3rd person singular (<em>works</em>) and <em>be</em> (<em>am, is, are, was, were</em>) change for person and number.</p>
+<h2 id="verbs-formation">Verbs: formation</h2>
+<h3 id="identifying-verbs">Identifying verbs</h3>
+<p>Verbs can be preceded by <em>to</em> or a modal, take tense endings, and have a subject.</p>
+<h3 id="typical-prefixes-and-suffixes">Typical prefixes and suffixes</h3>
+<ul class="ex">
+<li>prefixes: <em>re-</em> (<em>rewrite</em>), <em>un-</em> (<em>undo</em>), <em>dis-</em> (<em>disagree</em>), <em>mis-</em> (<em>misunderstand</em>), <em>over-</em> (<em>oversleep</em>), <em>out-</em> (<em>outnumber</em>), <em>en-</em> (<em>enable</em>)</li>
+<li>suffixes making verbs: <em>-ise / -ize</em> (<em>modernise</em>), <em>-en</em> (<em>widen, shorten</em>), <em>-ify</em> (<em>simplify</em>), <em>-ate</em> (<em>activate</em>)</li>
+</ul>
+<h3 id="verbs-related-to-nouns-and-adjectives">Verbs related to nouns and adjectives</h3>
+<p>Many nouns and verbs share one form (<em>email, text, google, phone, chair</em>). Adjectives often become verbs: <em>dry → to dry</em>, <em>empty → to empty</em>, <em>calm → to calm down</em>.</p>
+<h3 id="compound-verbs">Compound verbs</h3>
+<p><em>babysit, sightsee, download, overtake, undergo, dry-clean, double-check</em>.</p>
+</article>
+<nav class="pager"><a class="btn" href="future.html">← Tenses and time: future</a><a class="btn" href="verb-patterns.html">Verb patterns →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="be8d8c87bd7a">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Adjectives · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Adjectives and adverbs</a><span class="sep">/</span><span class="cur">Adjectives</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Adjectives and adverbs</span><h1>Adjectives</h1><p class="sub">What adjectives mean, how they are formed, the order they go in, where they stand in a sentence and how we compare with them.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#adjectives">Adjectives</a></li><li><a href="#adjectives-forms">Adjectives: forms</a></li><li><a href="#adjectives-order">Adjectives: order</a></li><li><a href="#adjective-phrases-functions">Adjective phrases: functions</a></li><li><a href="#adjective-phrases-position">Adjective phrases: position</a></li><li><a href="#adjectives-and-adjective-phrases-typical-errors">Adjectives and adjective phrases: typical errors</a></li><li><a href="#comparison-adjectives-bigger-biggest-more-interesting">Comparison: adjectives (bigger, biggest, more interesting)</a></li><li><a href="#comparison-clauses-bigger-than-we-had-imagined">Comparison: clauses (bigger than we had imagined)</a></li><li><a href="#comparison-comparisons-of-equality-as-tall-as-his-father">Comparison: comparisons of equality (as tall as his father)</a></li><li><a href="#as-as">As … as</a></li></ol></nav>
+<article class="prose card">
+<h2 id="adjectives">Adjectives</h2>
+<p>Adjectives give us more information about people, things, places and ideas. They can describe qualities (<em>a <strong>tall</strong> tree</em>), feelings (<em>a <strong>nervous</strong> student</em>), colour, size, age, nationality, material and much more.</p>
+<h3 id="meanings-of-adjectives">Meanings of adjectives</h3>
+<ul class="ex">
+<li>a <strong>beautiful</strong> view (opinion)</li>
+<li>a <strong>wooden</strong> box (material)</li>
+<li>an <strong>Irish</strong> singer (origin)</li>
+</ul>
+<h3 id="oppositeness">Oppositeness</h3>
+<p>Many adjectives come in pairs of opposites (antonyms): <em>hot / cold</em>, <em>easy / difficult</em>, <em>rich / poor</em>. Some opposites are made with a prefix: <em>happy / <strong>un</strong>happy</em>, <em>possible / <strong>im</strong>possible</em>.</p>
+<h3 id="gradable-and-ungradable">Gradable and ungradable</h3>
+<p><strong>Gradable</strong> adjectives describe qualities that can be stronger or weaker, so we can use them with <em>very</em>, <em>a bit</em>, <em>extremely</em> and in comparatives: <em>very cold</em>, <em>colder</em>. <strong>Ungradable</strong> adjectives describe an absolute or extreme quality: <em>dead</em>, <em>married</em>, <em>freezing</em>, <em>enormous</em>. We don't normally say <del>very freezing</del>; we use <em>absolutely</em> or <em>completely</em> instead.</p>
+<ul class="ex">
+<li>It's <strong>very cold</strong> today.</li>
+<li>It's <strong>absolutely freezing</strong> today.</li>
+</ul>
+<h2 id="adjectives-forms">Adjectives: forms</h2>
+<h3 id="identifying-adjectives">Identifying adjectives</h3>
+<p>Adjectives don't change for number or gender in English: <em>a <strong>young</strong> man</em>, <em>two <strong>young</strong> women</em>. Many have typical endings that help you recognise them.</p>
+<h3 id="forming-adjectives-from-other-words">Forming adjectives from other words</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-able / -ible</td>
+<td>comfortable, reasonable, visible</td>
+</tr>
+<tr>
+<td>-al</td>
+<td>national, musical, central</td>
+</tr>
+<tr>
+<td>-ful / -less</td>
+<td>careful, useful / careless, homeless</td>
+</tr>
+<tr>
+<td>-ic</td>
+<td>economic, historic, artistic</td>
+</tr>
+<tr>
+<td>-ive</td>
+<td>active, attractive, expensive</td>
+</tr>
+<tr>
+<td>-ous</td>
+<td>dangerous, famous, nervous</td>
+</tr>
+<tr>
+<td>-y</td>
+<td>sunny, windy, salty</td>
+</tr>
+<tr>
+<td>-ish</td>
+<td>childish, reddish, Spanish</td>
+</tr>
+</tbody>
+</table></div>
+<p>Prefixes usually change the meaning, often to the opposite: <em><strong>un</strong>fair</em>, <em><strong>in</strong>complete</em>, <em><strong>dis</strong>honest</em>, <em><strong>ir</strong>regular</em>, <em><strong>il</strong>legal</em>, <em><strong>over</strong>crowded</em>.</p>
+<h3 id="adjectives-with-ing-and-ed-interesting-interested">Adjectives with -ing and -ed (interesting, interested)</h3>
+<p>Adjectives ending in <strong>-ing</strong> describe the thing or person that <em>causes</em> a feeling. Adjectives ending in <strong>-ed</strong> describe the person who <em>has</em> the feeling.</p>
+<ul class="ex">
+<li>The film was <strong>boring</strong>. (the film causes the feeling)</li>
+<li>I was <strong>bored</strong>. (I have the feeling)</li>
+<li>Not: <del>I was boring during the film.</del> (this means other people found you dull)</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">-ing versus -ed</p><p><em>She is interesting</em> is a compliment about her. <em>She is interested</em> says she wants to know more. Mixing them up is one of the most common learner errors.</p></aside>
+
+<h2 id="adjectives-order">Adjectives: order</h2>
+<p>When several adjectives come before a noun, <strong>opinion</strong> adjectives usually come before <strong>fact</strong> adjectives: <em>a <strong>lovely</strong> red dress</em>, not <del>a red lovely dress</del>.</p>
+<p>The usual order of fact adjectives is:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Type</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>opinion</td>
+<td>lovely, strange, useful</td>
+</tr>
+<tr>
+<td>2</td>
+<td>size</td>
+<td>big, tiny, tall</td>
+</tr>
+<tr>
+<td>3</td>
+<td>physical quality</td>
+<td>thin, rough, smooth</td>
+</tr>
+<tr>
+<td>4</td>
+<td>shape</td>
+<td>round, square</td>
+</tr>
+<tr>
+<td>5</td>
+<td>age</td>
+<td>old, new, young</td>
+</tr>
+<tr>
+<td>6</td>
+<td>colour</td>
+<td>red, pale blue</td>
+</tr>
+<tr>
+<td>7</td>
+<td>origin</td>
+<td>French, Chinese</td>
+</tr>
+<tr>
+<td>8</td>
+<td>material</td>
+<td>wooden, plastic, silk</td>
+</tr>
+<tr>
+<td>9</td>
+<td>type</td>
+<td>electric, four-door</td>
+</tr>
+<tr>
+<td>10</td>
+<td>purpose</td>
+<td>cooking (pot), running (shoes)</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li>a <strong>small round wooden</strong> table</li>
+<li>a <strong>beautiful old Italian</strong> car</li>
+</ul>
+<p>In real speech we rarely use more than two or three adjectives before a noun.</p>
+<h3 id="adjectives-joined-by-and">Adjectives joined by and</h3>
+<p>After a linking verb such as <em>be</em>, the last two adjectives are joined with <strong>and</strong>: <em>The room was <strong>cold, dark and damp</strong></em>. Before a noun we use <em>and</em> when the adjectives are of the same type or describe different parts: <em>a <strong>black and white</strong> photo</em>.</p>
+<h2 id="adjective-phrases-functions">Adjective phrases: functions</h2>
+<p>An adjective phrase is an adjective with words that modify or complete it: <em>very tired</em>, <em>afraid of spiders</em>, <em>good enough to win</em>.</p>
+<h3 id="adjective-phrases-with-nouns">Adjective phrases with nouns</h3>
+<p>They describe a noun, usually from before it (attributive): <em>a <strong>really expensive</strong> watch</em>.</p>
+<h3 id="adjective-phrases-with-verbs">Adjective phrases with verbs</h3>
+<p>After linking verbs (<em>be, seem, look, feel, become, get, sound, taste</em>) they describe the subject (predicative):</p>
+<ul class="ex">
+<li>Brenda <strong>is happy</strong>.</li>
+<li>You <strong>look tired</strong>.</li>
+<li>The milk <strong>has gone sour</strong>.</li>
+</ul>
+<h3 id="object-complements">Object complements</h3>
+<p>After some verbs, an adjective describes the object: <em>The news made <strong>her angry</strong></em>. <em>They painted the door <strong>green</strong></em>. <em>I find this <strong>difficult</strong></em>.</p>
+<h2 id="adjective-phrases-position">Adjective phrases: position</h2>
+<p>Most adjectives can go before a noun or after a linking verb: <em>a <strong>busy</strong> day</em> / <em>The day was <strong>busy</strong></em>. Some can only go in one place.</p>
+<h3 id="adjectives-used-only-before-a-noun">Adjectives used only before a noun</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numbers, <em>first, last</em></td>
+<td>the <strong>first</strong> time, the <strong>last</strong> bus</td>
+</tr>
+<tr>
+<td>degree</td>
+<td>a <strong>complete</strong> idiot, <strong>utter</strong> nonsense, a <strong>total</strong> failure</td>
+</tr>
+<tr>
+<td>time and order</td>
+<td>the <strong>former</strong> president, a <strong>future</strong> star</td>
+</tr>
+<tr>
+<td>limiting</td>
+<td>the <strong>main</strong> reason, the <strong>only</strong> answer, the <strong>chief</strong> problem</td>
+</tr>
+<tr>
+<td>nouns used as modifiers</td>
+<td>a <strong>tennis</strong> ball, a <strong>city</strong> centre</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="adjectives-used-only-after-a-noun">Adjectives used only after a noun</h3>
+<p>A few adjectives follow the noun, often in fixed phrases or with a different meaning: <em>the people <strong>concerned</strong></em>, <em>the president <strong>elect</strong></em>, <em>the members <strong>present</strong></em>, <em>something <strong>interesting</strong></em>.</p>
+<h3 id="adjectives-used-only-after-a-verb">Adjectives used only after a verb</h3>
+<p>Adjectives beginning with <strong>a-</strong> (<em>afraid, alive, alone, asleep, awake, alike, aware</em>) and some health adjectives (<em>ill, well, unwell, fine</em>) normally come after a verb.</p>
+<ul class="ex">
+<li>The baby is <strong>asleep</strong>. Not: <del>the asleep baby</del> → <em>the sleeping baby</em></li>
+<li>My brother is <strong>ill</strong>. → before a noun: <em>a <strong>sick</strong> child</em></li>
+</ul>
+<h3 id="words-that-go-before-adjectives">Words that go before adjectives</h3>
+<p>Gradable adjectives take words like <em>very, extremely, a bit, rather, quite, fairly, too, so</em>. Extreme or absolute adjectives take <em>absolutely, completely, totally, utterly</em>. <em>Really</em> works with both: <em>really cold</em>, <em>really freezing</em>.</p>
+<h3 id="different-meanings-before-the-noun-and-after-the-verb">Different meanings before the noun and after the verb</h3>
+<ul class="ex">
+<li>the <strong>late</strong> Mr Jones (dead) / Mr Jones <strong>is late</strong> (not on time)</li>
+<li>a <strong>concerned</strong> mother (worried) / the people <strong>concerned</strong> (involved)</li>
+<li>the <strong>present</strong> situation (now) / the people <strong>present</strong> (there)</li>
+</ul>
+<h3 id="special-cases-quite-rather-as-so">Special cases: quite, rather, as, so</h3>
+<p>With an article, <em>quite</em> and <em>rather</em> usually go <strong>before</strong> <em>a/an</em>: <em>quite <strong>a</strong> cold day</em>, <em>rather <strong>a</strong> long walk</em> (also <em>a rather long walk</em>). <em>As</em> and <em>so</em> go before the adjective and then the article: <em>I've never seen <strong>so tall a</strong> man</em> (formal), more often <em>such a tall man</em>.</p>
+<h2 id="adjectives-and-adjective-phrases-typical-errors">Adjectives and adjective phrases: typical errors</h2>
+<ul class="ex">
+<li>Adjectives have no plural form: <del>the reds cars</del> → <em>the <strong>red</strong> cars</em></li>
+<li>Use an adjective, not an adverb, after linking verbs: <del>She looks beautifully.</del> → <em>She looks <strong>beautiful</strong>.</em></li>
+<li>Opinion before fact: <del>a black nice jacket</del> → <em>a <strong>nice black</strong> jacket</em></li>
+<li>-ing/-ed: <del>I'm very interesting in history.</del> → <em>I'm very <strong>interested</strong> in history.</em></li>
+<li>Words like <em>alone, asleep, afraid</em> don't go before a noun: <del>an afraid dog</del> → <em>a <strong>frightened</strong> dog</em></li>
+</ul>
+<h2 id="comparison-adjectives-bigger-biggest-more-interesting">Comparison: adjectives (bigger, biggest, more interesting)</h2>
+<p>We use <strong>comparative</strong> adjectives to compare two things and <strong>superlative</strong> adjectives to say one thing is at the top or bottom of a group.</p>
+<ul class="ex">
+<li>My car is <strong>older than</strong> yours.</li>
+<li>This is <strong>the oldest</strong> building in the town.</li>
+</ul>
+<h3 id="forms">Forms</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adjective</th>
+<th>Comparative</th>
+<th>Superlative</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>one syllable: <em>tall, cold</em></td>
+<td>tall<strong>er</strong>, cold<strong>er</strong></td>
+<td>the tall<strong>est</strong>, the cold<strong>est</strong></td>
+</tr>
+<tr>
+<td>ends in -e: <em>nice, late</em></td>
+<td>nice<strong>r</strong></td>
+<td>the nice<strong>st</strong></td>
+</tr>
+<tr>
+<td>one vowel + one consonant: <em>big, hot</em></td>
+<td>bi<strong>gg</strong>er, ho<strong>tt</strong>er</td>
+<td>the bi<strong>gg</strong>est</td>
+</tr>
+<tr>
+<td>two syllables ending in -y: <em>happy, easy</em></td>
+<td>happ<strong>ier</strong></td>
+<td>the happ<strong>iest</strong></td>
+</tr>
+<tr>
+<td>other two-syllable and longer: <em>careful, expensive</em></td>
+<td><strong>more</strong> careful</td>
+<td>the <strong>most</strong> expensive</td>
+</tr>
+<tr>
+<td>irregular: <em>good, bad, far</em></td>
+<td>better, worse, further/farther</td>
+<td>the best, the worst, the furthest</td>
+</tr>
+</tbody>
+</table></div>
+<p>Some two-syllable adjectives can take either form: <em>clever, narrow, quiet, simple, gentle</em> → <em>cleverer / more clever</em>.</p>
+<h3 id="using-much-a-lot-far-with-comparatives">Using much, a lot, far with comparatives</h3>
+<p>To show a big or small difference, use <em>much, a lot, far, way</em> (informal), <em>a bit, a little, slightly</em>:</p>
+<ul class="ex">
+<li>This flat is <strong>much bigger</strong> than the last one.</li>
+<li>She's <strong>a bit taller</strong> than me.</li>
+<li>Not: <del>very bigger</del></li>
+</ul>
+<h3 id="than-and-er-and-er-the-er-the-er">Than, and -er and -er, the -er the -er</h3>
+<ul class="ex">
+<li>Trains are <strong>faster than</strong> buses.</li>
+<li>It's getting <strong>colder and colder</strong>. / <strong>more and more</strong> expensive</li>
+<li><strong>The sooner</strong> we leave, <strong>the better</strong>. <strong>The more</strong> you practise, <strong>the easier</strong> it gets.</li>
+</ul>
+<p>After <em>than</em> and <em>as</em>, informal English uses object pronouns (<em>taller than <strong>me</strong></em>); formal English prefers subject + verb (<em>taller than <strong>I am</strong></em>).</p>
+<h3 id="less-and-not-as-as">Less and not as … as</h3>
+<p><em>Less</em> is the opposite of <em>more</em>: <em>less expensive</em>. With one-syllable adjectives, <em>not as … as</em> sounds more natural: <em>not as tall as</em>, rather than <del>less tall</del>.</p>
+<h3 id="superlatives-the-prepositions-and-emphasis">Superlatives: the, prepositions and emphasis</h3>
+<p>We usually use <strong>the</strong> (or a possessive) with superlatives: <em><strong>the</strong> best</em>, <em>my <strong>best</strong> friend</em>. After a superlative, use <strong>in</strong> for places and groups and <strong>of</strong> for periods and plural nouns:</p>
+<ul class="ex">
+<li>the tallest building <strong>in</strong> the world. Not: <del>of the world</del></li>
+<li>the happiest day <strong>of</strong> my life</li>
+<li><strong>by far</strong> the best, <strong>easily</strong> the most popular, the <strong>very</strong> best</li>
+<li>She was <strong>the first</strong> woman <strong>to</strong> win the prize. (<em>to</em>-infinitive after superlatives and ordinals)</li>
+</ul>
+<h3 id="typical-errors">Typical errors</h3>
+<ul class="ex">
+<li><del>more better</del>, <del>more easier</del> → <em>better</em>, <em>easier</em></li>
+<li><del>the most cheapest</del> → <em>the cheapest</em></li>
+<li><del>bigger as</del>, <del>bigger that</del> → <em>bigger <strong>than</strong></em></li>
+</ul>
+<h2 id="comparison-clauses-bigger-than-we-had-imagined">Comparison: clauses (bigger than we had imagined)</h2>
+<p>A clause can follow <em>than</em> or <em>as</em>, and we often leave out repeated words:</p>
+<ul class="ex">
+<li>The house was <strong>bigger than we had imagined</strong>.</li>
+<li>He earns <strong>more than he did</strong> last year.</li>
+<li>It's <strong>not as easy as it looks</strong>.</li>
+</ul>
+<p>After <em>so</em> or <em>such</em>, use a <em>that</em>-clause for a result: <em>It was <strong>so</strong> hot <strong>that</strong> we stayed inside</em>. <em>It was <strong>such</strong> a good film <strong>that</strong> I saw it twice.</em></p>
+<h2 id="comparison-comparisons-of-equality-as-tall-as-his-father">Comparison: comparisons of equality (as tall as his father)</h2>
+<p><strong>As + adjective/adverb + as</strong> says two things are equal: <em>Tom is <strong>as tall as</strong> his father</em>. The negative <strong>not as/so … as</strong> says they are not equal: <em>It's <strong>not as cold as</strong> yesterday.</em></p>
+<p>With nouns, use <strong>as much/many + noun + as</strong> or <strong>the same + noun + as</strong>:</p>
+<ul class="ex">
+<li>I haven't got <strong>as much time as</strong> you.</li>
+<li>She's <strong>the same age as</strong> my sister.</li>
+</ul>
+<p>Add <em>just, nearly, almost, twice, three times, half</em> in front: <em>just as good</em>, <em><strong>twice as</strong> expensive</em>, <em>nowhere near as fast</em>.</p>
+<h2 id="as-as">As … as</h2>
+<h3 id="not-as-as">Not as … as</h3>
+<p><em>Not as … as</em> is very common and sounds softer than a comparative: <em>He's <strong>not as clever as</strong> he thinks</em> (= less clever).</p>
+<h3 id="as-as-possibility">As … as + possibility</h3>
+<ul class="ex">
+<li>Come <strong>as soon as possible</strong>. / <strong>as quickly as you can</strong></li>
+<li>I'll help you <strong>as much as I can</strong>.</li>
+</ul>
+<h3 id="as-much-as-as-many-as">As much as, as many as</h3>
+<p>These can emphasise a large number or amount: <em>Tickets cost <strong>as much as</strong> £300.</em> <em>There were <strong>as many as</strong> 50,000 people at the concert.</em></p>
+<aside class="callout fact"><p class="callout-title">Fixed similes</p><p>English has many fixed <em>as … as</em> phrases: <em>as cold as ice</em>, <em>as light as a feather</em>, <em>as busy as a bee</em>, <em>as old as the hills</em>. Use them sparingly; they can sound like clichés in writing.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="index.html">← Adjectives and adverbs</a><a class="btn" href="adverbs.html">Adverbs →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

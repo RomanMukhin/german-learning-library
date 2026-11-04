@@ -1,0 +1,31 @@
+{
+  "title": "Adjectives and adverbs quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "The lecture was so long that I got really *___*.", "options": ["boring", "bored", "bore", "boredly"], "answer": 1, "explain": "*-ed* adjectives describe how a person feels; *-ing* adjectives describe what causes the feeling."},
+    {"q": "Choose the natural order: She bought a *___* table.", "options": ["wooden round small", "small wooden round", "small round wooden", "round small wooden"], "answer": 2, "explain": "Size → shape → material: *a small round wooden table*."},
+    {"q": "Which adjective cannot normally go before a noun?", "options": ["sleepy", "asleep", "tired", "quiet"], "answer": 1, "explain": "Adjectives starting with *a-* (*asleep, afraid, alone, alive*) usually come after a verb: *The baby is asleep*."},
+    {"q": "This exam was *___* than the last one.", "options": ["more easy", "more easier", "easier", "easiest"], "answer": 2, "explain": "Two-syllable adjectives ending in *-y* take *-ier*: *easier*. Never double the comparative."},
+    {"q": "It's the tallest building *___* the world.", "options": ["of", "in", "from", "at"], "answer": 1, "explain": "After a superlative, use *in* with places and groups: *in the world*, *in the class*."},
+    {"q": "This flat is *___* bigger than our old one.", "options": ["very", "much", "too", "so"], "answer": 1, "explain": "Comparatives are strengthened with *much, far, a lot*, not *very*."},
+    {"q": "The more you practise, *___* you get.", "options": ["the better", "better", "the best", "more better"], "answer": 0, "explain": "The pattern is *the + comparative …, the + comparative*: *the more…, the better*."},
+    {"q": "Which sentence is correct?", "options": ["She speaks very well English.", "She speaks English very well.", "She very well speaks English.", "She speaks English well very."], "answer": 1, "explain": "Don't put an adverb between a verb and its object: *speaks English very well*."},
+    {"q": "He *___* late for meetings.", "options": ["always is", "is always", "always", "is late always"], "answer": 1, "explain": "Frequency adverbs go after the verb *be* but before other main verbs."},
+    {"q": "Which word is an adjective, not an adverb?", "options": ["quickly", "friendly", "hardly", "nearly"], "answer": 1, "explain": "*friendly* (like *lovely, lonely, silly*) is an adjective. Say *in a friendly way*."},
+    {"q": "She worked *___* all day and was exhausted.", "options": ["hardly", "hard", "hardy", "hardily"], "answer": 1, "explain": "*hard* is the adverb meaning *with effort*; *hardly* means *almost not*."},
+    {"q": "The film was *___* wonderful.", "options": ["very", "absolutely", "fairly", "a bit"], "answer": 1, "explain": "*wonderful* is an extreme adjective, so it goes with *absolutely*, not *very*."},
+    {"q": "In British English, *The hotel was quite good* usually means…", "options": ["it was excellent", "it was fairly good but not great", "it was terrible", "it was completely good"], "answer": 1, "explain": "With gradable adjectives, British *quite* means *fairly, but not very*."},
+    {"q": "I'm not hungry. — I'm not hungry *___*.", "options": ["too", "also", "either", "as well"], "answer": 2, "explain": "In negative sentences we use *either*, not *too* or *also*."},
+    {"q": "I met my best friend ten years *___*.", "options": ["before", "ago", "since", "for"], "answer": 1, "explain": "*ago* comes after the period and goes with the past simple, counting back from now."},
+    {"q": "Have you *___* been to Japan?", "options": ["ever", "already", "yet", "still"], "answer": 0, "explain": "*ever* means *at any time* and is typical in questions with the present perfect."},
+    {"q": "It's 10 p.m. and he *___* hasn't called.", "options": ["yet", "still", "already", "ever"], "answer": 1, "explain": "*still* shows a situation continuing; in negatives it goes before the auxiliary: *still hasn't*."},
+    {"q": "We waited for hours and *___* the bus arrived.", "options": ["eventually", "possibly", "actually", "lately"], "answer": 0, "explain": "*eventually* means *in the end, after a long time*. It never means *possibly*."},
+    {"q": "The coffee is *___* hot to drink.", "options": ["very", "too", "so", "enough"], "answer": 1, "explain": "*too + adjective + to-infinitive* means it is more than is acceptable, so you can't do it."},
+    {"q": "Your phone is the same *___* mine.", "options": ["like", "that", "as", "than"], "answer": 2, "explain": "The fixed pattern is *the same as*."},
+    {"q": "*___* it was raining, we went for a walk.", "options": ["Even", "Even though", "Even so", "Even if"], "answer": 1, "explain": "*even though* introduces a real fact you contrast with; *even* alone is not a conjunction."},
+    {"q": "I could *___* hear him because of the noise.", "options": ["hard", "hardly", "not hardly", "hardly not"], "answer": 1, "explain": "*hardly* means *almost not* and is already negative, so no extra *not*."},
+    {"q": "Which reply means *I'm sorry, the answer is no*?", "options": ["I'm afraid not.", "I'm afraid of it.", "I'm afraid so.", "I'm not afraid."], "answer": 0, "explain": "*I'm afraid not* politely gives a negative answer; *I'm afraid so* confirms bad news."},
+    {"q": "Could you speak more *___*, please?", "options": ["slow", "slowlier", "slowly", "slowest"], "answer": 2, "explain": "Adverbs ending in *-ly* form comparatives with *more*: *more slowly*."},
+    {"q": "She is *___* to win the race; she's the fastest runner.", "options": ["likely", "probably", "surely", "possible"], "answer": 0, "explain": "*be likely to + infinitive* is the normal British pattern; *probably* would need *She will probably win*."}
+  ]
+}

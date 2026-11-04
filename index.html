@@ -189,10 +189,16 @@ body { overflow-wrap: break-word; }
 .crumbs a:hover { color: var(--fg); }
 
 body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
 </style>
 </head>
 <body>
-<div class="appbar"><div class="appbar-inner"><div class="crumbs"><span class="cur">German library</span></div></div></div>
+<div class="appbar"><div class="appbar-inner"><div class="crumbs"><span class="cur">German library</span></div><nav class="siteswitch" aria-label="Library"><a aria-current="page" href="index.html">🇩🇪<span class="long"> German</span></a><a href="english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>A2 – B1+</span><h1>German library</h1><p class="sub">Reference docs, reading texts and quizzes for learning German from A2 to B1+, explained in English.</p></header>
 <nav class="tabs" aria-label="Sections"><a href="#topics">Topics</a><a href="#grammar">Docs</a><a href="#readings">Reading</a><a href="#quizzes">Quizzes</a></nav>

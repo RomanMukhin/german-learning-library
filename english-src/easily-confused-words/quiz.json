@@ -1,0 +1,31 @@
+{
+  "title": "Easily confused words quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "Can I give you a piece of *___*?", "options": ["advise", "advice", "advices", "an advice"], "answer": 1, "explain": "*advice* is the uncountable noun; *advise* is the verb."},
+    {"q": "The new law will *___* thousands of people.", "options": ["effect", "affect", "affection", "effective"], "answer": 1, "explain": "*affect* is the verb (influence); *effect* is usually the noun (result)."},
+    {"q": "She's *___* to Spain. She'll be back next week.", "options": ["been", "gone", "went", "go"], "answer": 1, "explain": "*gone* = she went and is still there; *been* = she went and came back."},
+    {"q": "Could you *___* me your pen for a minute?", "options": ["borrow", "lend", "rent", "take"], "answer": 1, "explain": "You *lend* something to someone; you *borrow* it from them."},
+    {"q": "He *___* me that he was leaving.", "options": ["said", "told", "spoke", "talked"], "answer": 1, "explain": "*tell* takes a person as the direct object; *say* doesn't (*said to me*)."},
+    {"q": "I've lived here *___* 2019.", "options": ["for", "since", "during", "from"], "answer": 1, "explain": "*since* + a point in time; *for* + a period."},
+    {"q": "I fell asleep *___* the film.", "options": ["for", "during", "while", "since"], "answer": 1, "explain": "*during* + noun tells us when; *while* needs a clause."},
+    {"q": "You need to *___* a decision soon.", "options": ["do", "make", "take part", "have done"], "answer": 1, "explain": "We *make* a decision, a mistake, a plan; we *do* homework, a job."},
+    {"q": "*___* students have to wear a uniform.", "options": ["Every", "All", "Each", "Whole"], "answer": 1, "explain": "*all* + plural noun; *every* and *each* take a singular noun."},
+    {"q": "Prices *___* by 10% last year.", "options": ["raised", "rose", "arose", "risen"], "answer": 1, "explain": "*rise – rose – risen* has no object; *raise* needs one (*they raised prices*)."},
+    {"q": "Please *___* me to buy milk.", "options": ["remember", "remind", "recall", "memorise"], "answer": 1, "explain": "Someone *reminds* you to do something; you *remember* it yourself."},
+    {"q": "Thieves *___* the bank last night.", "options": ["stole", "robbed", "thieved", "took off"], "answer": 1, "explain": "You *rob* a person or place; you *steal* a thing."},
+    {"q": "It was *___* a good party that nobody wanted to leave.", "options": ["so", "such", "such an", "so a"], "answer": 1, "explain": "*such (a/an)* + (adjective +) noun; *so* + adjective alone."},
+    {"q": "The dog hurt *___* leg.", "options": ["it's", "its", "its'", "it is"], "answer": 1, "explain": "*its* (no apostrophe) is the possessive; *it's* = it is / it has."},
+    {"q": "There were *___* people at the meeting than last time.", "options": ["less", "fewer", "little", "few"], "answer": 1, "explain": "In careful English, *fewer* goes with plural countable nouns."},
+    {"q": "I *___* my umbrella on the bus.", "options": ["forgot", "left", "lost on", "missed"], "answer": 1, "explain": "When you name the place, use *leave*, not *forget*."},
+    {"q": "The party was great *___*!", "options": ["funny", "fun", "funnily", "funs"], "answer": 1, "explain": "*fun* = enjoyable; *funny* = makes you laugh."},
+    {"q": "I don't know *___* to accept the job or not.", "options": ["if", "whether", "that", "weather"], "answer": 1, "explain": "Before a *to*-infinitive, use *whether*, not *if*."},
+    {"q": "She works *___* a nurse at the city hospital.", "options": ["like", "as", "how", "such"], "answer": 1, "explain": "*as* + noun = in the role of; *like* = similar to."},
+    {"q": "Could you *___* the newspaper from the kitchen?", "options": ["bring", "fetch", "carry", "take"], "answer": 1, "explain": "*fetch* = go, get something and bring it back."},
+    {"q": "*___* we waited for an hour, the bus came.", "options": ["At last", "Lastly", "At first", "Firstly"], "answer": 0, "explain": "*at last* = after a long wait, with relief. *Lastly* introduces the last item in a list."},
+    {"q": "I'm so *___* to you for all your help.", "options": ["thankful", "grateful", "thanked", "gratitude"], "answer": 1, "explain": "We are *grateful to* people for what they did; *thankful* is for lucky situations."},
+    {"q": "She's my *___* sister — she's two years older than me.", "options": ["older", "elder", "eldest", "oldest"], "answer": 1, "explain": "*elder* is used before a noun for family members (but *older than*, never *elder than*)."},
+    {"q": "*___* is your new teacher like?", "options": ["How", "What", "Which", "Who"], "answer": 1, "explain": "*What is … like?* asks for a description; *How is …?* asks about health or progress."},
+    {"q": "I had the *___* to work in Canada last year.", "options": ["possibility", "opportunity", "occasion", "probability"], "answer": 1, "explain": "An *opportunity* is a chance to do something; a *possibility* is something that might happen."}
+  ]
+}

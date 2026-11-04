@@ -1,0 +1,31 @@
+{
+  "title": "Using English quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "Which request is the most polite?", "options": ["Give me the report.", "I want the report.", "I was wondering if you could send me the report.", "Send the report, OK?"], "answer": 2, "explain": "Past continuous *I was wondering if…* is an indirect, very polite way to ask."},
+    {"q": "*___* going to the cinema tonight?", "options": ["Why not", "How about", "Let's", "Shall"], "answer": 1, "explain": "*How about / What about* + *-ing* makes a suggestion."},
+    {"q": "On the phone: \"Hello, *___* Maria. Can I speak to Tom?\"", "options": ["I am", "here is", "it's", "I'm being"], "answer": 2, "explain": "On the phone we identify ourselves with *It's…* or *This is…*."},
+    {"q": "In British English, *half seven* means…", "options": ["6.30", "7.30", "7.15", "7.50"], "answer": 1, "explain": "*Half seven* is short for *half past seven*, 7.30."},
+    {"q": "We arrived just *___* to catch the train.", "options": ["on time", "in time", "at time", "by time"], "answer": 1, "explain": "*in time* = early enough to do something; *on time* = at the planned time."},
+    {"q": "Which name needs *the*?", "options": ["Everest", "Lake Como", "the Alps", "France"], "answer": 2, "explain": "Mountain ranges take *the*; single mountains, lakes and most countries don't."},
+    {"q": "She lives *___*.", "options": ["in abroad", "abroad", "to abroad", "at abroad"], "answer": 1, "explain": "*abroad* is an adverb and takes no preposition."},
+    {"q": "\"I'm tired.\" → She said she *___* tired.", "options": ["is being", "was", "has been", "will be"], "answer": 1, "explain": "With a past reporting verb, the present usually moves back to the past."},
+    {"q": "\"Where do you live?\" → He asked me where *___*.", "options": ["did I live", "do I live", "I lived", "I did live"], "answer": 2, "explain": "Indirect questions use statement word order and no *do/did*."},
+    {"q": "\"Please sit down.\" → She *___* sit down.", "options": ["said me to", "told me to", "told to me", "said to me"], "answer": 1, "explain": "Commands are reported with *tell / ask + object + to-infinitive*."},
+    {"q": "You're coming tomorrow, *___*?", "options": ["isn't it", "aren't you", "don't you", "won't you"], "answer": 1, "explain": "A positive sentence with *are* takes the negative tag *aren't you?*"},
+    {"q": "I'm late, *___*?", "options": ["amn't I", "aren't I", "isn't it", "am I not it"], "answer": 1, "explain": "The tag for *I am* is irregular: *aren't I?*"},
+    {"q": "\"I love jazz.\" \"*___*\"", "options": ["So do I.", "So am I.", "Neither do I.", "I do so."], "answer": 0, "explain": "Agreeing with a positive present-simple statement: *So do I*."},
+    {"q": "\"Will it rain tomorrow?\" \"I hope *___*.\"", "options": ["it", "not", "no", "don't"], "answer": 1, "explain": "After *hope* we use *so* (positive) or *not* (negative), never *it*."},
+    {"q": "Which sentence is formal?", "options": ["We found out the problem.", "We got the job done.", "The problem was identified.", "We kind of fixed it."], "answer": 2, "explain": "Formal style prefers the passive and single-word verbs (*identify* rather than *find out*)."},
+    {"q": "In American English you say *___* the weekend.", "options": ["at", "on", "in", "by"], "answer": 1, "explain": "British *at the weekend*, American *on the weekend*."},
+    {"q": "*___* the forecast, it will be sunny.", "options": ["According to", "In my opinion", "Due", "Following to"], "answer": 0, "explain": "*according to* + a source reports what it says (not for your own opinion)."},
+    {"q": "\"Are you French?\" \"*___*, I'm Belgian.\"", "options": ["Actually", "Currently", "Actual", "Eventually"], "answer": 0, "explain": "*Actually* politely corrects a mistaken idea. It doesn't mean *currently*."},
+    {"q": "It's high time you *___* a job.", "options": ["find", "found", "will find", "have found"], "answer": 1, "explain": "*It's (high) time + subject + past simple* says something should already happen."},
+    {"q": "Is there anything *___* I can do?", "options": ["other", "else", "more other", "another"], "answer": 1, "explain": "*else* follows indefinite words: *anything else, someone else*."},
+    {"q": "The children*___* toys are everywhere.", "options": ["s'", "'s", "s", "es'"], "answer": 1, "explain": "Irregular plurals not ending in *-s* add *'s*: *children's*."},
+    {"q": "Choose the correct punctuation.", "options": ["My sister who lives in Rome, is a chef.", "My sister, who lives in Rome, is a chef.", "My sister, who lives in Rome is a chef.", "My, sister who lives in Rome is a chef."], "answer": 1, "explain": "Non-defining relative clauses go between two commas."},
+    {"q": "Which word is spelt correctly?", "options": ["begining", "beginning", "beggining", "beginnig"], "answer": 1, "explain": "The final consonant doubles when the last syllable is stressed: *be-GIN → beginning*."},
+    {"q": "Which is a hedge that makes a statement less direct?", "options": ["It's definitely wrong.", "It might be a bit expensive.", "It is expensive.", "Obviously it's expensive."], "answer": 1, "explain": "Modals (*might*) and downtoners (*a bit*) soften what we say."},
+    {"q": "I like sports *___* tennis and football.", "options": ["such as", "such like", "as such", "for example as"], "answer": 0, "explain": "*such as* introduces examples."}
+  ]
+}

@@ -189,13 +189,19 @@ body { overflow-wrap: break-word; }
 .crumbs a:hover { color: var(--fg); }
 
 body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
 </style>
 </head>
 <body>
 <div class="appbar"><div class="appbar-inner">
   <a class="btn ghost" href="../../index.html">← Main page</a>
   <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><span class="cur">Verbs</span></div>
-</div></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
 <div class="wrap">
 <header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Verbs</h1><p class="sub">The verb families of German, what makes each one special and which page to open when a sentence goes wrong.</p></header>
 <section><div class="sec-head"><h2>In this section</h2></div><div class="home-grid"><a data-quiz="f8cd2a606b21" class="home-card card" href="sein-haben-werden.html"><span class="t">sein, haben, werden</span><span class="d">The three most important German verbs, their present and Präteritum forms, their jobs as helper verbs and the everyday phrases built on them.</span><span class="k">A2</span></a><a data-quiz="f7e33196feac" class="home-card card" href="modal-verbs.html"><span class="t">Modal verbs</span><span class="d">können, müssen, dürfen, sollen, wollen, mögen and möchten: their forms, the sentence frame they build and the meaning traps.</span><span class="k">A2–B1</span></a><a data-quiz="d6157bf64e54" class="home-card card" href="reflexive-verbs.html"><span class="t">Reflexive verbs</span><span class="d">Verbs with mich, mir, sich and friends: when the pronoun is accusative or dative, and which verbs always need it.</span><span class="k">A2–B1</span></a><a data-quiz="1f9efa8beb88" class="home-card card" href="verbs-with-prepositions.html"><span class="t">Verbs with prepositions</span><span class="d">The 30 most useful verb + preposition pairs with their case, plus the da- and wo- words that replace them.</span><span class="k">A2–B1</span></a><a data-quiz="dec4bebe93e3" class="home-card card" href="dative-verbs.html"><span class="t">Dative verbs</span><span class="d">Verbs whose object is in the dative (helfen, gefallen, gehören...), the &quot;it pleases me&quot; structure and the word order of two objects.</span><span class="k">A2–B1</span></a><a data-quiz="12d92a4067fe" class="home-card card" href="zu-infinitive.html"><span class="t">zu + infinitive</span><span class="d">When a second verb takes zu, where zu goes in separable verbs, um/ohne/statt ... zu, and the verbs that never take zu.</span><span class="k">A2–B1</span></a><a data-quiz="e0444fc26071" class="home-card card" href="separable-verbs.html"><span class="t">Separable verbs</span><span class="d">Which prefixes break away from the verb, where they go in main clauses, subordinate clauses and the Perfekt.</span><span class="k">A2–B1</span></a></div></section>

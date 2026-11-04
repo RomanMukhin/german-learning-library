@@ -1,0 +1,31 @@
+{
+  "title": "Prepositions quiz",
+  "level": "B1–B2",
+  "questions": [
+    {"q": "I'll meet you *___* six o'clock.", "options": ["in", "on", "at", "by"], "answer": 2, "explain": "Clock times take *at*."},
+    {"q": "My birthday is *___* 14 March.", "options": ["in", "at", "on", "by"], "answer": 2, "explain": "Days and dates take *on*."},
+    {"q": "We usually go skiing *___* winter.", "options": ["at", "on", "in", "during the"], "answer": 2, "explain": "Seasons, months and years take *in*."},
+    {"q": "I'll see you *___* Friday.", "options": ["on next", "next", "at next", "in next"], "answer": 1, "explain": "No preposition before *next, last, this, every*."},
+    {"q": "What time did you arrive *___* the airport?", "options": ["to", "at", "in", "on"], "answer": 1, "explain": "*arrive at* a building or point; *arrive in* a city or country; never *arrive to*."},
+    {"q": "She's sitting *___* the bus.", "options": ["in", "on", "at", "into"], "answer": 1, "explain": "We are *on* buses, trains and planes, but *in* cars and taxis."},
+    {"q": "He was born *___* a small village in Wales.", "options": ["at", "on", "in", "by"], "answer": 2, "explain": "Towns, villages and countries take *in*."},
+    {"q": "I fell asleep *___* the lecture.", "options": ["for", "while", "during", "since"], "answer": 2, "explain": "*during* + noun tells us when; *while* needs a clause."},
+    {"q": "Please send the report *___* Friday at the latest.", "options": ["until", "by", "till", "since"], "answer": 1, "explain": "*by* = not later than (a deadline); *until* = continuing up to a time."},
+    {"q": "We went there *___* car.", "options": ["with the", "by", "in", "on"], "answer": 1, "explain": "*by* + means of transport, with no article. But *on foot*."},
+    {"q": "*___* the bad weather, the match went ahead.", "options": ["Despite of", "Although", "In spite of", "Even"], "answer": 2, "explain": "*in spite of* / *despite* (no *of*) + noun. *Although* needs a clause."},
+    {"q": "I'm looking forward *___* you again.", "options": ["to see", "to seeing", "for seeing", "seeing"], "answer": 1, "explain": "Here *to* is a preposition, so it is followed by *-ing*."},
+    {"q": "She's very good *___* languages.", "options": ["in", "at", "for", "with"], "answer": 1, "explain": "*good at* + noun or *-ing*."},
+    {"q": "The cat jumped *___* the table.", "options": ["onto", "into", "at", "over to"], "answer": 0, "explain": "*onto* shows movement to a surface."},
+    {"q": "I went to the shop *___* some bread.", "options": ["for buy", "for buying", "to buy", "for to buy"], "answer": 2, "explain": "A person's purpose is expressed with the *to*-infinitive."},
+    {"q": "This tool is *___* opening tins.", "options": ["to", "for", "by", "with"], "answer": 1, "explain": "*for + -ing* describes the function of an object."},
+    {"q": "Children *___* 12 must be with an adult.", "options": ["below of", "under", "beneath", "lower"], "answer": 1, "explain": "*under* is used for ages and amounts below a number."},
+    {"q": "We had lunch and *___* we went to the museum.", "options": ["after", "afterwards", "after of", "before"], "answer": 1, "explain": "As an adverb on its own, use *afterwards* (or *after that*), not *after*."},
+    {"q": "He left *___* goodbye.", "options": ["without say", "without to say", "without saying", "without said"], "answer": 2, "explain": "Prepositions are followed by *-ing*: *without saying*."},
+    {"q": "The house is *___* the river, just a few metres away.", "options": ["by", "until", "since", "during"], "answer": 0, "explain": "*by* can mean *next to*: *a house by the river*."},
+    {"q": "She works *___* a teacher.", "options": ["like", "as", "for", "by"], "answer": 1, "explain": "*as* + noun = in the role of."},
+    {"q": "Can you explain this word *___*?", "options": ["me", "to me", "for me to", "at me"], "answer": 1, "explain": "*explain something to someone*: the person needs *to*."},
+    {"q": "Who are you waiting *___*?", "options": ["—", "to", "for", "on"], "answer": 2, "explain": "*wait for* someone; the preposition goes at the end of the question."},
+    {"q": "There were *___* a hundred people at the meeting.", "options": ["above of", "over", "beyond", "upon"], "answer": 1, "explain": "*over* = more than, with numbers."},
+    {"q": "Please reply *___* seven days.", "options": ["within", "inside of", "until", "since"], "answer": 0, "explain": "*within* = before the end of a period."}
+  ]
+}

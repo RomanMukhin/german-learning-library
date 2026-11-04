@@ -180,6 +180,12 @@ body { overflow-wrap: break-word; }
 @media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
 
 body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
 </style>
 </head>
 <body>
@@ -188,7 +194,7 @@ body { margin: 0; }
   <div class="crumbs"><span class="sep">/</span><span class="hide-sm">Reading topics</span><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
   <div class="spacer"></div>
   <a class="btn hide-sm" href="#quiz">Quiz</a>
-</div></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../index.html">🇩🇪<span class="long"> German</span></a><a href="../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
 
 <div class="wrap">
   <header class="hero">

@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="f4f6e17e67d4">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>A: above to while · English grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../english/index.html">← English grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Easily confused words</a><span class="sep">/</span><span class="cur">A: above to while</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a aria-current="page" href="../../english/index.html">🇬🇧<span class="long"> English</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Easily confused words</span><h1>A: above to while</h1><p class="sub">Confusing words beginning with A, from above/over and advice/advise to as/like and as/when/while.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#above-or-over">Above or over?</a></li><li><a href="#across-over-or-through">Across, over or through?</a></li><li><a href="#advice-or-advise">Advice or advise?</a></li><li><a href="#affect-or-effect">Affect or effect?</a></li><li><a href="#all-or-every">All or every?</a></li><li><a href="#all-or-whole">All or whole?</a></li><li><a href="#allow-permit-or-let">Allow, permit or let?</a></li><li><a href="#almost-or-nearly">Almost or nearly?</a></li><li><a href="#alone-lonely-or-lonesome">Alone, lonely or lonesome?</a></li><li><a href="#along-or-alongside">Along or alongside?</a></li><li><a href="#already-still-or-yet">Already, still or yet?</a></li><li><a href="#also-as-well-or-too">Also, as well or too?</a></li><li><a href="#alternately-or-alternatively">Alternate(ly) or alternative(ly)?</a></li><li><a href="#although-or-though">Although or though?</a></li><li><a href="#altogether-or-all-together">Altogether or all together?</a></li><li><a href="#amount-of-number-of-or-quantity-of">Amount of, number of or quantity of?</a></li><li><a href="#any-more-or-anymore">Any more or anymore?</a></li><li><a href="#anyone-anybody-or-anything">Anyone, anybody or anything?</a></li><li><a href="#apart-from-or-except-for">Apart from or except for?</a></li><li><a href="#arise-or-rise">Arise or rise?</a></li><li><a href="#around-or-round">Around or round?</a></li><li><a href="#arouse-or-rouse">Arouse or rouse?</a></li><li><a href="#as-or-like">As or like?</a></li><li><a href="#as-because-or-since">As, because or since?</a></li><li><a href="#as-when-or-while">As, when or while?</a></li></ol></nav>
+<article class="prose card">
+<h2 id="above-or-over">Above or over?</h2>
+<p>Both mean "higher than". Use <strong>above</strong> when one thing is not directly on top or when talking about levels and measurements; use <strong>over</strong> when something covers or moves across, or touches.</p>
+<ul class="ex">
+<li>The picture hangs <strong>above</strong> the fireplace.</li>
+<li>She put a blanket <strong>over</strong> the baby. (covering)</li>
+<li>The plane flew <strong>over</strong> the city. (movement across)</li>
+<li>10 degrees <strong>above</strong> zero / children <strong>over</strong> 12 (more than)</li>
+</ul>
+<h2 id="across-over-or-through">Across, over or through?</h2>
+<p><strong>Across</strong> = from one side to the other of a flat area or line: <em>walk <strong>across</strong> the road</em>. <strong>Over</strong> = across something high, or from one side to the other going up and down: <em>climb <strong>over</strong> the wall</em>. <strong>Through</strong> = inside something with sides, from one end to the other: <em>drive <strong>through</strong> the tunnel</em>, <em>walk <strong>through</strong> the forest</em>.</p>
+<h2 id="advice-or-advise">Advice or advise?</h2>
+<p><strong>Advice</strong> /ədˈvaɪs/ is an uncountable noun; <strong>advise</strong> /ədˈvaɪz/ is the verb.</p>
+<ul class="ex">
+<li>Can you give me some <strong>advice</strong>? Not: <del>an advice</del>, <del>advices</del> → <em>a piece of advice</em></li>
+<li>I <strong>advise</strong> you to see a doctor.</li>
+</ul>
+<h2 id="affect-or-effect">Affect or effect?</h2>
+<p><strong>Affect</strong> is usually a verb meaning "influence". <strong>Effect</strong> is usually a noun meaning "result".</p>
+<ul class="ex">
+<li>The weather <strong>affects</strong> my mood.</li>
+<li>The weather has an <strong>effect</strong> on my mood.</li>
+</ul>
+<p><em>Effect</em> as a verb (formal) means "bring about": <em>to <strong>effect</strong> change</em>.</p>
+<h2 id="all-or-every">All or every?</h2>
+<p><strong>Every</strong> + singular countable noun looks at each member of a group; <strong>all</strong> + plural or uncountable noun looks at the group as a whole.</p>
+<ul class="ex">
+<li><strong>Every</strong> student has a laptop. / <strong>All</strong> (the) students have laptops.</li>
+<li><strong>all</strong> day (from start to end) / <strong>every</strong> day (each day)</li>
+</ul>
+<h2 id="all-or-whole">All or whole?</h2>
+<p><strong>Whole</strong> goes between a determiner and a singular noun; <strong>all</strong> goes before the determiner.</p>
+<ul class="ex">
+<li><strong>the whole</strong> day = <strong>all the</strong> day (<em>all day</em> is more common)</li>
+<li><strong>my whole</strong> life / <strong>all my</strong> life</li>
+</ul>
+<p>With uncountable nouns use <em>all</em>: <em><strong>all</strong> the money</em>, not <del>the whole money</del>.</p>
+<h2 id="allow-permit-or-let">Allow, permit or let?</h2>
+<p>All mean "give permission". <strong>Let</strong> is the most informal and is followed by object + <strong>bare infinitive</strong>; <strong>allow</strong> and <strong>permit</strong> (formal) take object + <strong>to</strong>-infinitive.</p>
+<ul class="ex">
+<li>My parents <strong>let</strong> me stay out late.</li>
+<li>My parents <strong>allowed</strong> me <strong>to</strong> stay out late.</li>
+<li>Smoking is not <strong>permitted</strong>.</li>
+</ul>
+<p><em>Let</em> is not normally used in the passive: <del>I was let to go</del> → <em>I was <strong>allowed to</strong> go</em>.</p>
+<h2 id="almost-or-nearly">Almost or nearly?</h2>
+<p>Often both are possible: <em><strong>almost / nearly</strong> finished</em>. Only <strong>almost</strong> is used before negative words like <em>no, nobody, never, nothing</em> and with comparisons such as <em>almost like</em>:</p>
+<ul class="ex">
+<li><strong>Almost</strong> nobody came. Not: <del>nearly nobody</del></li>
+<li><strong>Very nearly</strong> and <strong>not nearly</strong> (= not at all) use <em>nearly</em>: <em>It's <strong>not nearly</strong> enough.</em></li>
+</ul>
+<h2 id="alone-lonely-or-lonesome">Alone, lonely or lonesome?</h2>
+<p><strong>Alone</strong> means "without other people" and is neutral; it comes after a verb. <strong>Lonely</strong> means "unhappy because you are alone". <strong>Lonesome</strong> is American English for <em>lonely</em>.</p>
+<ul class="ex">
+<li>I live <strong>alone</strong>, but I'm never <strong>lonely</strong>.</li>
+<li>a <strong>lonely</strong> old man / a <strong>lonely</strong> village (far from other places)</li>
+</ul>
+<h2 id="along-or-alongside">Along or alongside?</h2>
+<p><strong>Along</strong> = following the length of something: <em>walk <strong>along</strong> the river</em>. <strong>Alongside</strong> = next to, beside, or working together with: <em>The boat was <strong>alongside</strong> the ship.</em> <em>She worked <strong>alongside</strong> her father.</em></p>
+<h2 id="already-still-or-yet">Already, still or yet?</h2>
+<ul class="ex">
+<li><strong>Already</strong> = sooner than expected: <em>I've <strong>already</strong> finished.</em></li>
+<li><strong>Still</strong> = continuing, not finished: <em>I'm <strong>still</strong> working.</em></li>
+<li><strong>Yet</strong> = up to now, in questions and negatives, at the end: <em>Have you finished <strong>yet</strong>? I haven't finished <strong>yet</strong>.</em></li>
+</ul>
+<h2 id="also-as-well-or-too">Also, as well or too?</h2>
+<p>All mean "in addition". <strong>Also</strong> usually goes in mid position; <strong>as well</strong> and <strong>too</strong> go at the end. <em>As well</em> and <em>too</em> are more common in speech.</p>
+<ul class="ex">
+<li>She <strong>also</strong> speaks French. / She speaks French <strong>as well / too</strong>.</li>
+</ul>
+<p>In negatives use <strong>either</strong>: <em>She doesn't speak French <strong>either</strong></em>.</p>
+<h2 id="alternately-or-alternatively">Alternate(ly) or alternative(ly)?</h2>
+<p><strong>Alternate</strong> means "every other one" or "first one, then the other": <em>We meet on <strong>alternate</strong> Mondays.</em> <strong>Alternative</strong> means "another possible choice": <em>Is there an <strong>alternative</strong> route?</em> <em><strong>Alternatively</strong>, we could take the train.</em></p>
+<h2 id="although-or-though">Although or though?</h2>
+<p>Both mean "despite the fact that". <strong>Though</strong> is more informal and can come at the end of a sentence meaning "however":</p>
+<ul class="ex">
+<li><strong>Although / Though</strong> it was cold, we swam.</li>
+<li>It was cold. We swam, <strong>though</strong>.</li>
+</ul>
+<p><em>Even though</em> is stronger; <em>even although</em> is not used.</p>
+<h2 id="altogether-or-all-together">Altogether or all together?</h2>
+<p><strong>Altogether</strong> = completely, or in total: <em>That's £20 <strong>altogether</strong>.</em> <em>I'm not <strong>altogether</strong> sure.</em> <strong>All together</strong> = everyone or everything in one place or at one time: <em>Let's sing it <strong>all together</strong>.</em></p>
+<h2 id="amount-of-number-of-or-quantity-of">Amount of, number of or quantity of?</h2>
+<ul class="ex">
+<li><strong>an amount of</strong> + uncountable noun: <em>a large <strong>amount of</strong> money</em></li>
+<li><strong>a number of</strong> + plural noun (plural verb): <em>A <strong>number of</strong> people <strong>were</strong> late.</em></li>
+<li><strong>a quantity of</strong> + either, often for things you can measure: <em>a small <strong>quantity of</strong> salt</em>, <em>large <strong>quantities of</strong> cars</em></li>
+</ul>
+<h2 id="any-more-or-anymore">Any more or anymore?</h2>
+<p>As a time adverb meaning "no longer", British English normally writes <strong>any more</strong> and American English <strong>anymore</strong>: <em>I don't live there <strong>any more</strong></em>. For "additional amount" always write two words: <em>Is there <strong>any more</strong> cake?</em></p>
+<h2 id="anyone-anybody-or-anything">Anyone, anybody or anything?</h2>
+<p><strong>Anyone</strong> and <strong>anybody</strong> mean the same (any person); <em>anybody</em> is a little more informal. <strong>Anything</strong> refers to things. They are used in questions, negatives, and to mean "it doesn't matter who/what":</p>
+<ul class="ex">
+<li>Is <strong>anyone</strong> there? / I didn't see <strong>anybody</strong>.</li>
+<li><strong>Anyone</strong> can do it. / You can eat <strong>anything</strong>.</li>
+</ul>
+<h2 id="apart-from-or-except-for">Apart from or except for?</h2>
+<p><strong>Apart from</strong> can mean both "except" and "in addition to". <strong>Except for</strong> means only "not including".</p>
+<ul class="ex">
+<li><strong>Apart from / Except for</strong> Tom, everyone came. (Tom didn't)</li>
+<li><strong>Apart from</strong> football, he plays tennis. (in addition)</li>
+</ul>
+<h2 id="arise-or-rise">Arise or rise?</h2>
+<p><strong>Arise</strong> (<em>arose, arisen</em>) means a problem or situation begins: <em>A problem has <strong>arisen</strong>.</em> <strong>Rise</strong> (<em>rose, risen</em>) means go up: <em>Prices <strong>rose</strong> by 5%.</em> <em>The sun <strong>rises</strong> in the east.</em> Neither takes an object.</p>
+<h2 id="around-or-round">Around or round?</h2>
+<p>In British English both are used for movement in a circle or in different directions: <em>walk <strong>(a)round</strong> the town</em>. <strong>Around</strong> is more common for "approximately": <em><strong>around</strong> 50 people</em>. American English uses <em>around</em> in most cases.</p>
+<h2 id="arouse-or-rouse">Arouse or rouse?</h2>
+<p><strong>Arouse</strong> means cause a feeling or reaction: <em>Her behaviour <strong>aroused</strong> suspicion.</em> <strong>Rouse</strong> means wake someone up or make them active (literary): <em>He was <strong>roused</strong> from sleep.</em></p>
+<h2 id="as-or-like">As or like?</h2>
+<p><strong>Like</strong> is a preposition followed by a noun or pronoun and means "similar to". <strong>As</strong> + noun means "in the role of"; <strong>as</strong> + clause means "in the same way that".</p>
+<ul class="ex">
+<li>She sings <strong>like</strong> an angel. (similar to)</li>
+<li>He works <strong>as</strong> a teacher. (that is his job)</li>
+<li>Do it <strong>as</strong> I showed you. (clause) — informal: <em>like I showed you</em></li>
+</ul>
+<h2 id="as-because-or-since">As, because or since?</h2>
+<p>All give reasons. <strong>Because</strong> is the most common and puts focus on the reason; it often comes second. <strong>As</strong> and <strong>since</strong> suggest the reason is already known, and often come first; they are a little more formal.</p>
+<ul class="ex">
+<li>I stayed home <strong>because</strong> I was ill.</li>
+<li><strong>As / Since</strong> it was raining, we took a taxi.</li>
+</ul>
+<h2 id="as-when-or-while">As, when or while?</h2>
+<p>All introduce time clauses. <strong>When</strong> is for a point in time or a general time: <em><strong>When</strong> I arrived, she left.</em> <strong>While</strong> is for a longer action in progress: <em><strong>While</strong> I was cooking, the phone rang.</em> <strong>As</strong> suggests two actions developing together: <em><strong>As</strong> I got older, I became calmer.</em></p>
+</article>
+<nav class="pager"><a class="btn" href="index.html">← Easily confused words</a><a class="btn" href="b.html">B to E: been to finish →</a></nav>
+
+<footer><span>Part of the English grammar library</span><a class="btn" href="../../english/index.html">← Back to English grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
