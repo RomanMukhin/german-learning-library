@@ -1,0 +1,31 @@
+{
+  "title": "Regional Spanish quiz",
+  "level": "B1–C1",
+  "questions": [
+    {"q": "Which plural *you* is used for friends in Spain but not in Latin America?", "options": ["vosotros", "ustedes", "vos", "tú"], "answer": 0, "explain": "Spain uses *vosotros* as the informal plural; Latin America uses *ustedes* for everyone."},
+    {"q": "In central Spain, *gracias* is pronounced with…", "options": ["a /θ/ sound like English *th*", "an /s/ sound", "a /k/ sound", "a /ʃ/ sound"], "answer": 0, "explain": "*Distinción*: *c* before *e/i* and *z* sound like *th* in most of Spain."},
+    {"q": "Hoy *___* paella. (Spain, earlier today)", "options": ["he comido", "comía", "comeré", "como"], "answer": 0, "explain": "Spain uses the present perfect for events earlier today."},
+    {"q": "In Argentina, *Where are you from?* is usually…", "options": ["¿De dónde sos?", "¿De dónde eres?", "¿De dónde sois?", "¿De dónde estás?"], "answer": 0, "explain": "With *vos*, *ser* becomes *sos*."},
+    {"q": "The *vos* form of *tener* is…", "options": ["tenés", "tienes", "tenéis", "tienés"], "answer": 0, "explain": "*Vos* forms are stressed on the ending and have no stem change: *tenés*."},
+    {"q": "In Buenos Aires, *me llamo* sounds like…", "options": ["me shamo", "me yamo", "me lyamo", "me jamo"], "answer": 0, "explain": "Rioplatense Spanish pronounces *ll* and *y* as /ʃ/ or /ʒ/ (*sheísmo*)."},
+    {"q": "*Laburo* in Argentina means…", "options": ["job, work", "money", "mess", "kid"], "answer": 0, "explain": "*Laburo* comes from Italian *lavoro*, work."},
+    {"q": "In Mexico, *¿Mande?* is used to…", "options": ["ask someone to repeat or answer a call politely", "give an order", "say goodbye", "order food"], "answer": 0, "explain": "*¿Mande?* is the polite Mexican way to say *Pardon?* or *Yes?*"},
+    {"q": "A Mexican friend says *¡Qué padre!* They mean…", "options": ["How cool!", "What a father!", "How sad!", "How expensive!"], "answer": 0, "explain": "*Padre* (and *chido*) mean *cool, great* in Mexico."},
+    {"q": "In Mexico, *camión* usually means…", "options": ["bus", "truck only", "car", "train"], "answer": 0, "explain": "In Mexico a *camión* is also a city bus."},
+    {"q": "In the Caribbean, *¿cómo estás?* often sounds like…", "options": ["¿cómo ehtá?", "¿cómo estash?", "¿cómo eztáz?", "¿cómo estás-e?"], "answer": 0, "explain": "Final *s* is aspirated or dropped in Caribbean Spanish."},
+    {"q": "Which question order is typical of Caribbean Spanish?", "options": ["¿Qué tú quieres?", "¿Qué quieres tú?", "¿Tú qué quieres?", "¿Quieres qué tú?"], "answer": 0, "explain": "Caribbean speakers often put the subject before the verb in questions."},
+    {"q": "A *guagua* in Cuba or Puerto Rico is…", "options": ["a bus", "a baby", "a taxi", "a dog"], "answer": 0, "explain": "*Guagua* means bus in the Caribbean and the Canary Islands (in Chile it means baby)."},
+    {"q": "In Puerto Rico, *Puerto Rico* is often pronounced…", "options": ["Puelto Rico", "Puesto Rico", "Puerto Lico", "Puego Rico"], "answer": 0, "explain": "Syllable-final *r* often becomes *l* in Puerto Rican Spanish."},
+    {"q": "In the Dominican Republic, *vaina* means…", "options": ["thing, stuff", "beans", "money", "friend"], "answer": 0, "explain": "*Vaina* is an all-purpose word for *thing* in the Dominican Republic (and Colombia, Panama, Venezuela)."},
+    {"q": "In Colombia, *un tinto* is…", "options": ["a small black coffee", "a glass of red wine", "a beer", "a juice"], "answer": 0, "explain": "In Colombia *tinto* is black coffee; in Spain it's red wine."},
+    {"q": "Many Colombians use *___* even with family and close friends.", "options": ["usted", "vosotros", "vuestra merced", "ustedes only"], "answer": 0, "explain": "In Bogotá and the Andes, *usted* expresses respect and affection, even at home."},
+    {"q": "*Parce* in Colombia means…", "options": ["friend, mate", "park", "part", "sorry"], "answer": 0, "explain": "*Parce / parcero* means friend."},
+    {"q": "*¿Me regala un café?* in a Colombian shop means…", "options": ["Can I have a coffee?", "Is the coffee free?", "Will you give me a gift?", "Do you like coffee?"], "answer": 0, "explain": "*Regalar* is a polite way to ask for something you will pay for."},
+    {"q": "*¿Qué xopá?* is Panamanian for…", "options": ["What's up?", "What's that?", "Where are you?", "How much is it?"], "answer": 0, "explain": "It is *¿Qué pasó?* with the syllables reversed."},
+    {"q": "Many Panamanian slang words, like *buay* and *guial*, come from…", "options": ["English", "Italian", "French", "Arabic"], "answer": 0, "explain": "Close contact with the USA around the canal brought many English loanwords."},
+    {"q": "In Spain, *Vale* means…", "options": ["OK", "valley", "it's worth", "goodbye"], "answer": 0, "explain": "*Vale* is the everyday Spanish way to say OK."},
+    {"q": "*Ordenador* (Spain) is *___* in most of Latin America.", "options": ["computadora", "ordenadora", "máquina", "portátil"], "answer": 0, "explain": "Latin America uses *computadora* (or *computador*)."},
+    {"q": "Which verb is neutral in Spain but vulgar in much of Latin America?", "options": ["coger", "tomar", "agarrar", "llevar"], "answer": 0, "explain": "Use *tomar* or *agarrar* in Latin America instead of *coger*."},
+    {"q": "The *vos* command of *venir* (Argentina) is…", "options": ["¡Vení!", "¡Ven!", "¡Venid!", "¡Venga!"], "answer": 0, "explain": "*Vos* commands drop the final *r* and stress the ending: *vení, hablá, comé*."}
+  ]
+}
