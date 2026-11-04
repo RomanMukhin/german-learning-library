@@ -1,4 +1,4 @@
-"""Add the German / English switch to the app bar of every page.
+"""Add the German / English / Spanish switch to the app bar of every page.
 
 Idempotent: run it again after regenerating pages. Usage: python3 tools/site_switch.py
 """
@@ -16,19 +16,25 @@ CSS = MARK_CSS + """
 SW_RE = re.compile(r'<nav class="siteswitch".*?</nav>', re.S)
 
 
+# (code, folder, flag, label); the German library lives at the site root
+LANGS = [("de", "", "🇩🇪", "German"), ("en", "english/", "🇬🇧", "English"), ("es", "spanish/", "🇪🇸", "Spanish")]
+
+
 def switch(rel_root, current):
-    de = 'aria-current="page" ' if current == "de" else ""
-    en = 'aria-current="page" ' if current == "en" else ""
-    return ('<nav class="siteswitch" aria-label="Library">'
-            f'<a {de}href="{rel_root}index.html">🇩🇪<span class="long"> German</span></a>'
-            f'<a {en}href="{rel_root}english/index.html">🇬🇧<span class="long"> English</span></a></nav>')
+    links = []
+    for code, folder, flag, label in LANGS:
+        if folder and not os.path.exists(os.path.join(ROOT, folder, "index.html")):
+            continue  # section not built yet
+        cur = 'aria-current="page" ' if code == current else ""
+        links.append(f'<a {cur}href="{rel_root}{folder}index.html">{flag}<span class="long"> {label}</span></a>')
+    return '<nav class="siteswitch" aria-label="Library">' + "".join(links) + "</nav>"
 
 
 def patch(path):
     rel = os.path.relpath(path, ROOT)
     depth = rel.count(os.sep)
     rel_root = "../" * depth
-    current = "en" if rel.startswith("english" + os.sep) else "de"
+    current = next((c for c, f, _, _ in LANGS if f and rel.startswith(f[:-1] + os.sep)), "de")
     html = open(path, encoding="utf-8").read()
     html = SW_RE.sub("", html)
     start = html.find('<div class="appbar">')

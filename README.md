@@ -12,7 +12,7 @@ Sources are Markdown files in `english-src/` (one folder per area: `_index.md`, 
 
 ```
 pip install markdown
-python3 tools/build_english.py
+python3 tools/build_section.py
 ```
 
 This regenerates `english/` and then runs `tools/site_switch.py`, which adds the German / English switch to the app bar of every page (safe to run again on its own after regenerating the German pages).

@@ -1,7 +1,7 @@
-"""Build the English grammar section (english/) from Markdown sources in english-src/.
+"""Build a language section of the site (english/, spanish/) from Markdown sources in <dir>-src/.
 
-Layout of english-src/:
-  _home.md                      intro text for english/index.html
+Layout of <dir>-src/:
+  _home.md                      intro text for <dir>/index.html
   <section>/_index.md           first-level topic page (front matter + body)
   <section>/quiz.json           quiz shown at the end of the first-level topic page
   <section>/<page>.md           child pages (front matter + body)
@@ -12,14 +12,23 @@ Callouts: a blockquote whose first line is "[!hack] Title", "[!trap] Title" or "
 Links between pages: write [text](section/page) and it becomes a relative link.
 
 Styles and the quiz script are taken from an existing German page, so both halves of the
-site look and behave the same. Run: python3 tools/build_english.py
+site look and behave the same. Run: python3 tools/build_section.py [english|spanish ...]
+(no argument builds every section that has a source folder)
 """
 import hashlib, html, json, os, re, shutil
 import markdown
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "english-src")
-OUT = os.path.join(ROOT, "english")
+SECTIONS = {"english": "English grammar", "spanish": "Spanish grammar"}
+DIR, NAME = "english", SECTIONS["english"]
+SRC = os.path.join(ROOT, DIR + "-src")
+OUT = os.path.join(ROOT, DIR)
+
+
+def configure(d):
+    global DIR, NAME, SRC, OUT
+    DIR, NAME = d, SECTIONS[d]
+    SRC, OUT = os.path.join(ROOT, d + "-src"), os.path.join(ROOT, d)
 TEMPLATE = os.path.join(ROOT, "grammar", "cases", "index.html")
 
 tpl = open(TEMPLATE, encoding="utf-8").read()
@@ -40,7 +49,7 @@ EXTRA_CSS = """<style>
 
 
 def pid(path):
-    return hashlib.sha1(("english/" + path).encode()).hexdigest()[:12]
+    return hashlib.sha1((DIR + "/" + path).encode()).hexdigest()[:12]
 
 
 def read(path):
@@ -67,7 +76,7 @@ def md(text, depth):
     text = re.sub(r"(?:^» .*\n?)+", lambda m: "\n{.ex}\n\n" + re.sub(r"^» ", "- ", m.group(0), flags=re.M) + "\n", text, flags=re.M)
     text = re.sub(r"^\{\.ex\}\n(?!\n)", "{.ex}\n\n", text, flags=re.M)
     # links like (section/page) or (section/) to relative paths
-    up = "../" * (depth - 1)  # links are relative to english/
+    up = "../" * (depth - 1)  # links are relative to the section folder
 
     def link(m):
         target = m.group(2)
@@ -132,14 +141,14 @@ def page(*, path, title, crumbs, badge, h1, sub, body, depth, quiz=None, pager="
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>{html.escape(title)} · English grammar</title>
+<title>{html.escape(title)} · {NAME}</title>
 {FONTS}
 {STYLE}
 {EXTRA_CSS}
 </head>
 <body>
 <div class="appbar"><div class="appbar-inner">
-  <a class="btn ghost" href="{up}english/index.html">← English grammar</a>
+  <a class="btn ghost" href="{up}{DIR}/index.html">← {NAME}</a>
   <div class="crumbs">{crumb_html}</div>
 </div></div>
 <div class="wrap">
@@ -147,7 +156,7 @@ def page(*, path, title, crumbs, badge, h1, sub, body, depth, quiz=None, pager="
 {body}
 {pager}
 {qsec}
-<footer><span>Part of the English grammar library</span><a class="btn" href="{up}english/index.html">← Back to English grammar</a></footer>
+<footer><span>Part of the {NAME} library</span><a class="btn" href="{up}{DIR}/index.html">← Back to {NAME}</a></footer>
 </div>
 {qjs}
 {TILES_JS}
@@ -236,7 +245,7 @@ def build():
         pager += f'<a class="btn" href="../{prev_["slug"]}/index.html">← {esc(prev_["meta"]["title"])}</a>' if prev_ else "<span></span>"
         pager += f'<a class="btn" href="../{next_["slug"]}/index.html">{esc(next_["meta"]["title"])} →</a>' if next_ else ""
         pager += "</nav>"
-        out = page(path=f'{s["slug"]}/index', title=m["title"], crumbs=[], badge="English grammar",
+        out = page(path=f'{s["slug"]}/index', title=m["title"], crumbs=[], badge=NAME,
                    h1=m["title"], sub=m.get("sub", ""), body=body, depth=2, quiz=s["quiz"], pager=pager)
         open(os.path.join(OUT, s["slug"], "index.html"), "w", encoding="utf-8").write(out)
         total_pages += 1
@@ -258,20 +267,23 @@ def build():
     body = (f'<nav class="tabs" aria-label="Sections">{tabs}</nav>\n'
             + (f'<article class="prose card">\n{md(hb, 1)}\n</article>\n' if hb.strip() else "")
             + "\n".join(parts))
-    out = page(path="index", title=hm.get("title", "English grammar"), crumbs=[], badge=hm.get("badge", "British English"),
-               h1=hm.get("title", "English grammar"), sub=hm.get("sub", ""), body=body, depth=1)
+    out = page(path="index", title=hm.get("title", NAME), crumbs=[], badge=hm.get("badge", "British English"),
+               h1=hm.get("title", NAME), sub=hm.get("sub", ""), body=body, depth=1)
     # the home page has no back button and no crumbs
-    out = re.sub(r'  <a class="btn ghost" href="[^"]*">← English grammar</a>\n', "", out, count=1)
+    out = re.sub(r'  <a class="btn ghost" href="[^"]*">← ' + re.escape(NAME) + r'</a>\n', "", out, count=1)
     out = out.replace('<div class="crumbs"><span class="sep">/</span><span class="cur">',
                       '<div class="crumbs"><span class="cur">', 1)
-    out = out.replace('<footer><span>Part of the English grammar library</span><a class="btn" href="../english/index.html">← Back to English grammar</a></footer>',
-                      '<footer><span>English grammar library</span><a class="btn" href="../index.html">🇩🇪 German library</a></footer>')
+    out = out.replace(f'<footer><span>Part of the {NAME} library</span><a class="btn" href="../{DIR}/index.html">← Back to {NAME}</a></footer>',
+                      f'<footer><span>{NAME} library</span><a class="btn" href="../index.html">🇩🇪 German library</a></footer>')
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(out)
     total_pages += 1
-    print(f"built {total_pages} pages in english/")
+    print(f"built {total_pages} pages in {DIR}/")
 
 
 if __name__ == "__main__":
-    build()
+    import sys
+    for d in (sys.argv[1:] or [d for d in SECTIONS if os.path.isdir(os.path.join(ROOT, d + "-src"))]):
+        configure(d)
+        build()
     import subprocess, sys
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "site_switch.py")], check=True)
