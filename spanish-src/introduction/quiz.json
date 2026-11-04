@@ -1,0 +1,336 @@
+{
+ "title": "Introduction quiz",
+ "level": "A1",
+ "questions": [
+  {
+   "q": "It's 10 a.m. How do you greet your new neighbour politely?",
+   "options": [
+    "*Buenos días.*",
+    "*Buenas noches.*",
+    "*¿Qué onda?*",
+    "*Hasta luego.*"
+   ],
+   "answer": 0,
+   "explain": "*Buenos días* is the polite greeting for the morning."
+  },
+  {
+   "q": "*¿Cómo te *___*?* — *Me llamo Ana.*",
+   "options": [
+    "*llamas*",
+    "*llamo*",
+    "*eres*",
+    "*nombre*"
+   ],
+   "answer": 0,
+   "explain": "The *tú* form of *llamarse* is *te llamas*."
+  },
+  {
+   "q": "Choose the correct sentence: \"I'm a teacher\" (a woman speaking).",
+   "options": [
+    "*Soy profesora.*",
+    "*Soy una profesora.*",
+    "*Estoy profesora.*",
+    "*Soy profesor.*"
+   ],
+   "answer": 0,
+   "explain": "With *ser* + job Spanish leaves out the article, and the job word agrees with the speaker."
+  },
+  {
+   "q": "How do you say \"I'm twenty years old\"?",
+   "options": [
+    "*Tengo veinte años.*",
+    "*Soy veinte años.*",
+    "*Estoy veinte años.*",
+    "*Hay veinte años.*"
+   ],
+   "answer": 0,
+   "explain": "Age is expressed with *tener*: you \"have\" years."
+  },
+  {
+   "q": "Which question asks where someone is from?",
+   "options": [
+    "*¿De dónde eres?*",
+    "*¿Dónde eres de?*",
+    "*¿Dónde estás?*",
+    "*¿Adónde vas?*"
+   ],
+   "answer": 0,
+   "explain": "The preposition *de* goes at the front: *¿De dónde eres?*"
+  },
+  {
+   "q": "*Mis abuelas son *___*.* (Mexican)",
+   "options": [
+    "*mexicanas*",
+    "*mexicanos*",
+    "*mexicana*",
+    "*Mexicanas*"
+   ],
+   "answer": 0,
+   "explain": "The adjective is feminine plural to match *abuelas*, and nationalities are not capitalised."
+  },
+  {
+   "q": "Which word means \"why?\" in a question?",
+   "options": [
+    "*¿Por qué?*",
+    "*¿Porque?*",
+    "*¿Para qué?*",
+    "*¿Qué?*"
+   ],
+   "answer": 0,
+   "explain": "*Por qué* (two words, accent) asks why; *porque* means because."
+  },
+  {
+   "q": "You meet your friend's grandmother for the first time. Which form of \"you\" is the safest choice?",
+   "options": [
+    "*usted*",
+    "*tú*",
+    "*vosotros*",
+    "*vos*"
+   ],
+   "answer": 0,
+   "explain": "*Usted* shows respect to older people and people you don't know."
+  },
+  {
+   "q": "In Mexico you ask a group of friends: \"Do you want to go to the beach?\"",
+   "options": [
+    "*¿Quieren ir a la playa?*",
+    "*¿Queréis ir a la playa?*",
+    "*¿Quiere ir a la playa?*",
+    "*¿Quieres ir a la playa?*"
+   ],
+   "answer": 0,
+   "explain": "Latin America uses *ustedes* for every group, so the verb is *quieren*."
+  },
+  {
+   "q": "What does the verb *tutear* mean?",
+   "options": [
+    "to address someone as *tú*",
+    "to address someone as *usted*",
+    "to introduce someone",
+    "to say goodbye"
+   ],
+   "answer": 0,
+   "explain": "*Tutear* means switching to the informal *tú*."
+  },
+  {
+   "q": "In Buenos Aires, a friend asks *¿Vos sos de acá?* What does *sos* mean?",
+   "options": [
+    "you are",
+    "I am",
+    "he is",
+    "we are"
+   ],
+   "answer": 0,
+   "explain": "*Sos* is the *vos* form of *ser*, equivalent to *eres*."
+  },
+  {
+   "q": "Which job word has the same form for a man and a woman?",
+   "options": [
+    "*periodista*",
+    "*abogado*",
+    "*profesor*",
+    "*cocinero*"
+   ],
+   "answer": 0,
+   "explain": "Words ending in *-ista* only change the article: *el / la periodista*."
+  },
+  {
+   "q": "The feminine of *el alcalde* (mayor) is:",
+   "options": [
+    "*la alcaldesa*",
+    "*la alcalda*",
+    "*la alcalde*",
+    "*la alcaldina*"
+   ],
+   "answer": 0,
+   "explain": "*Alcalde* has a special feminine form, *alcaldesa*."
+  },
+  {
+   "q": "At a market stall: \"How much do the apples cost?\"",
+   "options": [
+    "*¿Cuánto cuestan las manzanas?*",
+    "*¿Cuánto cuesta las manzanas?*",
+    "*¿Qué cuestan las manzanas?*",
+    "*¿Cuántos cuestan las manzanas?*"
+   ],
+   "answer": 0,
+   "explain": "With a plural subject the verb is *cuestan*, and the question word is *cuánto*."
+  },
+  {
+   "q": "The vendor asks *¿Tiene pan?* What is she asking?",
+   "options": [
+    "Do you have bread?",
+    "Do you want bread?",
+    "How much is the bread?",
+    "Is the bread good?"
+   ],
+   "answer": 0,
+   "explain": "*Tiene* is the formal *you* form of *tener* (to have)."
+  },
+  {
+   "q": "Someone asks *¿Cómo estás?* Which answer is correct?",
+   "options": [
+    "*Estoy bien, gracias. ¿Y tú?*",
+    "*Soy bien, gracias. ¿Y tú?*",
+    "*Tengo bien, gracias.*",
+    "*Es bien, gracias.*"
+   ],
+   "answer": 0,
+   "explain": "How you feel takes *estar*: *estoy bien*."
+  },
+  {
+   "q": "*Mis clases favoritas *___* Arte y Música.*",
+   "options": [
+    "*son*",
+    "*es*",
+    "*están*",
+    "*somos*"
+   ],
+   "answer": 0,
+   "explain": "The subject *mis clases* is plural, so *ser* takes the form *son*."
+  },
+  {
+   "q": "A girl talking about her notebooks says: \"*___* cuadernos son azules.\"",
+   "options": [
+    "*Mis*",
+    "*Mi*",
+    "*Mía*",
+    "*Mías*"
+   ],
+   "answer": 0,
+   "explain": "Possessives agree with the thing owned; *cuadernos* is plural, so *mis*."
+  },
+  {
+   "q": "*Me *___* los videojuegos.*",
+   "options": [
+    "*gustan*",
+    "*gusta*",
+    "*gusto*",
+    "*gustas*"
+   ],
+   "answer": 0,
+   "explain": "*Gustar* agrees with what is liked; *los videojuegos* is plural, so *gustan*."
+  },
+  {
+   "q": "Your friend says *No me gusta correr.* You don't like it either. You say:",
+   "options": [
+    "*A mí tampoco.*",
+    "*A mí también.*",
+    "*A mí sí.*",
+    "*Yo no gusta.*"
+   ],
+   "answer": 0,
+   "explain": "*Tampoco* agrees with a negative statement."
+  },
+  {
+   "q": "At a restaurant, how do you ask for the bill?",
+   "options": [
+    "*¿Nos trae la cuenta, por favor?*",
+    "*¿Nos trae la factura de la mesa?*",
+    "*¿Nos trae la carta, por favor?*",
+    "*¿Cuánto cuesta la mesa?*"
+   ],
+   "answer": 0,
+   "explain": "The restaurant bill is *la cuenta*; *la carta* is the menu."
+  },
+  {
+   "q": "*Esta es mi *___*: la hija de mi hermano.*",
+   "options": [
+    "*sobrina*",
+    "*prima*",
+    "*nieta*",
+    "*cuñada*"
+   ],
+   "answer": 0,
+   "explain": "Your brother's daughter is your *sobrina* (niece)."
+  },
+  {
+   "q": "*Mañana *___* treinta años.* (I turn thirty tomorrow.)",
+   "options": [
+    "*cumplo*",
+    "*tengo*",
+    "*soy*",
+    "*hago*"
+   ],
+   "answer": 0,
+   "explain": "\"To turn\" an age is *cumplir*."
+  },
+  {
+   "q": "In a hotel you want to ask where the lift is. Which question is correct?",
+   "options": [
+    "*¿Dónde está el ascensor?*",
+    "*¿Dónde hay el ascensor?*",
+    "*¿Dónde es el ascensor?*",
+    "*¿Hay dónde el ascensor?*"
+   ],
+   "answer": 0,
+   "explain": "Use *estar* for the location of a specific thing."
+  },
+  {
+   "q": "Tell your little brother: \"Set the table!\"",
+   "options": [
+    "*¡Pon la mesa!*",
+    "*¡Pone la mesa!*",
+    "*¡Pones la mesa!*",
+    "*¡Poner la mesa!*"
+   ],
+   "answer": 0,
+   "explain": "*Poner* has the short irregular *tú* command *pon*."
+  },
+  {
+   "q": "How do you say \"It's very hot\"?",
+   "options": [
+    "*Hace mucho calor.*",
+    "*Hace muy calor.*",
+    "*Es mucho calor.*",
+    "*Está mucho calor.*"
+   ],
+   "answer": 0,
+   "explain": "Weather uses *hace*, and *calor* is a noun, so it takes *mucho*, not *muy*."
+  },
+  {
+   "q": "At the doctor: \"My head hurts.\"",
+   "options": [
+    "*Me duele la cabeza.*",
+    "*Me duele mi cabeza.*",
+    "*Tengo duele la cabeza.*",
+    "*Me duelen la cabeza.*"
+   ],
+   "answer": 0,
+   "explain": "*Doler* works like *gustar*, and Spanish uses *la*, not *mi*, with body parts."
+  },
+  {
+   "q": "In a clothes shop: \"I'll take it\" (about a coat, *el abrigo*).",
+   "options": [
+    "*Me lo llevo.*",
+    "*Me la llevo.*",
+    "*Lo me llevo.*",
+    "*Me llevo lo.*"
+   ],
+   "answer": 0,
+   "explain": "*Abrigo* is masculine, so the pronoun is *lo*, placed before the verb."
+  },
+  {
+   "q": "Which is the correct singular of the food called *tamales*?",
+   "options": [
+    "*un tamal*",
+    "*un tamale*",
+    "*una tamal*",
+    "*un tamalo*"
+   ],
+   "answer": 0,
+   "explain": "The Spanish singular is *tamal*; English \"tamale\" comes from the plural."
+  },
+  {
+   "q": "A woman meets someone new. What does she say?",
+   "options": [
+    "*Encantada.*",
+    "*Encantado.*",
+    "*Encantados.*",
+    "*Encanta.*"
+   ],
+   "answer": 0,
+   "explain": "*Encantado / encantada* agrees with the speaker, so a woman says *encantada*."
+  }
+ ]
+}
