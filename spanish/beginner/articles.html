@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="b6bd0c7735bc">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Articles · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Articles</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Articles</h1><p class="sub">The definite articles el, la, los, las, the indefinite un, una, unos, unas, the neuter lo, and how to choose between them.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#singular-definite-articles">Singular Definite Articles</a></li><li><a href="#plural-definite-articles">Plural Definite Articles</a></li><li><a href="#singular-indefinite-articles">Singular Indefinite Articles</a></li><li><a href="#plural-indefinite-articles">Plural Indefinite Articles</a></li><li><a href="#the-neuter-article-lo">The Neuter Article "Lo"</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="singular-definite-articles">Singular Definite Articles</h2>
+<p>An article is the little word in front of a noun that says whether you mean a particular thing (<em>the</em>) or any one of a kind (<em>a</em>, <em>an</em>). English has a single word <em>the</em>; Spanish has several, because every Spanish noun is either <strong>masculine</strong> or <strong>feminine</strong>, and the article has to match.</p>
+<p>In the singular there are two forms:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Article</th>
+<th>Used with</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el</em></td>
+<td>masculine singular nouns</td>
+<td><em>el tren</em> — the train</td>
+</tr>
+<tr>
+<td><em>la</em></td>
+<td>feminine singular nouns</td>
+<td><em>la mesa</em> — the table</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use a definite article when both you and the listener know exactly which thing you mean, or when there is only one of it.</p>
+<ul class="ex">
+<li><em>¿Dónde está el mando de la tele?</em> — Where's the TV remote?</li>
+<li><em>La puerta está abierta.</em> — The door is open.</li>
+<li><em>El sol sale a las siete.</em> — The sun rises at seven.</li>
+</ul>
+<p>Spanish also uses the definite article in places where English leaves it out, most importantly with nouns used in a <strong>general sense</strong> and with titles when you talk <em>about</em> someone:</p>
+<ul class="ex">
+<li><em>Me encanta el chocolate.</em> — I love chocolate (chocolate in general).</li>
+<li><em>La señora Ruiz vive aquí.</em> — Mrs Ruiz lives here.</li>
+<li><em>El lunes tengo examen.</em> — On Monday I have an exam.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">El is not él</p><p><em>el</em> without an accent is the article <em>the</em>; <em>él</em> with an accent is the pronoun <em>he</em>. <em>El chico come.</em> — The boy eats. <em>Él come.</em> — He eats.</p></aside>
+
+<h3 id="feminine-nouns-that-start-with-a-stressed-a">Feminine nouns that start with a stressed a</h3>
+<p>A feminine singular noun whose first syllable is a stressed <em>a-</em> or <em>ha-</em> takes <em>el</em> instead of <em>la</em>, purely to avoid the clash of two <em>a</em> sounds. The noun is still feminine, so adjectives stay feminine and the plural goes back to <em>las</em>.</p>
+<ul class="ex">
+<li><em>el agua fría</em> — the cold water</li>
+<li><em>el águila</em> → <em>las águilas</em> — the eagle → the eagles</li>
+</ul>
+<h2 id="plural-definite-articles">Plural Definite Articles</h2>
+<p>For more than one item, the definite article becomes plural and still agrees in gender:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el</em></td>
+<td><em>los</em></td>
+<td><em>los trenes</em> — the trains</td>
+</tr>
+<tr>
+<td><em>la</em></td>
+<td><em>las</em></td>
+<td><em>las mesas</em> — the tables</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Los niños juegan en el parque.</em> — The children are playing in the park.</li>
+<li><em>Las llaves están en mi bolso.</em> — The keys are in my bag.</li>
+</ul>
+<h3 id="mixed-groups">Mixed groups</h3>
+<p>When a plural noun refers to a group that includes both masculine and feminine members, Spanish uses the masculine form. <em>Los hermanos</em> can mean "the brothers" or "the brothers and sisters"; <em>los padres</em> usually means "the parents". Only use <em>las</em> when every member of the group is feminine.</p>
+<ul class="ex">
+<li><em>Los profesores de mi escuela son simpáticos.</em> — The teachers at my school are nice (men and women).</li>
+<li><em>Las profesoras de baile llegan tarde.</em> — The (female) dance teachers are arriving late.</li>
+</ul>
+<h3 id="general-statements">General statements</h3>
+<p>Plural nouns used to talk about a whole category keep the article in Spanish, where English drops it:</p>
+<ul class="ex">
+<li><em>Los gatos duermen mucho.</em> — Cats sleep a lot.</li>
+<li><em>Me gustan las películas de miedo.</em> — I like horror films.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Check the noun ending, then the article</p><p>Most nouns ending in <em>-o</em> take <em>el / los</em>; most ending in <em>-a</em> take <em>la / las</em>. Learn every new noun together with its article (<em>la mano</em>, <em>el día</em>) so the exceptions stick from day one.</p></aside>
+
+<h2 id="singular-indefinite-articles">Singular Indefinite Articles</h2>
+<p>The indefinite article corresponds to English <em>a</em> or <em>an</em>. It introduces something new or something that is one of many, where it does not matter which one.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Article</th>
+<th>Used with</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>un</em></td>
+<td>masculine singular nouns</td>
+<td><em>un libro</em> — a book</td>
+</tr>
+<tr>
+<td><em>una</em></td>
+<td>feminine singular nouns</td>
+<td><em>una silla</em> — a chair</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Necesito un bolígrafo.</em> — I need a pen (any pen).</li>
+<li><em>Hay una farmacia en la esquina.</em> — There's a pharmacy on the corner.</li>
+<li><em>Compré un regalo para mi madre.</em> — I bought a present for my mother.</li>
+</ul>
+<p>Compare the two types: <em>¿Me das el bolígrafo?</em> asks for a specific pen you can both see; <em>¿Me das un bolígrafo?</em> asks for any pen at all.</p>
+<p>Like <em>el</em>, the article <em>un</em> is used before feminine nouns starting with a stressed <em>a-</em>: <em>un hacha</em> — an axe, <em>un aula</em> — a classroom. The longer form <em>una</em> is also accepted here, but <em>un</em> is more common.</p>
+<h3 id="where-spanish-drops-a">Where Spanish drops "a"</h3>
+<p>After <em>ser</em> (and verbs like <em>hacerse</em>), an unmodified job, religion or nationality takes <strong>no</strong> article:</p>
+<ul class="ex">
+<li><em>Mi tía es médica.</em> — My aunt is a doctor.</li>
+<li><del><em>Soy un estudiante.</em></del> → <em>Soy estudiante.</em> — I'm a student.</li>
+</ul>
+<p>Add the article only if you describe the noun: <em>Es una médica excelente.</em> — She's an excellent doctor.</p>
+<p>Spanish also usually drops the article after <em>sin</em>, after <em>tener</em> / <em>buscar</em> with things people normally have one of, and before <em>otro</em>, <em>cien</em> and <em>mil</em>: <em>otro café</em> (<del><em>un otro café</em></del>) — another coffee; <em>cien personas</em> — a hundred people.</p>
+<h2 id="plural-indefinite-articles">Plural Indefinite Articles</h2>
+<p>The plural forms are <em>unos</em> (masculine) and <em>unas</em> (feminine). They mean <strong>some</strong>, <strong>a few</strong> or <strong>about</strong>, and are often left out when English would just use the bare plural.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>un</em></td>
+<td><em>unos</em></td>
+<td><em>unos amigos</em> — some friends</td>
+</tr>
+<tr>
+<td><em>una</em></td>
+<td><em>unas</em></td>
+<td><em>unas fotos</em> — some photos</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Tengo unos libros para ti.</em> — I have some books for you.</li>
+<li><em>Vinieron unas vecinas a saludar.</em> — A few neighbours came to say hello.</li>
+</ul>
+<h3 id="about-with-numbers">"About" with numbers</h3>
+<p>Before a number, <em>unos</em> / <em>unas</em> means "approximately":</p>
+<ul class="ex">
+<li><em>El viaje dura unas tres horas.</em> — The trip takes about three hours.</li>
+<li><em>Había unos cincuenta invitados.</em> — There were about fifty guests.</li>
+</ul>
+<h3 id="when-to-leave-it-out">When to leave it out</h3>
+<p>With plural nouns after verbs like <em>tener</em>, <em>comprar</em>, <em>hay</em> or <em>necesitar</em>, Spanish usually uses no article at all:</p>
+<ul class="ex">
+<li><em>¿Hay manzanas?</em> — Are there any apples?</li>
+<li><em>Necesitamos sillas.</em> — We need chairs.</li>
+</ul>
+<p>Adding <em>unos/unas</em> makes the idea of "a certain number of them" stronger: <em>Compré unas manzanas muy buenas.</em> — I bought some really good apples.</p>
+<aside class="callout trap"><p class="callout-title">Unos is not &quot;ones&quot;</p><p><em>unos</em> never means "ones" in the sense of <em>the red ones</em>. For that you use the article plus an adjective: <em>los rojos</em> — the red ones.</p></aside>
+
+<h2 id="the-neuter-article-lo">The Neuter Article "Lo"</h2>
+<p>Besides the gendered articles there is a third, <strong>neuter</strong> article: <em>lo</em>. It never goes in front of a noun. Instead it turns an adjective, adverb or a whole clause into an abstract idea.</p>
+<h3 id="lo-adjective-the-thing-the-part">Lo + adjective: "the ... thing" / "the ... part"</h3>
+<ul class="ex">
+<li><em>Lo bueno es que no llueve.</em> — The good thing is that it isn't raining.</li>
+<li><em>Lo difícil del español son los verbos.</em> — The hard part of Spanish is the verbs.</li>
+<li><em>Lo mejor de la fiesta fue la comida.</em> — The best thing about the party was the food.</li>
+</ul>
+<p>The adjective stays in its masculine singular form, because it does not describe any particular noun.</p>
+<h3 id="lo-que-what-the-thing-that">Lo que: "what", "the thing that"</h3>
+<ul class="ex">
+<li><em>Lo que quiero es dormir.</em> — What I want is to sleep.</li>
+<li><em>No entiendo lo que dices.</em> — I don't understand what you're saying.</li>
+</ul>
+<h3 id="lo-adjectiveadverb-que-how">Lo + adjective/adverb + que: "how"</h3>
+<p>Here the adjective <strong>does</strong> agree with the noun it describes:</p>
+<ul class="ex">
+<li><em>No sabes lo cansada que estoy.</em> — You don't know how tired I am.</li>
+<li><em>Mira lo rápido que corre.</em> — Look how fast he runs.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Two different words called lo</p><p>The article <em>lo</em> (before adjectives, <em>que</em>) is not the same as the pronoun <em>lo</em> ("it, him") you will meet in <a href="../beginner/direct-object-pronouns.html">direct object pronouns</a>. <em>Lo importante</em> — the important thing; <em>Lo veo.</em> — I see it.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Choosing an article is a three-step decision: <strong>definite or indefinite?</strong> → <strong>masculine or feminine?</strong> → <strong>singular or plural?</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Masc. sing.</th>
+<th>Fem. sing.</th>
+<th>Masc. pl.</th>
+<th>Fem. pl.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Definite (<em>the</em>)</td>
+<td><em>el</em></td>
+<td><em>la</em></td>
+<td><em>los</em></td>
+<td><em>las</em></td>
+</tr>
+<tr>
+<td>Indefinite (<em>a, some</em>)</td>
+<td><em>un</em></td>
+<td><em>una</em></td>
+<td><em>unos</em></td>
+<td><em>unas</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Plus the neuter <em>lo</em>, which goes before adjectives and <em>que</em>, never before nouns.</p>
+<h3 id="practice-fill-in-the-definite-article">Practice: fill in the definite article</h3>
+<ul class="ex">
+<li><em>___ casa</em> → <em>la casa</em> — the house</li>
+<li><em>___ problemas</em> → <em>los problemas</em> — the problems (a masculine noun in <em>-a</em>)</li>
+<li><em>___ agua</em> → <em>el agua</em> — the water (stressed <em>a-</em>)</li>
+<li><em>___ ciudades</em> → <em>las ciudades</em> — the cities</li>
+<li><em>___ mapa</em> → <em>el mapa</em> — the map</li>
+</ul>
+<h3 id="practice-fill-in-the-indefinite-article">Practice: fill in the indefinite article</h3>
+<ul class="ex">
+<li><em>Quiero ___ café.</em> → <em>un café</em> — I'd like a coffee.</li>
+<li><em>Leo ___ revistas.</em> → <em>unas revistas</em> — I'm reading some magazines.</li>
+<li><em>Es ___ idea genial.</em> → <em>una idea</em> — It's a great idea.</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>This review mixes all article types, including the cases where Spanish and English disagree.</p>
+<h3 id="spanish-uses-an-article-english-does-not">Spanish uses an article, English does not</h3>
+<ul class="ex">
+<li><em>Odio el ruido.</em> — I hate noise. (general sense)</li>
+<li><em>El doctor García llega a las nueve.</em> — Dr García arrives at nine. (title, talking about him)</li>
+<li><em>Los domingos comemos en casa.</em> — On Sundays we eat at home. (days of the week)</li>
+</ul>
+<h3 id="english-uses-a-spanish-does-not">English uses "a", Spanish does not</h3>
+<ul class="ex">
+<li><em>Es abogado.</em> — He's a lawyer.</li>
+<li><em>Salió sin paraguas.</em> — She went out without an umbrella.</li>
+<li><em>Quiero otra cerveza.</em> — I want another beer.</li>
+</ul>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>la problema</em></del> → <em>el problema</em> — the problem</li>
+<li><del><em>Soy una profesora.</em></del> → <em>Soy profesora.</em> — I'm a teacher.</li>
+<li><del><em>la agua</em></del> → <em>el agua</em> — the water</li>
+<li><del><em>Lo importante cosa</em></del> → <em>Lo importante</em> — the important thing</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Say the article with the noun</p><p>When you learn vocabulary, never write down <em>casa</em> — write <em>la casa</em>. The article is part of the word as far as your memory is concerned.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="index.html">← Beginner</a><a class="btn" href="nouns.html">Nouns →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

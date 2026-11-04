@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="0f54dfb257e5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Nouns · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Nouns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Nouns</h1><p class="sub">Gender of nouns, professions and family words, invariable and plural nouns, capitalization, noun–adjective agreement and the tricky exceptions.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#masculine-nouns">Masculine Nouns</a></li><li><a href="#feminine-nouns">Feminine Nouns</a></li><li><a href="#professions">Professions</a></li><li><a href="#family-terms">Family Terms</a></li><li><a href="#invariable-nouns">Invariable Nouns</a></li><li><a href="#plural-nouns">Plural Nouns</a></li><li><a href="#capitalization">Capitalization</a></li><li><a href="#noun-adjective-agreement">Noun-Adjective Agreement</a></li><li><a href="#tricky-nouns">Tricky Nouns</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li><li><a href="#comprehensive-review-3">Comprehensive Review 3</a></li></ol></nav>
+<article class="prose card">
+<h2 id="masculine-nouns">Masculine Nouns</h2>
+<p>Every Spanish noun has a grammatical gender, even nouns for objects and ideas. For people and animals the gender usually follows biology; for everything else it is a matter of form and habit. The ending of a noun is your best clue.</p>
+<p>Nouns are <strong>usually masculine</strong> when they end in:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>-o</em></td>
+<td><em>el libro</em> — book, <em>el vaso</em> — glass</td>
+</tr>
+<tr>
+<td><em>-ma</em> (many of Greek origin)</td>
+<td><em>el problema</em>, <em>el sistema</em>, <em>el idioma</em> — language</td>
+</tr>
+<tr>
+<td>a stressed vowel</td>
+<td><em>el sofá</em>, <em>el café</em>, <em>el menú</em></td>
+</tr>
+<tr>
+<td>a consonant other than <em>-d</em> or <em>-z</em></td>
+<td><em>el papel</em> — paper, <em>el amor</em> — love, <em>el reloj</em> — watch</td>
+</tr>
+<tr>
+<td><em>-aje</em>, <em>-or</em></td>
+<td><em>el viaje</em> — trip, <em>el color</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>El clima de aquí es suave.</em> — The climate here is mild.</li>
+<li><em>Tengo un problema con el coche.</em> — I have a problem with the car.</li>
+</ul>
+<h3 id="masculine-by-meaning">Masculine by meaning</h3>
+<p>Some groups are masculine regardless of their ending: days of the week (<em>el martes</em>), months (<em>un julio muy caluroso</em> — a very hot July), languages (<em>el español</em>), colours used as nouns (<em>el rojo</em>), numbers (<em>el siete</em>), and most rivers, seas and mountains (<em>el Amazonas</em>, <em>el Mediterráneo</em>).</p>
+<aside class="callout trap"><p class="callout-title">Masculine words in -a</p><p><em>el día</em> (day), <em>el mapa</em> (map), <em>el planeta</em> (planet) and <em>el sofá</em> end in <em>-a</em> but are masculine. Learn them as a little group.</p></aside>
+
+<h2 id="feminine-nouns">Feminine Nouns</h2>
+<p>Nouns are <strong>usually feminine</strong> when they end in:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>-a</em></td>
+<td><em>la casa</em> — house, <em>la playa</em> — beach</td>
+</tr>
+<tr>
+<td><em>-ción</em>, <em>-sión</em></td>
+<td><em>la canción</em> — song, <em>la decisión</em></td>
+</tr>
+<tr>
+<td><em>-dad</em>, <em>-tad</em>, <em>-tud</em></td>
+<td><em>la ciudad</em> — city, <em>la libertad</em>, <em>la salud</em> — health</td>
+</tr>
+<tr>
+<td><em>-z</em></td>
+<td><em>la luz</em> — light, <em>la paz</em> — peace, <em>la vez</em> — time (occurrence)</td>
+</tr>
+<tr>
+<td><em>-umbre</em>, <em>-ie</em></td>
+<td><em>la costumbre</em> — custom, <em>la serie</em></td>
+</tr>
+<tr>
+<td><em>-is</em> (many)</td>
+<td><em>la crisis</em>, <em>la tesis</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>La ciudad tiene una catedral muy antigua.</em> — The city has a very old cathedral.</li>
+<li><em>Esa canción me pone contenta.</em> — That song makes me happy.</li>
+</ul>
+<h3 id="feminine-words-that-dont-end-in-a">Feminine words that don't end in -a</h3>
+<p><em>la mano</em> (hand), <em>la foto</em> (photo, short for <em>fotografía</em>), <em>la moto</em> (motorbike, short for <em>motocicleta</em>), <em>la radio</em> and <em>la flor</em> (flower) are all feminine.</p>
+<h3 id="feminine-nouns-with-el">Feminine nouns with el</h3>
+<p>As you saw in <a href="../beginner/articles.html#singular-definite-articles">Articles</a>, feminine nouns that start with a stressed <em>a-</em> or <em>ha-</em> take <em>el</em> and <em>un</em> in the singular: <em>el agua</em>, <em>el hambre</em> (hunger), <em>el arma</em> (weapon). They are still feminine — <em>el agua está fría</em>, <em>mucha hambre</em> — and the plural uses <em>las</em>: <em>las armas</em>.</p>
+<aside class="callout hack"><p class="callout-title">Endings beat guessing</p><p>If a noun ends in <em>-ción</em>, <em>-dad</em> or <em>-tud</em>, it's feminine practically every time. That covers thousands of words that are almost the same as English (<em>nation</em> → <em>la nación</em>, <em>university</em> → <em>la universidad</em>).</p></aside>
+
+<h2 id="professions">Professions</h2>
+<p>Words for jobs often have a masculine and a feminine form, depending on who does the job.</p>
+<h3 id="-o-a">-o → -a</h3>
+<ul class="ex">
+<li><em>el abogado / la abogada</em> — lawyer</li>
+<li><em>el médico / la médica</em> — doctor</li>
+<li><em>el camarero / la camarera</em> — waiter / waitress</li>
+</ul>
+<h3 id="consonant-add-a">Consonant → add -a</h3>
+<ul class="ex">
+<li><em>el profesor / la profesora</em> — teacher</li>
+<li><em>el doctor / la doctora</em> — doctor</li>
+<li><em>el bailarín / la bailarina</em> — dancer (note the accent disappears)</li>
+</ul>
+<h3 id="one-form-for-both">One form for both</h3>
+<p>Nouns ending in <em>-ista</em>, <em>-ante</em>, <em>-ente</em> and many in <em>-e</em> don't change. Only the article shows the gender:</p>
+<ul class="ex">
+<li><em>el / la periodista</em> — journalist</li>
+<li><em>el / la estudiante</em> — student</li>
+<li><em>el / la cantante</em> — singer</li>
+<li><em>el / la policía</em> — police officer</li>
+</ul>
+<h3 id="a-few-special-pairs">A few special pairs</h3>
+<ul class="ex">
+<li><em>el actor / la actriz</em> — actor / actress</li>
+<li><em>el rey / la reina</em> — king / queen</li>
+</ul>
+<p>Remember that after <em>ser</em>, a bare profession takes no article: <em>Mi hermano es enfermero.</em> — My brother is a nurse.</p>
+<aside class="callout fact"><p class="callout-title">Feminine forms are spreading</p><p>Older usage kept some job titles masculine for everyone (<em>la médico</em>, <em>la juez</em>). Today <em>la médica</em>, <em>la jueza</em> and <em>la presidenta</em> are standard in most countries.</p></aside>
+
+<h2 id="family-terms">Family Terms</h2>
+<p>Family words follow the same <em>-o / -a</em> pattern, and the masculine plural covers mixed groups.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Mixed plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el padre</em> — father</td>
+<td><em>la madre</em> — mother</td>
+<td><em>los padres</em> — parents</td>
+</tr>
+<tr>
+<td><em>el hijo</em> — son</td>
+<td><em>la hija</em> — daughter</td>
+<td><em>los hijos</em> — children</td>
+</tr>
+<tr>
+<td><em>el hermano</em> — brother</td>
+<td><em>la hermana</em> — sister</td>
+<td><em>los hermanos</em> — siblings</td>
+</tr>
+<tr>
+<td><em>el abuelo</em> — grandfather</td>
+<td><em>la abuela</em> — grandmother</td>
+<td><em>los abuelos</em> — grandparents</td>
+</tr>
+<tr>
+<td><em>el tío</em> — uncle</td>
+<td><em>la tía</em> — aunt</td>
+<td><em>los tíos</em> — aunt and uncle</td>
+</tr>
+<tr>
+<td><em>el primo</em> — cousin</td>
+<td><em>la prima</em> — cousin</td>
+<td><em>los primos</em> — cousins</td>
+</tr>
+<tr>
+<td><em>el sobrino</em> — nephew</td>
+<td><em>la sobrina</em> — niece</td>
+<td><em>los sobrinos</em></td>
+</tr>
+<tr>
+<td><em>el nieto</em> — grandson</td>
+<td><em>la nieta</em> — granddaughter</td>
+<td><em>los nietos</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="in-laws-and-step-relations">In-laws and step-relations</h3>
+<ul class="ex">
+<li><em>el suegro / la suegra</em> — father-in-law / mother-in-law</li>
+<li><em>el yerno / la nuera</em> — son-in-law / daughter-in-law</li>
+<li><em>el cuñado / la cuñada</em> — brother-in-law / sister-in-law</li>
+<li><em>el padrastro / la madrastra</em> — stepfather / stepmother</li>
+</ul>
+<ul class="ex">
+<li><em>Mis padres viven en Sevilla.</em> — My parents live in Seville.</li>
+<li><em>¿Cuántos hermanos tienes?</em> — How many brothers and sisters do you have?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Los padres</p><p><em>los padres</em> nearly always means "parents", not "fathers". To say "the children" in a family, use <em>los hijos</em>; <em>los niños</em> means children in general.</p></aside>
+
+<h2 id="invariable-nouns">Invariable Nouns</h2>
+<p>Some nouns don't change at all, or change in only one way.</p>
+<h3 id="same-form-for-both-genders">Same form for both genders</h3>
+<p>Many nouns for people have one form, and the article alone shows whether you mean a man or a woman: <em>el / la turista</em>, <em>el / la joven</em> (young person), <em>el / la testigo</em> (witness).</p>
+<h3 id="same-form-in-singular-and-plural">Same form in singular and plural</h3>
+<p>Nouns that end in an <strong>unstressed</strong> vowel + <em>-s</em> (or <em>-x</em>) keep the same form in the plural. Only the article changes.</p>
+<ul class="ex">
+<li><em>el lunes → los lunes</em> — Monday → Mondays</li>
+<li><em>la crisis → las crisis</em> — crisis → crises</li>
+<li><em>el paraguas → los paraguas</em> — umbrella → umbrellas</li>
+<li><em>el tórax → los tórax</em> — chest → chests</li>
+</ul>
+<p>Compound nouns made of verb + plural noun work the same way: <em>el abrelatas</em> (can opener), <em>el cumpleaños</em> (birthday), <em>el sacacorchos</em> (corkscrew).</p>
+<h3 id="one-gender-for-both-sexes">One gender for both sexes</h3>
+<p>Some animal and people words have a fixed gender that covers both sexes: <em>la persona</em> (a man is also <em>una persona</em>), <em>la víctima</em>, <em>el bebé</em>, <em>la jirafa</em>. To be specific about animals, add <em>macho</em> or <em>hembra</em>: <em>la jirafa macho</em>.</p>
+<ul class="ex">
+<li><em>Mi hermano es una persona muy tranquila.</em> — My brother is a very calm person.</li>
+</ul>
+<h2 id="plural-nouns">Plural Nouns</h2>
+<p>Making a noun plural depends on how it ends.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular ending</th>
+<th>Rule</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unstressed vowel</td>
+<td>add <em>-s</em></td>
+<td><em>la mesa → las mesas</em></td>
+</tr>
+<tr>
+<td>consonant (not <em>-s</em>)</td>
+<td>add <em>-es</em></td>
+<td><em>el árbol → los árboles</em>, <em>la ciudad → las ciudades</em></td>
+</tr>
+<tr>
+<td><em>-z</em></td>
+<td>change to <em>-ces</em></td>
+<td><em>el lápiz → los lápices</em>, <em>la vez → las veces</em></td>
+</tr>
+<tr>
+<td>stressed <em>-á, -é, -ó</em></td>
+<td>add <em>-s</em></td>
+<td><em>el sofá → los sofás</em>, <em>el café → los cafés</em></td>
+</tr>
+<tr>
+<td>stressed <em>-í, -ú</em></td>
+<td>add <em>-es</em> or <em>-s</em></td>
+<td><em>el rubí → los rubíes</em>, <em>el menú → los menús</em></td>
+</tr>
+<tr>
+<td>unstressed vowel + <em>-s</em></td>
+<td>no change</td>
+<td><em>el martes → los martes</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="watch-the-written-accent">Watch the written accent</h3>
+<p>Adding a syllable can move a word into a different stress pattern, so accents can appear or disappear:</p>
+<ul class="ex">
+<li><em>la canción → las canciones</em> — accent dropped</li>
+<li><em>el joven → los jóvenes</em> — accent added</li>
+<li><em>el examen → los exámenes</em> — accent added</li>
+</ul>
+<h3 id="words-with-no-singular">Words with no singular</h3>
+<p>A few nouns are normally plural: <em>las gafas</em> (glasses), <em>las vacaciones</em> (holiday), <em>las tijeras</em> (scissors), <em>los pantalones</em> (trousers, also <em>el pantalón</em>).</p>
+<aside class="callout hack"><p class="callout-title">Say it, then spell it</p><p>The stress never moves when you make a noun plural: <em>jo</em>-ven → <em>jó</em>-ve-nes. Keep the stress where it was and let the accent rules decide whether you need a tilde.</p></aside>
+
+<h2 id="capitalization">Capitalization</h2>
+<p>Spanish uses capital letters far less than English. Capitals are used for the first word of a sentence, names of people and places, and names of institutions — but many words English capitalizes are lowercase in Spanish.</p>
+<h3 id="lowercase-in-spanish">Lowercase in Spanish</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>days of the week</td>
+<td><em>el lunes</em></td>
+<td>Monday</td>
+</tr>
+<tr>
+<td>months</td>
+<td><em>en marzo</em></td>
+<td>in March</td>
+</tr>
+<tr>
+<td>languages</td>
+<td><em>hablo inglés</em></td>
+<td>I speak English</td>
+</tr>
+<tr>
+<td>nationalities</td>
+<td><em>es mexicana</em></td>
+<td>she's Mexican</td>
+</tr>
+<tr>
+<td>religions</td>
+<td><em>el budismo</em></td>
+<td>Buddhism</td>
+</tr>
+<tr>
+<td>titles (in general)</td>
+<td><em>el señor López</em>, <em>la reina Sofía</em></td>
+<td>Mr López, Queen Sofía</td>
+</tr>
+<tr>
+<td>the pronoun I</td>
+<td><em>yo</em></td>
+<td>I</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Mi amigo francés llega el viernes 3 de mayo.</em> — My French friend arrives on Friday 3 May.</li>
+</ul>
+<h3 id="titles-of-works">Titles of works</h3>
+<p>In titles of books, films and songs, only the first word (and any proper names) gets a capital: <em>Cien años de soledad</em>, <em>El laberinto del fauno</em>.</p>
+<h3 id="abbreviated-titles">Abbreviated titles</h3>
+<p>Abbreviations of titles are capitalized: <em>Sr.</em> (<em>señor</em>), <em>Sra.</em> (<em>señora</em>), <em>Dr.</em> (<em>doctor</em>), <em>Ud.</em> (<em>usted</em>).</p>
+<aside class="callout trap"><p class="callout-title">Days and languages</p><p><del><em>El Lunes estudio Inglés.</em></del> → <em>El lunes estudio inglés.</em> — On Monday I study English.</p></aside>
+
+<h2 id="noun-adjective-agreement">Noun-Adjective Agreement</h2>
+<p>Adjectives in Spanish agree with the noun they describe in <strong>gender</strong> and <strong>number</strong>. Most descriptive adjectives come <strong>after</strong> the noun.</p>
+<h3 id="adjectives-ending-in-o-four-forms">Adjectives ending in -o (four forms)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Singular</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Masculine</td>
+<td><em>el gato negro</em></td>
+<td><em>los gatos negros</em></td>
+</tr>
+<tr>
+<td>Feminine</td>
+<td><em>la gata negra</em></td>
+<td><em>las gatas negras</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="adjectives-ending-in-e-or-a-consonant-two-forms">Adjectives ending in -e or a consonant (two forms)</h3>
+<p>These change only for number: <em>un chico inteligente / una chica inteligente</em>; <em>un examen fácil / unos exámenes fáciles</em>.</p>
+<h3 id="adjectives-of-nationality">Adjectives of nationality</h3>
+<p>Nationality adjectives ending in a consonant <strong>do</strong> add <em>-a</em> for the feminine: <em>un chico español / una chica española</em>, <em>un vino francés / una película francesa</em>.</p>
+<h3 id="mixed-groups">Mixed groups</h3>
+<p>When an adjective describes nouns of both genders, use the masculine plural:</p>
+<ul class="ex">
+<li><em>El pan y la leche están frescos.</em> — The bread and the milk are fresh.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Gender of the noun, not the person</p><p>The adjective agrees with the grammatical gender of the noun: <em>Mi hermano es una persona simpática</em> — the adjective is feminine because <em>persona</em> is feminine.</p></aside>
+
+<h3 id="before-the-noun">Before the noun</h3>
+<p>A few common adjectives can go before the noun and some shorten in the masculine singular: <em>un buen libro</em> (<em>bueno</em>), <em>un mal día</em> (<em>malo</em>), <em>el primer piso</em> (<em>primero</em>), <em>una gran ciudad</em> (<em>grande</em> shortens before any singular noun).</p>
+<h2 id="tricky-nouns">Tricky Nouns</h2>
+<p>Some nouns break the patterns or change meaning with gender.</p>
+<h3 id="same-word-different-gender-different-meaning">Same word, different gender, different meaning</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Masculine</th>
+<th>Feminine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el capital</em> — money, capital</td>
+<td><em>la capital</em> — capital city</td>
+</tr>
+<tr>
+<td><em>el cometa</em> — comet</td>
+<td><em>la cometa</em> — kite</td>
+</tr>
+<tr>
+<td><em>el corte</em> — cut</td>
+<td><em>la corte</em> — royal court</td>
+</tr>
+<tr>
+<td><em>el orden</em> — order, tidiness</td>
+<td><em>la orden</em> — command, religious order</td>
+</tr>
+<tr>
+<td><em>el frente</em> — front (military)</td>
+<td><em>la frente</em> — forehead</td>
+</tr>
+<tr>
+<td><em>el cura</em> — priest</td>
+<td><em>la cura</em> — cure</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Madrid es la capital de España.</em> — Madrid is the capital of Spain.</li>
+<li><em>No tenemos el capital para abrir una tienda.</em> — We don't have the capital to open a shop.</li>
+</ul>
+<h3 id="masculine-and-feminine-forms-that-look-unrelated">Masculine and feminine forms that look unrelated</h3>
+<p>Some animal pairs use different words: <em>el caballo / la yegua</em> (horse / mare), <em>el toro / la vaca</em> (bull / cow), <em>el gallo / la gallina</em> (rooster / hen).</p>
+<h3 id="gender-changes-meaning-in-pairs">Gender changes meaning in pairs</h3>
+<ul class="ex">
+<li><em>el manzano / la manzana</em> — apple tree / apple</li>
+<li><em>el bolso / la bolsa</em> — handbag / bag</li>
+<li><em>el puerto / la puerta</em> — port / door</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Arte and mar</p><p><em>el arte</em> is masculine in the singular but often feminine in the plural (<em>las bellas artes</em>), and <em>el mar</em> is masculine in everyday speech but feminine in sailors' and poets' language (<em>la mar</em>).</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>This review covers gender clues and articles.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Usually masculine</th>
+<th>Usually feminine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>-o</em>, <em>-ma</em>, stressed vowel, <em>-aje</em>, <em>-or</em>, most consonants</td>
+<td><em>-a</em>, <em>-ción/-sión</em>, <em>-dad/-tad/-tud</em>, <em>-z</em>, <em>-umbre</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="practice-masculine-or-feminine">Practice: masculine or feminine?</h3>
+<ul class="ex">
+<li><em>___ verdad</em> → <em>la verdad</em> — the truth (<em>-dad</em>)</li>
+<li><em>___ tema</em> → <em>el tema</em> — the topic (<em>-ma</em>)</li>
+<li><em>___ mano</em> → <em>la mano</em> — the hand (exception)</li>
+<li><em>___ garaje</em> → <em>el garaje</em> — the garage (<em>-aje</em>)</li>
+<li><em>___ nariz</em> → <em>la nariz</em> — the nose (<em>-z</em>)</li>
+<li><em>___ día</em> → <em>el día</em> — the day (exception)</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>This review covers professions, family terms and plurals.</p>
+<h3 id="practice-change-to-the-feminine">Practice: change to the feminine</h3>
+<ul class="ex">
+<li><em>el camarero</em> → <em>la camarera</em></li>
+<li><em>el dentista</em> → <em>la dentista</em></li>
+<li><em>el actor</em> → <em>la actriz</em></li>
+<li><em>el abuelo</em> → <em>la abuela</em></li>
+</ul>
+<h3 id="practice-make-it-plural">Practice: make it plural</h3>
+<ul class="ex">
+<li><em>la luz</em> → <em>las luces</em></li>
+<li><em>el autobús</em> → <em>los autobuses</em> (accent dropped)</li>
+<li><em>el jueves</em> → <em>los jueves</em> (no change)</li>
+<li><em>el examen</em> → <em>los exámenes</em> (accent added)</li>
+<li><em>el hotel</em> → <em>los hoteles</em></li>
+</ul>
+<h2 id="comprehensive-review-3">Comprehensive Review 3</h2>
+<p>This review covers capitalization, agreement and tricky nouns.</p>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>Las casas blancos</em></del> → <em>Las casas blancas</em> — the white houses</li>
+<li><del><em>Viajo en Julio.</em></del> → <em>Viajo en julio.</em> — I'm travelling in July.</li>
+<li><del><em>una chica francés</em></del> → <em>una chica francesa</em> — a French girl</li>
+<li><del><em>Mi padre y mi madre son altas.</em></del> → <em>Mi padre y mi madre son altos.</em> — My father and mother are tall.</li>
+<li><del><em>Los niños vuelan el cometa.</em></del> → <em>Los niños vuelan la cometa.</em> — The children are flying the kite.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">One sentence, three checks</p><p>Before you say a noun phrase, check three things in one go: the article, the noun's plural, and the adjective ending. <em>Las ciudades grandes</em>, <em>los problemas difíciles</em>, <em>las manos frías</em>.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="articles.html">← Articles</a><a class="btn" href="subject-pronouns.html">Subject Pronouns →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

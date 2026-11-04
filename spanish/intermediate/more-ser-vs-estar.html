@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="f90fb2a40cda">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>More Ser vs. Estar · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Intermediate</a><span class="sep">/</span><span class="cur">More Ser vs. Estar</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Intermediate</span><h1>More Ser vs. Estar</h1><p class="sub">A deeper look at ser for descriptions, origin, time, permanence and the passive, and estar for location, conditions, temporary states and the progressive.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#conjugation-review">Conjugation Review</a></li><li><a href="#using-ser-with-descriptions">Using Ser with Descriptions</a></li><li><a href="#using-ser-with-origins">Using Ser with Origins</a></li><li><a href="#using-ser-with-time">Using Ser with Time</a></li><li><a href="#using-ser-for-permanence">Using Ser for Permanence</a></li><li><a href="#using-ser-in-the-passive">Using Ser in the Passive</a></li><li><a href="#using-estar-with-locations">Using Estar with Locations</a></li><li><a href="#using-estar-with-conditions">Using Estar with Conditions</a></li><li><a href="#using-estar-for-transience">Using Estar for Transience</a></li><li><a href="#using-estar-in-the-progressive">Using Estar in the Progressive</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="conjugation-review">Conjugation Review</h2>
+<p>Both verbs mean "to be", and both are irregular. Here they are in the tenses you know so far.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Subject</th>
+<th><em>ser</em> present</th>
+<th><em>estar</em> present</th>
+<th><em>ser</em> preterite</th>
+<th><em>estar</em> preterite</th>
+<th><em>ser</em> imperfect</th>
+<th><em>estar</em> imperfect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>soy</em></td>
+<td><em>estoy</em></td>
+<td><em>fui</em></td>
+<td><em>estuve</em></td>
+<td><em>era</em></td>
+<td><em>estaba</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>eres</em></td>
+<td><em>estás</em></td>
+<td><em>fuiste</em></td>
+<td><em>estuviste</em></td>
+<td><em>eras</em></td>
+<td><em>estabas</em></td>
+</tr>
+<tr>
+<td><em>él / ella / usted</em></td>
+<td><em>es</em></td>
+<td><em>está</em></td>
+<td><em>fue</em></td>
+<td><em>estuvo</em></td>
+<td><em>era</em></td>
+<td><em>estaba</em></td>
+</tr>
+<tr>
+<td><em>nosotros</em></td>
+<td><em>somos</em></td>
+<td><em>estamos</em></td>
+<td><em>fuimos</em></td>
+<td><em>estuvimos</em></td>
+<td><em>éramos</em></td>
+<td><em>estábamos</em></td>
+</tr>
+<tr>
+<td><em>vosotros</em></td>
+<td><em>sois</em></td>
+<td><em>estáis</em></td>
+<td><em>fuisteis</em></td>
+<td><em>estuvisteis</em></td>
+<td><em>erais</em></td>
+<td><em>estabais</em></td>
+</tr>
+<tr>
+<td><em>ellos / ustedes</em></td>
+<td><em>son</em></td>
+<td><em>están</em></td>
+<td><em>fueron</em></td>
+<td><em>estuvieron</em></td>
+<td><em>eran</em></td>
+<td><em>estaban</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Future and conditional are regular: <em>seré, sería; estaré, estaría</em>.</p>
+<aside class="callout hack"><p class="callout-title">A quick rule of thumb</p><p><strong>Ser</strong> says what something <em>is</em> (identity, essence). <strong>Estar</strong> says how or where something <em>is</em> (state, location). The lessons below break this into specific uses.</p></aside>
+
+<p>Notice the accents in <em>estar</em>: <em>estás, está, están</em> are stressed on the last syllable. Without the accent, <em>esta</em> means "this".</p>
+<ul class="ex">
+<li><em>Somos hermanos.</em> — We're siblings.</li>
+<li><em>Estamos en casa.</em> — We're at home.</li>
+<li><em>Fue un viaje increíble.</em> — It was an incredible trip.</li>
+<li><em>Estuvimos dos semanas en Cuba.</em> — We were in Cuba for two weeks.</li>
+</ul>
+<p>Remember that <em>fui, fue, fueron</em> are shared by <em>ser</em> and <em>ir</em>: <em>Fue a la tienda</em> (he went) vs. <em>Fue difícil</em> (it was).</p>
+<h2 id="using-ser-with-descriptions">Using Ser with Descriptions</h2>
+<p>Use <em>ser</em> for characteristics that define a person or thing: personality, physical appearance, nationality, profession, material, colour, shape.</p>
+<ul class="ex">
+<li><em>Mi hermano es alto y moreno.</em> — My brother is tall and dark-haired.</li>
+<li><em>Eres muy paciente.</em> — You are very patient.</li>
+<li><em>La mesa es de madera.</em> — The table is made of wood.</li>
+<li><em>Son médicos.</em> — They're doctors.</li>
+<li><em>El coche es rojo.</em> — The car is red.</li>
+</ul>
+<h3 id="identity-and-definitions">Identity and definitions</h3>
+<p><em>Ser</em> links two nouns or pronouns that refer to the same thing:</p>
+<ul class="ex">
+<li><em>Madrid es la capital de España.</em> — Madrid is the capital of Spain.</li>
+<li><em>Esto es un regalo para ti.</em> — This is a present for you.</li>
+<li><em>Soy yo.</em> — It's me.</li>
+</ul>
+<h3 id="possession-and-relationships">Possession and relationships</h3>
+<ul class="ex">
+<li><em>El libro es de Carlos.</em> — The book is Carlos's.</li>
+<li><em>Ella es mi novia.</em> — She's my girlfriend.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Description vs. condition</p><p><em>Es aburrido</em> — He's boring (his nature). <em>Está aburrido</em> — He's bored (right now). The adjective is the same; the verb changes the meaning.</p></aside>
+
+<h2 id="using-ser-with-origins">Using Ser with Origins</h2>
+<p><em>Ser de</em> tells you where someone or something comes from, or what it is made of.</p>
+<ul class="ex">
+<li><em>Soy de Colombia.</em> — I'm from Colombia.</li>
+<li><em>¿De dónde eres?</em> — Where are you from?</li>
+<li><em>Este café es de Etiopía.</em> — This coffee is from Ethiopia.</li>
+<li><em>La camisa es de algodón.</em> — The shirt is made of cotton.</li>
+</ul>
+<p>Nationality adjectives also use <em>ser</em>: <em>Somos mexicanos.</em></p>
+<h3 id="origin-vs-location">Origin vs. location</h3>
+<p>Origin doesn't change even when you move, so it takes <em>ser</em>. Where you are right now takes <em>estar</em>:</p>
+<ul class="ex">
+<li><em>Soy de Chile, pero estoy en Canadá.</em> — I'm from Chile, but I'm in Canada.</li>
+<li><em>Mis padres son de Galicia y ahora están en Madrid.</em> — My parents are from Galicia and now they're in Madrid.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Ser de for possession too</p><p><em>De</em> after <em>ser</em> can also show ownership: <em>La casa es de mis abuelos.</em> Context makes clear whether it's origin, material or owner.</p></aside>
+
+<h2 id="using-ser-with-time">Using Ser with Time</h2>
+<p>Times, dates, days and seasons all take <em>ser</em>.</p>
+<h3 id="clock-time">Clock time</h3>
+<p>Use <em>es</em> for one o'clock and <em>son</em> for the other hours. In the past, use the imperfect <em>era / eran</em>.</p>
+<ul class="ex">
+<li><em>Es la una y media.</em> — It's half past one.</li>
+<li><em>Son las cuatro menos cuarto.</em> — It's quarter to four.</li>
+<li><em>Eran las diez cuando llegamos.</em> — It was ten when we arrived.</li>
+<li><em>¿Qué hora es?</em> — What time is it?</li>
+</ul>
+<h3 id="dates-days-and-seasons">Dates, days and seasons</h3>
+<ul class="ex">
+<li><em>Hoy es martes.</em> — Today is Tuesday.</li>
+<li><em>Es el 5 de mayo.</em> — It's the fifth of May.</li>
+<li><em>Era invierno.</em> — It was winter.</li>
+</ul>
+<h3 id="where-and-when-an-event-takes-place">Where and when an event takes place</h3>
+<p>An event "is" somewhere or at some time with <em>ser</em>, not <em>estar</em>:</p>
+<ul class="ex">
+<li><em>La fiesta es en mi casa.</em> — The party is at my house.</li>
+<li><em>El concierto es a las nueve.</em> — The concert is at nine.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Estar with dates</p><p><em>Estamos a</em> + date is a common alternative for today's date: <em>Estamos a 3 de marzo.</em> <em>Estamos en</em> + season or month also works: <em>Estamos en verano.</em></p></aside>
+
+<h2 id="using-ser-for-permanence">Using Ser for Permanence</h2>
+<p>Use <em>ser</em> for qualities seen as lasting or essential, <em>estar</em> for states seen as temporary. This is about how the speaker sees the quality, not about real permanence.</p>
+<ul class="ex">
+<li><em>Mi abuela es muy activa.</em> — My grandmother is very active (that's her nature).</li>
+<li><em>La nieve es blanca.</em> — Snow is white.</li>
+<li><em>Es muy inteligente.</em> — She's very intelligent.</li>
+</ul>
+<h3 id="exceptions-to-permanent">Exceptions to "permanent"</h3>
+<p>Some lasting states still use <em>estar</em>:</p>
+<ul class="ex">
+<li><em>Mi abuelo está muerto.</em> — My grandfather is dead.</li>
+<li><em>Están casados.</em> — They're married. (<em>Son casados</em> also exists in some regions.)</li>
+</ul>
+<p>And some changeable things use <em>ser</em>:</p>
+<ul class="ex">
+<li><em>Es joven.</em> — He's young.</li>
+<li><em>Es rico.</em> — She's rich (a characteristic).</li>
+</ul>
+<h3 id="adjectives-that-change-meaning">Adjectives that change meaning</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adjective</th>
+<th>with <em>ser</em></th>
+<th>with <em>estar</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>listo</em></td>
+<td>clever</td>
+<td>ready</td>
+</tr>
+<tr>
+<td><em>rico</em></td>
+<td>rich</td>
+<td>tasty</td>
+</tr>
+<tr>
+<td><em>malo</em></td>
+<td>bad (person)</td>
+<td>ill</td>
+</tr>
+<tr>
+<td><em>verde</em></td>
+<td>green</td>
+<td>unripe</td>
+</tr>
+<tr>
+<td><em>vivo</em></td>
+<td>lively, sharp</td>
+<td>alive</td>
+</tr>
+<tr>
+<td><em>orgulloso</em></td>
+<td>arrogant</td>
+<td>proud (of something)</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>La fruta es verde.</em> — The fruit is green. <em>La fruta está verde.</em> — The fruit is unripe.</li>
+</ul>
+<h2 id="using-ser-in-the-passive">Using Ser in the Passive</h2>
+<p>The <strong>passive voice</strong> uses <em>ser</em> + past participle (+ <em>por</em> + agent). The participle agrees with the subject.</p>
+<ul class="ex">
+<li><em>La novela fue escrita por García Márquez.</em> — The novel was written by García Márquez.</li>
+<li><em>Los ladrones fueron detenidos.</em> — The thieves were arrested.</li>
+<li><em>El puente será construido el año que viene.</em> — The bridge will be built next year.</li>
+</ul>
+<p>The participle ends in <em>-o, -a, -os, -as</em>: <em>La casa fue vendida</em>, <em>Los coches fueron reparados</em>.</p>
+<h3 id="ser-vs-estar-with-participles">Ser vs. estar with participles</h3>
+<p><em>Ser</em> + participle describes the <strong>action</strong>; <em>estar</em> + participle describes the <strong>resulting state</strong>.</p>
+<ul class="ex">
+<li><em>La puerta fue cerrada a las diez.</em> — The door was closed (by someone) at ten.</li>
+<li><em>La puerta estaba cerrada.</em> — The door was closed (it was in a closed state).</li>
+<li><em>El restaurante está abierto.</em> — The restaurant is open.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">The passive is formal</p><p>In everyday Spanish the <em>ser</em> passive is less common than in English. Speakers prefer the <em>se</em> construction (<em>Se vendió la casa</em>) or an active sentence (<em>Vendieron la casa</em>).</p></aside>
+
+<h2 id="using-estar-with-locations">Using Estar with Locations</h2>
+<p><em>Estar</em> tells you where a person, object or place is.</p>
+<ul class="ex">
+<li><em>¿Dónde están mis gafas?</em> — Where are my glasses?</li>
+<li><em>El museo está en el centro.</em> — The museum is in the centre.</li>
+<li><em>Estamos cerca de la playa.</em> — We're near the beach.</li>
+<li><em>Lima está en Perú.</em> — Lima is in Peru.</li>
+</ul>
+<p>Even permanent locations use <em>estar</em>: cities and buildings don't move, but location is still a matter of <em>estar</em>.</p>
+<h3 id="the-exception-events">The exception: events</h3>
+<p>When the subject is an <strong>event</strong> (party, meeting, concert, wedding, class), use <em>ser</em> for where it takes place:</p>
+<ul class="ex">
+<li><em>La reunión es en la sala 3.</em> — The meeting is in room 3.</li>
+<li><em>La boda fue en una iglesia antigua.</em> — The wedding was in an old church.</li>
+</ul>
+<h3 id="hay-vs-estar"><em>Hay</em> vs. <em>estar</em></h3>
+<p><em>Hay</em> introduces something new (often with <em>un, una</em> or no article); <em>estar</em> locates something already known (with <em>el, la</em>):</p>
+<ul class="ex">
+<li><em>Hay un banco en la esquina.</em> — There's a bank on the corner.</li>
+<li><em>El banco está en la esquina.</em> — The bank is on the corner.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Parties are not places</p><p><del>La fiesta está en casa de Ana</del> → <em>La fiesta es en casa de Ana.</em> Events "take place" with <em>ser</em>.</p></aside>
+
+<h2 id="using-estar-with-conditions">Using Estar with Conditions</h2>
+<p>Use <em>estar</em> for physical and emotional conditions: health, mood, how something looks, feels or tastes at a given moment.</p>
+<ul class="ex">
+<li><em>Estoy cansado.</em> — I'm tired.</li>
+<li><em>¿Estás bien?</em> — Are you OK?</li>
+<li><em>Mi madre está enferma.</em> — My mother is ill.</li>
+<li><em>Estamos muy contentos.</em> — We're very happy.</li>
+<li><em>La sopa está fría.</em> — The soup is cold.</li>
+</ul>
+<h3 id="food-and-how-things-seem">Food and how things seem</h3>
+<p><em>Estar</em> + adjective often means "tastes" or "looks" right now:</p>
+<ul class="ex">
+<li><em>¡Esta paella está buenísima!</em> — This paella is (tastes) delicious!</li>
+<li><em>Estás muy guapa hoy.</em> — You look very pretty today.</li>
+</ul>
+<p>Compare: <em>La paella es un plato típico</em> (what it is) vs. <em>La paella está rica</em> (how it tastes).</p>
+<h3 id="fixed-expressions-with-estar">Fixed expressions with <em>estar</em></h3>
+<p><em>estar de acuerdo</em> (to agree), <em>estar de vacaciones</em> (to be on holiday), <em>estar de pie</em> (to be standing), <em>estar de buen / mal humor</em> (to be in a good / bad mood), <em>estar a punto de</em> (to be about to).</p>
+<aside class="callout hack"><p class="callout-title">Feliz vs. contento</p><p><em>Feliz</em> is usually used with <em>ser</em> (<em>Es una persona feliz</em>), though <em>estar feliz</em> is common in Latin America. <em>Contento</em> always takes <em>estar</em>.</p></aside>
+
+<h2 id="using-estar-for-transience">Using Estar for Transience</h2>
+<p><em>Estar</em> expresses a state that is the result of a change or that may change again. Often it means "has become" or "is currently".</p>
+<ul class="ex">
+<li><em>Has crecido mucho, estás altísimo.</em> — You've grown a lot, you're so tall now.</li>
+<li><em>Está muy delgada.</em> — She's (become) very thin.</li>
+<li><em>El cielo está nublado.</em> — The sky is cloudy.</li>
+<li><em>La tienda está cerrada.</em> — The shop is closed.</li>
+</ul>
+<h3 id="same-adjective-different-message">Same adjective, different message</h3>
+<ul class="ex">
+<li><em>Es nervioso.</em> — He's a nervous person. / <em>Está nervioso.</em> — He's nervous (right now).</li>
+<li><em>Es callado.</em> — He's a quiet person. / <em>Está callado.</em> — He's being quiet.</li>
+<li><em>Eres guapo.</em> — You're handsome. / <em>Estás guapo.</em> — You look handsome today.</li>
+</ul>
+<h3 id="jobs-held-temporarily">Jobs held temporarily</h3>
+<p><em>Estar de</em> + job describes a temporary role: <em>Está de camarero este verano.</em> — He's working as a waiter this summer. Compare <em>Es camarero</em> — He's a waiter (his profession).</p>
+<aside class="callout fact"><p class="callout-title">Speaker&#x27;s point of view</p><p>The same fact can take either verb, depending on whether you see it as a defining trait or a current state. That is why native speakers sometimes disagree.</p></aside>
+
+<h2 id="using-estar-in-the-progressive">Using Estar in the Progressive</h2>
+<p>The <strong>progressive</strong> (continuous) tenses are formed with <em>estar</em> + <strong>gerund</strong> (<em>-ando / -iendo</em>). They describe actions in progress.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Gerund</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>hablar</em></td>
+<td><em>hablando</em></td>
+</tr>
+<tr>
+<td><em>comer</em></td>
+<td><em>comiendo</em></td>
+</tr>
+<tr>
+<td><em>escribir</em></td>
+<td><em>escribiendo</em></td>
+</tr>
+<tr>
+<td><em>leer</em></td>
+<td><em>leyendo</em></td>
+</tr>
+<tr>
+<td><em>dormir</em></td>
+<td><em>durmiendo</em></td>
+</tr>
+<tr>
+<td><em>pedir</em></td>
+<td><em>pidiendo</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Estoy estudiando.</em> — I'm studying.</li>
+<li><em>¿Qué estás haciendo?</em> — What are you doing?</li>
+<li><em>Estaban durmiendo cuando sonó el teléfono.</em> — They were sleeping when the phone rang.</li>
+<li><em>Estaremos viajando todo el mes.</em> — We'll be travelling all month.</li>
+</ul>
+<h3 id="not-like-english">Not like English</h3>
+<p>Spanish uses the progressive only for actions actually in progress. For the future or for general facts, use the simple present:</p>
+<ul class="ex">
+<li><del>Estoy saliendo mañana.</del> → <em>Salgo mañana.</em> — I'm leaving tomorrow.</li>
+<li><em>Vivo en Madrid.</em> — I live / I'm living in Madrid.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Never ser + gerund</p><p><del>Es lloviendo</del> → <em>Está lloviendo</em>. The progressive always uses <em>estar</em>.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><em>ser</em></th>
+<th><em>estar</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>description and identity</td>
+<td>location of people and things</td>
+</tr>
+<tr>
+<td>origin and material</td>
+<td>physical and emotional conditions</td>
+</tr>
+<tr>
+<td>time, dates, events</td>
+<td>transient states, results of change</td>
+</tr>
+<tr>
+<td>permanent traits</td>
+<td>progressive tenses</td>
+</tr>
+<tr>
+<td>passive voice</td>
+<td><em>estar de / estar a</em> expressions</td>
+</tr>
+</tbody>
+</table></div>
+<p>Choose <em>ser</em> or <em>estar</em>:</p>
+<ul class="ex">
+<li><em>Mi padre ___ ingeniero.</em> → <em>es</em></li>
+<li><em>El examen ___ mañana a las diez.</em> → <em>es</em></li>
+<li><em>Hoy ___ muy cansados.</em> → <em>estamos</em></li>
+<li><em>¿De dónde ___ tus abuelos?</em> → <em>son</em></li>
+<li><em>El supermercado ___ al lado del banco.</em> → <em>está</em></li>
+<li><em>Los niños ___ jugando en el jardín.</em> → <em>están</em></li>
+<li><em>___ las seis de la tarde.</em> → <em>Son</em></li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Choose the verb and explain the meaning:</p>
+<ul class="ex">
+<li><em>El pescado ___ malo.</em> → <em>está</em> (has gone off) / <em>es</em> (is bad for you, bad quality)</li>
+<li><em>Mi hermana ___ lista.</em> → <em>es</em> (clever) / <em>está</em> (ready)</li>
+<li><em>La carta ___ escrita por Ana.</em> → <em>fue</em> (passive action)</li>
+<li><em>La carta ___ escrita en inglés.</em> → <em>está</em> (resulting state)</li>
+<li><em>El concierto ___ en el estadio.</em> → <em>es</em> (event)</li>
+<li><em>Mis llaves ___ en el coche.</em> → <em>están</em> (location)</li>
+</ul>
+<p>Translate:</p>
+<ul class="ex">
+<li>The coffee is from Colombia and it's very hot. → <em>El café es de Colombia y está muy caliente.</em></li>
+<li>We were in Peru when it was summer. → <em>Estábamos en Perú cuando era verano.</em></li>
+<li>She's working as a guide this year. → <em>Está de guía este año.</em></li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="preterite.html">← Preterite</a><a class="btn" href="possessives.html">Possessive Adjectives and Pronouns →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

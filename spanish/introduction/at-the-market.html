@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="d39777109be7">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>At the Market · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Introduction</a><span class="sep">/</span><span class="cur">At the Market</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Introduction</span><h1>At the Market</h1><p class="sub">Food words, un and una, numbers one to five, and the verbs querer, tener and costar for buying things at a market stall.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#food-at-the-market">Food at the Market</a></li><li><a href="#un-and-una-a-an-and-one">Un and Una: A, An and One</a></li><li><a href="#numbers-one-to-five">Numbers One to Five</a></li><li><a href="#what-do-you-want">What Do You Want?</a></li><li><a href="#i-want">I Want…</a></li><li><a href="#how-much-does-it-cost">How Much Does It Cost?</a></li><li><a href="#prices-in-pesos">Prices in Pesos</a></li><li><a href="#do-you-have">Do You Have…?</a></li><li><a href="#yes-and-no-answers">Yes and No Answers</a></li></ol></nav>
+<article class="prose card">
+<h2 id="food-at-the-market">Food at the Market</h2>
+<p>A <em>mercado</em> (market) is the heart of many Spanish-speaking towns. Start with a few basic food and drink words:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el pan</em></td>
+<td>bread</td>
+<td><em>la leche</em></td>
+<td>milk</td>
+</tr>
+<tr>
+<td><em>el café</em></td>
+<td>coffee</td>
+<td><em>el agua</em></td>
+<td>water</td>
+</tr>
+<tr>
+<td><em>la manzana</em></td>
+<td>apple</td>
+<td><em>la naranja</em></td>
+<td>orange</td>
+</tr>
+<tr>
+<td><em>la ensalada</em></td>
+<td>salad</td>
+<td><em>el queso</em></td>
+<td>cheese</td>
+</tr>
+<tr>
+<td><em>el sándwich</em></td>
+<td>sandwich</td>
+<td><em>el huevo</em></td>
+<td>egg</td>
+</tr>
+<tr>
+<td><em>la hamburguesa</em></td>
+<td>hamburger</td>
+<td><em>el helado</em></td>
+<td>ice cream</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every noun is <strong>masculine</strong> or <strong>feminine</strong>. As a rough guide, words ending in <em>-o</em> are usually masculine and words ending in <em>-a</em> usually feminine. Others (<em>pan, leche, café</em>) just have to be learned with their article.</p>
+<ul class="ex">
+<li><em>El pan está muy rico.</em> — The bread is really tasty.</li>
+<li><em>La leche está en la nevera.</em> — The milk is in the fridge.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">el agua is feminine</p><p><em>Agua</em> is a feminine word, but it takes <em>el</em> in the singular because it starts with a stressed <em>a</em>: <em>el agua fría</em> (cold water), <em>las aguas</em>.</p></aside>
+
+<aside class="callout fact"><p class="callout-title">Market stalls</p><p>At a market you buy from a <em>puesto</em> (stall) run by a <em>vendedor</em> or <em>vendedora</em>. Fruit is sold at the <em>frutería</em>, bread at the <em>panadería</em> and cheese at the <em>quesería</em>.</p></aside>
+
+<h2 id="un-and-una-a-an-and-one">Un and Una: A, An and One</h2>
+<p>Spanish has two words for "a" or "an": <strong>un</strong> before masculine nouns and <strong>una</strong> before feminine ones. They also mean "one".</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>masculine</th>
+<th>feminine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>un café</em> — a coffee</td>
+<td><em>una manzana</em> — an apple</td>
+</tr>
+<tr>
+<td><em>un sándwich</em> — a sandwich</td>
+<td><em>una ensalada</em> — a salad</td>
+</tr>
+<tr>
+<td><em>un helado</em> — an ice cream</td>
+<td><em>una hamburguesa</em> — a hamburger</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Quiero un café y una manzana.</em> — I want a coffee and an apple.</li>
+<li><em>Tengo una naranja.</em> — I have an orange / one orange.</li>
+</ul>
+<p>Plural forms are <em>unos</em> and <em>unas</em>, meaning "some": <em>unos huevos</em> (some eggs), <em>unas naranjas</em> (some oranges).</p>
+<p>With things you can't count, like milk, bread or water, Spanish usually uses <strong>no article at all</strong>:</p>
+<ul class="ex">
+<li><em>Quiero leche.</em> — I want (some) milk.</li>
+<li><em>¿Tiene pan?</em> — Do you have (any) bread?</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Learn nouns with un or una</p><p>Don't memorise <em>manzana</em>; memorise <em>una manzana</em>. Then you never have to guess the gender later.</p></aside>
+
+<h2 id="numbers-one-to-five">Numbers One to Five</h2>
+<p>Prices and quantities need numbers. Start with the first five:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Spanish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><em>uno</em> (<em>un</em> / <em>una</em> before a noun)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><em>dos</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td><em>tres</em></td>
+</tr>
+<tr>
+<td>4</td>
+<td><em>cuatro</em></td>
+</tr>
+<tr>
+<td>5</td>
+<td><em>cinco</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>From two upwards, the noun goes plural, usually by adding <em>-s</em> (after a vowel) or <em>-es</em> (after a consonant):</p>
+<ul class="ex">
+<li><em>un helado → dos helados</em> — one ice cream → two ice creams</li>
+<li><em>una manzana → tres manzanas</em> — one apple → three apples</li>
+<li><em>un pan → cuatro panes</em> — one loaf → four loaves</li>
+</ul>
+<p><del>uno café</del> → <em>un café</em>; <del>una pesos</del> → <em>un peso</em></p>
+<aside class="callout fact"><p class="callout-title">More numbers</p><p>The next five are <em>seis</em> (6), <em>siete</em> (7), <em>ocho</em> (8), <em>nueve</em> (9) and <em>diez</em> (10). They never change for gender.</p></aside>
+
+<h2 id="what-do-you-want">What Do You Want?</h2>
+<p>A stallholder or waiter often greets you with a question built on <strong><em>querer</em></strong> (to want). With a customer they normally use the formal <em>usted</em> form:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Qué quiere?</em></td>
+<td>What would you like? (formal)</td>
+</tr>
+<tr>
+<td><em>¿Qué quieres?</em></td>
+<td>What do you want? (informal)</td>
+</tr>
+<tr>
+<td><em>¿Quiere algo más?</em></td>
+<td>Would you like anything else?</td>
+</tr>
+<tr>
+<td><em>¿Quiere helado?</em></td>
+<td>Do you want ice cream?</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Querer</em> is a "stem-changing" verb: the <em>e</em> in the middle becomes <em>ie</em> in most forms.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>querer</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>quiero</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>quieres</em></td>
+</tr>
+<tr>
+<td><em>usted, él, ella</em></td>
+<td><em>quiere</em></td>
+</tr>
+<tr>
+<td><em>nosotros</em></td>
+<td><em>queremos</em></td>
+</tr>
+<tr>
+<td><em>ustedes, ellos</em></td>
+<td><em>quieren</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>—Buenos días, ¿qué quiere?</em> — Good morning, what would you like?</li>
+<li><em>—Buenos días. Quiero pan, por favor.</em> — Good morning. I'd like some bread, please.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Pronounce the qu as k</p><p>In <em>quiero</em>, <em>qué</em> and <em>queso</em>, the <em>u</em> is silent: say "KYEH-ro", not "KWEH-ro".</p></aside>
+
+<h2 id="i-want">I Want…</h2>
+<p>To ask for something, use <strong><em>quiero</em></strong> + what you want. It's direct, but adding <em>por favor</em> makes it perfectly polite at a market.</p>
+<ul class="ex">
+<li><em>Quiero un café, por favor.</em> — I'd like a coffee, please.</li>
+<li><em>Quiero una ensalada.</em> — I'd like a salad.</li>
+<li><em>Quiero dos manzanas y una naranja.</em> — I'd like two apples and an orange.</li>
+<li><em>Quiero pan y leche.</em> — I'd like bread and milk.</li>
+</ul>
+<p>Other polite ways to order, from more direct to more polite:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Quiero…</em></td>
+<td>I want…</td>
+</tr>
+<tr>
+<td><em>Deme…, por favor.</em></td>
+<td>Give me…, please.</td>
+</tr>
+<tr>
+<td><em>¿Me da…?</em></td>
+<td>Can I have…?</td>
+</tr>
+<tr>
+<td><em>Quisiera…</em></td>
+<td>I would like…</td>
+</tr>
+<tr>
+<td><em>Me gustaría…</em></td>
+<td>I'd like…</td>
+</tr>
+</tbody>
+</table></div>
+<p>To say what you <strong>don't</strong> want, put <em>no</em> before the verb:</p>
+<ul class="ex">
+<li><em>No quiero helado, quiero fruta.</em> — I don't want ice cream, I want fruit.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Point and say &quot;esto&quot;</p><p>If you don't know a word, point and say <em>Quiero esto, por favor</em> — "I'd like this, please" — or <em>eso</em> for something further away.</p></aside>
+
+<h2 id="how-much-does-it-cost">How Much Does It Cost?</h2>
+<p>The verb <strong><em>costar</em></strong> (to cost) is another stem-changer: <em>o</em> becomes <em>ue</em>. At the market you mostly need two forms:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Cuánto cuesta?</em></td>
+<td>How much does it cost?</td>
+</tr>
+<tr>
+<td><em>¿Cuánto cuestan?</em></td>
+<td>How much do they cost?</td>
+</tr>
+<tr>
+<td><em>Cuesta…</em></td>
+<td>It costs…</td>
+</tr>
+<tr>
+<td><em>Cuestan…</em></td>
+<td>They cost…</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use <em>cuesta</em> for one thing and <em>cuestan</em> for several:</p>
+<ul class="ex">
+<li><em>¿Cuánto cuesta el queso?</em> — How much is the cheese?</li>
+<li><em>¿Cuánto cuestan las naranjas?</em> — How much are the oranges?</li>
+</ul>
+<p>Another very common way to ask is <em>¿Cuánto es?</em> — "How much is it?" — especially when you're about to pay for everything.</p>
+<ul class="ex">
+<li><em>—¿Cuánto es todo? —Son cuatro euros.</em> — How much is everything? — It's four euros.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Cuánto needs its accent</p><p>As a question word, <em>cuánto</em> has an accent. And it means "how much", not "what": <del>¿Qué cuesta?</del> → <em>¿Cuánto cuesta?</em></p></aside>
+
+<h2 id="prices-in-pesos">Prices in Pesos</h2>
+<p>Many Latin American countries use the <em>peso</em> (Mexico, Argentina, Colombia, Chile and others). Spain uses the <em>euro</em>; other countries have the <em>sol</em> (Peru), the <em>colón</em> (Costa Rica) or the US <em>dólar</em>.</p>
+<p>To give a price, say <em>cuesta</em> + number + currency. After "one", the currency is singular; after the other numbers it's plural.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Cuesta un peso.</em></td>
+<td>It costs one peso.</td>
+</tr>
+<tr>
+<td><em>Cuesta dos pesos.</em></td>
+<td>It costs two pesos.</td>
+</tr>
+<tr>
+<td><em>Cuesta tres pesos.</em></td>
+<td>It costs three pesos.</td>
+</tr>
+<tr>
+<td><em>Cuestan cuatro euros.</em></td>
+<td>They cost four euros.</td>
+</tr>
+<tr>
+<td><em>Cuesta cinco dólares.</em></td>
+<td>It costs five dollars.</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>—¿Cuánto cuesta el helado? —Cuesta dos pesos.</em> — How much is the ice cream? — Two pesos.</li>
+<li><em>Las manzanas cuestan cinco pesos el kilo.</em> — The apples are five pesos a kilo.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Bargaining</p><p>At traditional markets and craft stalls in Latin America, a little friendly bargaining is common: <em>¿Me lo deja en tres?</em> — "Will you let me have it for three?" In supermarkets and in Spain, prices are fixed.</p></aside>
+
+<h2 id="do-you-have">Do You Have…?</h2>
+<p>To ask whether a stall sells something, use <strong><em>tener</em></strong> (to have). It is irregular, so learn the forms by heart:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>tener</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>tengo</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>tienes</em></td>
+</tr>
+<tr>
+<td><em>usted, él, ella</em></td>
+<td><em>tiene</em></td>
+</tr>
+<tr>
+<td><em>nosotros</em></td>
+<td><em>tenemos</em></td>
+</tr>
+<tr>
+<td><em>ustedes, ellos</em></td>
+<td><em>tienen</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿Tiene café?</em> — Do you have coffee? (to the vendor, formal)</li>
+<li><em>¿Tienen huevos?</em> — Do you (all / the shop) have eggs?</li>
+<li><em>Sí, tengo leche.</em> — Yes, I have milk.</li>
+<li><em>No tenemos pan hoy.</em> — We don't have bread today.</li>
+</ul>
+<p>As a customer you'll also say what you have: <em>Tengo cinco pesos.</em> — I have five pesos. <em>No tengo cambio.</em> — I don't have change.</p>
+<aside class="callout hack"><p class="callout-title">¿Hay…? works too</p><p><em>¿Hay pan?</em> — "Is there bread?" — is another simple way to ask if something is available. <em>Hay</em> never changes: <em>¿Hay manzanas?</em></p></aside>
+
+<h2 id="yes-and-no-answers">Yes and No Answers</h2>
+<p>Short answers at the market combine <em>sí</em> or <em>no</em> with a full sentence.</p>
+<p><strong>Yes:</strong></p>
+<ul class="ex">
+<li><em>—¿Quiere helado? —Sí, quiero helado.</em> — Do you want ice cream? — Yes, I want ice cream.</li>
+<li><em>—¿Tiene leche? —Sí, tengo leche.</em> — Do you have milk? — Yes, I have milk.</li>
+</ul>
+<p><strong>No, plus a correction</strong> — here <em>no</em> is the answer, and what follows says what you want instead:</p>
+<ul class="ex">
+<li><em>—¿Quiere un café? —No, quiero un sándwich.</em> — Do you want a coffee? — No, I want a sandwich.</li>
+</ul>
+<p><strong>No, plus a negative verb</strong> — to say you don't want or have something, use <em>no</em> twice:</p>
+<ul class="ex">
+<li><em>—¿Tiene pan? —No, no tengo pan.</em> — Do you have bread? — No, I don't have bread.</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Sí, por favor.</em></td>
+<td>Yes, please.</td>
+</tr>
+<tr>
+<td><em>No, gracias.</em></td>
+<td>No, thank you.</td>
+</tr>
+<tr>
+<td><em>Nada más, gracias.</em></td>
+<td>Nothing else, thanks.</td>
+</tr>
+<tr>
+<td><em>Aquí tiene.</em></td>
+<td>Here you are.</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout trap"><p class="callout-title">sí vs. si</p><p><em>Sí</em> with an accent means "yes". <em>Si</em> without it means "if": <em>Si tienes pan, quiero uno.</em> — If you have bread, I want one.</p></aside>
+
+<h3 id="a-full-exchange">A full exchange</h3>
+<ul class="ex">
+<li><em>—Buenos días. ¿Qué quiere?</em> — Good morning. What would you like?</li>
+<li><em>—¿Tiene manzanas?</em> — Do you have apples?</li>
+<li><em>—Sí. ¿Cuántas quiere?</em> — Yes. How many would you like?</li>
+<li><em>—Tres, por favor. ¿Cuánto cuestan?</em> — Three, please. How much are they?</li>
+<li><em>—Cuestan tres pesos. ¿Algo más?</em> — Three pesos. Anything else?</li>
+<li><em>—No, gracias. Aquí tiene.</em> — No, thanks. Here you are.</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="introduce-your-friends.html">← Introduce Your Friends</a><a class="btn" href="whats-up.html">What&#x27;s Up? →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="610ba5c9c50f">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Por vs. Para · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Intermediate</a><span class="sep">/</span><span class="cur">Por vs. Para</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Intermediate</span><h1>Por vs. Para</h1><p class="sub">The main uses of por (route, exchange, duration, cause, means) and para (destination, recipient, deadline, purpose), quick tips for choosing, and set expressions.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#main-uses">Main Uses</a></li><li><a href="#review-of-main-uses">Review of Main Uses</a></li><li><a href="#quick-tips">Quick Tips</a></li><li><a href="#more-practice-with-por-and-para">More Practice with Por and Para</a></li><li><a href="#set-expressions">Set Expressions</a></li><li><a href="#more-on-uses-and-set-expressions">More on Uses and Set Expressions</a></li><li><a href="#extra-practice-on-uses">Extra Practice on Uses</a></li><li><a href="#comprehensive-review">Comprehensive Review</a></li><li><a href="#extra-practice-1">Extra Practice 1</a></li><li><a href="#extra-practice-2">Extra Practice 2</a></li><li><a href="#extra-practice-3">Extra Practice 3</a></li></ol></nav>
+<article class="prose card">
+<h2 id="main-uses">Main Uses</h2>
+<p>Both words often translate as "for", but they look in different directions. <strong>Por</strong> is about cause, route and means; <strong>para</strong> is about destination and purpose.</p>
+<h3 id="por"><em>Por</em></h3>
+<p><strong>1. Movement through or around a place; communication and transport</strong></p>
+<ul class="ex">
+<li><em>Caminamos por la playa.</em> — We walked along the beach.</li>
+<li><em>Te llamo por teléfono.</em> — I'll call you on the phone.</li>
+<li><em>Lo mandé por correo.</em> — I sent it by post.</li>
+</ul>
+<p><strong>2. Exchange and price</strong></p>
+<ul class="ex">
+<li><em>Pagué veinte euros por la camiseta.</em> — I paid twenty euros for the T-shirt.</li>
+<li><em>Gracias por el regalo.</em> — Thanks for the present.</li>
+</ul>
+<p><strong>3. Duration</strong></p>
+<ul class="ex">
+<li><em>Viví en Chile por tres años.</em> — I lived in Chile for three years.</li>
+</ul>
+<p><strong>4. Cause or motivation</strong></p>
+<ul class="ex">
+<li><em>Lo hice por amor.</em> — I did it out of love.</li>
+<li><em>Cancelaron el partido por la lluvia.</em> — They cancelled the match because of the rain.</li>
+</ul>
+<h3 id="para"><em>Para</em></h3>
+<p><strong>1. Destination</strong></p>
+<ul class="ex">
+<li><em>Salimos para Bogotá mañana.</em> — We leave for Bogotá tomorrow.</li>
+</ul>
+<p><strong>2. Recipient</strong></p>
+<ul class="ex">
+<li><em>Estas flores son para ti.</em> — These flowers are for you.</li>
+</ul>
+<p><strong>3. Deadline</strong></p>
+<ul class="ex">
+<li><em>La tarea es para el viernes.</em> — The homework is due Friday.</li>
+</ul>
+<p><strong>4. Goal or purpose</strong> (often + infinitive: "in order to")</p>
+<ul class="ex">
+<li><em>Ahorro para comprar una casa.</em> — I'm saving to buy a house.</li>
+<li><em>Estudia para ser abogada.</em> — She's studying to be a lawyer.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Remember the arrow</p><p><em>Para</em> = an arrow pointing to the end point. <em>Por</em> = the path you take or the push behind you.</p></aside>
+
+<h2 id="review-of-main-uses">Review of Main Uses</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><em>Por</em></th>
+<th><em>Para</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>through, along, around (<em>por el centro</em>)</td>
+<td>towards a destination (<em>para el centro</em>)</td>
+</tr>
+<tr>
+<td>by means of (<em>por email</em>)</td>
+<td>for a recipient (<em>para mi madre</em>)</td>
+</tr>
+<tr>
+<td>in exchange for (<em>por cinco dólares</em>)</td>
+<td>by a deadline (<em>para mañana</em>)</td>
+</tr>
+<tr>
+<td>for a length of time (<em>por una hora</em>)</td>
+<td>in order to (<em>para aprender</em>)</td>
+</tr>
+<tr>
+<td>because of (<em>por el tráfico</em>)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Choose <em>por</em> or <em>para</em>:</p>
+<ul class="ex">
+<li><em>Este café es ___ usted.</em> → <em>para</em> (recipient)</li>
+<li><em>Te cambio mi libro ___ el tuyo.</em> → <em>por</em> (exchange)</li>
+<li><em>Vamos ___ el parque, que es más corto.</em> → <em>por</em> (route through)</li>
+<li><em>Vamos ___ el parque; allí está Ana.</em> → <em>para</em> (destination)</li>
+<li><em>Hay que terminar el proyecto ___ junio.</em> → <em>para</em> (deadline)</li>
+<li><em>Llegamos tarde ___ la nieve.</em> → <em>por</em> (cause)</li>
+</ul>
+<p>Some sentences change meaning, not correctness:</p>
+<ul class="ex">
+<li><em>Trabajo por mi hermano.</em> — I'm working in my brother's place / because of him.</li>
+<li><em>Trabajo para mi hermano.</em> — I work for my brother (he's my boss).</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Duration without por</p><p>With lengths of time, <em>por</em> is often dropped: <em>Viví en Chile tres años</em> sounds natural. <em>Durante</em> is another option.</p></aside>
+
+<h2 id="quick-tips">Quick Tips</h2>
+<h3 id="tip-1-in-order-to-para">Tip 1: "in order to" → <em>para</em></h3>
+<p>If you can add "in order to" in English, use <em>para</em>: <em>Fui al mercado para comprar fruta.</em></p>
+<h3 id="tip-2-because-of-por">Tip 2: "because of" → <em>por</em></h3>
+<p>If you can say "because of" or "out of", use <em>por</em>: <em>Lo hice por ti</em> (because of you / for your sake).</p>
+<h3 id="tip-3-prices-and-thanks-por">Tip 3: prices and thanks → <em>por</em></h3>
+<p>Anything exchanged, including gratitude and apologies: <em>gracias por</em>, <em>perdón por</em>, <em>¿cuánto pagaste por...?</em></p>
+<h3 id="tip-4-by-a-deadline-para">Tip 4: "by" a deadline → <em>para</em></h3>
+<p><em>Para el lunes</em> = by Monday. <em>Por el lunes</em> would sound like "around Monday".</p>
+<h3 id="tip-5-opinions-para">Tip 5: opinions → <em>para</em></h3>
+<p><em>Para mí, es la mejor película.</em> — For me / In my opinion, it's the best film.</p>
+<h3 id="tip-6-comparing-with-expectations-para">Tip 6: comparing with expectations → <em>para</em></h3>
+<p><em>Para ser tan joven, sabe mucho.</em> — For someone so young, he knows a lot.</p>
+<h3 id="tip-7-passive-agent-por">Tip 7: passive agent → <em>por</em></h3>
+<p><em>El cuadro fue pintado por Frida Kahlo.</em> — The painting was painted by Frida Kahlo.</p>
+<h3 id="tip-8-rates-por">Tip 8: rates → <em>por</em></h3>
+<p><em>cien kilómetros por hora</em> (per hour), <em>tres veces por semana</em>, <em>el diez por ciento</em>.</p>
+<aside class="callout hack"><p class="callout-title">Por favor, por fin</p><p>Many of the most common phrases use <em>por</em>. If you're unsure in a fixed expression, <em>por</em> is the better bet.</p></aside>
+
+<h2 id="more-practice-with-por-and-para">More Practice with Por and Para</h2>
+<p>Decide and give the reason:</p>
+<ul class="ex">
+<li><em>Mi hermano vive ___ aquí.</em> → <em>por</em> (somewhere around here)</li>
+<li><em>Este cuchillo es ___ cortar pan.</em> → <em>para</em> (purpose of an object)</li>
+<li><em>___ mí, el español es fácil.</em> → <em>Para</em> (opinion)</li>
+<li><em>Fuimos a Roma ___ avión.</em> → <em>en</em> is more common, but <em>por avión</em> = by airmail</li>
+<li><em>La ventana fue rota ___ el viento.</em> → <em>por</em> (agent)</li>
+<li><em>Te doy diez euros ___ tu bicicleta.</em> → <em>por</em> (exchange)</li>
+<li><em>___ ser extranjero, habla muy bien.</em> → <em>Para</em> (comparison)</li>
+<li><em>Me levanto temprano ___ correr.</em> → <em>para</em> (purpose)</li>
+<li><em>Corre cinco kilómetros ___ día.</em> → <em>por</em> (rate)</li>
+</ul>
+<h3 id="por-and-para-with-the-same-verb">Por and para with the same verb</h3>
+<ul class="ex">
+<li><em>Votamos por ella.</em> — We voted for her (in her favour).</li>
+<li><em>Lo compré para ella.</em> — I bought it for her (as a present).</li>
+<li><em>Lo compré por ella.</em> — I bought it because of her / on her behalf.</li>
+</ul>
+<h2 id="set-expressions">Set Expressions</h2>
+<p>Many fixed phrases use one or the other. Learn them as chunks.</p>
+<h3 id="with-por">With <em>por</em></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>por favor</em></td>
+<td>please</td>
+</tr>
+<tr>
+<td><em>por fin</em></td>
+<td>at last</td>
+</tr>
+<tr>
+<td><em>por supuesto</em></td>
+<td>of course</td>
+</tr>
+<tr>
+<td><em>por ejemplo</em></td>
+<td>for example</td>
+</tr>
+<tr>
+<td><em>por eso</em></td>
+<td>that's why</td>
+</tr>
+<tr>
+<td><em>por lo menos</em></td>
+<td>at least</td>
+</tr>
+<tr>
+<td><em>por cierto</em></td>
+<td>by the way</td>
+</tr>
+<tr>
+<td><em>por casualidad</em></td>
+<td>by chance</td>
+</tr>
+<tr>
+<td><em>por si acaso</em></td>
+<td>just in case</td>
+</tr>
+<tr>
+<td><em>por todas partes</em></td>
+<td>everywhere</td>
+</tr>
+<tr>
+<td><em>por la mañana / tarde / noche</em></td>
+<td>in the morning / afternoon / at night</td>
+</tr>
+<tr>
+<td><em>por primera vez</em></td>
+<td>for the first time</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="with-para">With <em>para</em></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>para siempre</em></td>
+<td>forever</td>
+</tr>
+<tr>
+<td><em>para nada</em></td>
+<td>not at all</td>
+</tr>
+<tr>
+<td><em>para colmo</em></td>
+<td>to top it all off</td>
+</tr>
+<tr>
+<td><em>para variar</em></td>
+<td>for a change</td>
+</tr>
+<tr>
+<td><em>no es para tanto</em></td>
+<td>it's not that big a deal</td>
+</tr>
+<tr>
+<td><em>estar para</em> + infinitive</td>
+<td>to be about to</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Por fin llegó el verano.</em> — Summer has arrived at last.</li>
+<li><em>Lleva un paraguas por si acaso.</em> — Take an umbrella just in case.</li>
+<li><em>Te querré para siempre.</em> — I'll love you forever.</li>
+<li><em>Estoy para salir.</em> — I'm about to leave.</li>
+</ul>
+<h2 id="more-on-uses-and-set-expressions">More on Uses and Set Expressions</h2>
+<h3 id="estar-por-vs-estar-para"><em>Estar por</em> vs. <em>estar para</em></h3>
+<ul class="ex">
+<li><em>Estoy por ir al cine.</em> — I'm inclined to go to the cinema / (Latin America) I'm about to go.</li>
+<li><em>El tren está para salir.</em> — The train is about to leave.</li>
+<li><em>El trabajo está por hacer.</em> — The work is still to be done.</li>
+</ul>
+<h3 id="por-adjective-adverb-que"><em>Por</em> + adjective / adverb + <em>que</em></h3>
+<p>"However..." or "no matter how...":</p>
+<ul class="ex">
+<li><em>Por mucho que estudie, no aprueba.</em> — However much he studies, he doesn't pass.</li>
+</ul>
+<h3 id="por-que-vs-para-que"><em>¿Por qué?</em> vs. <em>¿Para qué?</em></h3>
+<ul class="ex">
+<li><em>¿Por qué estudias español?</em> — Why (for what reason) do you study Spanish? — <em>Porque me gusta.</em></li>
+<li><em>¿Para qué estudias español?</em> — What for (for what purpose)? — <em>Para viajar.</em></li>
+</ul>
+<h3 id="para-que-subjunctive"><em>Para que</em> + subjunctive</h3>
+<p><em>Para que</em> introduces a purpose with a different subject: <em>Te lo explico para que lo entiendas.</em> — I'm explaining it so that you understand.</p>
+<aside class="callout trap"><p class="callout-title">Porque vs. por qué</p><p><em>¿Por qué?</em> (two words, accent) asks "why?". <em>Porque</em> (one word) answers "because".</p></aside>
+
+<h2 id="extra-practice-on-uses">Extra Practice on Uses</h2>
+<p>Fill in <em>por</em> or <em>para</em> and name the use:</p>
+<ul class="ex">
+<li><em>Salgo ___ el aeropuerto a las seis.</em> → <em>para</em> (destination)</li>
+<li><em>Pasamos ___ tu casa ayer.</em> → <em>por</em> (route)</li>
+<li><em>¿Cuánto pagaste ___ el coche?</em> → <em>por</em> (price)</li>
+<li><em>Necesito las fotos ___ el jueves.</em> → <em>para</em> (deadline)</li>
+<li><em>Trabajó allí ___ diez años.</em> → <em>por</em> (duration)</li>
+<li><em>Le regalé una bufanda ___ su cumpleaños.</em> → <em>para</em> (purpose / occasion)</li>
+<li><em>No salimos ___ el frío.</em> → <em>por</em> (cause)</li>
+<li><em>Te mando la información ___ correo electrónico.</em> → <em>por</em> (means)</li>
+<li><em>Hace falta harina ___ hacer pan.</em> → <em>para</em> (purpose)</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Both can be correct</p><p><em>Lo hago por ti</em> (because of you) and <em>Lo hago para ti</em> (for you, as a gift) are both grammatical. Choose by meaning.</p></aside>
+
+<h2 id="comprehensive-review">Comprehensive Review</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>Por</em></th>
+<th><em>Para</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Place</td>
+<td>through, along, around</td>
+<td>towards, to</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>duration, part of day</td>
+<td>deadline</td>
+</tr>
+<tr>
+<td>People</td>
+<td>on behalf of, because of</td>
+<td>recipient, opinion</td>
+</tr>
+<tr>
+<td>Things</td>
+<td>price, exchange, means</td>
+<td>purpose of an object</td>
+</tr>
+<tr>
+<td>Reasons</td>
+<td>cause (looking back)</td>
+<td>goal (looking ahead)</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>passive agent, rates</td>
+<td>comparison with expectations</td>
+</tr>
+</tbody>
+</table></div>
+<p>Translate:</p>
+<ul class="ex">
+<li>I walked through the city. → <em>Caminé por la ciudad.</em></li>
+<li>This letter is for you. → <em>Esta carta es para ti.</em></li>
+<li>Thanks for coming. → <em>Gracias por venir.</em></li>
+<li>I'm studying to pass the exam. → <em>Estudio para aprobar el examen.</em></li>
+<li>At least it isn't raining. → <em>Por lo menos no llueve.</em></li>
+</ul>
+<h2 id="extra-practice-1">Extra Practice 1</h2>
+<ul class="ex">
+<li><em>Voy a la farmacia ___ comprar aspirinas.</em> → <em>para</em></li>
+<li><em>Gracias ___ la invitación.</em> → <em>por</em></li>
+<li><em>___ supuesto que vengo.</em> → <em>Por</em></li>
+<li><em>El autobús va ___ la calle principal.</em> → <em>por</em></li>
+<li><em>Este regalo es ___ mi abuela.</em> → <em>para</em></li>
+</ul>
+<h2 id="extra-practice-2">Extra Practice 2</h2>
+<ul class="ex">
+<li><em>Lo leí ___ primera vez en 2015.</em> → <em>por</em></li>
+<li><em>___ mí, este es el mejor café.</em> → <em>Para</em></li>
+<li><em>Estudio ___ la tarde.</em> → <em>por</em></li>
+<li><em>El libro fue escrito ___ Cervantes.</em> → <em>por</em></li>
+<li><em>___ ser verano, hace frío.</em> → <em>Para</em></li>
+</ul>
+<h2 id="extra-practice-3">Extra Practice 3</h2>
+<ul class="ex">
+<li><em>¿___ qué sirve esta máquina?</em> → <em>Para</em> (what is it for?)</li>
+<li><em>¿___ qué no viniste?</em> → <em>Por</em> (why?)</li>
+<li><em>Estaré fuera ___ una semana.</em> → <em>por</em></li>
+<li><em>Tengo que leer el capítulo ___ mañana.</em> → <em>para</em></li>
+<li><em>Lleva el abrigo ___ si acaso.</em> → <em>por</em></li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Fixed phrases never swap</p><p><del>Para favor</del> → <em>Por favor</em>. Fixed expressions never swap.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="ordinal-numbers.html">← Ordinal Numbers</a><a class="btn" href="preterite-vs-imperfect.html">Preterite vs. Imperfect →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

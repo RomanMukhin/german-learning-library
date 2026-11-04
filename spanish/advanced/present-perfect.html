@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="eeb0134f47e5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Present Perfect · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Advanced</a><span class="sep">/</span><span class="cur">Present Perfect</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Advanced</span><h1>Present Perfect</h1><p class="sub">Building he/has/ha + participle, the irregular participles, pronoun placement, and when Spanish prefers the present perfect over the preterite or the simple present.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#conjugation-and-uses">Conjugation and Uses</a></li><li><a href="#irregular-past-participles">Irregular Past Participles</a></li><li><a href="#present-perfect-vs-other-tenses">Present Perfect vs. Other Tenses</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li><li><a href="#extra-practice-1">Extra Practice 1</a></li><li><a href="#extra-practice-2">Extra Practice 2</a></li><li><a href="#extra-practice-3">Extra Practice 3</a></li></ol></nav>
+<article class="prose card">
+<h2 id="conjugation-and-uses">Conjugation and Uses</h2>
+<p>The <strong>present perfect indicative</strong> (<em>el pretérito perfecto compuesto</em>) talks about past actions that are still connected to the present. It matches English <em>have/has + participle</em> most of the time.</p>
+<p><strong>Formula:</strong> present of <em>haber</em> + past participle</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>haber</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yo</td>
+<td>he</td>
+<td><em>he trabajado</em></td>
+</tr>
+<tr>
+<td>tú</td>
+<td>has</td>
+<td><em>has comido</em></td>
+</tr>
+<tr>
+<td>él / ella / usted</td>
+<td>ha</td>
+<td><em>ha vivido</em></td>
+</tr>
+<tr>
+<td>nosotros / nosotras</td>
+<td>hemos</td>
+<td><em>hemos viajado</em></td>
+</tr>
+<tr>
+<td>vosotros / vosotras</td>
+<td>habéis</td>
+<td><em>habéis aprendido</em></td>
+</tr>
+<tr>
+<td>ellos / ellas / ustedes</td>
+<td>han</td>
+<td><em>han salido</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="main-uses">Main uses</h3>
+<ol>
+<li><strong>Experiences</strong> up to now (often with <em>alguna vez</em>, <em>nunca</em>, <em>ya</em>, <em>todavía no</em>).</li>
+<li>Actions in a <strong>time period that isn't over</strong>: <em>hoy</em>, <em>esta semana</em>, <em>este año</em>.</li>
+<li><strong>Recent</strong> events with present relevance (especially in Spain).</li>
+</ol>
+<ul class="ex">
+<li><em>¿Has estado alguna vez en México?</em> — Have you ever been to Mexico?</li>
+<li><em>Esta semana hemos trabajado mucho.</em> — We've worked a lot this week.</li>
+<li><em>Todavía no han llegado.</em> — They haven't arrived yet.</li>
+<li><em>¡Me he cortado el dedo!</em> — I've cut my finger!</li>
+</ul>
+<h3 id="haber-and-pronoun-placement">Haber and pronoun placement</h3>
+<p><em>Haber</em> and the participle stay together. Pronouns and <em>no</em> go before <em>haber</em>; they are <strong>never</strong> attached to the participle.</p>
+<ul class="ex">
+<li><em>Ya <strong>lo</strong> he hecho.</em> — I've already done it.</li>
+<li><em>¿<strong>Te</strong> has duchado?</em> — Have you showered?</li>
+<li><em>No <strong>se lo</strong> hemos dicho.</em> — We haven't told him.</li>
+</ul>
+<p><del>he lo hecho</del>, <del>he hecholo</del> → <em>lo he hecho</em></p>
+<aside class="callout trap"><p class="callout-title">Haber, not tener</p><p>"To have" as an auxiliary is always <em>haber</em>: <del>tengo comido</del> → <em>he comido</em>. <em>Tener</em> means "to possess".</p></aside>
+
+<h2 id="irregular-past-participles">Irregular Past Participles</h2>
+<p>The present perfect uses the same irregular participles as every other perfect tense.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Participle</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abrir</td>
+<td>abierto</td>
+<td><em>¿Quién ha abierto la ventana?</em></td>
+</tr>
+<tr>
+<td>decir</td>
+<td>dicho</td>
+<td><em>Nunca me has dicho eso.</em></td>
+</tr>
+<tr>
+<td>escribir</td>
+<td>escrito</td>
+<td><em>He escrito el informe.</em></td>
+</tr>
+<tr>
+<td>hacer</td>
+<td>hecho</td>
+<td><em>¿Qué has hecho hoy?</em></td>
+</tr>
+<tr>
+<td>morir</td>
+<td>muerto</td>
+<td><em>Se ha muerto mi planta.</em></td>
+</tr>
+<tr>
+<td>poner</td>
+<td>puesto</td>
+<td><em>Hemos puesto la mesa.</em></td>
+</tr>
+<tr>
+<td>romper</td>
+<td>roto</td>
+<td><em>Se ha roto la tele.</em></td>
+</tr>
+<tr>
+<td>ver</td>
+<td>visto</td>
+<td><em>¿Habéis visto mis gafas?</em></td>
+</tr>
+<tr>
+<td>volver</td>
+<td>vuelto</td>
+<td><em>Mis padres han vuelto.</em></td>
+</tr>
+<tr>
+<td>resolver</td>
+<td>resuelto</td>
+<td><em>Ya han resuelto el problema.</em></td>
+</tr>
+<tr>
+<td>cubrir</td>
+<td>cubierto</td>
+<td><em>La nieve ha cubierto el coche.</em></td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Learn them as a chant</p><p><em>abierto, cubierto, dicho, escrito, hecho, muerto, puesto, roto, visto, vuelto</em> — ten words that cover almost every irregular participle you'll meet.</p></aside>
+
+<p>Also remember the accented regular forms: <em>he leído</em>, <em>has oído</em>, <em>ha caído</em>, <em>hemos traído</em>, <em>han creído</em>.</p>
+<h2 id="present-perfect-vs-other-tenses">Present Perfect vs. Other Tenses</h2>
+<h3 id="present-perfect-or-preterite">Present perfect or preterite?</h3>
+<p>Both describe completed past actions. The difference is the <strong>time frame</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Present perfect</th>
+<th>Preterite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time frame still open: <em>hoy, esta mañana, este mes, últimamente</em></td>
+<td>time frame closed: <em>ayer, la semana pasada, en 2019, hace dos años</em></td>
+</tr>
+<tr>
+<td>experience with no specific time</td>
+<td>a specific, finished moment</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Hoy he comido paella.</em> — I've had paella today.</li>
+<li><em>Ayer comí paella.</em> — I had paella yesterday.</li>
+<li><em>He leído ese libro.</em> — I've read that book. (at some point)</li>
+<li><em>Leí ese libro en verano.</em> — I read that book in the summer.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Regional difference</p><p>In most of Spain the present perfect is used for anything that happened today. In much of Latin America the preterite is preferred even for recent events: <em>¿Qué pasó?</em> rather than <em>¿Qué ha pasado?</em></p></aside>
+
+<h3 id="present-perfect-or-simple-present">Present perfect or simple present?</h3>
+<p>English "I have been… for/since…" for something <strong>still going on</strong> is translated with the <strong>simple present</strong> (or <em>llevar</em> + gerundio), not with the present perfect.</p>
+<ul class="ex">
+<li><em>Vivo aquí desde 2020.</em> — I have lived here since 2020.</li>
+<li><em>Hace tres años que estudio piano.</em> — I've been studying piano for three years.</li>
+<li><em>Llevo una hora esperando.</em> — I've been waiting for an hour.</li>
+</ul>
+<p><del>He vivido aquí desde 2020</del> (if you still live there) → <em>Vivo aquí desde 2020</em></p>
+<aside class="callout trap"><p class="callout-title">Still true = present</p><p>If the situation continues now, Spanish uses the present. Use the present perfect only when the action is complete or you're talking about experience.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<h3 id="practice-conjugate">Practice: conjugate</h3>
+<ol>
+<li>Nosotros ___ (terminar) el proyecto.</li>
+<li>¿Tú ___ (ver) a Laura?</li>
+<li>Mis primos ___ (volver) de Chile.</li>
+<li>Yo nunca ___ (decir) una mentira así.</li>
+<li>¿Vosotros ___ (leer) el periódico?</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>hemos terminado</em> 2. <em>has visto</em> 3. <em>han vuelto</em> 4. <em>he dicho</em> 5. <em>habéis leído</em></li>
+</ol></aside>
+
+<h3 id="practice-pronouns">Practice: pronouns</h3>
+<p>Replace the object with a pronoun.</p>
+<ol>
+<li>He comprado <em>el pan</em>. 2. Han enviado <em>las fotos</em>. 3. Le hemos dado <em>el regalo</em>.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>Lo he comprado.</em> 2. <em>Las han enviado.</em> 3. <em>Se lo hemos dado.</em></li>
+</ol></aside>
+
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<h3 id="practice-present-perfect-preterite-or-present">Practice: present perfect, preterite or present?</h3>
+<ol>
+<li>Esta mañana (me levanté / me he levantado) a las siete. <em>(Spain)</em></li>
+<li>En 2015 (viajé / he viajado) a Japón.</li>
+<li>(Estudio / He estudiado) español desde hace dos años.</li>
+<li>¿Alguna vez (has comido / comes) cocodrilo?</li>
+<li>Anoche (salimos / hemos salido) a cenar.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>me he levantado</em> 2. <em>viajé</em> 3. <em>Estudio</em> 4. <em>has comido</em> 5. <em>salimos</em></li>
+</ol></aside>
+
+<h3 id="time-words">Time words</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Usually present perfect</th>
+<th>Usually preterite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>ya, todavía no, nunca, alguna vez, hoy, esta semana, este año, últimamente, hasta ahora</em></td>
+<td><em>ayer, anoche, anteayer, el lunes pasado, el año pasado, hace + time, en + year</em></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="extra-practice-1">Extra Practice 1</h2>
+<p>Translate.</p>
+<ol>
+<li>I haven't finished yet.</li>
+<li>Have you (ustedes) ever been to Peru?</li>
+<li>It has rained a lot this month.</li>
+<li>My phone has broken.</li>
+<li>We've written to the director.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>Todavía no he terminado.</em> 2. <em>¿Han estado alguna vez en Perú?</em> 3. <em>Ha llovido mucho este mes.</em> 4. <em>Se me ha roto el móvil.</em> 5. <em>Hemos escrito al director.</em></li>
+</ol></aside>
+
+<aside class="callout hack"><p class="callout-title">Se me ha roto</p><p>For accidents, Spanish likes <em>se</em> + indirect object: <em>se me ha roto</em> (it broke on me), <em>se nos ha olvidado</em> (we forgot). It sounds less like you did it on purpose.</p></aside>
+
+<h2 id="extra-practice-2">Extra Practice 2</h2>
+<p>Spot and correct the error.</p>
+<ol>
+<li><del>He lo visto</del> → <em>Lo he visto.</em></li>
+<li><del>Ella ha ponido la mesa</del> → <em>Ella ha puesto la mesa.</em></li>
+<li><del>Las chicas han llegadas</del> → <em>Las chicas han llegado.</em></li>
+<li><del>He vivido en Lima desde 2018</del> (still there) → <em>Vivo en Lima desde 2018.</em></li>
+<li><del>Ayer he visto a Juan</del> → <em>Ayer vi a Juan.</em></li>
+</ol>
+<p>Each fix applies one rule: pronouns before <em>haber</em>; irregular participles; no agreement with <em>haber</em>; present for ongoing situations; preterite with closed time markers.</p>
+<h2 id="extra-practice-3">Extra Practice 3</h2>
+<p>Write a short answer using the present perfect and <em>ya</em> or <em>todavía no</em>.</p>
+<ol>
+<li>¿Has hecho los deberes? (yes)</li>
+<li>¿Habéis visto la nueva serie? (no)</li>
+<li>¿Ha llegado el paquete? (yes)</li>
+<li>¿Han abierto la tienda? (no)</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>Sí, ya los he hecho.</em> 2. <em>No, todavía no la hemos visto.</em> 3. <em>Sí, ya ha llegado.</em> 4. <em>No, todavía no la han abierto.</em></li>
+</ol></aside>
+
+<aside class="callout fact"><p class="callout-title">Ya and todavía</p><p><em>Ya</em> usually goes before the verb group (<em>ya he comido</em>), and <em>todavía no</em> or <em>aún no</em> likewise (<em>todavía no he comido</em>). You can also put <em>todavía</em> at the end: <em>No he comido todavía.</em></p></aside>
+</article>
+<nav class="pager"><a class="btn" href="past-participles.html">← Past Participles</a><a class="btn" href="future-perfect.html">Future Perfect →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

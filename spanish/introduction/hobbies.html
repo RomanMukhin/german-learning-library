@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="3b08e4b56739">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Hobbies · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Introduction</a><span class="sep">/</span><span class="cur">Hobbies</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Introduction</span><h1>Hobbies</h1><p class="sub">Verbs and nouns for sports and free-time activities, using me gusta and te gusta, and agreeing or disagreeing with también and tampoco.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#what-do-you-like-to-do">What Do You Like to Do?</a></li><li><a href="#i-like-it-too">I Like It Too!</a></li><li><a href="#lets-agree-to-disagree">Let's Agree to Disagree!</a></li></ol></nav>
+<article class="prose card">
+<h2 id="what-do-you-like-to-do">What Do You Like to Do?</h2>
+<p>Talking about <em>pasatiempos</em> (hobbies) is one of the easiest ways to get to know people. Start with the activities themselves.</p>
+<h3 id="activities-verbs">Activities (verbs)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>bailar</em></td>
+<td>to dance</td>
+<td><em>cantar</em></td>
+<td>to sing</td>
+</tr>
+<tr>
+<td><em>leer</em></td>
+<td>to read</td>
+<td><em>escribir</em></td>
+<td>to write</td>
+</tr>
+<tr>
+<td><em>nadar</em></td>
+<td>to swim</td>
+<td><em>correr</em></td>
+<td>to run</td>
+</tr>
+<tr>
+<td><em>caminar</em></td>
+<td>to walk</td>
+<td><em>viajar</em></td>
+<td>to travel</td>
+</tr>
+<tr>
+<td><em>dibujar</em></td>
+<td>to draw</td>
+<td><em>pintar</em></td>
+<td>to paint</td>
+</tr>
+<tr>
+<td><em>cocinar</em></td>
+<td>to cook</td>
+<td><em>hornear</em></td>
+<td>to bake</td>
+</tr>
+<tr>
+<td><em>escuchar música</em></td>
+<td>to listen to music</td>
+<td><em>ver películas</em></td>
+<td>to watch films</td>
+</tr>
+<tr>
+<td><em>ir al cine</em></td>
+<td>to go to the cinema</td>
+<td><em>sacar fotos</em></td>
+<td>to take photos</td>
+</tr>
+<tr>
+<td><em>jugar al fútbol</em></td>
+<td>to play football</td>
+<td><em>jugar videojuegos</em></td>
+<td>to play video games</td>
+</tr>
+<tr>
+<td><em>montar en bicicleta</em></td>
+<td>to ride a bike</td>
+<td><em>hacer senderismo</em></td>
+<td>to go hiking</td>
+</tr>
+<tr>
+<td><em>hacer ejercicio</em></td>
+<td>to exercise</td>
+<td><em>hacer yoga</em></td>
+<td>to do yoga</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="sports-and-hobbies-nouns">Sports and hobbies (nouns)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>el fútbol</em></td>
+<td>football / soccer</td>
+<td><em>el baloncesto</em>, <em>el básquetbol</em></td>
+<td>basketball</td>
+</tr>
+<tr>
+<td><em>el tenis</em></td>
+<td>tennis</td>
+<td><em>la natación</em></td>
+<td>swimming</td>
+</tr>
+<tr>
+<td><em>el ciclismo</em></td>
+<td>cycling</td>
+<td><em>el esquí</em></td>
+<td>skiing</td>
+</tr>
+<tr>
+<td><em>la lectura</em></td>
+<td>reading</td>
+<td><em>la cocina</em></td>
+<td>cooking</td>
+</tr>
+<tr>
+<td><em>la fotografía</em></td>
+<td>photography</td>
+<td><em>la jardinería</em></td>
+<td>gardening</td>
+</tr>
+<tr>
+<td><em>el ajedrez</em></td>
+<td>chess</td>
+<td><em>los juegos de mesa</em></td>
+<td>board games</td>
+</tr>
+</tbody>
+</table></div>
+<p>To ask about someone's hobbies:</p>
+<ul class="ex">
+<li><em>¿Qué te gusta hacer?</em> — What do you like to do?</li>
+<li><em>¿Qué haces en tu tiempo libre?</em> — What do you do in your free time?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">jugar a + sport</p><p>With <em>jugar</em> (to play a game or sport), Spain and many countries add <em>a</em> + article: <em>jugar al tenis</em>, <em>jugar a las cartas</em>. In parts of Latin America you'll also hear <em>jugar fútbol</em>. You never <em>jugar</em> an instrument: that's <em>tocar la guitarra</em>.</p></aside>
+
+<h2 id="i-like-it-too">I Like It Too!</h2>
+<p>"I like" in Spanish is <strong><em>me gusta</em></strong>, which literally means "it pleases me". The thing you like is the grammatical subject, so the verb agrees with <strong>it</strong>, not with you.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Use with</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>me gusta</em></td>
+<td>a verb or a singular noun</td>
+<td><em>Me gusta nadar.</em> / <em>Me gusta el fútbol.</em></td>
+</tr>
+<tr>
+<td><em>me gustan</em></td>
+<td>a plural noun</td>
+<td><em>Me gustan los deportes.</em></td>
+</tr>
+<tr>
+<td><em>te gusta(n)</em></td>
+<td>you (informal) like</td>
+<td><em>¿Te gusta bailar?</em> / <em>¿Te gustan los perros?</em></td>
+</tr>
+<tr>
+<td><em>le gusta(n)</em></td>
+<td>he / she likes; you (formal) like</td>
+<td><em>A Marta le gusta leer.</em></td>
+</tr>
+<tr>
+<td><em>nos gusta(n)</em></td>
+<td>we like</td>
+<td><em>Nos gusta viajar.</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Me gusta cocinar y hornear.</em> — I like cooking and baking.</li>
+<li><em>Me gustan las películas de terror.</em> — I like horror films.</li>
+<li><em>¿Te gusta la natación?</em> — Do you like swimming?</li>
+</ul>
+<p>Agree with <em>también</em> (also) or, after a negative, <em>tampoco</em> (neither):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>They say</th>
+<th>You agree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Me gusta el tenis.</em></td>
+<td><em>¡A mí también!</em> — Me too!</td>
+</tr>
+<tr>
+<td><em>No me gusta correr.</em></td>
+<td><em>A mí tampoco.</em> — Me neither.</td>
+</tr>
+</tbody>
+</table></div>
+<p><del>Me gusto el fútbol.</del> → <em>Me gusta el fútbol.</em> <del>Me gusta los videojuegos.</del> → <em>Me gustan los videojuegos.</em></p>
+<aside class="callout hack"><p class="callout-title">Use the article with nouns</p><p>When you like something in general, Spanish uses <em>el / la / los / las</em>: <em>Me gusta <strong>la</strong> música</em>, not <del>Me gusta música</del>.</p></aside>
+
+<h2 id="lets-agree-to-disagree">Let's Agree to Disagree!</h2>
+<p>To say you <strong>don't</strong> like something, put <em>no</em> in front: <em>no me gusta, no me gustan</em>.</p>
+<ul class="ex">
+<li><em>No me gusta el golf.</em> — I don't like golf.</li>
+<li><em>No me gustan los juegos de mesa.</em> — I don't like board games.</li>
+</ul>
+<p>Disagreeing politely is just as easy:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>They say</th>
+<th>You disagree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Me gusta bailar.</em></td>
+<td><em>A mí no.</em> — I don't.</td>
+</tr>
+<tr>
+<td><em>No me gusta el yoga.</em></td>
+<td><em>A mí sí.</em> — I do.</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>—Me gustan mucho los videojuegos. —¿Sí? A mí no. Prefiero leer.</em> — I really like video games. — Really? I don't. I prefer reading.</li>
+<li><em>—No me gusta correr. —A mí sí, ¡me encanta!</em> — I don't like running. — I do, I love it!</li>
+</ul>
+<h3 id="stronger-and-weaker">Stronger and weaker</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Me encanta(n)…</em></td>
+<td>I love…</td>
+</tr>
+<tr>
+<td><em>Me gusta(n) mucho…</em></td>
+<td>I really like…</td>
+</tr>
+<tr>
+<td><em>Me gusta(n)…</em></td>
+<td>I like…</td>
+</tr>
+<tr>
+<td><em>No me gusta(n) mucho…</em></td>
+<td>I don't really like…</td>
+</tr>
+<tr>
+<td><em>No me gusta(n) nada…</em></td>
+<td>I don't like… at all</td>
+</tr>
+<tr>
+<td><em>Prefiero…</em></td>
+<td>I prefer…</td>
+</tr>
+<tr>
+<td><em>Odio…</em></td>
+<td>I hate…</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout trap"><p class="callout-title">me encanta is never &quot;muy&quot;</p><p><em>Encantar</em> is already strong. <del>Me encanta mucho</del> sounds odd; just say <em>Me encanta</em>.</p></aside>
+
+<aside class="callout fact"><p class="callout-title">The extra &quot;a mí&quot;</p><p><em>A mí</em>, <em>a ti</em>, <em>a él</em> add emphasis or contrast: <em>A mí me gusta el té, pero a él le gusta el café.</em> It's optional in normal sentences but required in short replies like <em>A mí también</em>.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="first-day-of-school.html">← First Day of School</a><a class="btn" href="at-the-restaurant.html">At the Restaurant →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

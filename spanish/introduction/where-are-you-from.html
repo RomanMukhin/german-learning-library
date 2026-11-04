@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="27ef3f0cc86e">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Where Are You From? · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Introduction</a><span class="sep">/</span><span class="cur">Where Are You From?</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Introduction</span><h1>Where Are You From?</h1><p class="sub">Yes/no questions, question words, asking and saying where someone is from, and how nationality words change for gender and number.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#yes-or-no-questions">Yes or No Questions</a></li><li><a href="#question-words">Question Words</a></li><li><a href="#asking-where-someone-is-from">Asking Where Someone Is From</a></li><li><a href="#nationalities-ending-in-o">Nationalities Ending in -o</a></li><li><a href="#nationalities-ending-in-e-a-consonant-or-an-accented-vowel">Nationalities Ending in -e, a Consonant or an Accented Vowel</a></li><li><a href="#tag-questions-and-partial-questions">Tag Questions and Partial Questions</a></li></ol></nav>
+<article class="prose card">
+<h2 id="yes-or-no-questions">Yes or No Questions</h2>
+<p>Turning a statement into a yes/no question in Spanish is easy: you <strong>don't add any helper word</strong> like English "do" or "does".</p>
+<ul>
+<li>In writing, put the sentence between an opening <em>¿</em> and a closing <em>?</em>.</li>
+<li>In speech, let your voice rise at the end.</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Eres de Perú.</em> — You're from Peru.</td>
+<td><em>¿Eres de Perú?</em> — Are you from Peru?</td>
+</tr>
+<tr>
+<td><em>Habla inglés.</em> — She speaks English.</td>
+<td><em>¿Habla inglés?</em> — Does she speak English?</td>
+</tr>
+<tr>
+<td><em>Te gusta el café.</em> — You like coffee.</td>
+<td><em>¿Te gusta el café?</em> — Do you like coffee?</td>
+</tr>
+</tbody>
+</table></div>
+<p>You can also move the subject after the verb, which sounds very natural: <em>¿Habla usted inglés?</em>, <em>¿Vive tu hermano aquí?</em></p>
+<p>Answer with <em>sí</em> or <em>no</em>. For a negative answer, <em>no</em> often appears twice: once as the answer and once before the verb.</p>
+<ul class="ex">
+<li><em>—¿Eres de Colombia? —Sí, soy de Bogotá.</em> — Are you from Colombia? — Yes, I'm from Bogotá.</li>
+<li><em>—¿Hablas francés? —No, no hablo francés.</em> — Do you speak French? — No, I don't speak French.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Don&#x27;t forget the upside-down mark</p><p>The opening <em>¿</em> is required in written Spanish and shows where the question starts. <del>Eres de Chile?</del> → <em>¿Eres de Chile?</em> The same goes for exclamations: <em>¡Qué bien!</em></p></aside>
+
+<h2 id="question-words">Question Words</h2>
+<p>Questions that ask for information start with a <strong>question word</strong>. All of them carry a written accent.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>qué</em></td>
+<td>what</td>
+<td><em>quién / quiénes</em></td>
+<td>who</td>
+</tr>
+<tr>
+<td><em>cómo</em></td>
+<td>how</td>
+<td><em>cuál / cuáles</em></td>
+<td>which (one/ones)</td>
+</tr>
+<tr>
+<td><em>dónde</em></td>
+<td>where</td>
+<td><em>de dónde</em></td>
+<td>from where</td>
+</tr>
+<tr>
+<td><em>adónde</em></td>
+<td>(to) where</td>
+<td><em>cuándo</em></td>
+<td>when</td>
+</tr>
+<tr>
+<td><em>por qué</em></td>
+<td>why</td>
+<td><em>para qué</em></td>
+<td>what for</td>
+</tr>
+<tr>
+<td><em>cuánto / cuánta</em></td>
+<td>how much</td>
+<td><em>cuántos / cuántas</em></td>
+<td>how many</td>
+</tr>
+<tr>
+<td><em>con quién</em></td>
+<td>with whom</td>
+<td><em>a quién</em></td>
+<td>(to) whom</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿Dónde vives?</em> — Where do you live?</li>
+<li><em>¿Cuántos hermanos tienes?</em> — How many siblings do you have?</li>
+<li><em>¿Por qué estudias español? —Porque me gusta.</em> — Why do you study Spanish? — Because I like it.</li>
+<li><em>¿Con quién vas al cine?</em> — Who are you going to the cinema with?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">por qué vs. porque</p><p>The question "why?" is two words with an accent: <em>¿Por qué?</em> The answer "because" is one word without an accent: <em>porque</em>.</p></aside>
+
+<p>The accent is what tells you it is a question word. Without it, the same words connect sentences: <em>Vivo <strong>donde</strong> vive mi madre</em> — I live where my mother lives.</p>
+<h2 id="asking-where-someone-is-from">Asking Where Someone Is From</h2>
+<p>The key question is built with <em>de dónde</em> ("from where") and the verb <em>ser</em>. A preposition never goes at the end of a Spanish question: it moves to the front.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ask</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿De dónde eres?</em> (informal)</td>
+<td><em>Soy de Argentina.</em></td>
+</tr>
+<tr>
+<td><em>¿De dónde es usted?</em> (formal)</td>
+<td><em>Soy de Sevilla, en España.</em></td>
+</tr>
+<tr>
+<td><em>¿De dónde son ustedes?</em> (plural)</td>
+<td><em>Somos de Cuba.</em></td>
+</tr>
+<tr>
+<td><em>¿De dónde es tu amiga?</em></td>
+<td><em>Es de Ecuador.</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><del>¿Dónde eres de?</del> → <em>¿De dónde eres?</em></p>
+<p>To talk about where you <strong>live</strong> now, switch to <em>vivir en</em>:</p>
+<ul class="ex">
+<li><em>Soy de Venezuela, pero vivo en Miami.</em> — I'm from Venezuela, but I live in Miami.</li>
+<li><em>¿Dónde vives ahora?</em> — Where do you live now?</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><em>ser</em> (to be)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo soy</em></td>
+<td>I am</td>
+</tr>
+<tr>
+<td><em>tú eres</em></td>
+<td>you are</td>
+</tr>
+<tr>
+<td><em>usted / él / ella es</em></td>
+<td>you are / he, she is</td>
+</tr>
+<tr>
+<td><em>nosotros somos</em></td>
+<td>we are</td>
+</tr>
+<tr>
+<td><em>ustedes / ellos son</em></td>
+<td>you (all) / they are</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Use ser for origin</p><p>Origin is part of who you are, so it always takes <em>ser</em>, never <em>estar</em>: <del>Estoy de México</del> → <em>Soy de México</em>. <em>Estar</em> is for where you are right now: <em>Estoy en México</em> — I'm in Mexico (at the moment).</p></aside>
+
+<h2 id="nationalities-ending-in-o">Nationalities Ending in -o</h2>
+<p>Nationality words are <strong>adjectives</strong>, so they agree with the person in gender and number. Many end in <strong>-o</strong>, and these have four forms:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>singular</th>
+<th>plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>masculine</td>
+<td><em>mexicano</em></td>
+<td><em>mexicanos</em></td>
+</tr>
+<tr>
+<td>feminine</td>
+<td><em>mexicana</em></td>
+<td><em>mexicanas</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Common examples: <em>argentino, boliviano, chileno, colombiano, cubano, peruano, venezolano, americano, italiano, ruso, chino, griego</em>.</p>
+<ul class="ex">
+<li><em>Carlos es peruano.</em> — Carlos is Peruvian.</li>
+<li><em>Mi madre es colombiana.</em> — My mother is Colombian.</li>
+<li><em>Mis primos son cubanos.</em> — My cousins are Cuban.</li>
+<li><em>Laura y Elena son italianas.</em> — Laura and Elena are Italian.</li>
+</ul>
+<p>A group of men and women uses the masculine plural: <em>Pablo y Rosa son chilenos.</em></p>
+<aside class="callout trap"><p class="callout-title">No capital letters</p><p>Unlike English, Spanish writes nationalities (and languages) in lower case: <del>Soy Mexicana</del> → <em>Soy mexicana</em>. Country names keep their capital: <em>México</em>.</p></aside>
+
+<p>The same word can work as a noun for a person: <em>un argentino</em> (an Argentinian man), <em>una argentina</em> (an Argentinian woman).</p>
+<h2 id="nationalities-ending-in-e-a-consonant-or-an-accented-vowel">Nationalities Ending in -e, a Consonant or an Accented Vowel</h2>
+<p>Not all nationalities end in <em>-o</em>. The other groups follow simple rules.</p>
+<p><strong>Ending in -e or an accented vowel</strong>: the same form for men and women; only the plural changes. Add <em>-s</em> after <em>-e</em>, and usually <em>-es</em> after an accented <em>-í</em> or <em>-ú</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>singular</th>
+<th>plural</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>canadiense</em></td>
+<td><em>canadienses</em></td>
+<td>Canadian</td>
+</tr>
+<tr>
+<td><em>costarricense</em></td>
+<td><em>costarricenses</em></td>
+<td>Costa Rican</td>
+</tr>
+<tr>
+<td><em>estadounidense</em></td>
+<td><em>estadounidenses</em></td>
+<td>American (US)</td>
+</tr>
+<tr>
+<td><em>marroquí</em></td>
+<td><em>marroquíes</em></td>
+<td>Moroccan</td>
+</tr>
+<tr>
+<td><em>hindú</em></td>
+<td><em>hindúes</em></td>
+<td>Hindu</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ending in a consonant</strong>: add <em>-a</em> for the feminine, <em>-es</em> / <em>-as</em> for the plural. A final accent disappears when an ending is added.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>masc. sing.</th>
+<th>fem. sing.</th>
+<th>masc. pl.</th>
+<th>fem. pl.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>español</em></td>
+<td><em>española</em></td>
+<td><em>españoles</em></td>
+<td><em>españolas</em></td>
+</tr>
+<tr>
+<td><em>francés</em></td>
+<td><em>francesa</em></td>
+<td><em>franceses</em></td>
+<td><em>francesas</em></td>
+</tr>
+<tr>
+<td><em>alemán</em></td>
+<td><em>alemana</em></td>
+<td><em>alemanes</em></td>
+<td><em>alemanas</em></td>
+</tr>
+<tr>
+<td><em>inglés</em></td>
+<td><em>inglesa</em></td>
+<td><em>ingleses</em></td>
+<td><em>inglesas</em></td>
+</tr>
+<tr>
+<td><em>japonés</em></td>
+<td><em>japonesa</em></td>
+<td><em>japoneses</em></td>
+<td><em>japonesas</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Mi novio es alemán y yo soy canadiense.</em> — My boyfriend is German and I'm Canadian.</li>
+<li><em>Las chicas son españolas.</em> — The girls are Spanish.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Words ending in -a stay put</p><p>A few end in <em>-a</em> for both genders: <em>belga</em> (Belgian), <em>croata</em> (Croatian). <em>Él es belga, ella es belga.</em></p></aside>
+
+<h2 id="tag-questions-and-partial-questions">Tag Questions and Partial Questions</h2>
+<p>Spanish puts the question marks <strong>only around the part that is actually a question</strong>. If a sentence starts with a statement or a condition, the <em>¿</em> goes in the middle.</p>
+<ul class="ex">
+<li><em>Eres de Uruguay, ¿verdad?</em> — You're from Uruguay, right?</li>
+<li><em>Ella habla inglés, ¿no?</em> — She speaks English, doesn't she?</li>
+<li><em>Si vienes a Lima, ¿me llamas?</em> — If you come to Lima, will you call me?</li>
+<li><em>Oye, ¿de dónde es tu profesor?</em> — Hey, where's your teacher from?</li>
+</ul>
+<p>The little tags <em>¿no?</em> and <em>¿verdad?</em> replace the many English endings ("isn't it?", "don't you?", "aren't they?"). They never change.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>English tag</th>
+<th>Spanish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>…, isn't he?</td>
+<td><em>…, ¿no?</em></td>
+</tr>
+<tr>
+<td>…, don't you?</td>
+<td><em>…, ¿verdad?</em></td>
+</tr>
+<tr>
+<td>…, OK?</td>
+<td><em>…, ¿vale?</em> (Spain) / <em>…, ¿sí?</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>To show surprise or interest, Spanish uses exclamation marks the same way: <em>Eres de Madrid, ¡qué casualidad!</em> — You're from Madrid, what a coincidence!</p>
+<aside class="callout hack"><p class="callout-title">Mini dialogue</p><p><em>—Hola, ¿eres nueva aquí? —Sí, me llamo Clara. —¿De dónde eres? —Soy argentina, de Rosario. ¿Y tú? —Soy de aquí, de Valencia.</em></p></aside>
+</article>
+<nav class="pager"><a class="btn" href="getting-started.html">← Getting Started</a><a class="btn" href="meet-someone-new.html">Meet Someone New →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

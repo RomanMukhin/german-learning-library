@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="3c96e0895bc5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>At the Restaurant · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Introduction</a><span class="sep">/</span><span class="cur">At the Restaurant</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Introduction</span><h1>At the Restaurant</h1><p class="sub">Getting a table, asking for the menu, ordering politely, asking about dishes, sorting out problems, dessert and paying the bill.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#what-would-you-like">What Would You Like?</a></li><li><a href="#anything-else">Anything Else?</a></li><li><a href="#how-about-dessert">How about Dessert?</a></li></ol></nav>
+<article class="prose card">
+<h2 id="what-would-you-like">What Would You Like?</h2>
+<h3 id="getting-a-table">Getting a table</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Una mesa para dos, por favor.</em></td>
+<td>A table for two, please.</td>
+</tr>
+<tr>
+<td><em>Tenemos una reserva para cuatro personas.</em></td>
+<td>We have a booking for four people.</td>
+</tr>
+<tr>
+<td><em>¿Hay una mesa libre?</em></td>
+<td>Is there a free table?</td>
+</tr>
+<tr>
+<td><em>¿Nos podemos sentar fuera?</em></td>
+<td>Can we sit outside?</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="asking-for-the-menu-and-ordering">Asking for the menu and ordering</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Me trae la carta, por favor?</em></td>
+<td>Could you bring me the menu, please?</td>
+</tr>
+<tr>
+<td><em>¿Nos trae el menú?</em></td>
+<td>Could you bring us the menu?</td>
+</tr>
+<tr>
+<td><em>¿Qué me recomienda?</em></td>
+<td>What do you recommend?</td>
+</tr>
+<tr>
+<td><em>Para mí, la sopa.</em></td>
+<td>For me, the soup.</td>
+</tr>
+<tr>
+<td><em>Quisiera el pollo.</em></td>
+<td>I'd like the chicken.</td>
+</tr>
+<tr>
+<td><em>¿Me podría traer un vaso de agua?</em></td>
+<td>Could you bring me a glass of water?</td>
+</tr>
+<tr>
+<td><em>Tráigame un café con leche, por favor.</em></td>
+<td>Please bring me a white coffee.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The waiter will ask <em>¿Qué desea?</em> or <em>¿Qué van a tomar?</em> — "What would you like?" / "What will you have?"</p>
+<ul class="ex">
+<li><em>—¿Qué van a tomar? —Para mí, una limonada, y para ella, un agua sin gas.</em> — What will you have? — A lemonade for me, and a still water for her.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">carta vs. menú</p><p><em>La carta</em> is the full menu. In Spain <em>el menú (del día)</em> is often a fixed-price lunch with a starter, main course, dessert and drink. In much of Latin America <em>menú</em> simply means the menu.</p></aside>
+
+<aside class="callout hack"><p class="callout-title">Use the conditional to soften</p><p><em>¿Podría…?</em> (Could you…?) and <em>Quisiera…</em> (I would like…) sound more polite than <em>quiero</em>. In a restaurant they're the safest choice.</p></aside>
+
+<h2 id="anything-else">Anything Else?</h2>
+<h3 id="asking-about-a-dish">Asking about a dish</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Viene con ensalada?</em></td>
+<td>Does it come with salad?</td>
+</tr>
+<tr>
+<td><em>¿Lleva carne?</em> / <em>¿Está hecho con carne?</em></td>
+<td>Does it have meat in it?</td>
+</tr>
+<tr>
+<td><em>¿Contiene gluten?</em></td>
+<td>Does it contain gluten?</td>
+</tr>
+<tr>
+<td><em>¿Es picante?</em></td>
+<td>Is it spicy?</td>
+</tr>
+<tr>
+<td><em>Soy vegetariano / vegetariana.</em></td>
+<td>I'm vegetarian.</td>
+</tr>
+<tr>
+<td><em>Soy alérgico / alérgica a los frutos secos.</em></td>
+<td>I'm allergic to nuts.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="when-something-goes-wrong">When something goes wrong</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Esto no es lo que pedí.</em></td>
+<td>This isn't what I ordered.</td>
+</tr>
+<tr>
+<td><em>La comida está fría.</em></td>
+<td>The food is cold.</td>
+</tr>
+<tr>
+<td><em>Hay algo en mi plato.</em></td>
+<td>There's something on my plate.</td>
+</tr>
+<tr>
+<td><em>Falta un tenedor.</em></td>
+<td>There's a fork missing.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="asking-for-more">Asking for more</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Me puede traer otro, por favor?</em></td>
+<td>Could you bring me another one, please?</td>
+</tr>
+<tr>
+<td><em>¿Me rellena el vaso?</em></td>
+<td>Could you refill my glass?</td>
+</tr>
+<tr>
+<td><em>¿Nos trae más pan?</em></td>
+<td>Could you bring us more bread?</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Perdone, esto no es lo que pedí. Pedí pescado, no carne.</em> — Excuse me, this isn't what I ordered. I ordered fish, not meat.</li>
+<li><em>¿Me puede traer otra cerveza? Pero esta vez sin hielo.</em> — Could you bring me another beer? But without ice this time.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">otro means &quot;another&quot;</p><p>Never put <em>un</em> before <em>otro</em>: <del>un otro café</del> → <em>otro café</em>.</p></aside>
+
+<h2 id="how-about-dessert">How about Dessert?</h2>
+<h3 id="dessert">Dessert</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Qué hay de postre?</em></td>
+<td>What's there for dessert?</td>
+</tr>
+<tr>
+<td><em>De postre, quiero un flan.</em></td>
+<td>For dessert, I'd like a flan.</td>
+</tr>
+<tr>
+<td><em>¿Me trae un trozo de pastel?</em></td>
+<td>Could I have a piece of cake?</td>
+</tr>
+<tr>
+<td><em>Una bola de helado de fresa.</em></td>
+<td>A scoop of strawberry ice cream.</td>
+</tr>
+<tr>
+<td><em>Nada más, gracias.</em></td>
+<td>Nothing more, thanks.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="paying">Paying</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>La cuenta, por favor.</em></td>
+<td>The bill, please.</td>
+</tr>
+<tr>
+<td><em>¿Nos trae la cuenta?</em></td>
+<td>Could you bring us the bill?</td>
+</tr>
+<tr>
+<td><em>¿Puedo pagar con tarjeta?</em></td>
+<td>Can I pay by card?</td>
+</tr>
+<tr>
+<td><em>¿Aceptan efectivo?</em></td>
+<td>Do you take cash?</td>
+</tr>
+<tr>
+<td><em>¿Puede dividir la cuenta?</em></td>
+<td>Can you split the bill?</td>
+</tr>
+<tr>
+<td><em>¿Está incluida la propina?</em></td>
+<td>Is the tip included?</td>
+</tr>
+<tr>
+<td><em>¿Me lo pone para llevar?</em></td>
+<td>Could you box it to take away?</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿Nos trae la cuenta, por favor? Tenemos prisa.</em> — Could you bring us the bill, please? We're in a hurry.</li>
+<li><em>¿Puedo pagar con tarjeta? No tengo efectivo.</em> — Can I pay by card? I don't have cash.</li>
+<li><em>Cada uno paga lo suyo.</em> — Each of us pays for their own.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">The bill won&#x27;t come by itself</p><p>In Spain and much of Latin America it's considered rude to bring the bill before you ask. Catch the waiter's eye and say <em>La cuenta, por favor</em>, or mime writing in the air.</p></aside>
+
+<aside class="callout trap"><p class="callout-title">la cuenta, not la factura</p><p><em>La cuenta</em> is the bill at a restaurant. <em>La factura</em> is a formal invoice (or, in Argentina, a pastry!).</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="hobbies.html">← Hobbies</a><a class="btn" href="we-are-family.html">We Are Family →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

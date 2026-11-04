@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="333a5f1bf6af">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Introduction · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><span class="cur">Introduction</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Spanish grammar</span><h1>Introduction</h1><p class="sub">Spanish for everyday situations: greetings, introductions, shopping, food, travel, family and small talk.</p></header>
+<section><div class="sec-head"><h2>In this section</h2><p class="hint">22 topics. Read them in order, then take the quiz at the bottom of this page.</p></div><div class="home-grid"><a class="home-card card" href="getting-started.html"><span class="t">Getting Started</span><span class="d">Greetings from formal to very casual, asking names and jobs, saying a little about yourself, small talk and goodbyes.</span></a><a class="home-card card" href="where-are-you-from.html"><span class="t">Where Are You From?</span><span class="d">Yes/no questions, question words, asking and saying where someone is from, and how nationality words change for gender and number.</span></a><a class="home-card card" href="meet-someone-new.html"><span class="t">Meet Someone New</span><span class="d">The five ways to say you in Spanish (tú, usted, vos, vosotros, ustedes), when to use each one, and how to switch from formal to informal.</span></a><a class="home-card card" href="introduce-your-friends.html"><span class="t">Introduce Your Friends</span><span class="d">Introducing other people, and how job words change for men and women: -o/-a, consonant endings, words that never change and special feminine forms.</span></a><a class="home-card card" href="at-the-market.html"><span class="t">At the Market</span><span class="d">Food words, un and una, numbers one to five, and the verbs querer, tener and costar for buying things at a market stall.</span></a><a class="home-card card" href="whats-up.html"><span class="t">What&#x27;s Up?</span><span class="d">Saying hello, asking how someone is, and answering ¿Cómo estás? from fantastic to awful, politely or with a bit of attitude.</span></a><a class="home-card card" href="first-day-of-school.html"><span class="t">First Day of School</span><span class="d">School subjects and supplies, people and places at school, possessive words (mi, tu, su, nuestro) and the verb ser.</span></a><a class="home-card card" href="hobbies.html"><span class="t">Hobbies</span><span class="d">Verbs and nouns for sports and free-time activities, using me gusta and te gusta, and agreeing or disagreeing with también and tampoco.</span></a><a class="home-card card" href="at-the-restaurant.html"><span class="t">At the Restaurant</span><span class="d">Getting a table, asking for the menu, ordering politely, asking about dishes, sorting out problems, dessert and paying the bill.</span></a><a class="home-card card" href="we-are-family.html"><span class="t">We Are Family</span><span class="d">Words for parents, grandparents, siblings, children and extended family, plus step-relations, in-laws and how masculine plurals cover mixed groups.</span></a><a class="home-card card" href="happy-birthday.html"><span class="t">Happy Birthday!</span><span class="d">Birthday wishes and songs, asking and giving ages with tener, dates of birth, and the quinceañera tradition.</span></a><a class="home-card card" href="fly-away.html"><span class="t">Fly Away</span><span class="d">Buying a plane ticket, airport and boarding vocabulary, arriving at your destination, and a tour of Spanish-speaking places to visit.</span></a><a class="home-card card" href="at-the-hotel.html"><span class="t">At the Hotel</span><span class="d">Types of accommodation, booking and checking in, room requests, asking for what you need with necesito and me gustaría, hotel facilities and breakfast.</span></a><a class="home-card card" href="everybody-clean-up.html"><span class="t">Everybody Clean Up!</span><span class="d">Words for chores and cleaning supplies, present-tense verbs for who does what, rooms of the house, and simple commands to get others to help.</span></a><a class="home-card card" href="hows-the-weather.html"><span class="t">How&#x27;s the Weather?</span><span class="d">Weather with hace, está and hay, verbs like llover and nevar, seasons, and other everyday expressions built with hacer, including time with hace.</span></a><a class="home-card card" href="at-the-doctor.html"><span class="t">At the Doctor</span><span class="d">Body parts and symptoms with me duele and tengo, treatments and medicines, and a polite doctor–patient conversation in the usted form.</span></a><a class="home-card card" href="party-time.html"><span class="t">Party Time!</span><span class="d">Kinds of parties, planning with ir a and tenemos que, party supplies and people, things to do, and giving the place, date and time.</span></a><a class="home-card card" href="lets-go-shopping.html"><span class="t">Let&#x27;s Go Shopping</span><span class="d">Clothes, shoes and accessories, colours and agreement, money and prices, and phrases for trying on and buying in a shop.</span></a><a class="home-card card" href="coffee-time.html"><span class="t">Coffee Time</span><span class="d">Greeting people at different times of day, saying how you are with estar, and offering and ordering drinks with quiero and quieres.</span></a><a class="home-card card" href="tacos-and-tamales.html"><span class="t">Let&#x27;s Taco &#x27;Bout Tacos</span><span class="d">Tacos and tamales, ordering with quiero and quieres, asking yes/no questions, and the polite words por favor, gracias and de nada.</span></a><a class="home-card card" href="introducing-people-and-pets.html"><span class="t">Introducing People and Pets</span><span class="d">Subject pronouns yo, tú, él and ella, the verb ser, un and una with gender, the silent h, and introducing yourself, other people and animals.</span></a><a class="home-card card" href="start-a-conversation.html"><span class="t">Start a Conversation</span><span class="d">A complete first conversation step by step: greetings, names, how you feel, who you are, work, describing yourself, where you live and where you&#x27;re from, ending with mini dialogues and a final challenge.</span></a></div></section>
+<article class="prose card">
+<p>This level is about <strong>getting things done in Spanish from day one</strong>. Each unit takes one everyday situation — saying hello, ordering a coffee, checking into a hotel, telling a doctor what hurts — and teaches the words you need for it together with the small piece of grammar that makes those words work: <em>ser</em> and <em>estar</em>, <em>tú</em> versus <em>usted</em>, <em>me gusta</em>, <em>quiero</em>, <em>hace frío</em> and more.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>You will learn to…</th>
+<th>Key grammar along the way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>greet people and say goodbye</td>
+<td>formal and informal <em>you</em></td>
+</tr>
+<tr>
+<td>say where you are from and what you do</td>
+<td><em>ser</em>, nationality and profession endings</td>
+</tr>
+<tr>
+<td>shop, order food and pay</td>
+<td><em>quiero</em>, <em>tengo</em>, <em>¿cuánto cuesta?</em>, numbers</td>
+</tr>
+<tr>
+<td>talk about family, school, hobbies and chores</td>
+<td>possessives, <em>me gusta</em>, simple commands</td>
+</tr>
+<tr>
+<td>travel, book a room, describe the weather</td>
+<td><em>hay</em>, <em>me gustaría</em>, <em>hace</em> + weather</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Learn phrases first, rules second</p><p>At this stage it pays to memorise whole chunks such as <em>¿Cómo te llamas?</em> or <em>¿Me trae la cuenta?</em> exactly as they are. The grammar notes in each unit explain why they look the way they do, so you can later build your own sentences.</p></aside>
+
+<aside class="callout fact"><p class="callout-title">Two kinds of Spanish, one language</p><p>Spanish is spoken in more than twenty countries. Where words differ (for example <em>reserva</em> in Spain and <em>reservación</em> in much of Latin America), the units point it out.</p></aside>
+
+<p>Units in order: <a href="../introduction/getting-started.html">Getting Started</a> · <a href="../introduction/where-are-you-from.html">Where Are You From?</a> · <a href="../introduction/meet-someone-new.html">Meet Someone New</a> · <a href="../introduction/introduce-your-friends.html">Introduce Your Friends</a> · <a href="../introduction/at-the-market.html">At the Market</a> · <a href="../introduction/whats-up.html">What's Up?</a> · <a href="../introduction/first-day-of-school.html">First Day of School</a> · <a href="../introduction/hobbies.html">Hobbies</a> · <a href="../introduction/at-the-restaurant.html">At the Restaurant</a> · <a href="../introduction/we-are-family.html">We Are Family</a> · <a href="../introduction/happy-birthday.html">Happy Birthday!</a> · <a href="../introduction/fly-away.html">Fly Away</a> · <a href="../introduction/at-the-hotel.html">At the Hotel</a> · <a href="../introduction/everybody-clean-up.html">Everybody Clean Up!</a> · <a href="../introduction/hows-the-weather.html">How's the Weather?</a> · <a href="../introduction/at-the-doctor.html">At the Doctor</a> · <a href="../introduction/party-time.html">Party Time!</a> · <a href="../introduction/lets-go-shopping.html">Let's Go Shopping</a> · <a href="../introduction/coffee-time.html">Coffee Time</a> · <a href="../introduction/tacos-and-tamales.html">Let's Taco 'Bout Tacos</a> · <a href="../introduction/introducing-people-and-pets.html">Introducing People and Pets</a> · <a href="../introduction/start-a-conversation.html">Start a Conversation</a></p>
+</article>
+<nav class="pager"><span></span><a class="btn" href="../beginner/index.html">Beginner →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "It's 10 a.m. How do you greet your new neighbour politely?", "options": ["*Buenos días.*", "*¿Qué onda?*", "*Hasta luego.*", "*Buenas noches.*"], "answer": 0, "explain": "*Buenos días* is the polite greeting for the morning."}, {"q": "*¿Cómo te *___*?* — *Me llamo Ana.*", "options": ["*eres*", "*nombre*", "*llamas*", "*llamo*"], "answer": 2, "explain": "The *tú* form of *llamarse* is *te llamas*."}, {"q": "Choose the correct sentence: \"I'm a teacher\" (a woman speaking).", "options": ["*Soy profesor.*", "*Soy una profesora.*", "*Estoy profesora.*", "*Soy profesora.*"], "answer": 3, "explain": "With *ser* + job Spanish leaves out the article, and the job word agrees with the speaker."}, {"q": "How do you say \"I'm twenty years old\"?", "options": ["*Hay veinte años.*", "*Tengo veinte años.*", "*Soy veinte años.*", "*Estoy veinte años.*"], "answer": 1, "explain": "Age is expressed with *tener*: you \"have\" years."}, {"q": "Which question asks where someone is from?", "options": ["*¿Adónde vas?*", "*¿Dónde eres de?*", "*¿De dónde eres?*", "*¿Dónde estás?*"], "answer": 2, "explain": "The preposition *de* goes at the front: *¿De dónde eres?*"}, {"q": "*Mis abuelas son *___*.* (Mexican)", "options": ["*Mexicanas*", "*mexicanos*", "*mexicana*", "*mexicanas*"], "answer": 3, "explain": "The adjective is feminine plural to match *abuelas*, and nationalities are not capitalised."}, {"q": "Which word means \"why?\" in a question?", "options": ["*¿Qué?*", "*¿Por qué?*", "*¿Para qué?*", "*¿Porque?*"], "answer": 1, "explain": "*Por qué* (two words, accent) asks why; *porque* means because."}, {"q": "You meet your friend's grandmother for the first time. Which form of \"you\" is the safest choice?", "options": ["*tú*", "*vos*", "*vosotros*", "*usted*"], "answer": 3, "explain": "*Usted* shows respect to older people and people you don't know."}, {"q": "In Mexico you ask a group of friends: \"Do you want to go to the beach?\"", "options": ["*¿Quiere ir a la playa?*", "*¿Queréis ir a la playa?*", "*¿Quieren ir a la playa?*", "*¿Quieres ir a la playa?*"], "answer": 2, "explain": "Latin America uses *ustedes* for every group, so the verb is *quieren*."}, {"q": "What does the verb *tutear* mean?", "options": ["to introduce someone", "to address someone as *usted*", "to say goodbye", "to address someone as *tú*"], "answer": 3, "explain": "*Tutear* means switching to the informal *tú*."}, {"q": "In Buenos Aires, a friend asks *¿Vos sos de acá?* What does *sos* mean?", "options": ["you are", "I am", "he is", "we are"], "answer": 0, "explain": "*Sos* is the *vos* form of *ser*, equivalent to *eres*."}, {"q": "Which job word has the same form for a man and a woman?", "options": ["*abogado*", "*periodista*", "*profesor*", "*cocinero*"], "answer": 1, "explain": "Words ending in *-ista* only change the article: *el / la periodista*."}, {"q": "The feminine of *el alcalde* (mayor) is:", "options": ["*la alcaldina*", "*la alcalda*", "*la alcalde*", "*la alcaldesa*"], "answer": 3, "explain": "*Alcalde* has a special feminine form, *alcaldesa*."}, {"q": "At a market stall: \"How much do the apples cost?\"", "options": ["*¿Cuánto cuestan las manzanas?*", "*¿Cuántos cuestan las manzanas?*", "*¿Qué cuestan las manzanas?*", "*¿Cuánto cuesta las manzanas?*"], "answer": 0, "explain": "With a plural subject the verb is *cuestan*, and the question word is *cuánto*."}, {"q": "The vendor asks *¿Tiene pan?* What is she asking?", "options": ["Do you want bread?", "Is the bread good?", "How much is the bread?", "Do you have bread?"], "answer": 3, "explain": "*Tiene* is the formal *you* form of *tener* (to have)."}, {"q": "Someone asks *¿Cómo estás?* Which answer is correct?", "options": ["*Soy bien, gracias. ¿Y tú?*", "*Estoy bien, gracias. ¿Y tú?*", "*Es bien, gracias.*", "*Tengo bien, gracias.*"], "answer": 1, "explain": "How you feel takes *estar*: *estoy bien*."}, {"q": "*Mis clases favoritas *___* Arte y Música.*", "options": ["*son*", "*es*", "*están*", "*somos*"], "answer": 0, "explain": "The subject *mis clases* is plural, so *ser* takes the form *son*."}, {"q": "A girl talking about her notebooks says: \"*___* cuadernos son azules.\"", "options": ["*Mías*", "*Mi*", "*Mis*", "*Mía*"], "answer": 2, "explain": "Possessives agree with the thing owned; *cuadernos* is plural, so *mis*."}, {"q": "*Me *___* los videojuegos.*", "options": ["*gustan*", "*gusto*", "*gusta*", "*gustas*"], "answer": 0, "explain": "*Gustar* agrees with what is liked; *los videojuegos* is plural, so *gustan*."}, {"q": "Your friend says *No me gusta correr.* You don't like it either. You say:", "options": ["*A mí también.*", "*A mí tampoco.*", "*Yo no gusta.*", "*A mí sí.*"], "answer": 1, "explain": "*Tampoco* agrees with a negative statement."}, {"q": "At a restaurant, how do you ask for the bill?", "options": ["*¿Nos trae la cuenta, por favor?*", "*¿Cuánto cuesta la mesa?*", "*¿Nos trae la factura de la mesa?*", "*¿Nos trae la carta, por favor?*"], "answer": 0, "explain": "The restaurant bill is *la cuenta*; *la carta* is the menu."}, {"q": "*Esta es mi *___*: la hija de mi hermano.*", "options": ["*sobrina*", "*nieta*", "*cuñada*", "*prima*"], "answer": 0, "explain": "Your brother's daughter is your *sobrina* (niece)."}, {"q": "*Mañana *___* treinta años.* (I turn thirty tomorrow.)", "options": ["*soy*", "*cumplo*", "*hago*", "*tengo*"], "answer": 1, "explain": "\"To turn\" an age is *cumplir*."}, {"q": "In a hotel you want to ask where the lift is. Which question is correct?", "options": ["*¿Dónde es el ascensor?*", "*¿Hay dónde el ascensor?*", "*¿Dónde está el ascensor?*", "*¿Dónde hay el ascensor?*"], "answer": 2, "explain": "Use *estar* for the location of a specific thing."}, {"q": "Tell your little brother: \"Set the table!\"", "options": ["*¡Pone la mesa!*", "*¡Pones la mesa!*", "*¡Poner la mesa!*", "*¡Pon la mesa!*"], "answer": 3, "explain": "*Poner* has the short irregular *tú* command *pon*."}, {"q": "How do you say \"It's very hot\"?", "options": ["*Hace muy calor.*", "*Es mucho calor.*", "*Está mucho calor.*", "*Hace mucho calor.*"], "answer": 3, "explain": "Weather uses *hace*, and *calor* is a noun, so it takes *mucho*, not *muy*."}, {"q": "At the doctor: \"My head hurts.\"", "options": ["*Me duelen la cabeza.*", "*Me duele la cabeza.*", "*Me duele mi cabeza.*", "*Tengo duele la cabeza.*"], "answer": 1, "explain": "*Doler* works like *gustar*, and Spanish uses *la*, not *mi*, with body parts."}, {"q": "In a clothes shop: \"I'll take it\" (about a coat, *el abrigo*).", "options": ["*Me la llevo.*", "*Lo me llevo.*", "*Me llevo lo.*", "*Me lo llevo.*"], "answer": 3, "explain": "*Abrigo* is masculine, so the pronoun is *lo*, placed before the verb."}, {"q": "Which is the correct singular of the food called *tamales*?", "options": ["*un tamal*", "*un tamale*", "*una tamal*", "*un tamalo*"], "answer": 0, "explain": "The Spanish singular is *tamal*; English \"tamale\" comes from the plural."}, {"q": "A woman meets someone new. What does she say?", "options": ["*Encanta.*", "*Encantado.*", "*Encantada.*", "*Encantados.*"], "answer": 2, "explain": "*Encantado / encantada* agrees with the speaker, so a woman says *encantada*."}], "title": "Introduction quiz", "level": "A1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

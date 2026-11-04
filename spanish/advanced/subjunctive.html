@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="c8caf901eefb">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Subjunctive · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Advanced</a><span class="sep">/</span><span class="cur">Subjunctive</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Advanced</span><h1>Subjunctive</h1><p class="sub">The present subjunctive from the ground up — regular, irregular, stem-changing and spelling-change forms, and its use after wishes, emotions, expressions, recommendations, doubt, ojalá, conjunctions and relative clauses.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#wishes-and-regular-forms">Wishes and Regular Forms</a></li><li><a href="#emotions-and-irregular-verbs">Emotions and Irregular Verbs</a></li><li><a href="#expressions-and-stem-changes">Expressions and Stem Changes</a></li><li><a href="#recommendations-and-spelling-changes">Recommendations and Spelling Changes</a></li><li><a href="#expressions-and-recommendations-1">Expressions and Recommendations 1</a></li><li><a href="#doubt-and-ojala">Doubt and Ojalá</a></li><li><a href="#conditional-outcomes">Conditional Outcomes</a></li><li><a href="#relative-clauses-1">Relative Clauses 1</a></li><li><a href="#relative-clauses-2">Relative Clauses 2</a></li><li><a href="#expressions-and-recommendations-2">Expressions and Recommendations 2</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li><li><a href="#extra-practice-1">Extra Practice 1</a></li><li><a href="#extra-practice-2">Extra Practice 2</a></li><li><a href="#extra-practice-3">Extra Practice 3</a></li></ol></nav>
+<article class="prose card">
+<h2 id="wishes-and-regular-forms">Wishes and Regular Forms</h2>
+<p>The <strong>subjunctive</strong> (<em>el subjuntivo</em>) is not a tense but a <strong>mood</strong>. The indicative presents things as facts; the subjunctive presents them as wishes, feelings, possibilities or things not (yet) real. It appears mostly in a <strong>second clause introduced by <em>que</em></strong>, after a trigger in the main clause.</p>
+<h3 id="forming-the-present-subjunctive">Forming the present subjunctive</h3>
+<ol>
+<li>Take the <strong>yo</strong> form of the present indicative.</li>
+<li>Drop the <strong>-o</strong>.</li>
+<li>Add the <strong>"opposite" ending</strong>: <em>-ar</em> verbs take <em>-e</em> endings; <em>-er/-ir</em> verbs take <em>-a</em> endings.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Person</th>
+<th>hablar (habl-o)</th>
+<th>comer (com-o)</th>
+<th>vivir (viv-o)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yo</td>
+<td>hable</td>
+<td>coma</td>
+<td>viva</td>
+</tr>
+<tr>
+<td>tú</td>
+<td>hables</td>
+<td>comas</td>
+<td>vivas</td>
+</tr>
+<tr>
+<td>él / ella / usted</td>
+<td>hable</td>
+<td>coma</td>
+<td>viva</td>
+</tr>
+<tr>
+<td>nosotros</td>
+<td>hablemos</td>
+<td>comamos</td>
+<td>vivamos</td>
+</tr>
+<tr>
+<td>vosotros</td>
+<td>habléis</td>
+<td>comáis</td>
+<td>viváis</td>
+</tr>
+<tr>
+<td>ellos / ustedes</td>
+<td>hablen</td>
+<td>coman</td>
+<td>vivan</td>
+</tr>
+</tbody>
+</table></div>
+<p>Because you start from the <em>yo</em> form, irregular <em>yo</em> stems carry over: <em>tengo → tenga</em>, <em>hago → haga</em>, <em>salgo → salga</em>, <em>conozco → conozca</em>, <em>digo → diga</em>, <em>pongo → ponga</em>, <em>vengo → venga</em>, <em>veo → vea</em>.</p>
+<h3 id="wishes-and-desires">Wishes and desires</h3>
+<p>When the main clause expresses what someone <strong>wants</strong> another person to do or to happen, the second verb is subjunctive — provided the two clauses have <strong>different subjects</strong>.</p>
+<ul class="ex">
+<li><em>Quiero que vengas a la fiesta.</em> — I want you to come to the party.</li>
+<li><em>Mis padres desean que estudie medicina.</em> — My parents want me to study medicine.</li>
+<li><em>Preferimos que nos llaméis antes.</em> — We'd rather you called us first.</li>
+</ul>
+<p>Same subject? Use the infinitive: <em>Quiero venir</em> (I want to come), <del>quiero que yo venga</del>.</p>
+<aside class="callout hack"><p class="callout-title">Want + someone + to</p><p>English <em>I want you to…</em> has no <em>que</em>, but Spanish always does: <em>Quiero que tú…</em> + subjunctive.</p></aside>
+
+<h2 id="emotions-and-irregular-verbs">Emotions and Irregular Verbs</h2>
+<h3 id="emotions">Emotions</h3>
+<p>After expressions of <strong>feeling</strong> about someone else's action — joy, fear, sadness, surprise, anger — the subjunctive follows.</p>
+<ul class="ex">
+<li><em>Me alegra que estés aquí.</em> — I'm glad you're here.</li>
+<li><em>Tengo miedo de que se pierdan.</em> — I'm afraid they'll get lost.</li>
+<li><em>Nos sorprende que no lo sepas.</em> — It surprises us that you don't know.</li>
+<li><em>Siento que no puedas venir.</em> — I'm sorry you can't come.</li>
+<li><em>Le molesta que hablemos alto.</em> — It bothers him that we talk loudly.</li>
+</ul>
+<p>Common triggers: <em>alegrarse de que</em>, <em>encantar que</em>, <em>gustar que</em>, <em>molestar que</em>, <em>sentir que</em>, <em>temer que</em>, <em>tener miedo de que</em>, <em>sorprender que</em>, <em>estar contento/triste de que</em>.</p>
+<h3 id="six-irregular-verbs">Six irregular verbs</h3>
+<p>These don't follow the <em>yo</em>-form rule. A handy memory aid is <strong>DISHES</strong>: <em>dar, ir, ser, haber, estar, saber</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>dar</th>
+<th>ir</th>
+<th>ser</th>
+<th>haber</th>
+<th>estar</th>
+<th>saber</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yo</td>
+<td>dé</td>
+<td>vaya</td>
+<td>sea</td>
+<td>haya</td>
+<td>esté</td>
+<td>sepa</td>
+</tr>
+<tr>
+<td>tú</td>
+<td>des</td>
+<td>vayas</td>
+<td>seas</td>
+<td>hayas</td>
+<td>estés</td>
+<td>sepas</td>
+</tr>
+<tr>
+<td>él</td>
+<td>dé</td>
+<td>vaya</td>
+<td>sea</td>
+<td>haya</td>
+<td>esté</td>
+<td>sepa</td>
+</tr>
+<tr>
+<td>nosotros</td>
+<td>demos</td>
+<td>vayamos</td>
+<td>seamos</td>
+<td>hayamos</td>
+<td>estemos</td>
+<td>sepamos</td>
+</tr>
+<tr>
+<td>vosotros</td>
+<td>deis</td>
+<td>vayáis</td>
+<td>seáis</td>
+<td>hayáis</td>
+<td>estéis</td>
+<td>sepáis</td>
+</tr>
+<tr>
+<td>ellos</td>
+<td>den</td>
+<td>vayan</td>
+<td>sean</td>
+<td>hayan</td>
+<td>estén</td>
+<td>sepan</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout fact"><p class="callout-title">Accents matter</p><p><em>Dé</em> (give) carries an accent to distinguish it from the preposition <em>de</em>. <em>Esté, estés, estén</em> need accents to keep the stress on the last syllable (<em>este</em> without accent means "this").</p></aside>
+
+<h2 id="expressions-and-stem-changes">Expressions and Stem Changes</h2>
+<h3 id="impersonal-expressions">Impersonal expressions</h3>
+<p>Many expressions with <em>es</em> + adjective + <em>que</em> trigger the subjunctive when they express opinion, necessity, possibility or judgement.</p>
+<ul class="ex">
+<li><em>Es importante que descanses.</em> — It's important for you to rest.</li>
+<li><em>Es necesario que lleguemos a tiempo.</em> — We need to arrive on time.</li>
+<li><em>Es posible que llueva.</em> — It may rain.</li>
+<li><em>Es una pena que se vayan.</em> — It's a shame they're leaving.</li>
+<li><em>Es mejor que no digas nada.</em> — It's better you don't say anything.</li>
+</ul>
+<p>But expressions of <strong>certainty</strong> take the indicative: <em>Es verdad que</em>, <em>es cierto que</em>, <em>es obvio que</em>, <em>está claro que</em>. (<em>Es verdad que <strong>llueve</strong></em>.)</p>
+<h3 id="stem-changes">Stem changes</h3>
+<p><strong>-ar and -er verbs</strong> keep their usual stem change (e → ie, o → ue) in every form <strong>except</strong> <em>nosotros</em> and <em>vosotros</em>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>querer</th>
+<th>poder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quiera, quieras, quiera, <strong>queramos, queráis</strong>, quieran</td>
+<td>pueda, puedas, pueda, <strong>podamos, podáis</strong>, puedan</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>-ir verbs</strong> with e → ie or o → ue also change in <em>nosotros/vosotros</em>, but to <strong>i</strong> and <strong>u</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>sentir</th>
+<th>dormir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sienta, sientas, sienta, <strong>sintamos, sintáis</strong>, sientan</td>
+<td>duerma, duermas, duerma, <strong>durmamos, durmáis</strong>, duerman</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>-ir verbs with e → i</strong> keep <em>i</em> in every form:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>pedir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pida, pidas, pida, pidamos, pidáis, pidan</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout trap"><p class="callout-title">Nosotros in -ir verbs</p><p><em>Durmamos</em> is right, <del>dormamos</del> is wrong. And the subjunctive of <em>sentir</em> is <em>sintamos</em>, not <del>sentamos</del> (which belongs to <em>sentar</em>, to sit).</p></aside>
+
+<h2 id="recommendations-and-spelling-changes">Recommendations and Spelling Changes</h2>
+<h3 id="recommendations-and-requests">Recommendations and requests</h3>
+<p>Verbs of <strong>advising, asking, ordering, allowing and forbidding</strong> take the subjunctive when directed at someone else.</p>
+<ul class="ex">
+<li><em>Te recomiendo que pruebes el gazpacho.</em> — I recommend you try the gazpacho.</li>
+<li><em>El médico me aconseja que haga ejercicio.</em> — The doctor advises me to exercise.</li>
+<li><em>Les pido que no fumen.</em> — I ask you not to smoke.</li>
+<li><em>Sugiero que salgamos temprano.</em> — I suggest we leave early.</li>
+<li><em>No permiten que entremos.</em> — They don't let us go in.</li>
+</ul>
+<p>Common triggers: <em>aconsejar, recomendar, sugerir, pedir, rogar, exigir, insistir en, mandar, ordenar, permitir, prohibir</em>.</p>
+<h3 id="spelling-changes">Spelling changes</h3>
+<p>To keep the sound of the stem's last consonant, some verbs change their spelling before <em>e</em> or <em>a</em>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Change</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-car</td>
+<td>c → qu</td>
+<td><em>sacar → saque, saques…</em></td>
+</tr>
+<tr>
+<td>-gar</td>
+<td>g → gu</td>
+<td><em>llegar → llegue, llegues…</em></td>
+</tr>
+<tr>
+<td>-zar</td>
+<td>z → c</td>
+<td><em>empezar → empiece, empieces…</em></td>
+</tr>
+<tr>
+<td>-ger / -gir</td>
+<td>g → j</td>
+<td><em>escoger → escoja</em>, <em>dirigir → dirija</em></td>
+</tr>
+<tr>
+<td>-guir</td>
+<td>gu → g</td>
+<td><em>seguir → siga</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Espero que lleguen pronto.</em> — I hope they arrive soon.</li>
+<li><em>Es mejor que empieces ya.</em> — You'd better start now.</li>
+<li><em>Quiere que escoja yo.</em> — She wants me to choose.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Same as the preterite yo form</p><p>The <em>-car/-gar/-zar</em> changes are the ones you already know from the preterite: <em>saqué, llegué, empecé</em>.</p></aside>
+
+<h2 id="expressions-and-recommendations-1">Expressions and Recommendations 1</h2>
+<p>This lesson combines two trigger groups. Practise spotting them.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Es fundamental que…</em></td>
+<td>impersonal expression</td>
+</tr>
+<tr>
+<td><em>Te aconsejo que…</em></td>
+<td>recommendation</td>
+</tr>
+<tr>
+<td><em>Es raro que…</em></td>
+<td>impersonal expression (judgement)</td>
+</tr>
+<tr>
+<td><em>Os ruego que…</em></td>
+<td>request</td>
+</tr>
+<tr>
+<td><em>Conviene que…</em></td>
+<td>expression (it's advisable)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="practice">Practice</h3>
+<ol>
+<li>Es fundamental que (tú, beber) ___ agua.</li>
+<li>Te aconsejo que (buscar) ___ otro trabajo.</li>
+<li>Es raro que Ana no (contestar) ___.</li>
+<li>Os ruego que (ser) ___ puntuales.</li>
+<li>Conviene que (nosotros, reservar) ___ mesa.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>bebas</em> 2. <em>busques</em> 3. <em>conteste</em> 4. <em>seáis</em> 5. <em>reservemos</em></li>
+</ol></aside>
+
+<h3 id="indirect-object-que">Indirect object + que</h3>
+<p>Recommendation verbs usually carry an indirect object pronoun that refers to the same person as the subjunctive subject: <em><strong>Te</strong> pido que <strong>vengas</strong></em>.</p>
+<h2 id="doubt-and-ojala">Doubt and Ojalá</h2>
+<h3 id="doubt-and-denial">Doubt and denial</h3>
+<p>When you <strong>doubt</strong> or <strong>deny</strong> that something is true, the subjunctive follows.</p>
+<ul class="ex">
+<li><em>Dudo que tengan razón.</em> — I doubt they're right.</li>
+<li><em>No creo que venga.</em> — I don't think he'll come.</li>
+<li><em>Niega que sea culpable.</em> — She denies she's guilty.</li>
+<li><em>No es cierto que haya problemas.</em> — It isn't true that there are problems.</li>
+</ul>
+<p>The positive versions express belief and take the <strong>indicative</strong>: <em>Creo que viene.</em> <em>Pienso que tienen razón.</em> <em>No dudo que es verdad.</em></p>
+<aside class="callout trap"><p class="callout-title">Creer flips</p><p><em>Creo que</em> + indicative; <em>No creo que</em> + subjunctive. In questions, both are possible: <em>¿Crees que viene / venga?</em></p></aside>
+
+<h3 id="ojala">Ojalá</h3>
+<p><em>Ojalá</em> (from Arabic, roughly "if God wills") means <strong>"I hope" / "let's hope"</strong>. It is always followed by the subjunctive; <em>que</em> is optional.</p>
+<ul class="ex">
+<li><em>¡Ojalá haga sol mañana!</em> — I hope it's sunny tomorrow!</li>
+<li><em>Ojalá que todo salga bien.</em> — I hope everything goes well.</li>
+<li><em>Ojalá no se enteren.</em> — Let's hope they don't find out.</li>
+</ul>
+<p>Other hope expressions: <em>Espero que…</em>, <em>Que…</em> on its own for wishes: <em>¡Que te mejores!</em> (Get well soon!) <em>¡Que tengas buen viaje!</em> (Have a good trip!)</p>
+<h2 id="conditional-outcomes">Conditional Outcomes</h2>
+<p>Certain <strong>conjunctions</strong> introduce an action that depends on a condition, a purpose or something that hasn't happened yet. These always take the subjunctive:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Conjunction</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>para que</em></td>
+<td>so that</td>
+</tr>
+<tr>
+<td><em>a menos que</em></td>
+<td>unless</td>
+</tr>
+<tr>
+<td><em>con tal de que</em></td>
+<td>provided that</td>
+</tr>
+<tr>
+<td><em>en caso de que</em></td>
+<td>in case</td>
+</tr>
+<tr>
+<td><em>sin que</em></td>
+<td>without</td>
+</tr>
+<tr>
+<td><em>antes de que</em></td>
+<td>before</td>
+</tr>
+<tr>
+<td><em>a no ser que</em></td>
+<td>unless</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Te lo explico para que lo entiendas.</em> — I'll explain it so that you understand.</li>
+<li><em>Iremos a la playa a menos que llueva.</em> — We'll go to the beach unless it rains.</li>
+<li><em>Lleva paraguas en caso de que llueva.</em> — Take an umbrella in case it rains.</li>
+<li><em>Salió sin que nadie lo viera.</em> — He left without anyone seeing him. (past: imperfect subjunctive)</li>
+</ul>
+<h3 id="time-conjunctions-future-subjunctive">Time conjunctions: future = subjunctive</h3>
+<p><em>Cuando, en cuanto, tan pronto como, hasta que, después de que, mientras</em> take the subjunctive when the action is <strong>still in the future</strong>, but the indicative for habits or past facts.</p>
+<ul class="ex">
+<li><em>Cuando llegues, llámame.</em> — When you arrive, call me. (future → subjunctive)</li>
+<li><em>Cuando llego, siempre llamo.</em> — When I arrive, I always call. (habit → indicative)</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">No future after cuando</p><p><del>Cuando llegarás</del> → <em>Cuando llegues</em>. Spanish never uses the future tense after <em>cuando</em> in a time clause.</p></aside>
+
+<h2 id="relative-clauses-1">Relative Clauses 1</h2>
+<p>The subjunctive also appears in <strong>relative clauses</strong> (after <em>que</em>, <em>donde</em>, etc.) when the antecedent is <strong>unknown, hypothetical or not yet found</strong>.</p>
+<ul class="ex">
+<li><em>Busco un piso que tenga terraza.</em> — I'm looking for a flat that has a terrace. (any flat — I don't know if one exists)</li>
+<li><em>Busco el piso que tiene terraza.</em> — I'm looking for the flat that has a terrace. (a specific, known flat → indicative)</li>
+</ul>
+<ul class="ex">
+<li><em>Necesitamos a alguien que hable japonés.</em> — We need someone who speaks Japanese.</li>
+<li><em>Quiero un coche que no gaste mucho.</em> — I want a car that doesn't use much fuel.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Known or unknown?</p><p>Ask yourself whether the speaker knows that this particular person or thing exists. Known → indicative. Unknown or wished for → subjunctive.</p></aside>
+
+<p>Note the personal <em>a</em>: it is often dropped when the person is not specific (<em>Busco un médico que…</em>), but kept with <em>alguien</em> and <em>nadie</em>.</p>
+<h2 id="relative-clauses-2">Relative Clauses 2</h2>
+<h3 id="non-existence-and-negation">Non-existence and negation</h3>
+<p>When the antecedent <strong>doesn't exist</strong> (with <em>nadie, nada, ningún/ninguna</em>), the relative clause takes the subjunctive.</p>
+<ul class="ex">
+<li><em>No hay nadie que me entienda.</em> — There's nobody who understands me.</li>
+<li><em>No conozco ningún restaurante que abra los lunes.</em> — I don't know any restaurant that opens on Mondays.</li>
+<li><em>No hay nada que podamos hacer.</em> — There's nothing we can do.</li>
+</ul>
+<h3 id="questions-about-existence">Questions about existence</h3>
+<ul class="ex">
+<li><em>¿Hay alguien aquí que sepa cocinar?</em> — Is there anyone here who can cook?</li>
+<li><em>¿Conoces a alguien que viva en Lima?</em> — Do you know anyone who lives in Lima?</li>
+</ul>
+<h3 id="indefinite-expressions">Indefinite expressions</h3>
+<p>"-ever" expressions take the subjunctive for open, undetermined reference:</p>
+<ul class="ex">
+<li><em>Haz lo que quieras.</em> — Do whatever you like.</li>
+<li><em>Iré donde tú vayas.</em> — I'll go wherever you go.</li>
+<li><em>Quien llegue primero, gana.</em> — Whoever arrives first wins.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Contrast</p><p><em>Hay alguien que sabe cocinar</em> (someone exists — indicative) vs. <em>No hay nadie que sepa cocinar</em> (no one exists — subjunctive).</p></aside>
+
+<h2 id="expressions-and-recommendations-2">Expressions and Recommendations 2</h2>
+<p>More triggers to add to your list:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Es preciso que</em></td>
+<td><em>Es preciso que firmes aquí.</em> — You must sign here.</td>
+</tr>
+<tr>
+<td><em>Es urgente que</em></td>
+<td><em>Es urgente que llamemos al médico.</em></td>
+</tr>
+<tr>
+<td><em>Más vale que</em></td>
+<td><em>Más vale que te des prisa.</em> — You'd better hurry.</td>
+</tr>
+<tr>
+<td><em>Hace falta que</em></td>
+<td><em>Hace falta que alguien lo arregle.</em> — Someone needs to fix it.</td>
+</tr>
+<tr>
+<td><em>Exigir que</em></td>
+<td><em>El jefe exige que lleguemos a las ocho.</em></td>
+</tr>
+<tr>
+<td><em>Insistir en que</em></td>
+<td><em>Insisten en que nos quedemos a cenar.</em></td>
+</tr>
+<tr>
+<td><em>Decir que</em> (command)</td>
+<td><em>Dile que venga.</em> — Tell him to come.</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout trap"><p class="callout-title">Decir and insistir: two meanings</p><p>As <strong>information</strong>, they take the indicative: <em>Dice que viene</em> (he says he's coming). As a <strong>command</strong>, they take the subjunctive: <em>Dice que vengas</em> (he says you should come).</p></aside>
+
+<h3 id="practice_1">Practice</h3>
+<ol>
+<li>Más vale que (vosotros, estudiar) ___.</li>
+<li>Les digo que (traer) ___ comida.</li>
+<li>Hace falta que (yo, hacer) ___ la compra.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>estudiéis</em> 2. <em>traigan</em> 3. <em>haga</em></li>
+</ol></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Focus: forms.</p>
+<p>Give the present subjunctive in the person shown.</p>
+<ol>
+<li>tener (yo) 2. ir (nosotros) 3. dormir (nosotros) 4. llegar (tú) 5. ser (ellos) 6. pedir (vosotros) 7. conocer (ella) 8. dar (usted) 9. saber (tú) 10. empezar (yo)</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>tenga</em> 2. <em>vayamos</em> 3. <em>durmamos</em> 4. <em>llegues</em> 5. <em>sean</em> 6. <em>pidáis</em> 7. <em>conozca</em> 8. <em>dé</em> 9. <em>sepas</em> 10. <em>empiece</em></li>
+</ol></aside>
+
+<aside class="callout hack"><p class="callout-title">Three questions for any verb</p><p>Is it one of DISHES? Is the <em>yo</em> form irregular? Is there a stem or spelling change? Answer these and the form follows.</p></aside>
+
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Focus: triggers. Choose indicative or subjunctive.</p>
+<ol>
+<li>Creo que (tienes / tengas) razón.</li>
+<li>Espero que (vienes / vengas).</li>
+<li>Es cierto que (es / sea) caro.</li>
+<li>Busco a alguien que (sabe / sepa) alemán.</li>
+<li>Cuando (llegas / llegues) a casa, avísame.</li>
+<li>Me alegro de que (estás / estés) bien.</li>
+<li>Tengo un amigo que (vive / viva) en Roma.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>tienes</em> (belief) 2. <em>vengas</em> (hope) 3. <em>es</em> (certainty) 4. <em>sepa</em> (unknown person) 5. <em>llegues</em> (future) 6. <em>estés</em> (emotion) 7. <em>vive</em> (known person)</li>
+</ol></aside>
+
+<h2 id="extra-practice-1">Extra Practice 1</h2>
+<p>Translate.</p>
+<ol>
+<li>I want you to listen.</li>
+<li>It's possible that she knows.</li>
+<li>We're glad you're coming.</li>
+<li>I don't think it's true.</li>
+<li>Let's hope they win!</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>Quiero que escuches.</em> 2. <em>Es posible que lo sepa.</em> 3. <em>Nos alegra que vengas.</em> 4. <em>No creo que sea verdad.</em> 5. <em>¡Ojalá ganen!</em></li>
+</ol></aside>
+
+<h2 id="extra-practice-2">Extra Practice 2</h2>
+<p>Complete with the subjunctive.</p>
+<ol>
+<li>Te lo digo para que no (preocuparse) ___.</li>
+<li>Saldremos a menos que (hacer) ___ frío.</li>
+<li>No hay nadie que (poder) ___ ayudarnos.</li>
+<li>Es una pena que (ellos, irse) ___.</li>
+<li>Antes de que (tú, decir) ___ nada, escúchame.</li>
+</ol>
+<aside class="callout fact"><p class="callout-title">Answers</p><ol>
+<li><em>te preocupes</em> 2. <em>haga</em> 3. <em>pueda</em> 4. <em>se vayan</em> 5. <em>digas</em></li>
+</ol></aside>
+
+<h2 id="extra-practice-3">Extra Practice 3</h2>
+<p>Correct the mistakes.</p>
+<ol>
+<li><del>Quiero que vienes.</del> → <em>Quiero que vengas.</em></li>
+<li><del>Espero llegues pronto.</del> → <em>Espero que llegues pronto.</em></li>
+<li><del>Ojalá tienes suerte.</del> → <em>Ojalá tengas suerte.</em></li>
+<li><del>Cuando tendrás tiempo, llámame.</del> → <em>Cuando tengas tiempo, llámame.</em></li>
+<li><del>No creo que es buena idea.</del> → <em>No creo que sea buena idea.</em></li>
+<li><del>Quiero que yo vaya.</del> → <em>Quiero ir.</em></li>
+</ol>
+<aside class="callout fact"><p class="callout-title">The big picture</p><p>Facts and beliefs → indicative. Wishes, emotions, judgements, advice, doubt, unreal or future conditions and unknown antecedents → subjunctive. Same subject in both clauses → usually infinitive.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="conditional-perfect.html">← Conditional Perfect</a><a class="btn" href="more-subjunctive.html">More Subjunctive →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

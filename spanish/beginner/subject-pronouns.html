@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="912ed60f44ab">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Subject Pronouns · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Subject Pronouns</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Subject Pronouns</h1><p class="sub">Yo, tú, usted, vos, él, ella, nosotros, vosotros, ustedes, ellos and ellas, when to use each and when to leave them out.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#yo">Yo</a></li><li><a href="#tu-usted-vos">Tú, Usted, Vos</a></li><li><a href="#el-ella">Él, Ella</a></li><li><a href="#nosotros-nosotras">Nosotros, Nosotras</a></li><li><a href="#ustedes-vosotros-vosotras">Ustedes, Vosotros, Vosotras</a></li><li><a href="#ellos-ellas">Ellos, Ellas</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="yo">Yo</h2>
+<p>A subject pronoun stands for the person or thing doing the action: <em>I</em>, <em>you</em>, <em>she</em>, <em>we</em>, <em>they</em>. Here is the full Spanish set at a glance:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Singular</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1st person</td>
+<td><em>yo</em> — I</td>
+<td><em>nosotros / nosotras</em> — we</td>
+</tr>
+<tr>
+<td>2nd person, informal</td>
+<td><em>tú</em> (<em>vos</em>) — you</td>
+<td><em>vosotros / vosotras</em> — you all (Spain)</td>
+</tr>
+<tr>
+<td>2nd person, formal</td>
+<td><em>usted</em> — you</td>
+<td><em>ustedes</em> — you all</td>
+</tr>
+<tr>
+<td>3rd person</td>
+<td><em>él</em> — he, <em>ella</em> — she</td>
+<td><em>ellos / ellas</em> — they</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Yo</em> means <strong>I</strong>. Unlike English <em>I</em>, it is written with a small letter unless it starts a sentence.</p>
+<ul class="ex">
+<li><em>Yo trabajo en un hospital.</em> — I work in a hospital.</li>
+<li><em>Mi novia y yo vivimos juntos.</em> — My girlfriend and I live together.</li>
+</ul>
+<h3 id="usually-left-out">Usually left out</h3>
+<p>Spanish verb endings already show who the subject is: <em>hablo</em> can only mean "I speak". So native speakers normally <strong>drop</strong> the pronoun and use it only for emphasis or contrast.</p>
+<ul class="ex">
+<li><em>Hablo tres idiomas.</em> — I speak three languages. (neutral)</li>
+<li><em>Yo pago, tú no.</em> — I'm paying, not you. (contrast)</li>
+<li><em>—¿Quién quiere café? —Yo.</em> — Who wants coffee? — Me.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Not &quot;me&quot;</p><p>In short answers English says <em>me</em>; Spanish says <em>yo</em>: <em>—¿Quién es? —Soy yo.</em> — Who is it? — It's me.</p></aside>
+
+<h2 id="tu-usted-vos">Tú, Usted, Vos</h2>
+<p>Spanish has several words for singular <strong>you</strong>, and choosing the right one is a matter of politeness and region.</p>
+<h3 id="tu-informal">Tú — informal</h3>
+<p>Use <em>tú</em> with friends, family, children, classmates, people your age, and pets. It is written with an accent to tell it apart from <em>tu</em> (your).</p>
+<ul class="ex">
+<li><em>¿Tú tienes hermanos?</em> — Do you have siblings?</li>
+<li><em>Tu casa es bonita.</em> — Your house is pretty. (<em>tu</em> = your, no accent)</li>
+</ul>
+<h3 id="usted-formal">Usted — formal</h3>
+<p>Use <em>usted</em> with people you don't know, older people, customers, officials and anyone you want to show respect to. It is often abbreviated <em>Ud.</em> or <em>Vd.</em></p>
+<p><em>Usted</em> takes the <strong>same verb form as él / ella</strong> (third person), because historically it came from <em>vuestra merced</em>, "your grace".</p>
+<ul class="ex">
+<li><em>¿Usted es la señora Pérez?</em> — Are you Mrs Pérez?</li>
+<li><em>¿Cómo se llama usted?</em> — What's your name? (formal)</li>
+</ul>
+<h3 id="vos-informal-in-some-countries">Vos — informal in some countries</h3>
+<p>In Argentina, Uruguay, Paraguay and much of Central America, <em>vos</em> replaces <em>tú</em> as the everyday informal "you". In Chile, Bolivia and a few other countries it lives alongside <em>tú</em>. It has its own verb forms in the present: <em>vos hablás</em>, <em>vos tenés</em>, <em>vos sos</em>.</p>
+<ul class="ex">
+<li><em>Vos sos muy amable.</em> — You're very kind. (Argentina)</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">When in doubt, start with usted</p><p>If you're not sure, use <em>usted</em>. The other person will usually say <em>¿Nos tuteamos?</em> or <em>Puedes tutearme</em> ("you can call me <em>tú</em>") if they'd rather be informal.</p></aside>
+
+<h2 id="el-ella">Él, Ella</h2>
+<p><em>Él</em> means <strong>he</strong> and <em>ella</em> means <strong>she</strong>. They refer to people, and in Spanish can also refer to animals and things (<em>it</em>), although for things the pronoun is almost always dropped.</p>
+<ul class="ex">
+<li><em>Él es mi hermano.</em> — He's my brother.</li>
+<li><em>Ella estudia medicina.</em> — She studies medicine.</li>
+<li><em>—¿Y el museo? —Está cerca.</em> — And the museum? — It's close by. (no pronoun)</li>
+</ul>
+<h3 id="the-accent-matters">The accent matters</h3>
+<p><em>Él</em> carries a written accent to distinguish it from the article <em>el</em> (the):</p>
+<ul class="ex">
+<li><em>El chico canta.</em> — The boy sings.</li>
+<li><em>Él canta.</em> — He sings.</li>
+</ul>
+<h3 id="using-them-for-clarity">Using them for clarity</h3>
+<p>Because <em>él</em>, <em>ella</em> and <em>usted</em> all share one verb form (<em>come</em> = he eats / she eats / you eat), the pronoun is often added when the context could be unclear:</p>
+<ul class="ex">
+<li><em>Ella trabaja por la mañana y él por la tarde.</em> — She works in the morning and he in the afternoon.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">No pronoun for &quot;it&quot;</p><p>There is no subject pronoun for <em>it</em> in neutral sentences. <em>Llueve.</em> — It's raining. <em>Es importante.</em> — It's important. Never <del><em>Él es importante</em></del> for an idea.</p></aside>
+
+<h2 id="nosotros-nosotras">Nosotros, Nosotras</h2>
+<p><em>Nosotros</em> and <em>nosotras</em> mean <strong>we</strong> — a group that includes the speaker.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>nosotros</em></td>
+<td>a group of men, or a mixed group</td>
+</tr>
+<tr>
+<td><em>nosotras</em></td>
+<td>a group made up only of women</td>
+</tr>
+</tbody>
+</table></div>
+<p>Even a group of ten women and one man takes <em>nosotros</em>. The masculine is the default form for mixed groups across Spanish grammar.</p>
+<ul class="ex">
+<li><em>Nosotros vamos al cine esta noche.</em> — We're going to the cinema tonight.</li>
+<li><em>Nosotras somos compañeras de piso.</em> — We (women) are flatmates.</li>
+</ul>
+<p>Like other pronouns, <em>nosotros</em> is usually dropped since the ending <em>-mos</em> already says "we": <em>Comemos a las dos.</em> — We eat at two.</p>
+<h3 id="mi-amigo-y-yo">Mi amigo y yo</h3>
+<p>When "we" is spelled out, the verb is still in the <em>nosotros</em> form:</p>
+<ul class="ex">
+<li><em>Mi hermana y yo jugamos al tenis.</em> — My sister and I play tennis.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">The -mos ending</p><p>In almost every Spanish tense, the <em>nosotros</em> form ends in <em>-mos</em>: <em>hablamos</em>, <em>comemos</em>, <em>vivimos</em>, <em>estamos</em>. Spot <em>-mos</em>, think "we".</p></aside>
+
+<h2 id="ustedes-vosotros-vosotras">Ustedes, Vosotros, Vosotras</h2>
+<p>For plural <strong>you</strong> (you all, you guys), the choice depends on where you are.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Informal plural</th>
+<th>Formal plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spain</td>
+<td><em>vosotros / vosotras</em></td>
+<td><em>ustedes</em></td>
+</tr>
+<tr>
+<td>Latin America</td>
+<td><em>ustedes</em></td>
+<td><em>ustedes</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="vosotros-vosotras-spain-only">Vosotros, vosotras — Spain only</h3>
+<p>Spaniards use <em>vosotros</em> (men or mixed groups) and <em>vosotras</em> (women only) for friends, family and people they'd address as <em>tú</em> individually. These have their own verb forms: <em>vosotros habláis</em>, <em>coméis</em>, <em>vivís</em>.</p>
+<ul class="ex">
+<li><em>¿Vosotros venís a la fiesta?</em> — Are you guys coming to the party? (Spain)</li>
+</ul>
+<h3 id="ustedes-everywhere">Ustedes — everywhere</h3>
+<p>In Latin America <em>ustedes</em> covers all plural "you", whether talking to friends or strangers. In Spain it is formal. It is abbreviated <em>Uds.</em> or <em>Vds.</em> and takes the <strong>same verb form as ellos / ellas</strong>.</p>
+<ul class="ex">
+<li><em>¿Ustedes son de aquí?</em> — Are you from here? (plural)</li>
+<li><em>Chicos, ¿ustedes quieren pizza?</em> — Guys, do you want pizza? (Latin America)</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Which should you learn?</p><p>Learn to recognise all forms, but practise the system of the region you'll visit most. A Mexican who hears <em>vosotros</em> understands it perfectly — it just sounds Spanish.</p></aside>
+
+<h2 id="ellos-ellas">Ellos, Ellas</h2>
+<p><em>Ellos</em> and <em>ellas</em> mean <strong>they</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>ellos</em></td>
+<td>a group of men, or a mixed group</td>
+</tr>
+<tr>
+<td><em>ellas</em></td>
+<td>a group made up only of women</td>
+</tr>
+</tbody>
+</table></div>
+<p>They follow the same gender rule as <em>nosotros / nosotras</em>. For things, the pronoun is normally left out.</p>
+<ul class="ex">
+<li><em>Ellos trabajan en un banco.</em> — They work in a bank.</li>
+<li><em>Ellas son mis primas.</em> — They're my cousins (all female).</li>
+<li><em>—¿Dónde están las llaves? —Están en la mesa.</em> — Where are the keys? — They're on the table.</li>
+</ul>
+<h3 id="ellos-ellas-and-ustedes-share-a-verb-form">Ellos, ellas and ustedes share a verb form</h3>
+<p><em>Hablan</em> can mean "they speak" or "you all speak". Add the pronoun when you need to be clear:</p>
+<ul class="ex">
+<li><em>Ellos comen aquí, pero ustedes comen en casa.</em> — They eat here, but you eat at home.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Not for objects as subjects</p><p><del><em>Ellos son caros</em></del> about shoes sounds odd. Simply say <em>Son caros.</em> — They're expensive.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Match each pronoun with its verb form. The present of <em>ser</em> (to be) is a good model:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pronoun</th>
+<th><em>ser</em></th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>soy</em></td>
+<td>I am</td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>eres</em></td>
+<td>you are</td>
+</tr>
+<tr>
+<td><em>vos</em></td>
+<td><em>sos</em></td>
+<td>you are (Arg., etc.)</td>
+</tr>
+<tr>
+<td><em>él, ella, usted</em></td>
+<td><em>es</em></td>
+<td>he/she is, you are</td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>somos</em></td>
+<td>we are</td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>sois</em></td>
+<td>you all are (Spain)</td>
+</tr>
+<tr>
+<td><em>ellos, ellas, ustedes</em></td>
+<td><em>son</em></td>
+<td>they are, you all are</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="practice-which-pronoun">Practice: which pronoun?</h3>
+<ul class="ex">
+<li>Talking to your boss → <em>usted</em></li>
+<li>Talking to your little brother → <em>tú</em> (or <em>vos</em>)</li>
+<li>Talking to three friends in Madrid → <em>vosotros</em></li>
+<li>Talking to three friends in Bogotá → <em>ustedes</em></li>
+<li>Talking about Ana and Lucía → <em>ellas</em></li>
+<li>Talking about Ana and Pedro → <em>ellos</em></li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<h3 id="when-to-keep-when-to-drop">When to keep, when to drop</h3>
+<p>Keep the pronoun for <strong>contrast</strong>, <strong>emphasis</strong> or <strong>clarity</strong>. Drop it everywhere else.</p>
+<ul class="ex">
+<li><em>Trabajo mucho.</em> — I work a lot. (neutral)</li>
+<li><em>Yo trabajo mucho, pero él no.</em> — I work a lot, but he doesn't. (contrast)</li>
+<li><em>¿Usted habla inglés?</em> — Do you speak English? (clarity: not "he/she")</li>
+</ul>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>Tu eres mi mejor amigo.</em></del> → <em>Tú eres mi mejor amigo.</em> — You're my best friend.</li>
+<li><del><em>Él es lunes.</em></del> → <em>Es lunes.</em> — It's Monday.</li>
+<li><del><em>Nosotras somos Juan y Marta.</em></del> → <em>Nosotros somos Juan y Marta.</em> — We're Juan and Marta.</li>
+<li><del><em>Usted eres muy amable.</em></del> → <em>Usted es muy amable.</em> — You're very kind.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Usted thinks like él</p><p>Whatever verb form you use for <em>él</em>, use for <em>usted</em>; whatever you use for <em>ellos</em>, use for <em>ustedes</em>. That one rule saves a lot of memorising.</p></aside>
+</article>
+<nav class="pager"><a class="btn" href="nouns.html">← Nouns</a><a class="btn" href="alphabet-and-syllables.html">Alphabet and Syllables →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

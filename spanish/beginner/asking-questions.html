@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="25f570a7f02f">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Asking Questions · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Asking Questions</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Asking Questions</h1><p class="sub">Yes/no questions and the question words qué, cuál, dónde, cuándo, quién, cuánto, cómo and por qué, with their prepositions and accents.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#yes-and-no-questions">Yes and No Questions</a></li><li><a href="#que">Qué</a></li><li><a href="#cual">Cuál</a></li><li><a href="#donde">Dónde</a></li><li><a href="#cuando">Cuándo</a></li><li><a href="#quien">Quién</a></li><li><a href="#cuanto">Cuánto</a></li><li><a href="#como">Cómo</a></li><li><a href="#por-que">Por Qué</a></li><li><a href="#more-question-words">More Question Words</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="yes-and-no-questions">Yes and No Questions</h2>
+<p>Spanish questions are written with an upside-down question mark at the start (<em>¿</em>) and a normal one at the end (<em>?</em>). Exclamations work the same way: <em>¡Qué bien!</em></p>
+<p>To turn a statement into a yes/no question, you have three options. All are common.</p>
+<h3 id="1-just-change-your-intonation">1. Just change your intonation</h3>
+<p>Keep the word order and let your voice rise at the end:</p>
+<ul class="ex">
+<li><em>Tienes hambre.</em> — You're hungry.</li>
+<li><em>¿Tienes hambre?</em> — Are you hungry?</li>
+</ul>
+<h3 id="2-put-the-subject-after-the-verb">2. Put the subject after the verb</h3>
+<ul class="ex">
+<li><em>¿Habla usted inglés?</em> — Do you speak English?</li>
+<li><em>¿Viene tu hermana a la fiesta?</em> — Is your sister coming to the party?</li>
+</ul>
+<h3 id="3-add-a-tag-at-the-end">3. Add a tag at the end</h3>
+<p><em>¿verdad?</em>, <em>¿no?</em> and <em>¿vale?</em> (Spain) work like English <em>right?</em>, <em>isn't it?</em>, <em>OK?</em>:</p>
+<ul class="ex">
+<li><em>Eres de Chile, ¿verdad?</em> — You're from Chile, aren't you?</li>
+<li><em>Nos vemos mañana, ¿no?</em> — We'll see each other tomorrow, right?</li>
+</ul>
+<p>There is no helper verb like English <em>do</em>: you simply ask <em>¿Hablas inglés?</em> — Do you speak English?</p>
+<h3 id="answering">Answering</h3>
+<ul class="ex">
+<li><em>—¿Te gusta? —Sí, me gusta mucho.</em> — Do you like it? — Yes, I like it a lot.</li>
+<li><em>—¿Está abierto? —No, no está abierto.</em> — Is it open? — No, it isn't. (the first <em>no</em> answers, the second negates)</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">The opening mark goes where the question starts</p><p>If only part of a sentence is a question, <em>¿</em> goes there: <em>Si llueve mañana, ¿qué hacemos?</em> — If it rains tomorrow, what shall we do?</p></aside>
+
+<h2 id="que">Qué</h2>
+<p><em>Qué</em> means <strong>what</strong> (and sometimes <strong>which</strong>). Every question word carries a written accent when it asks a question, including in indirect questions (<em>No sé qué hacer</em>).</p>
+<h3 id="asking-for-a-definition-or-explanation">Asking for a definition or explanation</h3>
+<p>With <em>ser</em>, <em>qué</em> asks what something <strong>is</strong> — its definition:</p>
+<ul class="ex">
+<li><em>¿Qué es un aguacate?</em> — What is an avocado?</li>
+<li><em>¿Qué es esto?</em> — What's this?</li>
+</ul>
+<h3 id="que-noun">Qué + noun</h3>
+<p>Directly before a noun, <em>qué</em> means "what" or "which" and is the usual choice in Latin America:</p>
+<ul class="ex">
+<li><em>¿Qué color prefieres?</em> — What colour do you prefer?</li>
+<li><em>¿Qué hora es?</em> — What time is it?</li>
+<li><em>¿Qué día llegas?</em> — What day are you arriving?</li>
+</ul>
+<h3 id="with-other-verbs">With other verbs</h3>
+<ul class="ex">
+<li><em>¿Qué quieres?</em> — What do you want?</li>
+<li><em>¿Qué haces este fin de semana?</em> — What are you doing this weekend?</li>
+</ul>
+<h3 id="prepositions-go-in-front">Prepositions go in front</h3>
+<ul class="ex">
+<li><em>¿De qué hablan?</em> — What are they talking about?</li>
+<li><em>¿En qué trabajas?</em> — What do you do for a living?</li>
+<li><em>¿Para qué sirve esto?</em> — What is this for?</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">¡Qué...! in exclamations</p><p><em>Qué</em> also starts exclamations: <em>¡Qué bonito!</em> — How pretty! <em>¡Qué frío!</em> — It's so cold!</p></aside>
+
+<h2 id="cual">Cuál</h2>
+<p><em>Cuál</em> (plural <em>cuáles</em>) means <strong>which</strong> or <strong>what</strong>, and implies a choice from a set of possibilities.</p>
+<ul class="ex">
+<li><em>¿Cuál quieres, el rojo o el azul?</em> — Which one do you want, the red or the blue?</li>
+<li><em>¿Cuáles son tus libros?</em> — Which ones are your books?</li>
+</ul>
+<h3 id="cual-with-ser-for-specific-information">Cuál with ser for specific information</h3>
+<p>English "What is your...?" asking for a piece of information (a name, number, address) becomes <em>¿Cuál es...?</em>, not <em>¿Qué es...?</em>:</p>
+<ul class="ex">
+<li><em>¿Cuál es tu dirección?</em> — What's your address?</li>
+<li><em>¿Cuál es la capital de Perú?</em> — What's the capital of Peru?</li>
+<li><em>¿Cuál es tu número de teléfono?</em> — What's your phone number?</li>
+</ul>
+<p>Compare: <em>¿Qué es la capital?</em> would ask for a definition of the word "capital".</p>
+<h3 id="cual-de">Cuál de</h3>
+<ul class="ex">
+<li><em>¿Cuál de los dos prefieres?</em> — Which of the two do you prefer?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Cuál before a noun</p><p>In standard Spanish, use <em>qué</em> directly before a noun: <del><em>¿Cuál libro quieres?</em></del> → <em>¿Qué libro quieres?</em> (<em>Cuál libro</em> is heard in parts of Latin America but sounds informal.)</p></aside>
+
+<h2 id="donde">Dónde</h2>
+<p><em>Dónde</em> means <strong>where</strong>. It combines with prepositions to ask about movement and origin.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Question word</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>dónde</em></td>
+<td>where (location)</td>
+<td><em>¿Dónde está el baño?</em> — Where's the bathroom?</td>
+</tr>
+<tr>
+<td><em>adónde</em> / <em>a dónde</em></td>
+<td>where to</td>
+<td><em>¿Adónde vas?</em> — Where are you going?</td>
+</tr>
+<tr>
+<td><em>de dónde</em></td>
+<td>where from</td>
+<td><em>¿De dónde eres?</em> — Where are you from?</td>
+</tr>
+<tr>
+<td><em>por dónde</em></td>
+<td>which way, whereabouts</td>
+<td><em>¿Por dónde se va al centro?</em> — Which way is the centre?</td>
+</tr>
+<tr>
+<td><em>hasta dónde</em></td>
+<td>how far</td>
+<td><em>¿Hasta dónde llega el tren?</em> — How far does the train go?</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿Dónde vives?</em> — Where do you live?</li>
+<li><em>¿De dónde viene este ruido?</em> — Where's this noise coming from?</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Moving or staying?</p><p>With verbs of motion (<em>ir</em>, <em>venir</em>, <em>llegar</em>), think "where to?" → <em>adónde</em>. With <em>estar</em> and <em>vivir</em>, think "in what place?" → <em>dónde</em>.</p></aside>
+
+<h2 id="cuando">Cuándo</h2>
+<p><em>Cuándo</em> means <strong>when</strong>.</p>
+<ul class="ex">
+<li><em>¿Cuándo es tu cumpleaños?</em> — When is your birthday?</li>
+<li><em>¿Cuándo empiezan las clases?</em> — When do classes start?</li>
+<li><em>¿Cuándo vuelves?</em> — When are you coming back?</li>
+</ul>
+<h3 id="asking-for-a-clock-time">Asking for a clock time</h3>
+<p>For a specific time of day, use <em>¿A qué hora...?</em>:</p>
+<ul class="ex">
+<li><em>¿A qué hora sale el autobús?</em> — What time does the bus leave?</li>
+</ul>
+<h3 id="with-prepositions">With prepositions</h3>
+<ul class="ex">
+<li><em>¿Desde cuándo estudias español?</em> — How long have you been studying Spanish? (since when?)</li>
+<li><em>¿Hasta cuándo te quedas?</em> — Until when are you staying?</li>
+<li><em>¿Para cuándo necesitas el informe?</em> — When do you need the report by?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Cuándo vs cuando</p><p>With an accent, <em>cuándo</em> asks; without one, <em>cuando</em> is the conjunction "when": <em>Te llamo cuando llegue.</em> — I'll call you when I arrive.</p></aside>
+
+<h2 id="quien">Quién</h2>
+<p><em>Quién</em> (singular) and <em>quiénes</em> (plural) mean <strong>who</strong>.</p>
+<ul class="ex">
+<li><em>¿Quién es esa chica?</em> — Who's that girl?</li>
+<li><em>¿Quiénes son tus amigos?</em> — Who are your friends?</li>
+<li><em>¿Quién quiere postre?</em> — Who wants dessert?</li>
+</ul>
+<h3 id="with-prepositions_1">With prepositions</h3>
+<p>The preposition comes first. This is how Spanish says <em>whom</em> and <em>whose</em>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿A quién?</em></td>
+<td>(to) whom?</td>
+</tr>
+<tr>
+<td><em>¿De quién?</em></td>
+<td>whose? / about whom?</td>
+</tr>
+<tr>
+<td><em>¿Con quién?</em></td>
+<td>with whom?</td>
+</tr>
+<tr>
+<td><em>¿Para quién?</em></td>
+<td>for whom?</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿A quién llamas?</em> — Who are you calling?</li>
+<li><em>¿De quién es este móvil?</em> — Whose phone is this?</li>
+<li><em>¿Con quién vives?</em> — Who do you live with?</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Whose</p><p>There's no single word for "whose" in questions: <del><em>¿Cuyo es?</em></del> → <em>¿De quién es?</em></p></aside>
+
+<h2 id="cuanto">Cuánto</h2>
+<p><em>Cuánto</em> means <strong>how much</strong> or <strong>how many</strong> and agrees with the noun it refers to.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Singular (how much)</th>
+<th>Plural (how many)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Masculine</td>
+<td><em>cuánto</em></td>
+<td><em>cuántos</em></td>
+</tr>
+<tr>
+<td>Feminine</td>
+<td><em>cuánta</em></td>
+<td><em>cuántas</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>¿Cuánto dinero tienes?</em> — How much money do you have?</li>
+<li><em>¿Cuánta leche quieres?</em> — How much milk do you want?</li>
+<li><em>¿Cuántos años tienes?</em> — How old are you? (how many years do you have?)</li>
+<li><em>¿Cuántas personas vienen?</em> — How many people are coming?</li>
+</ul>
+<h3 id="cuanto-on-its-own">Cuánto on its own</h3>
+<p>Before a verb, the masculine singular <em>cuánto</em> is used:</p>
+<ul class="ex">
+<li><em>¿Cuánto cuesta?</em> — How much does it cost?</li>
+<li><em>¿Cuánto es?</em> — How much is it? (when paying)</li>
+<li><em>¿Cuánto tardas en llegar?</em> — How long does it take you to get there?</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Agreement = gender + number</p><p><em>¿Cuántas horas?</em> (horas is feminine plural) · <em>¿Cuántos días?</em> (días is masculine plural).</p></aside>
+
+<h2 id="como">Cómo</h2>
+<p><em>Cómo</em> means <strong>how</strong>. It asks about manner, condition and also about what something is like.</p>
+<ul class="ex">
+<li><em>¿Cómo estás?</em> — How are you?</li>
+<li><em>¿Cómo vas al trabajo?</em> — How do you get to work?</li>
+<li><em>¿Cómo se dice "spoon" en español?</em> — How do you say "spoon" in Spanish?</li>
+<li><em>¿Cómo te llamas?</em> — What's your name? (literally "how do you call yourself?")</li>
+</ul>
+<h3 id="como-es-vs-como-esta">Cómo es vs cómo está</h3>
+<ul class="ex">
+<li><em>¿Cómo es tu jefe?</em> — What's your boss like? (personality, description: <em>ser</em>)</li>
+<li><em>¿Cómo está tu jefe?</em> — How is your boss? (health, mood: <em>estar</em>)</li>
+</ul>
+<h3 id="como-to-ask-for-repetition">¿Cómo? to ask for repetition</h3>
+<p>On its own, <em>¿Cómo?</em> means "Sorry? Pardon?" — more polite than <em>¿Qué?</em></p>
+<aside class="callout trap"><p class="callout-title">How + adjective</p><p>English "how tall / how far / how old" can't be translated word for word: <del><em>¿Cómo alto es?</em></del> → <em>¿Cuánto mide?</em> — How tall is he? · <em>¿Qué tan lejos está?</em> (Latin America) / <em>¿A qué distancia está?</em> — How far is it?</p></aside>
+
+<h2 id="por-que">Por Qué</h2>
+<p><em>Por qué</em> (two words, accent on <em>qué</em>) means <strong>why</strong>. The answer usually uses <em>porque</em> (one word, no accent), meaning <strong>because</strong>.</p>
+<ul class="ex">
+<li><em>—¿Por qué estudias español? —Porque quiero viajar.</em> — Why are you studying Spanish? — Because I want to travel.</li>
+<li><em>¿Por qué no vienes con nosotros?</em> — Why don't you come with us?</li>
+</ul>
+<h3 id="four-similar-spellings">Four similar spellings</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>por qué</em></td>
+<td>why (question)</td>
+<td><em>¿Por qué lloras?</em> — Why are you crying?</td>
+</tr>
+<tr>
+<td><em>porque</em></td>
+<td>because</td>
+<td><em>Lloro porque estoy triste.</em></td>
+</tr>
+<tr>
+<td><em>el porqué</em></td>
+<td>the reason (noun)</td>
+<td><em>No entiendo el porqué.</em> — I don't understand the reason.</td>
+</tr>
+<tr>
+<td><em>por que</em></td>
+<td>for which (rare)</td>
+<td><em>el motivo por que...</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="para-que-what-for">Para qué: what for?</h3>
+<p><em>¿Para qué?</em> asks about the purpose rather than the cause:</p>
+<ul class="ex">
+<li><em>¿Para qué necesitas el coche?</em> — What do you need the car for?</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Why not?</p><p><em>¿Por qué no...?</em> is a friendly way to suggest something: <em>¿Por qué no vamos al cine?</em> — Why don't we go to the cinema?</p></aside>
+
+<h2 id="more-question-words">More Question Words</h2>
+<p>A few more question words and phrases round out the set.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Spanish</th>
+<th>English</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>¿Qué tal?</em></td>
+<td>how's it going / how was it</td>
+<td><em>¿Qué tal el viaje?</em> — How was the trip?</td>
+</tr>
+<tr>
+<td><em>¿A qué hora?</em></td>
+<td>at what time</td>
+<td><em>¿A qué hora cierran?</em> — What time do you close?</td>
+</tr>
+<tr>
+<td><em>¿Cada cuánto?</em></td>
+<td>how often</td>
+<td><em>¿Cada cuánto vas al gimnasio?</em> — How often do you go to the gym?</td>
+</tr>
+<tr>
+<td><em>¿Cuánto tiempo?</em></td>
+<td>how long</td>
+<td><em>¿Cuánto tiempo llevas aquí?</em> — How long have you been here?</td>
+</tr>
+<tr>
+<td><em>¿De qué color?</em></td>
+<td>what colour</td>
+<td><em>¿De qué color es tu coche?</em> — What colour is your car?</td>
+</tr>
+<tr>
+<td><em>¿Qué tan...?</em></td>
+<td>how (+ adjective, Latin America)</td>
+<td><em>¿Qué tan grande es?</em> — How big is it?</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="indirect-questions-keep-the-accent">Indirect questions keep the accent</h3>
+<p>Question words keep their accent inside a longer sentence, when the sentence reports or implies a question:</p>
+<ul class="ex">
+<li><em>No sé dónde vive.</em> — I don't know where she lives.</li>
+<li><em>Pregúntale cuánto cuesta.</em> — Ask him how much it costs.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Relatives have no accent</p><p>When the same word introduces a description rather than a question, no accent: <em>la ciudad donde nací</em> — the city where I was born; <em>el chico que conocí</em> — the boy (that) I met.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Choose the question word.</p>
+<ul class="ex">
+<li><em>¿___ te llamas?</em> → <em>Cómo</em> — What's your name?</li>
+<li><em>¿___ años tienes?</em> → <em>Cuántos</em> — How old are you?</li>
+<li><em>¿___ es tu correo electrónico?</em> → <em>Cuál</em> — What's your email address?</li>
+<li><em>¿___ vives?</em> → <em>Dónde</em> — Where do you live?</li>
+<li><em>¿___ es tu cumpleaños?</em> → <em>Cuándo</em> — When is your birthday?</li>
+<li><em>¿___ es ese señor?</em> → <em>Quién</em> — Who is that man?</li>
+<li><em>¿___ estudias?</em> → <em>Qué</em> — What are you studying?</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Prepositions and tricky choices.</p>
+<ul class="ex">
+<li><em>¿___ eres?</em> (origin) → <em>De dónde</em> — Where are you from?</li>
+<li><em>¿___ vas ahora?</em> (destination) → <em>Adónde</em> — Where are you going now?</li>
+<li><em>¿___ es esta mochila?</em> (owner) → <em>De quién</em> — Whose backpack is this?</li>
+<li><em>¿___ sale el tren?</em> (clock time) → <em>A qué hora</em> — What time does the train leave?</li>
+<li><em>¿___ no comes?</em> (cause) → <em>Por qué</em> — Why aren't you eating?</li>
+<li><em>¿___ sirve este botón?</em> (purpose) → <em>Para qué</em> — What is this button for?</li>
+</ul>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>¿Qué es tu nombre?</em></del> → <em>¿Cuál es tu nombre?</em> / <em>¿Cómo te llamas?</em> — What's your name?</li>
+<li><del><em>¿Porque estás aquí?</em></del> → <em>¿Por qué estás aquí?</em> — Why are you here?</li>
+<li><del><em>¿Cuántos leche?</em></del> → <em>¿Cuánta leche?</em> — How much milk?</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="indirect-object-pronouns.html">← Indirect Object Pronouns</a><a class="btn" href="ser-vs-estar.html">Ser vs. Estar →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

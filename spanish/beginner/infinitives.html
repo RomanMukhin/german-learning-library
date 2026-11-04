@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="4e9b55f0060d">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Infinitives · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Infinitives</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Infinitives</h1><p class="sub">The three verb families -ar, -er and -ir, irregular infinitives, infinitives used as nouns and as commands, and verbs followed by an infinitive.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#-ar-verbs">-Ar Verbs</a></li><li><a href="#-er-verbs">-Er Verbs</a></li><li><a href="#-ir-verbs">-Ir Verbs</a></li><li><a href="#irregular-verbs">Irregular Verbs</a></li><li><a href="#infinitives-as-nouns">Infinitives as Nouns</a></li><li><a href="#infinitive-commands">Infinitive Commands</a></li><li><a href="#verbs-used-with-infinitives">Verbs Used with Infinitives</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="-ar-verbs">-Ar Verbs</h2>
+<p>The <strong>infinitive</strong> (<em>el infinitivo</em>) is the basic, unconjugated form of a verb — the one you find in the dictionary. It tells you the action but not who does it or when: <em>hablar</em> — to speak.</p>
+<p>Every Spanish infinitive ends in <em>-ar</em>, <em>-er</em> or <em>-ir</em>. Remove that ending and you get the <strong>stem</strong>, to which you attach conjugation endings.</p>
+<p><em>-ar</em> verbs are the largest family and the most regular. Almost all new verbs that enter the language are <em>-ar</em> verbs (<em>chatear</em>, <em>tuitear</em>).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Stem</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>hablar</em></td>
+<td><em>habl-</em></td>
+<td>to speak</td>
+</tr>
+<tr>
+<td><em>trabajar</em></td>
+<td><em>trabaj-</em></td>
+<td>to work</td>
+</tr>
+<tr>
+<td><em>estudiar</em></td>
+<td><em>estudi-</em></td>
+<td>to study</td>
+</tr>
+<tr>
+<td><em>cantar</em></td>
+<td><em>cant-</em></td>
+<td>to sing</td>
+</tr>
+<tr>
+<td><em>llegar</em></td>
+<td><em>lleg-</em></td>
+<td>to arrive</td>
+</tr>
+<tr>
+<td><em>mirar</em></td>
+<td><em>mir-</em></td>
+<td>to look at</td>
+</tr>
+<tr>
+<td><em>tomar</em></td>
+<td><em>tom-</em></td>
+<td>to take, to drink</td>
+</tr>
+<tr>
+<td><em>escuchar</em></td>
+<td><em>escuch-</em></td>
+<td>to listen to</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Me gusta cantar.</em> — I like singing.</li>
+<li><em>Necesito trabajar más.</em> — I need to work more.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Learn verbs in the infinitive</p><p>Always learn a new verb as its infinitive. The ending immediately tells you which set of endings to use for every tense.</p></aside>
+
+<h2 id="-er-verbs">-Er Verbs</h2>
+<p><em>-er</em> verbs are the second-largest group. Many of the most common irregular verbs are in this family.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Stem</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>comer</em></td>
+<td><em>com-</em></td>
+<td>to eat</td>
+</tr>
+<tr>
+<td><em>beber</em></td>
+<td><em>beb-</em></td>
+<td>to drink</td>
+</tr>
+<tr>
+<td><em>aprender</em></td>
+<td><em>aprend-</em></td>
+<td>to learn</td>
+</tr>
+<tr>
+<td><em>leer</em></td>
+<td><em>le-</em></td>
+<td>to read</td>
+</tr>
+<tr>
+<td><em>correr</em></td>
+<td><em>corr-</em></td>
+<td>to run</td>
+</tr>
+<tr>
+<td><em>vender</em></td>
+<td><em>vend-</em></td>
+<td>to sell</td>
+</tr>
+<tr>
+<td><em>comprender</em></td>
+<td><em>comprend-</em></td>
+<td>to understand</td>
+</tr>
+<tr>
+<td><em>creer</em></td>
+<td><em>cre-</em></td>
+<td>to believe</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Quiero aprender a cocinar.</em> — I want to learn to cook.</li>
+<li><em>Es importante beber agua.</em> — It's important to drink water.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">-er and -ir are close relatives</p><p>In most tenses <em>-er</em> and <em>-ir</em> verbs use the same endings. Only a few forms (like <em>comemos</em> vs <em>vivimos</em>) tell them apart.</p></aside>
+
+<h2 id="-ir-verbs">-Ir Verbs</h2>
+<p><em>-ir</em> verbs are the smallest group, but they include many everyday verbs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Stem</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>vivir</em></td>
+<td><em>viv-</em></td>
+<td>to live</td>
+</tr>
+<tr>
+<td><em>escribir</em></td>
+<td><em>escrib-</em></td>
+<td>to write</td>
+</tr>
+<tr>
+<td><em>abrir</em></td>
+<td><em>abr-</em></td>
+<td>to open</td>
+</tr>
+<tr>
+<td><em>subir</em></td>
+<td><em>sub-</em></td>
+<td>to go up</td>
+</tr>
+<tr>
+<td><em>recibir</em></td>
+<td><em>recib-</em></td>
+<td>to receive</td>
+</tr>
+<tr>
+<td><em>compartir</em></td>
+<td><em>compart-</em></td>
+<td>to share</td>
+</tr>
+<tr>
+<td><em>decidir</em></td>
+<td><em>decid-</em></td>
+<td>to decide</td>
+</tr>
+<tr>
+<td><em>salir</em></td>
+<td><em>sal-</em></td>
+<td>to go out, leave</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Prefiero vivir en el campo.</em> — I prefer living in the countryside.</li>
+<li><em>Hay que abrir la ventana.</em> — We need to open the window.</li>
+</ul>
+<h3 id="reflexive-infinitives">Reflexive infinitives</h3>
+<p>Reflexive verbs carry the pronoun <em>se</em> on the end of the infinitive: <em>levantarse</em> (to get up), <em>ducharse</em> (to shower), <em>divertirse</em> (to have fun). When you use them, the pronoun changes to match the subject: <em>Quiero ducharme.</em> — I want to shower.</p>
+<h2 id="irregular-verbs">Irregular Verbs</h2>
+<p>An irregular verb is one whose stem or endings change unpredictably in some tenses. The <strong>infinitive itself is never irregular</strong> — it always ends in <em>-ar</em>, <em>-er</em> or <em>-ir</em> — but it doesn't tell you whether the verb will behave.</p>
+<p>Here are the irregular infinitives you'll meet most often:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Meaning</th>
+<th>Present <em>yo</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>ser</em></td>
+<td>to be</td>
+<td><em>soy</em></td>
+</tr>
+<tr>
+<td><em>estar</em></td>
+<td>to be</td>
+<td><em>estoy</em></td>
+</tr>
+<tr>
+<td><em>ir</em></td>
+<td>to go</td>
+<td><em>voy</em></td>
+</tr>
+<tr>
+<td><em>tener</em></td>
+<td>to have</td>
+<td><em>tengo</em></td>
+</tr>
+<tr>
+<td><em>hacer</em></td>
+<td>to do, make</td>
+<td><em>hago</em></td>
+</tr>
+<tr>
+<td><em>poder</em></td>
+<td>to be able to</td>
+<td><em>puedo</em></td>
+</tr>
+<tr>
+<td><em>querer</em></td>
+<td>to want</td>
+<td><em>quiero</em></td>
+</tr>
+<tr>
+<td><em>decir</em></td>
+<td>to say</td>
+<td><em>digo</em></td>
+</tr>
+<tr>
+<td><em>venir</em></td>
+<td>to come</td>
+<td><em>vengo</em></td>
+</tr>
+<tr>
+<td><em>saber</em></td>
+<td>to know</td>
+<td><em>sé</em></td>
+</tr>
+<tr>
+<td><em>poner</em></td>
+<td>to put</td>
+<td><em>pongo</em></td>
+</tr>
+<tr>
+<td><em>dar</em></td>
+<td>to give</td>
+<td><em>doy</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>ir</em> is unusual: its stem is just <em>i-</em>, and in the present it doesn't use it at all (<em>voy, vas, va</em>). Its infinitive still works normally: <em>Quiero ir.</em> — I want to go.</p>
+<aside class="callout hack"><p class="callout-title">Infinitives need no conjugating</p><p>Whenever a sentence needs an infinitive (after <em>querer</em>, <em>poder</em>, a preposition...), you can use any verb, regular or irregular, without worrying about its forms.</p></aside>
+
+<h2 id="infinitives-as-nouns">Infinitives as Nouns</h2>
+<p>An infinitive can act like a noun — the subject or object of a sentence. English often uses the <em>-ing</em> form here; Spanish uses the infinitive.</p>
+<ul class="ex">
+<li><em>Fumar es malo para la salud.</em> — Smoking is bad for your health.</li>
+<li><em>Me encanta bailar.</em> — I love dancing.</li>
+<li><em>Leer antes de dormir me relaja.</em> — Reading before bed relaxes me.</li>
+</ul>
+<h3 id="with-el">With el</h3>
+<p>You can put the masculine article <em>el</em> in front, especially at the start of a sentence or in formal style:</p>
+<ul class="ex">
+<li><em>El comer bien es importante.</em> — Eating well is important.</li>
+</ul>
+<h3 id="after-prepositions">After prepositions</h3>
+<p>After a preposition, Spanish <strong>always</strong> uses the infinitive, never the <em>-ando/-iendo</em> form:</p>
+<ul class="ex">
+<li><em>antes de salir</em> — before leaving</li>
+<li><em>después de comer</em> — after eating</li>
+<li><em>sin hablar</em> — without speaking</li>
+<li><em>Gracias por venir.</em> — Thanks for coming.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Never -ando after a preposition</p><p><del><em>Después de comiendo, salimos.</em></del> → <em>Después de comer, salimos.</em> — After eating, we went out.</p></aside>
+
+<h2 id="infinitive-commands">Infinitive Commands</h2>
+<p>The infinitive can be used as an <strong>impersonal command</strong> on signs, labels, instructions and recipes, where the instruction is aimed at everyone.</p>
+<ul class="ex">
+<li><em>No fumar.</em> — No smoking.</li>
+<li><em>Empujar.</em> — Push.</li>
+<li><em>No tocar.</em> — Do not touch.</li>
+<li><em>Pelar las patatas y cortarlas en dados.</em> — Peel the potatoes and dice them.</li>
+<li><em>Agitar antes de usar.</em> — Shake before use.</li>
+</ul>
+<h3 id="a-infinitive">A + infinitive</h3>
+<p>In speech, <em>a</em> + infinitive gives a quick, energetic order to a group:</p>
+<ul class="ex">
+<li><em>¡A comer!</em> — Time to eat! / Come and eat!</li>
+<li><em>¡A dormir!</em> — Off to bed!</li>
+<li><em>¡A trabajar!</em> — Get to work!</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Not for personal commands</p><p>In standard Spanish, the infinitive isn't used to tell a specific person what to do. To a friend you'd say <em>¡Ven!</em> (come), not <del><em>¡Venir!</em></del>. In Spain, however, you'll often hear <em>¡Sentaros!</em> instead of <em>¡Sentaos!</em> (sit down, you all) in casual speech.</p></aside>
+
+<h2 id="verbs-used-with-infinitives">Verbs Used with Infinitives</h2>
+<p>Many verbs can be followed directly by an infinitive. Only the first verb is conjugated.</p>
+<h3 id="verb-infinitive-no-preposition">Verb + infinitive (no preposition)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>querer</em> — want</td>
+<td><em>Quiero viajar.</em> — I want to travel.</td>
+</tr>
+<tr>
+<td><em>poder</em> — can</td>
+<td><em>¿Puedes ayudarme?</em> — Can you help me?</td>
+</tr>
+<tr>
+<td><em>deber</em> — should, must</td>
+<td><em>Debes descansar.</em> — You should rest.</td>
+</tr>
+<tr>
+<td><em>necesitar</em> — need</td>
+<td><em>Necesito dormir.</em> — I need to sleep.</td>
+</tr>
+<tr>
+<td><em>preferir</em> — prefer</td>
+<td><em>Prefiero quedarme.</em> — I'd rather stay.</td>
+</tr>
+<tr>
+<td><em>saber</em> — know how to</td>
+<td><em>¿Sabes nadar?</em> — Can you swim?</td>
+</tr>
+<tr>
+<td><em>pensar</em> — plan, intend</td>
+<td><em>Pienso salir.</em> — I'm planning to go out.</td>
+</tr>
+<tr>
+<td><em>esperar</em> — hope</td>
+<td><em>Espero verte pronto.</em> — I hope to see you soon.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="verb-preposition-infinitive">Verb + preposition + infinitive</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>ir a</em> — be going to</td>
+<td><em>Voy a estudiar.</em> — I'm going to study.</td>
+</tr>
+<tr>
+<td><em>empezar a</em> — start</td>
+<td><em>Empieza a llover.</em> — It's starting to rain.</td>
+</tr>
+<tr>
+<td><em>aprender a</em> — learn to</td>
+<td><em>Aprendo a conducir.</em> — I'm learning to drive.</td>
+</tr>
+<tr>
+<td><em>tener que</em> — have to</td>
+<td><em>Tengo que irme.</em> — I have to go.</td>
+</tr>
+<tr>
+<td><em>acabar de</em> — have just</td>
+<td><em>Acabo de llegar.</em> — I've just arrived.</td>
+</tr>
+<tr>
+<td><em>dejar de</em> — stop</td>
+<td><em>Dejé de fumar.</em> — I stopped smoking.</td>
+</tr>
+<tr>
+<td><em>tratar de</em> — try to</td>
+<td><em>Trato de entender.</em> — I try to understand.</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Learn the preposition with the verb</p><p><em>empezar a</em>, <em>dejar de</em>, <em>tener que</em> — the little word is part of the expression. See <a href="../beginner/verbal-periphrasis.html">Verbal Periphrasis</a> for more.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Identify the family and the stem.</p>
+<ul class="ex">
+<li><em>bailar</em> → <em>-ar</em>, stem <em>bail-</em></li>
+<li><em>romper</em> → <em>-er</em>, stem <em>romp-</em></li>
+<li><em>permitir</em> → <em>-ir</em>, stem <em>permit-</em></li>
+<li><em>ver</em> → <em>-er</em>, stem <em>v-</em></li>
+<li><em>ir</em> → <em>-ir</em>, stem <em>i-</em> (irregular)</li>
+</ul>
+<h3 id="infinitive-or-conjugated-verb">Infinitive or conjugated verb?</h3>
+<ul class="ex">
+<li><em>Me gusta (nadar / nado).</em> → <em>nadar</em> — I like swimming.</li>
+<li><em>Antes de (salgo / salir), apago la luz.</em> → <em>salir</em> — Before going out, I turn off the light.</li>
+<li><em>Ella (puede / poder) venir.</em> → <em>puede</em> — She can come.</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Complete with the right preposition (or none).</p>
+<ul class="ex">
+<li><em>Voy ___ llamar a mi madre.</em> → <em>a</em></li>
+<li><em>Tengo ___ estudiar.</em> → <em>que</em></li>
+<li><em>Quiero ___ dormir.</em> → (nothing) — <em>Quiero dormir.</em></li>
+<li><em>Acabamos ___ comer.</em> → <em>de</em> — We've just eaten.</li>
+<li><em>Empiezo ___ entender.</em> → <em>a</em> — I'm starting to understand.</li>
+<li><em>¿Sabes ___ cocinar?</em> → (nothing) — <em>¿Sabes cocinar?</em></li>
+</ul>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>Quiero a viajar.</em></del> → <em>Quiero viajar.</em> — I want to travel.</li>
+<li><del><em>Gracias por ayudando.</em></del> → <em>Gracias por ayudar.</em> — Thanks for helping.</li>
+<li><del><em>Tengo de trabajar.</em></del> → <em>Tengo que trabajar.</em> — I have to work.</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="negation.html">← Negation</a><a class="btn" href="cardinal-numbers.html">Cardinal Numbers →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="9d96b5fa767b">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Present · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Present</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Present</h1><p class="sub">Regular -ar, -er and -ir verbs in the present tense, the main irregular verbs, stem-changing verbs, and what the present is used for.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#regular-verbs">Regular Verbs</a></li><li><a href="#irregular-verbs">Irregular Verbs</a></li><li><a href="#stem-changing-verbs-1">Stem-Changing Verbs 1</a></li><li><a href="#stem-changing-verbs-2">Stem-Changing Verbs 2</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li><li><a href="#comprehensive-review-3">Comprehensive Review 3</a></li><li><a href="#comprehensive-review-4">Comprehensive Review 4</a></li><li><a href="#extra-practice-1">Extra Practice 1</a></li><li><a href="#extra-practice-2">Extra Practice 2</a></li><li><a href="#extra-practice-3">Extra Practice 3</a></li></ol></nav>
+<article class="prose card">
+<h2 id="regular-verbs">Regular Verbs</h2>
+<p>The Spanish present tense (<em>el presente</em>) covers English "I speak", "I am speaking", "I do speak" and often "I'm going to speak". It's used for habits, facts, things happening now, near-future plans, and ordering in shops and restaurants.</p>
+<p>To form it, take the infinitive, remove <em>-ar</em>, <em>-er</em> or <em>-ir</em> to find the <strong>stem</strong>, and add the ending for the subject.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Subject</th>
+<th><em>hablar</em> — speak</th>
+<th><em>comer</em> — eat</th>
+<th><em>vivir</em> — live</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>hablo</em></td>
+<td><em>como</em></td>
+<td><em>vivo</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>hablas</em></td>
+<td><em>comes</em></td>
+<td><em>vives</em></td>
+</tr>
+<tr>
+<td><em>él, ella, usted</em></td>
+<td><em>habla</em></td>
+<td><em>come</em></td>
+<td><em>vive</em></td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>hablamos</em></td>
+<td><em>comemos</em></td>
+<td><em>vivimos</em></td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>habláis</em></td>
+<td><em>coméis</em></td>
+<td><em>vivís</em></td>
+</tr>
+<tr>
+<td><em>ellos, ellas, ustedes</em></td>
+<td><em>hablan</em></td>
+<td><em>comen</em></td>
+<td><em>viven</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><em>-er</em> and <em>-ir</em> verbs share all their endings except <em>nosotros</em> and <em>vosotros</em>.</p>
+<ul class="ex">
+<li><em>Trabajo en una oficina.</em> — I work in an office. (habit)</li>
+<li><em>El agua hierve a cien grados.</em> — Water boils at 100 degrees. (fact)</li>
+<li><em>¿Qué lees?</em> — What are you reading? (now)</li>
+<li><em>Mañana salimos para Lima.</em> — Tomorrow we leave for Lima. (near future)</li>
+<li><em>Para mí, una sopa.</em> / <em>Quiero una sopa.</em> — I'll have a soup. (ordering)</li>
+</ul>
+<h3 id="present-desde-hace-have-been-doing">Present + desde hace: "have been doing"</h3>
+<p>To say how long something has been going on, Spanish uses the present, where English uses the present perfect:</p>
+<ul class="ex">
+<li><em>Vivo en Madrid desde hace tres años.</em> — I've been living in Madrid for three years.</li>
+<li><em>Hace dos horas que espero.</em> — I've been waiting for two hours.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">The vowel tells the family</p><p><em>-ar</em> verbs use <em>a</em> in their endings (<em>-as, -a, -an</em>); <em>-er</em> and <em>-ir</em> verbs use <em>e</em> (<em>-es, -e, -en</em>). If you mix them up you'll often land in another tense, so this one matters.</p></aside>
+
+<h2 id="irregular-verbs">Irregular Verbs</h2>
+<p>Some of the most frequent verbs are irregular. Learn these as whole tables.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>ser</em> — be</th>
+<th><em>estar</em> — be</th>
+<th><em>ir</em> — go</th>
+<th><em>tener</em> — have</th>
+<th><em>haber</em> (there is)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>soy</em></td>
+<td><em>estoy</em></td>
+<td><em>voy</em></td>
+<td><em>tengo</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>eres</em></td>
+<td><em>estás</em></td>
+<td><em>vas</em></td>
+<td><em>tienes</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td><em>él, ella, Ud.</em></td>
+<td><em>es</em></td>
+<td><em>está</em></td>
+<td><em>va</em></td>
+<td><em>tiene</em></td>
+<td><em>hay</em></td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>somos</em></td>
+<td><em>estamos</em></td>
+<td><em>vamos</em></td>
+<td><em>tenemos</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>sois</em></td>
+<td><em>estáis</em></td>
+<td><em>vais</em></td>
+<td><em>tenéis</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td><em>ellos, ellas, Uds.</em></td>
+<td><em>son</em></td>
+<td><em>están</em></td>
+<td><em>van</em></td>
+<td><em>tienen</em></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="irregular-yo-forms">Irregular yo forms</h3>
+<p>Many verbs are regular <strong>except</strong> in the <em>yo</em> form:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Verbs</th>
+<th><em>yo</em> form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>-go</em></td>
+<td><em>hacer, poner, salir, traer, valer</em></td>
+<td><em>hago, pongo, salgo, traigo, valgo</em></td>
+</tr>
+<tr>
+<td><em>-go</em> + stem change</td>
+<td><em>tener, venir, decir</em></td>
+<td><em>tengo, vengo, digo</em> (then <em>tienes, vienes, dices</em>)</td>
+</tr>
+<tr>
+<td><em>-oy</em></td>
+<td><em>dar, estar, ir, ser</em></td>
+<td><em>doy, estoy, voy, soy</em></td>
+</tr>
+<tr>
+<td><em>-zco</em></td>
+<td><em>conocer, conducir, traducir, parecer</em></td>
+<td><em>conozco, conduzco, traduzco, parezco</em></td>
+</tr>
+<tr>
+<td>others</td>
+<td><em>saber, ver, caber</em></td>
+<td><em>sé, veo, quepo</em></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="ex">
+<li><em>Hago la cena y pongo la mesa.</em> — I make dinner and set the table.</li>
+<li><em>No sé dónde está.</em> — I don't know where it is.</li>
+<li><em>Conozco a tu hermana.</em> — I know your sister.</li>
+</ul>
+<h3 id="spelling-changes-in-yo">Spelling changes in yo</h3>
+<p>Some verbs change a letter to keep the same sound: <em>escoger → escojo</em>, <em>seguir → sigo</em>, <em>distinguir → distingo</em>.</p>
+<aside class="callout trap"><p class="callout-title">Hay</p><p><em>hay</em> means "there is / there are" and never changes for singular or plural: <em>Hay un perro.</em> / <em>Hay tres perros.</em> <del><em>Hayn tres perros.</em></del></p></aside>
+
+<h2 id="stem-changing-verbs-1">Stem-Changing Verbs 1</h2>
+<p>Many verbs change the vowel of their stem when it is stressed. The endings stay regular. The change happens in every form <strong>except nosotros and vosotros</strong> — draw the shape on the table and you get a "boot".</p>
+<h3 id="e-ie">e → ie</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>querer</em> — want</th>
+<th><em>pensar</em> — think</th>
+<th><em>preferir</em> — prefer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>quiero</em></td>
+<td><em>pienso</em></td>
+<td><em>prefiero</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>quieres</em></td>
+<td><em>piensas</em></td>
+<td><em>prefieres</em></td>
+</tr>
+<tr>
+<td><em>él, ella, Ud.</em></td>
+<td><em>quiere</em></td>
+<td><em>piensa</em></td>
+<td><em>prefiere</em></td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>queremos</em></td>
+<td><em>pensamos</em></td>
+<td><em>preferimos</em></td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>queréis</em></td>
+<td><em>pensáis</em></td>
+<td><em>preferís</em></td>
+</tr>
+<tr>
+<td><em>ellos, ellas, Uds.</em></td>
+<td><em>quieren</em></td>
+<td><em>piensan</em></td>
+<td><em>prefieren</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Others like this: <em>empezar</em> (begin), <em>cerrar</em> (close), <em>entender</em> (understand), <em>perder</em> (lose), <em>sentir</em> (feel), <em>mentir</em> (lie). <em>tener</em> and <em>venir</em> combine this change with their irregular <em>yo</em> forms.</p>
+<ul class="ex">
+<li><em>¿A qué hora empieza la película?</em> — What time does the film start?</li>
+<li><em>No entiendo la pregunta.</em> — I don't understand the question.</li>
+<li><em>Si no salimos ya, perdemos el tren.</em> — If we don't leave now, we'll miss the train.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Stress drives the change</p><p>The vowel only changes in syllables that get the stress: <em>QUIE-ro</em>, but <em>que-RE-mos</em>. Saying the forms aloud makes the "boot" pattern obvious.</p></aside>
+
+<h2 id="stem-changing-verbs-2">Stem-Changing Verbs 2</h2>
+<p>The other two stem-change groups follow the same boot pattern.</p>
+<h3 id="o-ue">o → ue</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>poder</em> — can</th>
+<th><em>dormir</em> — sleep</th>
+<th><em>volver</em> — return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>puedo</em></td>
+<td><em>duermo</em></td>
+<td><em>vuelvo</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>puedes</em></td>
+<td><em>duermes</em></td>
+<td><em>vuelves</em></td>
+</tr>
+<tr>
+<td><em>él, ella, Ud.</em></td>
+<td><em>puede</em></td>
+<td><em>duerme</em></td>
+<td><em>vuelve</em></td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>podemos</em></td>
+<td><em>dormimos</em></td>
+<td><em>volvemos</em></td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>podéis</em></td>
+<td><em>dormís</em></td>
+<td><em>volvéis</em></td>
+</tr>
+<tr>
+<td><em>ellos, ellas, Uds.</em></td>
+<td><em>pueden</em></td>
+<td><em>duermen</em></td>
+<td><em>vuelven</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Also: <em>contar</em> (count, tell), <em>encontrar</em> (find), <em>recordar</em> (remember), <em>costar</em> (cost), <em>almorzar</em> (have lunch), <em>morir</em> (die). <em>jugar</em> is the only <em>u → ue</em> verb: <em>juego, juegas, juega, jugamos, jugáis, juegan</em>.</p>
+<h3 id="e-i-only-ir-verbs">e → i (only -ir verbs)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>pedir</em> — ask for</th>
+<th><em>repetir</em> — repeat</th>
+<th><em>servir</em> — serve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>pido</em></td>
+<td><em>repito</em></td>
+<td><em>sirvo</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>pides</em></td>
+<td><em>repites</em></td>
+<td><em>sirves</em></td>
+</tr>
+<tr>
+<td><em>él, ella, Ud.</em></td>
+<td><em>pide</em></td>
+<td><em>repite</em></td>
+<td><em>sirve</em></td>
+</tr>
+<tr>
+<td><em>nosotros/as</em></td>
+<td><em>pedimos</em></td>
+<td><em>repetimos</em></td>
+<td><em>servimos</em></td>
+</tr>
+<tr>
+<td><em>vosotros/as</em></td>
+<td><em>pedís</em></td>
+<td><em>repetís</em></td>
+<td><em>servís</em></td>
+</tr>
+<tr>
+<td><em>ellos, ellas, Uds.</em></td>
+<td><em>piden</em></td>
+<td><em>repiten</em></td>
+<td><em>sirven</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Also: <em>seguir</em> (<em>sigo</em>), <em>vestir</em> (dress), <em>elegir</em> (<em>elijo</em>), <em>decir</em> (<em>digo, dices</em>).</p>
+<ul class="ex">
+<li><em>¿Cuánto cuesta este abrigo?</em> — How much does this coat cost?</li>
+<li><em>Los niños duermen la siesta.</em> — The children are having a nap.</li>
+<li><em>Siempre pido lo mismo.</em> — I always order the same thing.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">No stem change for nosotros</p><p><del><em>nosotros puedemos</em></del> → <em>podemos</em>; <del><em>nosotros duermimos</em></del> → <em>dormimos</em>.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Focus: regular endings.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><em>-ar</em></th>
+<th><em>-er</em></th>
+<th><em>-ir</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>yo</em></td>
+<td><em>-o</em></td>
+<td><em>-o</em></td>
+<td><em>-o</em></td>
+</tr>
+<tr>
+<td><em>tú</em></td>
+<td><em>-as</em></td>
+<td><em>-es</em></td>
+<td><em>-es</em></td>
+</tr>
+<tr>
+<td><em>él/ella/Ud.</em></td>
+<td><em>-a</em></td>
+<td><em>-e</em></td>
+<td><em>-e</em></td>
+</tr>
+<tr>
+<td><em>nosotros</em></td>
+<td><em>-amos</em></td>
+<td><em>-emos</em></td>
+<td><em>-imos</em></td>
+</tr>
+<tr>
+<td><em>vosotros</em></td>
+<td><em>-áis</em></td>
+<td><em>-éis</em></td>
+<td><em>-ís</em></td>
+</tr>
+<tr>
+<td><em>ellos/Uds.</em></td>
+<td><em>-an</em></td>
+<td><em>-en</em></td>
+<td><em>-en</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="practice">Practice</h3>
+<ul class="ex">
+<li><em>Mis padres (cocinar) ___ muy bien.</em> → <em>cocinan</em> — My parents cook very well.</li>
+<li><em>¿Tú (beber) ___ café?</em> → <em>bebes</em> — Do you drink coffee?</li>
+<li><em>Nosotros (escribir) ___ correos.</em> → <em>escribimos</em> — We write emails.</li>
+<li><em>Yo (estudiar) ___ por la noche.</em> → <em>estudio</em> — I study at night.</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Focus: irregular <em>yo</em> forms.</p>
+<h3 id="practice_1">Practice</h3>
+<ul class="ex">
+<li><em>Yo (salir) ___ a las ocho.</em> → <em>salgo</em> — I leave at eight.</li>
+<li><em>Yo no (saber) ___ nadar.</em> → <em>sé</em> — I can't swim.</li>
+<li><em>Yo (conducir) ___ un coche pequeño.</em> → <em>conduzco</em> — I drive a small car.</li>
+<li><em>Yo (traer) ___ el postre.</em> → <em>traigo</em> — I'll bring dessert.</li>
+<li><em>Yo (ver) ___ la tele.</em> → <em>veo</em> — I watch TV.</li>
+<li><em>Yo (dar) ___ clases de piano.</em> → <em>doy</em> — I give piano lessons.</li>
+</ul>
+<h2 id="comprehensive-review-3">Comprehensive Review 3</h2>
+<p>Focus: stem changes.</p>
+<h3 id="practice_2">Practice</h3>
+<ul class="ex">
+<li><em>Ella (cerrar) ___ la ventana.</em> → <em>cierra</em> — She closes the window.</li>
+<li><em>¿(Poder, tú) ___ ayudarme?</em> → <em>Puedes</em> — Can you help me?</li>
+<li><em>Nosotros (jugar) ___ al fútbol.</em> → <em>jugamos</em> — We play football (no change).</li>
+<li><em>El camarero (servir) ___ la comida.</em> → <em>sirve</em> — The waiter serves the food.</li>
+<li><em>Yo no (recordar) ___ su nombre.</em> → <em>recuerdo</em> — I don't remember his name.</li>
+<li><em>¿Qué (preferir) ___ ustedes?</em> → <em>prefieren</em> — What do you prefer?</li>
+</ul>
+<h2 id="comprehensive-review-4">Comprehensive Review 4</h2>
+<p>Focus: uses of the present.</p>
+<ul class="ex">
+<li><em>Siempre desayuno a las siete.</em> — I always have breakfast at seven. (habit)</li>
+<li><em>Los gatos ven en la oscuridad.</em> — Cats can see in the dark. (general truth)</li>
+<li><em>El sábado vamos a la playa.</em> — On Saturday we're going to the beach. (plan)</li>
+<li><em>Si llueve, nos quedamos en casa.</em> — If it rains, we'll stay home. (condition with <em>si</em>)</li>
+<li><em>Estudio inglés desde hace un año.</em> — I've been studying English for a year. (duration)</li>
+<li><em>¿Te ayudo?</em> — Shall I help you? (offer)</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Offers with the present</p><p>Spanish asks "Shall I...?" with a plain present question: <em>¿Abro la ventana?</em> — Shall I open the window?</p></aside>
+
+<h2 id="extra-practice-1">Extra Practice 1</h2>
+<p>Mixed regular and irregular verbs. Read each sentence aloud and check the form.</p>
+<ul class="ex">
+<li><em>Mi hermano (tener) ___ veinte años.</em> → <em>tiene</em> — My brother is twenty.</li>
+<li><em>Nosotros (ir) ___ al mercado los sábados.</em> → <em>vamos</em> — We go to the market on Saturdays.</li>
+<li><em>¿De dónde (ser) ___ tú?</em> → <em>eres</em> — Where are you from?</li>
+<li><em>Ellos (vivir) ___ cerca del río.</em> → <em>viven</em> — They live near the river.</li>
+<li><em>Yo (hacer) ___ ejercicio todos los días.</em> → <em>hago</em> — I exercise every day.</li>
+</ul>
+<h2 id="extra-practice-2">Extra Practice 2</h2>
+<p>Choose the correct form.</p>
+<ul class="ex">
+<li><em>¿Ustedes (querer) ___ más pan?</em> → <em>quieren</em> — Do you want more bread?</li>
+<li><em>Yo (venir) ___ en autobús.</em> → <em>vengo</em> — I come by bus.</li>
+<li><em>Tú (decir) ___ la verdad.</em> → <em>dices</em> — You're telling the truth.</li>
+<li><em>Vosotros (pedir) ___ demasiado.</em> → <em>pedís</em> — You ask for too much (no change).</li>
+<li><em>La tienda (abrir) ___ a las diez.</em> → <em>abre</em> — The shop opens at ten.</li>
+</ul>
+<h2 id="extra-practice-3">Extra Practice 3</h2>
+<p>Spot the mistakes.</p>
+<ul class="ex">
+<li><del><em>Yo conoco a María.</em></del> → <em>Yo conozco a María.</em> — I know María.</li>
+<li><del><em>Nosotros queremos y ellos querren.</em></del> → <em>ellos quieren</em> — they want.</li>
+<li><del><em>Él juga al tenis.</em></del> → <em>Él juega al tenis.</em> — He plays tennis.</li>
+<li><del><em>Yo pono la mesa.</em></del> → <em>Yo pongo la mesa.</em> — I set the table.</li>
+<li><del><em>Hace tres años que vivo aquí desde.</em></del> → <em>Hace tres años que vivo aquí.</em> — I've been living here for three years.</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="alphabet-and-syllables.html">← Alphabet and Syllables</a><a class="btn" href="present-progressive.html">Present Progressive →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

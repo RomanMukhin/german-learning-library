@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="0c8f84cd47bf">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Conjunctions and Contractions · Spanish grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+<style>
+.prose .ex { margin: 6px 0 12px; padding: 0; list-style: none; display: grid; gap: 4px; }
+.prose .ex li { padding: 6px 12px; border-left: 2px solid var(--border); background: var(--secondary); border-radius: 0 8px 8px 0; }
+.prose del { color: var(--bad); text-decoration-thickness: 1.5px; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+.prose > h2:first-child { border-top: 0; padding-top: 0; }
+.toc-list { columns: 2 260px; column-gap: 28px; margin: 0; padding-left: 18px; }
+.toc-list li { break-inside: avoid; margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../spanish/index.html">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a href="index.html">Beginner</a><span class="sep">/</span><span class="cur">Conjunctions and Contractions</span></div>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Beginner</span><h1>Conjunctions and Contractions</h1><p class="sub">Y/e, o/u, ni...ni, o...o, pero and sino, and the two contractions al and del.</p></header>
+<nav class="card prose" style="padding:16px 20px" aria-label="On this page"><p style="margin:0 0 6px;font-weight:600">On this page</p><ol class="toc-list"><li><a href="#y-and-e">Y and E</a></li><li><a href="#o-and-u">O and U</a></li><li><a href="#nini">Ni...Ni</a></li><li><a href="#oo">O...O</a></li><li><a href="#pero-and-sino">Pero and Sino</a></li><li><a href="#al">Al</a></li><li><a href="#del">Del</a></li><li><a href="#comprehensive-review-1">Comprehensive Review 1</a></li><li><a href="#comprehensive-review-2">Comprehensive Review 2</a></li></ol></nav>
+<article class="prose card">
+<h2 id="y-and-e">Y and E</h2>
+<p>Conjunctions join words, phrases or sentences. The most basic one is <em>y</em> — <strong>and</strong>.</p>
+<ul class="ex">
+<li><em>pan y mantequilla</em> — bread and butter</li>
+<li><em>Estudio y trabajo.</em> — I study and work.</li>
+<li><em>Tengo un perro y dos gatos.</em> — I have a dog and two cats.</li>
+</ul>
+<h3 id="y-becomes-e">Y becomes e</h3>
+<p>Before a word that starts with the sound <em>i</em> — written <em>i-</em> or <em>hi-</em> — <em>y</em> changes to <em>e</em>, so that the two <em>i</em> sounds don't merge:</p>
+<ul class="ex">
+<li><em>Pedro e Isabel</em> — Pedro and Isabel</li>
+<li><em>padres e hijos</em> — parents and children</li>
+<li><em>español e inglés</em> — Spanish and English</li>
+<li><em>Es rápido e inteligente.</em> — He's fast and intelligent.</li>
+</ul>
+<h3 id="when-y-stays">When y stays</h3>
+<p><em>y</em> stays before <em>hie-</em> and <em>hia-</em>, because they sound like <em>ye</em> / <em>ya</em>, not <em>i</em>: <em>agua y hielo</em> — water and ice. It also stays at the beginning of a question: <em>¿Y Inés?</em> — And Inés?</p>
+<aside class="callout hack"><p class="callout-title">Listen, don&#x27;t look</p><p>The rule depends on sound, not spelling. <em>Hi-</em> sounds like <em>i</em> (silent <em>h</em>), so it triggers <em>e</em>; <em>hie-</em> sounds like <em>ye</em>, so it doesn't.</p></aside>
+
+<h2 id="o-and-u">O and U</h2>
+<p><em>o</em> means <strong>or</strong>.</p>
+<ul class="ex">
+<li><em>¿Té o café?</em> — Tea or coffee?</li>
+<li><em>Podemos ir hoy o mañana.</em> — We can go today or tomorrow.</li>
+</ul>
+<h3 id="o-becomes-u">O becomes u</h3>
+<p>Before a word starting with the sound <em>o</em> — written <em>o-</em> or <em>ho-</em> — <em>o</em> changes to <em>u</em>:</p>
+<ul class="ex">
+<li><em>siete u ocho</em> — seven or eight</li>
+<li><em>mujeres u hombres</em> — women or men</li>
+<li><em>¿Es hoy u otro día?</em> — Is it today or another day?</li>
+<li><em>ayer u hoy</em> — yesterday or today</li>
+</ul>
+<h3 id="accent-between-numbers">Accent between numbers</h3>
+<p>When <em>o</em> stands between numerals written as digits, it used to carry an accent (<em>3 ó 4</em>) to avoid confusion with zero. The current rule says no accent is needed: <em>3 o 4</em>.</p>
+<aside class="callout trap"><p class="callout-title">U is still &quot;or&quot;</p><p>The word <em>u</em> is simply <em>o</em> in disguise, used only before an <em>o</em> sound: <em>diez u once</em> — ten or eleven. Before any other sound, keep <em>o</em>: <em>once o doce</em>.</p></aside>
+
+<h2 id="nini">Ni...Ni</h2>
+<p><em>ni... ni...</em> means <strong>neither... nor</strong>. It makes both items negative.</p>
+<ul class="ex">
+<li><em>No tengo ni hermanos ni hermanas.</em> — I have neither brothers nor sisters.</li>
+<li><em>Ni Juan ni Ana vienen hoy.</em> — Neither Juan nor Ana is coming today.</li>
+<li><em>No como ni carne ni pescado.</em> — I don't eat meat or fish.</li>
+</ul>
+<h3 id="position-and-the-extra-no">Position and the extra no</h3>
+<p>If <em>ni... ni...</em> comes <strong>after</strong> the verb, you also need <em>no</em> before the verb. If it comes <strong>before</strong> the verb, <em>no</em> is dropped:</p>
+<ul class="ex">
+<li><em>No quiero ni té ni café.</em> — I want neither tea nor coffee.</li>
+<li><em>Ni el té ni el café me gustan.</em> — I like neither tea nor coffee.</li>
+</ul>
+<h3 id="ni-on-its-own">Ni on its own</h3>
+<p>A single <em>ni</em> means <strong>not even</strong> or <strong>nor</strong>:</p>
+<ul class="ex">
+<li><em>No tengo ni un euro.</em> — I don't have even one euro.</li>
+<li><em>Ni idea.</em> — No idea.</li>
+</ul>
+<aside class="callout fact"><p class="callout-title">Verb agreement</p><p>When <em>ni... ni...</em> precedes the verb, the verb usually goes plural: <em>Ni mi madre ni mi padre saben nadar.</em> — Neither my mother nor my father can swim.</p></aside>
+
+<h2 id="oo">O...O</h2>
+<p><em>o... o...</em> means <strong>either... or</strong>. It presents two alternatives and insists on choosing one.</p>
+<ul class="ex">
+<li><em>O vienes conmigo o te quedas aquí.</em> — Either you come with me or you stay here.</li>
+<li><em>Puedes pagar o con tarjeta o en efectivo.</em> — You can pay either by card or in cash.</li>
+<li><em>O lo haces bien o no lo hagas.</em> — Either do it right or don't do it.</li>
+</ul>
+<p>The second <em>o</em> still turns into <em>u</em> before an <em>o-</em> sound: <em>o uno u otro</em> — either one or the other.</p>
+<ul class="ex">
+<li><em>Elige: o el rojo o el azul.</em> — Choose: either the red one or the blue one.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Ya sea... o</p><p>In more formal writing, you may also see <em>ya sea... o...</em> (whether... or...): <em>Ya sea en tren o en avión, llegaremos mañana.</em> — Whether by train or by plane, we'll arrive tomorrow.</p></aside>
+
+<h2 id="pero-and-sino">Pero and Sino</h2>
+<p>Both <em>pero</em> and <em>sino</em> translate as <strong>but</strong>, but they aren't interchangeable.</p>
+<h3 id="pero-but-however">Pero: but, however</h3>
+<p><em>pero</em> adds a contrast or limitation to what was said. The first part can be positive or negative.</p>
+<ul class="ex">
+<li><em>Es caro, pero es muy bueno.</em> — It's expensive, but it's very good.</li>
+<li><em>No tengo tiempo, pero te ayudo.</em> — I don't have time, but I'll help you.</li>
+</ul>
+<h3 id="sino-but-rather-but-instead">Sino: but rather, but instead</h3>
+<p><em>sino</em> corrects a <strong>negative</strong> statement: "not X, but Y". Y replaces X.</p>
+<ul class="ex">
+<li><em>No es azul, sino verde.</em> — It's not blue but green.</li>
+<li><em>No vivo en Madrid, sino en Toledo.</em> — I don't live in Madrid but in Toledo.</li>
+</ul>
+<h3 id="sino-que-before-a-verb">Sino que before a verb</h3>
+<p>When the correction is a whole clause with its own conjugated verb, use <em>sino que</em>:</p>
+<ul class="ex">
+<li><em>No lo compré, sino que me lo regalaron.</em> — I didn't buy it; rather, they gave it to me.</li>
+</ul>
+<h3 id="no-solo-sino-tambien">No solo... sino también</h3>
+<ul class="ex">
+<li><em>No solo habla inglés, sino también francés.</em> — She speaks not only English but also French.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">The replacement test</p><p>If you can say "instead" or "rather" in English, use <em>sino</em>: <del><em>No es mi hermano, pero mi primo.</em></del> → <em>No es mi hermano, sino mi primo.</em> — He's not my brother but my cousin.</p></aside>
+
+<h3 id="mas">Mas</h3>
+<p><em>mas</em> (no accent) is a literary synonym of <em>pero</em>. Don't confuse it with <em>más</em> (more).</p>
+<h2 id="al">Al</h2>
+<p>Spanish has only two contractions, and both are compulsory. The first: <em>a</em> (to, at) + <em>el</em> (the) = <strong>al</strong>.</p>
+<ul class="ex">
+<li><del><em>Vamos a el cine.</em></del> → <em>Vamos al cine.</em> — Let's go to the cinema.</li>
+<li><em>Llamé al médico.</em> — I called the doctor.</li>
+<li><em>Doy de comer al perro.</em> — I feed the dog.</li>
+</ul>
+<h3 id="only-with-the-article-el">Only with the article el</h3>
+<p>The contraction doesn't happen with <em>la</em>, <em>los</em>, <em>las</em>, or with the pronoun <em>él</em>:</p>
+<ul class="ex">
+<li><em>Voy a la playa.</em> — I'm going to the beach.</li>
+<li><em>Escribo a los abuelos.</em> — I write to my grandparents.</li>
+<li><em>Se lo di a él.</em> — I gave it to him.</li>
+</ul>
+<h3 id="not-with-names-that-include-el">Not with names that include El</h3>
+<p>When <em>El</em> is part of a proper name, the contraction is not written: <em>Viajamos a El Salvador.</em> — We're travelling to El Salvador.</p>
+<h3 id="al-infinitive-on-when-doing">Al + infinitive: "on / when doing"</h3>
+<ul class="ex">
+<li><em>Al llegar, llámame.</em> — When you arrive, call me.</li>
+<li><em>Al salir del cine, vimos a Juan.</em> — On leaving the cinema, we saw Juan.</li>
+</ul>
+<h2 id="del">Del</h2>
+<p>The second contraction: <em>de</em> (of, from) + <em>el</em> (the) = <strong>del</strong>.</p>
+<ul class="ex">
+<li><del><em>la casa de el profesor</em></del> → <em>la casa del profesor</em> — the teacher's house</li>
+<li><em>Vengo del supermercado.</em> — I'm coming from the supermarket.</li>
+<li><em>el final del partido</em> — the end of the match</li>
+</ul>
+<h3 id="possession">Possession</h3>
+<p>Spanish has no <em>'s</em>; it uses <em>de</em>, which becomes <em>del</em> before <em>el</em>:</p>
+<ul class="ex">
+<li><em>el coche del vecino</em> — the neighbour's car</li>
+<li><em>la hija de la directora</em> — the headteacher's daughter (no contraction)</li>
+</ul>
+<h3 id="same-exceptions-as-al">Same exceptions as al</h3>
+<ul class="ex">
+<li><em>el libro de él</em> — his book (pronoun: no contraction)</li>
+<li><em>Es de El Cairo.</em> — He's from Cairo (part of a name).</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Only two contractions</p><p>Spanish has no contractions like English <em>don't</em> or <em>I'm</em>. <em>al</em> and <em>del</em> are the only two, and they're never optional.</p></aside>
+
+<h2 id="comprehensive-review-1">Comprehensive Review 1</h2>
+<p>Choose the right conjunction.</p>
+<ul class="ex">
+<li><em>Francia ___ Italia</em> → <em>e</em> (before <em>I-</em>)</li>
+<li><em>¿Uno ___ otro?</em> → <em>u</em> (before <em>o-</em>)</li>
+<li><em>No quiero agua, ___ zumo.</em> → <em>sino</em> (correction)</li>
+<li><em>Quiero ir, ___ no puedo.</em> → <em>pero</em></li>
+<li><em>No tengo ___ coche ___ moto.</em> → <em>ni... ni</em></li>
+<li><em>___ estudias ___ trabajas.</em> → <em>O... o</em></li>
+<li><em>madre ___ hija</em> → <em>e</em> (before <em>hi-</em>)</li>
+</ul>
+<h2 id="comprehensive-review-2">Comprehensive Review 2</h2>
+<p>Contractions and mixed practice.</p>
+<ul class="ex">
+<li><em>Voy (a + el) ___ banco.</em> → <em>al</em></li>
+<li><em>Es la novia (de + el) ___ hermano de Ana.</em> → <em>del</em></li>
+<li><em>Vengo (de + la) ___ escuela.</em> → <em>de la</em></li>
+<li><em>Pregunta (a + él) ___.</em> → <em>a él</em></li>
+<li><em>(a + el) ___ entrar, saluda.</em> → <em>Al entrar</em> — When you go in, say hello.</li>
+</ul>
+<h3 id="spot-the-mistake">Spot the mistake</h3>
+<ul class="ex">
+<li><del><em>agua e hielo</em></del> → <em>agua y hielo</em> — water and ice</li>
+<li><del><em>No es lunes, pero martes.</em></del> → <em>No es lunes, sino martes.</em> — It's not Monday but Tuesday.</li>
+<li><del><em>Ni Pedro ni Luis no vienen.</em></del> → <em>Ni Pedro ni Luis vienen.</em> — Neither Pedro nor Luis is coming.</li>
+<li><del><em>Salgo de el trabajo a las seis.</em></del> → <em>Salgo del trabajo a las seis.</em> — I leave work at six.</li>
+</ul>
+</article>
+<nav class="pager"><a class="btn" href="ser-vs-estar.html">← Ser vs. Estar</a><a class="btn" href="negation.html">Negation →</a></nav>
+
+<footer><span>Part of the Spanish grammar library</span><a class="btn" href="../../spanish/index.html">← Back to Spanish grammar</a></footer>
+</div>
+
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+<script>
+(function () {
+  // area headings on the home page: show the last saved quiz result of that area
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('h2 > a[data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result';
+    a.parentNode.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
