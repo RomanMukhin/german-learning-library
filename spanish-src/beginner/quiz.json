@@ -1,0 +1,336 @@
+{
+ "title": "Beginner quiz",
+ "level": "A1–A2",
+ "questions": [
+  {
+   "q": "*___* agua está muy fría.",
+   "options": [
+    "El",
+    "La",
+    "Lo",
+    "Los"
+   ],
+   "answer": 0,
+   "explain": "Agua is feminine but starts with a stressed a-, so it takes el in the singular."
+  },
+  {
+   "q": "*___* importante es practicar todos los días.",
+   "options": [
+    "Lo",
+    "El",
+    "La",
+    "Un"
+   ],
+   "answer": 0,
+   "explain": "The neuter article lo turns an adjective into an abstract idea: the important thing."
+  },
+  {
+   "q": "Which noun is masculine?",
+   "options": [
+    "problema",
+    "canción",
+    "ciudad",
+    "mano"
+   ],
+   "answer": 0,
+   "explain": "Many nouns ending in -ma, like el problema, are masculine."
+  },
+  {
+   "q": "What is the plural of *el lápiz*?",
+   "options": [
+    "los lápices",
+    "los lápizes",
+    "los lápizs",
+    "los lápiz"
+   ],
+   "answer": 0,
+   "explain": "Nouns ending in -z change it to -c and add -es."
+  },
+  {
+   "q": "Mi hermana es *___*. (a doctor)",
+   "options": [
+    "médica",
+    "una médica",
+    "la médica",
+    "un médico"
+   ],
+   "answer": 0,
+   "explain": "After ser, an unmodified profession takes no article in Spanish."
+  },
+  {
+   "q": "Which sentence is capitalized correctly?",
+   "options": [
+    "El lunes tengo clase de inglés.",
+    "El Lunes tengo clase de Inglés.",
+    "El lunes tengo clase de Inglés.",
+    "El Lunes tengo clase de inglés."
+   ],
+   "answer": 0,
+   "explain": "Days of the week and languages are lowercase in Spanish."
+  },
+  {
+   "q": "You're talking to your new boss in Mexico. Which pronoun do you use for 'you'?",
+   "options": [
+    "usted",
+    "tú",
+    "vosotros",
+    "vos"
+   ],
+   "answer": 0,
+   "explain": "Usted is the polite, formal singular 'you'."
+  },
+  {
+   "q": "A group of four women and one man: *___* somos amigos.",
+   "options": [
+    "Nosotros",
+    "Nosotras",
+    "Ellas",
+    "Vosotras"
+   ],
+   "answer": 0,
+   "explain": "Any mixed group takes the masculine form nosotros."
+  },
+  {
+   "q": "Where is the stress in *ordenador*?",
+   "options": [
+    "on the last syllable",
+    "on the second-to-last syllable",
+    "on the first syllable",
+    "on the third-to-last syllable"
+   ],
+   "answer": 0,
+   "explain": "Words ending in a consonant other than -n or -s are stressed on the last syllable."
+  },
+  {
+   "q": "Which word needs a written accent?",
+   "options": [
+    "musica",
+    "casa",
+    "hablar",
+    "joven"
+   ],
+   "answer": 0,
+   "explain": "Música is stressed on the third-to-last syllable, and such words always carry an accent."
+  },
+  {
+   "q": "Yo *___* la cena todos los días. (hacer)",
+   "options": [
+    "hago",
+    "haco",
+    "hace",
+    "hazo"
+   ],
+   "answer": 0,
+   "explain": "Hacer has an irregular yo form ending in -go: hago."
+  },
+  {
+   "q": "Nosotros no *___* venir mañana. (poder)",
+   "options": [
+    "podemos",
+    "puedemos",
+    "pueden",
+    "puedo"
+   ],
+   "answer": 0,
+   "explain": "Stem-changing verbs don't change in the nosotros form."
+  },
+  {
+   "q": "El bebé está *___*. (dormir)",
+   "options": [
+    "durmiendo",
+    "dormiendo",
+    "duermiendo",
+    "dormido"
+   ],
+   "answer": 0,
+   "explain": "Dormir changes o to u in the present participle: durmiendo."
+  },
+  {
+   "q": "Which is correct for 'I'm reading it' (el libro)?",
+   "options": [
+    "Estoy leyéndolo.",
+    "Estoy leyendolo.",
+    "Estoy lo leyendo.",
+    "Lo estoy leyéndolo."
+   ],
+   "answer": 0,
+   "explain": "The pronoun attaches to the participle, which then needs an accent to keep its stress."
+  },
+  {
+   "q": "—¿Tienes las llaves? —Sí, *___* tengo.",
+   "options": [
+    "las",
+    "les",
+    "los",
+    "la"
+   ],
+   "answer": 0,
+   "explain": "Las llaves is feminine plural, so the direct object pronoun is las."
+  },
+  {
+   "q": "*___* di el regalo a mi madre.",
+   "options": [
+    "Le",
+    "La",
+    "Lo",
+    "Les"
+   ],
+   "answer": 0,
+   "explain": "Mi madre receives the gift, so she is the indirect object: le."
+  },
+  {
+   "q": "How do you say 'I give it to him' (el libro)?",
+   "options": [
+    "Se lo doy.",
+    "Le lo doy.",
+    "Lo le doy.",
+    "Se le doy."
+   ],
+   "answer": 0,
+   "explain": "Le turns into se before lo, la, los or las."
+  },
+  {
+   "q": "¿*___* es tu número de teléfono?",
+   "options": [
+    "Cuál",
+    "Qué",
+    "Cómo",
+    "Cuánto"
+   ],
+   "answer": 0,
+   "explain": "With ser, cuál asks for a specific piece of information such as a number or address."
+  },
+  {
+   "q": "¿*___* eres? — Soy de Chile.",
+   "options": [
+    "De dónde",
+    "Dónde",
+    "Adónde",
+    "Por dónde"
+   ],
+   "answer": 0,
+   "explain": "De dónde asks where someone or something comes from."
+  },
+  {
+   "q": "¿*___* personas vienen a la cena?",
+   "options": [
+    "Cuántas",
+    "Cuántos",
+    "Cuánta",
+    "Cuál"
+   ],
+   "answer": 0,
+   "explain": "Cuánto agrees with the noun, and personas is feminine plural."
+  },
+  {
+   "q": "Estoy muy *___*. (a man saying \"I'm tired\")",
+   "options": [
+    "cansado",
+    "cansada",
+    "cansando",
+    "cansados"
+   ],
+   "answer": 0,
+   "explain": "Estar is used for temporary conditions like being tired."
+  },
+  {
+   "q": "La fiesta *___* en casa de Ana.",
+   "options": [
+    "es",
+    "está",
+    "hay",
+    "son"
+   ],
+   "answer": 0,
+   "explain": "Where an event takes place is expressed with ser, not estar."
+  },
+  {
+   "q": "No es rojo, *___* naranja.",
+   "options": [
+    "sino",
+    "pero",
+    "y",
+    "o"
+   ],
+   "answer": 0,
+   "explain": "Sino corrects a negative statement: not X but Y."
+  },
+  {
+   "q": "Hablo español *___* inglés.",
+   "options": [
+    "e",
+    "y",
+    "u",
+    "o"
+   ],
+   "answer": 0,
+   "explain": "Y changes to e before a word beginning with the sound i."
+  },
+  {
+   "q": "No conozco a *___* en esta ciudad.",
+   "options": [
+    "nadie",
+    "alguien",
+    "nada",
+    "nunca"
+   ],
+   "answer": 0,
+   "explain": "After no + verb, Spanish uses the negative word nadie (double negation is correct)."
+  },
+  {
+   "q": "Después de *___*, vamos al parque.",
+   "options": [
+    "comer",
+    "comiendo",
+    "como",
+    "comido"
+   ],
+   "answer": 0,
+   "explain": "After a preposition, Spanish always uses the infinitive."
+  },
+  {
+   "q": "How do you write 21 before *años*?",
+   "options": [
+    "veintiún",
+    "veintiuno",
+    "veinte y uno",
+    "veintiuna"
+   ],
+   "answer": 0,
+   "explain": "Numbers ending in uno shorten to -ún before a masculine noun."
+  },
+  {
+   "q": "En el concierto había *___* personas. (500)",
+   "options": [
+    "quinientas",
+    "cincocientas",
+    "quinientos",
+    "cinco cientos"
+   ],
+   "answer": 0,
+   "explain": "Quinientos is irregular and agrees with the feminine noun personas."
+  },
+  {
+   "q": "How do you say 1:30?",
+   "options": [
+    "Es la una y media.",
+    "Son las una y media.",
+    "Es la una y cuarto.",
+    "Son la una y media."
+   ],
+   "answer": 0,
+   "explain": "One o'clock is singular (es la una), and half past is y media."
+  },
+  {
+   "q": "Acabo de *___*. (I've just arrived)",
+   "options": [
+    "llegar",
+    "llegado",
+    "llegando",
+    "llego"
+   ],
+   "answer": 0,
+   "explain": "Acabar de + infinitive means 'to have just done something'."
+  }
+ ]
+}
