@@ -35,6 +35,8 @@ PROG_CSS = """/* progress */
 .pgroup { display: grid; grid-template-columns: 1fr 80px 52px; align-items: center; gap: 10px; padding: 4px 0; color: var(--fg); text-decoration: none; font-size: 14px; }
 .pgroup .pbar { width: 80px; } .pgroup .pnum { text-align: right; }
 .pgroup:hover .pg-t { color: var(--brand); }
+.pextra { border-top: 1px solid var(--border); padding-top: 10px; grid-template-columns: 1fr 120px 52px; }
+.pextra .pbar { width: 120px; }
 .phint { margin: 0; font-size: 12.5px; color: var(--muted); }
 """
 HOMES = {"index.html", "english/index.html", "spanish/index.html"}
@@ -62,12 +64,19 @@ def manifest(paths):
             nq = len(d.get("questions") or d.get("quiz") or [])
         seg = rel.split("/")
         key = "/".join(seg[:2]) if seg[0] in ("english", "spanish") else seg[0]
+        if seg[0] == "grammar":  # German grammar is broken down by its sections
+            key = "grammar/" + (seg[1] if len(seg) > 2 else seg[1][:-5])
         if key not in groups:
             if seg[0] in ("english", "spanish"):
                 idx = os.path.join(ROOT, key, "index.html")
                 t = re.search(r"<h1>(.*?)</h1>", open(idx, encoding="utf-8").read()) if os.path.exists(idx) else None
                 title = t.group(1) if t else seg[1].replace("-", " ").capitalize()
                 href = key + "/index.html" if os.path.exists(idx) else seg[0] + "/index.html#" + seg[1]
+            elif seg[0] == "grammar":
+                src = os.path.join(ROOT, key, "index.html") if len(seg) > 2 else path
+                t = re.search(r"<h1>(.*?)</h1>", open(src, encoding="utf-8").read())
+                title = "Grammar overview" if rel == "grammar/index.html" else (t.group(1) if t else key)
+                href = key + "/index.html" if len(seg) > 2 else rel
             else:
                 title, href = GERMAN_GROUPS.get(key, (key.capitalize(), "index.html"))
             groups[key] = {"key": key, "title": title, "href": href}
@@ -78,11 +87,15 @@ def manifest(paths):
 
     def pos(g):
         k = g["key"]
+        if k.startswith("grammar/"):  # German grammar sections in the order of grammar/index.html
+            gi = open(os.path.join(ROOT, "grammar", "index.html"), encoding="utf-8").read()
+            i = gi.find('href="' + k[8:] + ("/" if os.path.isdir(os.path.join(ROOT, k)) else ".html"))
+            return (0, 0, i if i >= 0 else -1)
         if "/" not in k:
-            return (0, german_order.index(k) if k in german_order else 99)
+            return (0, 1 + (german_order.index(k) if k in german_order else 99), 0)
         home = open(os.path.join(ROOT, k.split("/")[0], "index.html"), encoding="utf-8").read()
         i = home.find('href="' + k.split("/")[1] + "/")
-        return (1 if k.startswith("english") else 2, i if i >= 0 else 10 ** 9)
+        return (1 if k.startswith("english") else 2, i if i >= 0 else 10 ** 9, 0)
     data = {"pages": pages, "groups": sorted(groups.values(), key=pos), "groupOf": group_of}
     open(os.path.join(ROOT, "progress-manifest.js"), "w", encoding="utf-8").write(
         "window.PROGRESS_MANIFEST = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n")

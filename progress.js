@@ -99,22 +99,31 @@
     hero.appendChild(box);
   }
 
-  // 3. language home: total and breakdown
+  // 3. language home: grammar is the main score, reading stories (where a language has them) come second
+  var STORIES = { readings: 1, 'spanish/stories': 1 };
+  function isGrammar(g) { return g.key.indexOf('grammar/') === 0 || /^(english|spanish)\//.test(g.key) && !STORIES[g.key]; }
   function home(hero) {
-    var l = lang(SELF), all = langItems(l), c = count(all);
+    var l = lang(SELF), mineG = M.groups.filter(function (g) { return lang(g.key + '/') === l; });
+    var byGroup = {}; M.pages.forEach(function (p) { var g = M.groupOf[p.path]; (byGroup[g] = byGroup[g] || []).push(p); });
+    var gram = mineG.filter(isGrammar), stories = mineG.filter(function (g) { return STORIES[g.key]; });
+    var gItems = [].concat.apply([], gram.map(function (g) { return byGroup[g.key] || []; })), c = count(gItems);
     var card = el('div', 'pcard card'); card.id = 'pstatus';
     var head = el('div', 'phead');
-    head.appendChild(el('strong', null, 'Your progress'));
+    head.appendChild(el('strong', null, 'Grammar progress'));
     head.appendChild(el('span', 'pnum', c.done + ' of ' + c.total + ' pages done · ' + Math.round(100 * c.done / (c.total || 1)) + '%'));
     card.appendChild(head); card.appendChild(bar(c.done, c.total));
-    var groups = {}; all.forEach(function (p) { var g = M.groupOf[p.path]; (groups[g] = groups[g] || []).push(p); });
     var list = el('div', 'pgroups');
-    M.groups.filter(function (g) { return groups[g.key] && lang(g.key + '/') === l; }).forEach(function (g) {
-      var gc = count(groups[g.key]), row = el('a', 'pgroup'); row.href = ROOT + g.href;
+    gram.forEach(function (g) {
+      var gc = count(byGroup[g.key] || []), row = el('a', 'pgroup'); row.href = ROOT + g.href;
       row.appendChild(el('span', 'pg-t', g.title)); row.appendChild(bar(gc.done, gc.total)); row.appendChild(el('span', 'pnum', gc.done + '/' + gc.total));
       list.appendChild(row);
     });
     card.appendChild(list);
+    stories.forEach(function (g) {
+      var sc = count(byGroup[g.key] || []), row = el('a', 'pgroup pextra'); row.href = ROOT + g.href;
+      row.appendChild(el('span', 'pg-t', '📖 ' + g.title + ' (extra)')); row.appendChild(bar(sc.done, sc.total)); row.appendChild(el('span', 'pnum', sc.done + '/' + sc.total));
+      card.appendChild(row);
+    });
     card.appendChild(el('p', 'phint', 'A quiz counts as done at 70% or more; a page without a quiz counts once you read it to the end. Saved in this browser only.'));
     hero.parentNode.insertBefore(card, hero.nextSibling);
   }
