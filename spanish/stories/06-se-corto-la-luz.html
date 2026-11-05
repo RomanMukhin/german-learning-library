@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="2cc7285a5945">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Se cortó la luz · Spanish stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to Spanish grammar">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html#stories">Stories</a><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>el</span><span><span class="g g-f">f</span>la</span><span><span class="g g-pl">pl</span>los / las</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the Spanish library</span><a class="btn" href="../index.html">← Back to Spanish grammar</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "06-se-corto-la-luz", "n": 6, "area": "Everyday", "level": "B1–B2", "title_de": "Se cortó la luz", "title_en": "The power went out", "grammar": [{"name": "Present subjunctive after wishes, doubt and time clauses", "explain": "The subjunctive appears after expressions of wish (*ojalá que vuelva la luz*), possibility (*es posible que el apagón haya quemado la placa*) and after *hasta que, cuando, antes de que* when they refer to the future (*hasta que lo revisen*). Compare: *cuando hay temporal, se corta la luz* (habit, indicative) vs *cuando llegue el técnico, le preguntaré* (future, subjunctive). For something that may already have happened, use the perfect subjunctive: *haya* + participle.", "examples": [{"de": "*Ojalá que vuelva* la luz antes de mañana.", "en": "Let's hope the power comes back before tomorrow."}, {"de": "No use ese enchufe *hasta que lo revisen*.", "en": "Don't use that socket until they've checked it."}, {"de": "*Es posible que* el apagón *haya quemado* la placa.", "en": "The power cut may have burnt out the circuit board."}], "links": [{"title": "Subjunctive", "url": "../advanced/subjunctive.html"}, {"title": "Subjunctive vs. indicative", "url": "../advanced/subjunctive-vs-indicative.html"}, {"title": "Present perfect subjunctive", "url": "../advanced/present-perfect-subjunctive.html"}]}, {"name": "Hypotheses and past advice: the imperfect subjunctive", "explain": "For an unreal condition in the present, Spanish uses *si* + imperfect subjunctive + conditional: *Si la lavadora tuviera menos de un año, estaría en garantía* (but it doesn't). The imperfect subjunctive also follows past-tense verbs of advice or request: *Matías le sugirió que reclamara.* Form it from the *ellos* preterite: *tuvieron → tuviera, reclamaron → reclamara*.", "examples": [{"de": "*Si tuviera* una linterna, no *usaría* velas.", "en": "If I had a torch, I wouldn't use candles."}, {"de": "Le sugirió que *reclamara* a la compañía.", "en": "He suggested she file a complaint with the company."}, {"de": "*Si fuera* tú, *llamaría* al técnico.", "en": "If I were you, I'd call the repairman."}], "links": [{"title": "Imperfect subjunctive", "url": "../advanced/imperfect-subjunctive.html"}, {"title": "Conditional", "url": "../intermediate/conditional.html"}]}, {"name": "Impersonal se", "explain": "*Se* + third-person verb expresses what people in general do, without naming anyone: *se puede pedir una compensación* (you can claim compensation), *se ve mucho* (you see it a lot). With a plural noun, the verb agrees (passive *se*): *se venden linternas*. English uses *you, one, people* or a passive.", "examples": [{"de": "*Se puede* pedir una compensación.", "en": "You can ask for compensation."}, {"de": "Eso *se ve* mucho en invierno.", "en": "You see that a lot in winter."}, {"de": "Aquí *se arreglan* lavadoras.", "en": "Washing machines repaired here."}], "links": [{"title": "Impersonal and passive se", "url": "../advanced/impersonal-and-passive-se.html"}]}], "vocab": [{"id": "temporal", "de": "temporal", "gender": "m", "plural": "temporales", "en": "storm (of wind and rain)", "examples": [{"de": "Se anuncia un *temporal* para el fin de semana.", "en": "A storm is forecast for the weekend."}, {"de": "El *temporal* derribó varios árboles.", "en": "The storm brought down several trees."}], "note": "Typical in Chile and Spain for a long spell of bad weather. As an adjective *temporal* means temporary: *un trabajo temporal*."}, {"id": "cortarse", "de": "cortarse la luz", "gender": "", "plural": "", "en": "(for the power) to go off", "examples": [{"de": "Anoche *se cortó la luz* dos horas.", "en": "Last night the power went off for two hours."}, {"de": "Si *se corta la luz*, el ascensor no funciona.", "en": "If the power goes, the lift doesn't work."}], "note": "*La luz* is everyday Spanish for electricity. Also *se fue la luz* (Latin America and Spain) and *hubo un corte de luz*."}, {"id": "apagon", "de": "apagón", "gender": "m", "plural": "apagones", "en": "power cut, blackout", "examples": [{"de": "El *apagón* afectó a toda la ciudad.", "en": "The blackout affected the whole city."}, {"de": "Con los *apagones* se nos echa a perder la comida.", "en": "With the power cuts our food goes off."}], "note": "From *apagar* (to switch off). The accent disappears in the plural: *apagones*."}, {"id": "linterna", "de": "linterna", "gender": "f", "plural": "linternas", "en": "torch, flashlight", "examples": [{"de": "Siempre llevo una *linterna* en la mochila.", "en": "I always carry a torch in my backpack."}, {"de": "Usa la *linterna* del celular.", "en": "Use your phone's torch."}], "note": "*Linterna* is a torch, not a lantern; a hanging lantern is usually *un farol*."}, {"id": "vela", "de": "vela", "gender": "f", "plural": "velas", "en": "candle; sail", "examples": [{"de": "Cenamos a la luz de las *velas*.", "en": "We had dinner by candlelight."}, {"de": "Sopla las *velas* del pastel.", "en": "Blow out the candles on the cake."}], "note": "*Pasar la noche en vela* = to be up all night. *Un barco de vela* = a sailing boat."}, {"id": "cargador", "de": "cargador", "gender": "m", "plural": "cargadores", "en": "charger; power bank", "examples": [{"de": "¿Me prestas tu *cargador*?", "en": "Can I borrow your charger?"}, {"de": "El *cargador* portátil está descargado.", "en": "The power bank is flat."}], "note": "From *cargar* (to charge, to load). A power bank is also *una batería externa* in Spain."}, {"id": "refrigerador", "de": "refrigerador", "gender": "m", "plural": "refrigeradores", "en": "fridge", "examples": [{"de": "Guarda la leche en el *refrigerador*.", "en": "Keep the milk in the fridge."}, {"de": "El *refrigerador* hace un ruido raro.", "en": "The fridge is making a strange noise."}], "note": "Chile, Peru, Central America. Spain says *la nevera* or *el frigorífico*, Argentina *la heladera*, Mexico also *el refri*."}, {"id": "echarse", "de": "echarse a perder", "gender": "", "plural": "", "en": "to go off, to spoil; to break down", "examples": [{"de": "Con el calor, la carne *se echó a perder*.", "en": "With the heat, the meat went off."}, {"de": "Se me *echó a perder* el computador.", "en": "My computer broke down. (Chile)"}], "note": "Used everywhere for food going bad; in Chile it's also very common for machines that break. *Se me…* shows it happened to me, not on purpose."}, {"id": "lavadora", "de": "lavadora", "gender": "f", "plural": "lavadoras", "en": "washing machine", "examples": [{"de": "Voy a poner la *lavadora*.", "en": "I'm going to put a wash on."}, {"de": "La *lavadora* no centrifuga.", "en": "The washing machine won't spin."}], "note": "*Poner la lavadora* = to do a wash. Argentina also says *el lavarropas*. A dishwasher is *el lavavajillas* or *el lavaplatos*."}, {"id": "inundarse", "de": "inundarse", "gender": "", "plural": "", "en": "to flood, to get flooded", "examples": [{"de": "*Se inundó* la cocina.", "en": "The kitchen flooded."}, {"de": "Con el temporal *se inundan* las calles.", "en": "With the storm the streets flood."}], "note": "The noun is *la inundación* (flood)."}, {"id": "desenchufar", "de": "desenchufar", "gender": "", "plural": "", "en": "to unplug", "examples": [{"de": "*Desenchufa* la tele antes de salir.", "en": "Unplug the TV before you go out."}, {"de": "Lo *desenchufé* por si acaso.", "en": "I unplugged it just in case."}], "note": "The opposite is *enchufar* (to plug in). Informally *un enchufe* in Spain also means a connection that gets you a job."}, {"id": "altiro", "de": "al tiro", "gender": "", "plural": "", "en": "right away, immediately (Chile)", "examples": [{"de": "Voy *al tiro*.", "en": "I'm coming right now."}, {"de": "Me contestó *al tiro*.", "en": "She answered me straight away."}], "note": "Very Chilean, often written *altiro*. Elsewhere: *enseguida, ahora mismo, ya*."}, {"id": "conserje", "de": "conserje", "gender": "m", "plural": "conserjes", "en": "caretaker, building concierge", "examples": [{"de": "Dejé las llaves con el *conserje*.", "en": "I left the keys with the caretaker."}, {"de": "La *conserje* recibe los paquetes.", "en": "The (female) concierge takes in the parcels."}], "note": "Same form for men and women: *el/la conserje*. In Spain a building caretaker is often *el portero*."}, {"id": "tecnico", "de": "técnico", "gender": "m", "plural": "técnicos", "en": "repair technician, repairman", "examples": [{"de": "El *técnico* viene el martes.", "en": "The repairman is coming on Tuesday."}, {"de": "Llamé al servicio *técnico*.", "en": "I called the technical service."}], "note": "Feminine: *la técnica*, which also means technique. As an adjective: *un problema técnico*."}, {"id": "enchufe", "de": "enchufe", "gender": "m", "plural": "enchufes", "en": "socket; plug", "examples": [{"de": "No hay ningún *enchufe* cerca de la cama.", "en": "There's no socket near the bed."}, {"de": "Este *enchufe* no funciona.", "en": "This socket doesn't work."}], "note": "Used for both the socket in the wall and the plug on the cable. In Spain *tener enchufe* means to have connections."}, {"id": "presupuesto", "de": "presupuesto", "gender": "m", "plural": "presupuestos", "en": "quote, estimate; budget", "examples": [{"de": "Pide un *presupuesto* antes de aceptar la reparación.", "en": "Ask for a quote before agreeing to the repair."}, {"de": "No tenemos *presupuesto* para eso.", "en": "We don't have the budget for that."}], "note": "For a repair, *presupuesto* is the quote, not your budget. *Hacer un presupuesto* = to give an estimate."}, {"id": "arreglar", "de": "arreglar", "gender": "", "plural": "", "en": "to repair, to fix; to sort out", "examples": [{"de": "¿Me puedes *arreglar* la bici?", "en": "Can you fix my bike?"}, {"de": "Ya *arreglé* lo del banco.", "en": "I've already sorted out the bank thing."}], "note": "*Arreglarse* = to get ready, to dress up: *Me estoy arreglando para la fiesta.*"}, {"id": "repuesto", "de": "repuesto", "gender": "m", "plural": "repuestos", "en": "spare part", "examples": [{"de": "Hay que esperar el *repuesto* de la fábrica.", "en": "We have to wait for the spare part from the factory."}, {"de": "Llevamos una rueda de *repuesto*.", "en": "We carry a spare wheel."}], "note": "*De repuesto* = spare. In Spain you also hear *la pieza de recambio*."}, {"id": "garantia", "de": "garantía", "gender": "f", "plural": "garantías", "en": "guarantee, warranty", "examples": [{"de": "La lavadora tiene dos años de *garantía*.", "en": "The washing machine has a two-year guarantee."}, {"de": "Ya no está en *garantía*.", "en": "It's no longer under warranty."}], "note": "*Estar en garantía* = to be under warranty. The verb is *garantizar*."}, {"id": "reclamar", "de": "reclamar", "gender": "", "plural": "", "en": "to complain (formally), to claim", "examples": [{"de": "Voy a *reclamar* a la compañía de teléfono.", "en": "I'm going to complain to the phone company."}, {"de": "*Reclamó* una compensación.", "en": "He claimed compensation."}], "note": "False friend: it doesn't mean to reclaim. *Un reclamo* (Latin America) / *una reclamación* (Spain) = a formal complaint."}], "text": "Giulia llegó a Santiago desde Bolonia hace dos años para hacer un doctorado, y creía que ya lo había visto todo. Hasta el invierno pasado, cuando un {{temporal|temporal}} de viento y lluvia {{=azotó|battered}} la ciudad durante tres días.\n\nLa primera noche, {{=a eso de|at around}} las once, {{cortarse|se cortó la luz}} en todo el barrio. Giulia buscó una {{linterna|linterna}} sin éxito y terminó encendiendo unas {{vela|velas}} de cumpleaños. Al celular le quedaba un diez por ciento de batería y el {{cargador|cargador}} portátil, por supuesto, estaba descargado. Por WhatsApp, su vecino Matías le escribió: «Tranquila, aquí los {{apagon|apagones}} con temporal son normales. Ojalá que vuelva la luz antes de mañana; si no, se te va a {{echarse|echar a perder}} todo lo del {{refrigerador|refrigerador}}».\n\nLa luz volvió a las seis de la mañana, pero las sorpresas no habían terminado. Cuando Giulia puso la {{lavadora|lavadora}}, la máquina hizo un ruido extraño, se detuvo y el baño empezó a {{inundarse|inundarse}}. Ella la {{desenchufar|desenchufó}} {{altiro|al tiro}}, secó el suelo con todas sus toallas y bajó a hablar con el {{conserje|conserje}}, don Luis. «Es posible que el apagón haya quemado la {{=placa|circuit board}}», le dijo. «Se ve mucho estos días. Llame a un {{tecnico|técnico}} y no use ese {{enchufe|enchufe}} hasta que lo revisen».\n\nEl técnico llegó dos días después y le dio un {{presupuesto|presupuesto}} de 120.000 pesos para {{arreglar|arreglar}} la lavadora, porque había que pedir un {{repuesto|repuesto}} a la fábrica. «Si la lavadora tuviera menos de un año, estaría en {{garantia|garantía}}», le explicó, «pero la suya tiene tres». Giulia {{=suspiró|sighed}}.\n\nMatías le sugirió que {{reclamar|reclamara}} a la compañía eléctrica: en Chile, si un corte de luz daña tus aparatos, se puede pedir una compensación. Giulia llenó el formulario en línea y adjuntó fotos y la factura del técnico. Todavía espera respuesta. Mientras tanto, tiene una linterna en cada habitación, un cargador siempre lleno y una {{=regla de oro|golden rule}}: cuando se anuncie otro temporal, lavará la ropa antes.", "quiz": [{"q": "¿Por qué está Giulia en Santiago?", "options": ["Trabaja en la compañía eléctrica.", "Está de vacaciones.", "Visita a su vecino Matías.", "Arregla lavadoras.", "Hace un doctorado."], "answer": 4, "explain": "«Giulia llegó a Santiago desde Bolonia hace dos años para hacer un doctorado.»"}, {"q": "¿Qué usó Giulia para tener luz durante el apagón?", "options": ["una linterna nueva", "unas velas de cumpleaños", "la linterna del celular", "el cargador portátil", "la luz del refrigerador"], "answer": 1, "explain": "She couldn't find a torch and «terminó encendiendo unas velas de cumpleaños»."}, {"q": "¿Qué le preocupa a Matías si la luz no vuelve pronto?", "options": ["que se inunde el baño", "que Giulia no pueda trabajar", "que se eche a perder la comida del refrigerador", "que se rompa la lavadora", "que no funcione el ascensor"], "answer": 2, "explain": "«Si no, se te va a echar a perder todo lo del refrigerador.»"}, {"q": "¿Qué pasó cuando Giulia puso la lavadora?", "options": ["Funcionó perfectamente.", "Se cortó la luz otra vez.", "Se quemó el enchufe.", "Hizo un ruido extraño, se detuvo y el baño se inundó.", "La ropa salió de otro color."], "answer": 3, "explain": "«La máquina hizo un ruido extraño, se detuvo y el baño empezó a inundarse.»"}, {"q": "¿Por qué la lavadora no está en garantía?", "options": ["porque tiene tres años", "porque Giulia no tiene la factura", "porque el apagón no está cubierto", "porque la compró en Italia", "porque el técnico no es oficial"], "answer": 0, "explain": "«Si la lavadora tuviera menos de un año, estaría en garantía, pero la suya tiene tres.»"}, {"q": "¿Qué hizo Giulia después de hablar con Matías?", "options": ["Compró una lavadora nueva.", "Llenó un formulario para reclamar a la compañía eléctrica.", "Se mudó a otro departamento.", "Llamó a don Luis.", "Pagó al técnico con el dinero de la compañía."], "answer": 1, "explain": "«Giulia llenó el formulario en línea y adjuntó fotos y la factura del técnico» — she is still waiting for an answer."}, {"q": "En este texto, «presupuesto» significa…", "options": ["el dinero que Giulia ahorra cada mes", "la factura de la luz", "una compensación", "el precio que el técnico calcula para la reparación", "una pieza de la lavadora"], "answer": 3, "explain": "For a repair, *el presupuesto* is the quote or estimate. The spare part is *el repuesto*."}, {"q": "Ojalá que la luz *___* pronto.", "options": ["vuelve", "volverá", "vuelva", "volvía", "ha vuelto"], "answer": 2, "explain": "*Ojalá (que)* is always followed by the subjunctive: *vuelva*."}, {"q": "Si yo *___* una linterna, no usaría velas.", "options": ["tengo", "tuviera", "tendría", "tenga", "tuve"], "answer": 1, "explain": "Unreal condition: *si* + imperfect subjunctive (*tuviera*) + conditional (*usaría*). Never the conditional after *si*."}, {"q": "«En Chile se puede pedir una compensación» significa…", "options": ["Only Giulia can ask for compensation.", "Chile asks for compensation.", "The company has to ask for compensation.", "Compensation is never paid in Chile.", "People in Chile can ask for compensation."], "answer": 4, "explain": "Impersonal *se*: *se puede* = you / people can, without naming anyone in particular."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', mpl: 'pl', fpl: 'pl' };
+  var ART = { m: 'el', f: 'la', mpl: 'los', fpl: 'las' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + (GLAB[g] || g), g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + (GLAB[g] || g), ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); saveRes(data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length, data.quiz.length); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

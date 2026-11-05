@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="702819c47885">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Día de Muertos en Oaxaca · Spanish stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to Spanish grammar">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html#stories">Stories</a><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>el</span><span><span class="g g-f">f</span>la</span><span><span class="g g-pl">pl</span>los / las</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the Spanish library</span><a class="btn" href="../index.html">← Back to Spanish grammar</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "14-dia-de-muertos", "n": 14, "area": "Travel and culture", "level": "B1", "title_de": "Día de Muertos en Oaxaca", "title_en": "Day of the Dead in Oaxaca", "grammar": [{"name": "Impersonal and passive se", "explain": "When it doesn't matter who does something, Spanish often uses *se* + verb in the third person. With a plural noun the verb is plural (*se encendían velas* — candles were lit), with a singular noun or no noun it is singular (*se montó un altar*, *se dice que…*). English uses the passive, *people* or *you* instead. This is perfect for describing customs: *En Oaxaca se celebra el Día de Muertos.*", "examples": [{"de": "En el altar *se ponen* fotos de los difuntos.", "en": "Photos of the dead are placed on the altar."}, {"de": "Aquí la muerte no *se ve* como algo triste.", "en": "Here death isn't seen as something sad."}, {"de": "*Se dice* que las almas vuelven a casa.", "en": "People say that the souls come back home."}], "links": [{"title": "Impersonal and passive se", "url": "../advanced/impersonal-and-passive-se.html"}]}, {"name": "The imperfect for habits and descriptions", "explain": "The *imperfecto* describes how things used to be and what people used to do, with no clear beginning or end: *Mi madre cocinaba el mejor mole.* *Cuando yo era niña…* It also paints scenes in progress: *Algunas familias cenaban junto a las tumbas.* Endings: *-ar → -aba*, *-er/-ir → -ía*. Only three verbs are irregular: *ser (era), ir (iba), ver (veía)*.", "examples": [{"de": "Cuando *era* niña, *iba* al panteón con mi abuela.", "en": "When I was a girl, I used to go to the cemetery with my grandmother."}, {"de": "Mi madre siempre *hacía* lo mismo.", "en": "My mother always did the same."}, {"de": "La banda *tocaba* y la gente *bailaba*.", "en": "The band was playing and people were dancing."}], "links": [{"title": "Imperfect", "url": "../intermediate/imperfect.html"}, {"title": "Preterite vs. imperfect", "url": "../intermediate/preterite-vs-imperfect.html"}]}], "vocab": [{"id": "recordar", "de": "recordar", "gender": "", "plural": "", "en": "to remember; to remind", "examples": [{"de": "*Recordamos* a nuestros abuelos con cariño.", "en": "We remember our grandparents fondly."}, {"de": "*Recuérdame* que compre velas.", "en": "Remind me to buy candles."}], "note": "Stem-changing (*o → ue*): *recuerdo, recuerdas*. *Acordarse de* means the same but needs *de*: *Me acuerdo de ella.*"}, {"id": "ofrenda", "de": "ofrenda", "gender": "f", "plural": "ofrendas", "en": "offering; (Mexico) Day of the Dead altar", "examples": [{"de": "Ponemos la *ofrenda* el 31 de octubre.", "en": "We set up the offering on 31 October."}, {"de": "Llevaron flores como *ofrenda*.", "en": "They brought flowers as an offering."}], "note": "In Mexico *la ofrenda* means both the gifts and the whole decorated altar. Don't confuse with *oferta* (special offer)."}, {"id": "altar", "de": "altar", "gender": "m", "plural": "altares", "en": "altar", "examples": [{"de": "El *altar* tiene tres niveles.", "en": "The altar has three levels."}, {"de": "Hay *altares* en casas, escuelas y oficinas.", "en": "There are altars in homes, schools and offices."}], "note": "Masculine. *Llevar al altar* = to marry someone."}, {"id": "adornar", "de": "adornar", "gender": "", "plural": "", "en": "to decorate", "examples": [{"de": "*Adornamos* la casa con flores.", "en": "We decorated the house with flowers."}, {"de": "Las calles están *adornadas* con papel picado.", "en": "The streets are decorated with cut paper."}], "note": "Synonym: *decorar*. The noun is *el adorno* (ornament): *adornos de Navidad*."}, {"id": "papel_picado", "de": "papel picado", "gender": "m", "plural": "papeles picados", "en": "papel picado (cut-paper banners)", "examples": [{"de": "El *papel picado* se mueve con el viento.", "en": "The cut paper flutters in the wind."}, {"de": "Compramos *papel picado* morado y naranja.", "en": "We bought purple and orange papel picado."}], "note": "Mexican folk art: tissue paper with cut-out designs, hung in lines. *Picar* here means to perforate, not to sting."}, {"id": "cempasuchil", "de": "cempasúchil", "gender": "m", "plural": "cempasúchiles", "en": "Mexican marigold", "examples": [{"de": "El *cempasúchil* es la flor del Día de Muertos.", "en": "The marigold is the flower of the Day of the Dead."}, {"de": "Hicieron un camino de pétalos de *cempasúchil*.", "en": "They made a path of marigold petals."}], "note": "From Nahuatl *cempōhualxōchitl*, 'twenty flower'. Also spelt *cempasúchitl*; often *la flor de cempasúchil*."}, {"id": "creencia", "de": "creencia", "gender": "f", "plural": "creencias", "en": "belief", "examples": [{"de": "Es una *creencia* muy antigua.", "en": "It's a very old belief."}, {"de": "Respeto todas las *creencias*.", "en": "I respect all beliefs."}], "note": "From *creer* (to believe). *Creencias populares* = folk beliefs."}, {"id": "alma", "de": "alma", "gender": "f", "plural": "almas", "en": "soul", "examples": [{"de": "Las *almas* vuelven una vez al año.", "en": "The souls come back once a year."}, {"de": "Te lo agradezco con toda el *alma*.", "en": "I thank you with all my heart."}], "note": "Feminine, but takes *el* in the singular because it starts with a stressed *a*: *el alma*, *las almas*, *el alma buena*."}, {"id": "difunto", "de": "difunto", "gender": "m", "plural": "difuntos", "en": "deceased person; (adj.) late", "examples": [{"de": "Recordamos a los *difuntos* de la familia.", "en": "We remember the family's dead."}, {"de": "Su *difunto* marido era músico.", "en": "Her late husband was a musician."}], "note": "More respectful than *muerto*. *El Día de los Fieles Difuntos* is All Souls' Day, 2 November."}, {"id": "vela", "de": "vela", "gender": "f", "plural": "velas", "en": "candle; sail", "examples": [{"de": "Encendemos una *vela* por cada difunto.", "en": "We light a candle for every dead person."}, {"de": "El barco tiene dos *velas*.", "en": "The boat has two sails."}], "note": "*Pasar la noche en vela* = to stay up all night. *Velar* = to keep watch over (the dead, a sick person)."}, {"id": "pan_muerto", "de": "pan de muerto", "gender": "m", "plural": "panes de muerto", "en": "pan de muerto (sweet bread for the Day of the Dead)", "examples": [{"de": "El *pan de muerto* lleva azahar.", "en": "Pan de muerto contains orange blossom."}, {"de": "Desayunamos chocolate con *pan de muerto*.", "en": "We had hot chocolate with pan de muerto for breakfast."}], "note": "A round sweet bread decorated with dough 'bones'. It is sold only around late October and early November."}, {"id": "calavera", "de": "calavera", "gender": "f", "plural": "calaveras", "en": "skull", "examples": [{"de": "Le regalé una *calaverita* de azúcar con su nombre.", "en": "I gave her a little sugar skull with her name on it."}, {"de": "La *calavera* es un símbolo del Día de Muertos.", "en": "The skull is a symbol of the Day of the Dead."}], "note": "*Calaveritas* are also short funny poems about living people 'dying', written for the holiday. *La Catrina* is the elegant female skeleton figure."}, {"id": "copal", "de": "copal", "gender": "m", "plural": "copales", "en": "copal (resin incense)", "examples": [{"de": "El olor a *copal* llena la iglesia.", "en": "The smell of copal fills the church."}, {"de": "Se quema *copal* para purificar el espacio.", "en": "Copal is burnt to purify the space."}], "note": "A tree resin used as incense since pre-Hispanic times; the word comes from Nahuatl *copalli*."}, {"id": "fallecer", "de": "fallecer", "gender": "", "plural": "", "en": "to pass away", "examples": [{"de": "Su abuelo *falleció* en 2019.", "en": "His grandfather passed away in 2019."}, {"de": "Lamentamos que haya *fallecido*.", "en": "We are sorry that he has passed away."}], "note": "Formal and gentle — used in news and condolences; *morir* is neutral. *Fallecer* is never used for plants or machines. Irregular in *yo*: *fallezco*."}, {"id": "costumbre", "de": "costumbre", "gender": "f", "plural": "costumbres", "en": "custom, tradition; habit", "examples": [{"de": "Es una *costumbre* de mi pueblo.", "en": "It's a custom in my village."}, {"de": "Tengo la *costumbre* de leer antes de dormir.", "en": "I'm in the habit of reading before bed."}], "note": "Feminine. *Como de costumbre* = as usual. Not *costume* — that is *el disfraz*."}, {"id": "antepasado", "de": "antepasado", "gender": "m", "plural": "antepasados", "en": "ancestor", "examples": [{"de": "Honramos a nuestros *antepasados*.", "en": "We honour our ancestors."}, {"de": "Mis *antepasados* eran zapotecas.", "en": "My ancestors were Zapotec."}], "note": "Usually plural. *Los ancestros* means the same and is common in Latin America. Don't confuse with *el pasado* (the past)."}, {"id": "panteon", "de": "panteón", "gender": "m", "plural": "panteones", "en": "(Mexico) cemetery; pantheon, family tomb", "examples": [{"de": "Fuimos al *panteón* a limpiar la tumba.", "en": "We went to the cemetery to clean the grave."}, {"de": "El *panteón* estaba lleno de flores.", "en": "The cemetery was full of flowers."}], "note": "In Mexico *panteón* is the everyday word for cemetery; in Spain it usually means a family vault, and the cemetery is *el cementerio*."}, {"id": "tumba", "de": "tumba", "gender": "f", "plural": "tumbas", "en": "grave, tomb", "examples": [{"de": "Pusieron flores en la *tumba*.", "en": "They put flowers on the grave."}, {"de": "Algunas *tumbas* son muy antiguas.", "en": "Some graves are very old."}], "note": "*Ser una tumba* = to keep a secret: *Tranquila, soy una tumba.*"}, {"id": "comparsa", "de": "comparsa", "gender": "f", "plural": "comparsas", "en": "costumed street group, parade troupe", "examples": [{"de": "La *comparsa* pasó por el centro con una banda.", "en": "The troupe went through the centre with a band."}, {"de": "Mi primo baila en una *comparsa*.", "en": "My cousin dances in a parade group."}], "note": "Typical of carnivals and of Day of the Dead in Oaxaca. In theatre, *de comparsa* means as an extra, a minor role."}, {"id": "disfrazarse", "de": "disfrazarse (de)", "gender": "", "plural": "", "en": "to dress up (as), to put on a costume", "examples": [{"de": "Me *disfracé de* esqueleto.", "en": "I dressed up as a skeleton."}, {"de": "Los niños se *disfrazan* en carnaval.", "en": "Children dress up at carnival."}], "note": "Takes *de*: *disfrazarse de diablo*. The costume is *el disfraz* (plural *disfraces*)."}], "text": "Emily es de Chicago y trabaja como profesora de inglés en Oaxaca, en el sur de México. Vive con la familia de doña Rosa, que la invitó a celebrar con ellos el Día de Muertos. «Aquí la muerte no se ve como algo triste», le explicó doña Rosa. «Es una fiesta para {{recordar|recordar}} a los que ya no están.»\n\nA finales de octubre, toda la familia empezó a preparar la {{ofrenda|ofrenda}}. En el salón se montó un {{altar|altar}} de tres niveles, y Emily ayudó a {{adornar|adornarlo}} con {{papel_picado|papel picado}} de colores y muchas flores de {{cempasuchil|cempasúchil}}, de un naranja intenso. Según la {{creencia|creencia}} popular, su olor y su color guían a las {{alma|almas}} de los {{difunto|difuntos}} en su camino de vuelta a casa. En el altar se pusieron fotos de los abuelos, {{vela|velas}}, agua, sal, {{pan_muerto|pan de muerto}} y {{calavera|calaveritas}} de azúcar. También se quemó {{copal|copal}}, una resina que {{=perfuma|scents}} toda la casa.\n\nDoña Rosa le contó que su madre, que {{fallecer|falleció}} hace seis años, cocinaba el mejor {{=mole negro|black mole (a rich chilli and chocolate sauce)}} del barrio. «Cada año le pongo un plato de mole. Cuando yo era niña, mi madre hacía lo mismo para sus padres.» Emily entendió que esta {{costumbre|costumbre}} pasa de generación en generación: los niños aprenden desde pequeños a {{=honrar|honour}} a sus {{antepasado|antepasados}}.\n\nUna de esas noches fueron al {{panteon|panteón}}. Allí se limpiaban las {{tumba|tumbas}}, se encendían velas y se escuchaba música. Algunas familias cenaban junto a sus muertos y contaban {{=anécdotas|stories}} entre risas. Más tarde pasó por la calle una {{comparsa|comparsa}}: un grupo de vecinos que se habían {{disfrazarse|disfrazado}} de esqueletos y diablos bailaba detrás de una banda.\n\nAl volver a casa, Emily pensó en su abuelo, que murió cuando ella tenía doce años. Al día siguiente puso su foto en el altar, junto a una taza de café. «Ahora él también es de la familia», le dijo doña Rosa, {{=emocionada|moved}}.", "quiz": [{"q": "¿Qué hace Emily en Oaxaca?", "options": ["Es turista.", "Trabaja como profesora de inglés.", "Trabaja en un restaurante.", "Visita a su abuelo.", "Estudia historia."], "answer": 1, "explain": "«Emily es de Chicago y trabaja como profesora de inglés en Oaxaca.»"}, {"q": "Según doña Rosa, ¿cómo se ve la muerte en Oaxaca?", "options": ["como un tema prohibido", "como algo solo para la iglesia", "como algo triste", "como algo que da miedo", "como una fiesta para recordar a los que ya no están"], "answer": 4, "explain": "«Aquí la muerte no se ve como algo triste… Es una fiesta para recordar a los que ya no están.»"}, {"q": "¿Para qué sirven las flores de cempasúchil, según la creencia popular?", "options": ["para hacer pan de muerto", "para alejar a los diablos", "para curar enfermedades", "para guiar a las almas de vuelta a casa", "para venderlas en el mercado"], "answer": 3, "explain": "«Su olor y su color guían a las almas de los difuntos en su camino de vuelta a casa.»"}, {"q": "¿Qué NO se menciona en la ofrenda de la familia?", "options": ["una botella de tequila", "calaveritas de azúcar", "velas", "fotos de los abuelos", "pan de muerto"], "answer": 0, "explain": "The text lists photos, candles, water, salt, pan de muerto, sugar skulls and copal — no tequila."}, {"q": "¿Por qué doña Rosa pone un plato de mole en la ofrenda?", "options": ["porque su madre cocinaba el mejor mole del barrio", "porque a Emily le encanta el mole", "porque lo dice la iglesia", "porque es barato", "porque es la comida típica de noviembre"], "answer": 0, "explain": "Her late mother «cocinaba el mejor mole negro del barrio», and the offering includes the dead person's favourite food."}, {"q": "¿Qué hacía la gente en el panteón?", "options": ["Veía una película.", "Solo rezaba en silencio.", "Limpiaba las tumbas, encendía velas y escuchaba música.", "Vendía flores.", "Dormía en la calle."], "answer": 2, "explain": "«Se limpiaban las tumbas, se encendían velas y se escuchaba música.»"}, {"q": "¿Qué pone Emily en el altar al final?", "options": ["un plato de mole", "una foto de su abuelo y una taza de café", "una calavera con su nombre", "una carta para su madre", "una vela de Chicago"], "answer": 1, "explain": "«Puso su foto en el altar, junto a una taza de café.»"}, {"q": "Completa: «En Oaxaca *___* muchas velas el 1 y el 2 de noviembre.»", "options": ["se encienden", "encendemos se", "se encendió", "encienden se", "se enciende"], "answer": 0, "explain": "Passive *se* agrees with the plural noun *velas* → *se encienden*."}, {"q": "¿Qué palabra usa un mexicano para «cemetery» en el texto?", "options": ["la tumba", "el altar", "el panteón", "la comparsa", "la ofrenda"], "answer": 2, "explain": "In Mexico *el panteón* is the usual word for a cemetery; in Spain people say *el cementerio*."}, {"q": "«Mi madre cocinaba el mejor mole» describe…", "options": ["algo que pasa ahora", "una acción que pasó una sola vez", "un hábito en el pasado", "un plan para el futuro", "una orden"], "answer": 2, "explain": "The imperfect *cocinaba* describes something she regularly did in the past, not a single event."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', mpl: 'pl', fpl: 'pl' };
+  var ART = { m: 'el', f: 'la', mpl: 'los', fpl: 'las' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + (GLAB[g] || g), g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + (GLAB[g] || g), ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); saveRes(data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length, data.quiz.length); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>

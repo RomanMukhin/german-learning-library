@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="937547189c36">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Un sevillano teletrabaja en Medellín · Spanish stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Reading page */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.vocab { overflow: hidden; }
+.word + .word { border-top: 1px solid var(--border); }
+.word summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 12px 16px; }
+.word summary::-webkit-details-marker { display: none; }
+.word summary:hover { background: var(--secondary); }
+.g { font-family: var(--mono); font-size: 11px; font-weight: 600; min-width: 28px; height: 22px; display: inline-grid; place-items: center; padding: 0 6px; border-radius: 6px; }
+.g-m { color: var(--m); background: var(--m-soft); } .g-f { color: var(--f); background: var(--f-soft); } .g-n { color: var(--n); background: var(--n-soft); } .g-pl { color: var(--pl); background: var(--pl-soft); } .g-x { color: var(--x); background: var(--x-soft); }
+.lemma { min-width: 0; }
+.lemma .de { font-weight: 600; font-size: 17px; }
+.art-m { color: var(--m); } .art-f { color: var(--f); } .art-n { color: var(--n); } .art-pl { color: var(--pl); }
+.lemma .pl { color: var(--muted); font-size: 13px; margin-left: 8px; font-weight: 400; }
+.lemma .tr { display: block; color: var(--muted); font-size: 14px; }
+.chev { width: 18px; height: 18px; color: var(--muted); transition: transform .15s; }
+.word[open] .chev { transform: rotate(180deg); }
+.word[open] summary { background: var(--secondary); }
+.detail { padding: 4px 16px 16px 58px; display: grid; gap: 10px; }
+.ex { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ex li { border-left: 2px solid var(--border); padding-left: 12px; }
+.ex .de em { font-style: normal; font-weight: 600; color: var(--brand); }
+.ex .en { display: block; color: var(--muted); font-size: 14px; }
+.note { font-size: 14px; background: var(--secondary); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.note b { font-weight: 600; }
+.note em { font-style: normal; font-weight: 600; }
+.gram { padding: 18px; display: grid; gap: 10px; }
+.gram h3 { margin: 0; font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.gram h3::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--brand); }
+.gram p { margin: 0; }
+.gram p em { font-style: normal; font-weight: 600; }
+.gram .links { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.gram .links a { display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; font-size: 13px; color: var(--fg); background: var(--card); }
+.gram .links a:hover { background: var(--secondary); }
+.text { padding: 24px 26px; font-size: 18px; line-height: 1.85; }
+.text p { margin: 0 0 1em; } .text p:last-child { margin-bottom: 0; }
+.term { position: relative; cursor: help; border-radius: 4px; padding: 1px 2px; background: var(--brand-soft); box-shadow: inset 0 -2px 0 var(--brand); }
+.term.gloss { background: none; box-shadow: none; border-bottom: 1.5px dashed var(--muted); padding: 0; border-radius: 0; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); background: var(--tip-bg); color: var(--tip-fg); font-size: 13px; font-weight: 500; line-height: 1.35; padding: 6px 10px; border-radius: 8px; width: max-content; max-width: min(260px, 70vw); white-space: normal; z-index: 25; pointer-events: none; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.term:hover .tip, .term:focus .tip, .term.show .tip { display: block; }
+.tip.left { left: 0; transform: none; } .tip.right { left: auto; right: 0; transform: none; }
+.wordcount { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .detail { padding-left: 16px; } .text { padding: 18px; font-size: 17px; } .appbar .hide-sm { display: none; } }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../index.html" aria-label="Back to Spanish grammar">← Spanish grammar</a>
+  <div class="crumbs"><span class="sep">/</span><a class="hide-sm" href="../index.html#stories">Stories</a><span class="sep hide-sm">/</span><span class="cur" id="crumb"></span></div>
+  <div class="spacer"></div>
+  <a class="btn hide-sm" href="#quiz">Quiz</a>
+<nav class="siteswitch" aria-label="Library"><a href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a aria-current="page" href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="badge" id="eyebrow"><span class="dot"></span></span>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="chips" id="gchips"></div>
+    <nav class="tabs" aria-label="Sections"><a href="#words">Words</a><a href="#grammar">Grammar</a><a href="#text">Text</a><a href="#quiz">Quiz</a></nav>
+  </header>
+
+  <section id="words">
+    <div class="sec-head"><h2><span class="num">01</span>Words and expressions</h2><p class="hint">Tap a word to see examples and traps.</p></div>
+    <div class="legend"><span><span class="g g-m">m</span>el</span><span><span class="g g-f">f</span>la</span><span><span class="g g-pl">pl</span>los / las</span><span><span class="g g-x">—</span>verb, adjective, phrase</span></div>
+    <div class="vocab card" id="vocab"></div>
+  </section>
+
+  <section id="grammar">
+    <div class="sec-head"><h2><span class="num">02</span>Grammar in this text</h2></div>
+    <div id="gram" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section id="text">
+    <div class="sec-head"><h2><span class="num">03</span>Text</h2><p class="hint">Highlighted words are from the list; dashed words have a translation too. Hover, or tap on a phone.</p></div>
+    <article class="text card" id="reading"></article>
+    <div class="wordcount" id="wc"></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sec-head"><h2><span class="num">04</span>Quiz</h2><p class="hint">Answer all ten, then check. Reloading the page starts over.</p></div>
+    <div class="qbar card">
+      <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+      <div class="actions">
+        <button class="btn primary" id="check" type="button">Check answers</button>
+        <button class="btn" id="reset" type="button">Start over</button>
+      </div>
+    </div>
+    <div class="result card" id="result" hidden aria-live="polite"></div>
+    <div id="questions" style="display:grid;gap:12px"></div>
+  </section>
+
+  <footer><span>Part of the Spanish library</span><a class="btn" href="../index.html">← Back to Spanish grammar</a></footer>
+</div>
+<script type="application/json" id="page-data">
+{"id": "11-teletrabajo-en-medellin", "n": 11, "area": "Work and study", "level": "B1", "title_de": "Un sevillano teletrabaja en Medellín", "title_en": "A Sevillian working remotely in Medellín", "grammar": [{"name": "Present perfect (and how Spain and Latin America differ)", "explain": "The present perfect is *haber* + past participle: *he aprendido, ha conocido, has comido*. It connects the past with now: experiences (*nunca he tenido tanta calma*) and things that happened in a period that isn't over (*esta mañana le ha escrito*). In Spain it's the normal tense for anything that happened today. In most of Latin America, including Colombia, people use the preterite instead: a Spaniard says *¿Has comido ya?*, a Colombian *¿Ya almorzó?*", "examples": [{"de": "Pablo *ha aprendido* a desconectar.", "en": "Pablo has learned to switch off."}, {"de": "Allí *ha conocido* a Camilo.", "en": "There he has met Camilo."}, {"de": "Esta mañana le *ha escrito* a su madre.", "en": "This morning he wrote to his mother. (Spain: present perfect)"}], "links": [{"title": "Present perfect", "url": "../advanced/present-perfect.html"}, {"title": "Past participles", "url": "../advanced/past-participles.html"}]}, {"name": "Llevar + gerund and hace… que", "explain": "To say how long something has been going on, Spanish uses the present tense, not a perfect: *lleva ocho meses viviendo en Medellín* (he has been living in Medellín for eight months), or *hace ocho meses que vive en Medellín*. For a point in the past, *hace* means *ago*: *hace tres meses se apuntó a un coworking*.", "examples": [{"de": "*Lleva* ocho meses *viviendo* en Medellín.", "en": "He has been living in Medellín for eight months."}, {"de": "*Hace* dos años *que* teletrabaja.", "en": "He has been working remotely for two years."}, {"de": "*Hace* tres meses se apuntó a un coworking.", "en": "Three months ago he joined a coworking space."}], "links": [{"title": "Hacer time expressions", "url": "../intermediate/hacer-time-expressions.html"}, {"title": "Verbal periphrasis", "url": "../beginner/verbal-periphrasis.html"}]}, {"name": "Usted among friends in Colombia", "explain": "In Medellín and much of Colombia many people say *usted* even to friends and family; it sounds warm, not distant. Verb forms are the third person: *¿Le provoca un tinto?* (Do you fancy a coffee?), *¿Usted qué más?* In Spain the same friends would use *tú*: *¿Te apetece un café?*", "examples": [{"de": "¿*Le provoca* un tinto, parcero?", "en": "Fancy a coffee, mate? (Colombia, usted)"}, {"de": "¿*Te apetece* un café?", "en": "Fancy a coffee? (Spain, tú)"}, {"de": "¿Qué más, *cómo está*?", "en": "Hi, how are you? (Colombia)"}], "links": [{"title": "Colombian Spanish", "url": "../regional-spanish/colombian-spanish.html"}, {"title": "Subject pronouns", "url": "../beginner/subject-pronouns.html"}]}], "vocab": [{"id": "teletrabajar", "de": "teletrabajar", "gender": "", "plural": "", "en": "to work remotely, to telework", "examples": [{"de": "Desde la pandemia *teletrabajo* dos días a la semana.", "en": "Since the pandemic I've worked from home two days a week."}, {"de": "¿Tu empresa te deja *teletrabajar*?", "en": "Does your company let you work remotely?"}], "note": "Noun: *el teletrabajo*. In Latin America you also hear *trabajo remoto* and *home office* (Mexico)."}, {"id": "nomada", "de": "nómada digital", "gender": "m", "plural": "nómadas digitales", "en": "digital nomad", "examples": [{"de": "Medellín está lleno de *nómadas digitales*.", "en": "Medellín is full of digital nomads."}, {"de": "Es *nómada digital* desde hace dos años.", "en": "She has been a digital nomad for two years."}], "note": "Same form for men and women: *el / la nómada*. Like *el idioma*, it ends in *-a* but can be masculine."}, {"id": "visa", "de": "visa", "gender": "f", "plural": "visas", "en": "visa", "examples": [{"de": "Pidió una *visa* de nómada digital.", "en": "He applied for a digital-nomad visa."}, {"de": "No necesitas *visa* para entrar.", "en": "You don't need a visa to get in."}], "note": "Latin America: *la visa*. Spain: *el visado* (*Visa* there is mostly the credit card)."}, {"id": "computador", "de": "computador", "gender": "m", "plural": "computadores", "en": "computer", "examples": [{"de": "Trabajo con el *computador* portátil.", "en": "I work on my laptop."}, {"de": "Se me apagó el *computador*.", "en": "My computer switched off."}], "note": "Colombia and Chile: *el computador*; Mexico, Argentina: *la computadora*; Spain: *el ordenador*."}, {"id": "concentrarse", "de": "concentrarse", "gender": "", "plural": "", "en": "to concentrate, to focus", "examples": [{"de": "Con tanto ruido no *me concentro*.", "en": "With so much noise I can't concentrate."}, {"de": "Necesito *concentrarme* una hora.", "en": "I need to focus for an hour."}], "note": "Reflexive: *concentrarse en algo*."}, {"id": "distraerse", "de": "distraerse", "gender": "", "plural": "", "en": "to get distracted", "examples": [{"de": "*Me distraigo* con el móvil.", "en": "I get distracted by my phone."}, {"de": "Los niños *se distraen* fácilmente.", "en": "Children get distracted easily."}], "note": "Conjugates like *traer*: *me distraigo*, imperfect *se distraía*. Adjective: *distraído* (absent-minded)."}, {"id": "conexion", "de": "conexión", "gender": "f", "plural": "conexiones", "en": "connection", "examples": [{"de": "La *conexión* es muy lenta.", "en": "The connection is very slow."}, {"de": "Perdí la *conexión* en plena reunión.", "en": "I lost my connection in the middle of the meeting."}], "note": "Also a flight connection. Note the spelling with *x*, unlike English."}, {"id": "diferencia", "de": "diferencia horaria", "gender": "f", "plural": "diferencias horarias", "en": "time difference", "examples": [{"de": "La *diferencia horaria* con Madrid es de siete horas.", "en": "The time difference with Madrid is seven hours."}, {"de": "Me cuesta la *diferencia horaria*.", "en": "I struggle with the time difference."}], "note": "Jet lag is *el jet lag* or *el desfase horario*."}, {"id": "videollamada", "de": "videollamada", "gender": "f", "plural": "videollamadas", "en": "video call", "examples": [{"de": "Tengo una *videollamada* a las seis.", "en": "I have a video call at six."}, {"de": "Hablamos por *videollamada* cada domingo.", "en": "We talk on a video call every Sunday."}], "note": "*Hacer una videollamada*. A normal call is *una llamada*."}, {"id": "aislado", "de": "aislado", "gender": "", "plural": "", "en": "isolated", "examples": [{"de": "Trabajando en casa me siento *aislado*.", "en": "Working from home I feel isolated."}, {"de": "Es un pueblo muy *aislado*.", "en": "It's a very isolated village."}], "note": "Verb: *aislar* (to isolate); noun: *el aislamiento*."}, {"id": "soledad", "de": "soledad", "gender": "f", "plural": "soledades", "en": "loneliness, solitude", "examples": [{"de": "La *soledad* es lo más difícil.", "en": "Loneliness is the hardest thing."}, {"de": "Me gusta la *soledad* para leer.", "en": "I like solitude for reading."}], "note": "One word for both the bad (*loneliness*) and the good (*solitude*) side of being alone."}, {"id": "escritorio", "de": "escritorio", "gender": "m", "plural": "escritorios", "en": "desk", "examples": [{"de": "Mi *escritorio* está junto a la ventana.", "en": "My desk is by the window."}, {"de": "Guarda el archivo en el *escritorio*.", "en": "Save the file on the desktop."}], "note": "False friend: not a 'writer' (*escritor*). On a computer it's the desktop."}, {"id": "tinto", "de": "tinto", "gender": "m", "plural": "tintos", "en": "small black coffee (Colombia); red wine (Spain)", "examples": [{"de": "¿Nos tomamos un *tinto*?", "en": "Shall we have a coffee?"}, {"de": "Un *tinto* de verano, por favor.", "en": "A red wine with lemonade, please. (Spain)"}], "note": "Big trap: in Colombia *un tinto* is black coffee, in Spain it's a glass of red wine."}, {"id": "parcero", "de": "parcero", "gender": "m", "plural": "parceros", "en": "mate, buddy (Colombia)", "examples": [{"de": "¿Qué más, *parcero*?", "en": "What's up, mate?"}, {"de": "Es mi *parcera* del trabajo.", "en": "She's my buddy from work."}], "note": "Colombian slang, often shortened to *parce*. Spain: *tío / tía*; Mexico: *güey*."}, {"id": "listo", "de": "listo", "gender": "", "plural": "", "en": "OK, all right (Latin America); ready; clever", "examples": [{"de": "—Nos vemos a las tres. —*Listo*.", "en": "—See you at three. —OK."}, {"de": "¿Estás *listo*?", "en": "Are you ready?"}], "note": "*¡Listo!* is the Colombian *¡vale!* Careful: *estar listo* = to be ready, *ser listo* = to be clever."}, {"id": "chevere", "de": "chévere", "gender": "", "plural": "", "en": "great, cool (Colombia, Venezuela, Caribbean)", "examples": [{"de": "¡Qué *chévere* tu apartamento!", "en": "Your flat is great!"}, {"de": "La gente aquí es muy *chévere*.", "en": "The people here are really nice."}], "note": "Same form for masculine and feminine. Mexico: *chido*; Spain: *guay*."}, {"id": "entregar", "de": "entregar", "gender": "", "plural": "", "en": "to deliver, to hand in", "examples": [{"de": "Mañana les *entrego* la nueva versión.", "en": "Tomorrow I'll deliver the new version to you."}, {"de": "Hay que *entregar* el trabajo el lunes.", "en": "The assignment has to be handed in on Monday."}], "note": "Spelling change before *e*: *entregué*. Noun: *la entrega* (delivery)."}, {"id": "rendir", "de": "rendir", "gender": "", "plural": "", "en": "to be productive, to perform well", "examples": [{"de": "Por la mañana *rindo* más.", "en": "I'm more productive in the morning."}, {"de": "Si no duermes, no *rindes*.", "en": "If you don't sleep, you can't perform."}], "note": "Stem change e → i: *rindo, rinde*. *Rendirse* = to give up. In Argentina *rendir un examen* = to sit an exam."}, {"id": "descanso", "de": "descanso", "gender": "m", "plural": "descansos", "en": "break, rest", "examples": [{"de": "Hago un *descanso* cada dos horas.", "en": "I take a break every two hours."}, {"de": "El domingo es mi día de *descanso*.", "en": "Sunday is my day off."}], "note": "*Hacer / tomar un descanso*. Verb: *descansar*."}, {"id": "desconectar", "de": "desconectar", "gender": "", "plural": "", "en": "to switch off, to unwind; to disconnect", "examples": [{"de": "En vacaciones necesito *desconectar*.", "en": "On holiday I need to switch off."}, {"de": "*Desconecta* el cable, por favor.", "en": "Unplug the cable, please."}], "note": "Very common in Spain for 'unwinding' from work."}], "text": "Pablo es programador, es de Sevilla y {{=lleva|has been}} ocho meses viviendo en Medellín. Trabaja para una empresa de Madrid, pero cuando la empresa le permitió {{teletrabajar|teletrabajar}} desde cualquier lugar, decidió {{=hacer realidad un sueño|make a dream come true}}: vivir un tiempo en Latinoamérica como {{nomada|nómada digital}}. Consiguió una {{visa|visa}} especial para trabajadores remotos y alquiló un apartamento en Laureles.\n\nLos primeros meses trabajó desde casa, con el {{computador|computador}} en la mesa de la cocina. Pero no conseguía {{concentrarse|concentrarse}}: {{distraerse|se distraía}} con el ruido de la calle, la {{conexion|conexión}} {{=fallaba|kept dropping}} y la {{diferencia|diferencia horaria}} con España —siete horas— lo obligaba a tener {{videollamada|videollamadas}} a las seis de la mañana. Además, se sentía {{aislado|aislado}}: la {{soledad|soledad}} del teletrabajo era más dura de lo que pensaba.\n\nHace tres meses {{=se apuntó a|he signed up for}} un coworking en El Poblado. Ahora tiene su propio {{escritorio|escritorio}} junto a una ventana, buen internet y café gratis. Allí ha conocido a Camilo, un diseñador {{=paisa|from the Medellín region}} que cada mañana lo saluda igual: «¿Qué más, {{parcero|parcero}}? ¿{{=Le provoca|Do you fancy}} un {{tinto|tinto}}?» Pablo todavía se ríe: en Sevilla nadie trata de usted a un amigo, y un tinto allí es un vino.\n\nPablo también ha aprendido a hablar un poco {{=a lo paisa|the Medellín way}}. Ya no dice «vale», sino «{{listo|listo}}», y todo lo bueno le parece {{chevere|chévere}}. Sus compañeros de Madrid se ríen cuando lo oyen en las reuniones: «Listo, mañana les {{entregar|entrego}} la nueva versión».\n\nHoy Pablo {{rendir|rinde}} más que nunca. Y lo más importante: ha aprendido a {{desconectar|desconectar}}. A mediodía hace un {{descanso|descanso}} largo y almuerza con Camilo; a las cuatro cierra el computador y sale a caminar. «En Madrid nunca he tenido tanta calma», le ha escrito esta mañana a su madre.", "quiz": [{"q": "¿Cuánto tiempo lleva Pablo en Medellín?", "options": ["tres meses", "siete meses", "ocho meses", "dos años", "un año"], "answer": 2, "explain": "«Lleva ocho meses viviendo en Medellín.» He joined the coworking three months ago."}, {"q": "¿Para quién trabaja Pablo?", "options": ["para una empresa de Madrid", "para una empresa de Medellín", "para el coworking", "para Camilo", "para una empresa de Sevilla"], "answer": 0, "explain": "«Trabaja para una empresa de Madrid.» He is from Seville, though."}, {"q": "¿Por qué tenía videollamadas a las seis de la mañana?", "options": ["porque le gusta madrugar", "porque trabajaba de noche", "porque la conexión era mejor", "porque Camilo se lo pidió", "por la diferencia horaria con España"], "answer": 4, "explain": "«La diferencia horaria con España —siete horas— lo obligaba a tener videollamadas a las seis de la mañana.»"}, {"q": "¿Cuál de estos NO era un problema al trabajar en casa?", "options": ["el ruido de la calle", "la conexión", "la soledad", "el precio del café", "la diferencia horaria"], "answer": 3, "explain": "Noise, connection, time difference and loneliness are all mentioned; the coffee is free in the coworking."}, {"q": "¿Qué tiene Pablo en el coworking?", "options": ["una oficina privada", "un escritorio junto a una ventana", "un computador nuevo", "una cama", "un perro"], "answer": 1, "explain": "«Tiene su propio escritorio junto a una ventana, buen internet y café gratis.»"}, {"q": "¿Por qué se ríe Pablo cuando Camilo le ofrece un tinto?", "options": ["porque no le gusta el café", "porque ya ha tomado tres", "porque Camilo habla muy rápido", "porque es muy temprano", "porque en Sevilla un tinto es un vino y nadie trata de usted a un amigo"], "answer": 4, "explain": "«En Sevilla nadie trata de usted a un amigo, y un tinto allí es un vino.»"}, {"q": "¿Qué palabra usa ahora Pablo en vez de «vale»?", "options": ["chévere", "parcero", "listo", "tinto", "chido"], "answer": 2, "explain": "«Ya no dice ‘vale’, sino ‘listo’» — *¡Listo!* is the Colombian way to say OK."}, {"q": "Pablo *___* ocho meses viviendo en Medellín.", "options": ["hace", "lleva", "está", "tiene", "es"], "answer": 1, "explain": "*Llevar* + time + gerund = to have been doing something for a period: *lleva ocho meses viviendo*."}, {"q": "«En Madrid nunca *___* tanta calma.»", "options": ["he tenido", "tuve", "tengo", "tenía", "he tenía"], "answer": 0, "explain": "A life experience up to now → present perfect: *nunca he tenido* (*haber* + participle)."}, {"q": "¿Cómo se dice «computador» en España?", "options": ["la computadora", "el portátil", "el escritorio", "el ordenador", "el teclado"], "answer": 3, "explain": "Spain: *el ordenador*; Colombia and Chile: *el computador*; Mexico and Argentina: *la computadora*."}]}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('page-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  var GLAB = { m: 'm', f: 'f', mpl: 'pl', fpl: 'pl' };
+  var ART = { m: 'el', f: 'la', mpl: 'los', fpl: 'las' };
+  var CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // *word* → highlighted span
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  document.getElementById('eyebrow').appendChild(document.createTextNode('Topic ' + data.n + ' · ' + data.area + ' · ' + data.level));
+  document.getElementById('title').textContent = data.title_de;
+  document.getElementById('crumb').textContent = data.title_de;
+  document.getElementById('sub').textContent = data.title_en;
+  var gchips = document.getElementById('gchips');
+  data.grammar.forEach(function (g, i) { var a = el('a', 'chip', g.name); a.href = '#g' + i; gchips.appendChild(a); });
+
+  // Vocabulary
+  var byId = {};
+  var vocab = document.getElementById('vocab');
+  data.vocab.forEach(function (w) {
+    byId[w.id] = w;
+    var d = el('details', 'word');
+    var s = el('summary');
+    var g = w.gender && GLAB[w.gender] ? w.gender : 'x';
+    s.appendChild(el('span', 'g g-' + (GLAB[g] || g), g === 'x' ? '—' : GLAB[g]));
+    var lem = el('span', 'lemma');
+    var de = el('span', 'de');
+    if (g !== 'x') de.appendChild(el('span', 'art-' + (GLAB[g] || g), ART[g] + ' '));
+    de.appendChild(document.createTextNode(w.de));
+    lem.appendChild(de);
+    if (w.plural) lem.appendChild(el('span', 'pl', 'pl. ' + w.plural));
+    lem.appendChild(el('span', 'tr', w.en + (w.uk ? '  ·  ' + w.uk : '')));
+    s.appendChild(lem);
+    s.insertAdjacentHTML('beforeend', CHEV);
+    d.appendChild(s);
+    var det = el('div', 'detail');
+    var ul = el('ul', 'ex');
+    (w.examples || []).forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+    det.appendChild(ul);
+    if (w.note) { var n = el('div', 'note'); n.appendChild(el('b', null, 'Watch out: ')); rich(n, w.note); det.appendChild(n); }
+    d.appendChild(det);
+    vocab.appendChild(d);
+  });
+
+  // Grammar
+  var gram = document.getElementById('gram');
+  data.grammar.forEach(function (g, i) {
+    var c = el('div', 'gram card'); c.id = 'g' + i;
+    c.appendChild(el('h3', null, g.name));
+    c.appendChild(rich(el('p'), g.explain));
+    if (g.examples && g.examples.length) {
+      var ul = el('ul', 'ex');
+      g.examples.forEach(function (x) { var li = el('li'); li.appendChild(rich(el('span', 'de'), x.de)); li.appendChild(el('span', 'en', x.en)); ul.appendChild(li); });
+      c.appendChild(ul);
+    }
+    if (g.links && g.links.length) {
+      var p = el('div', 'links'); p.appendChild(el('span', null, 'Read more:'));
+      g.links.forEach(function (l) { var a = el('a', null, l.title + ' ↗'); a.href = l.url;  p.appendChild(a); });
+      c.appendChild(p);
+    }
+    gram.appendChild(c);
+  });
+
+  // Reading text: {{id|surface}} = list word, {{=surface|translation}} = extra gloss
+  var reading = document.getElementById('reading');
+  var plain = '';
+  data.text.split(/\n\s*\n/).forEach(function (para) {
+    var p = el('p');
+    para.split(/(\{\{[^}]+\}\})/).forEach(function (part) {
+      var m = /^\{\{(=?)([^|}]+)\|([^}]+)\}\}$/.exec(part);
+      if (!m) { if (part) { p.appendChild(document.createTextNode(part)); plain += part; } return; }
+      var span, tipText, surface;
+      if (m[1] === '=') { surface = m[2]; tipText = m[3]; span = el('span', 'term gloss', surface); }
+      else { var w = byId[m[2]]; surface = m[3]; tipText = w ? ((w.gender && ART[w.gender] ? ART[w.gender] + ' ' : '') + w.de + ' — ' + w.en + (w.uk ? ' · ' + w.uk : '')) : surface; span = el('span', 'term', surface); }
+      plain += surface;
+      span.tabIndex = 0;
+      var tip = el('span', 'tip', tipText); tip.setAttribute('role', 'tooltip');
+      span.appendChild(tip);
+      p.appendChild(span);
+    });
+    reading.appendChild(p); plain += ' ';
+  });
+  // Keep tooltips inside the card near its edges; tap toggles on touch screens
+  function place(span) {
+    var tip = span.querySelector('.tip'); tip.classList.remove('left', 'right');
+    var box = reading.getBoundingClientRect(), r = span.getBoundingClientRect();
+    if (r.left - box.left < 130) tip.classList.add('left'); else if (box.right - r.right < 130) tip.classList.add('right');
+  }
+  reading.addEventListener('mouseover', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('focusin', function (e) { var t = e.target.closest('.term'); if (t) place(t); });
+  reading.addEventListener('click', function (e) {
+    var t = e.target.closest('.term');
+    reading.querySelectorAll('.term.show').forEach(function (x) { if (x !== t) x.classList.remove('show'); });
+    if (t) { place(t); t.classList.toggle('show'); }
+  });
+  var words = plain.trim().split(/\s+/).filter(function (x) { return /[\wáéíóúüñÁÉÍÓÚÜÑ]/.test(x); }).length;
+  document.getElementById('wc').textContent = words + ' words';
+
+  // Quiz: state in memory only, so a reload starts fresh
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function renderQuiz() {
+    qWrap.innerHTML = '';
+    data.quiz.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), q.q));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      q.options.forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; renderQuiz(); });
+        }
+        opts.appendChild(b);
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), q.explain)); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length, total = data.quiz.length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var score = data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length;
+      prog.innerHTML = 'Score <strong>' + score + ' / ' + total + '</strong>';
+      meter.style.width = (100 * score / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, score + ' of ' + total + ' correct'));
+      var pct = score / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'You understood the text well.' : pct >= 0.7 ? 'Good. Check the explanations under the ones you missed.' : 'Read the text again with the word list open, then start over.'));
+    } else {
+      prog.innerHTML = 'Answered <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+  }
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; renderQuiz(); saveRes(data.quiz.filter(function (q, i) { return state.answers[i] === q.answer; }).length, data.quiz.length); document.getElementById('quiz').scrollIntoView(); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; renderQuiz(); });
+  renderQuiz();
+})();
+
+</script>
+</body>
+</html>
