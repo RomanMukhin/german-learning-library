@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="1b03062e6bfb">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Plural of nouns · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="c88ea69818f4" class="hide-sm" href="index.html">Nouns</a><span class="sep">/</span><span class="cur">Plural</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A1–B1</span><h1>Plural of nouns</h1><p class="sub">The five plural patterns, the umlaut, rules of thumb by gender and ending, foreign plurals, and nouns that are only singular or only plural.</p></header>
+<article class="prose card">
+<p>English makes almost every plural with <em>-s</em>. German has five plural patterns, and some of them also add an umlaut. The good news: in the plural the article is always <strong>die</strong> (in the nominative and accusative), whatever the gender, and the patterns are much more predictable than they first look. Learn each new noun with its plural (<em>der Tisch, die Tische</em>), and use the tendencies below when you meet a word for the first time.</p>
+<h2>A1–A2 core</h2>
+<h3>The five patterns</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ending</th>
+<th>Umlaut?</th>
+<th>Typical nouns</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>-e</strong></td>
+<td>often (masc.), always for one-syllable fem.</td>
+<td>many masculine nouns, one-syllable feminine nouns</td>
+<td>der Tag → die Tag<strong>e</strong>, der Stuhl → die St<strong>ü</strong>hl<strong>e</strong>, die Hand → die H<strong>ä</strong>nd<strong>e</strong></td>
+</tr>
+<tr>
+<td><strong>-(e)n</strong></td>
+<td>never</td>
+<td>almost all feminine nouns, weak masculine nouns</td>
+<td>die Lampe → die Lampe<strong>n</strong>, die Frau → die Frau<strong>en</strong>, der Junge → die Junge<strong>n</strong></td>
+</tr>
+<tr>
+<td><strong>-er</strong></td>
+<td>always if possible</td>
+<td>many one-syllable neuter nouns, a few masculine ones</td>
+<td>das Kind → die Kind<strong>er</strong>, das Buch → die B<strong>ü</strong>ch<strong>er</strong>, der Mann → die M<strong>ä</strong>nn<strong>er</strong></td>
+</tr>
+<tr>
+<td><strong>-s</strong></td>
+<td>never</td>
+<td>words ending in a vowel (not -e), many loanwords, short forms</td>
+<td>das Auto → die Auto<strong>s</strong>, das Hotel → die Hotel<strong>s</strong>, die Oma → die Oma<strong>s</strong></td>
+</tr>
+<tr>
+<td><strong>– (no ending)</strong></td>
+<td>sometimes</td>
+<td>masc./neuter nouns in -er, -el, -en, -chen, -lein</td>
+<td>der Lehrer → die Lehrer, der Vogel → die V<strong>ö</strong>gel, das Mädchen → die Mädchen</td>
+</tr>
+</tbody>
+</table></div>
+
+<h3>Rules of thumb by gender</h3>
+<ul>
+<li><strong>Feminine:</strong> about nine out of ten take <strong>-(e)n</strong>: <em>die Straße → Straßen, die Zeitung → Zeitungen, die Tür → Türen</em>. Nouns in <em>-in</em> double the n: <em>die Freundin → die Freundinnen</em>. A small group of one-syllable feminines take umlaut + <strong>-e</strong>: <em>die Hand → Hände, die Nacht → Nächte, die Stadt → Städte, die Wand → Wände, die Wurst → Würste</em>. Only two feminines are umlaut-only: <em>die Mutter → Mütter, die Tochter → Töchter</em>.</li>
+<li><strong>Masculine:</strong> most take <strong>-e</strong>, often with umlaut: <em>der Freund → Freunde, der Zug → Züge, der Arzt → Ärzte</em>. Those in <em>-er, -el, -en</em> add nothing: <em>der Koffer → Koffer, der Schlüssel → Schlüssel, der Wagen → Wagen</em>, sometimes with umlaut: <em>der Vater → Väter, der Garten → Gärten</em>.</li>
+<li><strong>Neuter:</strong> one-syllable ones often take <strong>-er</strong> + umlaut: <em>das Haus → Häuser, das Land → Länder, das Glas → Gläser</em>; others take <strong>-e</strong>: <em>das Jahr → Jahre, das Tier → Tiere, das Problem → Probleme</em>. Those in <em>-chen, -lein, -er, -el, -en</em> add nothing: <em>das Zimmer → Zimmer</em>.</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Feminine? Add -n. Ends in a vowel? Add -s.</p><p>Two shortcuts cover a huge number of nouns. If it is feminine, the plural is almost always <em>-(e)n</em>. If it ends in <em>-a, -i, -o, -u, -y</em> (an <em>Oma</em>, a <em>Taxi</em>, a <em>Kino</em>, a <em>Hobby</em>), the plural is <em>-s</em>. For the rest, say the plural out loud each time you learn the noun.</p></aside>
+
+<h3>The plural article: always die (or no article)</h3>
+<p>In the plural there are no genders. The definite article is <em>die</em>, and <em>ein</em> has no plural form at all: you just leave it out. The negative <em>kein</em> does have a plural: <em>keine</em>.</p>
+<ul>
+<li><em>Ich habe ein Kind. → Ich habe zwei Kinder. / Ich habe keine Kinder.</em> — <em>I have a child. → I have two children. / I have no children.</em></li>
+<li><em>Das ist ein Buch. → Das sind Bücher.</em> — <em>That is a book. → Those are books.</em></li>
+<li><em>der Tisch, die Lampe, das Bett → die Tische, die Lampen, die Betten</em></li>
+</ul>
+<h3>Dative plural: add -n</h3>
+<p>In the dative plural the noun takes an extra <strong>-n</strong> unless the plural already ends in <em>-n</em> or <em>-s</em>: <em>mit den Kindern, in den Häusern, von meinen Freunden</em>, but <em>mit den Frauen, in den Autos</em>. See <a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative</a>.</p>
+<h2>B1</h2>
+<h3>Endings that predict the plural</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular ending</th>
+<th>Plural</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-ung, -heit, -keit, -schaft, -ion, -tät, -ik</td>
+<td>-en</td>
+<td>die Wohnungen, die Möglichkeiten, die Lektionen, die Universitäten</td>
+</tr>
+<tr>
+<td>-e (fem. and weak masc.)</td>
+<td>-n</td>
+<td>die Tasche → Taschen, der Kollege → Kollegen</td>
+</tr>
+<tr>
+<td>-in</td>
+<td>-nen</td>
+<td>die Ärztin → Ärztinnen</td>
+</tr>
+<tr>
+<td>-ent, -ant, -ist, -at (people)</td>
+<td>-en</td>
+<td>der Student → Studenten, der Polizist → Polizisten</td>
+</tr>
+<tr>
+<td>-ling, -ig, -ich, -eur, -ör</td>
+<td>-e</td>
+<td>der Lehrling → Lehrlinge, der Teppich → Teppiche, der Friseur → Friseure</td>
+</tr>
+<tr>
+<td>-nis</td>
+<td>-nisse</td>
+<td>das Ergebnis → Ergebnisse, die Kenntnis → Kenntnisse</td>
+</tr>
+<tr>
+<td>-chen, -lein, -er, -el, -en (masc./neut.)</td>
+<td>no ending</td>
+<td>das Brötchen → Brötchen, der Fehler → Fehler</td>
+</tr>
+<tr>
+<td>-a, -i, -o, -u, -y, abbreviations, family names</td>
+<td>-s</td>
+<td>die Kameras, die Handys, die LKWs, die Müllers (the Müller family)</td>
+</tr>
+</tbody>
+</table></div>
+
+<h3>Foreign words in -um, -us, -ma, -a</h3>
+<p>Many Latin and Greek loanwords replace their ending with <strong>-en</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>das Museum, das Zentrum, das Datum</td>
+<td>die Museen, die Zentren, die Daten</td>
+</tr>
+<tr>
+<td>der Rhythmus, der Virus, der Organismus</td>
+<td>die Rhythmen, die Viren, die Organismen</td>
+</tr>
+<tr>
+<td>das Thema, das Drama</td>
+<td>die Themen, die Dramen</td>
+</tr>
+<tr>
+<td>die Firma, die Pizza</td>
+<td>die Firmen, die Pizzen (or <em>Pizzas</em>)</td>
+</tr>
+<tr>
+<td>das Konto, das Visum, das Album</td>
+<td>die Konten, die Visa, die Alben</td>
+</tr>
+</tbody>
+</table></div>
+
+<h3>Only singular, only plural</h3>
+<p>Some nouns normally appear only in the singular: <em>das Geld, die Milch, das Obst, das Gemüse, der Hunger, das Glück, die Polizei, das Wetter</em>. To count them, use another noun: <em>zwei Stück Obst, drei Gemüsesorten</em>. Others exist only in the plural: <em>die Eltern, die Leute, die Geschwister, die Ferien, die Kosten, die Lebensmittel</em>. For one person you need a different word: <em>ein Elternteil, eine Person</em>.</p>
+<p>Units of measurement stay singular after numbers when they are masculine or neuter: <em>zwei Kilo Äpfel, drei Glas Wasser, fünf Euro, hundert Meter</em>. Feminine units do take the plural: <em>zwei Tassen Kaffee, drei Flaschen Wein</em>.</p>
+<h3>Two plurals, two meanings</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Singular</th>
+<th>Plural 1</th>
+<th>Plural 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>die Bank</td>
+<td>die Bänke — <em>benches</em></td>
+<td>die Banken — <em>banks (money)</em></td>
+</tr>
+<tr>
+<td>das Wort</td>
+<td>die Wörter — <em>separate words</em></td>
+<td>die Worte — <em>words spoken, a statement</em></td>
+</tr>
+<tr>
+<td>die Mutter</td>
+<td>die Mütter — <em>mothers</em></td>
+<td>die Muttern — <em>nuts (for bolts)</em></td>
+</tr>
+<tr>
+<td>der Strauß</td>
+<td>die Sträuße — <em>bouquets</em></td>
+<td>die Strauße — <em>ostriches</em></td>
+</tr>
+</tbody>
+</table></div>
+
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><s>die Autoen</s>, <s>die Hotele</s> — nouns that end in a vowel and many loanwords take <em>-s</em>: <em>die Autos, die Hotels</em>.</li>
+<li><s>die Kinds</s> — the English -s is not the default: <em>die Kinder</em>.</li>
+<li><s>Ich habe eine Kinder</s> — <em>ein</em> has no plural; just drop it: <em>Ich habe Kinder</em>.</li>
+<li><s>mit den Freunde</s> — dative plural needs the -n: <em>mit den Freunden</em>.</li>
+<li><s>zwei Kilos</s> — masculine and neuter units stay singular: <em>zwei Kilo</em>, <em>drei Euro</em>.</li>
+<li><s>die Leuten</s> in the nominative — the plural is <em>die Leute</em>; <em>Leuten</em> is only dative.</li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">Why German has so many plurals</p><p>The plural endings were once tied to separate noun classes, much as Latin or Ukrainian have several declensions. The umlaut is a leftover sound effect: an old ending with an <em>i</em> (Old High German <em>gast</em>, plural <em>gesti</em>) pulled the vowel forward before it disappeared, giving modern <em>Gast → Gäste</em>. English has the same fossil in <em>foot → feet, mouse → mice</em>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="0e39f0bd7f8a" href="../../grammar/nouns/gender.html">Noun gender</a></li>
+<li><a data-quiz="d0b36e78e8a3" href="../../grammar/nouns/articles.html">Articles</a></li>
+<li><a data-quiz="68fbbfc373da" href="../../grammar/cases/dative.html">Dative</a></li>
+<li><a data-quiz="ffdeac067259" href="../../grammar/cases/n-declension.html">N-declension</a></li>
+<li><a href="../../docs/noun-gender-plurals.html">Noun gender and plurals</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="0e39f0bd7f8a" class="btn" href="gender.html">← Gender</a><a data-quiz="d0b36e78e8a3" class="btn" href="articles.html">Articles →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Plural of *die Lampe*:", "options": ["die Lampe", "die Lampes", "die Lampen", "die Lämpe", "die Lampener"], "answer": 2, "explain": "Feminine nouns in *-e* add *-n*: *die Lampen* (A1)."}, {"q": "Plural of *das Kind*:", "options": ["die Kinds", "die Kinde", "die Kindern", "die Kinder", "die Kinden"], "answer": 3, "explain": "Many one-syllable neuter nouns take *-er*: *die Kinder* (A1)."}, {"q": "Plural of *das Auto*:", "options": ["die Autoen", "die Autos", "die Autoe", "die Auto", "die Autor"], "answer": 1, "explain": "Nouns ending in a vowel other than *-e* take *-s*: *die Autos* (A1)."}, {"q": "Plural of *der Lehrer*:", "options": ["die Lehrers", "die Lehrern", "die Lehrere", "die Lehrer", "die Lährer"], "answer": 3, "explain": "Masculine nouns in *-er* add nothing: *die Lehrer* (A1)."}, {"q": "Plural of *das Buch*:", "options": ["die Buche", "die Buchs", "die Büche", "die Buchen", "die Bücher"], "answer": 4, "explain": "*-er* with umlaut: *das Buch → die Bücher* (A1)."}, {"q": "Plural of *die Hand*:", "options": ["die Handen", "die Hands", "die Hander", "die Hand", "die Hände"], "answer": 4, "explain": "A few one-syllable feminine nouns take umlaut + *-e*: *die Hände* (A2)."}, {"q": "Plural of *die Freundin*:", "options": ["die Freundinen", "die Freundinnen", "die Freundins", "die Freundine", "die Freundiner"], "answer": 1, "explain": "*-in* doubles the n: *die Freundinnen* (A2)."}, {"q": "Plural of *der Stuhl*:", "options": ["die Stühle", "die Stuhle", "die Stuhlen", "die Stühler", "die Stuhls"], "answer": 0, "explain": "Many masculine nouns take *-e*, often with umlaut: *die Stühle* (A2)."}, {"q": "Which article do ALL plural nouns take in the nominative?", "options": ["der", "das", "den", "die", "it depends on the gender"], "answer": 3, "explain": "In the plural there are no genders: always *die* (A1)."}, {"q": "Ich habe zwei *___*. (der Bruder)", "options": ["Brudern", "Bruders", "Brüder", "Brudere", "Bruder"], "answer": 2, "explain": "*der Bruder → die Brüder*: no ending, but an umlaut (A2)."}, {"q": "Wir spielen mit den *___*. (die Kinder)", "options": ["Kinder", "Kinds", "Kindes", "Kinden", "Kindern"], "answer": 4, "explain": "Dative plural adds *-n*: *mit den Kindern* (A2)."}, {"q": "Plural of *das Museum*:", "options": ["die Museums", "die Museen", "die Musea", "die Museumen", "die Musee"], "answer": 1, "explain": "Latin *-um* is replaced by *-en*: *die Museen* (B1)."}, {"q": "Plural of *die Firma*:", "options": ["die Firmas", "die Firme", "die Firmen", "die Firmae", "die Firmanen"], "answer": 2, "explain": "*-a* is replaced by *-en*: *die Firmen* (B1)."}, {"q": "Plural of *das Ergebnis*:", "options": ["die Ergebnisse", "die Ergebnise", "die Ergebnisen", "die Ergebnis", "die Ergebnissen"], "answer": 0, "explain": "*-nis* doubles the s: *die Ergebnisse* (B1)."}, {"q": "Which noun has NO plural in normal use?", "options": ["der Apfel", "die Banane", "die Birne", "das Obst", "die Frucht"], "answer": 3, "explain": "*das Obst* is uncountable; say *zwei Stück Obst* (B1)."}, {"q": "Which noun exists ONLY in the plural?", "options": ["die Mütter", "die Kinder", "die Väter", "die Eltern", "die Familien"], "answer": 3, "explain": "*die Eltern* has no singular; for one parent say *ein Elternteil* (B1)."}, {"q": "Ich kaufe zwei *___* Äpfel.", "options": ["Kilo", "Kilos", "Kilon", "Kiloen", "Kiloe"], "answer": 0, "explain": "Masculine and neuter units stay singular after numbers: *zwei Kilo* (B1)."}, {"q": "*die Banken* are...", "options": ["benches", "banks (where money is kept)", "bakeries", "banknotes", "river banks"], "answer": 1, "explain": "*die Bank* has two plurals: *Bänke* (benches) and *Banken* (financial banks) (B1)."}, {"q": "Plural of *das Thema*:", "options": ["die Themas", "die Themata", "die Theme", "die Themen", "die Themä"], "answer": 3, "explain": "*-ma* words replace the ending with *-en*: *die Themen* (B1)."}], "title": "Plural of nouns quiz", "level": "A1–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
