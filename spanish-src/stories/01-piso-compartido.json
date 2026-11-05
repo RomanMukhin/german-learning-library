@@ -1,0 +1,550 @@
+{
+  "n": 1,
+  "area": "Everyday",
+  "level": "A2–B1",
+  "title_es": "Un piso compartido en Madrid",
+  "title_en": "Sharing a flat in Madrid",
+  "grammar": [
+    {
+      "name": "Ser vs. estar",
+      "explain": "Both mean *to be*. Use *ser* for what something is: identity, origin, profession, character, time (*Lucía es de Valencia. Es enfermera.*). Use *estar* for where something is and for states that can change: location, mood, condition (*El piso está en Lavapiés. Lucía está cansada.*). A good test: if you can add *right now* and it still makes sense, it is often *estar*.",
+      "examples": [
+        {
+          "es": "El piso *es* grande y luminoso.",
+          "en": "The flat is big and bright. (what it is like → ser)"
+        },
+        {
+          "es": "El piso *está* cerca del metro.",
+          "en": "The flat is near the metro. (location → estar)"
+        },
+        {
+          "es": "Marco *está* nervioso hoy.",
+          "en": "Marco is nervous today. (temporary state → estar)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Ser vs. estar",
+          "url": "../beginner/ser-vs-estar.html"
+        }
+      ]
+    },
+    {
+      "name": "Stem-changing verbs (e → ie, o → ue)",
+      "explain": "Some verbs change the vowel of their stem in the present tense when it is stressed: *querer → quiero*, *poder → puedo*, *preferir → prefiero*, *encontrar → encuentro*. The *nosotros* and *vosotros* forms keep the original vowel because the stress moves to the ending: *queremos, podéis*. Think of it as a boot: the four forms inside the boot change, the two outside don't.",
+      "examples": [
+        {
+          "es": "*Quiero* un piso cerca de la universidad.",
+          "en": "I want a flat near the university."
+        },
+        {
+          "es": "¿*Podemos* ver la habitación?",
+          "en": "Can we see the room? (nosotros: no change)"
+        },
+        {
+          "es": "Lucía *prefiere* cocinar en casa.",
+          "en": "Lucía prefers to cook at home."
+        }
+      ],
+      "links": [
+        {
+          "title": "Present tense",
+          "url": "../beginner/present.html"
+        }
+      ]
+    },
+    {
+      "name": "Gustar and similar verbs",
+      "explain": "*Gustar* works backwards compared with *to like*: the thing you like is the subject and the person is an indirect object pronoun (*me, te, le, nos, os, les*). Use *gusta* with one thing or an infinitive and *gustan* with several things. *Encantar* (to love), *molestar* (to bother) and *importar* (to matter) follow the same pattern.",
+      "examples": [
+        {
+          "es": "*Me gusta* el barrio.",
+          "en": "I like the neighbourhood."
+        },
+        {
+          "es": "A Marco *le encantan* las plantas.",
+          "en": "Marco loves plants."
+        },
+        {
+          "es": "¿*Te molesta* el ruido?",
+          "en": "Does the noise bother you?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbs like gustar",
+          "url": "../intermediate/verbs-like-gustar.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "piso",
+      "es": "piso",
+      "gender": "m",
+      "plural": "pisos",
+      "en": "flat, apartment (Spain); floor, storey",
+      "examples": [
+        {
+          "es": "Busco un *piso* en el centro.",
+          "en": "I'm looking for a flat in the centre."
+        },
+        {
+          "es": "Vivo en el tercer *piso*.",
+          "en": "I live on the third floor."
+        }
+      ],
+      "note": "In Latin America a flat is usually *el departamento* or *el apartamento*; *piso* there means floor."
+    },
+    {
+      "id": "compartir",
+      "es": "compartir",
+      "gender": "",
+      "en": "to share",
+      "examples": [
+        {
+          "es": "*Comparto* piso con dos amigos.",
+          "en": "I share a flat with two friends."
+        },
+        {
+          "es": "¿Quieres *compartir* la pizza?",
+          "en": "Do you want to share the pizza?"
+        }
+      ],
+      "note": "Regular *-ir* verb: *comparto, compartes, comparte…* *Un piso compartido* is a shared flat."
+    },
+    {
+      "id": "alquiler",
+      "es": "alquiler",
+      "gender": "m",
+      "plural": "alquileres",
+      "en": "rent",
+      "examples": [
+        {
+          "es": "El *alquiler* es de 450 euros al mes.",
+          "en": "The rent is 450 euros a month."
+        },
+        {
+          "es": "Los *alquileres* en Madrid son caros.",
+          "en": "Rents in Madrid are expensive."
+        }
+      ],
+      "note": "The verb is *alquilar* (to rent): *Se alquila habitación* — Room to let."
+    },
+    {
+      "id": "habitacion",
+      "es": "habitación",
+      "gender": "f",
+      "plural": "habitaciones",
+      "en": "room, bedroom",
+      "examples": [
+        {
+          "es": "Mi *habitación* tiene un balcón.",
+          "en": "My room has a balcony."
+        },
+        {
+          "es": "Hay tres *habitaciones* y un baño.",
+          "en": "There are three bedrooms and a bathroom."
+        }
+      ],
+      "note": "The accent disappears in the plural: *habitación → habitaciones*."
+    },
+    {
+      "id": "companero",
+      "es": "compañero de piso",
+      "gender": "m",
+      "plural": "compañeros de piso",
+      "en": "flatmate",
+      "examples": [
+        {
+          "es": "Mi *compañero de piso* es italiano.",
+          "en": "My flatmate is Italian."
+        },
+        {
+          "es": "Mis *compañeras de piso* son muy simpáticas.",
+          "en": "My (female) flatmates are very nice."
+        }
+      ],
+      "note": "Feminine: *compañera de piso*. A mixed group uses the masculine plural: *compañeros*."
+    },
+    {
+      "id": "barrio",
+      "es": "barrio",
+      "gender": "m",
+      "plural": "barrios",
+      "en": "neighbourhood, district",
+      "examples": [
+        {
+          "es": "Lavapiés es un *barrio* muy multicultural.",
+          "en": "Lavapiés is a very multicultural neighbourhood."
+        },
+        {
+          "es": "Me gusta mi *barrio*.",
+          "en": "I like my neighbourhood."
+        }
+      ]
+    },
+    {
+      "id": "luminoso",
+      "es": "luminoso",
+      "gender": "",
+      "en": "bright, full of light",
+      "examples": [
+        {
+          "es": "El salón es muy *luminoso*.",
+          "en": "The living room is very bright."
+        },
+        {
+          "es": "Busco una habitación *luminosa*.",
+          "en": "I'm looking for a bright room."
+        }
+      ],
+      "note": "Adjective: agrees with the noun, *luminoso / luminosa / luminosos / luminosas*."
+    },
+    {
+      "id": "fianza",
+      "es": "fianza",
+      "gender": "f",
+      "plural": "fianzas",
+      "en": "deposit",
+      "examples": [
+        {
+          "es": "Hay que pagar un mes de *fianza*.",
+          "en": "You have to pay one month's deposit."
+        },
+        {
+          "es": "Me devolvieron la *fianza*.",
+          "en": "They gave me my deposit back."
+        }
+      ]
+    },
+    {
+      "id": "gastos",
+      "es": "gastos",
+      "gender": "mpl",
+      "en": "bills, expenses",
+      "examples": [
+        {
+          "es": "El precio incluye los *gastos*.",
+          "en": "The price includes bills."
+        },
+        {
+          "es": "Pagamos los *gastos* a medias.",
+          "en": "We split the bills half and half."
+        }
+      ],
+      "note": "Usually plural. *Gastos incluidos* in an advert means bills are included in the rent."
+    },
+    {
+      "id": "dueno",
+      "es": "dueño",
+      "gender": "m",
+      "plural": "dueños",
+      "en": "owner, landlord",
+      "examples": [
+        {
+          "es": "El *dueño* vive en el piso de abajo.",
+          "en": "The landlord lives in the flat downstairs."
+        },
+        {
+          "es": "La *dueña* es muy amable.",
+          "en": "The (female) owner is very kind."
+        }
+      ],
+      "note": "Also *el casero / la casera* (landlord, landlady), very common in Spain."
+    },
+    {
+      "id": "mudarse",
+      "es": "mudarse",
+      "gender": "",
+      "en": "to move (house)",
+      "examples": [
+        {
+          "es": "*Me mudo* el sábado.",
+          "en": "I'm moving on Saturday."
+        },
+        {
+          "es": "Nos *mudamos* a Madrid en 2024.",
+          "en": "We moved to Madrid in 2024."
+        }
+      ],
+      "note": "Reflexive: *me mudo, te mudas, se muda…* Don't use *moverse*, which means to move your body."
+    },
+    {
+      "id": "limpiar",
+      "es": "limpiar",
+      "gender": "",
+      "en": "to clean",
+      "examples": [
+        {
+          "es": "Hoy me toca *limpiar* el baño.",
+          "en": "It's my turn to clean the bathroom today."
+        },
+        {
+          "es": "*Limpiamos* la cocina los domingos.",
+          "en": "We clean the kitchen on Sundays."
+        }
+      ]
+    },
+    {
+      "id": "tocar",
+      "es": "tocarle a alguien",
+      "gender": "",
+      "en": "to be someone's turn",
+      "examples": [
+        {
+          "es": "*Te toca* fregar los platos.",
+          "en": "It's your turn to do the dishes."
+        },
+        {
+          "es": "¿A quién *le toca* sacar la basura?",
+          "en": "Whose turn is it to take out the rubbish?"
+        }
+      ],
+      "note": "Works like *gustar*: *me toca, te toca, le toca*. *Tocar* alone means to touch or to play an instrument."
+    },
+    {
+      "id": "basura",
+      "es": "basura",
+      "gender": "f",
+      "plural": "basuras",
+      "en": "rubbish, trash",
+      "examples": [
+        {
+          "es": "Hay que sacar la *basura*.",
+          "en": "The rubbish needs taking out."
+        },
+        {
+          "es": "El cubo de la *basura* está lleno.",
+          "en": "The bin is full."
+        }
+      ]
+    },
+    {
+      "id": "ruido",
+      "es": "ruido",
+      "gender": "m",
+      "plural": "ruidos",
+      "en": "noise",
+      "examples": [
+        {
+          "es": "No hagas *ruido*, por favor.",
+          "en": "Please don't make noise."
+        },
+        {
+          "es": "Hay mucho *ruido* en la calle.",
+          "en": "There's a lot of noise in the street."
+        }
+      ],
+      "note": "*Hacer ruido* — to make noise (not ~~crear ruido~~)."
+    },
+    {
+      "id": "vecino",
+      "es": "vecino",
+      "gender": "m",
+      "plural": "vecinos",
+      "en": "neighbour",
+      "examples": [
+        {
+          "es": "Los *vecinos* son muy tranquilos.",
+          "en": "The neighbours are very quiet."
+        },
+        {
+          "es": "Mi *vecina* tiene un perro.",
+          "en": "My (female) neighbour has a dog."
+        }
+      ]
+    },
+    {
+      "id": "acuerdo",
+      "es": "ponerse de acuerdo",
+      "gender": "",
+      "en": "to agree, to come to an agreement",
+      "examples": [
+        {
+          "es": "Nos *ponemos de acuerdo* sobre las tareas.",
+          "en": "We agree on the chores."
+        },
+        {
+          "es": "*Estoy de acuerdo* contigo.",
+          "en": "I agree with you."
+        }
+      ],
+      "note": "*Estar de acuerdo* = to agree (opinion); *ponerse de acuerdo* = to reach an agreement."
+    },
+    {
+      "id": "tranquilo",
+      "es": "tranquilo",
+      "gender": "",
+      "en": "quiet, calm",
+      "examples": [
+        {
+          "es": "Es una calle muy *tranquila*.",
+          "en": "It's a very quiet street."
+        },
+        {
+          "es": "¡*Tranquilo*! No pasa nada.",
+          "en": "Relax! It's fine."
+        }
+      ]
+    },
+    {
+      "id": "echar",
+      "es": "echar de menos",
+      "gender": "",
+      "en": "to miss (someone or something)",
+      "examples": [
+        {
+          "es": "*Echo de menos* a mi familia.",
+          "en": "I miss my family."
+        },
+        {
+          "es": "¿*Echas de menos* tu ciudad?",
+          "en": "Do you miss your city?"
+        }
+      ],
+      "note": "Spain. In Latin America people say *extrañar*: *Extraño a mi familia.*"
+    },
+    {
+      "id": "acostumbrarse",
+      "es": "acostumbrarse a",
+      "gender": "",
+      "en": "to get used to",
+      "examples": [
+        {
+          "es": "*Me acostumbro* rápido a todo.",
+          "en": "I get used to everything quickly."
+        },
+        {
+          "es": "No *me acostumbro a* cenar tan tarde.",
+          "en": "I can't get used to having dinner so late."
+        }
+      ],
+      "note": "Reflexive, always with *a*: *acostumbrarse a + noun / infinitive*."
+    }
+  ],
+  "text": "Marco es de Turín y {{=estudia|is studying}} un máster en Madrid. Desde septiembre {{compartir|comparte}} un {{piso|piso}} en Lavapiés, un {{barrio|barrio}} céntrico y muy animado, con dos chicas españolas: Lucía, que es enfermera, y Carmen, que trabaja en una librería.\n\nEl piso no es muy grande, pero es {{luminoso|luminoso}} y está a cinco minutos del metro. La {{habitacion|habitación}} de Marco tiene una ventana a la calle y un escritorio pequeño. El {{alquiler|alquiler}} es de 480 euros al mes, con los {{gastos|gastos}} incluidos. Antes de {{mudarse|mudarse}}, Marco pagó un mes de {{fianza|fianza}} al {{dueno|dueño}}, un señor mayor muy simpático que vive en el {{=tercero|third floor}}.\n\nAl principio, todo era nuevo. A Marco le gusta mucho el barrio, pero no se {{acostumbrarse|acostumbra}} a cenar a las diez de la noche. «En Italia también cenamos tarde, pero no tanto», {{=dice|he says}} riéndose. Además, {{echar|echa de menos}} el café de su madre.\n\nPara no tener problemas, los tres {{companero|compañeros de piso}} se reunieron el primer domingo y se {{acuerdo|pusieron de acuerdo}} sobre las tareas. Ahora tienen un cuadro en la nevera: cada semana a una persona le {{tocar|toca}} {{limpiar|limpiar}} la cocina y a otra le toca sacar la {{basura|basura}}. Esta semana le toca a Marco, y {{=no le hace mucha gracia|he isn't too happy about it}}.\n\nEl único problema es el {{ruido|ruido}}. Los fines de semana, la calle está llena de gente hasta las tres de la mañana. Pero los {{vecino|vecinos}} del edificio son muy {{tranquilo|tranquilos}}, y Lucía {{=le ha prestado|has lent him}} unos tapones para los oídos. «Ahora duermo como un bebé», dice Marco. «Bueno, casi.»",
+  "quiz": [
+    {
+      "q": "¿De dónde es Marco?",
+      "options": [
+        "de Madrid",
+        "de Turín",
+        "de Valencia",
+        "de Roma",
+        "de Lavapiés"
+      ],
+      "answer": 1,
+      "explain": "«Marco *es de* Turín» — origin uses *ser*. Lavapiés is the Madrid neighbourhood where he lives now."
+    },
+    {
+      "q": "¿Con quién comparte piso Marco?",
+      "options": [
+        "con su madre",
+        "con dos chicos italianos",
+        "con dos chicas españolas",
+        "con el dueño",
+        "solo"
+      ],
+      "answer": 2,
+      "explain": "He shares with Lucía and Carmen, «dos chicas españolas»."
+    },
+    {
+      "q": "¿Cuánto paga Marco de alquiler?",
+      "options": [
+        "450 euros sin gastos",
+        "480 euros con los gastos incluidos",
+        "480 euros más gastos",
+        "un mes de fianza al año",
+        "500 euros"
+      ],
+      "answer": 1,
+      "explain": "«El alquiler es de 480 euros al mes, con los gastos incluidos.»"
+    },
+    {
+      "q": "El piso *___* a cinco minutos del metro.",
+      "options": [
+        "es",
+        "está",
+        "hay",
+        "tiene",
+        "son"
+      ],
+      "answer": 1,
+      "explain": "Location takes *estar*: *El piso está a cinco minutos del metro*."
+    },
+    {
+      "q": "¿Qué le cuesta a Marco en Madrid?",
+      "options": [
+        "hablar español",
+        "cenar a las diez de la noche",
+        "ir en metro",
+        "limpiar la cocina",
+        "dormir con tapones"
+      ],
+      "answer": 1,
+      "explain": "«No se acostumbra a cenar a las diez de la noche» — *acostumbrarse a* + infinitive."
+    },
+    {
+      "q": "«Echa de menos el café de su madre» significa que Marco…",
+      "options": [
+        "no bebe café",
+        "prepara café para su madre",
+        "misses his mother's coffee",
+        "lleva café a su madre",
+        "compra menos café"
+      ],
+      "answer": 2,
+      "explain": "*Echar de menos* = to miss. In Latin America: *extrañar*."
+    },
+    {
+      "q": "Esta semana, ¿a quién le toca sacar la basura?",
+      "options": [
+        "a Lucía",
+        "a Carmen",
+        "a Marco",
+        "al dueño",
+        "a los vecinos"
+      ],
+      "answer": 2,
+      "explain": "«Esta semana le toca a Marco» — *tocarle a alguien* works like *gustar*."
+    },
+    {
+      "q": "A Marco *___* mucho el barrio.",
+      "options": [
+        "le gusta",
+        "le gustan",
+        "me gusta",
+        "gusta",
+        "se gusta"
+      ],
+      "answer": 0,
+      "explain": "One thing (*el barrio*) → *gusta*; Marco is *a él* → *le*."
+    },
+    {
+      "q": "¿Cuál es el único problema del piso?",
+      "options": [
+        "el alquiler",
+        "los vecinos",
+        "el ruido de la calle",
+        "la habitación pequeña",
+        "el dueño"
+      ],
+      "answer": 2,
+      "explain": "«El único problema es el ruido» — the street is full of people at weekends; the neighbours are actually quiet."
+    },
+    {
+      "q": "Yo *___* dormir bien esta noche. (querer)",
+      "options": [
+        "quero",
+        "quiero",
+        "querio",
+        "queremos",
+        "quieremos"
+      ],
+      "answer": 1,
+      "explain": "*Querer* changes e → ie in the stressed forms: *quiero*. Only *nosotros* and *vosotros* keep the *e*: *queremos, queréis*."
+    }
+  ]
+}

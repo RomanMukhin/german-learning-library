@@ -15,7 +15,7 @@ Styles and the quiz script are taken from an existing German page, so both halve
 site look and behave the same. Run: python3 tools/build_section.py [english|spanish ...]
 (no argument builds every section that has a source folder)
 """
-import hashlib, html, json, os, re, shutil
+import hashlib, html, json, os, re, shutil, sys
 import markdown
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -264,9 +264,16 @@ def build():
             f'<p class="hint">{esc(m.get("sub", ""))} · {len(s["children"])} topics · quiz of {nq} questions</p></div>'
             f'<div class="card prose" style="padding:16px 20px"><ol class="toc-list">{items}</ol></div></section>')
     tabs = "".join(f'<a href="#{s["slug"]}">{esc(s["meta"]["title"])}</a>' for s in sections)
+    stories = ""
+    if DIR == "spanish":  # reading stories, built by tools/build_stories.py
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import build_stories
+        stories = build_stories.home_section()
+        if stories:
+            tabs += '<a href="#stories">Stories</a>'
     body = (f'<nav class="tabs" aria-label="Sections">{tabs}</nav>\n'
             + (f'<article class="prose card">\n{md(hb, 1)}\n</article>\n' if hb.strip() else "")
-            + "\n".join(parts))
+            + "\n".join(parts) + stories)
     out = page(path="index", title=hm.get("title", NAME), crumbs=[], badge=hm.get("badge", "British English"),
                h1=hm.get("title", NAME), sub=hm.get("sub", ""), body=body, depth=1)
     # the home page has no back button and no crumbs
@@ -278,6 +285,8 @@ def build():
     open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(out)
     total_pages += 1
     print(f"built {total_pages} pages in {DIR}/")
+    if DIR == "spanish":
+        build_stories.build()
 
 
 if __name__ == "__main__":

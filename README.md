@@ -15,4 +15,6 @@ pip install markdown
 python3 tools/build_section.py
 ```
 
+Spanish reading stories are JSON files in `spanish-src/stories/` (format described at the top of `tools/build_stories.py`); they are built into `spanish/stories/` as part of the Spanish build.
+
 This regenerates `english/` and `spanish/` (pass `english` or `spanish` to build one) and then runs `tools/site_switch.py`, which adds the German / English / Spanish switch to the app bar of every page (safe to run again on its own after regenerating the German pages).

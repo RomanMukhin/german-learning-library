@@ -35,7 +35,7 @@ Spain uses ***vosotros / vosotras*** as the informal plural *you*, with its own 
 Spain uses the **present perfect** for events earlier today, this week or this year, where Latin America often uses the preterite:
 
 » *Hoy **he comido** paella.* — I ate paella today. (Mexico: *Hoy comí paella.*)
-» *Este año **hemos viajado** mucho.*
+» *Este año **hemos viajado** mucho.* — We have travelled a lot this year.
 
 ### Leísmo
 
