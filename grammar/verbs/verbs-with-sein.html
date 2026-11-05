@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="b14bdd527b48">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>haben or sein in the Perfekt · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="53c724d48f43" class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">haben or sein in the Perfekt</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>haben or sein in the Perfekt</h1><p class="sub">Which verbs build the Perfekt with sein, the list of the most common ones, and the verbs that switch between haben and sein.</p></header>
+<article class="prose card">
+<p>The Perfekt is built with a helper verb and the Partizip II: <em>Ich <strong>habe</strong> gegessen</em>, <em>Ich <strong>bin</strong> gegangen</em>. About nine out of ten verbs take <em>haben</em>. The rest take <em>sein</em>, and they are among the most frequent verbs in the language, so they are worth learning as a list. The same choice also holds for the Plusquamperfekt (<em>ich war gegangen</em>) and the Futur II (<em>ich werde gegangen sein</em>).</p>
+<h2>A2 core</h2>
+<h3>When sein?</h3>
+<p>A verb takes <em>sein</em> when it has <strong>no accusative object</strong> and</p>
+<ul>
+<li>it describes <strong>movement from one place to another</strong>: <em>Wir <strong>sind</strong> nach Prag <strong>gefahren</strong>.</em> – <em>We went to Prague.</em></li>
+<li>or a <strong>change of state</strong>: <em>Das Baby <strong>ist</strong> endlich <strong>eingeschlafen</strong>.</em> – <em>The baby has finally fallen asleep.</em></li>
+<li>or it is one of the special verbs <em>sein, bleiben, werden, passieren, geschehen</em>: <em>Was <strong>ist</strong> denn <strong>passiert</strong>?</em> – <em>What happened?</em></li>
+</ul>
+<h3>When haben?</h3>
+<p>Everything else takes <em>haben</em>, in particular:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verbs with an accusative object</td>
+<td><em>Ich <strong>habe</strong> einen Kuchen gebacken.</em></td>
+</tr>
+<tr>
+<td>verbs without movement or change</td>
+<td><em>Wir <strong>haben</strong> lange geschlafen.</em></td>
+</tr>
+<tr>
+<td>reflexive verbs</td>
+<td><em>Er <strong>hat</strong> sich verletzt.</em></td>
+</tr>
+<tr>
+<td>modal verbs</td>
+<td><em>Das <strong>habe</strong> ich nicht gewollt.</em></td>
+</tr>
+<tr>
+<td>weather verbs</td>
+<td><em>Es <strong>hat</strong> die ganze Nacht geregnet.</em></td>
+</tr>
+<tr>
+<td>beginning and ending</td>
+<td><em>Der Film <strong>hat</strong> angefangen. Es <strong>hat</strong> aufgehört zu schneien.</em></td>
+</tr>
+<tr>
+<td>stehen, sitzen, liegen (standard German)</td>
+<td><em>Ich <strong>habe</strong> zwei Stunden im Stau gestanden.</em></td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Two quick questions</p><p>1. Is there an accusative object (<em>wen? was?</em>)? Then <em>haben</em>. 2. If not: does the subject move from A to B or become something different? Then <em>sein</em>. If both answers are no, it is <em>haben</em>, except for <em>sein, bleiben, passieren</em>.</p></aside>
+<aside class="callout trap"><p class="callout-title">Not every movement word moves you</p><p><em>tanzen</em> and <em>sich bewegen</em> are movement, but you stay in the same place, so they take <em>haben</em>: <em>Wir <strong>haben</strong> die ganze Nacht getanzt.</em> Only with a clear route or goal does <em>tanzen</em> switch: <em>Sie <strong>sind</strong> durch den ganzen Saal getanzt.</em></p></aside>
+<h2>The list: verbs with sein</h2>
+<h3>Movement from A to B</h3>
+<p>Prefixes do not change the helper as long as the verb still means moving somewhere: <em>kommen → ankommen, mitkommen, zurückkommen</em> all take <em>sein</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Partizip II</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gehen</td>
+<td>gegangen</td>
+<td>go, walk</td>
+</tr>
+<tr>
+<td>kommen</td>
+<td>gekommen</td>
+<td>come</td>
+</tr>
+<tr>
+<td>fahren</td>
+<td>gefahren</td>
+<td>drive, travel</td>
+</tr>
+<tr>
+<td>fliegen</td>
+<td>geflogen</td>
+<td>fly</td>
+</tr>
+<tr>
+<td>laufen</td>
+<td>gelaufen</td>
+<td>run, walk</td>
+</tr>
+<tr>
+<td>rennen</td>
+<td>gerannt</td>
+<td>run (fast)</td>
+</tr>
+<tr>
+<td>reisen</td>
+<td>gereist</td>
+<td>travel</td>
+</tr>
+<tr>
+<td>wandern</td>
+<td>gewandert</td>
+<td>hike</td>
+</tr>
+<tr>
+<td>fallen</td>
+<td>gefallen</td>
+<td>fall</td>
+</tr>
+<tr>
+<td>springen</td>
+<td>gesprungen</td>
+<td>jump</td>
+</tr>
+<tr>
+<td>steigen</td>
+<td>gestiegen</td>
+<td>climb, rise</td>
+</tr>
+<tr>
+<td>ziehen (nach, in)</td>
+<td>gezogen</td>
+<td>move (to a place)</td>
+</tr>
+<tr>
+<td>umziehen</td>
+<td>umgezogen</td>
+<td>move house</td>
+</tr>
+<tr>
+<td>ankommen</td>
+<td>angekommen</td>
+<td>arrive</td>
+</tr>
+<tr>
+<td>abfahren</td>
+<td>abgefahren</td>
+<td>depart</td>
+</tr>
+<tr>
+<td>einsteigen / aussteigen</td>
+<td>eingestiegen / ausgestiegen</td>
+<td>get on / get off</td>
+</tr>
+<tr>
+<td>umsteigen</td>
+<td>umgestiegen</td>
+<td>change (trains)</td>
+</tr>
+<tr>
+<td>zurückkommen</td>
+<td>zurückgekommen</td>
+<td>come back</td>
+</tr>
+<tr>
+<td>weggehen</td>
+<td>weggegangen</td>
+<td>go away, go out</td>
+</tr>
+<tr>
+<td>mitkommen</td>
+<td>mitgekommen</td>
+<td>come along</td>
+</tr>
+<tr>
+<td>ausgehen</td>
+<td>ausgegangen</td>
+<td>go out (in the evening)</td>
+</tr>
+<tr>
+<td>abbiegen</td>
+<td>abgebogen</td>
+<td>turn (left/right)</td>
+</tr>
+<tr>
+<td>fliehen</td>
+<td>geflohen</td>
+<td>flee</td>
+</tr>
+<tr>
+<td>stürzen</td>
+<td>gestürzt</td>
+<td>fall, crash</td>
+</tr>
+<tr>
+<td>landen</td>
+<td>gelandet</td>
+<td>land</td>
+</tr>
+<tr>
+<td>folgen</td>
+<td>gefolgt</td>
+<td>follow</td>
+</tr>
+<tr>
+<td>begegnen</td>
+<td>begegnet</td>
+<td>meet (by chance)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Change of state</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Partizip II</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>werden</td>
+<td>geworden</td>
+<td>become</td>
+</tr>
+<tr>
+<td>aufstehen</td>
+<td>aufgestanden</td>
+<td>get up</td>
+</tr>
+<tr>
+<td>aufwachen</td>
+<td>aufgewacht</td>
+<td>wake up</td>
+</tr>
+<tr>
+<td>einschlafen</td>
+<td>eingeschlafen</td>
+<td>fall asleep</td>
+</tr>
+<tr>
+<td>sterben</td>
+<td>gestorben</td>
+<td>die</td>
+</tr>
+<tr>
+<td>wachsen</td>
+<td>gewachsen</td>
+<td>grow</td>
+</tr>
+<tr>
+<td>entstehen</td>
+<td>entstanden</td>
+<td>come into being</td>
+</tr>
+<tr>
+<td>verschwinden</td>
+<td>verschwunden</td>
+<td>disappear</td>
+</tr>
+<tr>
+<td>schmelzen</td>
+<td>geschmolzen</td>
+<td>melt</td>
+</tr>
+<tr>
+<td>erschrecken</td>
+<td>erschrocken</td>
+<td>get a fright</td>
+</tr>
+<tr>
+<td>platzen</td>
+<td>geplatzt</td>
+<td>burst</td>
+</tr>
+<tr>
+<td>ertrinken</td>
+<td>ertrunken</td>
+<td>drown</td>
+</tr>
+<tr>
+<td>explodieren</td>
+<td>explodiert</td>
+<td>explode</td>
+</tr>
+<tr>
+<td>gelingen</td>
+<td>gelungen</td>
+<td>succeed (es gelingt mir)</td>
+</tr>
+<tr>
+<td>misslingen</td>
+<td>misslungen</td>
+<td>fail (es misslingt mir)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Other verbs with sein</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>Partizip II</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sein</td>
+<td>gewesen</td>
+<td>be</td>
+</tr>
+<tr>
+<td>bleiben</td>
+<td>geblieben</td>
+<td>stay</td>
+</tr>
+<tr>
+<td>passieren</td>
+<td>passiert</td>
+<td>happen</td>
+</tr>
+<tr>
+<td>geschehen</td>
+<td>geschehen</td>
+<td>happen</td>
+</tr>
+<tr>
+<td>vorkommen</td>
+<td>vorgekommen</td>
+<td>occur, seem</td>
+</tr>
+<tr>
+<td>auffallen</td>
+<td>aufgefallen</td>
+<td>be noticed, strike</td>
+</tr>
+<tr>
+<td>ausfallen</td>
+<td>ausgefallen</td>
+<td>be cancelled</td>
+</tr>
+<tr>
+<td>durchfallen</td>
+<td>durchgefallen</td>
+<td>fail (an exam)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Der Zug <strong>ist</strong> pünktlich <strong>angekommen</strong>. – <em>The train arrived on time.</em></li>
+<li>Ich <strong>bin</strong> gestern einer alten Freundin <strong>begegnet</strong>. – <em>I ran into an old friend yesterday.</em></li>
+<li>Die Party <strong>ist</strong> wegen des Regens <strong>ausgefallen</strong>. – <em>The party was cancelled because of the rain.</em></li>
+<li>Der Kuchen <strong>ist</strong> mir gut <strong>gelungen</strong>. – <em>My cake turned out well.</em></li>
+</ul>
+<h2>B1</h2>
+<h3>One verb, two helpers</h3>
+<p>Several movement verbs can also take an accusative object. Then they need <em>haben</em>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>with sein (no object)</th>
+<th>with haben (+ Akk)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fahren</td>
+<td><em>Ich <strong>bin</strong> nach Köln gefahren.</em> – I went to Cologne.</td>
+<td><em>Ich <strong>habe</strong> meine Mutter zum Arzt gefahren.</em> – I drove my mother to the doctor.</td>
+</tr>
+<tr>
+<td>fliegen</td>
+<td><em>Wir <strong>sind</strong> nach Lissabon geflogen.</em></td>
+<td><em>Die Pilotin <strong>hat</strong> einen Airbus geflogen.</em></td>
+</tr>
+<tr>
+<td>ziehen</td>
+<td><em>Sie <strong>ist</strong> nach München gezogen.</em> – She moved to Munich.</td>
+<td><em>Er <strong>hat</strong> den Koffer hinter sich her gezogen.</em> – He pulled the case behind him.</td>
+</tr>
+<tr>
+<td>brechen</td>
+<td><em>Das Eis <strong>ist</strong> gebrochen.</em> – The ice broke.</td>
+<td><em>Ich <strong>habe</strong> mir das Bein gebrochen.</em> – I broke my leg.</td>
+</tr>
+<tr>
+<td>schmelzen</td>
+<td><em>Der Schnee <strong>ist</strong> geschmolzen.</em></td>
+<td><em>Die Sonne <strong>hat</strong> den Schnee geschmolzen.</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Sport verbs: route or activity?</h3>
+<p>With <em>schwimmen, joggen, klettern, tauchen, reiten, segeln</em> use <em>sein</em> when there is a route or a destination. When you only talk about the activity, both helpers are correct: <em>sein</em> is more usual in the south, <em>haben</em> in the north.</p>
+<ul>
+<li>Ich <strong>bin</strong> über den See <strong>geschwommen</strong>. – <em>I swam across the lake.</em> (route: only <em>sein</em>)</li>
+<li>Ich <strong>bin / habe</strong> früher viel <strong>geschwommen</strong>. – <em>I used to swim a lot.</em> (activity)</li>
+</ul>
+<h3>Prefixes that add an object</h3>
+<p>Some prefixes turn a movement verb into a verb with an accusative object, and the helper switches to <em>haben</em>:</p>
+<ul>
+<li><em>Ich <strong>bin</strong> gekommen</em>, but <em>Ich <strong>habe</strong> ein Paket bekommen</em> (received).</li>
+<li><em>Er <strong>ist</strong> gegangen</em>, but <em>Er <strong>hat</strong> das Haus um acht verlassen</em> (left).</li>
+<li><em>Wir <strong>sind</strong> auf den Berg gestiegen</em>, but <em>Wir <strong>haben</strong> den Berg bestiegen</em> (climbed it).</li>
+<li><em>Sie <strong>ist</strong> gefahren</em>, but <em>Sie <strong>hat</strong> die Wahrheit erfahren</em> (found out).</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">stehen, sitzen, liegen in the south</p><p>In standard German these three take <em>haben</em>: <em>Ich habe gesessen.</em> In southern Germany, Austria and Switzerland people say <em>Ich bin gesessen, ich bin gestanden, ich bin gelegen</em>. Both are correct in their region; in an exam in Germany use <em>haben</em>.</p></aside>
+<aside class="callout fact"><p class="callout-title">English used to do this too</p><p>Older English also had "be" with movement verbs: <em>"He is risen"</em>, <em>"The time is come"</em>, <em>"Babylon is fallen"</em>. Modern English replaced them with <em>have</em>; German, Dutch, French and Italian kept the old split between "have" verbs and "be" verbs.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Past tenses</a></li>
+<li><a data-quiz="f8cd2a606b21" href="sein-haben-werden.html">sein, haben, werden</a></li>
+<li><a data-quiz="158321574f16" href="transitive-intransitive.html">Transitive and intransitive verbs</a></li>
+<li><a href="../../docs/irregular-verbs.html">Irregular verbs table</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="f8cd2a606b21" class="btn" href="sein-haben-werden.html">← sein, haben, werden</a><a data-quiz="f7e33196feac" class="btn" href="modal-verbs.html">Modal verbs →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Wir *___* gestern ins Theater gegangen.", "options": ["haben", "sind", "hatten", "werden", "seid"], "answer": 1, "explain": "*gehen* is movement from A to B without an object: *sein* (A2)."}, {"q": "Ich *___* heute schon drei Kaffee getrunken.", "options": ["bin", "war", "hat", "habe", "werde"], "answer": 3, "explain": "*trinken* has an accusative object (*drei Kaffee*): *haben* (A2)."}, {"q": "Um wie viel Uhr *___* du aufgestanden?", "options": ["bist", "hast", "ist", "hat", "wirst"], "answer": 0, "explain": "*aufstehen* is a change of position/state: *sein* (A2)."}, {"q": "Mein Opa *___* letztes Jahr gestorben.", "options": ["hat", "hatte", "ist", "wurde", "habt"], "answer": 2, "explain": "*sterben* is a change of state: *sein* (A2)."}, {"q": "Wir *___* das ganze Wochenende zu Hause geblieben.", "options": ["haben", "bleiben", "hatten", "werden", "sind"], "answer": 4, "explain": "*bleiben* takes *sein* although nothing moves; learn it with *sein* (A2)."}, {"q": "Es *___* die ganze Nacht geschneit.", "options": ["hat", "ist", "war", "wird", "wurde"], "answer": 0, "explain": "Weather verbs take *haben*: *Es hat geschneit* (A2)."}, {"q": "Der Film *___* um acht angefangen.", "options": ["ist", "hat", "war", "wird", "wurde"], "answer": 1, "explain": "*anfangen* and *beginnen* take *haben* (A2)."}, {"q": "Was *___* denn passiert?", "options": ["hat", "wird", "habt", "ist", "hatte"], "answer": 3, "explain": "*passieren* and *geschehen* take *sein* (A2)."}, {"q": "Ich *___* meinen Sohn zum Bahnhof gefahren.", "options": ["bin", "ist", "habe", "war", "hat"], "answer": 2, "explain": "With an accusative object (*meinen Sohn*) *fahren* takes *haben* (B1)."}, {"q": "Sie *___* letzten Monat nach Graz gezogen.", "options": ["hat", "wurde", "hatte", "habe", "ist"], "answer": 4, "explain": "*ziehen nach* = move to a city: *sein*. With an object (*den Koffer ziehen*) it would be *haben* (B1)."}, {"q": "Ich *___* gestern ein Paket bekommen.", "options": ["bin", "ist", "habe", "war", "wurde"], "answer": 2, "explain": "*bekommen* has an object and means receive, so *haben*, unlike *kommen* (B1)."}, {"q": "Wir *___* auf der Party bis drei Uhr getanzt.", "options": ["sind", "werden", "waren", "seid", "haben"], "answer": 4, "explain": "*tanzen* without a route takes *haben* (B1)."}, {"q": "Hast du gut geschlafen? – Ja, ich *___* sofort eingeschlafen.", "options": ["bin", "habe", "hat", "wurde", "ist"], "answer": 0, "explain": "*schlafen* takes *haben*, but *einschlafen* (falling asleep = change) takes *sein* (B1)."}, {"q": "Gestern *___* ich zufällig meinem Lehrer begegnet.", "options": ["habe", "hatte", "hat", "bin", "werde"], "answer": 3, "explain": "*begegnen + Dat* takes *sein*, unlike *treffen + Akk* (*habe getroffen*) (B1)."}, {"q": "Er *___* sich beim Sport verletzt.", "options": ["ist", "hat", "war", "wird", "sei"], "answer": 1, "explain": "Reflexive verbs always take *haben* (A2)."}, {"q": "Leider *___* ich durch die Prüfung gefallen.", "options": ["habe", "bin", "hat", "hatte", "werde"], "answer": 1, "explain": "*durchfallen* (fail an exam) takes *sein* (B1)."}, {"q": "Ich *___* zwei Stunden an der Haltestelle gestanden. (standard German)", "options": ["bin", "werde", "war", "habe", "ist"], "answer": 3, "explain": "In standard German *stehen, sitzen, liegen* take *haben*; *ich bin gestanden* is southern (B1)."}, {"q": "Als wir ankamen, *___* der Zug schon abgefahren.", "options": ["war", "hatte", "ist", "hat", "wurde"], "answer": 0, "explain": "Plusquamperfekt uses the past of the same helper: *abfahren* takes *sein*, so *war abgefahren* (B1)."}, {"q": "Das Essen *___* mir leider nicht gelungen.", "options": ["hat", "bin", "habe", "wurde", "ist"], "answer": 4, "explain": "*gelingen* takes *sein*; the thing is the subject, the person is dative: *es ist mir gelungen* (B1)."}], "title": "haben or sein in the Perfekt quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
