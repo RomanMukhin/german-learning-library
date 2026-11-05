@@ -1,0 +1,562 @@
+{
+  "n": 5,
+  "area": "Everyday",
+  "level": "B1",
+  "title_es": "Los sábados en el mercado de Surquillo",
+  "title_en": "Saturdays at the Surquillo market",
+  "grammar": [
+    {
+      "name": "Comparisons: más… que, tan… como, el mejor",
+      "explain": "To compare, use *más / menos* + adjective + *que* (*más ruidoso que un supermercado*) and *tan* + adjective + *como* for equality (*tan fresco como en la costa*). With nouns, equality uses *tanto/a/os/as… como*. Some adjectives have irregular forms: *bueno → mejor*, *malo → peor*. The superlative adds the article: *la mejor manera, las paltas más maduras*.",
+      "examples": [
+        {
+          "es": "El mercado es *más ruidoso que* el supermercado.",
+          "en": "The market is noisier than the supermarket."
+        },
+        {
+          "es": "El pescado está *tan fresco como* en la costa.",
+          "en": "The fish is as fresh as on the coast."
+        },
+        {
+          "es": "Es *la mejor* manera de conocer Lima.",
+          "en": "It's the best way to get to know Lima."
+        }
+      ],
+      "links": [
+        {
+          "title": "Comparatives and superlatives",
+          "url": "../intermediate/comparatives-and-superlatives.html"
+        }
+      ]
+    },
+    {
+      "name": "Direct object pronouns (lo, la, los, las)",
+      "explain": "To avoid repeating a noun that is the direct object, replace it with *lo, la, los, las*, matching its gender and number: *las paltas → las pesa*. The pronoun goes before a conjugated verb, or is attached to an infinitive or a positive command (*quiero probarlas, pésalas*). *Lo* can also refer to a whole idea or to *todo*: *lo compraba todo*.",
+      "examples": [
+        {
+          "es": "Elige las paltas y *las* pesa.",
+          "en": "She picks the avocados and weighs them."
+        },
+        {
+          "es": "El choclo, ¿*lo* quieres cocido?",
+          "en": "The corn — do you want it boiled?"
+        },
+        {
+          "es": "*Lo* compraba todo en una hora.",
+          "en": "He bought everything in an hour."
+        }
+      ],
+      "links": [
+        {
+          "title": "Direct object pronouns",
+          "url": "../beginner/direct-object-pronouns.html"
+        },
+        {
+          "title": "Object pronouns",
+          "url": "../intermediate/object-pronouns.html"
+        }
+      ]
+    },
+    {
+      "name": "The imperfect for past habits",
+      "explain": "Use the imperfect to describe what used to happen regularly in the past: *Antes hacía las compras una vez por semana.* Regular endings are *-aba* for *-ar* verbs and *-ía* for *-er/-ir* verbs. Words like *antes, siempre, todos los días, una vez por semana* are strong signals. English often says *used to* or *would*.",
+      "examples": [
+        {
+          "es": "Antes *compraba* todo en el supermercado.",
+          "en": "I used to buy everything at the supermarket."
+        },
+        {
+          "es": "Casi no *hablaba* con nadie.",
+          "en": "He hardly ever talked to anyone."
+        },
+        {
+          "es": "Mi abuela *iba* al mercado todos los días.",
+          "en": "My grandmother used to go to the market every day."
+        }
+      ],
+      "links": [
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "mercado",
+      "es": "mercado",
+      "gender": "m",
+      "plural": "mercados",
+      "en": "market",
+      "examples": [
+        {
+          "es": "Compro la fruta en el *mercado*.",
+          "en": "I buy fruit at the market."
+        },
+        {
+          "es": "El *mercado* abre a las seis.",
+          "en": "The market opens at six."
+        }
+      ],
+      "note": "*Supermercado* is a supermarket; *mercado* usually means a covered market with stalls. Not a false friend, but *el mercado laboral* = the job market."
+    },
+    {
+      "id": "puesto",
+      "es": "puesto",
+      "gender": "m",
+      "plural": "puestos",
+      "en": "stall, stand; job, position",
+      "examples": [
+        {
+          "es": "Mi tía tiene un *puesto* de flores.",
+          "en": "My aunt has a flower stall."
+        },
+        {
+          "es": "Busco un *puesto* de recepcionista.",
+          "en": "I'm looking for a job as a receptionist."
+        }
+      ],
+      "note": "Also the past participle of *poner*: *He puesto la mesa.*"
+    },
+    {
+      "id": "casera",
+      "es": "casera",
+      "gender": "f",
+      "plural": "caseras",
+      "en": "regular vendor or customer (Peru)",
+      "examples": [
+        {
+          "es": "Siempre compro con mi *casera*.",
+          "en": "I always buy from my regular stallholder."
+        },
+        {
+          "es": "¿Qué le doy, *caserita*?",
+          "en": "What can I get you, love? (vendor to a regular customer)"
+        }
+      ],
+      "note": "In Peru and Bolivia *casero/casera* names the trusted vendor and the loyal customer, often as *caserito/a*. In Spain *la casera* is your landlady!"
+    },
+    {
+      "id": "palta",
+      "es": "palta",
+      "gender": "f",
+      "plural": "paltas",
+      "en": "avocado (Peru, Chile, Argentina)",
+      "examples": [
+        {
+          "es": "Me encanta el pan con *palta*.",
+          "en": "I love bread with avocado."
+        },
+        {
+          "es": "Estas *paltas* están duras.",
+          "en": "These avocados are hard."
+        }
+      ],
+      "note": "Southern South America. Mexico, Spain and most other countries say *el aguacate*."
+    },
+    {
+      "id": "papa",
+      "es": "papa",
+      "gender": "f",
+      "plural": "papas",
+      "en": "potato",
+      "examples": [
+        {
+          "es": "En Perú hay miles de tipos de *papa*.",
+          "en": "In Peru there are thousands of types of potato."
+        },
+        {
+          "es": "¿Quieres *papas* fritas?",
+          "en": "Do you want chips?"
+        }
+      ],
+      "note": "Latin America and the Canary Islands. Mainland Spain says *la patata*. Careful: *el papa* (masculine) is the Pope, and *papá* is dad."
+    },
+    {
+      "id": "choclo",
+      "es": "choclo",
+      "gender": "m",
+      "plural": "choclos",
+      "en": "corn on the cob, sweetcorn (Andes)",
+      "examples": [
+        {
+          "es": "El *choclo* peruano tiene granos enormes.",
+          "en": "Peruvian corn has huge kernels."
+        },
+        {
+          "es": "Compré dos *choclos* para la sopa.",
+          "en": "I bought two corn cobs for the soup."
+        }
+      ],
+      "note": "From Quechua. Mexico says *el elote*, Spain *la mazorca* or *el maíz*."
+    },
+    {
+      "id": "aji",
+      "es": "ají",
+      "gender": "m",
+      "plural": "ajíes",
+      "en": "chilli pepper",
+      "examples": [
+        {
+          "es": "El *ají* amarillo no pica mucho.",
+          "en": "Yellow chilli isn't very hot."
+        },
+        {
+          "es": "¿Le pongo *ají* a tu plato?",
+          "en": "Shall I put chilli on your dish?"
+        }
+      ],
+      "note": "South America and the Caribbean. Mexico says *el chile*. Plural: *ajíes* (or informally *ajís*). Hot = *picante*; *pica* = it's spicy."
+    },
+    {
+      "id": "maduro",
+      "es": "maduro",
+      "gender": "",
+      "en": "ripe; mature",
+      "examples": [
+        {
+          "es": "Los plátanos todavía no están *maduros*.",
+          "en": "The bananas aren't ripe yet."
+        },
+        {
+          "es": "Es muy *madura* para su edad.",
+          "en": "She's very mature for her age."
+        }
+      ],
+      "note": "Fruit is ripe with *estar*: *está madura*. A person is mature with *ser*: *es madura*."
+    },
+    {
+      "id": "fresco",
+      "es": "fresco",
+      "gender": "",
+      "en": "fresh; cool",
+      "examples": [
+        {
+          "es": "El pescado está muy *fresco*.",
+          "en": "The fish is very fresh."
+        },
+        {
+          "es": "Hace *fresco* por la noche.",
+          "en": "It's cool at night."
+        }
+      ],
+      "note": "Informally, *¡qué fresco!* about a person means *what a cheek!*"
+    },
+    {
+      "id": "pescado",
+      "es": "pescado",
+      "gender": "m",
+      "plural": "pescados",
+      "en": "fish (as food)",
+      "examples": [
+        {
+          "es": "Los viernes comemos *pescado*.",
+          "en": "On Fridays we eat fish."
+        },
+        {
+          "es": "El cebiche se hace con *pescado* crudo.",
+          "en": "Ceviche is made with raw fish."
+        }
+      ],
+      "note": "*El pescado* is fish you eat; *el pez* is the live animal swimming in water. *Pescar* = to fish."
+    },
+    {
+      "id": "probar",
+      "es": "probar",
+      "gender": "",
+      "en": "to taste, to try",
+      "examples": [
+        {
+          "es": "¿Quieres *probar* el mango?",
+          "en": "Do you want to try the mango?"
+        },
+        {
+          "es": "*Pruébate* esta chaqueta.",
+          "en": "Try this jacket on."
+        }
+      ],
+      "note": "o → ue: *pruebo, pruebas*. *Probarse* = to try on clothes. *Probar a* + infinitive = to try doing something."
+    },
+    {
+      "id": "elegir",
+      "es": "elegir",
+      "gender": "",
+      "en": "to choose, to pick",
+      "examples": [
+        {
+          "es": "*Elige* la que más te guste.",
+          "en": "Pick the one you like best."
+        },
+        {
+          "es": "No sé qué *elegir*.",
+          "en": "I don't know what to choose."
+        }
+      ],
+      "note": "e → i with a spelling change: *elijo, eliges, elige*. Also to elect: *elegir al presidente*."
+    },
+    {
+      "id": "pesar",
+      "es": "pesar",
+      "gender": "",
+      "en": "to weigh",
+      "examples": [
+        {
+          "es": "¿Me *pesa* medio kilo de tomates?",
+          "en": "Could you weigh me half a kilo of tomatoes?"
+        },
+        {
+          "es": "La maleta *pesa* veinte kilos.",
+          "en": "The suitcase weighs twenty kilos."
+        }
+      ],
+      "note": "Not to be confused with *a pesar de* (in spite of) or *el pésame* (condolences)."
+    },
+    {
+      "id": "regatear",
+      "es": "regatear",
+      "gender": "",
+      "en": "to haggle, to bargain",
+      "examples": [
+        {
+          "es": "En los mercados de artesanía se puede *regatear*.",
+          "en": "You can haggle at craft markets."
+        },
+        {
+          "es": "No me gusta *regatear*.",
+          "en": "I don't like haggling."
+        }
+      ],
+      "note": "In football *regatear* means to dribble past a player."
+    },
+    {
+      "id": "barato",
+      "es": "barato",
+      "gender": "",
+      "en": "cheap",
+      "examples": [
+        {
+          "es": "La fruta es más *barata* en el mercado.",
+          "en": "Fruit is cheaper at the market."
+        },
+        {
+          "es": "Lo *barato* sale caro.",
+          "en": "Buy cheap, buy twice. (lit. cheap things turn out expensive)"
+        }
+      ],
+      "note": "Adjective, agrees with the noun. The opposite is *caro*."
+    },
+    {
+      "id": "yapa",
+      "es": "yapa",
+      "gender": "f",
+      "plural": "yapas",
+      "en": "a little extra, given free",
+      "examples": [
+        {
+          "es": "La casera me dio dos limones de *yapa*.",
+          "en": "My stallholder threw in two limes for free."
+        },
+        {
+          "es": "¿Y la *yapa*, casera?",
+          "en": "What about my little extra, then?"
+        }
+      ],
+      "note": "From Quechua, used in Peru, Bolivia, Ecuador and Argentina (also *ñapa* in Colombia and Venezuela). Spain has no everyday equivalent."
+    },
+    {
+      "id": "bolsa",
+      "es": "bolsa",
+      "gender": "f",
+      "plural": "bolsas",
+      "en": "bag",
+      "examples": [
+        {
+          "es": "Trae una *bolsa* de tela.",
+          "en": "Bring a cloth bag."
+        },
+        {
+          "es": "¿Le doy una *bolsa*?",
+          "en": "Would you like a bag?"
+        }
+      ],
+      "note": "*La Bolsa* (capital B) is the stock exchange. A handbag is *el bolso* in Spain, *la cartera* in many Latin American countries."
+    },
+    {
+      "id": "sencillo",
+      "es": "sencillo",
+      "gender": "m",
+      "plural": "",
+      "en": "small change, coins (Peru)",
+      "examples": [
+        {
+          "es": "¿Tienes *sencillo* para el taxi?",
+          "en": "Have you got change for the taxi?"
+        },
+        {
+          "es": "No tengo *sencillo*, solo un billete de cien.",
+          "en": "I haven't got any change, just a hundred note."
+        }
+      ],
+      "note": "In Peru, Ecuador and parts of Central America. Spain says *(dinero) suelto*. As an adjective *sencillo* means simple."
+    },
+    {
+      "id": "vuelto",
+      "es": "vuelto",
+      "gender": "m",
+      "plural": "vueltos",
+      "en": "change (money given back)",
+      "examples": [
+        {
+          "es": "Quédese con el *vuelto*.",
+          "en": "Keep the change."
+        },
+        {
+          "es": "Me dio mal el *vuelto*.",
+          "en": "She gave me the wrong change."
+        }
+      ],
+      "note": "Latin America. In Spain it's *la vuelta* or *el cambio*: *Quédese con la vuelta.*"
+    },
+    {
+      "id": "aprovechar",
+      "es": "aprovechar",
+      "gender": "",
+      "en": "to make the most of, to take advantage of",
+      "examples": [
+        {
+          "es": "*Aprovecha* que hace sol.",
+          "en": "Make the most of the sunshine."
+        },
+        {
+          "es": "*Aproveché* el viaje para visitar a mi tía.",
+          "en": "I used the trip to visit my aunt."
+        }
+      ],
+      "note": "Positive in meaning. *Aprovecharse de alguien* (reflexive + *de*) is negative: to take advantage of someone. *¡Que aproveche!* = Enjoy your meal!"
+    }
+  ],
+  "text": "Jake es de Portland y vive en Lima desde hace seis meses. En Estados Unidos {{=hacía las compras|he did the shopping}} una vez por semana en un supermercado enorme: lo compraba todo en una hora y casi no hablaba con nadie. Pero un día su vecina, la señora Rosa, le dijo: «¿Supermercado? No, hijito. Mañana te llevo al {{mercado|mercado}} de Surquillo».\n\nEl mercado es más ruidoso que cualquier supermercado, pero también mucho más alegre. Hay cientos de {{puesto|puestos}}: frutas que Jake nunca había visto, montañas de {{papa|papas}} de todos los colores y {{pescado|pescado}} tan {{fresco|fresco}} como en la costa de Oregón. La señora Rosa siempre va a los mismos puestos. «Esta es mi {{casera|casera}}», le explica, y le presenta a una mujer que vende frutas y verduras.\n\nJake quiere preparar guacamole, así que pide aguacates. La casera se ríe: «Aquí decimos {{palta|paltas}}, joven». Le deja {{probar|probar}} un {{=trozo|piece}}, luego {{elegir|elige}} las más {{maduro|maduras}} y las {{pesar|pesa}}: un kilo exacto. Jake también compra {{choclo|choclo}}, que tiene los {{=granos|kernels}} más grandes que el maíz de su país, y un {{aji|ají}} amarillo para la receta de Rosa.\n\nJake pregunta si puede {{regatear|regatear}}, pero Rosa le dice que {{=no hace falta|there's no need}}: los precios ya son {{barato|baratos}} y, si eres buen cliente, la casera te da {{yapa|yapa}}. Y así es: cuando Jake paga, ella le mete en la {{bolsa|bolsa}} dos mandarinas {{=de regalo|as a gift}}. Como él le da un billete de cincuenta, le pregunta: «¿No tiene {{sencillo|sencillo}}?». Jake busca unas monedas en el bolsillo y al final ella le da el {{vuelto|vuelto}} con una sonrisa.\n\nDesde ese día, Jake va al mercado todos los sábados. Dice que su español ha mejorado más en los puestos que en las clases, y ahora él también tiene casera. «Es la mejor manera de {{aprovechar|aprovechar}} Lima», le escribe a su madre. «Aquí hacer las compras no es una tarea: es una conversación».",
+  "quiz": [
+    {
+      "q": "¿Cómo hacía Jake las compras en Estados Unidos?",
+      "options": [
+        "en el mercado, todos los días",
+        "por internet",
+        "una vez por semana, en un supermercado enorme",
+        "con la señora Rosa",
+        "en pequeñas tiendas del barrio"
+      ],
+      "answer": 2,
+      "explain": "«Hacía las compras una vez por semana en un supermercado enorme» — imperfect for a past habit."
+    },
+    {
+      "q": "¿Quién lleva a Jake al mercado de Surquillo?",
+      "options": [
+        "su madre",
+        "su vecina, la señora Rosa",
+        "una casera",
+        "su profesora de español",
+        "un amigo de Oregón"
+      ],
+      "answer": 1,
+      "explain": "«Su vecina, la señora Rosa, le dijo: … Mañana te llevo al mercado de Surquillo.»"
+    },
+    {
+      "q": "Según el texto, el mercado es…",
+      "options": [
+        "más tranquilo que un supermercado",
+        "más caro que un supermercado",
+        "tan aburrido como un supermercado",
+        "menos limpio que un supermercado",
+        "más ruidoso pero más alegre que un supermercado"
+      ],
+      "answer": 4,
+      "explain": "«El mercado es más ruidoso que cualquier supermercado, pero también mucho más alegre.»"
+    },
+    {
+      "q": "¿Por qué se ríe la casera?",
+      "options": [
+        "porque Jake pide «aguacates» y en Perú se dice «palta»",
+        "porque Jake quiere regatear",
+        "porque Jake no tiene dinero",
+        "porque Jake habla inglés",
+        "porque las paltas están duras"
+      ],
+      "answer": 0,
+      "explain": "«Aquí decimos paltas, joven.» Peru, Chile and Argentina say *palta*; Mexico and Spain *aguacate*."
+    },
+    {
+      "q": "¿Qué es la «yapa»?",
+      "options": [
+        "un descuento por regatear",
+        "un tipo de fruta",
+        "algo extra que te dan gratis",
+        "el dinero que te devuelven",
+        "una bolsa de tela"
+      ],
+      "answer": 2,
+      "explain": "*La yapa* is a little extra given for free — here, «dos mandarinas de regalo»."
+    },
+    {
+      "q": "¿Por qué la casera le pregunta a Jake si tiene sencillo?",
+      "options": [
+        "porque quiere una propina",
+        "porque él paga con un billete de cincuenta",
+        "porque las mandarinas cuestan más",
+        "porque no acepta billetes",
+        "porque quiere cambiar dólares"
+      ],
+      "answer": 1,
+      "explain": "He pays with a fifty note, so she asks for coins (*sencillo*) to make the change (*el vuelto*) easier."
+    },
+    {
+      "q": "¿Qué piensa Jake ahora de su español?",
+      "options": [
+        "que no ha mejorado nada",
+        "que ha mejorado solo en las clases",
+        "que es peor que antes",
+        "que ha mejorado más en el mercado que en las clases",
+        "que necesita un profesor nuevo"
+      ],
+      "answer": 3,
+      "explain": "«Su español ha mejorado más en los puestos que en las clases.»"
+    },
+    {
+      "q": "El pescado está *___* fresco *___* en la costa.",
+      "options": [
+        "más / como",
+        "tan / que",
+        "tanto / como",
+        "tan / como",
+        "muy / que"
+      ],
+      "answer": 3,
+      "explain": "Equality with an adjective: *tan* + adjective + *como*. *Tanto… como* is for nouns or verbs."
+    },
+    {
+      "q": "—¿Y las paltas? —La casera *___* pesa.",
+      "options": [
+        "los",
+        "les",
+        "la",
+        "las",
+        "lo"
+      ],
+      "answer": 3,
+      "explain": "*Las paltas* is feminine plural and the direct object → *las pesa*. *Les* is an indirect object pronoun."
+    },
+    {
+      "q": "En España, ¿cómo se dice «el vuelto»?",
+      "options": [
+        "la vuelta o el cambio",
+        "el sencillo",
+        "la yapa",
+        "la casera",
+        "el billete"
+      ],
+      "answer": 0,
+      "explain": "Spain says *la vuelta* or *el cambio*; *el vuelto* is Latin American."
+    }
+  ]
+}

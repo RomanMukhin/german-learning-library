@@ -1,0 +1,571 @@
+{
+  "n": 6,
+  "area": "Everyday",
+  "level": "B1–B2",
+  "title_es": "Se cortó la luz",
+  "title_en": "The power went out",
+  "grammar": [
+    {
+      "name": "Present subjunctive after wishes, doubt and time clauses",
+      "explain": "The subjunctive appears after expressions of wish (*ojalá que vuelva la luz*), possibility (*es posible que el apagón haya quemado la placa*) and after *hasta que, cuando, antes de que* when they refer to the future (*hasta que lo revisen*). Compare: *cuando hay temporal, se corta la luz* (habit, indicative) vs *cuando llegue el técnico, le preguntaré* (future, subjunctive). For something that may already have happened, use the perfect subjunctive: *haya* + participle.",
+      "examples": [
+        {
+          "es": "*Ojalá que vuelva* la luz antes de mañana.",
+          "en": "Let's hope the power comes back before tomorrow."
+        },
+        {
+          "es": "No use ese enchufe *hasta que lo revisen*.",
+          "en": "Don't use that socket until they've checked it."
+        },
+        {
+          "es": "*Es posible que* el apagón *haya quemado* la placa.",
+          "en": "The power cut may have burnt out the circuit board."
+        }
+      ],
+      "links": [
+        {
+          "title": "Subjunctive",
+          "url": "../advanced/subjunctive.html"
+        },
+        {
+          "title": "Subjunctive vs. indicative",
+          "url": "../advanced/subjunctive-vs-indicative.html"
+        },
+        {
+          "title": "Present perfect subjunctive",
+          "url": "../advanced/present-perfect-subjunctive.html"
+        }
+      ]
+    },
+    {
+      "name": "Hypotheses and past advice: the imperfect subjunctive",
+      "explain": "For an unreal condition in the present, Spanish uses *si* + imperfect subjunctive + conditional: *Si la lavadora tuviera menos de un año, estaría en garantía* (but it doesn't). The imperfect subjunctive also follows past-tense verbs of advice or request: *Matías le sugirió que reclamara.* Form it from the *ellos* preterite: *tuvieron → tuviera, reclamaron → reclamara*.",
+      "examples": [
+        {
+          "es": "*Si tuviera* una linterna, no *usaría* velas.",
+          "en": "If I had a torch, I wouldn't use candles."
+        },
+        {
+          "es": "Le sugirió que *reclamara* a la compañía.",
+          "en": "He suggested she file a complaint with the company."
+        },
+        {
+          "es": "*Si fuera* tú, *llamaría* al técnico.",
+          "en": "If I were you, I'd call the repairman."
+        }
+      ],
+      "links": [
+        {
+          "title": "Imperfect subjunctive",
+          "url": "../advanced/imperfect-subjunctive.html"
+        },
+        {
+          "title": "Conditional",
+          "url": "../intermediate/conditional.html"
+        }
+      ]
+    },
+    {
+      "name": "Impersonal se",
+      "explain": "*Se* + third-person verb expresses what people in general do, without naming anyone: *se puede pedir una compensación* (you can claim compensation), *se ve mucho* (you see it a lot). With a plural noun, the verb agrees (passive *se*): *se venden linternas*. English uses *you, one, people* or a passive.",
+      "examples": [
+        {
+          "es": "*Se puede* pedir una compensación.",
+          "en": "You can ask for compensation."
+        },
+        {
+          "es": "Eso *se ve* mucho en invierno.",
+          "en": "You see that a lot in winter."
+        },
+        {
+          "es": "Aquí *se arreglan* lavadoras.",
+          "en": "Washing machines repaired here."
+        }
+      ],
+      "links": [
+        {
+          "title": "Impersonal and passive se",
+          "url": "../advanced/impersonal-and-passive-se.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "temporal",
+      "es": "temporal",
+      "gender": "m",
+      "plural": "temporales",
+      "en": "storm (of wind and rain)",
+      "examples": [
+        {
+          "es": "Se anuncia un *temporal* para el fin de semana.",
+          "en": "A storm is forecast for the weekend."
+        },
+        {
+          "es": "El *temporal* derribó varios árboles.",
+          "en": "The storm brought down several trees."
+        }
+      ],
+      "note": "Typical in Chile and Spain for a long spell of bad weather. As an adjective *temporal* means temporary: *un trabajo temporal*."
+    },
+    {
+      "id": "cortarse",
+      "es": "cortarse la luz",
+      "gender": "",
+      "en": "(for the power) to go off",
+      "examples": [
+        {
+          "es": "Anoche *se cortó la luz* dos horas.",
+          "en": "Last night the power went off for two hours."
+        },
+        {
+          "es": "Si *se corta la luz*, el ascensor no funciona.",
+          "en": "If the power goes, the lift doesn't work."
+        }
+      ],
+      "note": "*La luz* is everyday Spanish for electricity. Also *se fue la luz* (Latin America and Spain) and *hubo un corte de luz*."
+    },
+    {
+      "id": "apagon",
+      "es": "apagón",
+      "gender": "m",
+      "plural": "apagones",
+      "en": "power cut, blackout",
+      "examples": [
+        {
+          "es": "El *apagón* afectó a toda la ciudad.",
+          "en": "The blackout affected the whole city."
+        },
+        {
+          "es": "Con los *apagones* se nos echa a perder la comida.",
+          "en": "With the power cuts our food goes off."
+        }
+      ],
+      "note": "From *apagar* (to switch off). The accent disappears in the plural: *apagones*."
+    },
+    {
+      "id": "linterna",
+      "es": "linterna",
+      "gender": "f",
+      "plural": "linternas",
+      "en": "torch, flashlight",
+      "examples": [
+        {
+          "es": "Siempre llevo una *linterna* en la mochila.",
+          "en": "I always carry a torch in my backpack."
+        },
+        {
+          "es": "Usa la *linterna* del celular.",
+          "en": "Use your phone's torch."
+        }
+      ],
+      "note": "*Linterna* is a torch, not a lantern; a hanging lantern is usually *un farol*."
+    },
+    {
+      "id": "vela",
+      "es": "vela",
+      "gender": "f",
+      "plural": "velas",
+      "en": "candle; sail",
+      "examples": [
+        {
+          "es": "Cenamos a la luz de las *velas*.",
+          "en": "We had dinner by candlelight."
+        },
+        {
+          "es": "Sopla las *velas* del pastel.",
+          "en": "Blow out the candles on the cake."
+        }
+      ],
+      "note": "*Pasar la noche en vela* = to be up all night. *Un barco de vela* = a sailing boat."
+    },
+    {
+      "id": "cargador",
+      "es": "cargador",
+      "gender": "m",
+      "plural": "cargadores",
+      "en": "charger; power bank",
+      "examples": [
+        {
+          "es": "¿Me prestas tu *cargador*?",
+          "en": "Can I borrow your charger?"
+        },
+        {
+          "es": "El *cargador* portátil está descargado.",
+          "en": "The power bank is flat."
+        }
+      ],
+      "note": "From *cargar* (to charge, to load). A power bank is also *una batería externa* in Spain."
+    },
+    {
+      "id": "refrigerador",
+      "es": "refrigerador",
+      "gender": "m",
+      "plural": "refrigeradores",
+      "en": "fridge",
+      "examples": [
+        {
+          "es": "Guarda la leche en el *refrigerador*.",
+          "en": "Keep the milk in the fridge."
+        },
+        {
+          "es": "El *refrigerador* hace un ruido raro.",
+          "en": "The fridge is making a strange noise."
+        }
+      ],
+      "note": "Chile, Peru, Central America. Spain says *la nevera* or *el frigorífico*, Argentina *la heladera*, Mexico also *el refri*."
+    },
+    {
+      "id": "echarse",
+      "es": "echarse a perder",
+      "gender": "",
+      "en": "to go off, to spoil; to break down",
+      "examples": [
+        {
+          "es": "Con el calor, la carne *se echó a perder*.",
+          "en": "With the heat, the meat went off."
+        },
+        {
+          "es": "Se me *echó a perder* el computador.",
+          "en": "My computer broke down. (Chile)"
+        }
+      ],
+      "note": "Used everywhere for food going bad; in Chile it's also very common for machines that break. *Se me…* shows it happened to me, not on purpose."
+    },
+    {
+      "id": "lavadora",
+      "es": "lavadora",
+      "gender": "f",
+      "plural": "lavadoras",
+      "en": "washing machine",
+      "examples": [
+        {
+          "es": "Voy a poner la *lavadora*.",
+          "en": "I'm going to put a wash on."
+        },
+        {
+          "es": "La *lavadora* no centrifuga.",
+          "en": "The washing machine won't spin."
+        }
+      ],
+      "note": "*Poner la lavadora* = to do a wash. Argentina also says *el lavarropas*. A dishwasher is *el lavavajillas* or *el lavaplatos*."
+    },
+    {
+      "id": "inundarse",
+      "es": "inundarse",
+      "gender": "",
+      "en": "to flood, to get flooded",
+      "examples": [
+        {
+          "es": "*Se inundó* la cocina.",
+          "en": "The kitchen flooded."
+        },
+        {
+          "es": "Con el temporal *se inundan* las calles.",
+          "en": "With the storm the streets flood."
+        }
+      ],
+      "note": "The noun is *la inundación* (flood)."
+    },
+    {
+      "id": "desenchufar",
+      "es": "desenchufar",
+      "gender": "",
+      "en": "to unplug",
+      "examples": [
+        {
+          "es": "*Desenchufa* la tele antes de salir.",
+          "en": "Unplug the TV before you go out."
+        },
+        {
+          "es": "Lo *desenchufé* por si acaso.",
+          "en": "I unplugged it just in case."
+        }
+      ],
+      "note": "The opposite is *enchufar* (to plug in). Informally *un enchufe* in Spain also means a connection that gets you a job."
+    },
+    {
+      "id": "altiro",
+      "es": "al tiro",
+      "gender": "",
+      "en": "right away, immediately (Chile)",
+      "examples": [
+        {
+          "es": "Voy *al tiro*.",
+          "en": "I'm coming right now."
+        },
+        {
+          "es": "Me contestó *al tiro*.",
+          "en": "She answered me straight away."
+        }
+      ],
+      "note": "Very Chilean, often written *altiro*. Elsewhere: *enseguida, ahora mismo, ya*."
+    },
+    {
+      "id": "conserje",
+      "es": "conserje",
+      "gender": "m",
+      "plural": "conserjes",
+      "en": "caretaker, building concierge",
+      "examples": [
+        {
+          "es": "Dejé las llaves con el *conserje*.",
+          "en": "I left the keys with the caretaker."
+        },
+        {
+          "es": "La *conserje* recibe los paquetes.",
+          "en": "The (female) concierge takes in the parcels."
+        }
+      ],
+      "note": "Same form for men and women: *el/la conserje*. In Spain a building caretaker is often *el portero*."
+    },
+    {
+      "id": "tecnico",
+      "es": "técnico",
+      "gender": "m",
+      "plural": "técnicos",
+      "en": "repair technician, repairman",
+      "examples": [
+        {
+          "es": "El *técnico* viene el martes.",
+          "en": "The repairman is coming on Tuesday."
+        },
+        {
+          "es": "Llamé al servicio *técnico*.",
+          "en": "I called the technical service."
+        }
+      ],
+      "note": "Feminine: *la técnica*, which also means technique. As an adjective: *un problema técnico*."
+    },
+    {
+      "id": "enchufe",
+      "es": "enchufe",
+      "gender": "m",
+      "plural": "enchufes",
+      "en": "socket; plug",
+      "examples": [
+        {
+          "es": "No hay ningún *enchufe* cerca de la cama.",
+          "en": "There's no socket near the bed."
+        },
+        {
+          "es": "Este *enchufe* no funciona.",
+          "en": "This socket doesn't work."
+        }
+      ],
+      "note": "Used for both the socket in the wall and the plug on the cable. In Spain *tener enchufe* means to have connections."
+    },
+    {
+      "id": "presupuesto",
+      "es": "presupuesto",
+      "gender": "m",
+      "plural": "presupuestos",
+      "en": "quote, estimate; budget",
+      "examples": [
+        {
+          "es": "Pide un *presupuesto* antes de aceptar la reparación.",
+          "en": "Ask for a quote before agreeing to the repair."
+        },
+        {
+          "es": "No tenemos *presupuesto* para eso.",
+          "en": "We don't have the budget for that."
+        }
+      ],
+      "note": "For a repair, *presupuesto* is the quote, not your budget. *Hacer un presupuesto* = to give an estimate."
+    },
+    {
+      "id": "arreglar",
+      "es": "arreglar",
+      "gender": "",
+      "en": "to repair, to fix; to sort out",
+      "examples": [
+        {
+          "es": "¿Me puedes *arreglar* la bici?",
+          "en": "Can you fix my bike?"
+        },
+        {
+          "es": "Ya *arreglé* lo del banco.",
+          "en": "I've already sorted out the bank thing."
+        }
+      ],
+      "note": "*Arreglarse* = to get ready, to dress up: *Me estoy arreglando para la fiesta.*"
+    },
+    {
+      "id": "repuesto",
+      "es": "repuesto",
+      "gender": "m",
+      "plural": "repuestos",
+      "en": "spare part",
+      "examples": [
+        {
+          "es": "Hay que esperar el *repuesto* de la fábrica.",
+          "en": "We have to wait for the spare part from the factory."
+        },
+        {
+          "es": "Llevamos una rueda de *repuesto*.",
+          "en": "We carry a spare wheel."
+        }
+      ],
+      "note": "*De repuesto* = spare. In Spain you also hear *la pieza de recambio*."
+    },
+    {
+      "id": "garantia",
+      "es": "garantía",
+      "gender": "f",
+      "plural": "garantías",
+      "en": "guarantee, warranty",
+      "examples": [
+        {
+          "es": "La lavadora tiene dos años de *garantía*.",
+          "en": "The washing machine has a two-year guarantee."
+        },
+        {
+          "es": "Ya no está en *garantía*.",
+          "en": "It's no longer under warranty."
+        }
+      ],
+      "note": "*Estar en garantía* = to be under warranty. The verb is *garantizar*."
+    },
+    {
+      "id": "reclamar",
+      "es": "reclamar",
+      "gender": "",
+      "en": "to complain (formally), to claim",
+      "examples": [
+        {
+          "es": "Voy a *reclamar* a la compañía de teléfono.",
+          "en": "I'm going to complain to the phone company."
+        },
+        {
+          "es": "*Reclamó* una compensación.",
+          "en": "He claimed compensation."
+        }
+      ],
+      "note": "False friend: it doesn't mean to reclaim. *Un reclamo* (Latin America) / *una reclamación* (Spain) = a formal complaint."
+    }
+  ],
+  "text": "Giulia llegó a Santiago desde Bolonia hace dos años para hacer un doctorado, y creía que ya lo había visto todo. Hasta el invierno pasado, cuando un {{temporal|temporal}} de viento y lluvia {{=azotó|battered}} la ciudad durante tres días.\n\nLa primera noche, {{=a eso de|at around}} las once, {{cortarse|se cortó la luz}} en todo el barrio. Giulia buscó una {{linterna|linterna}} sin éxito y terminó encendiendo unas {{vela|velas}} de cumpleaños. Al celular le quedaba un diez por ciento de batería y el {{cargador|cargador}} portátil, por supuesto, estaba descargado. Por WhatsApp, su vecino Matías le escribió: «Tranquila, aquí los {{apagon|apagones}} con temporal son normales. Ojalá que vuelva la luz antes de mañana; si no, se te va a {{echarse|echar a perder}} todo lo del {{refrigerador|refrigerador}}».\n\nLa luz volvió a las seis de la mañana, pero las sorpresas no habían terminado. Cuando Giulia puso la {{lavadora|lavadora}}, la máquina hizo un ruido extraño, se detuvo y el baño empezó a {{inundarse|inundarse}}. Ella la {{desenchufar|desenchufó}} {{altiro|al tiro}}, secó el suelo con todas sus toallas y bajó a hablar con el {{conserje|conserje}}, don Luis. «Es posible que el apagón haya quemado la {{=placa|circuit board}}», le dijo. «Se ve mucho estos días. Llame a un {{tecnico|técnico}} y no use ese {{enchufe|enchufe}} hasta que lo revisen».\n\nEl técnico llegó dos días después y le dio un {{presupuesto|presupuesto}} de 120.000 pesos para {{arreglar|arreglar}} la lavadora, porque había que pedir un {{repuesto|repuesto}} a la fábrica. «Si la lavadora tuviera menos de un año, estaría en {{garantia|garantía}}», le explicó, «pero la suya tiene tres». Giulia {{=suspiró|sighed}}.\n\nMatías le sugirió que {{reclamar|reclamara}} a la compañía eléctrica: en Chile, si un corte de luz daña tus aparatos, se puede pedir una compensación. Giulia llenó el formulario en línea y adjuntó fotos y la factura del técnico. Todavía espera respuesta. Mientras tanto, tiene una linterna en cada habitación, un cargador siempre lleno y una {{=regla de oro|golden rule}}: cuando se anuncie otro temporal, lavará la ropa antes.",
+  "quiz": [
+    {
+      "q": "¿Por qué está Giulia en Santiago?",
+      "options": [
+        "Trabaja en la compañía eléctrica.",
+        "Está de vacaciones.",
+        "Visita a su vecino Matías.",
+        "Arregla lavadoras.",
+        "Hace un doctorado."
+      ],
+      "answer": 4,
+      "explain": "«Giulia llegó a Santiago desde Bolonia hace dos años para hacer un doctorado.»"
+    },
+    {
+      "q": "¿Qué usó Giulia para tener luz durante el apagón?",
+      "options": [
+        "una linterna nueva",
+        "unas velas de cumpleaños",
+        "la linterna del celular",
+        "el cargador portátil",
+        "la luz del refrigerador"
+      ],
+      "answer": 1,
+      "explain": "She couldn't find a torch and «terminó encendiendo unas velas de cumpleaños»."
+    },
+    {
+      "q": "¿Qué le preocupa a Matías si la luz no vuelve pronto?",
+      "options": [
+        "que se inunde el baño",
+        "que Giulia no pueda trabajar",
+        "que se eche a perder la comida del refrigerador",
+        "que se rompa la lavadora",
+        "que no funcione el ascensor"
+      ],
+      "answer": 2,
+      "explain": "«Si no, se te va a echar a perder todo lo del refrigerador.»"
+    },
+    {
+      "q": "¿Qué pasó cuando Giulia puso la lavadora?",
+      "options": [
+        "Funcionó perfectamente.",
+        "Se cortó la luz otra vez.",
+        "Se quemó el enchufe.",
+        "Hizo un ruido extraño, se detuvo y el baño se inundó.",
+        "La ropa salió de otro color."
+      ],
+      "answer": 3,
+      "explain": "«La máquina hizo un ruido extraño, se detuvo y el baño empezó a inundarse.»"
+    },
+    {
+      "q": "¿Por qué la lavadora no está en garantía?",
+      "options": [
+        "porque tiene tres años",
+        "porque Giulia no tiene la factura",
+        "porque el apagón no está cubierto",
+        "porque la compró en Italia",
+        "porque el técnico no es oficial"
+      ],
+      "answer": 0,
+      "explain": "«Si la lavadora tuviera menos de un año, estaría en garantía, pero la suya tiene tres.»"
+    },
+    {
+      "q": "¿Qué hizo Giulia después de hablar con Matías?",
+      "options": [
+        "Compró una lavadora nueva.",
+        "Llenó un formulario para reclamar a la compañía eléctrica.",
+        "Se mudó a otro departamento.",
+        "Llamó a don Luis.",
+        "Pagó al técnico con el dinero de la compañía."
+      ],
+      "answer": 1,
+      "explain": "«Giulia llenó el formulario en línea y adjuntó fotos y la factura del técnico» — she is still waiting for an answer."
+    },
+    {
+      "q": "En este texto, «presupuesto» significa…",
+      "options": [
+        "el dinero que Giulia ahorra cada mes",
+        "la factura de la luz",
+        "una compensación",
+        "el precio que el técnico calcula para la reparación",
+        "una pieza de la lavadora"
+      ],
+      "answer": 3,
+      "explain": "For a repair, *el presupuesto* is the quote or estimate. The spare part is *el repuesto*."
+    },
+    {
+      "q": "Ojalá que la luz *___* pronto.",
+      "options": [
+        "vuelve",
+        "volverá",
+        "vuelva",
+        "volvía",
+        "ha vuelto"
+      ],
+      "answer": 2,
+      "explain": "*Ojalá (que)* is always followed by the subjunctive: *vuelva*."
+    },
+    {
+      "q": "Si yo *___* una linterna, no usaría velas.",
+      "options": [
+        "tengo",
+        "tuviera",
+        "tendría",
+        "tenga",
+        "tuve"
+      ],
+      "answer": 1,
+      "explain": "Unreal condition: *si* + imperfect subjunctive (*tuviera*) + conditional (*usaría*). Never the conditional after *si*."
+    },
+    {
+      "q": "«En Chile se puede pedir una compensación» significa…",
+      "options": [
+        "Only Giulia can ask for compensation.",
+        "Chile asks for compensation.",
+        "The company has to ask for compensation.",
+        "Compensation is never paid in Chile.",
+        "People in Chile can ask for compensation."
+      ],
+      "answer": 4,
+      "explain": "Impersonal *se*: *se puede* = you / people can, without naming anyone in particular."
+    }
+  ]
+}

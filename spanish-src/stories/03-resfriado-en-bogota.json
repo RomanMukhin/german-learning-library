@@ -1,0 +1,565 @@
+{
+  "n": 3,
+  "area": "Everyday",
+  "level": "A2–B1",
+  "title_es": "Un resfriado en Bogotá",
+  "title_en": "A cold in Bogotá",
+  "grammar": [
+    {
+      "name": "The preterite for completed events",
+      "explain": "The preterite tells the story: single, finished actions in the past (*se despertó, llamó, le dieron una cita*). Regular *-ar* verbs end in *-é, -aste, -ó*; *-er/-ir* verbs in *-í, -iste, -ió*. Watch out for very common irregulars: *dar → dio, dieron*; *decir → dijo*; *ir → fue*; *llevar* is regular (*llevó*). The accent matters: *tomo* (I take) vs *tomó* (he/she took).",
+      "examples": [
+        {
+          "es": "El lunes *se despertó* con fiebre.",
+          "en": "On Monday she woke up with a temperature."
+        },
+        {
+          "es": "La doctora le *miró* la garganta.",
+          "en": "The doctor looked at her throat."
+        },
+        {
+          "es": "Camila le *llevó* una sopa.",
+          "en": "Camila brought her some soup."
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite",
+          "url": "../intermediate/preterite.html"
+        },
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        }
+      ]
+    },
+    {
+      "name": "Doler: saying what hurts",
+      "explain": "*Doler* works like *gustar*: the body part is the subject and the person is an indirect object pronoun. *Me duele la garganta* = my throat hurts (lit. the throat hurts me). Use *duele* with one thing and *duelen* with several (*me duelen los pies*). Spanish uses the definite article with body parts, not a possessive: ~~mi garganta~~ → *la garganta*. In the past, describe the ongoing pain with the imperfect: *le dolía*.",
+      "examples": [
+        {
+          "es": "*Me duele* la cabeza.",
+          "en": "I've got a headache. (my head hurts)"
+        },
+        {
+          "es": "*Le dolía* la garganta.",
+          "en": "Her throat was hurting."
+        },
+        {
+          "es": "¿*Te duelen* los oídos?",
+          "en": "Do your ears hurt?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbs like gustar",
+          "url": "../intermediate/verbs-like-gustar.html"
+        },
+        {
+          "title": "Indirect object pronouns",
+          "url": "../beginner/indirect-object-pronouns.html"
+        }
+      ]
+    },
+    {
+      "name": "Formal commands (usted)",
+      "explain": "Doctors and pharmacists usually speak to patients with *usted* and give instructions with formal commands. Take the *yo* form of the present, drop the *-o* and switch the vowel: *-ar → -e* (*descansar → descanse*), *-er/-ir → -a* (*beber → beba*, *pedir → pida*). Pronouns are attached to positive commands, which often needs a written accent: *tómese*. With friends you use *tú* commands: *cuídate, ve*.",
+      "examples": [
+        {
+          "es": "*Tómese* una pastilla cada ocho horas.",
+          "en": "Take one tablet every eight hours."
+        },
+        {
+          "es": "*Beba* mucha agua y *descanse*.",
+          "en": "Drink plenty of water and rest."
+        },
+        {
+          "es": "*Pida* una cita con el médico.",
+          "en": "Make an appointment with the doctor."
+        }
+      ],
+      "links": [
+        {
+          "title": "Commands",
+          "url": "../intermediate/commands.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "drogueria",
+      "es": "droguería",
+      "gender": "f",
+      "plural": "droguerías",
+      "en": "pharmacy, chemist's (Colombia)",
+      "examples": [
+        {
+          "es": "Hay una *droguería* en la esquina.",
+          "en": "There's a chemist's on the corner."
+        },
+        {
+          "es": "Compré el jarabe en la *droguería*.",
+          "en": "I bought the syrup at the pharmacy."
+        }
+      ],
+      "note": "Trap! In Colombia a *droguería* is a pharmacy. Elsewhere you say *farmacia*, and in Spain a *droguería* sells cleaning products and toiletries, not medicine."
+    },
+    {
+      "id": "enfermarse",
+      "es": "enfermarse",
+      "gender": "",
+      "en": "to get ill, to fall sick",
+      "examples": [
+        {
+          "es": "Siempre *me enfermo* en invierno.",
+          "en": "I always get ill in winter."
+        },
+        {
+          "es": "*Se enfermó* el día de su cumpleaños.",
+          "en": "He fell ill on his birthday."
+        }
+      ],
+      "note": "Latin America. In Spain people usually say *ponerse enfermo*: *Me puse enfermo.*"
+    },
+    {
+      "id": "fiebre",
+      "es": "fiebre",
+      "gender": "f",
+      "plural": "fiebres",
+      "en": "fever, temperature",
+      "examples": [
+        {
+          "es": "Tengo *fiebre* desde ayer.",
+          "en": "I've had a temperature since yesterday."
+        },
+        {
+          "es": "La *fiebre* le bajó por la noche.",
+          "en": "Her fever went down during the night."
+        }
+      ],
+      "note": "*Tener fiebre* — to have a temperature (no article). *Tomar la temperatura* = to take someone's temperature."
+    },
+    {
+      "id": "garganta",
+      "es": "garganta",
+      "gender": "f",
+      "plural": "gargantas",
+      "en": "throat",
+      "examples": [
+        {
+          "es": "Me duele la *garganta*.",
+          "en": "I've got a sore throat."
+        },
+        {
+          "es": "Tengo la *garganta* irritada.",
+          "en": "My throat is irritated."
+        }
+      ]
+    },
+    {
+      "id": "doler",
+      "es": "doler",
+      "gender": "",
+      "en": "to hurt, to ache",
+      "examples": [
+        {
+          "es": "Me *duele* mucho la espalda.",
+          "en": "My back really hurts."
+        },
+        {
+          "es": "¿Dónde le *duele*?",
+          "en": "Where does it hurt? (formal)"
+        }
+      ],
+      "note": "Works like *gustar* and changes o → ue: *me duele, me duelen*. The noun is *el dolor*: *dolor de cabeza*."
+    },
+    {
+      "id": "tos",
+      "es": "tos",
+      "gender": "f",
+      "plural": "toses",
+      "en": "cough",
+      "examples": [
+        {
+          "es": "Tengo una *tos* muy fuerte.",
+          "en": "I have a really bad cough."
+        },
+        {
+          "es": "Este jarabe es para la *tos*.",
+          "en": "This syrup is for coughs."
+        }
+      ],
+      "note": "Feminine: *la tos*. The verb is *toser* (to cough)."
+    },
+    {
+      "id": "sintoma",
+      "es": "síntoma",
+      "gender": "m",
+      "plural": "síntomas",
+      "en": "symptom",
+      "examples": [
+        {
+          "es": "¿Qué *síntomas* tiene?",
+          "en": "What symptoms do you have?"
+        },
+        {
+          "es": "El primer *síntoma* fue el dolor de cabeza.",
+          "en": "The first symptom was a headache."
+        }
+      ],
+      "note": "Masculine despite the *-a*, like many Greek words in *-ma*: *el síntoma, el problema, el sistema*."
+    },
+    {
+      "id": "resfriado",
+      "es": "resfriado",
+      "gender": "m",
+      "plural": "resfriados",
+      "en": "cold (illness)",
+      "examples": [
+        {
+          "es": "Tengo un *resfriado* horrible.",
+          "en": "I've got an awful cold."
+        },
+        {
+          "es": "Un *resfriado* dura una semana.",
+          "en": "A cold lasts a week."
+        }
+      ],
+      "note": "Also *estar resfriado* (to have a cold). Mexico and Central America prefer *resfriado* or *gripa*; Spain also says *constipado*, a false friend — it does not mean constipated!"
+    },
+    {
+      "id": "cita",
+      "es": "cita",
+      "gender": "f",
+      "plural": "citas",
+      "en": "appointment; date",
+      "examples": [
+        {
+          "es": "Tengo *cita* con el dentista a las cuatro.",
+          "en": "I have a dentist's appointment at four."
+        },
+        {
+          "es": "Mañana tengo una *cita* con Ana.",
+          "en": "Tomorrow I have a date with Ana."
+        }
+      ],
+      "note": "*Pedir cita* = to make an appointment. Also a quotation: *una cita de Cervantes*."
+    },
+    {
+      "id": "consultorio",
+      "es": "consultorio",
+      "gender": "m",
+      "plural": "consultorios",
+      "en": "doctor's surgery, consulting room",
+      "examples": [
+        {
+          "es": "El *consultorio* está en el segundo piso.",
+          "en": "The surgery is on the second floor."
+        },
+        {
+          "es": "Esperé una hora en el *consultorio*.",
+          "en": "I waited an hour at the doctor's."
+        }
+      ],
+      "note": "Common in Latin America. In Spain you'd usually say *la consulta* or *el centro de salud*."
+    },
+    {
+      "id": "receta",
+      "es": "receta",
+      "gender": "f",
+      "plural": "recetas",
+      "en": "prescription; recipe",
+      "examples": [
+        {
+          "es": "Sin *receta* no le puedo dar antibióticos.",
+          "en": "I can't give you antibiotics without a prescription."
+        },
+        {
+          "es": "Esta es la *receta* de mi abuela.",
+          "en": "This is my grandmother's recipe."
+        }
+      ],
+      "note": "Same word for a doctor's prescription and a cooking recipe. Don't confuse it with *recibo* (receipt)."
+    },
+    {
+      "id": "recetar",
+      "es": "recetar",
+      "gender": "",
+      "en": "to prescribe",
+      "examples": [
+        {
+          "es": "El médico me *recetó* un jarabe.",
+          "en": "The doctor prescribed me a syrup."
+        },
+        {
+          "es": "Le voy a *recetar* unas pastillas.",
+          "en": "I'm going to prescribe you some tablets."
+        }
+      ]
+    },
+    {
+      "id": "pastilla",
+      "es": "pastilla",
+      "gender": "f",
+      "plural": "pastillas",
+      "en": "tablet, pill",
+      "examples": [
+        {
+          "es": "Tómate una *pastilla* para el dolor.",
+          "en": "Take a painkiller."
+        },
+        {
+          "es": "Estas *pastillas* son muy grandes.",
+          "en": "These tablets are very big."
+        }
+      ],
+      "note": "Also *la pastilla de jabón* (bar of soap). *La píldora* is more technical and often means the contraceptive pill."
+    },
+    {
+      "id": "jarabe",
+      "es": "jarabe",
+      "gender": "m",
+      "plural": "jarabes",
+      "en": "syrup, cough mixture",
+      "examples": [
+        {
+          "es": "Este *jarabe* sabe a fresa.",
+          "en": "This syrup tastes of strawberry."
+        },
+        {
+          "es": "Toma una cucharada de *jarabe* antes de dormir.",
+          "en": "Have a spoonful of syrup before bed."
+        }
+      ],
+      "note": "Masculine: *el jarabe*. The famous Mexican dance is *el jarabe tapatío*."
+    },
+    {
+      "id": "tomarse",
+      "es": "tomarse",
+      "gender": "",
+      "en": "to take (medicine); to have (a drink)",
+      "examples": [
+        {
+          "es": "*Tómese* el jarabe después de comer.",
+          "en": "Take the syrup after meals."
+        },
+        {
+          "es": "Nos *tomamos* un café en la esquina.",
+          "en": "We had a coffee on the corner."
+        }
+      ],
+      "note": "The reflexive *se* adds the idea of taking it all, for yourself: *tomar una pastilla* and *tomarse una pastilla* both work."
+    },
+    {
+      "id": "descansar",
+      "es": "descansar",
+      "gender": "",
+      "en": "to rest",
+      "examples": [
+        {
+          "es": "Necesito *descansar* un poco.",
+          "en": "I need to rest for a while."
+        },
+        {
+          "es": "¡Que *descanses*!",
+          "en": "Sleep well! / Have a good rest!"
+        }
+      ],
+      "note": "The noun is *el descanso* (rest, break; also half-time in football)."
+    },
+    {
+      "id": "seguro",
+      "es": "seguro médico",
+      "gender": "m",
+      "plural": "seguros médicos",
+      "en": "health insurance",
+      "examples": [
+        {
+          "es": "¿Tiene *seguro médico*?",
+          "en": "Do you have health insurance?"
+        },
+        {
+          "es": "Mi empresa me paga el *seguro médico*.",
+          "en": "My company pays for my health insurance."
+        }
+      ],
+      "note": "*Seguro* alone also means *sure*: *¿Estás seguro?* In Colombia public health insurance providers are called *EPS*."
+    },
+    {
+      "id": "mejorarse",
+      "es": "mejorarse",
+      "gender": "",
+      "en": "to get better, to recover",
+      "examples": [
+        {
+          "es": "¡Que *te mejores*!",
+          "en": "Get well soon!"
+        },
+        {
+          "es": "Ya *me mejoré*, gracias.",
+          "en": "I'm better now, thanks."
+        }
+      ],
+      "note": "*¡Que te mejores!* (subjunctive) is the standard get-well wish. Without *se*, *mejorar* means to improve something."
+    },
+    {
+      "id": "cuidarse",
+      "es": "cuidarse",
+      "gender": "",
+      "en": "to look after yourself, to take care",
+      "examples": [
+        {
+          "es": "*Cuídate* mucho.",
+          "en": "Take good care of yourself."
+        },
+        {
+          "es": "Tienes que *cuidarte* más.",
+          "en": "You need to look after yourself better."
+        }
+      ],
+      "note": "*¡Cuídate!* is a very common, warm way to say goodbye."
+    },
+    {
+      "id": "tinto",
+      "es": "tinto",
+      "gender": "m",
+      "plural": "tintos",
+      "en": "small black coffee (Colombia)",
+      "examples": [
+        {
+          "es": "¿Le provoca un *tinto*?",
+          "en": "Would you like a black coffee? (Colombia)"
+        },
+        {
+          "es": "Me tomo un *tinto* todas las mañanas.",
+          "en": "I have a black coffee every morning."
+        }
+      ],
+      "note": "Big trap: in Colombia *un tinto* is a black coffee; in Spain and most other countries *un tinto* is a glass of red wine (*vino tinto*)."
+    }
+  ],
+  "text": "Oksana es de Kiev y vive en Bogotá desde marzo. Trabaja desde casa para una empresa de software y le encanta la ciudad, pero no el clima: un día hace sol y, una hora después, llueve y {{=hace un frío|it gets really cold}} que ella no esperaba.\n\nEl lunes pasado se despertó con {{fiebre|fiebre}} y mucha {{tos|tos}}. Le {{doler|dolía}} la {{garganta|garganta}} y no podía hablar bien. «Creo que me {{enfermarse|enfermé}} por la lluvia del domingo», le escribió a su amiga Camila. Camila le contestó enseguida: «Ve a la {{drogueria|droguería}} de la esquina. Allí te ayudan».\n\nEn la droguería, Oksana le explicó sus {{sintoma|síntomas}} al farmacéutico, un señor muy amable. «Parece un {{resfriado|resfriado}} fuerte», le dijo él. «Le puedo dar un {{jarabe|jarabe}} para la tos, pero para los antibióticos necesita una {{receta|receta}}. Pida una {{cita|cita}} con el médico, {{=por si acaso|just in case}}».\n\nPor suerte, Oksana tiene {{seguro|seguro médico}}. Llamó por teléfono y le dieron una cita para el día siguiente. En el {{consultorio|consultorio}}, la doctora la {{=revisó|examined her}}, le miró la garganta y le tomó la temperatura. «Tiene una infección de garganta. Le voy a {{recetar|recetar}} unas {{pastilla|pastillas}}. {{tomarse|Tómese}} una cada ocho horas durante cinco días, beba mucha agua y {{descansar|descanse}}. Nada de trabajar hasta el jueves».\n\nOksana siguió todos los consejos. Pasó tres días en la cama, viendo series en español con subtítulos. Camila le llevó un {{=ajiaco|Bogotá chicken and potato soup}} casero y le dijo: «{{cuidarse|Cuídate}} mucho, {{=parce|mate (Colombian slang)}}». El viernes, Oksana ya se sentía mucho mejor. Se preparó un {{tinto|tinto}}, abrió el portátil y le escribió a su jefe: «Ya me {{mejorarse|mejoré}}. ¡Vuelvo al trabajo!»",
+  "quiz": [
+    {
+      "q": "¿Qué no le gusta a Oksana de Bogotá?",
+      "options": [
+        "la comida",
+        "la gente",
+        "su trabajo",
+        "el clima",
+        "las droguerías"
+      ],
+      "answer": 3,
+      "explain": "«Le encanta la ciudad, pero no el clima»: sun, then rain and cold an hour later."
+    },
+    {
+      "q": "¿Cómo se sentía Oksana el lunes pasado?",
+      "options": [
+        "Tenía fiebre, tos y le dolía la garganta.",
+        "Le dolían los pies.",
+        "Estaba cansada pero bien.",
+        "Tenía hambre.",
+        "Le dolía la espalda."
+      ],
+      "answer": 0,
+      "explain": "«Se despertó con fiebre y mucha tos. Le dolía la garganta.»"
+    },
+    {
+      "q": "¿Qué es una «droguería» en Colombia?",
+      "options": [
+        "una tienda de ropa",
+        "una farmacia",
+        "un hospital",
+        "una cafetería",
+        "una tienda de productos de limpieza"
+      ],
+      "answer": 1,
+      "explain": "In Colombia *la droguería* is the pharmacy. In Spain the same word is a shop for cleaning products and toiletries."
+    },
+    {
+      "q": "¿Por qué el farmacéutico no le da antibióticos?",
+      "options": [
+        "porque no tiene seguro médico",
+        "porque es domingo",
+        "porque no tiene dinero",
+        "porque necesita una receta",
+        "porque solo tiene un resfriado"
+      ],
+      "answer": 3,
+      "explain": "«Para los antibióticos necesita una receta.» He offers her cough syrup instead."
+    },
+    {
+      "q": "¿Qué le dice la doctora?",
+      "options": [
+        "que tiene un resfriado normal",
+        "que vaya al hospital",
+        "que tiene una infección de garganta y debe descansar",
+        "que puede trabajar al día siguiente",
+        "que tome un tinto"
+      ],
+      "answer": 2,
+      "explain": "«Tiene una infección de garganta… descanse. Nada de trabajar hasta el jueves.»"
+    },
+    {
+      "q": "¿Cada cuánto tiempo tiene que tomarse Oksana las pastillas?",
+      "options": [
+        "una vez al día",
+        "cada cinco horas",
+        "dos veces por semana",
+        "solo por la noche",
+        "cada ocho horas"
+      ],
+      "answer": 4,
+      "explain": "«Tómese una cada ocho horas durante cinco días.»"
+    },
+    {
+      "q": "¿Qué le lleva Camila?",
+      "options": [
+        "un ajiaco casero",
+        "unas pastillas",
+        "un jarabe",
+        "un tinto",
+        "unas series"
+      ],
+      "answer": 0,
+      "explain": "«Camila le llevó un ajiaco casero» — the traditional chicken and potato soup of Bogotá."
+    },
+    {
+      "q": "A mí me *___* los oídos.",
+      "options": [
+        "duele",
+        "duelen",
+        "dolen",
+        "dolía",
+        "duelo"
+      ],
+      "answer": 1,
+      "explain": "*Doler* works like *gustar*: the ears (*los oídos*, plural) are the subject → *me duelen*."
+    },
+    {
+      "q": "El médico le dice a un paciente (usted): «*___* mucha agua».",
+      "options": [
+        "Bebe",
+        "Bebo",
+        "Bebió",
+        "Beba",
+        "Bebía"
+      ],
+      "answer": 3,
+      "explain": "Formal command: *beber → bebo → beba*. *Bebe* would be the informal *tú* command."
+    },
+    {
+      "q": "En Colombia, si pides «un tinto», te traen…",
+      "options": [
+        "un vino tinto",
+        "un jugo de naranja",
+        "un café negro",
+        "un té",
+        "un jarabe"
+      ],
+      "answer": 2,
+      "explain": "Colombian *tinto* = a small black coffee. In Spain you would get red wine!"
+    }
+  ]
+}

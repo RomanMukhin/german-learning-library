@@ -1,0 +1,570 @@
+{
+  "n": 4,
+  "area": "Everyday",
+  "level": "B1",
+  "title_es": "Papeles en Valencia",
+  "title_en": "Paperwork in Valencia",
+  "grammar": [
+    {
+      "name": "Preterite vs. imperfect",
+      "explain": "Both are past tenses, but they do different jobs. The *preterite* moves the story forward with completed events (*llegó, fue, funcionó*). The *imperfect* sets the scene: background, descriptions, what someone thought or needed, ongoing situations (*pensaba, hablaba, no había huecos*). A useful picture: the imperfect is the stage, the preterite is what happens on it. *Rafael hacía cola cuando empezó a agobiarse.*",
+      "examples": [
+        {
+          "es": "*Pensaba* que lo más difícil *iba* a ser el idioma.",
+          "en": "He thought the hardest thing was going to be the language. (background thought)"
+        },
+        {
+          "es": "La funcionaria le *dio* el certificado.",
+          "en": "The official gave him the certificate. (completed event)"
+        },
+        {
+          "es": "No *tenía* cuenta, así que no *pudo* pagar.",
+          "en": "He didn't have an account, so he couldn't pay. (situation + result)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        },
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        }
+      ]
+    },
+    {
+      "name": "Por vs. para",
+      "explain": "*Para* looks ahead: purpose, goal, destination, deadline (*para trabajar, para celebrarlo, para el NIE*). *Por* looks at cause, means and route: *por internet* (by means of), *por la mañana* (time of day), *por fin* (finally), *porque* (because). Quick test: if you can say *in order to*, it's *para*; if you can say *because of / through / by*, it's usually *por*.",
+      "examples": [
+        {
+          "es": "*Para* trabajar en España necesitaba el NIE.",
+          "en": "In order to work in Spain he needed the NIE. (purpose)"
+        },
+        {
+          "es": "Intentó pedir cita *por* internet.",
+          "en": "He tried to make an appointment online. (means)"
+        },
+        {
+          "es": "*Por* fin algo era fácil.",
+          "en": "At last something was easy. (fixed expression)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Por vs. para",
+          "url": "../intermediate/por-vs-para.html"
+        }
+      ]
+    },
+    {
+      "name": "Present perfect for today (Spain)",
+      "explain": "In Spain, the present perfect (*haber* + past participle) is the normal tense for things that happened today, this week or in a time period that is not over yet: *Hoy ha abierto su primera cuenta.* Most of Latin America would use the preterite here (*hoy abrió*). It is also used for life experience: *He aprendido muchas palabras.*",
+      "examples": [
+        {
+          "es": "Hoy *he abierto* una cuenta en el banco.",
+          "en": "Today I opened a bank account."
+        },
+        {
+          "es": "Esta semana *hemos ido* tres veces al ayuntamiento.",
+          "en": "This week we've been to the town hall three times."
+        },
+        {
+          "es": "¿*Has rellenado* ya el formulario?",
+          "en": "Have you filled in the form yet?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Present perfect",
+          "url": "../advanced/present-perfect.html"
+        },
+        {
+          "title": "Spanish in Spain",
+          "url": "../regional-spanish/spanish-in-spain.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "tramite",
+      "es": "trámite",
+      "gender": "m",
+      "plural": "trámites",
+      "en": "procedure, piece of paperwork",
+      "examples": [
+        {
+          "es": "Tengo que hacer varios *trámites* esta semana.",
+          "en": "I've got several bits of paperwork to sort out this week."
+        },
+        {
+          "es": "El *trámite* tarda un mes.",
+          "en": "The process takes a month."
+        }
+      ],
+      "note": "Very frequent word for any official procedure. *Estar en trámite* = to be being processed."
+    },
+    {
+      "id": "cita",
+      "es": "cita previa",
+      "gender": "f",
+      "plural": "citas previas",
+      "en": "(prior) appointment",
+      "examples": [
+        {
+          "es": "Sin *cita previa* no te atienden.",
+          "en": "They won't see you without an appointment."
+        },
+        {
+          "es": "He pedido *cita previa* para el lunes.",
+          "en": "I've booked an appointment for Monday."
+        }
+      ],
+      "note": "Spain. Almost every public office works *con cita previa*, usually booked online. *Atención sin cita* = walk-in."
+    },
+    {
+      "id": "ayuntamiento",
+      "es": "ayuntamiento",
+      "gender": "m",
+      "plural": "ayuntamientos",
+      "en": "town hall, city council",
+      "examples": [
+        {
+          "es": "El *ayuntamiento* está en la plaza mayor.",
+          "en": "The town hall is in the main square."
+        },
+        {
+          "es": "Trabaja para el *ayuntamiento*.",
+          "en": "She works for the city council."
+        }
+      ],
+      "note": "Spain. In Latin America you'll hear *la municipalidad*, *la alcaldía* or *el municipio*."
+    },
+    {
+      "id": "empadronarse",
+      "es": "empadronarse",
+      "gender": "",
+      "en": "to register as a resident (at the town hall)",
+      "examples": [
+        {
+          "es": "Lo primero es *empadronarse*.",
+          "en": "The first thing is to register at the town hall."
+        },
+        {
+          "es": "Ya *estoy empadronado* en Valencia.",
+          "en": "I'm already registered in Valencia."
+        }
+      ],
+      "note": "From *el padrón* (municipal register). You need it for the health card, school places and many other procedures."
+    },
+    {
+      "id": "certificado",
+      "es": "certificado",
+      "gender": "m",
+      "plural": "certificados",
+      "en": "certificate",
+      "examples": [
+        {
+          "es": "Necesito un *certificado* de empadronamiento.",
+          "en": "I need a certificate of registration."
+        },
+        {
+          "es": "Le dieron un *certificado* de notas.",
+          "en": "They gave him a transcript of grades."
+        }
+      ],
+      "note": "Also an adjective: *una carta certificada* (a registered letter)."
+    },
+    {
+      "id": "nie",
+      "es": "NIE (número de identidad de extranjero)",
+      "gender": "m",
+      "plural": "NIE",
+      "en": "foreigner's identity number (Spain)",
+      "examples": [
+        {
+          "es": "Sin *NIE* no puedes firmar un contrato.",
+          "en": "Without an NIE you can't sign a contract."
+        },
+        {
+          "es": "¿Cuál es su *NIE*?",
+          "en": "What is your NIE number?"
+        }
+      ],
+      "note": "Pronounced *el ni-e* or spelt out. Spanish citizens have a *DNI* instead."
+    },
+    {
+      "id": "comisaria",
+      "es": "comisaría",
+      "gender": "f",
+      "plural": "comisarías",
+      "en": "police station",
+      "examples": [
+        {
+          "es": "La oficina de extranjería está en la *comisaría*.",
+          "en": "The foreigners' office is at the police station."
+        },
+        {
+          "es": "Fui a la *comisaría* a denunciar el robo.",
+          "en": "I went to the police station to report the theft."
+        }
+      ],
+      "note": "Mind the accent: *comisaría* (station) vs *comisario* (police commissioner)."
+    },
+    {
+      "id": "rellenar",
+      "es": "rellenar",
+      "gender": "",
+      "en": "to fill in (a form)",
+      "examples": [
+        {
+          "es": "*Rellene* este formulario, por favor.",
+          "en": "Please fill in this form."
+        },
+        {
+          "es": "Ya he *rellenado* todos los datos.",
+          "en": "I've already filled in all the details."
+        }
+      ],
+      "note": "Spain. Latin America usually says *llenar un formulario*. In cooking, *rellenar* means to stuff."
+    },
+    {
+      "id": "formulario",
+      "es": "formulario",
+      "gender": "m",
+      "plural": "formularios",
+      "en": "form",
+      "examples": [
+        {
+          "es": "El *formulario* tiene cuatro páginas.",
+          "en": "The form has four pages."
+        },
+        {
+          "es": "Puedes descargar el *formulario* en la web.",
+          "en": "You can download the form from the website."
+        }
+      ],
+      "note": "In Spanish offices you'll also hear *el impreso* or *la solicitud* (application)."
+    },
+    {
+      "id": "fotocopia",
+      "es": "fotocopia",
+      "gender": "f",
+      "plural": "fotocopias",
+      "en": "photocopy",
+      "examples": [
+        {
+          "es": "Trae una *fotocopia* del pasaporte.",
+          "en": "Bring a photocopy of your passport."
+        },
+        {
+          "es": "Las *fotocopias* cuestan diez céntimos.",
+          "en": "Photocopies cost ten cents."
+        }
+      ],
+      "note": "Informally *una copia*. A copy shop is *una copistería* in Spain."
+    },
+    {
+      "id": "tasa",
+      "es": "tasa",
+      "gender": "f",
+      "plural": "tasas",
+      "en": "(official) fee; rate",
+      "examples": [
+        {
+          "es": "Hay que pagar una *tasa* de doce euros.",
+          "en": "You have to pay a fee of twelve euros."
+        },
+        {
+          "es": "La *tasa* de paro ha bajado.",
+          "en": "The unemployment rate has fallen."
+        }
+      ],
+      "note": "Don't confuse it with *taza* (cup) — in most of Spain the two sound different (*s* vs *z*), but in Latin America they sound the same."
+    },
+    {
+      "id": "cola",
+      "es": "cola",
+      "gender": "f",
+      "plural": "colas",
+      "en": "queue, line",
+      "examples": [
+        {
+          "es": "Había una *cola* enorme.",
+          "en": "There was a huge queue."
+        },
+        {
+          "es": "Llevo una hora haciendo *cola*.",
+          "en": "I've been queuing for an hour."
+        }
+      ],
+      "note": "*Hacer cola* = to queue. In much of Latin America it's *hacer fila*. *Colarse* = to jump the queue."
+    },
+    {
+      "id": "ventanilla",
+      "es": "ventanilla",
+      "gender": "f",
+      "plural": "ventanillas",
+      "en": "counter, service window",
+      "examples": [
+        {
+          "es": "Pase a la *ventanilla* número tres.",
+          "en": "Go to counter number three."
+        },
+        {
+          "es": "La *ventanilla* cierra a las dos.",
+          "en": "The counter closes at two."
+        }
+      ],
+      "note": "Literally a small window. It's also a car or train window: *bajar la ventanilla*."
+    },
+    {
+      "id": "funcionario",
+      "es": "funcionario",
+      "gender": "m",
+      "plural": "funcionarios",
+      "en": "civil servant, official",
+      "examples": [
+        {
+          "es": "La *funcionaria* fue muy amable.",
+          "en": "The (female) official was very kind."
+        },
+        {
+          "es": "Mi padre es *funcionario*.",
+          "en": "My father is a civil servant."
+        }
+      ],
+      "note": "In Spain, being a *funcionario* means a secure job for life, usually after passing *oposiciones* (public exams)."
+    },
+    {
+      "id": "sello",
+      "es": "sello",
+      "gender": "m",
+      "plural": "sellos",
+      "en": "(official) stamp; postage stamp",
+      "examples": [
+        {
+          "es": "Sin el *sello* el documento no vale.",
+          "en": "Without the stamp the document isn't valid."
+        },
+        {
+          "es": "Necesito un *sello* para esta carta.",
+          "en": "I need a stamp for this letter."
+        }
+      ],
+      "note": "The verb is *sellar* (to stamp). In Latin America a postage stamp is often *una estampilla*."
+    },
+    {
+      "id": "cuenta",
+      "es": "cuenta bancaria",
+      "gender": "f",
+      "plural": "cuentas bancarias",
+      "en": "bank account",
+      "examples": [
+        {
+          "es": "Quiero abrir una *cuenta bancaria*.",
+          "en": "I'd like to open a bank account."
+        },
+        {
+          "es": "Te hago una transferencia a tu *cuenta*.",
+          "en": "I'll transfer it to your account."
+        }
+      ],
+      "note": "*La cuenta* is also the bill in a restaurant: *¡La cuenta, por favor!*"
+    },
+    {
+      "id": "requisito",
+      "es": "requisito",
+      "gender": "m",
+      "plural": "requisitos",
+      "en": "requirement",
+      "examples": [
+        {
+          "es": "¿Cuáles son los *requisitos* para el visado?",
+          "en": "What are the requirements for the visa?"
+        },
+        {
+          "es": "Cumple todos los *requisitos*.",
+          "en": "She meets all the requirements."
+        }
+      ],
+      "note": "*Cumplir los requisitos* = to meet the requirements (not ~~hacer~~)."
+    },
+    {
+      "id": "agobiarse",
+      "es": "agobiarse",
+      "gender": "",
+      "en": "to get stressed, to feel overwhelmed",
+      "examples": [
+        {
+          "es": "No *te agobies*, todo tiene solución.",
+          "en": "Don't stress, there's a solution for everything."
+        },
+        {
+          "es": "*Me agobio* con tantos papeles.",
+          "en": "All this paperwork overwhelms me."
+        }
+      ],
+      "note": "Very common in Spain. *¡Qué agobio!* = How stressful! Latin Americans may say *estresarse* or *abrumarse*."
+    },
+    {
+      "id": "paciencia",
+      "es": "paciencia",
+      "gender": "f",
+      "plural": "",
+      "en": "patience",
+      "examples": [
+        {
+          "es": "Hay que tener mucha *paciencia*.",
+          "en": "You need a lot of patience."
+        },
+        {
+          "es": "¡Estoy perdiendo la *paciencia*!",
+          "en": "I'm losing my patience!"
+        }
+      ],
+      "note": "Uncountable, so normally no plural. *Tener paciencia* — to be patient."
+    },
+    {
+      "id": "conseguir",
+      "es": "conseguir",
+      "gender": "",
+      "en": "to get, to obtain; to manage (to do)",
+      "examples": [
+        {
+          "es": "Por fin *conseguí* la cita.",
+          "en": "I finally got the appointment."
+        },
+        {
+          "es": "No *consigo* abrir la puerta.",
+          "en": "I can't manage to open the door."
+        }
+      ],
+      "note": "Stem-changing e → i and spelling change: *consigo, consigues, consigue*. *Conseguir* + infinitive = to manage to."
+    }
+  ],
+  "text": "Cuando Rafael llegó a Valencia desde Curitiba, en enero, pensaba que lo más difícil iba a ser el idioma. Hablaba portugués, claro, y el español le parecía fácil. Pero nadie le había hablado de la burocracia.\n\nPara trabajar legalmente en España necesitaba el {{nie|NIE}}, y para pedirlo {{=le hacía falta|he needed}}, entre otros {{requisito|requisitos}}, estar empadronado. Así que su primer {{tramite|trámite}} fue {{empadronarse|empadronarse}} en el {{ayuntamiento|ayuntamiento}}. Durante dos semanas intentó pedir {{cita|cita previa}} por internet, pero nunca había {{=huecos|free slots}}. Al final, una vecina le dio un consejo: «Entra en la web a las ocho en punto, que es cuando {{=sueltan|they release}} las citas». Funcionó.\n\nEl día de la cita, Rafael llevó su pasaporte, el contrato de alquiler y una {{fotocopia|fotocopia}} de cada documento. La {{funcionario|funcionaria}} de la {{ventanilla|ventanilla}} lo revisó todo, puso un {{sello|sello}} y le dio el {{certificado|certificado}} de empadronamiento. Todo duró diez minutos. Rafael salió feliz: por fin algo era fácil.\n\nLa segunda parte fue peor. Para el NIE tuvo que ir a la {{comisaria|comisaría}}, {{rellenar|rellenar}} un {{formulario|formulario}} y pagar una {{tasa|tasa}} en el banco. Pero en el banco no lo dejaban pagar en la ventanilla porque no tenía {{cuenta|cuenta bancaria}}, y para abrir una cuenta… le pedían el NIE. Rafael {{=se quedó de piedra|was speechless}}. Esa tarde, mientras hacía {{cola|cola}} en otra oficina, empezó a {{agobiarse|agobiarse}} de verdad.\n\nAl final, un compañero de trabajo le explicó que la tasa también se podía pagar en un {{=cajero automático|cash machine, ATM}}. Dos semanas después, Rafael tenía su NIE. Hoy ha abierto su primera cuenta en España y, para celebrarlo, ha invitado a sus amigos a una paella. «He aprendido muchas palabras nuevas», dice riéndose, «pero la más importante es {{paciencia|paciencia}}. Sin ella, aquí no {{conseguir|consigues}} nada».",
+  "quiz": [
+    {
+      "q": "Al llegar a Valencia, ¿qué pensaba Rafael?",
+      "options": [
+        "que la burocracia iba a ser fácil",
+        "que no iba a encontrar trabajo",
+        "que lo más difícil iba a ser el idioma",
+        "que necesitaba aprender valenciano",
+        "que el banco era el primer paso"
+      ],
+      "answer": 2,
+      "explain": "«Pensaba que lo más difícil iba a ser el idioma» — but as a Portuguese speaker, Spanish seemed easy to him."
+    },
+    {
+      "q": "¿Qué necesitaba Rafael antes de pedir el NIE?",
+      "options": [
+        "una cuenta bancaria",
+        "estar empadronado",
+        "un contrato de trabajo",
+        "un certificado de notas",
+        "un sello de la comisaría"
+      ],
+      "answer": 1,
+      "explain": "«Para pedirlo le hacía falta, entre otros requisitos, estar empadronado.»"
+    },
+    {
+      "q": "¿Cómo consiguió Rafael la cita previa?",
+      "options": [
+        "Fue al ayuntamiento sin cita.",
+        "Llamó por teléfono.",
+        "Se la dio un compañero de trabajo.",
+        "Esperó dos meses.",
+        "Entró en la web a las ocho en punto."
+      ],
+      "answer": 4,
+      "explain": "His neighbour told him the slots are released at eight o'clock, and «funcionó»."
+    },
+    {
+      "q": "¿Cómo fue la cita en el ayuntamiento?",
+      "options": [
+        "rápida y fácil: duró diez minutos",
+        "muy larga y complicada",
+        "La funcionaria no quiso ayudarle.",
+        "Le faltaba una fotocopia.",
+        "Tuvo que volver otro día."
+      ],
+      "answer": 0,
+      "explain": "«Todo duró diez minutos. Rafael salió feliz: por fin algo era fácil.»"
+    },
+    {
+      "q": "¿Cuál era el problema en el banco?",
+      "options": [
+        "La tasa era muy cara.",
+        "El banco estaba cerrado.",
+        "No podía pagar en la ventanilla sin cuenta, y para abrir una cuenta necesitaba el NIE.",
+        "No tenía el pasaporte.",
+        "No hablaba bien español."
+      ],
+      "answer": 2,
+      "explain": "A vicious circle: no account → can't pay the fee → no NIE → can't open an account."
+    },
+    {
+      "q": "«Rafael se quedó de piedra» significa que…",
+      "options": [
+        "se quedó en casa",
+        "se cayó en la calle",
+        "se enfadó con la funcionaria",
+        "se quedó muy sorprendido, sin saber qué decir",
+        "se puso enfermo"
+      ],
+      "answer": 3,
+      "explain": "*Quedarse de piedra* (lit. to turn to stone) = to be stunned, speechless."
+    },
+    {
+      "q": "¿Cómo resolvió Rafael el problema de la tasa?",
+      "options": [
+        "La pagó en un cajero automático.",
+        "Le pagó un amigo.",
+        "La pagó por internet desde Brasil.",
+        "No la pagó.",
+        "La pagó en el ayuntamiento."
+      ],
+      "answer": 0,
+      "explain": "«Un compañero de trabajo le explicó que la tasa también se podía pagar en un cajero automático.»"
+    },
+    {
+      "q": "Mientras Rafael *___* cola, *___* a agobiarse.",
+      "options": [
+        "hizo / empezaba",
+        "hacía / empezó",
+        "hace / empezó",
+        "hacía / empezaba",
+        "ha hecho / empieza"
+      ],
+      "answer": 1,
+      "explain": "Background action in the imperfect (*hacía cola*), the new event in the preterite (*empezó*)."
+    },
+    {
+      "q": "Intentó pedir cita *___* internet y lo hizo *___* empadronarse.",
+      "options": [
+        "para / por",
+        "por / por",
+        "para / para",
+        "en / por",
+        "por / para"
+      ],
+      "answer": 4,
+      "explain": "Means → *por internet*; purpose (in order to) → *para empadronarse*."
+    },
+    {
+      "q": "En España, para algo que pasó hoy, normalmente se dice: «Hoy *___* una cuenta».",
+      "options": [
+        "abría",
+        "abriré",
+        "he abierto",
+        "abra",
+        "había abierto"
+      ],
+      "answer": 2,
+      "explain": "Spain uses the present perfect for *hoy*: «Hoy ha abierto su primera cuenta». Much of Latin America would say *hoy abrí*."
+    }
+  ]
+}

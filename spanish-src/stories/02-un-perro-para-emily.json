@@ -1,0 +1,558 @@
+{
+  "n": 2,
+  "area": "Everyday",
+  "level": "A2",
+  "title_es": "Un perro para Emily",
+  "title_en": "A dog for Emily",
+  "grammar": [
+    {
+      "name": "Ir a + infinitive (near future)",
+      "explain": "The easiest way to talk about plans is *ir a* + infinitive, exactly like *going to* in English. Conjugate *ir* in the present (*voy, vas, va, vamos, vais, van*), add *a*, then the infinitive: *Vamos a conocer a otros perros.* In everyday speech, especially in Latin America, this is much more common than the simple future (*conoceremos*).",
+      "examples": [
+        {
+          "es": "*Voy a adoptar* un gato este verano.",
+          "en": "I'm going to adopt a cat this summer."
+        },
+        {
+          "es": "*Vas a necesitar* una correa.",
+          "en": "You're going to need a lead."
+        },
+        {
+          "es": "¿Qué *van a hacer* el sábado?",
+          "en": "What are you (all) going to do on Saturday?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbal periphrasis",
+          "url": "../beginner/verbal-periphrasis.html"
+        },
+        {
+          "title": "Future tense",
+          "url": "../intermediate/future.html"
+        }
+      ]
+    },
+    {
+      "name": "Tener que + infinitive (obligation)",
+      "explain": "To say that someone *has to* do something, use *tener que* + infinitive. Only *tener* changes: *tengo que, tienes que, tiene que…* Remember that *tener* is irregular (*tengo*) and stem-changing (*tienes, tiene, tienen*). For a general rule with no specific person, Spanish uses *hay que* + infinitive: *Hay que vacunar a los perros.*",
+      "examples": [
+        {
+          "es": "Emily *tiene que firmar* unos papeles.",
+          "en": "Emily has to sign some papers."
+        },
+        {
+          "es": "*Tienes que llevarlo* al veterinario.",
+          "en": "You have to take him to the vet."
+        },
+        {
+          "es": "*Hay que pasear* al perro dos veces al día.",
+          "en": "The dog needs to be walked twice a day. (general rule)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Tener expressions",
+          "url": "../intermediate/tener-expressions.html"
+        }
+      ]
+    },
+    {
+      "name": "Reflexive verbs in daily routines",
+      "explain": "Many everyday actions use a reflexive pronoun (*me, te, se, nos, os, se*) that refers back to the subject: *levantarse* (to get up), *sentirse* (to feel), *enamorarse* (to fall in love), *portarse* (to behave). The pronoun goes before the conjugated verb (*se levanta*) or is attached to an infinitive (*para levantarse*).",
+      "examples": [
+        {
+          "es": "Emily *se levanta* a las seis y media.",
+          "en": "Emily gets up at half past six."
+        },
+        {
+          "es": "Ya no *me siento* sola.",
+          "en": "I don't feel lonely any more."
+        },
+        {
+          "es": "Frijol *se porta* muy bien.",
+          "en": "Frijol behaves very well."
+        }
+      ],
+      "links": [
+        {
+          "title": "Reflexive verbs",
+          "url": "../intermediate/reflexive-verbs.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "mascota",
+      "es": "mascota",
+      "gender": "f",
+      "plural": "mascotas",
+      "en": "pet",
+      "examples": [
+        {
+          "es": "¿Tienes alguna *mascota*?",
+          "en": "Do you have any pets?"
+        },
+        {
+          "es": "En mi edificio no se permiten *mascotas*.",
+          "en": "Pets aren't allowed in my building."
+        }
+      ],
+      "note": "Always feminine, even for a male dog: *Mi perro es una mascota muy buena.* It also means a team mascot."
+    },
+    {
+      "id": "adoptar",
+      "es": "adoptar",
+      "gender": "",
+      "en": "to adopt",
+      "examples": [
+        {
+          "es": "Queremos *adoptar* un gato.",
+          "en": "We want to adopt a cat."
+        },
+        {
+          "es": "*Adopta*, no compres.",
+          "en": "Adopt, don't buy."
+        }
+      ],
+      "note": "Regular *-ar* verb. The noun is *la adopción*."
+    },
+    {
+      "id": "refugio",
+      "es": "refugio",
+      "gender": "m",
+      "plural": "refugios",
+      "en": "animal shelter; refuge",
+      "examples": [
+        {
+          "es": "El *refugio* tiene más de cien perros.",
+          "en": "The shelter has more than a hundred dogs."
+        },
+        {
+          "es": "Trabajo como voluntaria en un *refugio*.",
+          "en": "I volunteer at a shelter."
+        }
+      ],
+      "note": "Also *refugio de montaña*, a mountain hut. In Spain you also hear *la protectora (de animales)*."
+    },
+    {
+      "id": "cachorro",
+      "es": "cachorro",
+      "gender": "m",
+      "plural": "cachorros",
+      "en": "puppy; cub",
+      "examples": [
+        {
+          "es": "El *cachorro* tiene cuatro meses.",
+          "en": "The puppy is four months old."
+        },
+        {
+          "es": "La perra tuvo seis *cachorros*.",
+          "en": "The dog had six puppies."
+        }
+      ],
+      "note": "Used for young dogs, cats, lions, bears… In Spain *perrito* is also common for a small or young dog."
+    },
+    {
+      "id": "pasear",
+      "es": "pasear",
+      "gender": "",
+      "en": "to walk (a dog); to go for a walk",
+      "examples": [
+        {
+          "es": "*Paseo* al perro por la mañana.",
+          "en": "I walk the dog in the morning."
+        },
+        {
+          "es": "Nos gusta *pasear* por el parque.",
+          "en": "We like strolling in the park."
+        }
+      ],
+      "note": "With a dog you need the personal *a*: *pasear al perro*. *Dar un paseo* means to take a walk."
+    },
+    {
+      "id": "correa",
+      "es": "correa",
+      "gender": "f",
+      "plural": "correas",
+      "en": "lead, leash; strap",
+      "examples": [
+        {
+          "es": "En la ciudad hay que llevar al perro con *correa*.",
+          "en": "In the city you have to keep the dog on a lead."
+        },
+        {
+          "es": "La *correa* del reloj está rota.",
+          "en": "The watch strap is broken."
+        }
+      ]
+    },
+    {
+      "id": "veterinario",
+      "es": "veterinario",
+      "gender": "m",
+      "plural": "veterinarios",
+      "en": "vet",
+      "examples": [
+        {
+          "es": "Mañana vamos al *veterinario*.",
+          "en": "Tomorrow we're going to the vet."
+        },
+        {
+          "es": "La *veterinaria* es muy simpática.",
+          "en": "The (female) vet is very nice."
+        }
+      ],
+      "note": "Feminine: *la veterinaria*, which can also mean the vet's clinic. Informally people say *el/la veterinario* or just *el vete*."
+    },
+    {
+      "id": "vacuna",
+      "es": "vacuna",
+      "gender": "f",
+      "plural": "vacunas",
+      "en": "vaccine, jab",
+      "examples": [
+        {
+          "es": "El gato ya tiene todas las *vacunas*.",
+          "en": "The cat already has all its vaccinations."
+        },
+        {
+          "es": "La segunda *vacuna* es en diciembre.",
+          "en": "The second jab is in December."
+        }
+      ],
+      "note": "The verb is *vacunar*: *Hay que vacunar al cachorro.*"
+    },
+    {
+      "id": "cuidar",
+      "es": "cuidar",
+      "gender": "",
+      "en": "to look after, to take care of",
+      "examples": [
+        {
+          "es": "¿Puedes *cuidar* a mi gato este fin de semana?",
+          "en": "Can you look after my cat this weekend?"
+        },
+        {
+          "es": "*Cuido* mis plantas todos los días.",
+          "en": "I look after my plants every day."
+        }
+      ],
+      "note": "Transitive, no preposition needed: *cuidar a alguien / algo* (with the personal *a* for people and pets). *¡Cuídate!* = Take care!"
+    },
+    {
+      "id": "juguete",
+      "es": "juguete",
+      "gender": "m",
+      "plural": "juguetes",
+      "en": "toy",
+      "examples": [
+        {
+          "es": "El perro rompió su *juguete* nuevo.",
+          "en": "The dog broke its new toy."
+        },
+        {
+          "es": "Hay *juguetes* por todo el salón.",
+          "en": "There are toys all over the living room."
+        }
+      ],
+      "note": "Related verb: *jugar* (to play). Don't confuse it with *jugo* (juice in Latin America)."
+    },
+    {
+      "id": "ladrar",
+      "es": "ladrar",
+      "gender": "",
+      "en": "to bark",
+      "examples": [
+        {
+          "es": "El perro del vecino *ladra* toda la noche.",
+          "en": "The neighbour's dog barks all night."
+        },
+        {
+          "es": "Perro que *ladra* no muerde.",
+          "en": "His bark is worse than his bite. (lit. a dog that barks doesn't bite)"
+        }
+      ],
+      "note": "The noun is *el ladrido* (bark). Cats *maúllan* (*maullar*)."
+    },
+    {
+      "id": "cola",
+      "es": "cola",
+      "gender": "f",
+      "plural": "colas",
+      "en": "tail",
+      "examples": [
+        {
+          "es": "El perro mueve la *cola* cuando está contento.",
+          "en": "The dog wags its tail when it's happy."
+        },
+        {
+          "es": "El gato tiene la *cola* blanca.",
+          "en": "The cat has a white tail."
+        }
+      ],
+      "note": "In Spain *cola* also means a queue (*hacer cola*); in Latin America a queue is usually *una fila*."
+    },
+    {
+      "id": "timido",
+      "es": "tímido",
+      "gender": "",
+      "en": "shy",
+      "examples": [
+        {
+          "es": "Mi hermano es muy *tímido*.",
+          "en": "My brother is very shy."
+        },
+        {
+          "es": "La gata es *tímida* con la gente nueva.",
+          "en": "The cat is shy with new people."
+        }
+      ],
+      "note": "Adjective, agrees: *tímido / tímida*. Not to be confused with *timorato* (prudish)."
+    },
+    {
+      "id": "carinoso",
+      "es": "cariñoso",
+      "gender": "",
+      "en": "affectionate, loving",
+      "examples": [
+        {
+          "es": "Es un perro muy *cariñoso* con los niños.",
+          "en": "He's a very affectionate dog with children."
+        },
+        {
+          "es": "Mi abuela es muy *cariñosa*.",
+          "en": "My grandmother is very loving."
+        }
+      ],
+      "note": "From *el cariño* (affection). *Cariño* is also a common term of endearment: *¿Qué tal, cariño?*"
+    },
+    {
+      "id": "enseguida",
+      "es": "enseguida",
+      "gender": "",
+      "en": "straight away, right away",
+      "examples": [
+        {
+          "es": "Vuelvo *enseguida*.",
+          "en": "I'll be right back."
+        },
+        {
+          "es": "Lo entendió *enseguida*.",
+          "en": "He understood straight away."
+        }
+      ],
+      "note": "Also written *en seguida*. In Mexico you also hear *ahorita*, which can mean anything from 'now' to 'later'!"
+    },
+    {
+      "id": "croquetas",
+      "es": "croquetas (para perro)",
+      "gender": "fpl",
+      "en": "dog food, kibble (Mexico)",
+      "examples": [
+        {
+          "es": "Compré un saco de *croquetas* para cachorro.",
+          "en": "I bought a bag of puppy kibble."
+        },
+        {
+          "es": "El perro no quiere comer sus *croquetas*.",
+          "en": "The dog doesn't want to eat its kibble."
+        }
+      ],
+      "note": "Mexico and parts of Latin America. In Spain dry pet food is *el pienso*, and *croquetas* are fried snacks for people!"
+    },
+    {
+      "id": "departamento",
+      "es": "departamento",
+      "gender": "m",
+      "plural": "departamentos",
+      "en": "flat, apartment (Latin America)",
+      "examples": [
+        {
+          "es": "Vivo en un *departamento* de dos recámaras.",
+          "en": "I live in a two-bedroom flat."
+        },
+        {
+          "es": "El *departamento* tiene un balcón pequeño.",
+          "en": "The flat has a small balcony."
+        }
+      ],
+      "note": "Mexico, Argentina, Peru, Chile… In Spain it's *el piso*, and *departamento* means a department (of a company or university)."
+    },
+    {
+      "id": "permitir",
+      "es": "permitir",
+      "gender": "",
+      "en": "to allow, to let",
+      "examples": [
+        {
+          "es": "¿Me *permite* pasar?",
+          "en": "May I get past? (lit. do you allow me to pass?)"
+        },
+        {
+          "es": "El dueño no *permite* animales.",
+          "en": "The landlord doesn't allow animals."
+        }
+      ],
+      "note": "*Permitir* + infinitive, with no *que* if the person is a pronoun: *Me permite tener un perro.* *Se permiten mascotas* = pets allowed."
+    },
+    {
+      "id": "jugar",
+      "es": "jugar",
+      "gender": "",
+      "en": "to play",
+      "examples": [
+        {
+          "es": "Los niños *juegan* en el parque.",
+          "en": "The children play in the park."
+        },
+        {
+          "es": "¿*Jugamos* a las cartas?",
+          "en": "Shall we play cards?"
+        }
+      ],
+      "note": "The only u → ue verb: *juego, juegas, juega, jugamos, jugáis, juegan*. For music use *tocar*, not *jugar*."
+    },
+    {
+      "id": "portarse",
+      "es": "portarse bien / mal",
+      "gender": "",
+      "en": "to behave well / badly",
+      "examples": [
+        {
+          "es": "Si *te portas bien*, te doy un premio.",
+          "en": "If you behave, I'll give you a treat."
+        },
+        {
+          "es": "Hoy el perro *se portó mal*.",
+          "en": "The dog was naughty today."
+        }
+      ],
+      "note": "Reflexive: *me porto, te portas, se porta…* Used for children and pets."
+    }
+  ],
+  "text": "Emily es de Chicago y vive en la Ciudad de México desde hace un año. Trabaja como profesora de inglés en la colonia Roma. Su {{departamento|departamento}} es pequeño, pero tiene un balcón con plantas. Emily está contenta, pero a veces se siente un poco sola. Por eso, un sábado decide {{adoptar|adoptar}} una {{mascota|mascota}}.\n\nPrimero busca información en internet y encuentra un {{refugio|refugio}} de animales cerca de su casa. Antes de ir, llama al dueño del departamento. «¿Me {{permitir|permite}} tener un perro?», pregunta. «Sí, claro, si es pequeño», contesta el señor.\n\nEn el refugio hay muchos perros. Algunos {{ladrar|ladran}} mucho, otros duermen. Al final de un pasillo, Emily ve un {{cachorro|cachorro}} negro con una {{=mancha|spot, patch}} blanca en la {{cola|cola}}. Es muy {{timido|tímido}} y no se mueve. Una {{=voluntaria|volunteer}} le explica: «Se llama Frijol y tiene cuatro meses. Es muy {{carinoso|cariñoso}}, pero necesita tiempo». Emily {{=se enamora|falls in love}} {{enseguida|enseguida}}.\n\nAntes de llevarse a Frijol, Emily tiene que {{=firmar|sign}} unos papeles y pagar quinientos pesos. La voluntaria le da una lista: «Vas a necesitar una {{correa|correa}}, {{croquetas|croquetas}} para cachorro y algún {{juguete|juguete}}. Y la próxima semana tienes que llevarlo al {{veterinario|veterinario}} para la segunda {{vacuna|vacuna}}».\n\nAhora Emily tiene una rutina nueva. Se levanta a las seis y media para {{pasear|pasear}} a Frijol por el parque México. Por la tarde, los dos {{jugar|juegan}} en el balcón. Frijol todavía {{=se asusta|gets scared}} con el ruido de los carros, pero cada día está más tranquilo y se {{portarse|porta muy bien}}. «{{cuidar|Cuidar}} a un perro es mucho trabajo», dice Emily, «pero ya no me siento sola. Y este fin de semana vamos a conocer a otros perros en el parque».",
+  "quiz": [
+    {
+      "q": "¿Por qué decide Emily adoptar una mascota?",
+      "options": [
+        "porque su departamento es muy grande",
+        "porque a veces se siente un poco sola",
+        "porque el dueño se lo pide",
+        "porque trabaja en un refugio",
+        "porque sus alumnos tienen perros"
+      ],
+      "answer": 1,
+      "explain": "«Emily está contenta, pero a veces se siente un poco sola. Por eso… decide adoptar una mascota.»"
+    },
+    {
+      "q": "¿Qué le pregunta Emily al dueño del departamento?",
+      "options": [
+        "si puede pintar el balcón",
+        "si conoce un refugio",
+        "si puede tener un perro",
+        "cuánto cuesta el alquiler",
+        "si le gustan los gatos"
+      ],
+      "answer": 2,
+      "explain": "«¿Me permite tener un perro?» — and he says yes, if it's small."
+    },
+    {
+      "q": "¿Cómo es Frijol cuando Emily lo ve por primera vez?",
+      "options": [
+        "Ladra mucho.",
+        "Juega con otros perros.",
+        "Duerme en un juguete.",
+        "Es tímido y no se mueve.",
+        "Es grande y blanco."
+      ],
+      "answer": 3,
+      "explain": "«Es muy tímido y no se mueve.» He is black with a white patch on his tail."
+    },
+    {
+      "q": "¿Qué tiene que hacer Emily la próxima semana?",
+      "options": [
+        "llevar a Frijol al veterinario",
+        "devolver a Frijol al refugio",
+        "comprar un departamento nuevo",
+        "trabajar como voluntaria",
+        "pagar quinientos pesos más"
+      ],
+      "answer": 0,
+      "explain": "«La próxima semana tienes que llevarlo al veterinario para la segunda vacuna.»"
+    },
+    {
+      "q": "¿Qué hacen Emily y Frijol por la tarde?",
+      "options": [
+        "Van al refugio.",
+        "Pasean por el parque México.",
+        "Juegan en el balcón.",
+        "Duermen la siesta.",
+        "Visitan al veterinario."
+      ],
+      "answer": 2,
+      "explain": "«Por la tarde, los dos juegan en el balcón.» The walk in the park is in the morning."
+    },
+    {
+      "q": "¿Qué le asusta todavía a Frijol?",
+      "options": [
+        "los otros perros",
+        "las plantas del balcón",
+        "la correa",
+        "los niños",
+        "el ruido de los carros"
+      ],
+      "answer": 4,
+      "explain": "«Frijol todavía se asusta con el ruido de los carros.» In Mexico a car is *un carro*; in Spain *un coche*."
+    },
+    {
+      "q": "En España, la comida seca para perros se llama…",
+      "options": [
+        "croquetas",
+        "jugo",
+        "pienso",
+        "frijoles",
+        "galletas"
+      ],
+      "answer": 2,
+      "explain": "Mexico says *croquetas*; in Spain it's *el pienso*, and *croquetas* are fried snacks for people."
+    },
+    {
+      "q": "Este fin de semana Emily y Frijol *___* conocer a otros perros.",
+      "options": [
+        "va a",
+        "vamos a",
+        "van a",
+        "van",
+        "tienen"
+      ],
+      "answer": 2,
+      "explain": "Two people (*ellos*) → *van a* + infinitive. Emily herself says «vamos a conocer» because she includes herself."
+    },
+    {
+      "q": "Para adoptar a Frijol, Emily *___* firmar unos papeles.",
+      "options": [
+        "tiene que",
+        "tiene de",
+        "hay que",
+        "tengo que",
+        "es que"
+      ],
+      "answer": 0,
+      "explain": "A specific person's obligation: *tener que* + infinitive → *Emily tiene que firmar*. *Hay que* is impersonal and has no subject."
+    },
+    {
+      "q": "Los niños *___* con el perro en el parque. (jugar)",
+      "options": [
+        "jugan",
+        "juegan",
+        "jueguen",
+        "juegamos",
+        "jogan"
+      ],
+      "answer": 1,
+      "explain": "*Jugar* changes u → ue in the stressed forms: *juego, juegas, juega, juegan* (but *jugamos*)."
+    }
+  ]
+}
