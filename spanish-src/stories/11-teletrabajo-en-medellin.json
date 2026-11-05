@@ -1,0 +1,569 @@
+{
+  "n": 11,
+  "area": "Work and study",
+  "level": "B1",
+  "title_es": "Un sevillano teletrabaja en Medellín",
+  "title_en": "A Sevillian working remotely in Medellín",
+  "grammar": [
+    {
+      "name": "Present perfect (and how Spain and Latin America differ)",
+      "explain": "The present perfect is *haber* + past participle: *he aprendido, ha conocido, has comido*. It connects the past with now: experiences (*nunca he tenido tanta calma*) and things that happened in a period that isn't over (*esta mañana le ha escrito*). In Spain it's the normal tense for anything that happened today. In most of Latin America, including Colombia, people use the preterite instead: a Spaniard says *¿Has comido ya?*, a Colombian *¿Ya almorzó?*",
+      "examples": [
+        {
+          "es": "Pablo *ha aprendido* a desconectar.",
+          "en": "Pablo has learned to switch off."
+        },
+        {
+          "es": "Allí *ha conocido* a Camilo.",
+          "en": "There he has met Camilo."
+        },
+        {
+          "es": "Esta mañana le *ha escrito* a su madre.",
+          "en": "This morning he wrote to his mother. (Spain: present perfect)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Present perfect",
+          "url": "../advanced/present-perfect.html"
+        },
+        {
+          "title": "Past participles",
+          "url": "../advanced/past-participles.html"
+        }
+      ]
+    },
+    {
+      "name": "Llevar + gerund and hace… que",
+      "explain": "To say how long something has been going on, Spanish uses the present tense, not a perfect: *lleva ocho meses viviendo en Medellín* (he has been living in Medellín for eight months), or *hace ocho meses que vive en Medellín*. For a point in the past, *hace* means *ago*: *hace tres meses se apuntó a un coworking*.",
+      "examples": [
+        {
+          "es": "*Lleva* ocho meses *viviendo* en Medellín.",
+          "en": "He has been living in Medellín for eight months."
+        },
+        {
+          "es": "*Hace* dos años *que* teletrabaja.",
+          "en": "He has been working remotely for two years."
+        },
+        {
+          "es": "*Hace* tres meses se apuntó a un coworking.",
+          "en": "Three months ago he joined a coworking space."
+        }
+      ],
+      "links": [
+        {
+          "title": "Hacer time expressions",
+          "url": "../intermediate/hacer-time-expressions.html"
+        },
+        {
+          "title": "Verbal periphrasis",
+          "url": "../beginner/verbal-periphrasis.html"
+        }
+      ]
+    },
+    {
+      "name": "Usted among friends in Colombia",
+      "explain": "In Medellín and much of Colombia many people say *usted* even to friends and family; it sounds warm, not distant. Verb forms are the third person: *¿Le provoca un tinto?* (Do you fancy a coffee?), *¿Usted qué más?* In Spain the same friends would use *tú*: *¿Te apetece un café?*",
+      "examples": [
+        {
+          "es": "¿*Le provoca* un tinto, parcero?",
+          "en": "Fancy a coffee, mate? (Colombia, usted)"
+        },
+        {
+          "es": "¿*Te apetece* un café?",
+          "en": "Fancy a coffee? (Spain, tú)"
+        },
+        {
+          "es": "¿Qué más, *cómo está*?",
+          "en": "Hi, how are you? (Colombia)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Colombian Spanish",
+          "url": "../regional-spanish/colombian-spanish.html"
+        },
+        {
+          "title": "Subject pronouns",
+          "url": "../beginner/subject-pronouns.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "teletrabajar",
+      "es": "teletrabajar",
+      "gender": "",
+      "en": "to work remotely, to telework",
+      "examples": [
+        {
+          "es": "Desde la pandemia *teletrabajo* dos días a la semana.",
+          "en": "Since the pandemic I've worked from home two days a week."
+        },
+        {
+          "es": "¿Tu empresa te deja *teletrabajar*?",
+          "en": "Does your company let you work remotely?"
+        }
+      ],
+      "note": "Noun: *el teletrabajo*. In Latin America you also hear *trabajo remoto* and *home office* (Mexico)."
+    },
+    {
+      "id": "nomada",
+      "es": "nómada digital",
+      "gender": "m",
+      "plural": "nómadas digitales",
+      "en": "digital nomad",
+      "examples": [
+        {
+          "es": "Medellín está lleno de *nómadas digitales*.",
+          "en": "Medellín is full of digital nomads."
+        },
+        {
+          "es": "Es *nómada digital* desde hace dos años.",
+          "en": "She has been a digital nomad for two years."
+        }
+      ],
+      "note": "Same form for men and women: *el / la nómada*. Like *el idioma*, it ends in *-a* but can be masculine."
+    },
+    {
+      "id": "visa",
+      "es": "visa",
+      "gender": "f",
+      "plural": "visas",
+      "en": "visa",
+      "examples": [
+        {
+          "es": "Pidió una *visa* de nómada digital.",
+          "en": "He applied for a digital-nomad visa."
+        },
+        {
+          "es": "No necesitas *visa* para entrar.",
+          "en": "You don't need a visa to get in."
+        }
+      ],
+      "note": "Latin America: *la visa*. Spain: *el visado* (*Visa* there is mostly the credit card)."
+    },
+    {
+      "id": "computador",
+      "es": "computador",
+      "gender": "m",
+      "plural": "computadores",
+      "en": "computer",
+      "examples": [
+        {
+          "es": "Trabajo con el *computador* portátil.",
+          "en": "I work on my laptop."
+        },
+        {
+          "es": "Se me apagó el *computador*.",
+          "en": "My computer switched off."
+        }
+      ],
+      "note": "Colombia and Chile: *el computador*; Mexico, Argentina: *la computadora*; Spain: *el ordenador*."
+    },
+    {
+      "id": "concentrarse",
+      "es": "concentrarse",
+      "gender": "",
+      "en": "to concentrate, to focus",
+      "examples": [
+        {
+          "es": "Con tanto ruido no *me concentro*.",
+          "en": "With so much noise I can't concentrate."
+        },
+        {
+          "es": "Necesito *concentrarme* una hora.",
+          "en": "I need to focus for an hour."
+        }
+      ],
+      "note": "Reflexive: *concentrarse en algo*."
+    },
+    {
+      "id": "distraerse",
+      "es": "distraerse",
+      "gender": "",
+      "en": "to get distracted",
+      "examples": [
+        {
+          "es": "*Me distraigo* con el móvil.",
+          "en": "I get distracted by my phone."
+        },
+        {
+          "es": "Los niños *se distraen* fácilmente.",
+          "en": "Children get distracted easily."
+        }
+      ],
+      "note": "Conjugates like *traer*: *me distraigo*, imperfect *se distraía*. Adjective: *distraído* (absent-minded)."
+    },
+    {
+      "id": "conexion",
+      "es": "conexión",
+      "gender": "f",
+      "plural": "conexiones",
+      "en": "connection",
+      "examples": [
+        {
+          "es": "La *conexión* es muy lenta.",
+          "en": "The connection is very slow."
+        },
+        {
+          "es": "Perdí la *conexión* en plena reunión.",
+          "en": "I lost my connection in the middle of the meeting."
+        }
+      ],
+      "note": "Also a flight connection. Note the spelling with *x*, unlike English."
+    },
+    {
+      "id": "diferencia",
+      "es": "diferencia horaria",
+      "gender": "f",
+      "plural": "diferencias horarias",
+      "en": "time difference",
+      "examples": [
+        {
+          "es": "La *diferencia horaria* con Madrid es de siete horas.",
+          "en": "The time difference with Madrid is seven hours."
+        },
+        {
+          "es": "Me cuesta la *diferencia horaria*.",
+          "en": "I struggle with the time difference."
+        }
+      ],
+      "note": "Jet lag is *el jet lag* or *el desfase horario*."
+    },
+    {
+      "id": "videollamada",
+      "es": "videollamada",
+      "gender": "f",
+      "plural": "videollamadas",
+      "en": "video call",
+      "examples": [
+        {
+          "es": "Tengo una *videollamada* a las seis.",
+          "en": "I have a video call at six."
+        },
+        {
+          "es": "Hablamos por *videollamada* cada domingo.",
+          "en": "We talk on a video call every Sunday."
+        }
+      ],
+      "note": "*Hacer una videollamada*. A normal call is *una llamada*."
+    },
+    {
+      "id": "aislado",
+      "es": "aislado",
+      "gender": "",
+      "en": "isolated",
+      "examples": [
+        {
+          "es": "Trabajando en casa me siento *aislado*.",
+          "en": "Working from home I feel isolated."
+        },
+        {
+          "es": "Es un pueblo muy *aislado*.",
+          "en": "It's a very isolated village."
+        }
+      ],
+      "note": "Verb: *aislar* (to isolate); noun: *el aislamiento*."
+    },
+    {
+      "id": "soledad",
+      "es": "soledad",
+      "gender": "f",
+      "plural": "soledades",
+      "en": "loneliness, solitude",
+      "examples": [
+        {
+          "es": "La *soledad* es lo más difícil.",
+          "en": "Loneliness is the hardest thing."
+        },
+        {
+          "es": "Me gusta la *soledad* para leer.",
+          "en": "I like solitude for reading."
+        }
+      ],
+      "note": "One word for both the bad (*loneliness*) and the good (*solitude*) side of being alone."
+    },
+    {
+      "id": "escritorio",
+      "es": "escritorio",
+      "gender": "m",
+      "plural": "escritorios",
+      "en": "desk",
+      "examples": [
+        {
+          "es": "Mi *escritorio* está junto a la ventana.",
+          "en": "My desk is by the window."
+        },
+        {
+          "es": "Guarda el archivo en el *escritorio*.",
+          "en": "Save the file on the desktop."
+        }
+      ],
+      "note": "False friend: not a 'writer' (*escritor*). On a computer it's the desktop."
+    },
+    {
+      "id": "tinto",
+      "es": "tinto",
+      "gender": "m",
+      "plural": "tintos",
+      "en": "small black coffee (Colombia); red wine (Spain)",
+      "examples": [
+        {
+          "es": "¿Nos tomamos un *tinto*?",
+          "en": "Shall we have a coffee?"
+        },
+        {
+          "es": "Un *tinto* de verano, por favor.",
+          "en": "A red wine with lemonade, please. (Spain)"
+        }
+      ],
+      "note": "Big trap: in Colombia *un tinto* is black coffee, in Spain it's a glass of red wine."
+    },
+    {
+      "id": "parcero",
+      "es": "parcero",
+      "gender": "m",
+      "plural": "parceros",
+      "en": "mate, buddy (Colombia)",
+      "examples": [
+        {
+          "es": "¿Qué más, *parcero*?",
+          "en": "What's up, mate?"
+        },
+        {
+          "es": "Es mi *parcera* del trabajo.",
+          "en": "She's my buddy from work."
+        }
+      ],
+      "note": "Colombian slang, often shortened to *parce*. Spain: *tío / tía*; Mexico: *güey*."
+    },
+    {
+      "id": "listo",
+      "es": "listo",
+      "gender": "",
+      "en": "OK, all right (Latin America); ready; clever",
+      "examples": [
+        {
+          "es": "—Nos vemos a las tres. —*Listo*.",
+          "en": "—See you at three. —OK."
+        },
+        {
+          "es": "¿Estás *listo*?",
+          "en": "Are you ready?"
+        }
+      ],
+      "note": "*¡Listo!* is the Colombian *¡vale!* Careful: *estar listo* = to be ready, *ser listo* = to be clever."
+    },
+    {
+      "id": "chevere",
+      "es": "chévere",
+      "gender": "",
+      "en": "great, cool (Colombia, Venezuela, Caribbean)",
+      "examples": [
+        {
+          "es": "¡Qué *chévere* tu apartamento!",
+          "en": "Your flat is great!"
+        },
+        {
+          "es": "La gente aquí es muy *chévere*.",
+          "en": "The people here are really nice."
+        }
+      ],
+      "note": "Same form for masculine and feminine. Mexico: *chido*; Spain: *guay*."
+    },
+    {
+      "id": "entregar",
+      "es": "entregar",
+      "gender": "",
+      "en": "to deliver, to hand in",
+      "examples": [
+        {
+          "es": "Mañana les *entrego* la nueva versión.",
+          "en": "Tomorrow I'll deliver the new version to you."
+        },
+        {
+          "es": "Hay que *entregar* el trabajo el lunes.",
+          "en": "The assignment has to be handed in on Monday."
+        }
+      ],
+      "note": "Spelling change before *e*: *entregué*. Noun: *la entrega* (delivery)."
+    },
+    {
+      "id": "rendir",
+      "es": "rendir",
+      "gender": "",
+      "en": "to be productive, to perform well",
+      "examples": [
+        {
+          "es": "Por la mañana *rindo* más.",
+          "en": "I'm more productive in the morning."
+        },
+        {
+          "es": "Si no duermes, no *rindes*.",
+          "en": "If you don't sleep, you can't perform."
+        }
+      ],
+      "note": "Stem change e → i: *rindo, rinde*. *Rendirse* = to give up. In Argentina *rendir un examen* = to sit an exam."
+    },
+    {
+      "id": "descanso",
+      "es": "descanso",
+      "gender": "m",
+      "plural": "descansos",
+      "en": "break, rest",
+      "examples": [
+        {
+          "es": "Hago un *descanso* cada dos horas.",
+          "en": "I take a break every two hours."
+        },
+        {
+          "es": "El domingo es mi día de *descanso*.",
+          "en": "Sunday is my day off."
+        }
+      ],
+      "note": "*Hacer / tomar un descanso*. Verb: *descansar*."
+    },
+    {
+      "id": "desconectar",
+      "es": "desconectar",
+      "gender": "",
+      "en": "to switch off, to unwind; to disconnect",
+      "examples": [
+        {
+          "es": "En vacaciones necesito *desconectar*.",
+          "en": "On holiday I need to switch off."
+        },
+        {
+          "es": "*Desconecta* el cable, por favor.",
+          "en": "Unplug the cable, please."
+        }
+      ],
+      "note": "Very common in Spain for 'unwinding' from work."
+    }
+  ],
+  "text": "Pablo es programador, es de Sevilla y {{=lleva|has been}} ocho meses viviendo en Medellín. Trabaja para una empresa de Madrid, pero cuando la empresa le permitió {{teletrabajar|teletrabajar}} desde cualquier lugar, decidió {{=hacer realidad un sueño|make a dream come true}}: vivir un tiempo en Latinoamérica como {{nomada|nómada digital}}. Consiguió una {{visa|visa}} especial para trabajadores remotos y alquiló un apartamento en Laureles.\n\nLos primeros meses trabajó desde casa, con el {{computador|computador}} en la mesa de la cocina. Pero no conseguía {{concentrarse|concentrarse}}: {{distraerse|se distraía}} con el ruido de la calle, la {{conexion|conexión}} {{=fallaba|kept dropping}} y la {{diferencia|diferencia horaria}} con España —siete horas— lo obligaba a tener {{videollamada|videollamadas}} a las seis de la mañana. Además, se sentía {{aislado|aislado}}: la {{soledad|soledad}} del teletrabajo era más dura de lo que pensaba.\n\nHace tres meses {{=se apuntó a|he signed up for}} un coworking en El Poblado. Ahora tiene su propio {{escritorio|escritorio}} junto a una ventana, buen internet y café gratis. Allí ha conocido a Camilo, un diseñador {{=paisa|from the Medellín region}} que cada mañana lo saluda igual: «¿Qué más, {{parcero|parcero}}? ¿{{=Le provoca|Do you fancy}} un {{tinto|tinto}}?» Pablo todavía se ríe: en Sevilla nadie trata de usted a un amigo, y un tinto allí es un vino.\n\nPablo también ha aprendido a hablar un poco {{=a lo paisa|the Medellín way}}. Ya no dice «vale», sino «{{listo|listo}}», y todo lo bueno le parece {{chevere|chévere}}. Sus compañeros de Madrid se ríen cuando lo oyen en las reuniones: «Listo, mañana les {{entregar|entrego}} la nueva versión».\n\nHoy Pablo {{rendir|rinde}} más que nunca. Y lo más importante: ha aprendido a {{desconectar|desconectar}}. A mediodía hace un {{descanso|descanso}} largo y almuerza con Camilo; a las cuatro cierra el computador y sale a caminar. «En Madrid nunca he tenido tanta calma», le ha escrito esta mañana a su madre.",
+  "quiz": [
+    {
+      "q": "¿Cuánto tiempo lleva Pablo en Medellín?",
+      "options": [
+        "tres meses",
+        "siete meses",
+        "ocho meses",
+        "dos años",
+        "un año"
+      ],
+      "answer": 2,
+      "explain": "«Lleva ocho meses viviendo en Medellín.» He joined the coworking three months ago."
+    },
+    {
+      "q": "¿Para quién trabaja Pablo?",
+      "options": [
+        "para una empresa de Madrid",
+        "para una empresa de Medellín",
+        "para el coworking",
+        "para Camilo",
+        "para una empresa de Sevilla"
+      ],
+      "answer": 0,
+      "explain": "«Trabaja para una empresa de Madrid.» He is from Seville, though."
+    },
+    {
+      "q": "¿Por qué tenía videollamadas a las seis de la mañana?",
+      "options": [
+        "porque le gusta madrugar",
+        "porque trabajaba de noche",
+        "porque la conexión era mejor",
+        "porque Camilo se lo pidió",
+        "por la diferencia horaria con España"
+      ],
+      "answer": 4,
+      "explain": "«La diferencia horaria con España —siete horas— lo obligaba a tener videollamadas a las seis de la mañana.»"
+    },
+    {
+      "q": "¿Cuál de estos NO era un problema al trabajar en casa?",
+      "options": [
+        "el ruido de la calle",
+        "la conexión",
+        "la soledad",
+        "el precio del café",
+        "la diferencia horaria"
+      ],
+      "answer": 3,
+      "explain": "Noise, connection, time difference and loneliness are all mentioned; the coffee is free in the coworking."
+    },
+    {
+      "q": "¿Qué tiene Pablo en el coworking?",
+      "options": [
+        "una oficina privada",
+        "un escritorio junto a una ventana",
+        "un computador nuevo",
+        "una cama",
+        "un perro"
+      ],
+      "answer": 1,
+      "explain": "«Tiene su propio escritorio junto a una ventana, buen internet y café gratis.»"
+    },
+    {
+      "q": "¿Por qué se ríe Pablo cuando Camilo le ofrece un tinto?",
+      "options": [
+        "porque no le gusta el café",
+        "porque ya ha tomado tres",
+        "porque Camilo habla muy rápido",
+        "porque es muy temprano",
+        "porque en Sevilla un tinto es un vino y nadie trata de usted a un amigo"
+      ],
+      "answer": 4,
+      "explain": "«En Sevilla nadie trata de usted a un amigo, y un tinto allí es un vino.»"
+    },
+    {
+      "q": "¿Qué palabra usa ahora Pablo en vez de «vale»?",
+      "options": [
+        "chévere",
+        "parcero",
+        "listo",
+        "tinto",
+        "chido"
+      ],
+      "answer": 2,
+      "explain": "«Ya no dice ‘vale’, sino ‘listo’» — *¡Listo!* is the Colombian way to say OK."
+    },
+    {
+      "q": "Pablo *___* ocho meses viviendo en Medellín.",
+      "options": [
+        "hace",
+        "lleva",
+        "está",
+        "tiene",
+        "es"
+      ],
+      "answer": 1,
+      "explain": "*Llevar* + time + gerund = to have been doing something for a period: *lleva ocho meses viviendo*."
+    },
+    {
+      "q": "«En Madrid nunca *___* tanta calma.»",
+      "options": [
+        "he tenido",
+        "tuve",
+        "tengo",
+        "tenía",
+        "he tenía"
+      ],
+      "answer": 0,
+      "explain": "A life experience up to now → present perfect: *nunca he tenido* (*haber* + participle)."
+    },
+    {
+      "q": "¿Cómo se dice «computador» en España?",
+      "options": [
+        "la computadora",
+        "el portátil",
+        "el escritorio",
+        "el ordenador",
+        "el teclado"
+      ],
+      "answer": 3,
+      "explain": "Spain: *el ordenador*; Colombia and Chile: *el computador*; Mexico and Argentina: *la computadora*."
+    }
+  ]
+}
