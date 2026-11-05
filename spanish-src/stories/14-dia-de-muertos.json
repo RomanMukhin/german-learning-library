@@ -1,0 +1,542 @@
+{
+  "n": 14,
+  "area": "Travel and culture",
+  "level": "B1",
+  "title_es": "Día de Muertos en Oaxaca",
+  "title_en": "Day of the Dead in Oaxaca",
+  "grammar": [
+    {
+      "name": "Impersonal and passive se",
+      "explain": "When it doesn't matter who does something, Spanish often uses *se* + verb in the third person. With a plural noun the verb is plural (*se encendían velas* — candles were lit), with a singular noun or no noun it is singular (*se montó un altar*, *se dice que…*). English uses the passive, *people* or *you* instead. This is perfect for describing customs: *En Oaxaca se celebra el Día de Muertos.*",
+      "examples": [
+        {
+          "es": "En el altar *se ponen* fotos de los difuntos.",
+          "en": "Photos of the dead are placed on the altar."
+        },
+        {
+          "es": "Aquí la muerte no *se ve* como algo triste.",
+          "en": "Here death isn't seen as something sad."
+        },
+        {
+          "es": "*Se dice* que las almas vuelven a casa.",
+          "en": "People say that the souls come back home."
+        }
+      ],
+      "links": [
+        {
+          "title": "Impersonal and passive se",
+          "url": "../advanced/impersonal-and-passive-se.html"
+        }
+      ]
+    },
+    {
+      "name": "The imperfect for habits and descriptions",
+      "explain": "The *imperfecto* describes how things used to be and what people used to do, with no clear beginning or end: *Mi madre cocinaba el mejor mole.* *Cuando yo era niña…* It also paints scenes in progress: *Algunas familias cenaban junto a las tumbas.* Endings: *-ar → -aba*, *-er/-ir → -ía*. Only three verbs are irregular: *ser (era), ir (iba), ver (veía)*.",
+      "examples": [
+        {
+          "es": "Cuando *era* niña, *iba* al panteón con mi abuela.",
+          "en": "When I was a girl, I used to go to the cemetery with my grandmother."
+        },
+        {
+          "es": "Mi madre siempre *hacía* lo mismo.",
+          "en": "My mother always did the same."
+        },
+        {
+          "es": "La banda *tocaba* y la gente *bailaba*.",
+          "en": "The band was playing and people were dancing."
+        }
+      ],
+      "links": [
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        },
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "recordar",
+      "es": "recordar",
+      "gender": "",
+      "en": "to remember; to remind",
+      "examples": [
+        {
+          "es": "*Recordamos* a nuestros abuelos con cariño.",
+          "en": "We remember our grandparents fondly."
+        },
+        {
+          "es": "*Recuérdame* que compre velas.",
+          "en": "Remind me to buy candles."
+        }
+      ],
+      "note": "Stem-changing (*o → ue*): *recuerdo, recuerdas*. *Acordarse de* means the same but needs *de*: *Me acuerdo de ella.*"
+    },
+    {
+      "id": "ofrenda",
+      "es": "ofrenda",
+      "gender": "f",
+      "plural": "ofrendas",
+      "en": "offering; (Mexico) Day of the Dead altar",
+      "examples": [
+        {
+          "es": "Ponemos la *ofrenda* el 31 de octubre.",
+          "en": "We set up the offering on 31 October."
+        },
+        {
+          "es": "Llevaron flores como *ofrenda*.",
+          "en": "They brought flowers as an offering."
+        }
+      ],
+      "note": "In Mexico *la ofrenda* means both the gifts and the whole decorated altar. Don't confuse with *oferta* (special offer)."
+    },
+    {
+      "id": "altar",
+      "es": "altar",
+      "gender": "m",
+      "plural": "altares",
+      "en": "altar",
+      "examples": [
+        {
+          "es": "El *altar* tiene tres niveles.",
+          "en": "The altar has three levels."
+        },
+        {
+          "es": "Hay *altares* en casas, escuelas y oficinas.",
+          "en": "There are altars in homes, schools and offices."
+        }
+      ],
+      "note": "Masculine. *Llevar al altar* = to marry someone."
+    },
+    {
+      "id": "adornar",
+      "es": "adornar",
+      "gender": "",
+      "en": "to decorate",
+      "examples": [
+        {
+          "es": "*Adornamos* la casa con flores.",
+          "en": "We decorated the house with flowers."
+        },
+        {
+          "es": "Las calles están *adornadas* con papel picado.",
+          "en": "The streets are decorated with cut paper."
+        }
+      ],
+      "note": "Synonym: *decorar*. The noun is *el adorno* (ornament): *adornos de Navidad*."
+    },
+    {
+      "id": "papel_picado",
+      "es": "papel picado",
+      "gender": "m",
+      "plural": "papeles picados",
+      "en": "papel picado (cut-paper banners)",
+      "examples": [
+        {
+          "es": "El *papel picado* se mueve con el viento.",
+          "en": "The cut paper flutters in the wind."
+        },
+        {
+          "es": "Compramos *papel picado* morado y naranja.",
+          "en": "We bought purple and orange papel picado."
+        }
+      ],
+      "note": "Mexican folk art: tissue paper with cut-out designs, hung in lines. *Picar* here means to perforate, not to sting."
+    },
+    {
+      "id": "cempasuchil",
+      "es": "cempasúchil",
+      "gender": "m",
+      "plural": "cempasúchiles",
+      "en": "Mexican marigold",
+      "examples": [
+        {
+          "es": "El *cempasúchil* es la flor del Día de Muertos.",
+          "en": "The marigold is the flower of the Day of the Dead."
+        },
+        {
+          "es": "Hicieron un camino de pétalos de *cempasúchil*.",
+          "en": "They made a path of marigold petals."
+        }
+      ],
+      "note": "From Nahuatl *cempōhualxōchitl*, 'twenty flower'. Also spelt *cempasúchitl*; often *la flor de cempasúchil*."
+    },
+    {
+      "id": "creencia",
+      "es": "creencia",
+      "gender": "f",
+      "plural": "creencias",
+      "en": "belief",
+      "examples": [
+        {
+          "es": "Es una *creencia* muy antigua.",
+          "en": "It's a very old belief."
+        },
+        {
+          "es": "Respeto todas las *creencias*.",
+          "en": "I respect all beliefs."
+        }
+      ],
+      "note": "From *creer* (to believe). *Creencias populares* = folk beliefs."
+    },
+    {
+      "id": "alma",
+      "es": "alma",
+      "gender": "f",
+      "plural": "almas",
+      "en": "soul",
+      "examples": [
+        {
+          "es": "Las *almas* vuelven una vez al año.",
+          "en": "The souls come back once a year."
+        },
+        {
+          "es": "Te lo agradezco con toda el *alma*.",
+          "en": "I thank you with all my heart."
+        }
+      ],
+      "note": "Feminine, but takes *el* in the singular because it starts with a stressed *a*: *el alma*, *las almas*, *el alma buena*."
+    },
+    {
+      "id": "difunto",
+      "es": "difunto",
+      "gender": "m",
+      "plural": "difuntos",
+      "en": "deceased person; (adj.) late",
+      "examples": [
+        {
+          "es": "Recordamos a los *difuntos* de la familia.",
+          "en": "We remember the family's dead."
+        },
+        {
+          "es": "Su *difunto* marido era músico.",
+          "en": "Her late husband was a musician."
+        }
+      ],
+      "note": "More respectful than *muerto*. *El Día de los Fieles Difuntos* is All Souls' Day, 2 November."
+    },
+    {
+      "id": "vela",
+      "es": "vela",
+      "gender": "f",
+      "plural": "velas",
+      "en": "candle; sail",
+      "examples": [
+        {
+          "es": "Encendemos una *vela* por cada difunto.",
+          "en": "We light a candle for every dead person."
+        },
+        {
+          "es": "El barco tiene dos *velas*.",
+          "en": "The boat has two sails."
+        }
+      ],
+      "note": "*Pasar la noche en vela* = to stay up all night. *Velar* = to keep watch over (the dead, a sick person)."
+    },
+    {
+      "id": "pan_muerto",
+      "es": "pan de muerto",
+      "gender": "m",
+      "plural": "panes de muerto",
+      "en": "pan de muerto (sweet bread for the Day of the Dead)",
+      "examples": [
+        {
+          "es": "El *pan de muerto* lleva azahar.",
+          "en": "Pan de muerto contains orange blossom."
+        },
+        {
+          "es": "Desayunamos chocolate con *pan de muerto*.",
+          "en": "We had hot chocolate with pan de muerto for breakfast."
+        }
+      ],
+      "note": "A round sweet bread decorated with dough 'bones'. It is sold only around late October and early November."
+    },
+    {
+      "id": "calavera",
+      "es": "calavera",
+      "gender": "f",
+      "plural": "calaveras",
+      "en": "skull",
+      "examples": [
+        {
+          "es": "Le regalé una *calaverita* de azúcar con su nombre.",
+          "en": "I gave her a little sugar skull with her name on it."
+        },
+        {
+          "es": "La *calavera* es un símbolo del Día de Muertos.",
+          "en": "The skull is a symbol of the Day of the Dead."
+        }
+      ],
+      "note": "*Calaveritas* are also short funny poems about living people 'dying', written for the holiday. *La Catrina* is the elegant female skeleton figure."
+    },
+    {
+      "id": "copal",
+      "es": "copal",
+      "gender": "m",
+      "plural": "copales",
+      "en": "copal (resin incense)",
+      "examples": [
+        {
+          "es": "El olor a *copal* llena la iglesia.",
+          "en": "The smell of copal fills the church."
+        },
+        {
+          "es": "Se quema *copal* para purificar el espacio.",
+          "en": "Copal is burnt to purify the space."
+        }
+      ],
+      "note": "A tree resin used as incense since pre-Hispanic times; the word comes from Nahuatl *copalli*."
+    },
+    {
+      "id": "fallecer",
+      "es": "fallecer",
+      "gender": "",
+      "en": "to pass away",
+      "examples": [
+        {
+          "es": "Su abuelo *falleció* en 2019.",
+          "en": "His grandfather passed away in 2019."
+        },
+        {
+          "es": "Lamentamos que haya *fallecido*.",
+          "en": "We are sorry that he has passed away."
+        }
+      ],
+      "note": "Formal and gentle — used in news and condolences; *morir* is neutral. *Fallecer* is never used for plants or machines. Irregular in *yo*: *fallezco*."
+    },
+    {
+      "id": "costumbre",
+      "es": "costumbre",
+      "gender": "f",
+      "plural": "costumbres",
+      "en": "custom, tradition; habit",
+      "examples": [
+        {
+          "es": "Es una *costumbre* de mi pueblo.",
+          "en": "It's a custom in my village."
+        },
+        {
+          "es": "Tengo la *costumbre* de leer antes de dormir.",
+          "en": "I'm in the habit of reading before bed."
+        }
+      ],
+      "note": "Feminine. *Como de costumbre* = as usual. Not *costume* — that is *el disfraz*."
+    },
+    {
+      "id": "antepasado",
+      "es": "antepasado",
+      "gender": "m",
+      "plural": "antepasados",
+      "en": "ancestor",
+      "examples": [
+        {
+          "es": "Honramos a nuestros *antepasados*.",
+          "en": "We honour our ancestors."
+        },
+        {
+          "es": "Mis *antepasados* eran zapotecas.",
+          "en": "My ancestors were Zapotec."
+        }
+      ],
+      "note": "Usually plural. *Los ancestros* means the same and is common in Latin America. Don't confuse with *el pasado* (the past)."
+    },
+    {
+      "id": "panteon",
+      "es": "panteón",
+      "gender": "m",
+      "plural": "panteones",
+      "en": "(Mexico) cemetery; pantheon, family tomb",
+      "examples": [
+        {
+          "es": "Fuimos al *panteón* a limpiar la tumba.",
+          "en": "We went to the cemetery to clean the grave."
+        },
+        {
+          "es": "El *panteón* estaba lleno de flores.",
+          "en": "The cemetery was full of flowers."
+        }
+      ],
+      "note": "In Mexico *panteón* is the everyday word for cemetery; in Spain it usually means a family vault, and the cemetery is *el cementerio*."
+    },
+    {
+      "id": "tumba",
+      "es": "tumba",
+      "gender": "f",
+      "plural": "tumbas",
+      "en": "grave, tomb",
+      "examples": [
+        {
+          "es": "Pusieron flores en la *tumba*.",
+          "en": "They put flowers on the grave."
+        },
+        {
+          "es": "Algunas *tumbas* son muy antiguas.",
+          "en": "Some graves are very old."
+        }
+      ],
+      "note": "*Ser una tumba* = to keep a secret: *Tranquila, soy una tumba.*"
+    },
+    {
+      "id": "comparsa",
+      "es": "comparsa",
+      "gender": "f",
+      "plural": "comparsas",
+      "en": "costumed street group, parade troupe",
+      "examples": [
+        {
+          "es": "La *comparsa* pasó por el centro con una banda.",
+          "en": "The troupe went through the centre with a band."
+        },
+        {
+          "es": "Mi primo baila en una *comparsa*.",
+          "en": "My cousin dances in a parade group."
+        }
+      ],
+      "note": "Typical of carnivals and of Day of the Dead in Oaxaca. In theatre, *de comparsa* means as an extra, a minor role."
+    },
+    {
+      "id": "disfrazarse",
+      "es": "disfrazarse (de)",
+      "gender": "",
+      "en": "to dress up (as), to put on a costume",
+      "examples": [
+        {
+          "es": "Me *disfracé de* esqueleto.",
+          "en": "I dressed up as a skeleton."
+        },
+        {
+          "es": "Los niños se *disfrazan* en carnaval.",
+          "en": "Children dress up at carnival."
+        }
+      ],
+      "note": "Takes *de*: *disfrazarse de diablo*. The costume is *el disfraz* (plural *disfraces*)."
+    }
+  ],
+  "text": "Emily es de Chicago y trabaja como profesora de inglés en Oaxaca, en el sur de México. Vive con la familia de doña Rosa, que la invitó a celebrar con ellos el Día de Muertos. «Aquí la muerte no se ve como algo triste», le explicó doña Rosa. «Es una fiesta para {{recordar|recordar}} a los que ya no están.»\n\nA finales de octubre, toda la familia empezó a preparar la {{ofrenda|ofrenda}}. En el salón se montó un {{altar|altar}} de tres niveles, y Emily ayudó a {{adornar|adornarlo}} con {{papel_picado|papel picado}} de colores y muchas flores de {{cempasuchil|cempasúchil}}, de un naranja intenso. Según la {{creencia|creencia}} popular, su olor y su color guían a las {{alma|almas}} de los {{difunto|difuntos}} en su camino de vuelta a casa. En el altar se pusieron fotos de los abuelos, {{vela|velas}}, agua, sal, {{pan_muerto|pan de muerto}} y {{calavera|calaveritas}} de azúcar. También se quemó {{copal|copal}}, una resina que {{=perfuma|scents}} toda la casa.\n\nDoña Rosa le contó que su madre, que {{fallecer|falleció}} hace seis años, cocinaba el mejor {{=mole negro|black mole (a rich chilli and chocolate sauce)}} del barrio. «Cada año le pongo un plato de mole. Cuando yo era niña, mi madre hacía lo mismo para sus padres.» Emily entendió que esta {{costumbre|costumbre}} pasa de generación en generación: los niños aprenden desde pequeños a {{=honrar|honour}} a sus {{antepasado|antepasados}}.\n\nUna de esas noches fueron al {{panteon|panteón}}. Allí se limpiaban las {{tumba|tumbas}}, se encendían velas y se escuchaba música. Algunas familias cenaban junto a sus muertos y contaban {{=anécdotas|stories}} entre risas. Más tarde pasó por la calle una {{comparsa|comparsa}}: un grupo de vecinos que se habían {{disfrazarse|disfrazado}} de esqueletos y diablos bailaba detrás de una banda.\n\nAl volver a casa, Emily pensó en su abuelo, que murió cuando ella tenía doce años. Al día siguiente puso su foto en el altar, junto a una taza de café. «Ahora él también es de la familia», le dijo doña Rosa, {{=emocionada|moved}}.",
+  "quiz": [
+    {
+      "q": "¿Qué hace Emily en Oaxaca?",
+      "options": [
+        "Es turista.",
+        "Trabaja como profesora de inglés.",
+        "Trabaja en un restaurante.",
+        "Visita a su abuelo.",
+        "Estudia historia."
+      ],
+      "answer": 1,
+      "explain": "«Emily es de Chicago y trabaja como profesora de inglés en Oaxaca.»"
+    },
+    {
+      "q": "Según doña Rosa, ¿cómo se ve la muerte en Oaxaca?",
+      "options": [
+        "como un tema prohibido",
+        "como algo solo para la iglesia",
+        "como algo triste",
+        "como algo que da miedo",
+        "como una fiesta para recordar a los que ya no están"
+      ],
+      "answer": 4,
+      "explain": "«Aquí la muerte no se ve como algo triste… Es una fiesta para recordar a los que ya no están.»"
+    },
+    {
+      "q": "¿Para qué sirven las flores de cempasúchil, según la creencia popular?",
+      "options": [
+        "para hacer pan de muerto",
+        "para alejar a los diablos",
+        "para curar enfermedades",
+        "para guiar a las almas de vuelta a casa",
+        "para venderlas en el mercado"
+      ],
+      "answer": 3,
+      "explain": "«Su olor y su color guían a las almas de los difuntos en su camino de vuelta a casa.»"
+    },
+    {
+      "q": "¿Qué NO se menciona en la ofrenda de la familia?",
+      "options": [
+        "una botella de tequila",
+        "calaveritas de azúcar",
+        "velas",
+        "fotos de los abuelos",
+        "pan de muerto"
+      ],
+      "answer": 0,
+      "explain": "The text lists photos, candles, water, salt, pan de muerto, sugar skulls and copal — no tequila."
+    },
+    {
+      "q": "¿Por qué doña Rosa pone un plato de mole en la ofrenda?",
+      "options": [
+        "porque su madre cocinaba el mejor mole del barrio",
+        "porque a Emily le encanta el mole",
+        "porque lo dice la iglesia",
+        "porque es barato",
+        "porque es la comida típica de noviembre"
+      ],
+      "answer": 0,
+      "explain": "Her late mother «cocinaba el mejor mole negro del barrio», and the offering includes the dead person's favourite food."
+    },
+    {
+      "q": "¿Qué hacía la gente en el panteón?",
+      "options": [
+        "Veía una película.",
+        "Solo rezaba en silencio.",
+        "Limpiaba las tumbas, encendía velas y escuchaba música.",
+        "Vendía flores.",
+        "Dormía en la calle."
+      ],
+      "answer": 2,
+      "explain": "«Se limpiaban las tumbas, se encendían velas y se escuchaba música.»"
+    },
+    {
+      "q": "¿Qué pone Emily en el altar al final?",
+      "options": [
+        "un plato de mole",
+        "una foto de su abuelo y una taza de café",
+        "una calavera con su nombre",
+        "una carta para su madre",
+        "una vela de Chicago"
+      ],
+      "answer": 1,
+      "explain": "«Puso su foto en el altar, junto a una taza de café.»"
+    },
+    {
+      "q": "Completa: «En Oaxaca *___* muchas velas el 1 y el 2 de noviembre.»",
+      "options": [
+        "se encienden",
+        "encendemos se",
+        "se encendió",
+        "encienden se",
+        "se enciende"
+      ],
+      "answer": 0,
+      "explain": "Passive *se* agrees with the plural noun *velas* → *se encienden*."
+    },
+    {
+      "q": "¿Qué palabra usa un mexicano para «cemetery» en el texto?",
+      "options": [
+        "la tumba",
+        "el altar",
+        "el panteón",
+        "la comparsa",
+        "la ofrenda"
+      ],
+      "answer": 2,
+      "explain": "In Mexico *el panteón* is the usual word for a cemetery; in Spain people say *el cementerio*."
+    },
+    {
+      "q": "«Mi madre cocinaba el mejor mole» describe…",
+      "options": [
+        "algo que pasa ahora",
+        "una acción que pasó una sola vez",
+        "un hábito en el pasado",
+        "un plan para el futuro",
+        "una orden"
+      ],
+      "answer": 2,
+      "explain": "The imperfect *cocinaba* describes something she regularly did in the past, not a single event."
+    }
+  ]
+}

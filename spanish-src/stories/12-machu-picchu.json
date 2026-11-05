@@ -1,0 +1,535 @@
+{
+  "n": 12,
+  "area": "Travel and culture",
+  "level": "A2",
+  "title_es": "Un viaje a Machu Picchu",
+  "title_en": "A trip to Machu Picchu",
+  "grammar": [
+    {
+      "name": "The preterite: finished actions in the past",
+      "explain": "The *pretérito indefinido* tells what happened, one step after another: *reservaron, volaron, subieron*. Regular endings: *-ar → -é, -aste, -ó, -amos, -asteis, -aron*; *-er/-ir → -í, -iste, -ió, -imos, -isteis, -ieron*. Many common verbs are irregular and have no written accent: *hacer → hizo*, *tener → tuvo*, *poder → pudieron*, *decir → dijo*. *Ir* and *ser* share the same forms: *fue* can mean *she went* or *it was*.",
+      "examples": [
+        {
+          "es": "Olena *fue* a Machu Picchu en julio.",
+          "en": "Olena went to Machu Picchu in July."
+        },
+        {
+          "es": "El viaje en tren *fue* precioso.",
+          "en": "The train journey was beautiful. (ser)"
+        },
+        {
+          "es": "El primer día *tuvo* dolor de cabeza.",
+          "en": "On the first day she had a headache."
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite",
+          "url": "../intermediate/preterite.html"
+        }
+      ]
+    },
+    {
+      "name": "Tener que and ir a + infinitive",
+      "explain": "Two very useful verb + infinitive structures. *Tener que* + infinitive means *to have to*: *Tienes que descansar.* In the past: *Tuvieron que madrugar.* *Ir a* + infinitive is the everyday way to talk about plans and the near future: *Voy a volver* (I'm going to come back). Only the first verb changes; the infinitive stays the same.",
+      "examples": [
+        {
+          "es": "*Tienes que* tomar mate de coca.",
+          "en": "You have to drink coca tea."
+        },
+        {
+          "es": "*Tuvimos que* comprar las entradas antes.",
+          "en": "We had to buy the tickets in advance."
+        },
+        {
+          "es": "*Voy a* volver el año que viene.",
+          "en": "I'm going to come back next year."
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbal periphrasis",
+          "url": "../beginner/verbal-periphrasis.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "viaje",
+      "es": "viaje",
+      "gender": "m",
+      "plural": "viajes",
+      "en": "trip, journey",
+      "examples": [
+        {
+          "es": "El *viaje* a Cusco dura una hora en avión.",
+          "en": "The trip to Cusco takes an hour by plane."
+        },
+        {
+          "es": "¡Buen *viaje*!",
+          "en": "Have a good trip!"
+        }
+      ],
+      "note": "Masculine although it ends in *-e*. The verb is *viajar*: *Viajo mucho.*"
+    },
+    {
+      "id": "reservar",
+      "es": "reservar",
+      "gender": "",
+      "en": "to book, to reserve",
+      "examples": [
+        {
+          "es": "*Reservé* una habitación para dos noches.",
+          "en": "I booked a room for two nights."
+        },
+        {
+          "es": "¿Hay que *reservar* mesa?",
+          "en": "Do we need to book a table?"
+        }
+      ],
+      "note": "The noun is *la reserva* (Spain) or *la reservación* (Mexico and parts of Latin America)."
+    },
+    {
+      "id": "entrada",
+      "es": "entrada",
+      "gender": "f",
+      "plural": "entradas",
+      "en": "ticket (for a site or show); entrance",
+      "examples": [
+        {
+          "es": "Las *entradas* para Machu Picchu se compran por internet.",
+          "en": "Tickets for Machu Picchu are bought online."
+        },
+        {
+          "es": "Nos vemos en la *entrada* del parque.",
+          "en": "See you at the park entrance."
+        }
+      ],
+      "note": "For trains, buses and planes use *el billete* (Spain) or *el boleto* (Latin America), not *entrada*."
+    },
+    {
+      "id": "tren",
+      "es": "tren",
+      "gender": "m",
+      "plural": "trenes",
+      "en": "train",
+      "examples": [
+        {
+          "es": "El *tren* sale a las seis.",
+          "en": "The train leaves at six."
+        },
+        {
+          "es": "Me gusta viajar en *tren*.",
+          "en": "I like travelling by train."
+        }
+      ],
+      "note": "*En tren* (by train), like *en avión, en autobús* — but *a pie* (on foot)."
+    },
+    {
+      "id": "altura",
+      "es": "altura",
+      "gender": "f",
+      "plural": "alturas",
+      "en": "altitude, height",
+      "examples": [
+        {
+          "es": "Cusco está a 3.400 metros de *altura*.",
+          "en": "Cusco is at an altitude of 3,400 metres."
+        },
+        {
+          "es": "¿Qué *altura* tiene la montaña?",
+          "en": "How high is the mountain?"
+        }
+      ],
+      "note": "*El mal de altura* is altitude sickness. *A estas alturas* is an idiom: at this point, by now."
+    },
+    {
+      "id": "cansado",
+      "es": "cansado",
+      "gender": "",
+      "en": "tired",
+      "examples": [
+        {
+          "es": "Estoy muy *cansada* después del viaje.",
+          "en": "I'm very tired after the trip."
+        },
+        {
+          "es": "Los niños están *cansados*.",
+          "en": "The children are tired."
+        }
+      ],
+      "note": "Use *estar cansado* (feel tired). *Ser cansado* means *to be tiring*: *El viaje es cansado.*"
+    },
+    {
+      "id": "soroche",
+      "es": "soroche",
+      "gender": "m",
+      "plural": "soroches",
+      "en": "altitude sickness (Andes)",
+      "examples": [
+        {
+          "es": "Mucha gente tiene *soroche* en Cusco.",
+          "en": "Many people get altitude sickness in Cusco."
+        },
+        {
+          "es": "El mate de coca ayuda contra el *soroche*.",
+          "en": "Coca tea helps against altitude sickness."
+        }
+      ],
+      "note": "A word from Quechua used in Peru, Bolivia and Ecuador. Elsewhere people say *el mal de altura* or *el mal de montaña*."
+    },
+    {
+      "id": "madrugar",
+      "es": "madrugar",
+      "gender": "",
+      "en": "to get up very early",
+      "examples": [
+        {
+          "es": "Mañana tenemos que *madrugar*.",
+          "en": "Tomorrow we have to get up really early."
+        },
+        {
+          "es": "No me gusta nada *madrugar*.",
+          "en": "I really don't like getting up early."
+        }
+      ],
+      "note": "No one-word English equivalent. Proverb: *A quien madruga, Dios le ayuda* — the early bird catches the worm."
+    },
+    {
+      "id": "mochila",
+      "es": "mochila",
+      "gender": "f",
+      "plural": "mochilas",
+      "en": "backpack, rucksack",
+      "examples": [
+        {
+          "es": "Llevo agua en la *mochila*.",
+          "en": "I'm carrying water in my backpack."
+        },
+        {
+          "es": "Viajamos solo con una *mochila*.",
+          "en": "We're travelling with just a backpack."
+        }
+      ],
+      "note": "A backpacker is *un/una mochilero/a*. A suitcase is *la maleta* (*la valija* in Argentina)."
+    },
+    {
+      "id": "alojamiento",
+      "es": "alojamiento",
+      "gender": "m",
+      "plural": "alojamientos",
+      "en": "accommodation, place to stay",
+      "examples": [
+        {
+          "es": "Buscamos un *alojamiento* barato.",
+          "en": "We're looking for cheap accommodation."
+        },
+        {
+          "es": "El precio incluye vuelo y *alojamiento*.",
+          "en": "The price includes flight and accommodation."
+        }
+      ],
+      "note": "Usually singular, like English *accommodation*. The verb *alojarse* means to stay: *Nos alojamos en un hostal.*"
+    },
+    {
+      "id": "subir",
+      "es": "subir",
+      "gender": "",
+      "en": "to go up; to get on (a bus, train)",
+      "examples": [
+        {
+          "es": "*Subimos* a la montaña a pie.",
+          "en": "We went up the mountain on foot."
+        },
+        {
+          "es": "*Sube* al autobús, que ya sale.",
+          "en": "Get on the bus, it's leaving."
+        }
+      ],
+      "note": "The opposite is *bajar* (to go down, to get off). *Subir fotos* means to upload photos."
+    },
+    {
+      "id": "nube",
+      "es": "nube",
+      "gender": "f",
+      "plural": "nubes",
+      "en": "cloud",
+      "examples": [
+        {
+          "es": "Hoy no hay ni una *nube*.",
+          "en": "There isn't a single cloud today."
+        },
+        {
+          "es": "Las montañas estaban entre *nubes*.",
+          "en": "The mountains were in the clouds."
+        }
+      ],
+      "note": "Feminine although it ends in *-e*. *Estar en las nubes* = to be daydreaming."
+    },
+    {
+      "id": "piedra",
+      "es": "piedra",
+      "gender": "f",
+      "plural": "piedras",
+      "en": "stone, rock",
+      "examples": [
+        {
+          "es": "Las casas son de *piedra*.",
+          "en": "The houses are made of stone."
+        },
+        {
+          "es": "Cuidado con las *piedras* del camino.",
+          "en": "Watch out for the stones on the path."
+        }
+      ],
+      "note": "*De piedra* = made of stone. *Quedarse de piedra* = to be stunned."
+    },
+    {
+      "id": "guia",
+      "es": "guía",
+      "gender": "m",
+      "plural": "guías",
+      "en": "guide (person); guidebook",
+      "examples": [
+        {
+          "es": "Nuestro *guía* habla quechua y español.",
+          "en": "Our guide speaks Quechua and Spanish."
+        },
+        {
+          "es": "Compré una *guía* de Perú.",
+          "en": "I bought a guidebook on Peru."
+        }
+      ],
+      "note": "For a person: *el guía / la guía*. The book is always feminine: *la guía*."
+    },
+    {
+      "id": "ruinas",
+      "es": "ruinas",
+      "gender": "fpl",
+      "plural": "ruinas",
+      "en": "ruins",
+      "examples": [
+        {
+          "es": "Visitamos las *ruinas* incas.",
+          "en": "We visited the Inca ruins."
+        },
+        {
+          "es": "Las *ruinas* están en lo alto de la montaña.",
+          "en": "The ruins are at the top of the mountain."
+        }
+      ],
+      "note": "Singular *la ruina* also means financial ruin: *¡Este viaje es la ruina!* — This trip is ruining me!"
+    },
+    {
+      "id": "sacar_foto",
+      "es": "sacar una foto",
+      "gender": "",
+      "en": "to take a photo",
+      "examples": [
+        {
+          "es": "¿Me *sacas una foto*, por favor?",
+          "en": "Could you take a photo of me, please?"
+        },
+        {
+          "es": "*Sacamos* muchas *fotos* del paisaje.",
+          "en": "We took lots of photos of the landscape."
+        }
+      ],
+      "note": "*Sacar fotos* is common in Latin America; in Spain people also say *hacer fotos*. *La foto* is feminine (short for *la fotografía*)."
+    },
+    {
+      "id": "paisaje",
+      "es": "paisaje",
+      "gender": "m",
+      "plural": "paisajes",
+      "en": "landscape, scenery",
+      "examples": [
+        {
+          "es": "El *paisaje* de los Andes es espectacular.",
+          "en": "The Andean landscape is spectacular."
+        },
+        {
+          "es": "Me encantan los *paisajes* de montaña.",
+          "en": "I love mountain scenery."
+        }
+      ],
+      "note": "Masculine, like most nouns in *-aje*: *el viaje, el equipaje, el paisaje*."
+    },
+    {
+      "id": "llover",
+      "es": "llover",
+      "gender": "",
+      "en": "to rain",
+      "examples": [
+        {
+          "es": "En la selva *llueve* mucho.",
+          "en": "It rains a lot in the jungle."
+        },
+        {
+          "es": "Empezó a *llover* al mediodía.",
+          "en": "It started to rain at midday."
+        }
+      ],
+      "note": "Stem-changing (*o → ue*) and only used in the third person: *llueve, llovió, va a llover*."
+    },
+    {
+      "id": "recuerdo",
+      "es": "recuerdo",
+      "gender": "m",
+      "plural": "recuerdos",
+      "en": "souvenir; memory",
+      "examples": [
+        {
+          "es": "Compré un *recuerdo* para mi madre.",
+          "en": "I bought a souvenir for my mother."
+        },
+        {
+          "es": "Tengo muy buenos *recuerdos* de ese viaje.",
+          "en": "I have very good memories of that trip."
+        }
+      ],
+      "note": "*Dale recuerdos a tu familia* = Give my regards to your family. *Souvenir* also exists in Spanish but *recuerdo* is more common."
+    },
+    {
+      "id": "despedirse",
+      "es": "despedirse (de)",
+      "gender": "",
+      "en": "to say goodbye (to)",
+      "examples": [
+        {
+          "es": "Nos *despedimos* en la estación.",
+          "en": "We said goodbye at the station."
+        },
+        {
+          "es": "Tengo que *despedirme de* mis amigos.",
+          "en": "I have to say goodbye to my friends."
+        }
+      ],
+      "note": "Reflexive and stem-changing (*e → i*): *me despido, se despidió*. Takes *de*: *despedirse de alguien*."
+    }
+  ],
+  "text": "Olena es de Kiev y vive en Lima desde hace un año. En julio hizo por fin el {{viaje|viaje}} de sus sueños: fue a Machu Picchu con su amiga peruana Rocío. Las dos {{reservar|reservaron}} las {{entrada|entradas}} y el {{tren|tren}} dos meses antes, porque en temporada alta hay muchos turistas y las entradas {{=se agotan|sell out}} rápido.\n\nPrimero volaron a Cusco, una ciudad antigua que está a 3.400 metros de {{altura|altura}}. El primer día Olena tuvo dolor de cabeza y se sintió muy {{cansado|cansada}}. «Es el {{soroche|soroche}}», le explicó Rocío. «Tienes que descansar y tomar {{=mate de coca|coca leaf tea}}.» Al día siguiente, Olena ya estaba mejor y pudieron visitar la ciudad.\n\nEl tercer día tuvieron que {{madrugar|madrugar}} mucho: el tren a Aguas Calientes salía a las seis de la mañana. Olena llevaba solo una {{mochila|mochila}} pequeña, con agua, un impermeable y su pasaporte. El viaje en tren fue precioso: ríos, montañas verdes y pueblos pequeños. Por la noche durmieron en un {{alojamiento|alojamiento}} sencillo cerca de la estación.\n\nA las cinco y media de la mañana {{subir|subieron}} en autobús hasta la entrada del parque. Al principio no vieron nada: todo estaba lleno de {{nube|nubes}}. Pero poco a poco el cielo {{=se abrió|cleared}} y apareció la ciudad inca, con sus casas y templos de {{piedra|piedra}}. Su {{guia|guía}}, un señor de Cusco que habla quechua, les contó que los incas construyeron la ciudad en el siglo XV sin usar cemento. «Las piedras {{=encajan|fit together}} perfectamente», dijo.\n\nOlena {{sacar_foto|sacó}} más de doscientas fotos de las {{ruinas|ruinas}} y del {{paisaje|paisaje}}. Al mediodía empezó a {{llover|llover}}, pero no {{=le importó|she didn't mind}}. Antes de volver, compraron un {{recuerdo|recuerdo}} en el mercado: un gorro de lana de alpaca para la madre de Olena. En la estación, Olena {{despedirse|se despidió}} de las montañas en silencio. «Voy a volver», pensó. «Seguro.»",
+  "quiz": [
+    {
+      "q": "¿Dónde vive Olena?",
+      "options": [
+        "en Aguas Calientes",
+        "en Machu Picchu",
+        "en Kiev",
+        "en Cusco",
+        "en Lima"
+      ],
+      "answer": 4,
+      "explain": "«Olena es de Kiev y vive en Lima desde hace un año.» Kiev is where she is from."
+    },
+    {
+      "q": "¿Por qué reservaron las entradas dos meses antes?",
+      "options": [
+        "porque eran más baratas",
+        "porque en temporada alta se agotan rápido",
+        "porque Rocío trabaja en una agencia",
+        "porque el parque cierra en julio",
+        "porque querían ir en avión"
+      ],
+      "answer": 1,
+      "explain": "«En temporada alta hay muchos turistas y las entradas se agotan rápido.»"
+    },
+    {
+      "q": "¿Qué le pasó a Olena el primer día en Cusco?",
+      "options": [
+        "Perdió su pasaporte.",
+        "Se perdió en la ciudad.",
+        "Tuvo dolor de cabeza por la altura.",
+        "Comió algo malo.",
+        "Perdió el tren."
+      ],
+      "answer": 2,
+      "explain": "She had a headache and felt tired: «Es el soroche» — altitude sickness, because Cusco is at 3,400 m."
+    },
+    {
+      "q": "¿Qué le recomendó Rocío?",
+      "options": [
+        "subir a pie",
+        "tomar un café fuerte",
+        "volver a Lima",
+        "descansar y tomar mate de coca",
+        "ir al médico"
+      ],
+      "answer": 3,
+      "explain": "«Tienes que descansar y tomar mate de coca.»"
+    },
+    {
+      "q": "¿Cómo llegaron a la entrada del parque?",
+      "options": [
+        "en taxi",
+        "a caballo",
+        "en tren",
+        "a pie",
+        "en autobús"
+      ],
+      "answer": 4,
+      "explain": "«A las cinco y media de la mañana subieron en autobús hasta la entrada del parque.»"
+    },
+    {
+      "q": "¿Por qué al principio no vieron la ciudad inca?",
+      "options": [
+        "Era de noche.",
+        "Había muchos turistas.",
+        "Todo estaba lleno de nubes.",
+        "Estaban en el lugar equivocado.",
+        "Llovía mucho."
+      ],
+      "answer": 2,
+      "explain": "«Al principio no vieron nada: todo estaba lleno de nubes.» It only started to rain at midday."
+    },
+    {
+      "q": "¿Qué compraron en el mercado?",
+      "options": [
+        "una guía de Perú",
+        "fotos antiguas",
+        "piedras incas",
+        "una mochila",
+        "un gorro de alpaca"
+      ],
+      "answer": 4,
+      "explain": "«Compraron un recuerdo en el mercado: un gorro de lana de alpaca para la madre de Olena.»"
+    },
+    {
+      "q": "Completa: «Mañana el tren sale a las cinco, así que tenemos que *___*.»",
+      "options": [
+        "subir fotos",
+        "descansar tarde",
+        "madrugar",
+        "despedirnos",
+        "llover"
+      ],
+      "answer": 2,
+      "explain": "*Madrugar* means to get up very early — exactly what you need for a 5 a.m. train."
+    },
+    {
+      "q": "¿Cuál es el pretérito correcto? «El año pasado Olena *___* a Perú.»",
+      "options": [
+        "fue",
+        "fui",
+        "ha ido",
+        "va",
+        "iba a"
+      ],
+      "answer": 0,
+      "explain": "A finished action with a definite past time (*el año pasado*) takes the preterite. *Ir* in the third person singular is *fue*; *fui* is *I went*."
+    },
+    {
+      "q": "«Voy a volver» significa…",
+      "options": [
+        "I'm going to come back.",
+        "I have to come back.",
+        "I want to come back.",
+        "I'm coming back now.",
+        "I came back."
+      ],
+      "answer": 0,
+      "explain": "*Ir a* + infinitive expresses a plan or the near future: *voy a volver* = I'm going to come back. *I have to* would be *tengo que*."
+    }
+  ]
+}

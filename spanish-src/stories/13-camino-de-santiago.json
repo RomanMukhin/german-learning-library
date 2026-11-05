@@ -1,0 +1,540 @@
+{
+  "n": 13,
+  "area": "Travel and culture",
+  "level": "A2–B1",
+  "title_es": "Cien kilómetros hasta Santiago",
+  "title_en": "A hundred kilometres to Santiago",
+  "grammar": [
+    {
+      "name": "Preterite vs. imperfect",
+      "explain": "Spanish has two simple past tenses. The *imperfecto* describes the background: what things were like, what was going on, what someone used to do (*Tenía una semana. Solía salir a las siete. Había niebla.*). The *indefinido* moves the story forward with completed events (*decidió, llegó, se emocionó*). A classic pattern: the imperfect sets the scene and the preterite interrupts it.",
+      "examples": [
+        {
+          "es": "Cada mañana *caminaba* unos veinte kilómetros.",
+          "en": "Every morning she walked about twenty kilometres. (habit → imperfect)"
+        },
+        {
+          "es": "El tercer día *llegó* agotada a Melide.",
+          "en": "On the third day she arrived exhausted in Melide. (event → preterite)"
+        },
+        {
+          "es": "*Estaba* cansada cuando *vio* la catedral.",
+          "en": "She was tired when she saw the cathedral. (background + event)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        },
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        }
+      ]
+    },
+    {
+      "name": "Por vs. para",
+      "explain": "Both can translate *for*, but they look in different directions. *Para* points to a goal or purpose: *para recibir la Compostela* (in order to get), *una concha para su mochila* (intended for). *Por* covers the route, the duration and the cause: *por el camino* (along the way), *por horas* (for hours), *por eso* (because of that).",
+      "examples": [
+        {
+          "es": "Hay que caminar cien kilómetros *para* recibir la Compostela.",
+          "en": "You have to walk a hundred kilometres to get the Compostela. (purpose)"
+        },
+        {
+          "es": "*Por* el camino todo el mundo dice «¡Buen Camino!».",
+          "en": "Along the way everybody says 'Buen Camino!'. (route)"
+        },
+        {
+          "es": "Hablaban *por* horas.",
+          "en": "They talked for hours. (duration)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Por vs. para",
+          "url": "../intermediate/por-vs-para.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "recorrer",
+      "es": "recorrer",
+      "gender": "",
+      "en": "to cover (a distance), to travel through",
+      "examples": [
+        {
+          "es": "*Recorrimos* 115 kilómetros en seis días.",
+          "en": "We covered 115 kilometres in six days."
+        },
+        {
+          "es": "Quiero *recorrer* Galicia en bici.",
+          "en": "I want to travel around Galicia by bike."
+        }
+      ],
+      "note": "Transitive — no preposition needed: *recorrer el país*, not *recorrer por el país*. The noun is *el recorrido* (route)."
+    },
+    {
+      "id": "a_pie",
+      "es": "a pie",
+      "gender": "",
+      "en": "on foot",
+      "examples": [
+        {
+          "es": "Fuimos al centro *a pie*.",
+          "en": "We went to the centre on foot."
+        },
+        {
+          "es": "Se tarda una hora *a pie*.",
+          "en": "It takes an hour on foot."
+        }
+      ],
+      "note": "Not *en pie* — that means *standing* or *still valid*: *La oferta sigue en pie*. Colloquial alternative: *andando* (Spain) or *caminando*."
+    },
+    {
+      "id": "concha",
+      "es": "concha",
+      "gender": "f",
+      "plural": "conchas",
+      "en": "shell; scallop shell (symbol of the Camino)",
+      "examples": [
+        {
+          "es": "Cada peregrino lleva una *concha* en la mochila.",
+          "en": "Every pilgrim carries a shell on their backpack."
+        },
+        {
+          "es": "Recogimos *conchas* en la playa.",
+          "en": "We collected shells on the beach."
+        }
+      ],
+      "note": "Careful: in Argentina, Uruguay and Chile *concha* is a vulgar word. There say *caracol* or *caparazón*, or for the Camino symbol *la vieira* (scallop)."
+    },
+    {
+      "id": "peregrino",
+      "es": "peregrino",
+      "gender": "m",
+      "plural": "peregrinos",
+      "en": "pilgrim",
+      "examples": [
+        {
+          "es": "Los *peregrinos* duermen en albergues.",
+          "en": "Pilgrims sleep in hostels."
+        },
+        {
+          "es": "Es la tercera vez que hace el Camino como *peregrina*.",
+          "en": "It's the third time she's done the Camino as a pilgrim."
+        }
+      ],
+      "note": "Feminine: *la peregrina*. The journey is *la peregrinación*. *Peregrino* as an adjective can also mean *absurd*: *una idea peregrina*."
+    },
+    {
+      "id": "credencial",
+      "es": "credencial",
+      "gender": "f",
+      "plural": "credenciales",
+      "en": "pilgrim's passport; credential, ID card",
+      "examples": [
+        {
+          "es": "Necesitas la *credencial* para dormir en los albergues públicos.",
+          "en": "You need the pilgrim's passport to sleep in public hostels."
+        },
+        {
+          "es": "Enseñe su *credencial* en la entrada.",
+          "en": "Show your credential at the entrance."
+        }
+      ],
+      "note": "Feminine although it ends in *-l*. On the Camino it is the booklet you collect stamps in."
+    },
+    {
+      "id": "sello",
+      "es": "sello",
+      "gender": "m",
+      "plural": "sellos",
+      "en": "stamp (rubber stamp; also postage stamp)",
+      "examples": [
+        {
+          "es": "En el bar me pusieron un *sello* en la credencial.",
+          "en": "At the bar they put a stamp in my pilgrim's passport."
+        },
+        {
+          "es": "¿Dónde se compran *sellos* para cartas?",
+          "en": "Where do you buy stamps for letters?"
+        }
+      ],
+      "note": "In much of Latin America a postage stamp is *la estampilla* (and *el timbre* in Mexico); *sello* is used for rubber stamps everywhere."
+    },
+    {
+      "id": "albergue",
+      "es": "albergue",
+      "gender": "m",
+      "plural": "albergues",
+      "en": "hostel, pilgrims' hostel",
+      "examples": [
+        {
+          "es": "El *albergue* abre a la una.",
+          "en": "The hostel opens at one."
+        },
+        {
+          "es": "Hay *albergues* públicos y privados.",
+          "en": "There are public and private hostels."
+        }
+      ],
+      "note": "*Albergue juvenil* = youth hostel. A *hostal* in Spain is a small, simple hotel, not a hostel."
+    },
+    {
+      "id": "etapa",
+      "es": "etapa",
+      "gender": "f",
+      "plural": "etapas",
+      "en": "stage (of a route, a race, life)",
+      "examples": [
+        {
+          "es": "La *etapa* de hoy tiene 25 kilómetros.",
+          "en": "Today's stage is 25 kilometres."
+        },
+        {
+          "es": "Fue una *etapa* difícil de mi vida.",
+          "en": "It was a difficult stage of my life."
+        }
+      ],
+      "note": "*Por etapas* = in stages, step by step."
+    },
+    {
+      "id": "soler",
+      "es": "soler + infinitivo",
+      "gender": "",
+      "en": "to usually do, to tend to; (imperfect) used to",
+      "examples": [
+        {
+          "es": "*Suelo* desayunar en casa.",
+          "en": "I usually have breakfast at home."
+        },
+        {
+          "es": "De niña *solía* pasar los veranos en Galicia.",
+          "en": "As a child I used to spend my summers in Galicia."
+        }
+      ],
+      "note": "Always followed by an infinitive. Stem-changing: *suelo, sueles, suele*. In the past it is used almost only in the imperfect: *solía*."
+    },
+    {
+      "id": "niebla",
+      "es": "niebla",
+      "gender": "f",
+      "plural": "nieblas",
+      "en": "fog, mist",
+      "examples": [
+        {
+          "es": "Por la mañana hay mucha *niebla* en Galicia.",
+          "en": "In the morning there's a lot of fog in Galicia."
+        },
+        {
+          "es": "Con esta *niebla* no se ve nada.",
+          "en": "You can't see a thing in this fog."
+        }
+      ],
+      "note": "In Galicia the fine drizzle that comes with it is *el orvallo* (Spanish: *la llovizna*)."
+    },
+    {
+      "id": "aldea",
+      "es": "aldea",
+      "gender": "f",
+      "plural": "aldeas",
+      "en": "hamlet, small village",
+      "examples": [
+        {
+          "es": "En la *aldea* viven solo veinte personas.",
+          "en": "Only twenty people live in the hamlet."
+        },
+        {
+          "es": "Pasamos por varias *aldeas* de piedra.",
+          "en": "We passed through several stone hamlets."
+        }
+      ],
+      "note": "Smaller than *un pueblo*. *La aldea global* = the global village."
+    },
+    {
+      "id": "flecha",
+      "es": "flecha",
+      "gender": "f",
+      "plural": "flechas",
+      "en": "arrow",
+      "examples": [
+        {
+          "es": "Sigue las *flechas* amarillas.",
+          "en": "Follow the yellow arrows."
+        },
+        {
+          "es": "La *flecha* indica la salida.",
+          "en": "The arrow shows the way out."
+        }
+      ],
+      "note": "The yellow arrows that mark the Camino were painted from the 1980s on; the idea is credited to the priest Elías Valiña."
+    },
+    {
+      "id": "agotado",
+      "es": "agotado",
+      "gender": "",
+      "en": "exhausted; sold out",
+      "examples": [
+        {
+          "es": "Llegué *agotada* al albergue.",
+          "en": "I arrived at the hostel exhausted."
+        },
+        {
+          "es": "Las entradas están *agotadas*.",
+          "en": "The tickets are sold out."
+        }
+      ],
+      "note": "Stronger than *cansado*. Use *estar*: *Estoy agotado.* The verb *agotar* means to exhaust or use up."
+    },
+    {
+      "id": "ampolla",
+      "es": "ampolla",
+      "gender": "f",
+      "plural": "ampollas",
+      "en": "blister",
+      "examples": [
+        {
+          "es": "Tengo una *ampolla* en el talón.",
+          "en": "I've got a blister on my heel."
+        },
+        {
+          "es": "Con zapatos nuevos salen *ampollas*.",
+          "en": "New shoes give you blisters."
+        }
+      ],
+      "note": "Also *ampolla* = ampoule/vial (medicine). *Levantar ampollas* (figurative) = to cause outrage."
+    },
+    {
+      "id": "pulpo",
+      "es": "pulpo",
+      "gender": "m",
+      "plural": "pulpos",
+      "en": "octopus",
+      "examples": [
+        {
+          "es": "El *pulpo* a la gallega se sirve con pimentón y aceite.",
+          "en": "Galician-style octopus is served with paprika and oil."
+        },
+        {
+          "es": "¿Has probado el *pulpo*?",
+          "en": "Have you tried octopus?"
+        }
+      ],
+      "note": "In Galicia the dish is called *pulpo á feira*; *estar como un pulpo en un garaje* = to feel completely out of place."
+    },
+    {
+      "id": "litera",
+      "es": "litera",
+      "gender": "f",
+      "plural": "literas",
+      "en": "bunk bed",
+      "examples": [
+        {
+          "es": "Dormí en la *litera* de arriba.",
+          "en": "I slept in the top bunk."
+        },
+        {
+          "es": "La habitación tiene diez *literas*.",
+          "en": "The room has ten bunk beds."
+        }
+      ],
+      "note": "Also a berth on a night train. Not related to English *litter*."
+    },
+    {
+      "id": "cruzarse",
+      "es": "cruzarse con",
+      "gender": "",
+      "en": "to run into, to pass (someone)",
+      "examples": [
+        {
+          "es": "Me *crucé con* tu hermano en la calle.",
+          "en": "I ran into your brother in the street."
+        },
+        {
+          "es": "Nos *cruzamos* varias veces en el Camino.",
+          "en": "We passed each other several times on the Camino."
+        }
+      ],
+      "note": "Without *se*, *cruzar* means to cross: *cruzar la calle*. Spelling: *z → c* before *e*: *me crucé*."
+    },
+    {
+      "id": "desconocido",
+      "es": "desconocido",
+      "gender": "m",
+      "plural": "desconocidos",
+      "en": "stranger; (adj.) unknown",
+      "examples": [
+        {
+          "es": "No hables con *desconocidos*.",
+          "en": "Don't talk to strangers."
+        },
+        {
+          "es": "Es un pintor *desconocido*.",
+          "en": "He's an unknown painter."
+        }
+      ],
+      "note": "Feminine: *la desconocida*. *Extranjero* is a foreigner, not a stranger — a classic trap."
+    },
+    {
+      "id": "catedral",
+      "es": "catedral",
+      "gender": "f",
+      "plural": "catedrales",
+      "en": "cathedral",
+      "examples": [
+        {
+          "es": "La *catedral* de Santiago es románica.",
+          "en": "Santiago Cathedral is Romanesque."
+        },
+        {
+          "es": "Visitamos la *catedral* por la tarde.",
+          "en": "We visited the cathedral in the afternoon."
+        }
+      ],
+      "note": "Feminine. Colloquially *una catedral* can mean something huge or outstanding."
+    },
+    {
+      "id": "emocionarse",
+      "es": "emocionarse",
+      "gender": "",
+      "en": "to be moved, to get emotional",
+      "examples": [
+        {
+          "es": "Mi madre *se emociona* en las bodas.",
+          "en": "My mother gets emotional at weddings."
+        },
+        {
+          "es": "Al ver a su familia, *se emocionó*.",
+          "en": "When she saw her family, she was moved."
+        }
+      ],
+      "note": "Not *to get excited* in the sense of looking forward to something — for that say *hacerle ilusión a alguien* (Spain) or *estar emocionado/a por*."
+    }
+  ],
+  "text": "Hace dos veranos, Giulia, una profesora de Bolonia, decidió hacer el Camino de Santiago. Tenía solo una semana de vacaciones, así que empezó en Sarria, en Galicia. Desde allí hay unos 115 kilómetros hasta Santiago de Compostela, y para recibir la Compostela, el certificado oficial, hay que {{recorrer|recorrer}} al menos los últimos cien kilómetros {{a_pie|a pie}}.\n\nEn Sarria compró una {{concha|concha}} de vieira para su mochila, como muchos {{peregrino|peregrinos}}, y le dieron su {{credencial|credencial}}, una especie de pasaporte. Cada día tenía que conseguir dos {{sello|sellos}}: en bares, iglesias o {{albergue|albergues}}.\n\nLas {{etapa|etapas}} eran de unos veinte kilómetros. Giulia {{soler|solía}} salir a las siete, cuando todavía había {{niebla|niebla}} sobre los campos. Caminaba entre vacas, bosques de eucaliptos y pequeñas {{aldea|aldeas}} de piedra, y seguía las {{flecha|flechas}} amarillas pintadas en las paredes. Por el camino, todo el mundo decía «¡Buen Camino!».\n\nEl tercer día, Giulia llegó {{agotado|agotada}} a Melide y con una {{ampolla|ampolla}} enorme en el pie. En el albergue, una señora de Corea le {{=curó|treated}} el pie y un chico de Sevilla la invitó a probar el {{pulpo|pulpo}} a la gallega, la especialidad del pueblo. Esa noche durmió en una {{litera|litera}}, en una habitación con otras veinte personas, pero durmió {{=como un tronco|like a log}}.\n\nLo más bonito del Camino fue la gente. Giulia {{cruzarse|se cruzó}} muchas veces con los mismos {{desconocido|desconocidos}}, que al final ya no eran desconocidos, sino amigos. Caminaban juntos, hablaban por horas y {{=compartían|shared}} la comida.\n\nCuando por fin llegó a la plaza del Obradoiro y vio la {{catedral|catedral}}, Giulia {{emocionarse|se emocionó}} y {{=lloró|cried}} un poco. Estaba cansada, pero feliz. «Volveré», escribió en su diario, «pero la próxima vez, {{=desde Francia|from France (where the Camino Francés begins)}}.»",
+  "quiz": [
+    {
+      "q": "¿Dónde empezó Giulia el Camino?",
+      "options": [
+        "en Melide",
+        "en Sarria",
+        "en Sevilla",
+        "en Bolonia",
+        "en Francia"
+      ],
+      "answer": 1,
+      "explain": "«Tenía solo una semana de vacaciones, así que empezó en Sarria, en Galicia.»"
+    },
+    {
+      "q": "¿Qué hay que hacer para recibir la Compostela?",
+      "options": [
+        "comprar una concha",
+        "caminar todo el Camino Francés",
+        "recorrer a pie al menos los últimos cien kilómetros",
+        "dormir en diez albergues",
+        "visitar la catedral dos veces"
+      ],
+      "answer": 2,
+      "explain": "«Para recibir la Compostela… hay que recorrer al menos los últimos cien kilómetros a pie.»"
+    },
+    {
+      "q": "¿Para qué sirve la credencial?",
+      "options": [
+        "para viajar a Francia",
+        "para coger el tren",
+        "para entrar en la catedral",
+        "para coleccionar los sellos del Camino",
+        "para comprar comida"
+      ],
+      "answer": 3,
+      "explain": "It is «una especie de pasaporte» where pilgrims collect two stamps a day."
+    },
+    {
+      "q": "¿Cómo eran las mañanas en el Camino?",
+      "options": [
+        "muy ruidosas",
+        "muy calurosas",
+        "con niebla sobre los campos",
+        "con mucho tráfico",
+        "siempre con lluvia fuerte"
+      ],
+      "answer": 2,
+      "explain": "«Solía salir a las siete, cuando todavía había niebla sobre los campos.»"
+    },
+    {
+      "q": "¿Cómo sabía Giulia por dónde ir?",
+      "options": [
+        "Seguía las flechas amarillas.",
+        "Iba con un guía.",
+        "Seguía a las vacas.",
+        "Usaba un GPS.",
+        "Preguntaba en cada aldea."
+      ],
+      "answer": 0,
+      "explain": "«Seguía las flechas amarillas pintadas en las paredes.»"
+    },
+    {
+      "q": "¿Qué le pasó en Melide?",
+      "options": [
+        "Perdió su credencial.",
+        "Llegó agotada y con una ampolla.",
+        "Se cayó de la litera.",
+        "No encontró albergue.",
+        "Conoció a su marido."
+      ],
+      "answer": 1,
+      "explain": "«Giulia llegó agotada a Melide y con una ampolla enorme en el pie.»"
+    },
+    {
+      "q": "Según Giulia, ¿qué fue lo más bonito del Camino?",
+      "options": [
+        "la catedral",
+        "los paisajes",
+        "la gente",
+        "el certificado",
+        "el pulpo"
+      ],
+      "answer": 2,
+      "explain": "«Lo más bonito del Camino fue la gente.»"
+    },
+    {
+      "q": "Completa con el tiempo correcto: «Cuando Giulia *___* la catedral, se emocionó.»",
+      "options": [
+        "ve",
+        "verá",
+        "ha visto",
+        "veía",
+        "vio"
+      ],
+      "answer": 4,
+      "explain": "Seeing the cathedral is a single completed event in the story → preterite *vio*."
+    },
+    {
+      "q": "Completa: «Compró una concha *___* su mochila.»",
+      "options": [
+        "para",
+        "de",
+        "en",
+        "con",
+        "por"
+      ],
+      "answer": 0,
+      "explain": "The shell is intended for the backpack — destination/recipient → *para*."
+    },
+    {
+      "q": "¿Qué significa «Giulia solía salir a las siete»?",
+      "options": [
+        "Giulia left at seven once.",
+        "Giulia usually left at seven.",
+        "Giulia wanted to leave at seven.",
+        "Giulia had to leave at seven.",
+        "Giulia will leave at seven."
+      ],
+      "answer": 1,
+      "explain": "*Soler* + infinitive in the imperfect describes a habit: she usually left at seven."
+    }
+  ]
+}
