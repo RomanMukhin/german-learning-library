@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="846eec0ec634">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Participles (Partizip I and II) · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="53c724d48f43" class="hide-sm" href="index.html">Verbs</a><span class="sep">/</span><span class="cur">Participles (Partizip I and II)</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1–B2</span><h1>Participles: Partizip I and II</h1><p class="sub">How to form the Partizip II of regular, irregular, mixed and prefixed verbs, how to form the Partizip I, and what both are used for.</p></header>
+<article class="prose card">
+<p>German verbs have two participles. The <strong>Partizip II</strong> (<em>gemacht, gegangen</em>) is the one you need every day: it builds the Perfekt, the Plusquamperfekt and the passive. The <strong>Partizip I</strong> (<em>lachend, schlafend</em>) is rarer and mostly written; it works like English <em>-ing</em> in front of a noun. Both can also act as adjectives, adverbs and nouns. This page shows how to form them and everything they are used for.</p>
+<h2>A2–B1 core: forming the Partizip II</h2>
+<h3>The three basic patterns</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Verb type</th>
+<th>Pattern</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>regular (weak)</td>
+<td>ge- + stem + -t</td>
+<td><em>machen → gemacht, kaufen → gekauft, spielen → gespielt</em></td>
+</tr>
+<tr>
+<td>irregular (strong)</td>
+<td>ge- + stem (often a new vowel) + -en</td>
+<td><em>sehen → gesehen, fahren → gefahren, trinken → getrunken, schreiben → geschrieben</em></td>
+</tr>
+<tr>
+<td>mixed</td>
+<td>ge- + new vowel + -t</td>
+<td><em>bringen → gebracht, denken → gedacht, kennen → gekannt, wissen → gewusst</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>The vowel of a strong verb cannot be predicted from the infinitive alone, so learn the three forms together (<em>trinken – trank – getrunken</em>). The <a href="../../docs/irregular-verbs.html">irregular verbs table</a> groups them by vowel pattern.</p>
+<h3>Spelling and prefix rules</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stem ends in <em>-t, -d</em> or a consonant + <em>m/n</em>: regular verbs add <em>-et</em></td>
+<td><em>arbeiten → gearbeitet, warten → gewartet, baden → gebadet, öffnen → geöffnet, atmen → geatmet</em></td>
+</tr>
+<tr>
+<td>Verbs in <em>-ieren</em>: no <em>ge-</em></td>
+<td><em>studieren → studiert, telefonieren → telefoniert, reparieren → repariert</em></td>
+</tr>
+<tr>
+<td>Inseparable prefixes <em>be-, emp-, ent-, er-, ge-, miss-, ver-, zer-</em>: no <em>ge-</em></td>
+<td><em>besuchen → besucht, verstehen → verstanden, erklären → erklärt, gehören → gehört</em></td>
+</tr>
+<tr>
+<td>Separable prefixes: <em>ge-</em> goes between prefix and stem</td>
+<td><em>einkaufen → eingekauft, anrufen → angerufen, aufstehen → aufgestanden</em></td>
+</tr>
+<tr>
+<td>Separable + inseparable prefix: no <em>ge-</em></td>
+<td><em>vorbereiten → vorbereitet, anerkennen → anerkannt</em></td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">Where is the stress?</p><p><em>ge-</em> only appears when the verb is stressed on its first syllable: <em>MAchen → geMACHT</em>, <em>EINkaufen → EINgekauft</em>. If the stress is further back, as in <em>beSUchen</em>, <em>studIEren</em>, <em>verSTEhen</em>, there is no <em>ge-</em>. That one rule explains both the <em>-ieren</em> verbs and the inseparable prefixes.</p></aside>
+<aside class="callout trap"><p class="callout-title">Same form, two verbs</p><p>Some participles look alike: <em>gefallen</em> is the Partizip II of both <em>fallen</em> (<em>ist gefallen</em>, fell) and <em>gefallen</em> (<em>hat gefallen</em>, pleased). <em>gehört</em> belongs to <em>hören</em> and <em>gehören</em>. The helper verb and the context tell you which one is meant.</p></aside>
+<h2>B1: what the Partizip II is used for</h2>
+<h3>Tenses and the passive</h3>
+<ul>
+<li>Perfekt: <em>Ich <strong>habe</strong> den Film schon <strong>gesehen</strong>.</em> – <em>I have already seen the film.</em></li>
+<li>Plusquamperfekt: <em>Als ich ankam, <strong>war</strong> der Zug schon <strong>abgefahren</strong>.</em> – <em>When I arrived, the train had already left.</em></li>
+<li>Passive: <em>Die Fenster <strong>werden</strong> jedes Jahr <strong>geputzt</strong>.</em> – <em>The windows are cleaned every year.</em></li>
+<li>State passive: <em>Die Bank <strong>ist</strong> heute <strong>geschlossen</strong>.</em> – <em>The bank is closed today.</em></li>
+</ul>
+<h3>As an adjective, adverb or noun</h3>
+<p>In front of a noun the Partizip II takes normal adjective endings and has a finished or passive meaning: <em>das <strong>reparierte</strong> Auto</em> (the car that has been repaired), <em>ein <strong>gekochtes</strong> Ei</em>. More examples are on <a data-quiz="076084ff1a75" href="../../grammar/adjectives/participles-as-adjectives.html">participles as adjectives</a>.</p>
+<ul>
+<li>adverb: <em>Sie hörte <strong>gespannt</strong> zu.</em> – <em>She listened intently.</em></li>
+<li>noun: <em>der <strong>Verletzte</strong></em> (the injured man), <em>die <strong>Angestellten</strong></em> (the employees), <em>das <strong>Gesagte</strong></em> (what was said). As nouns they keep adjective endings: <em>ein Verletzter, die Verletzten</em>.</li>
+<li>short commands, often shouted: <em><strong>Aufgepasst!</strong></em> (Watch out!), <em><strong>Hiergeblieben!</strong></em> (Stay here!), <em><strong>Stillgestanden!</strong></em> (Attention!)</li>
+</ul>
+<h2>B1: the Partizip I</h2>
+<h3>Form</h3>
+<p>Infinitive + <em>-d</em>. It is completely regular; only <em>sein</em> and <em>tun</em> add an <em>-e-</em>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Infinitive</th>
+<th>Partizip I</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>schlafen</td>
+<td>schlafend</td>
+<td><em>das <strong>schlafende</strong> Baby</em> – the sleeping baby</td>
+</tr>
+<tr>
+<td>wachsen</td>
+<td>wachsend</td>
+<td><em>eine <strong>wachsende</strong> Stadt</em> – a growing city</td>
+</tr>
+<tr>
+<td>lächeln</td>
+<td>lächelnd</td>
+<td><em>Er grüßte <strong>lächelnd</strong>.</em> – He said hello with a smile.</td>
+</tr>
+<tr>
+<td>sein</td>
+<td>seiend</td>
+<td>rare, mostly in philosophy texts</td>
+</tr>
+<tr>
+<td>tun</td>
+<td>tuend</td>
+<td>rare: <em>wohltuend</em> (soothing)</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Uses</h3>
+<p>The Partizip I always describes an action that is going on at the same time and is done by the noun itself (active meaning):</p>
+<ul>
+<li>adjective: <em>die <strong>steigenden</strong> Preise</em> – the rising prices; <em>ein <strong>spannendes</strong> Buch</em> – an exciting book.</li>
+<li>adverb (how?): <em>Die Kinder kamen <strong>singend</strong> nach Hause.</em> – The children came home singing.</li>
+<li>noun for people doing something: <em>die <strong>Studierenden</strong></em> (the students), <em>die <strong>Reisenden</strong></em> (the travellers), <em>ein <strong>Auszubildender</strong></em> (a trainee). Such forms are now common as gender-neutral words: <em>die Studierenden</em> instead of <em>die Studentinnen und Studenten</em>.</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Not a progressive tense</p><p>English "-ing" forms tenses: <em>I am reading</em>. German Partizip I never does: <em>Ich bin lesend</em> is wrong. Say <em>Ich lese (gerade)</em>. In the same way "I saw him leaving" is <em>Ich sah ihn weggehen</em> (infinitive), and "Swimming is healthy" is <em>Schwimmen ist gesund</em> (a noun made from the infinitive).</p></aside>
+<aside class="callout hack"><p class="callout-title">Active or passive?</p><p>The noun does it → Partizip I: <em>die <strong>schreiende</strong> Frau</em> (the woman who is shouting). It is done to the noun → Partizip II: <em>der <strong>geschriebene</strong> Text</em> (the text that has been written). Turn the phrase into a relative clause and you see which one you need.</p></aside>
+<h2>B2: participles in compact written style</h2>
+<h3>Extended participle phrases</h3>
+<p>Written German puts whole phrases between the article and the noun, where English uses a relative clause:</p>
+<ul>
+<li><em>der <strong>seit Stunden am Gleis wartende</strong> Zug</em> = <em>der Zug, der seit Stunden am Gleis wartet</em> – the train that has been waiting at the platform for hours</li>
+<li><em>die <strong>im letzten Jahr renovierte</strong> Schule</em> = <em>die Schule, die im letzten Jahr renoviert wurde</em> – the school that was renovated last year</li>
+</ul>
+<h3>Participle clauses</h3>
+<p>A participle can also open a short clause without a subject of its own. Partizip I shows something happening at the same time, Partizip II something that is finished or passive:</p>
+<ul>
+<li><em><strong>Laut lachend</strong> verließ sie den Raum.</em> – Laughing loudly, she left the room.</li>
+<li><em><strong>Gut vorbereitet</strong> ging er in die Prüfung.</em> – Well prepared, he went into the exam.</li>
+<li><em><strong>In Wien angekommen</strong>, rief ich sofort meine Eltern an.</em> – Having arrived in Vienna, I called my parents at once.</li>
+</ul>
+<h3>zu + Partizip I</h3>
+<p>The Partizip I with <em>zu</em> in front of a noun means "that must / can be done": <em>die <strong>zu lösende</strong> Aufgabe</em> = <em>die Aufgabe, die gelöst werden muss</em>; <em>die <strong>zu erwartenden</strong> Kosten</em> = the costs to be expected. With separable verbs <em>zu</em> goes inside: <em>die <strong>auszufüllenden</strong> Formulare</em>.</p>
+<aside class="callout fact"><p class="callout-title">ge- used to be optional</p><p>In older Germanic the <em>ge-</em> prefix was not part of every participle. Modern English lost it completely (Old English still had <em>gecumen</em>, "come"), Dutch kept it like German (<em>gemaakt</em>), and German verbs like <em>werden</em> still show the old prefix-free form in the passive: <em>Er ist gefragt <strong>worden</strong></em>, not <em>geworden</em>.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: the double infinitive</p><p>Modal verbs and <em>lassen</em> have a normal participle (<em>gekonnt, gemusst, gelassen</em>) only when they stand alone: <em>Das habe ich nicht gewollt.</em> With another verb they use the infinitive instead: <em>Ich habe nicht kommen <strong>können</strong>. Ich habe das Auto reparieren <strong>lassen</strong>.</em> See <a data-quiz="f7e33196feac" href="modal-verbs.html">modal verbs</a>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Past tenses</a></li>
+<li><a data-quiz="903a62b09fb0" href="../passive.html">The passive</a></li>
+<li><a data-quiz="076084ff1a75" href="../../grammar/adjectives/participles-as-adjectives.html">Participles as adjectives</a></li>
+<li><a data-quiz="31b4628b3679" href="../../grammar/adjectives/adjectives-as-nouns.html">Adjectives as nouns</a></li>
+<li><a href="../../docs/irregular-verbs.html">Irregular verbs table</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="12d92a4067fe" class="btn" href="zu-infinitive.html">← zu + infinitive</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich habe gestern lange *___*.", "options": ["gearbeitet", "arbeitet", "gearbeit", "arbeitete", "geärbeitet"], "answer": 0, "explain": "Stem ends in *-t*, so the regular Partizip adds *-et*: *gearbeitet* (A2)."}, {"q": "Wir haben das Spiel im Fernsehen *___*.", "options": ["gesieht", "geseht", "gesah", "sehen", "gesehen"], "answer": 4, "explain": "*sehen* is strong: *gesehen* with *-en* (A2)."}, {"q": "Er hat Medizin in Heidelberg *___*.", "options": ["gestudiert", "studieret", "gestudieren", "studiert", "studierte"], "answer": 3, "explain": "Verbs in *-ieren* have no *ge-*: *studiert* (A2)."}, {"q": "Hast du deine Oma *___*?", "options": ["gebesucht", "besuchen", "besucht", "gebesuchen", "besuchte"], "answer": 2, "explain": "Inseparable prefix *be-*: no *ge-*, so *besucht* (A2)."}, {"q": "Wir haben schon im Supermarkt *___*.", "options": ["geeinkauft", "eingekauft", "einkaufen", "eingekaufen", "einkaufte"], "answer": 1, "explain": "Separable *einkaufen*: *ge-* between prefix and stem (A2)."}, {"q": "Ich habe an dich *___*.", "options": ["gedenkt", "gedacht", "gedachen", "denkte", "gedocht"], "answer": 1, "explain": "Mixed verb: new vowel + *-t*: *gedacht* (A2)."}, {"q": "Habt ihr alles für die Party *___*?", "options": ["vorbereitet", "vorgebereitet", "gevorbereitet", "vorbereiten", "vorbereitete"], "answer": 0, "explain": "*vor-* is separable, but *be-* blocks *ge-*: *vorbereitet* (B1)."}, {"q": "Wer hat das Fenster *___*?", "options": ["öffnete", "geöffent", "geöffnt", "geoffen", "geöffnet"], "answer": 4, "explain": "Stem in consonant + *n* (*öffn-*): add *-et*: *geöffnet* (B1)."}, {"q": "Partizip I of *lachen* (basic form, without an ending):", "options": ["gelacht", "lachende", "lachend", "lachenden", "gelachend"], "answer": 2, "explain": "Partizip I = infinitive + *-d*: *lachend*. Endings only come in front of a noun (B1)."}, {"q": "Vorsicht, die Suppe ist *___* heiß!", "options": ["kocht", "gekocht", "kochende", "kochend", "kochen"], "answer": 3, "explain": "*kochend heiß* = boiling hot: the soup itself is boiling, so Partizip I; as an adverb before *heiß* it has no ending (B1)."}, {"q": "Wir haben ein *___* Ei gegessen.", "options": ["gekochte", "kochendes", "gekocht", "gekochtes", "kochend"], "answer": 3, "explain": "The egg has been cooked (passive, finished): Partizip II + neuter ending *-es* after *ein* (B1)."}, {"q": "Der Film war wirklich *___*. Ich will ihn noch einmal sehen.", "options": ["gespannt", "gespannend", "spannend", "spannt", "spannende"], "answer": 2, "explain": "The film causes the feeling: Partizip I *spannend*. *gespannt* = eager, excited (a person) (B1)."}, {"q": "How do you say *I am reading* in German?", "options": ["Ich bin lesend.", "Ich lese gerade.", "Ich bin am gelesen.", "Ich habe lesend.", "Ich lesend."], "answer": 1, "explain": "German has no progressive tense with Partizip I; use the present, optionally with *gerade* (B1)."}, {"q": "Er kam *___* ins Zimmer.", "options": ["pfeifend", "gepfiffen", "pfeifende", "pfiff", "pfeifen"], "answer": 0, "explain": "As an adverb (how did he come?) the Partizip I has no ending: *pfeifend* (B1)."}, {"q": "Alle *___* müssen sich bis Freitag anmelden.", "options": ["Studierende", "Studierten", "Studierender", "Studierendes", "Studierenden"], "answer": 4, "explain": "After *alle* the noun made from the Partizip I takes the weak ending *-en*: *alle Studierenden* (B2)."}, {"q": "*In Berlin ___*, suchte sie sich sofort eine Wohnung.", "options": ["ankommend", "kommt an", "ankommen", "angekommene", "angekommen"], "answer": 4, "explain": "A finished action before the main clause: Partizip II clause *In Berlin angekommen, ...* (B2)."}, {"q": "*die ___ Fragen* = the questions that must be answered", "options": ["beantworteten", "beantwortenden", "zu beantwortenden", "zu beantworteten", "zu beantworten"], "answer": 2, "explain": "*zu* + Partizip I + ending means 'must be done': *die zu beantwortenden Fragen* (B2)."}, {"q": "Er ist gestern Abend gefragt *___*.", "options": ["worden", "geworden", "werden", "gewesen", "wurde"], "answer": 0, "explain": "In the Perfekt passive *werden* uses the old form without *ge-*: *worden* (B1)."}], "title": "Participles (Partizip I and II) quiz", "level": "B1–B2"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
