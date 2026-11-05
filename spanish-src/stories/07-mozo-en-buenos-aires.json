@@ -1,0 +1,563 @@
+{
+  "n": 7,
+  "area": "Work and study",
+  "level": "A2",
+  "title_es": "Mozo en una cafetería de Buenos Aires",
+  "title_en": "A waiter in a Buenos Aires café",
+  "grammar": [
+    {
+      "name": "Present tense: irregular yo forms",
+      "explain": "Many common verbs are regular in the present except for the *yo* form, which adds a *g*: *hacer → hago*, *poner → pongo*, *salir → salgo*, *tener → tengo*, *traer → traigo*. Some also change the stem in other forms: *tener → tienes, tiene*. Learn the *yo* form by heart, because it is the one you use most when you talk about your day.",
+      "examples": [
+        {
+          "es": "Los sábados *salgo* de casa a las seis y media.",
+          "en": "On Saturdays I leave home at half past six."
+        },
+        {
+          "es": "Primero *pongo* las medialunas en la barra.",
+          "en": "First I put the croissants on the counter."
+        },
+        {
+          "es": "No *tengo* mucho tiempo libre.",
+          "en": "I don't have much free time."
+        }
+      ],
+      "links": [
+        {
+          "title": "Present tense",
+          "url": "../beginner/present.html"
+        }
+      ]
+    },
+    {
+      "name": "Tener que and ir a + infinitive",
+      "explain": "*Tener que* + infinitive expresses obligation: *tengo que madrugar* (I have to get up early). *Ir a* + infinitive is the easiest way to talk about plans and the near future: *voy a viajar* (I'm going to travel). In both cases only the first verb is conjugated; the second stays in the infinitive.",
+      "examples": [
+        {
+          "es": "Lucas *tiene que* madrugar los sábados.",
+          "en": "Lucas has to get up early on Saturdays."
+        },
+        {
+          "es": "En diciembre *va a viajar* a la Patagonia.",
+          "en": "In December he is going to travel to Patagonia."
+        },
+        {
+          "es": "¿*Tenemos que* limpiar la barra?",
+          "en": "Do we have to clean the counter?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbal periphrasis",
+          "url": "../beginner/verbal-periphrasis.html"
+        },
+        {
+          "title": "Tener expressions",
+          "url": "../intermediate/tener-expressions.html"
+        }
+      ]
+    },
+    {
+      "name": "Voseo in Argentina",
+      "explain": "In Argentina (and Uruguay) people use *vos* instead of *tú*. The present-tense forms move the stress to the end: *tú quieres → vos querés*, *tú tienes → vos tenés*, *tú eres → vos sos*. Everybody understands *tú*, so you don't have to use *vos* — but you will hear it everywhere in Buenos Aires.",
+      "examples": [
+        {
+          "es": "¿Qué *querés* tomar?",
+          "en": "What would you like to drink? (tú quieres)"
+        },
+        {
+          "es": "*Sos* un gran mozo.",
+          "en": "You're a great waiter. (tú eres)"
+        },
+        {
+          "es": "¿*Tenés* cambio?",
+          "en": "Do you have change? (tú tienes)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Argentinean Spanish",
+          "url": "../regional-spanish/argentinean-spanish.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "cafeteria",
+      "es": "cafetería",
+      "gender": "f",
+      "plural": "cafeterías",
+      "en": "café, coffee shop",
+      "examples": [
+        {
+          "es": "Trabajo en una *cafetería* del centro.",
+          "en": "I work in a café in the centre."
+        },
+        {
+          "es": "Esta *cafetería* abre a las siete.",
+          "en": "This café opens at seven."
+        }
+      ],
+      "note": "*Un café* is both the drink and the place; *una cafetería* is only the place. In Spain *la cafetería* can also be a canteen."
+    },
+    {
+      "id": "mediotiempo",
+      "es": "a medio tiempo",
+      "gender": "",
+      "en": "part-time",
+      "examples": [
+        {
+          "es": "Busco un trabajo *a medio tiempo*.",
+          "en": "I'm looking for a part-time job."
+        },
+        {
+          "es": "Estudia y trabaja *a medio tiempo*.",
+          "en": "She studies and works part-time."
+        }
+      ],
+      "note": "Latin America. In Spain you hear *a media jornada* or *a tiempo parcial*."
+    },
+    {
+      "id": "horario",
+      "es": "horario",
+      "gender": "m",
+      "plural": "horarios",
+      "en": "schedule, working hours, timetable",
+      "examples": [
+        {
+          "es": "Mi *horario* cambia cada semana.",
+          "en": "My schedule changes every week."
+        },
+        {
+          "es": "¿Cuál es el *horario* de la biblioteca?",
+          "en": "What are the library's opening hours?"
+        }
+      ],
+      "note": "Not *hora* (hour, time). *El horario* is the whole plan of hours."
+    },
+    {
+      "id": "turno",
+      "es": "turno",
+      "gender": "m",
+      "plural": "turnos",
+      "en": "shift; turn",
+      "examples": [
+        {
+          "es": "Hoy tengo el *turno* de la tarde.",
+          "en": "Today I have the afternoon shift."
+        },
+        {
+          "es": "Espere su *turno*, por favor.",
+          "en": "Please wait your turn."
+        }
+      ],
+      "note": "*Turno de mañana / de tarde / de noche* — morning / afternoon / night shift."
+    },
+    {
+      "id": "madrugar",
+      "es": "madrugar",
+      "gender": "",
+      "en": "to get up very early",
+      "examples": [
+        {
+          "es": "No me gusta *madrugar*.",
+          "en": "I don't like getting up early."
+        },
+        {
+          "es": "Los lunes *madrugo* para ir al gimnasio.",
+          "en": "On Mondays I get up early to go to the gym."
+        }
+      ],
+      "note": "One verb for a whole English phrase. Saying: *A quien madruga, Dios lo ayuda* — the early bird catches the worm."
+    },
+    {
+      "id": "medialuna",
+      "es": "medialuna",
+      "gender": "f",
+      "plural": "medialunas",
+      "en": "croissant (Argentina)",
+      "examples": [
+        {
+          "es": "Un café con dos *medialunas*, por favor.",
+          "en": "A coffee with two croissants, please."
+        },
+        {
+          "es": "Las *medialunas* de esta panadería son riquísimas.",
+          "en": "The croissants from this bakery are delicious."
+        }
+      ],
+      "note": "Literally 'half moon'. Argentine *medialunas* are smaller and sweeter than French croissants; in Spain you say *cruasán*."
+    },
+    {
+      "id": "barra",
+      "es": "barra",
+      "gender": "f",
+      "plural": "barras",
+      "en": "counter, bar (in a café or bar)",
+      "examples": [
+        {
+          "es": "Tomamos el café en la *barra*.",
+          "en": "We have our coffee at the counter."
+        },
+        {
+          "es": "Hay una *barra* de pan en la mesa.",
+          "en": "There's a loaf (baguette) on the table."
+        }
+      ],
+      "note": "*Una barra de pan* is a baguette-style loaf."
+    },
+    {
+      "id": "cliente",
+      "es": "cliente",
+      "gender": "m",
+      "plural": "clientes",
+      "en": "customer, client",
+      "examples": [
+        {
+          "es": "Hoy vinieron muchos *clientes*.",
+          "en": "Lots of customers came today."
+        },
+        {
+          "es": "Es una *cliente* muy simpática.",
+          "en": "She's a very nice customer."
+        }
+      ],
+      "note": "Same form for men and women: *el cliente / la cliente* (*la clienta* is also correct)."
+    },
+    {
+      "id": "mozo",
+      "es": "mozo",
+      "gender": "m",
+      "plural": "mozos",
+      "en": "waiter (Argentina)",
+      "examples": [
+        {
+          "es": "El *mozo* nos trae la carta.",
+          "en": "The waiter brings us the menu."
+        },
+        {
+          "es": "¡*Mozo*, la cuenta, por favor!",
+          "en": "Waiter, the bill, please!"
+        }
+      ],
+      "note": "Argentina and Uruguay. Spain: *camarero*; Mexico: *mesero*. In Spain *mozo* means 'young lad' or a porter."
+    },
+    {
+      "id": "pedido",
+      "es": "pedido",
+      "gender": "m",
+      "plural": "pedidos",
+      "en": "order",
+      "examples": [
+        {
+          "es": "El *pedido* de la mesa cuatro está listo.",
+          "en": "The order for table four is ready."
+        },
+        {
+          "es": "Hice un *pedido* por internet.",
+          "en": "I placed an order online."
+        }
+      ],
+      "note": "From *pedir* (to ask for, to order). *Tomar el pedido* = to take the order."
+    },
+    {
+      "id": "bandeja",
+      "es": "bandeja",
+      "gender": "f",
+      "plural": "bandejas",
+      "en": "tray",
+      "examples": [
+        {
+          "es": "Lleva tres cafés en la *bandeja*.",
+          "en": "He's carrying three coffees on the tray."
+        },
+        {
+          "es": "Tengo muchos correos en la *bandeja* de entrada.",
+          "en": "I have lots of emails in my inbox."
+        }
+      ],
+      "note": "*Bandeja de entrada* is an email inbox."
+    },
+    {
+      "id": "atender",
+      "es": "atender",
+      "gender": "",
+      "en": "to serve, to attend to (customers)",
+      "examples": [
+        {
+          "es": "¿Ya lo *atienden*?",
+          "en": "Are you being served?"
+        },
+        {
+          "es": "Ella *atiende* a los clientes en la caja.",
+          "en": "She serves the customers at the till."
+        }
+      ],
+      "note": "False friend: *atender* is not 'to attend' a class — that is *asistir a*. Stem change e → ie: *atiendo, atiende*."
+    },
+    {
+      "id": "apurado",
+      "es": "apurado",
+      "gender": "",
+      "en": "in a hurry (Latin America)",
+      "examples": [
+        {
+          "es": "Perdón, estoy muy *apurado*.",
+          "en": "Sorry, I'm in a real hurry."
+        },
+        {
+          "es": "La gente siempre anda *apurada* por la mañana.",
+          "en": "People are always in a rush in the morning."
+        }
+      ],
+      "note": "Latin America, with *estar*. In Spain people say *tener prisa*; there *apurado* means 'in a tight spot'."
+    },
+    {
+      "id": "caja",
+      "es": "caja",
+      "gender": "f",
+      "plural": "cajas",
+      "en": "till, cash register; box",
+      "examples": [
+        {
+          "es": "Pague en la *caja*, por favor.",
+          "en": "Please pay at the till."
+        },
+        {
+          "es": "Guardo las fotos en una *caja*.",
+          "en": "I keep the photos in a box."
+        }
+      ],
+      "note": "The person at the till is *el cajero / la cajera*; *cajero automático* is an ATM."
+    },
+    {
+      "id": "cobrar",
+      "es": "cobrar",
+      "gender": "",
+      "en": "to charge; to get paid",
+      "examples": [
+        {
+          "es": "¿Cuánto me *cobra* por el café?",
+          "en": "How much do you charge me for the coffee?"
+        },
+        {
+          "es": "*Cobro* el sueldo a fin de mes.",
+          "en": "I get paid at the end of the month."
+        }
+      ],
+      "note": "Works in both directions: the café *cobra* you, and you *cobras* your salary."
+    },
+    {
+      "id": "jefe",
+      "es": "jefe",
+      "gender": "m",
+      "plural": "jefes",
+      "en": "boss",
+      "examples": [
+        {
+          "es": "Mi *jefe* es muy exigente.",
+          "en": "My boss is very demanding."
+        },
+        {
+          "es": "La *jefa* de cocina se llama Ana.",
+          "en": "The head chef is called Ana."
+        }
+      ],
+      "note": "Feminine: *la jefa*."
+    },
+    {
+      "id": "sueldo",
+      "es": "sueldo",
+      "gender": "m",
+      "plural": "sueldos",
+      "en": "salary, wages",
+      "examples": [
+        {
+          "es": "El *sueldo* no es muy alto.",
+          "en": "The pay isn't very high."
+        },
+        {
+          "es": "Me subieron el *sueldo*.",
+          "en": "They gave me a raise."
+        }
+      ],
+      "note": "*Salario* means the same and is a bit more formal."
+    },
+    {
+      "id": "propina",
+      "es": "propina",
+      "gender": "f",
+      "plural": "propinas",
+      "en": "tip (money)",
+      "examples": [
+        {
+          "es": "Dejamos una buena *propina*.",
+          "en": "We left a good tip."
+        },
+        {
+          "es": "En Argentina la *propina* suele ser del diez por ciento.",
+          "en": "In Argentina the tip is usually ten per cent."
+        }
+      ],
+      "note": "Not *punta* (the tip of something). *Dejar propina* = to leave a tip."
+    },
+    {
+      "id": "ahorrar",
+      "es": "ahorrar",
+      "gender": "",
+      "en": "to save (money, time)",
+      "examples": [
+        {
+          "es": "Quiero *ahorrar* para un viaje.",
+          "en": "I want to save up for a trip."
+        },
+        {
+          "es": "Con el metro *ahorras* tiempo.",
+          "en": "You save time with the underground."
+        }
+      ],
+      "note": "Only for money, time or energy. Saving a file is *guardar*; saving a life is *salvar*."
+    },
+    {
+      "id": "cansado",
+      "es": "cansado",
+      "gender": "",
+      "en": "tired",
+      "examples": [
+        {
+          "es": "Después del turno estoy muy *cansado*.",
+          "en": "After the shift I'm very tired."
+        },
+        {
+          "es": "Ella está *cansada* de estudiar.",
+          "en": "She's tired of studying."
+        }
+      ],
+      "note": "*Estar cansado* = to be tired (a state). *Ser cansado* means 'to be tiring', e.g. *un trabajo cansado*."
+    }
+  ],
+  "text": "Lucas es de Porto Alegre, en Brasil, y vive en Buenos Aires desde marzo. Por la mañana {{=estudia|he studies}} arquitectura en la universidad y por la tarde trabaja {{mediotiempo|a medio tiempo}} en una {{cafeteria|cafetería}} del barrio de Palermo. Es su primer trabajo en otro país.\n\nSu {{horario|horario}} no es fácil. Los sábados tiene el {{turno|turno}} de la mañana y tiene que {{madrugar|madrugar}}: sale de casa a las seis y media. Primero pone las {{medialuna|medialunas}} en la {{barra|barra}}, prepara las mesas y hace el primer café del día para él. A las siete abren la puerta y llegan los primeros {{cliente|clientes}}.\n\nLucas es {{mozo|mozo}}. Toma el {{pedido|pedido}}, lleva la {{bandeja|bandeja}} con los cafés y {{atender|atiende}} a la gente con una sonrisa. Muchos clientes están {{apurado|apurados}} porque van a la oficina. «¿Qué querés tomar?», pregunta Lucas. En Argentina la gente dice «vos», no «tú», y a él le gusta mucho ese acento.\n\nAl principio tiene problemas con la {{caja|caja}}: no conoce bien los {{=billetes|banknotes}} y un día {{cobrar|cobra}} mal un {{=cortado|espresso with a dash of milk}}. Pero su {{jefe|jefa}}, Marta, es muy paciente y le explica todo. El {{sueldo|sueldo}} no es muy alto, pero las {{propina|propinas}} ayudan. Lucas quiere {{ahorrar|ahorrar}} dinero porque en diciembre va a viajar a la Patagonia con dos compañeros de la {{=facultad|university (faculty)}}.\n\nCuando termina el turno, está muy {{cansado|cansado}}. {{=Se sienta|He sits down}} en la barra, pide un cortado y una medialuna, y habla {{=un rato|for a while}} con Marta. «{{=Sos|You are}} un gran mozo, Lucas», le dice ella. Él sonríe. Su español mejora cada día, y ahora también tiene amigos en la ciudad.",
+  "quiz": [
+    {
+      "q": "¿De dónde es Lucas?",
+      "options": [
+        "de Buenos Aires",
+        "de la Patagonia",
+        "de Porto Alegre",
+        "de Palermo",
+        "de Lisboa"
+      ],
+      "answer": 2,
+      "explain": "«Lucas es de Porto Alegre, en Brasil» — Palermo is the Buenos Aires neighbourhood where the café is."
+    },
+    {
+      "q": "¿Qué hace Lucas por la mañana, normalmente?",
+      "options": [
+        "trabaja en la cafetería",
+        "estudia arquitectura",
+        "duerme",
+        "viaja",
+        "trabaja en una oficina"
+      ],
+      "answer": 1,
+      "explain": "«Por la mañana estudia arquitectura en la universidad y por la tarde trabaja a medio tiempo.» Only on Saturdays does he work the morning shift."
+    },
+    {
+      "q": "¿A qué hora sale de casa los sábados?",
+      "options": [
+        "a las siete",
+        "a las seis",
+        "a las ocho y media",
+        "a las seis y media",
+        "a mediodía"
+      ],
+      "answer": 3,
+      "explain": "«Sale de casa a las seis y media.» The café opens at seven."
+    },
+    {
+      "q": "¿Por qué muchos clientes están apurados?",
+      "options": [
+        "porque van a la oficina",
+        "porque el café es malo",
+        "porque Lucas es lento",
+        "porque llueve",
+        "porque no tienen dinero"
+      ],
+      "answer": 0,
+      "explain": "«Muchos clientes están apurados porque van a la oficina.»"
+    },
+    {
+      "q": "¿Qué problema tiene Lucas al principio?",
+      "options": [
+        "no entiende el acento",
+        "llega tarde",
+        "no le gusta su jefa",
+        "rompe una bandeja",
+        "tiene problemas con la caja"
+      ],
+      "answer": 4,
+      "explain": "«Al principio tiene problemas con la caja: no conoce bien los billetes.»"
+    },
+    {
+      "q": "¿Cómo es Marta?",
+      "options": [
+        "muy seria",
+        "muy paciente",
+        "muy joven",
+        "muy exigente",
+        "brasileña"
+      ],
+      "answer": 1,
+      "explain": "«Su jefa, Marta, es muy paciente y le explica todo.»"
+    },
+    {
+      "q": "¿Para qué quiere ahorrar dinero Lucas?",
+      "options": [
+        "para comprar un auto",
+        "para pagar la universidad",
+        "para un viaje a la Patagonia",
+        "para volver a Brasil",
+        "para abrir una cafetería"
+      ],
+      "answer": 2,
+      "explain": "«Quiere ahorrar dinero porque en diciembre va a viajar a la Patagonia.»"
+    },
+    {
+      "q": "Los sábados yo *___* de casa muy temprano. (salir)",
+      "options": [
+        "salo",
+        "salimos",
+        "sale",
+        "salgio",
+        "salgo"
+      ],
+      "answer": 4,
+      "explain": "*Salir* has an irregular *yo* form with *g*: *salgo* (like *hago, pongo, tengo*)."
+    },
+    {
+      "q": "En Argentina, un camarero se llama…",
+      "options": [
+        "un mozo",
+        "un mesero",
+        "un cajero",
+        "un jefe",
+        "un cliente"
+      ],
+      "answer": 0,
+      "explain": "*Mozo* in Argentina; *mesero* is Mexico; *camarero* is Spain."
+    },
+    {
+      "q": "¿Cuál es la forma de «vos» de «tú eres»?",
+      "options": [
+        "vos eres",
+        "vos es",
+        "vos seis",
+        "vos sos",
+        "vos sois"
+      ],
+      "answer": 3,
+      "explain": "«Sos un gran mozo», Marta says — *vos sos* = *tú eres*. *Sois* is *vosotros* (Spain)."
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "n": 9,
+  "area": "Work and study",
+  "level": "B1",
+  "title_es": "Un semestre en Santiago de Chile",
+  "title_en": "A semester in Santiago de Chile",
+  "grammar": [
+    {
+      "name": "Preterite vs. imperfect",
+      "explain": "Both are past tenses. The imperfect describes the background — what things were like, what used to happen, what was going on (*hacía calor, los profesores eran exigentes, iba a la cordillera*). The preterite moves the story forward with completed events (*llegó, sacó un 3,5, tuvo que despedirse*). A typical pattern: an action in progress (imperfect) is interrupted by an event (preterite): *mientras cenaban, la mesa empezó a moverse*.",
+      "examples": [
+        {
+          "es": "Cuando Giulia *llegó*, *hacía* calor.",
+          "en": "When Giulia arrived, it was hot."
+        },
+        {
+          "es": "Los viernes *había* carrete en casa de alguien.",
+          "en": "On Fridays there was (always) a party at someone's place."
+        },
+        {
+          "es": "*Cenaban* cuando *empezó* el temblor.",
+          "en": "They were having dinner when the tremor began."
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        },
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        }
+      ]
+    },
+    {
+      "name": "Reflexive verbs",
+      "explain": "Many verbs about adapting, feelings and daily life are reflexive: *adaptarse, matricularse, despedirse, darse cuenta de*. The pronoun (*me, te, se, nos, os, se*) goes before a conjugated verb (*se adaptó*) or is attached to an infinitive (*tuvo que despedirse*). Some change meaning: *despedir* = to dismiss, *despedirse de* = to say goodbye to.",
+      "examples": [
+        {
+          "es": "Poco a poco *se adaptó*.",
+          "en": "Little by little she adapted."
+        },
+        {
+          "es": "Tuvo que *matricularse* en cuatro ramos.",
+          "en": "She had to enrol in four courses."
+        },
+        {
+          "es": "*Se dio cuenta de* que no entendía nada.",
+          "en": "She realised she didn't understand anything."
+        }
+      ],
+      "links": [
+        {
+          "title": "Reflexive verbs",
+          "url": "../intermediate/reflexive-verbs.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "beca",
+      "es": "beca",
+      "gender": "f",
+      "plural": "becas",
+      "en": "scholarship, grant",
+      "examples": [
+        {
+          "es": "Me dieron una *beca* para estudiar en Chile.",
+          "en": "They gave me a scholarship to study in Chile."
+        },
+        {
+          "es": "Muchos estudiantes viven de una *beca*.",
+          "en": "Many students live on a grant."
+        }
+      ],
+      "note": "*Un becario / una becaria* is a scholarship holder — and, in Spain, also an intern."
+    },
+    {
+      "id": "intercambio",
+      "es": "intercambio",
+      "gender": "m",
+      "plural": "intercambios",
+      "en": "exchange",
+      "examples": [
+        {
+          "es": "Hice un *intercambio* en Santiago.",
+          "en": "I did an exchange in Santiago."
+        },
+        {
+          "es": "Organizamos un *intercambio* de idiomas.",
+          "en": "We organise a language exchange."
+        }
+      ],
+      "note": "*Estudiante de intercambio* = exchange student. In Europe people simply say *estar de Erasmus*."
+    },
+    {
+      "id": "facultad",
+      "es": "facultad",
+      "gender": "f",
+      "plural": "facultades",
+      "en": "faculty, university department",
+      "examples": [
+        {
+          "es": "La *facultad* de Ingeniería está lejos.",
+          "en": "The Engineering faculty is far away."
+        },
+        {
+          "es": "Nos vemos en la *facultad*.",
+          "en": "See you at uni."
+        }
+      ],
+      "note": "In Spain and Argentina *la facultad* (or *la facu*) often just means 'university' in everyday speech."
+    },
+    {
+      "id": "acento",
+      "es": "acento",
+      "gender": "m",
+      "plural": "acentos",
+      "en": "accent",
+      "examples": [
+        {
+          "es": "Tiene un *acento* muy chileno.",
+          "en": "She has a very Chilean accent."
+        },
+        {
+          "es": "Esta palabra lleva *acento* en la *o*.",
+          "en": "This word has an accent on the *o*."
+        }
+      ],
+      "note": "Both the way people speak and the written accent mark (*tilde*)."
+    },
+    {
+      "id": "apuntes",
+      "es": "apuntes",
+      "gender": "mpl",
+      "plural": "apuntes",
+      "en": "(lecture) notes",
+      "examples": [
+        {
+          "es": "¿Me prestas tus *apuntes*?",
+          "en": "Can you lend me your notes?"
+        },
+        {
+          "es": "Estudio con los *apuntes* de clase.",
+          "en": "I study from my class notes."
+        }
+      ],
+      "note": "Usually plural. *Tomar apuntes* = to take notes. *Una nota* is a short message — or a grade."
+    },
+    {
+      "id": "matricularse",
+      "es": "matricularse",
+      "gender": "",
+      "en": "to enrol, to register (for a course)",
+      "examples": [
+        {
+          "es": "*Me matriculé* en tres asignaturas.",
+          "en": "I enrolled in three subjects."
+        },
+        {
+          "es": "¿Cuándo hay que *matricularse*?",
+          "en": "When do you have to register?"
+        }
+      ],
+      "note": "Noun: *la matrícula* (enrolment, tuition fee — and a car's number plate in Spain)."
+    },
+    {
+      "id": "ramo",
+      "es": "ramo",
+      "gender": "m",
+      "plural": "ramos",
+      "en": "course, subject (Chile); bouquet",
+      "examples": [
+        {
+          "es": "Este semestre tengo cinco *ramos*.",
+          "en": "This semester I have five courses."
+        },
+        {
+          "es": "Le regaló un *ramo* de flores.",
+          "en": "He gave her a bunch of flowers."
+        }
+      ],
+      "note": "Chile. Elsewhere: *asignatura* (Spain), *materia* (Mexico, Argentina)."
+    },
+    {
+      "id": "exigente",
+      "es": "exigente",
+      "gender": "",
+      "en": "demanding, strict",
+      "examples": [
+        {
+          "es": "La profesora es muy *exigente*.",
+          "en": "The teacher is very demanding."
+        },
+        {
+          "es": "Es un trabajo *exigente*.",
+          "en": "It's a demanding job."
+        }
+      ],
+      "note": "Same form for masculine and feminine. Verb: *exigir* (to demand)."
+    },
+    {
+      "id": "prueba",
+      "es": "prueba",
+      "gender": "f",
+      "plural": "pruebas",
+      "en": "test, exam (Chile); proof",
+      "examples": [
+        {
+          "es": "Mañana tenemos *prueba* de cálculo.",
+          "en": "Tomorrow we have a calculus test."
+        },
+        {
+          "es": "No hay ninguna *prueba*.",
+          "en": "There is no proof."
+        }
+      ],
+      "note": "In Chile *la prueba* is the normal word for a test at school or university; elsewhere *el examen*."
+    },
+    {
+      "id": "nota",
+      "es": "nota",
+      "gender": "f",
+      "plural": "notas",
+      "en": "grade, mark; note",
+      "examples": [
+        {
+          "es": "Saqué una buena *nota*.",
+          "en": "I got a good grade."
+        },
+        {
+          "es": "Te dejé una *nota* en la mesa.",
+          "en": "I left you a note on the table."
+        }
+      ],
+      "note": "*Sacar una nota* = to get a grade. In Chile grades go from 1 to 7; in Spain from 0 to 10."
+    },
+    {
+      "id": "reprobar",
+      "es": "reprobar",
+      "gender": "",
+      "en": "to fail (an exam) (Latin America)",
+      "examples": [
+        {
+          "es": "Si sacas menos de 4, *repruebas*.",
+          "en": "If you get less than 4, you fail."
+        },
+        {
+          "es": "*Reprobé* el examen de química.",
+          "en": "I failed the chemistry exam."
+        }
+      ],
+      "note": "Latin America. In Spain: *suspender* (*he suspendido*). The opposite everywhere: *aprobar*. Stem change o → ue: *repruebo*."
+    },
+    {
+      "id": "esfuerzo",
+      "es": "esfuerzo",
+      "gender": "m",
+      "plural": "esfuerzos",
+      "en": "effort",
+      "examples": [
+        {
+          "es": "Con *esfuerzo* todo es posible.",
+          "en": "With effort, anything is possible."
+        },
+        {
+          "es": "Hizo un gran *esfuerzo*.",
+          "en": "She made a huge effort."
+        }
+      ],
+      "note": "*Hacer un esfuerzo* = to make an effort. Verb: *esforzarse*."
+    },
+    {
+      "id": "ponersealdia",
+      "es": "ponerse al día",
+      "gender": "",
+      "en": "to catch up, to get up to date",
+      "examples": [
+        {
+          "es": "Tengo que *ponerme al día* con los ramos.",
+          "en": "I have to catch up on my courses."
+        },
+        {
+          "es": "Nos tomamos un café para *ponernos al día*.",
+          "en": "We had a coffee to catch up."
+        }
+      ],
+      "note": "Also used for catching up on news with a friend. *Estar al día* = to be up to date."
+    },
+    {
+      "id": "adaptarse",
+      "es": "adaptarse",
+      "gender": "",
+      "en": "to adapt, to adjust",
+      "examples": [
+        {
+          "es": "Me *adapté* rápido al horario.",
+          "en": "I adjusted quickly to the timetable."
+        },
+        {
+          "es": "Es difícil *adaptarse* a otro país.",
+          "en": "It's hard to adapt to another country."
+        }
+      ],
+      "note": "Always with *a*: *adaptarse a algo*."
+    },
+    {
+      "id": "cordillera",
+      "es": "cordillera",
+      "gender": "f",
+      "plural": "cordilleras",
+      "en": "mountain range",
+      "examples": [
+        {
+          "es": "Desde Santiago se ve la *cordillera*.",
+          "en": "You can see the mountains from Santiago."
+        },
+        {
+          "es": "Fuimos a esquiar a la *cordillera*.",
+          "en": "We went skiing in the mountains."
+        }
+      ],
+      "note": "In Chile *la cordillera* means the Andes, always visible to the east of Santiago."
+    },
+    {
+      "id": "carrete",
+      "es": "carrete",
+      "gender": "m",
+      "plural": "carretes",
+      "en": "party, night out (Chile)",
+      "examples": [
+        {
+          "es": "¿Vamos al *carrete* del sábado?",
+          "en": "Are we going to Saturday's party?"
+        },
+        {
+          "es": "Anoche hubo *carrete* en mi casa.",
+          "en": "Last night there was a party at my place."
+        }
+      ],
+      "note": "Chilean slang. *Carretear* = to party. Elsewhere *carrete* is a reel or a roll of film. Spain: *fiesta, marcha*; Mexico: *reventón, peda*."
+    },
+    {
+      "id": "temblor",
+      "es": "temblor",
+      "gender": "m",
+      "plural": "temblores",
+      "en": "(earth) tremor",
+      "examples": [
+        {
+          "es": "Anoche hubo un *temblor*.",
+          "en": "Last night there was a tremor."
+        },
+        {
+          "es": "Los chilenos están acostumbrados a los *temblores*.",
+          "en": "Chileans are used to tremors."
+        }
+      ],
+      "note": "A *temblor* is a small one; a big one is *un terremoto*. Verb: *temblar* (to shake, tremble)."
+    },
+    {
+      "id": "despedirse",
+      "es": "despedirse de",
+      "gender": "",
+      "en": "to say goodbye to",
+      "examples": [
+        {
+          "es": "Me *despedí de* mis amigos.",
+          "en": "I said goodbye to my friends."
+        },
+        {
+          "es": "Se fue sin *despedirse*.",
+          "en": "He left without saying goodbye."
+        }
+      ],
+      "note": "Not the same as *despedir* (to fire someone). Stem change e → i: *me despido, se despidió*."
+    },
+    {
+      "id": "fome",
+      "es": "fome",
+      "gender": "",
+      "en": "boring, dull (Chile)",
+      "examples": [
+        {
+          "es": "La película estuvo muy *fome*.",
+          "en": "The film was really boring."
+        },
+        {
+          "es": "¡Qué *fome*! No hay nada que hacer.",
+          "en": "How boring! There's nothing to do."
+        }
+      ],
+      "note": "Chilean slang. Standard Spanish: *aburrido*."
+    },
+    {
+      "id": "extranar",
+      "es": "extrañar",
+      "gender": "",
+      "en": "to miss (someone or something)",
+      "examples": [
+        {
+          "es": "*Extraño* mucho a mi familia.",
+          "en": "I really miss my family."
+        },
+        {
+          "es": "¿*Extrañas* Chile?",
+          "en": "Do you miss Chile?"
+        }
+      ],
+      "note": "Latin America. Spain prefers *echar de menos*. Note: *extrañar* also means 'to surprise' — *me extraña* = it surprises me."
+    }
+  ],
+  "text": "Cuando Giulia llegó a Santiago de Chile en marzo, hacía calor y ella no entendía casi nada. Estudiaba Ingeniería en Bolonia y había ganado una {{beca|beca}} de {{intercambio|intercambio}} para pasar un semestre en la Universidad de Chile.\n\nEl primer día en la {{facultad|facultad}} {{=se dio cuenta de que|she realised that}} el español de los libros {{=no le servía de mucho|wasn't much use to her}}. Los chilenos hablaban rapidísimo, {{=se comían las eses|swallowed their s's}} y terminaban cada frase con «{{=¿cachai?|you know? (Chile)}}». Ese {{acento|acento}} le parecía imposible. Por suerte, una compañera, Javiera, se sentaba siempre a su lado y le prestaba sus {{apuntes|apuntes}}.\n\nGiulia tuvo que {{matricularse|matricularse}} en cuatro {{ramo|ramos}}, y los profesores eran muy {{exigente|exigentes}}: había una {{prueba|prueba}} casi cada mes. En la primera {{=sacó|she got}} una {{nota|nota}} de 3,5. En Chile se califica del 1 al 7 y con menos de un 4 se reprueba, así que {{=se asustó|she got scared}}: no quería {{reprobar|reprobar}} nada. Con mucho {{esfuerzo|esfuerzo}} y la ayuda de Javiera, logró {{ponersealdia|ponerse al día}}.\n\nPoco a poco empezó a {{adaptarse|adaptarse}}. Los fines de semana iba con sus nuevos amigos a la {{cordillera|cordillera}} o a la playa en Valparaíso, y los viernes siempre había {{carrete|carrete}} en casa de alguien. Una noche, mientras cenaban en casa de Javiera, la mesa empezó a moverse: era un {{temblor|temblor}}. Giulia gritó y corrió hacia la puerta; los chilenos siguieron comiendo tranquilamente. «Tranquila, esto no es nada», le dijo Javiera, riéndose.\n\nEn julio tuvo que {{despedirse|despedirse}} de todos en el aeropuerto. Ahora está otra vez en Bolonia y, aunque su vida es más cómoda, a veces la encuentra un poco {{fome|fome}}. {{extranar|Extraña}} las empanadas, la cordillera nevada y, sobre todo, a Javiera.",
+  "quiz": [
+    {
+      "q": "¿Qué estudiaba Giulia en Bolonia?",
+      "options": [
+        "Medicina",
+        "Turismo",
+        "Arquitectura",
+        "Ingeniería",
+        "Español"
+      ],
+      "answer": 3,
+      "explain": "«Estudiaba Ingeniería en Bolonia.»"
+    },
+    {
+      "q": "¿Qué le pasó el primer día en la facultad?",
+      "options": [
+        "se perdió en el campus",
+        "se dio cuenta de que el español de los libros no le servía de mucho",
+        "conoció a su profesor favorito",
+        "reprobó una prueba",
+        "no encontró a Javiera"
+      ],
+      "answer": 1,
+      "explain": "«Se dio cuenta de que el español de los libros no le servía de mucho» — the Chileans spoke very fast."
+    },
+    {
+      "q": "¿Cómo la ayudaba Javiera en clase?",
+      "options": [
+        "le traducía al italiano",
+        "le hacía las pruebas",
+        "le grababa las clases",
+        "le explicaba el sistema de notas",
+        "le prestaba sus apuntes"
+      ],
+      "answer": 4,
+      "explain": "«Se sentaba siempre a su lado y le prestaba sus apuntes.»"
+    },
+    {
+      "q": "¿Por qué se asustó Giulia después de la primera prueba?",
+      "options": [
+        "porque sacó un 3,5 y con menos de 4 se reprueba",
+        "porque sacó un 7",
+        "porque no entendió las preguntas",
+        "porque llegó tarde",
+        "porque perdió la beca"
+      ],
+      "answer": 0,
+      "explain": "«Sacó una nota de 3,5. En Chile se califica del 1 al 7 y con menos de un 4 se reprueba.»"
+    },
+    {
+      "q": "¿Qué hacía Giulia los fines de semana?",
+      "options": [
+        "estudiaba en la biblioteca",
+        "trabajaba en un café",
+        "iba a la cordillera o a Valparaíso",
+        "volvía a Italia",
+        "dormía todo el día"
+      ],
+      "answer": 2,
+      "explain": "«Los fines de semana iba… a la cordillera o a la playa en Valparaíso» — imperfect for habits."
+    },
+    {
+      "q": "¿Cómo reaccionaron los chilenos durante el temblor?",
+      "options": [
+        "gritaron",
+        "salieron a la calle",
+        "llamaron a la policía",
+        "siguieron comiendo tranquilamente",
+        "se escondieron debajo de la mesa"
+      ],
+      "answer": 3,
+      "explain": "«Giulia gritó…; los chilenos siguieron comiendo tranquilamente.»"
+    },
+    {
+      "q": "¿Qué significa «fome» en Chile?",
+      "options": [
+        "divertido",
+        "aburrido",
+        "caro",
+        "difícil",
+        "frío"
+      ],
+      "answer": 1,
+      "explain": "*Fome* is Chilean slang for *aburrido* (boring)."
+    },
+    {
+      "q": "Mientras Giulia *___*, empezó el temblor. (cenar)",
+      "options": [
+        "cenaba",
+        "cenó",
+        "cena",
+        "ha cenado",
+        "cenará"
+      ],
+      "answer": 0,
+      "explain": "An action in progress interrupted by an event: imperfect *cenaba* + preterite *empezó*."
+    },
+    {
+      "q": "En julio Giulia tuvo que *___* de sus amigos.",
+      "options": [
+        "despedir",
+        "despedido",
+        "despedía",
+        "despedirla",
+        "despedirse"
+      ],
+      "answer": 4,
+      "explain": "*Despedirse de* = to say goodbye to (reflexive, pronoun attached to the infinitive). *Despedir* without *se* means to fire someone."
+    },
+    {
+      "q": "En España, en lugar de «reprobar» un examen se dice…",
+      "options": [
+        "aprobar",
+        "sacar",
+        "suspender",
+        "repetir",
+        "rendir"
+      ],
+      "answer": 2,
+      "explain": "Spain: *suspender un examen*; Latin America: *reprobar*. *Aprobar* is the opposite (to pass)."
+    }
+  ]
+}

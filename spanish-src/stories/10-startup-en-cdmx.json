@@ -1,0 +1,562 @@
+{
+  "n": 10,
+  "area": "Work and study",
+  "level": "B1–B2",
+  "title_es": "Una start-up en Ciudad de México",
+  "title_en": "A start-up in Mexico City",
+  "grammar": [
+    {
+      "name": "Present subjunctive after wishes, advice and doubt",
+      "explain": "After expressions of wanting, needing, advising, emotion or doubt followed by *que* and a new subject, Spanish uses the subjunctive: *es importante que la propuesta sea clara*, *quieren que les mostremos los números*, *no creo que les interese*, *qué chido que seas optimista*. Compare *creo que les interesa* (I think it interests them → indicative): certainty takes the indicative, doubt takes the subjunctive. It also appears in relative clauses describing something that doesn't exist yet: *algo que sea tan fácil como…*.",
+      "examples": [
+        {
+          "es": "Es importante que la propuesta *sea* corta.",
+          "en": "It's important that the pitch is short."
+        },
+        {
+          "es": "No creo que les *interese* la tecnología.",
+          "en": "I don't think the technology interests them."
+        },
+        {
+          "es": "Necesitamos algo que *funcione* sin internet.",
+          "en": "We need something that works without internet."
+        }
+      ],
+      "links": [
+        {
+          "title": "Subjunctive",
+          "url": "../advanced/subjunctive.html"
+        },
+        {
+          "title": "Subjunctive vs. indicative",
+          "url": "../advanced/subjunctive-vs-indicative.html"
+        }
+      ]
+    },
+    {
+      "name": "The conditional for suggestions and hypotheses",
+      "explain": "The conditional (*-ía* endings added to the infinitive) softens suggestions and talks about what would happen: *yo empezaría con la historia de tu mamá* (I'd start with…), *¿qué harían si…?* (what would they do if…?). Irregular stems are the same as in the future: *hacer → haría*, *tener → tendría*, *poder → podría*, *decir → diría*.",
+      "examples": [
+        {
+          "es": "Yo *empezaría* con una historia.",
+          "en": "I would start with a story."
+        },
+        {
+          "es": "¿Qué *harían* si el fondo dice que no?",
+          "en": "What would they do if the fund says no?"
+        },
+        {
+          "es": "*Volveríamos* a empezar.",
+          "en": "We would start all over again."
+        }
+      ],
+      "links": [
+        {
+          "title": "Conditional",
+          "url": "../intermediate/conditional.html"
+        }
+      ]
+    },
+    {
+      "name": "Por vs. para",
+      "explain": "*Para* points to a goal, purpose or deadline: *para crecer, necesitan financiamiento* (in order to grow), *para el jueves* (by Thursday). *Por* gives the cause, the exchange or the means: *por una comisión mínima* (in exchange for a tiny fee), *por eso* (that's why), *pagar por QR* (by QR code).",
+      "examples": [
+        {
+          "es": "*Para* crecer, necesitan dinero.",
+          "en": "In order to grow, they need money."
+        },
+        {
+          "es": "Cobran *por* cada pago.",
+          "en": "They charge per payment."
+        },
+        {
+          "es": "Hay que mandar los números *para* el jueves.",
+          "en": "The figures have to be sent by Thursday."
+        }
+      ],
+      "links": [
+        {
+          "title": "Por vs. para",
+          "url": "../intermediate/por-vs-para.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "emprender",
+      "es": "emprender",
+      "gender": "",
+      "en": "to start a business; to undertake",
+      "examples": [
+        {
+          "es": "Siempre quise *emprender*.",
+          "en": "I always wanted to start my own business."
+        },
+        {
+          "es": "*Emprendieron* un viaje largo.",
+          "en": "They set off on a long journey."
+        }
+      ],
+      "note": "Nouns: *el emprendimiento* (start-up, venture — very common in Latin America) and *el emprendedor / la emprendedora* (entrepreneur)."
+    },
+    {
+      "id": "socio",
+      "es": "socio",
+      "gender": "m",
+      "plural": "socios",
+      "en": "(business) partner; member",
+      "examples": [
+        {
+          "es": "Mi *socia* se encarga de la tecnología.",
+          "en": "My partner takes care of the technology."
+        },
+        {
+          "es": "Soy *socio* del club de fútbol.",
+          "en": "I'm a member of the football club."
+        }
+      ],
+      "note": "Feminine: *la socia*. Not 'social' — that is *social*."
+    },
+    {
+      "id": "puesto",
+      "es": "puesto",
+      "gender": "m",
+      "plural": "puestos",
+      "en": "market stall; position (job)",
+      "examples": [
+        {
+          "es": "Mi mamá tiene un *puesto* de jugos.",
+          "en": "My mum has a juice stall."
+        },
+        {
+          "es": "Compramos tacos en un *puesto* de la esquina.",
+          "en": "We bought tacos at a stall on the corner."
+        }
+      ],
+      "note": "In Mexico you constantly see *puestos* on the street. It also means a job position: *un puesto de trabajo*."
+    },
+    {
+      "id": "tianguis",
+      "es": "tianguis",
+      "gender": "m",
+      "plural": "tianguis",
+      "en": "open-air street market (Mexico)",
+      "examples": [
+        {
+          "es": "Los martes hay *tianguis* en mi colonia.",
+          "en": "On Tuesdays there's a street market in my neighbourhood."
+        },
+        {
+          "es": "En el *tianguis* la fruta es más barata.",
+          "en": "Fruit is cheaper at the street market."
+        }
+      ],
+      "note": "From Nahuatl. Same form in the plural. Elsewhere: *mercadillo* (Spain), *feria* (Chile, Argentina)."
+    },
+    {
+      "id": "chamba",
+      "es": "chamba",
+      "gender": "f",
+      "plural": "chambas",
+      "en": "job, work (Mexico, informal)",
+      "examples": [
+        {
+          "es": "Tengo mucha *chamba* esta semana.",
+          "en": "I've got loads of work this week."
+        },
+        {
+          "es": "Encontró *chamba* en una start-up.",
+          "en": "She found a job at a start-up."
+        }
+      ],
+      "note": "Informal; also Peru and Central America. Verb: *chambear* (to work). Spain would say *curro*."
+    },
+    {
+      "id": "comision",
+      "es": "comisión",
+      "gender": "f",
+      "plural": "comisiones",
+      "en": "commission, fee; committee",
+      "examples": [
+        {
+          "es": "El banco cobra una *comisión* por cada transferencia.",
+          "en": "The bank charges a fee for every transfer."
+        },
+        {
+          "es": "Trabaja a *comisión*.",
+          "en": "He works on commission."
+        }
+      ],
+      "note": "Also a committee: *la comisión de fiestas*."
+    },
+    {
+      "id": "lanzar",
+      "es": "lanzar",
+      "gender": "",
+      "en": "to launch; to throw",
+      "examples": [
+        {
+          "es": "*Lanzamos* la app en enero.",
+          "en": "We launched the app in January."
+        },
+        {
+          "es": "Me *lanzó* la pelota.",
+          "en": "He threw me the ball."
+        }
+      ],
+      "note": "Spelling change before *e*: *lancé* (I launched). Noun: *el lanzamiento*."
+    },
+    {
+      "id": "usuario",
+      "es": "usuario",
+      "gender": "m",
+      "plural": "usuarios",
+      "en": "user",
+      "examples": [
+        {
+          "es": "La app ya tiene mil *usuarios*.",
+          "en": "The app already has a thousand users."
+        },
+        {
+          "es": "Escribe tu nombre de *usuario*.",
+          "en": "Type your username."
+        }
+      ],
+      "note": "Feminine: *la usuaria*. Inclusive writing often has *usuarios y usuarias*."
+    },
+    {
+      "id": "rentable",
+      "es": "rentable",
+      "gender": "",
+      "en": "profitable, cost-effective",
+      "examples": [
+        {
+          "es": "El negocio todavía no es *rentable*.",
+          "en": "The business isn't profitable yet."
+        },
+        {
+          "es": "No es *rentable* abrir los domingos.",
+          "en": "It doesn't pay to open on Sundays."
+        }
+      ],
+      "note": "False friend: it has nothing to do with *rent*. Noun: *la rentabilidad*."
+    },
+    {
+      "id": "ganancias",
+      "es": "ganancias",
+      "gender": "fpl",
+      "plural": "ganancias",
+      "en": "profits, earnings",
+      "examples": [
+        {
+          "es": "Las *ganancias* subieron este año.",
+          "en": "Profits rose this year."
+        },
+        {
+          "es": "Reparten las *ganancias* entre los socios.",
+          "en": "They share the profits among the partners."
+        }
+      ],
+      "note": "Usually plural. Opposite: *las pérdidas* (losses). Verb: *ganar* (to earn, to win)."
+    },
+    {
+      "id": "crecer",
+      "es": "crecer",
+      "gender": "",
+      "en": "to grow",
+      "examples": [
+        {
+          "es": "La empresa *crece* muy rápido.",
+          "en": "The company is growing very fast."
+        },
+        {
+          "es": "*Crecí* en Iztapalapa.",
+          "en": "I grew up in Iztapalapa."
+        }
+      ],
+      "note": "Irregular *yo* form: *crezco*. *Crecer* = to grow up too; to grow vegetables is *cultivar*."
+    },
+    {
+      "id": "financiamiento",
+      "es": "financiamiento",
+      "gender": "m",
+      "plural": "financiamientos",
+      "en": "funding, financing",
+      "examples": [
+        {
+          "es": "Buscamos *financiamiento* para el proyecto.",
+          "en": "We are looking for funding for the project."
+        },
+        {
+          "es": "Consiguieron *financiamiento* de un fondo.",
+          "en": "They got funding from a fund."
+        }
+      ],
+      "note": "Latin America. Spain prefers *la financiación*. *Ronda de financiamiento* = funding round."
+    },
+    {
+      "id": "inversionista",
+      "es": "inversionista",
+      "gender": "m",
+      "plural": "inversionistas",
+      "en": "investor",
+      "examples": [
+        {
+          "es": "Hablamos con tres *inversionistas*.",
+          "en": "We talked to three investors."
+        },
+        {
+          "es": "Es una *inversionista* con mucha experiencia.",
+          "en": "She's a very experienced investor."
+        }
+      ],
+      "note": "Latin America; same form for men and women (*el / la inversionista*). Spain: *el inversor / la inversora*. Verb: *invertir*."
+    },
+    {
+      "id": "plazo",
+      "es": "plazo",
+      "gender": "m",
+      "plural": "plazos",
+      "en": "deadline; period of time; instalment",
+      "examples": [
+        {
+          "es": "El *plazo* termina el jueves.",
+          "en": "The deadline is Thursday."
+        },
+        {
+          "es": "Lo pagué a *plazos*.",
+          "en": "I paid for it in instalments."
+        }
+      ],
+      "note": "*A corto / largo plazo* = in the short / long term. *Vencer el plazo* = the deadline expires."
+    },
+    {
+      "id": "agotado",
+      "es": "agotado",
+      "gender": "",
+      "en": "exhausted; sold out",
+      "examples": [
+        {
+          "es": "Después de la semana estoy *agotada*.",
+          "en": "After this week I'm exhausted."
+        },
+        {
+          "es": "Las entradas están *agotadas*.",
+          "en": "The tickets are sold out."
+        }
+      ],
+      "note": "Stronger than *cansado*. With *estar*. Also 'out of stock' in shops."
+    },
+    {
+      "id": "propuesta",
+      "es": "propuesta",
+      "gender": "f",
+      "plural": "propuestas",
+      "en": "proposal, pitch",
+      "examples": [
+        {
+          "es": "Les presentamos nuestra *propuesta*.",
+          "en": "We presented our proposal to them."
+        },
+        {
+          "es": "Tengo una *propuesta* para el fin de semana.",
+          "en": "I have a suggestion for the weekend."
+        }
+      ],
+      "note": "From *proponer* (to propose). Note the irregular participle *propuesto*."
+    },
+    {
+      "id": "convencer",
+      "es": "convencer",
+      "gender": "",
+      "en": "to convince, to persuade",
+      "examples": [
+        {
+          "es": "Su historia nos *convenció*.",
+          "en": "Her story convinced us."
+        },
+        {
+          "es": "No me *convence* esta idea.",
+          "en": "I'm not convinced by this idea."
+        }
+      ],
+      "note": "*Yo convenzo* (c → z). *No me convence* is a polite way to say you don't like something."
+    },
+    {
+      "id": "riesgo",
+      "es": "riesgo",
+      "gender": "m",
+      "plural": "riesgos",
+      "en": "risk",
+      "examples": [
+        {
+          "es": "Todo negocio tiene *riesgos*.",
+          "en": "Every business has risks."
+        },
+        {
+          "es": "Corrió el *riesgo* de perderlo todo.",
+          "en": "She ran the risk of losing everything."
+        }
+      ],
+      "note": "*Correr un riesgo* = to take a risk. Verb: *arriesgarse*."
+    },
+    {
+      "id": "fracasar",
+      "es": "fracasar",
+      "gender": "",
+      "en": "to fail (a project, a plan)",
+      "examples": [
+        {
+          "es": "Muchas start-ups *fracasan*.",
+          "en": "Many start-ups fail."
+        },
+        {
+          "es": "El plan *fracasó*.",
+          "en": "The plan failed."
+        }
+      ],
+      "note": "For projects and plans; for exams use *reprobar / suspender*. Noun: *el fracaso*."
+    },
+    {
+      "id": "chido",
+      "es": "chido",
+      "gender": "",
+      "en": "cool, great (Mexico, informal)",
+      "examples": [
+        {
+          "es": "¡Qué *chido* tu nuevo trabajo!",
+          "en": "Your new job is so cool!"
+        },
+        {
+          "es": "Es una app muy *chida*.",
+          "en": "It's a really cool app."
+        }
+      ],
+      "note": "Mexican slang. Spain: *guay*; Argentina: *copado*; Colombia: *chévere*."
+    }
+  ],
+  "text": "Ryan llegó a Ciudad de México hace tres años desde Austin, con un trabajo en una multinacional y la idea de quedarse solo seis meses. Pero {{=se enamoró de|he fell in love with}} la ciudad, de los tacos al pastor y, un poco más tarde, de la idea de {{emprender|emprender}}. Su {{socio|socia}}, Daniela, es ingeniera y {{crecer|creció}} en Iztapalapa, donde su mamá tiene un {{puesto|puesto}} de jugos en el {{tianguis|tianguis}} de los martes.\n\nTodo empezó con una queja de la mamá de Daniela: cada vez más clientes ya no llevan {{=efectivo|cash}} y ella pierde ventas. «Necesitamos algo que sea tan fácil como pagar con monedas», dijo Daniela. Así nació Marchanta, una app que permite a los vendedores cobrar con un código QR por una {{comision|comisión}} mínima. Los dos dejaron la {{chamba|chamba}} segura y la {{lanzar|lanzaron}} en enero.\n\nHoy Marchanta tiene ocho mil {{usuario|usuarios}}, pero todavía no es {{rentable|rentable}}: las {{ganancias|ganancias}} {{=apenas cubren|barely cover}} los sueldos del pequeño equipo. Para seguir creciendo, necesitan {{financiamiento|financiamiento}}, y el viernes tienen una reunión con un fondo de {{inversionista|inversionistas}} de Monterrey. El {{plazo|plazo}} para mandar los números {{=vence|expires}} el jueves, y {{=llevan días durmiendo poco|they have been sleeping very little for days}}. Ryan está {{agotado|agotado}}.\n\n«Es importante que la {{propuesta|propuesta}} sea corta y clara», insiste Daniela. «No creo que les interese mucho nuestra tecnología. Quieren que les mostremos que la gente de verdad usa la app.» Ryan preferiría empezar con gráficas del mercado, pero al final está de acuerdo con ella: «Yo empezaría con la historia de tu mamá. Eso es lo que los va a {{convencer|convencer}}.»\n\nLos dos saben que hay {{riesgo|riesgo}}: la mayoría de las start-ups {{fracasar|fracasan}} en los primeros años. ¿Qué harían si el fondo dice que no? Ryan ni lo piensa: «Volveríamos a empezar. Pero esta vez con más {{=canas|grey hairs}}.» Daniela se ríe: «Qué {{chido|chido}} que seas tan optimista, güey.»",
+  "quiz": [
+    {
+      "q": "¿Por qué vino Ryan a Ciudad de México?",
+      "options": [
+        "para estudiar español",
+        "por un trabajo en una multinacional",
+        "para abrir un restaurante",
+        "porque su socia es mexicana",
+        "para visitar a la mamá de Daniela"
+      ],
+      "answer": 1,
+      "explain": "«Llegó… con un trabajo en una multinacional y la idea de quedarse solo seis meses.»"
+    },
+    {
+      "q": "¿Qué tiene la mamá de Daniela?",
+      "options": [
+        "una tienda de ropa",
+        "un banco",
+        "una fonda de tacos",
+        "una empresa de logística",
+        "un puesto de jugos en el tianguis"
+      ],
+      "answer": 4,
+      "explain": "«Su mamá tiene un puesto de jugos en el tianguis de los martes.»"
+    },
+    {
+      "q": "¿Cuál fue el problema que dio origen a la app?",
+      "options": [
+        "los clientes no llevan efectivo",
+        "los jugos eran caros",
+        "no había internet en el tianguis",
+        "los bancos cobraban mucho",
+        "Ryan no hablaba español"
+      ],
+      "answer": 0,
+      "explain": "«Cada vez más clientes ya no llevan efectivo y ella pierde ventas.»"
+    },
+    {
+      "q": "¿Qué hace Marchanta?",
+      "options": [
+        "vende jugos por internet",
+        "busca trabajo para vendedores",
+        "permite cobrar con un código QR",
+        "presta dinero",
+        "enseña programación"
+      ],
+      "answer": 2,
+      "explain": "«Una app que permite a los vendedores cobrar con un código QR por una comisión mínima.»"
+    },
+    {
+      "q": "¿Por qué necesitan financiamiento?",
+      "options": [
+        "porque la app ya es muy rentable",
+        "para pagar una multa",
+        "para comprar un puesto",
+        "para seguir creciendo",
+        "para viajar a Monterrey"
+      ],
+      "answer": 3,
+      "explain": "«Para seguir creciendo, necesitan financiamiento» — the profits barely cover the salaries."
+    },
+    {
+      "q": "Según Daniela, ¿qué quieren ver los inversionistas?",
+      "options": [
+        "la tecnología de la app",
+        "que la gente de verdad usa la app",
+        "gráficas del mercado",
+        "un plan para Estados Unidos",
+        "el currículum de Ryan"
+      ],
+      "answer": 1,
+      "explain": "«Quieren que les mostremos que la gente de verdad usa la app.»"
+    },
+    {
+      "q": "¿Qué harían si el fondo dice que no?",
+      "options": [
+        "cerrarían la empresa",
+        "buscarían otra chamba",
+        "Ryan volvería a Austin",
+        "venderían la app",
+        "volverían a empezar"
+      ],
+      "answer": 4,
+      "explain": "«Volveríamos a empezar. Pero esta vez con más canas.»"
+    },
+    {
+      "q": "Es importante que la propuesta *___* clara.",
+      "options": [
+        "sea",
+        "es",
+        "será",
+        "está",
+        "sería"
+      ],
+      "answer": 0,
+      "explain": "*Es importante que* + new subject → present subjunctive: *sea*."
+    },
+    {
+      "q": "No creo que a los inversionistas les *___* la tecnología.",
+      "options": [
+        "interesa",
+        "interesó",
+        "interese",
+        "interesaría",
+        "interesan"
+      ],
+      "answer": 2,
+      "explain": "Doubt (*no creo que*) → subjunctive: *interese*. Compare *creo que les interesa* (indicative)."
+    },
+    {
+      "q": "La app cobra *___* cada pago una comisión mínima.",
+      "options": [
+        "para",
+        "en",
+        "de",
+        "por",
+        "con"
+      ],
+      "answer": 3,
+      "explain": "Exchange / rate → *por*: *por cada pago*. *Para* would express purpose or a deadline."
+    }
+  ]
+}

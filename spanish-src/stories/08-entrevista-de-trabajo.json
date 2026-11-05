@@ -1,0 +1,560 @@
+{
+  "n": 8,
+  "area": "Work and study",
+  "level": "A2–B1",
+  "title_es": "La entrevista de Olena",
+  "title_en": "Olena's job interview",
+  "grammar": [
+    {
+      "name": "The preterite for completed events",
+      "explain": "The preterite (*pretérito indefinido*) tells what happened, step by step, at a definite moment: *llegó, escribió, preguntó*. Regular endings: *-ar → -é, -aste, -ó*; *-er/-ir → -í, -iste, -ió*. Some very common verbs are irregular: *ir/ser → fue*, *tener → tuvo*, *decir → dijo*, *conseguir → consiguió*. Notice the written accent: *llegó* (she arrived) vs *llego* (I arrive).",
+      "examples": [
+        {
+          "es": "Olena *envió* su currículum por la noche.",
+          "en": "Olena sent her CV at night."
+        },
+        {
+          "es": "*Llegó* diez minutos antes.",
+          "en": "She arrived ten minutes early."
+        },
+        {
+          "es": "Por fin *consiguió* el trabajo.",
+          "en": "At last she got the job."
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite",
+          "url": "../intermediate/preterite.html"
+        }
+      ]
+    },
+    {
+      "name": "Hace + time = ago",
+      "explain": "To say *ago*, put *hace* before the time: *hace dos años* (two years ago), *hace un mes* (a month ago). With a present-tense verb, *desde hace* means *for* (and still continuing): *vive en Madrid desde hace dos años* — she has been living in Madrid for two years.",
+      "examples": [
+        {
+          "es": "Llegó a Madrid *hace dos años*.",
+          "en": "She came to Madrid two years ago."
+        },
+        {
+          "es": "*Hace un mes* vio la oferta.",
+          "en": "A month ago she saw the job advert."
+        },
+        {
+          "es": "Estudia español *desde hace* tres años.",
+          "en": "She has been studying Spanish for three years."
+        }
+      ],
+      "links": [
+        {
+          "title": "Hacer time expressions",
+          "url": "../intermediate/hacer-time-expressions.html"
+        }
+      ]
+    },
+    {
+      "name": "Formal usted",
+      "explain": "In a job interview you normally use *usted*, the polite *you*. It takes the same verb form as *él / ella*: *¿Por qué quiere usted este puesto?* Commands use the subjunctive form: *siéntese, pase*. Object pronouns are *lo / la* and *le*: *queremos contratarla* (we want to hire you, said to a woman).",
+      "examples": [
+        {
+          "es": "¿Por qué *quiere* este puesto?",
+          "en": "Why do you want this position? (usted)"
+        },
+        {
+          "es": "*Siéntese*, por favor.",
+          "en": "Please sit down."
+        },
+        {
+          "es": "¿*Tiene usted* experiencia?",
+          "en": "Do you have experience?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Subject pronouns",
+          "url": "../beginner/subject-pronouns.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "oferta",
+      "es": "oferta de empleo",
+      "gender": "f",
+      "plural": "ofertas de empleo",
+      "en": "job advert, job vacancy",
+      "examples": [
+        {
+          "es": "Vi una *oferta de empleo* en internet.",
+          "en": "I saw a job advert online."
+        },
+        {
+          "es": "Hay pocas *ofertas de empleo* en verano.",
+          "en": "There are few vacancies in summer."
+        }
+      ],
+      "note": "Also *oferta de trabajo*. *Una oferta* alone is often a special offer in a shop."
+    },
+    {
+      "id": "empresa",
+      "es": "empresa",
+      "gender": "f",
+      "plural": "empresas",
+      "en": "company, firm",
+      "examples": [
+        {
+          "es": "Trabajo en una *empresa* pequeña.",
+          "en": "I work for a small company."
+        },
+        {
+          "es": "La *empresa* tiene oficinas en Madrid.",
+          "en": "The company has offices in Madrid."
+        }
+      ],
+      "note": "Not 'enterprise' in the sense of courage. *Trabajar en una empresa* — note *en*, not *para*."
+    },
+    {
+      "id": "idioma",
+      "es": "idioma",
+      "gender": "m",
+      "plural": "idiomas",
+      "en": "language",
+      "examples": [
+        {
+          "es": "Hablo cuatro *idiomas*.",
+          "en": "I speak four languages."
+        },
+        {
+          "es": "El inglés es un *idioma* muy útil.",
+          "en": "English is a very useful language."
+        }
+      ],
+      "note": "Masculine although it ends in *-a*: *el idioma* (Greek origin, like *el problema, el tema*)."
+    },
+    {
+      "id": "presentarse",
+      "es": "presentarse a",
+      "gender": "",
+      "en": "to apply for (a job, an exam); to introduce oneself",
+      "examples": [
+        {
+          "es": "Me *presenté a* tres ofertas.",
+          "en": "I applied for three vacancies."
+        },
+        {
+          "es": "¿Puedes *presentarte*, por favor?",
+          "en": "Can you introduce yourself, please?"
+        }
+      ],
+      "note": "*Solicitar un puesto* is a more formal way to say 'to apply'."
+    },
+    {
+      "id": "curriculum",
+      "es": "currículum",
+      "gender": "m",
+      "plural": "currículums",
+      "en": "CV, résumé",
+      "examples": [
+        {
+          "es": "Tengo que actualizar mi *currículum*.",
+          "en": "I have to update my CV."
+        },
+        {
+          "es": "Envíe su *currículum* a esta dirección.",
+          "en": "Send your CV to this address."
+        }
+      ],
+      "note": "Often shortened to *el CV*. Latin America also says *la hoja de vida* (Colombia)."
+    },
+    {
+      "id": "rrhh",
+      "es": "recursos humanos",
+      "gender": "mpl",
+      "plural": "recursos humanos",
+      "en": "human resources, HR",
+      "examples": [
+        {
+          "es": "Me llamaron de *Recursos Humanos*.",
+          "en": "HR called me."
+        },
+        {
+          "es": "Trabaja en el departamento de *recursos humanos*.",
+          "en": "She works in the HR department."
+        }
+      ],
+      "note": "Abbreviated *RR. HH.* — the doubled letters show it's plural."
+    },
+    {
+      "id": "puntual",
+      "es": "puntual",
+      "gender": "",
+      "en": "punctual, on time",
+      "examples": [
+        {
+          "es": "Hay que ser *puntual* en una entrevista.",
+          "en": "You have to be on time for an interview."
+        },
+        {
+          "es": "El tren llegó *puntual*.",
+          "en": "The train arrived on time."
+        }
+      ],
+      "note": "Same form for masculine and feminine. Use *ser puntual* for a habit, *llegar puntual* for one occasion."
+    },
+    {
+      "id": "nervioso",
+      "es": "nervioso",
+      "gender": "",
+      "en": "nervous",
+      "examples": [
+        {
+          "es": "Estoy un poco *nerviosa*.",
+          "en": "I'm a bit nervous."
+        },
+        {
+          "es": "No te pongas *nervioso*.",
+          "en": "Don't get nervous."
+        }
+      ],
+      "note": "*Ponerse nervioso* = to get nervous. With *estar* for the feeling right now."
+    },
+    {
+      "id": "candidato",
+      "es": "candidato",
+      "gender": "m",
+      "plural": "candidatos",
+      "en": "candidate, applicant",
+      "examples": [
+        {
+          "es": "Hay diez *candidatos* para el puesto.",
+          "en": "There are ten applicants for the position."
+        },
+        {
+          "es": "Es la mejor *candidata*.",
+          "en": "She's the best candidate."
+        }
+      ],
+      "note": "Feminine: *la candidata*."
+    },
+    {
+      "id": "puesto",
+      "es": "puesto",
+      "gender": "m",
+      "plural": "puestos",
+      "en": "position, post, job",
+      "examples": [
+        {
+          "es": "Es un *puesto* de recepcionista.",
+          "en": "It's a receptionist position."
+        },
+        {
+          "es": "Hay un *puesto* libre en ventas.",
+          "en": "There's a vacancy in sales."
+        }
+      ],
+      "note": "In Mexico *un puesto* is also a market stall."
+    },
+    {
+      "id": "experiencia",
+      "es": "experiencia",
+      "gender": "f",
+      "plural": "experiencias",
+      "en": "experience",
+      "examples": [
+        {
+          "es": "Tengo cinco años de *experiencia*.",
+          "en": "I have five years' experience."
+        },
+        {
+          "es": "Fue una *experiencia* increíble.",
+          "en": "It was an amazing experience."
+        }
+      ],
+      "note": "Also an event you live through, as in English. Not 'experiment' — that is *experimento*."
+    },
+    {
+      "id": "formacion",
+      "es": "formación",
+      "gender": "f",
+      "plural": "formaciones",
+      "en": "education, training, qualifications",
+      "examples": [
+        {
+          "es": "¿Qué *formación* tiene usted?",
+          "en": "What qualifications do you have?"
+        },
+        {
+          "es": "La empresa ofrece *formación* gratuita.",
+          "en": "The company offers free training."
+        }
+      ],
+      "note": "Very common on CVs. *Formación académica* = education; *formación profesional (FP)* = vocational training in Spain."
+    },
+    {
+      "id": "puntofuerte",
+      "es": "punto fuerte",
+      "gender": "m",
+      "plural": "puntos fuertes",
+      "en": "strength, strong point",
+      "examples": [
+        {
+          "es": "Mi *punto fuerte* es la organización.",
+          "en": "My strong point is organisation."
+        },
+        {
+          "es": "La paciencia no es su *punto fuerte*.",
+          "en": "Patience isn't his strong suit."
+        }
+      ],
+      "note": "Opposite: *punto débil* (weakness) — the classic interview question."
+    },
+    {
+      "id": "jornada",
+      "es": "jornada",
+      "gender": "f",
+      "plural": "jornadas",
+      "en": "working day, working hours",
+      "examples": [
+        {
+          "es": "Es un trabajo de *jornada* completa.",
+          "en": "It's a full-time job."
+        },
+        {
+          "es": "Mi *jornada* empieza a las ocho.",
+          "en": "My working day starts at eight."
+        }
+      ],
+      "note": "*Jornada completa* = full-time; *media jornada* = part-time (Spain). *Jornada intensiva* = a summer timetable with no lunch break."
+    },
+    {
+      "id": "disponibilidad",
+      "es": "disponibilidad",
+      "gender": "f",
+      "plural": "disponibilidades",
+      "en": "availability",
+      "examples": [
+        {
+          "es": "Tengo *disponibilidad* inmediata.",
+          "en": "I can start right away."
+        },
+        {
+          "es": "Necesitamos *disponibilidad* para viajar.",
+          "en": "We need someone who is available to travel."
+        }
+      ],
+      "note": "*Disponibilidad inmediata* is a standard CV phrase. Adjective: *disponible*."
+    },
+    {
+      "id": "contrato",
+      "es": "contrato",
+      "gender": "m",
+      "plural": "contratos",
+      "en": "contract",
+      "examples": [
+        {
+          "es": "Firmé el *contrato* ayer.",
+          "en": "I signed the contract yesterday."
+        },
+        {
+          "es": "Es un *contrato* indefinido.",
+          "en": "It's a permanent contract."
+        }
+      ],
+      "note": "*Contrato indefinido* = permanent; *contrato temporal* = fixed-term."
+    },
+    {
+      "id": "prueba",
+      "es": "periodo de prueba",
+      "gender": "m",
+      "plural": "periodos de prueba",
+      "en": "probation period, trial period",
+      "examples": [
+        {
+          "es": "El *periodo de prueba* es de seis meses.",
+          "en": "The probation period is six months."
+        },
+        {
+          "es": "Todavía estoy en *periodo de prueba*.",
+          "en": "I'm still on probation."
+        }
+      ],
+      "note": "Also spelled *período*. *Una prueba* alone is a test or trial."
+    },
+    {
+      "id": "enviar",
+      "es": "enviar",
+      "gender": "",
+      "en": "to send",
+      "examples": [
+        {
+          "es": "Te *envío* el documento por correo.",
+          "en": "I'll send you the document by email."
+        },
+        {
+          "es": "¿Ya *enviaste* la solicitud?",
+          "en": "Have you sent the application yet?"
+        }
+      ],
+      "note": "Written accent in the stressed stem forms: *envío, envías, envía*, but *enviamos*. A synonym is *mandar*."
+    },
+    {
+      "id": "contratar",
+      "es": "contratar",
+      "gender": "",
+      "en": "to hire, to take on",
+      "examples": [
+        {
+          "es": "Queremos *contratarla*.",
+          "en": "We want to hire you."
+        },
+        {
+          "es": "La empresa va a *contratar* a cinco personas.",
+          "en": "The company is going to take on five people."
+        }
+      ],
+      "note": "Use *a* before people: *contratar a alguien*. Opposite: *despedir* (to dismiss)."
+    },
+    {
+      "id": "conseguir",
+      "es": "conseguir",
+      "gender": "",
+      "en": "to get, to manage, to achieve",
+      "examples": [
+        {
+          "es": "*Conseguí* el trabajo.",
+          "en": "I got the job."
+        },
+        {
+          "es": "No *consigo* dormir.",
+          "en": "I can't manage to sleep."
+        }
+      ],
+      "note": "Stem change e → i: *consigo, consigues*; preterite *consiguió*. *Conseguir + infinitive* = to manage to do."
+    }
+  ],
+  "text": "Olena es de Kiev y llegó a Madrid {{=hace|ago}} dos años. En Ucrania trabajó seis años en la recepción de un hotel. En Madrid, primero estudió español todos los días y después encontró trabajo en una tienda. Pero ella quería algo más. Hace un mes vio una {{oferta|oferta de empleo}} en internet: una {{empresa|empresa}} de logística necesitaba una recepcionista con {{idioma|idiomas}}. Esa misma noche Olena {{presentarse|se presentó a}} la oferta: actualizó su {{curriculum|currículum}}, escribió una carta y lo {{enviar|envió}} todo. Tres días después la llamaron de {{rrhh|Recursos Humanos}}.\n\nEl día de la entrevista se levantó temprano y llegó diez minutos antes, porque en una entrevista hay que ser {{puntual|puntual}}. Estaba muy {{nervioso|nerviosa}}. En la {{=sala de espera|waiting room}} había otros dos {{candidato|candidatos}}.\n\n«Buenos días, Olena. {{=Siéntese|Sit down}}, por favor», le dijo la directora, la señora Robles. «¿Por qué quiere este {{puesto|puesto}}?» Olena {{=respiró hondo|took a deep breath}} y habló de su {{experiencia|experiencia}} en el hotel y de su {{formacion|formación}}: estudió Turismo y habla ucraniano, ruso, inglés y español. «¿Y cuál es su {{puntofuerte|punto fuerte}}?», preguntó la directora. «Soy organizada y aprendo rápido», contestó Olena.\n\nDespués hablaron de la {{jornada|jornada}}: es completa, de nueve a cinco y media. Olena dijo que tenía {{disponibilidad|disponibilidad}} inmediata y preguntó por el {{contrato|contrato}}. Es {{=indefinido|permanent}}, con seis meses de {{prueba|periodo de prueba}}.\n\nUna semana después sonó el teléfono. «{{=Enhorabuena|Congratulations}}, Olena. Queremos {{contratar|contratarla}}.» ¡Por fin lo {{conseguir|consiguió}}! Esa noche lo celebró con sus amigas en un bar de Malasaña.",
+  "quiz": [
+    {
+      "q": "¿Cuándo llegó Olena a Madrid?",
+      "options": [
+        "hace un mes",
+        "hace seis años",
+        "hace dos años",
+        "hace una semana",
+        "el año pasado"
+      ],
+      "answer": 2,
+      "explain": "«Llegó a Madrid hace dos años.» She worked six years in a hotel in Ukraine."
+    },
+    {
+      "q": "¿Dónde trabajó Olena en Ucrania?",
+      "options": [
+        "en una tienda",
+        "en una empresa de logística",
+        "en una escuela",
+        "en la recepción de un hotel",
+        "en Recursos Humanos"
+      ],
+      "answer": 3,
+      "explain": "«En Ucrania trabajó seis años en la recepción de un hotel.» The shop job was in Madrid."
+    },
+    {
+      "q": "¿Qué buscaba la empresa de logística?",
+      "options": [
+        "una recepcionista con idiomas",
+        "una directora",
+        "una profesora de español",
+        "una conductora",
+        "una cajera"
+      ],
+      "answer": 0,
+      "explain": "«Necesitaba una recepcionista con idiomas.»"
+    },
+    {
+      "q": "¿Por qué llegó Olena diez minutos antes?",
+      "options": [
+        "porque tenía miedo del metro",
+        "porque en una entrevista hay que ser puntual",
+        "porque quería ver la oficina",
+        "porque la directora se lo pidió",
+        "porque se equivocó de hora"
+      ],
+      "answer": 1,
+      "explain": "«Llegó diez minutos antes, porque en una entrevista hay que ser puntual.»"
+    },
+    {
+      "q": "¿Cuántos idiomas habla Olena?",
+      "options": [
+        "dos",
+        "tres",
+        "cinco",
+        "seis",
+        "cuatro"
+      ],
+      "answer": 4,
+      "explain": "Ukrainian, Russian, English and Spanish — «ucraniano, ruso, inglés y español»."
+    },
+    {
+      "q": "Según Olena, ¿cuál es su punto fuerte?",
+      "options": [
+        "habla muy bien inglés",
+        "es muy puntual",
+        "es organizada y aprende rápido",
+        "tiene mucha experiencia en logística",
+        "es simpática"
+      ],
+      "answer": 2,
+      "explain": "«Soy organizada y aprendo rápido», contestó Olena."
+    },
+    {
+      "q": "¿Cómo es el contrato?",
+      "options": [
+        "temporal, de seis meses",
+        "indefinido, con seis meses de prueba",
+        "de media jornada",
+        "sin periodo de prueba",
+        "de un año"
+      ],
+      "answer": 1,
+      "explain": "«Es indefinido, con seis meses de periodo de prueba.»"
+    },
+    {
+      "q": "Olena *___* su currículum esa misma noche. (enviar, pretérito)",
+      "options": [
+        "envía",
+        "enviará",
+        "enviaba",
+        "envié",
+        "envió"
+      ],
+      "answer": 4,
+      "explain": "Completed action at a definite moment → preterite, third person: *envió* (with the accent on the *ó*)."
+    },
+    {
+      "q": "«Vivo en Madrid *___* dos años.»",
+      "options": [
+        "desde hace",
+        "hace que",
+        "por",
+        "durante hace",
+        "desde"
+      ],
+      "answer": 0,
+      "explain": "With a present-tense verb, *desde hace* + time = for (and still true). *Desde* alone needs a starting point: *desde 2024*."
+    },
+    {
+      "q": "La palabra «idioma» es…",
+      "options": [
+        "femenina: la idioma",
+        "un verbo",
+        "plural: los idioma",
+        "masculina: el idioma",
+        "un adjetivo"
+      ],
+      "answer": 3,
+      "explain": "*El idioma* is masculine although it ends in *-a*, like *el problema*."
+    }
+  ]
+}
