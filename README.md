@@ -19,4 +19,6 @@ Spanish reading stories are JSON files in `spanish-src/stories/` (format describ
 
 German grammar pages in `grammar/` are edited as HTML. After adding or removing one, run `python3 tools/german_index.py` to rebuild the overview tiles, the main-page cards and the section pager.
 
+Progress tracking: `progress.js` (how progress is counted is described at its top) and `progress-manifest.js`, which `tools/site_switch.py` regenerates on every build.
+
 This regenerates `english/` and `spanish/` (pass `english` or `spanish` to build one) and then runs `tools/site_switch.py`, which adds the German / English / Spanish switch to the app bar of every page (safe to run again on its own after regenerating the German pages).
