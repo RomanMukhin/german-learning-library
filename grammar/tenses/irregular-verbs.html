@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="9bf59195cb31">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Strong and mixed verbs · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="a977aec84862" class="hide-sm" href="index.html">Tenses</a><span class="sep">/</span><span class="cur">Strong &amp; mixed verbs</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Strong and mixed verbs</h1><p class="sub">Weak, strong and mixed verbs: how to recognise each type, the vowel patterns that make the strong verbs learnable, and the 60 forms you need most.</p></header>
+<article class="prose card">
+<p>Every German verb belongs to one of three families. <strong>Weak</strong> verbs are the regular ones (<em>machen, machte, gemacht</em>). <strong>Strong</strong> verbs change their stem vowel in the past (<em>fahren, fuhr, gefahren</em>). <strong>Mixed</strong> verbs do a bit of both (<em>bringen, brachte, gebracht</em>). There are only about 170 strong and mixed verbs in everyday use, but they are the most frequent verbs in the language, so you meet them in almost every sentence.</p>
+<h2>A2 core</h2>
+<h3>The three families side by side</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Family</th><th>Präsens (er)</th><th>Präteritum</th><th>Partizip II</th><th>What happens</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>weak</strong>: machen</td><td>macht</td><td>mach<strong>te</strong></td><td><strong>ge</strong>mach<strong>t</strong></td><td>stem stays the same; past adds <em>-te</em>, participle <em>ge-…-t</em></td></tr>
+<tr><td><strong>strong</strong>: fahren</td><td>f<strong>ä</strong>hrt</td><td>f<strong>u</strong>hr</td><td><strong>ge</strong>fahr<strong>en</strong></td><td>vowel changes; no <em>-te</em> in the past; participle <em>ge-…-en</em></td></tr>
+<tr><td><strong>mixed</strong>: bringen</td><td>bringt</td><td>br<strong>a</strong>ch<strong>te</strong></td><td><strong>ge</strong>br<strong>a</strong>ch<strong>t</strong></td><td>vowel changes like a strong verb, but endings are weak (<em>-te</em>, <em>-t</em>)</td></tr>
+</tbody>
+</table></div>
+<p>So the participle ending is your first clue: <em>-en</em> (<em>gesehen, geschrieben</em>) means strong; <em>-t</em> with a changed vowel (<em>gedacht, gekannt</em>) means mixed; <em>-t</em> with the same vowel (<em>gekauft</em>) means weak.</p>
+<h3>Learn three forms at once</h3>
+<p>You cannot tell from the infinitive whether a verb is strong. <em>trinken</em> is strong (<em>trank, getrunken</em>) but <em>winken</em> (to wave) is weak (<em>winkte, gewinkt</em>). So learn every new strong or mixed verb as a little chant of its <strong>principal parts</strong> (<em>Stammformen</em>), with the helper verb and, if it changes, the er-form of the present:</p>
+<ul>
+<li><em>fahren – er fährt – fuhr – ist gefahren</em> — <em>to drive, go</em></li>
+<li><em>sprechen – er spricht – sprach – hat gesprochen</em> — <em>to speak</em></li>
+<li><em>schreiben – schrieb – hat geschrieben</em> — <em>to write</em></li>
+<li><em>denken – dachte – hat gedacht</em> — <em>to think</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">New verbs are always weak</p><p>Verbs that entered German recently are weak: <em>googeln – googelte – gegoogelt</em>, <em>chatten – chattete – gechattet</em>, <em>joggen</em>, <em>mailen</em>, and every verb in <em>-ieren</em> (<em>telefonieren – telefonierte – telefoniert</em>). If you have never seen a verb before and must guess, guess weak: you will usually be right.</p></aside>
+<h3>Präteritum endings of strong verbs</h3>
+<p>Strong verbs take the changed stem and the same endings as the present, except that <strong>ich</strong> and <strong>er/sie/es</strong> have no ending at all. Compare with a weak verb:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th></th><th>strong: gehen</th><th>strong: lesen</th><th>mixed: denken</th><th>weak: sagen</th></tr>
+</thead>
+<tbody>
+<tr><td>ich</td><td>ging</td><td>las</td><td>dachte</td><td>sagte</td></tr>
+<tr><td>du</td><td>gingst</td><td>lasest / last</td><td>dachtest</td><td>sagtest</td></tr>
+<tr><td>er/sie/es</td><td>ging</td><td>las</td><td>dachte</td><td>sagte</td></tr>
+<tr><td>wir</td><td>gingen</td><td>lasen</td><td>dachten</td><td>sagten</td></tr>
+<tr><td>ihr</td><td>gingt</td><td>last</td><td>dachtet</td><td>sagtet</td></tr>
+<tr><td>sie/Sie</td><td>gingen</td><td>lasen</td><td>dachten</td><td>sagten</td></tr>
+</tbody>
+</table></div>
+<p>Stems ending in <em>-s, -ß, -z</em> need an <em>-e-</em> in the du form (<em>du lasest, du aßest, du saßest</em>), though the short forms are also seen; stems ending in <em>-t, -d</em> add <em>-e-</em> for du and ihr: <em>du batest, ihr fandet</em>. Stems ending in <em>-ie</em> do not double the <em>e</em>: <em>wir schrien</em> (not <em>schrieen</em>).</p>
+<h2>B1</h2>
+<h3>The vowel patterns</h3>
+<p>Strong verbs look chaotic, but most of them fall into a handful of vowel patterns, called <em>Ablautreihen</em>. If you know which pattern a verb follows, you can work out the other two forms.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Pattern</th><th>Examples (infinitive – Präteritum – Partizip II)</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>ei – i – i</strong></td><td><em>beißen – biss – gebissen; schneiden – schnitt – geschnitten; greifen – griff – gegriffen; leiden – litt – gelitten</em></td></tr>
+<tr><td><strong>ei – ie – ie</strong></td><td><em>bleiben – blieb – geblieben; schreiben – schrieb – geschrieben; steigen – stieg – gestiegen; scheinen – schien – geschienen</em></td></tr>
+<tr><td><strong>ie – o – o</strong></td><td><em>fliegen – flog – geflogen; verlieren – verlor – verloren; schließen – schloss – geschlossen; bieten – bot – geboten</em></td></tr>
+<tr><td><strong>i – a – u</strong></td><td><em>finden – fand – gefunden; trinken – trank – getrunken; singen – sang – gesungen; springen – sprang – gesprungen</em></td></tr>
+<tr><td><strong>i – a – o</strong></td><td><em>beginnen – begann – begonnen; schwimmen – schwamm – geschwommen; gewinnen – gewann – gewonnen</em></td></tr>
+<tr><td><strong>e – a – o</strong><br>(present e → i)</td><td><em>sprechen – sprach – gesprochen; helfen – half – geholfen; nehmen – nahm – genommen; treffen – traf – getroffen; werfen – warf – geworfen; sterben – starb – gestorben</em></td></tr>
+<tr><td><strong>e – a – e</strong><br>(present e → i/ie)</td><td><em>geben – gab – gegeben; essen – aß – gegessen; lesen – las – gelesen; sehen – sah – gesehen; vergessen – vergaß – vergessen</em></td></tr>
+<tr><td><strong>a – u – a</strong><br>(present a → ä)</td><td><em>fahren – fuhr – gefahren; tragen – trug – getragen; waschen – wusch – gewaschen; schlagen – schlug – geschlagen</em></td></tr>
+<tr><td><strong>x – ie – x</strong><br>(participle vowel = infinitive vowel)</td><td><em>schlafen – schlief – geschlafen; fallen – fiel – gefallen; halten – hielt – gehalten; lassen – ließ – gelassen; laufen – lief – gelaufen; rufen – rief – gerufen; heißen – hieß – geheißen</em></td></tr>
+</tbody>
+</table></div>
+<p>A few very common verbs fit no pattern and must be learnt on their own: <em>sein – war – gewesen; werden – wurde – geworden; gehen – ging – gegangen; stehen – stand – gestanden; sitzen – saß – gesessen; liegen – lag – gelegen; kommen – kam – gekommen; tun – tat – getan; ziehen – zog – gezogen; bitten – bat – gebeten</em>.</p>
+<aside class="callout hack"><p class="callout-title">The present tells you something too</p><p>If a verb changes <em>e → i/ie</em> or <em>a → ä</em> in the present (<em>er spricht, er fährt</em>), it is <strong>always</strong> strong. The reverse is not true: <em>trinken</em> and <em>schreiben</em> are strong with no change in the present.</p></aside>
+<h3>Mixed verbs: a short, closed list</h3>
+<p>There are only a few mixed verbs, so learn them as a group. They take the weak endings <em>-te</em> and <em>-t</em> but change the vowel (and sometimes a consonant):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Infinitive</th><th>Präteritum</th><th>Partizip II</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>bringen</td><td>brachte</td><td>hat gebracht</td><td>to bring</td></tr>
+<tr><td>denken</td><td>dachte</td><td>hat gedacht</td><td>to think</td></tr>
+<tr><td>kennen</td><td>kannte</td><td>hat gekannt</td><td>to know (be familiar with)</td></tr>
+<tr><td>nennen</td><td>nannte</td><td>hat genannt</td><td>to name, call</td></tr>
+<tr><td>rennen</td><td>rannte</td><td>ist gerannt</td><td>to run, race</td></tr>
+<tr><td>brennen</td><td>brannte</td><td>hat gebrannt</td><td>to burn</td></tr>
+<tr><td>wissen</td><td>wusste</td><td>hat gewusst</td><td>to know (a fact)</td></tr>
+<tr><td>können / müssen / dürfen / mögen</td><td>konnte / musste / durfte / mochte</td><td>hat gekonnt / gemusst / gedurft / gemocht</td><td>modal verbs (umlaut lost in the past)</td></tr>
+<tr><td>haben</td><td>hatte</td><td>hat gehabt</td><td>to have (loses its <em>b</em> in the past)</td></tr>
+</tbody>
+</table></div>
+<p>Note that <em>sollen</em> and <em>wollen</em> are simply weak: <em>sollte, wollte</em>. More on these on the <a data-quiz="f7e33196feac" href="../../grammar/verbs/modal-verbs.html">modal verbs</a> page.</p>
+<h3>Prefix verbs copy their base verb</h3>
+<p>A verb with a prefix conjugates exactly like the verb without it. Learn <em>stehen – stand – gestanden</em> and you also have:</p>
+<ul>
+<li><em>verstehen – verstand – verstanden</em> (inseparable prefix: no <em>ge-</em>)</li>
+<li><em>aufstehen – stand auf – ist aufgestanden</em> (separable: <em>ge</em> after the prefix)</li>
+<li><em>entstehen – entstand – ist entstanden</em> — <em>to arise</em></li>
+</ul>
+<p>The same goes for <em>bekommen, ankommen, mitkommen</em> (from <em>kommen</em>), <em>anfangen</em> (from <em>fangen</em>: <em>fing an, angefangen</em>), <em>einladen</em> (from <em>laden</em>: <em>lud ein, eingeladen</em>) and <em>verkaufen</em>, which is weak because <em>kaufen</em> is weak. See <a data-quiz="e0444fc26071" href="../../grammar/verbs/separable-verbs.html">separable verbs</a>.</p>
+<ul>
+<li><em>Der Film fing um acht an, aber wir kamen zu spät.</em> — <em>The film started at eight, but we arrived late.</em></li>
+<li><em>Ich habe nicht verstanden, was er gemeint hat.</em> — <em>I didn't understand what he meant.</em></li>
+<li><em>Sie hat mir eine Karte geschrieben und Blumen gebracht.</em> — <em>She wrote me a card and brought flowers.</em></li>
+<li><em>Wir sind den ganzen Tag gelaufen und haben kaum etwas gegessen.</em> — <em>We walked all day and hardly ate anything.</em></li>
+</ul>
+<h3>The verbs you need most</h3>
+<p>These are the strong and mixed verbs you will use at A2–B1. The full list, with more rare verbs, is on the <a href="../../docs/irregular-verbs.html">irregular verbs</a> page.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Infinitive</th><th>er/sie/es</th><th>Präteritum</th><th>Perfekt</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>anfangen</td><td>fängt an</td><td>fing an</td><td>hat angefangen</td><td>to begin</td></tr>
+<tr><td>beginnen</td><td>beginnt</td><td>begann</td><td>hat begonnen</td><td>to begin</td></tr>
+<tr><td>bekommen</td><td>bekommt</td><td>bekam</td><td>hat bekommen</td><td>to get, receive</td></tr>
+<tr><td>bitten</td><td>bittet</td><td>bat</td><td>hat gebeten</td><td>to ask (for)</td></tr>
+<tr><td>bleiben</td><td>bleibt</td><td>blieb</td><td>ist geblieben</td><td>to stay</td></tr>
+<tr><td>essen</td><td>isst</td><td>aß</td><td>hat gegessen</td><td>to eat</td></tr>
+<tr><td>fahren</td><td>fährt</td><td>fuhr</td><td>ist gefahren</td><td>to drive, go</td></tr>
+<tr><td>fallen</td><td>fällt</td><td>fiel</td><td>ist gefallen</td><td>to fall</td></tr>
+<tr><td>finden</td><td>findet</td><td>fand</td><td>hat gefunden</td><td>to find</td></tr>
+<tr><td>fliegen</td><td>fliegt</td><td>flog</td><td>ist geflogen</td><td>to fly</td></tr>
+<tr><td>geben</td><td>gibt</td><td>gab</td><td>hat gegeben</td><td>to give</td></tr>
+<tr><td>gehen</td><td>geht</td><td>ging</td><td>ist gegangen</td><td>to go, walk</td></tr>
+<tr><td>gewinnen</td><td>gewinnt</td><td>gewann</td><td>hat gewonnen</td><td>to win</td></tr>
+<tr><td>halten</td><td>hält</td><td>hielt</td><td>hat gehalten</td><td>to hold, stop</td></tr>
+<tr><td>heißen</td><td>heißt</td><td>hieß</td><td>hat geheißen</td><td>to be called</td></tr>
+<tr><td>helfen</td><td>hilft</td><td>half</td><td>hat geholfen</td><td>to help</td></tr>
+<tr><td>kommen</td><td>kommt</td><td>kam</td><td>ist gekommen</td><td>to come</td></tr>
+<tr><td>lassen</td><td>lässt</td><td>ließ</td><td>hat gelassen</td><td>to let, leave</td></tr>
+<tr><td>laufen</td><td>läuft</td><td>lief</td><td>ist gelaufen</td><td>to run, walk</td></tr>
+<tr><td>lesen</td><td>liest</td><td>las</td><td>hat gelesen</td><td>to read</td></tr>
+<tr><td>liegen</td><td>liegt</td><td>lag</td><td>hat gelegen</td><td>to lie (be lying)</td></tr>
+<tr><td>nehmen</td><td>nimmt</td><td>nahm</td><td>hat genommen</td><td>to take</td></tr>
+<tr><td>rufen</td><td>ruft</td><td>rief</td><td>hat gerufen</td><td>to call</td></tr>
+<tr><td>schlafen</td><td>schläft</td><td>schlief</td><td>hat geschlafen</td><td>to sleep</td></tr>
+<tr><td>schließen</td><td>schließt</td><td>schloss</td><td>hat geschlossen</td><td>to close</td></tr>
+<tr><td>schreiben</td><td>schreibt</td><td>schrieb</td><td>hat geschrieben</td><td>to write</td></tr>
+<tr><td>schwimmen</td><td>schwimmt</td><td>schwamm</td><td>ist geschwommen</td><td>to swim</td></tr>
+<tr><td>sehen</td><td>sieht</td><td>sah</td><td>hat gesehen</td><td>to see</td></tr>
+<tr><td>sein</td><td>ist</td><td>war</td><td>ist gewesen</td><td>to be</td></tr>
+<tr><td>singen</td><td>singt</td><td>sang</td><td>hat gesungen</td><td>to sing</td></tr>
+<tr><td>sitzen</td><td>sitzt</td><td>saß</td><td>hat gesessen</td><td>to sit</td></tr>
+<tr><td>sprechen</td><td>spricht</td><td>sprach</td><td>hat gesprochen</td><td>to speak</td></tr>
+<tr><td>stehen</td><td>steht</td><td>stand</td><td>hat gestanden</td><td>to stand</td></tr>
+<tr><td>sterben</td><td>stirbt</td><td>starb</td><td>ist gestorben</td><td>to die</td></tr>
+<tr><td>tragen</td><td>trägt</td><td>trug</td><td>hat getragen</td><td>to carry, wear</td></tr>
+<tr><td>treffen</td><td>trifft</td><td>traf</td><td>hat getroffen</td><td>to meet, hit</td></tr>
+<tr><td>trinken</td><td>trinkt</td><td>trank</td><td>hat getrunken</td><td>to drink</td></tr>
+<tr><td>tun</td><td>tut</td><td>tat</td><td>hat getan</td><td>to do</td></tr>
+<tr><td>vergessen</td><td>vergisst</td><td>vergaß</td><td>hat vergessen</td><td>to forget</td></tr>
+<tr><td>verlieren</td><td>verliert</td><td>verlor</td><td>hat verloren</td><td>to lose</td></tr>
+<tr><td>verstehen</td><td>versteht</td><td>verstand</td><td>hat verstanden</td><td>to understand</td></tr>
+<tr><td>waschen</td><td>wäscht</td><td>wusch</td><td>hat gewaschen</td><td>to wash</td></tr>
+<tr><td>werden</td><td>wird</td><td>wurde</td><td>ist geworden</td><td>to become</td></tr>
+<tr><td>werfen</td><td>wirft</td><td>warf</td><td>hat geworfen</td><td>to throw</td></tr>
+<tr><td>ziehen</td><td>zieht</td><td>zog</td><td>hat / ist gezogen</td><td>to pull / to move (house)</td></tr>
+</tbody>
+</table></div>
+<p>In southern Germany, Austria and Switzerland, <em>liegen, sitzen</em> and <em>stehen</em> take <em>sein</em> in the Perfekt: <em>ich bin gesessen</em>. Both are correct standard German in their regions.</p>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li>Weak endings on strong verbs: <em>er gehte, gesitzt, getrinkt</em> → <em>er ging, gesessen, getrunken</em>.</li>
+<li>Strong endings on mixed verbs: <em>gedenkt, gebringt, gekennt</em> → <em>gedacht, gebracht, gekannt</em>.</li>
+<li><em>gewisst</em> → <em>gewusst</em>; <em>er wisste</em> → <em>er wusste</em>.</li>
+<li>Adding <em>-e</em> to ich/er in the strong Präteritum: <em>ich kame, er sahe</em> → <em>ich kam, er sah</em>.</li>
+<li>Carrying the present-tense vowel change into the past: <em>er nimmte</em> → <em>er nahm</em>.</li>
+<li>Giving prefix verbs <em>ge-</em>: <em>geverstanden, gebekommen</em> → <em>verstanden, bekommen</em>.</li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">English has the same families</p><p>The vowel patterns are older than both languages, which is why English strong verbs often match German ones: <em>sing – sang – sung</em> / <em>singen – sang – gesungen</em>, <em>drink – drank – drunk</em> / <em>trinken – trank – getrunken</em>, <em>give – gave – given</em> / <em>geben – gab – gegeben</em>. Even the mixed verbs match: <em>bring – brought</em> and <em>think – thought</em> change the vowel and add a <em>-t</em>, just like <em>bringen – brachte</em> and <em>denken – dachte</em>.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: one verb, two conjugations</p><p>A few verbs are strong in one meaning and weak in another. Usually the strong form has no object and the weak form has one: <em>Das Bild hing an der Wand</em> (was hanging) vs <em>Ich hängte das Bild an die Wand</em> (I hung it up); <em>Ich erschrak</em> (I got a fright) vs <em>Du erschrecktest mich</em> (you frightened me). Others split by meaning: <em>schaffen – schuf – geschaffen</em> (to create) vs <em>schaffen – schaffte – geschafft</em> (to manage); <em>bewegen – bewog – bewogen</em> (to persuade) vs <em>bewegen – bewegte – bewegt</em> (to move).</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a href="../../docs/irregular-verbs.html">Irregular verbs: the full list</a></li>
+<li><a data-quiz="9e39b1fb4433" href="../../grammar/tenses/past.html">Past tenses: Perfekt and Präteritum</a></li>
+<li><a data-quiz="1479bf2d1bae" href="../../grammar/tenses/present.html">Present tense: stem-vowel changes</a></li>
+<li><a data-quiz="f7e33196feac" href="../../grammar/verbs/modal-verbs.html">Modal verbs</a></li>
+<li><a data-quiz="e0444fc26071" href="../../grammar/verbs/separable-verbs.html">Separable verbs</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="9e39b1fb4433" class="btn" href="past.html">← Past</a><a data-quiz="11a6c14e4ccc" class="btn" href="past-perfect.html">Plusquamperfekt →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Which verb is weak (regular)?", "options": ["trinken", "schreiben", "kaufen", "fahren", "bringen"], "answer": 2, "explain": "*kaufen – kaufte – gekauft* keeps its vowel and takes *-te* / *-t*: weak. The others change their vowel (A2)."}, {"q": "Gestern *___* ich einen alten Freund.", "options": ["traf", "treffte", "triff", "traff", "getroffen"], "answer": 0, "explain": "*treffen* is strong (e – a – o): Präteritum *traf*, with no ending for *ich* (A2)."}, {"q": "Wir haben viel Wasser *___*.", "options": ["getrinkt", "getrankt", "trank", "getrunken", "getrinken"], "answer": 3, "explain": "*trinken* follows the pattern i – a – u: *trinken – trank – getrunken* (A2)."}, {"q": "Hast du an meinen Geburtstag *___*?", "options": ["gedenkt", "gedacht", "gedankt", "gedachten", "denkte"], "answer": 1, "explain": "*denken* is mixed: vowel change plus weak ending, *gedacht* (A2)."}, {"q": "Er *___* die Tür und ging hinaus.", "options": ["öffnete", "öffnte", "öffen", "geöffnet", "offnete"], "answer": 0, "explain": "*öffnen* is weak; because the stem ends in consonant + *n*, an *-e-* is added: *öffnete* (B1)."}, {"q": "Sie hat mir einen langen Brief *___*.", "options": ["geschreibt", "schrieb", "geschrieben", "geschriebt", "geschreiben"], "answer": 2, "explain": "*schreiben* follows ei – ie – ie: *schrieb, geschrieben* (A2)."}, {"q": "Ich *___* nicht, dass er krank war.", "options": ["wisste", "weißte", "wusst", "wusstet", "wusste"], "answer": 4, "explain": "*wissen* is mixed: *wusste, gewusst* (A2)."}, {"q": "Das Flugzeug *___* über die Alpen.", "options": ["fliegte", "flog", "flug", "flogte", "fleug"], "answer": 1, "explain": "*fliegen* follows ie – o – o: *flog, ist geflogen* (B1)."}, {"q": "Kennst du den Film? — Nein, den habe ich nicht *___*.", "options": ["gekennt", "gekonnt", "gekennen", "gekannt", "kannte"], "answer": 3, "explain": "*kennen* is mixed: *kannte, gekannt*. *gekonnt* is the participle of *können* (B1)."}, {"q": "Der Unterricht *___* um neun Uhr an.", "options": ["fing", "fangte", "fängte", "anfing", "fang"], "answer": 0, "explain": "*anfangen* copies *fangen*: Präteritum *fing ... an*, with the prefix at the end of the main clause (B1)."}, {"q": "Ich habe den Text endlich *___*.", "options": ["geverstanden", "verstehte", "verstand", "verstehen", "verstanden"], "answer": 4, "explain": "*verstehen* follows *stehen – stand – gestanden*, and the prefix *ver-* blocks *ge-*: *verstanden* (B1)."}, {"q": "Which group follows the vowel pattern i – a – u?", "options": ["beginnen, schwimmen, gewinnen", "finden, singen, springen", "bleiben, schreiben, steigen", "geben, lesen, sehen", "fahren, tragen, waschen"], "answer": 1, "explain": "*finden – fand – gefunden, singen – sang – gesungen, springen – sprang – gesprungen*. *beginnen* & co. have *o* in the participle (B1)."}, {"q": "Er *___* den Ball über den Zaun.", "options": ["werfte", "wirfte", "warf", "wurf", "wirf"], "answer": 2, "explain": "*werfen* follows e – a – o: *warf, geworfen*. The present-tense change (*er wirft*) does not carry into the past (B1)."}, {"q": "Ich *___* lange vor dem Bahnhof und wartete.", "options": ["stehte", "stande", "stund", "stand", "standete"], "answer": 3, "explain": "*stehen* is irregular: *stand, gestanden* (B1)."}, {"q": "Du hast gestern drei Stunden im Café *___*.", "options": ["gesessen", "gesitzt", "gesetzt", "gesassen", "gesitzen"], "answer": 0, "explain": "*sitzen – saß – gesessen*. *gesetzt* belongs to *setzen* (to put, set down) (B1)."}, {"q": "Which participle is wrong?", "options": ["gerannt", "gebrannt", "genannt", "gebringt", "gekannt"], "answer": 3, "explain": "*bringen* is mixed: *brachte, gebracht*. The other four are correct mixed participles (B1)."}, {"q": "Mein Opa *___* 2015.", "options": ["sterbte", "starb", "stirbte", "storb", "stirb"], "answer": 1, "explain": "*sterben – stirbt – starb – ist gestorben* (B1)."}, {"q": "Wir *___* uns im Urlaub jeden Tag am Strand.", "options": ["trafen", "trefften", "traffen", "trifften", "getroffen"], "answer": 0, "explain": "Strong Präteritum for *wir*: changed stem *traf* + *-en* = *trafen* (B1)."}, {"q": "Das Bild *___* früher über dem Sofa. (was hanging)", "options": ["hängte", "hängt", "gehangen", "hangte", "hing"], "answer": 4, "explain": "Without an object, *hängen* is strong: *hing, gehangen*. With an object it is weak: *Ich hängte das Bild auf* (B2)."}], "title": "Strong and mixed verbs quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
