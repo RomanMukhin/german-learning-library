@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="e8eceefbfa53">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Reflexive pronouns · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="c0540e70c480" class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Reflexive</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A2–B1</span><h1>Reflexive pronouns</h1><p class="sub">mich or mir, the all-purpose sich, "each other" with uns and einander, and selbst for "myself" as emphasis.</p></header>
+<article class="prose card">
+<p>A reflexive pronoun points back to the subject of the same clause: <em>Ich wasche <strong>mich</strong></em> ("I wash myself"). German uses them far more than English, because many everyday verbs are reflexive in German but not in English (<em>sich freuen, sich beeilen, sich erinnern</em>). The good news: the forms are almost the personal pronouns you already know, plus one new word, <strong>sich</strong>.</p>
+<h2>A2 core</h2>
+<h3>The forms</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Accusative</th>
+<th>Dative</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ich</td>
+<td><strong>mich</strong></td>
+<td><strong>mir</strong></td>
+<td>Ich freue <strong>mich</strong>. / Ich wasche <strong>mir</strong> die Hände.</td>
+</tr>
+<tr>
+<td>du</td>
+<td><strong>dich</strong></td>
+<td><strong>dir</strong></td>
+<td>Beeil <strong>dich</strong>! / Kauf <strong>dir</strong> was Schönes.</td>
+</tr>
+<tr>
+<td>er / sie / es</td>
+<td><strong>sich</strong></td>
+<td><strong>sich</strong></td>
+<td>Er rasiert <strong>sich</strong>. / Sie kauft <strong>sich</strong> ein Rad.</td>
+</tr>
+<tr>
+<td>wir</td>
+<td>uns</td>
+<td>uns</td>
+<td>Wir treffen <strong>uns</strong> um acht.</td>
+</tr>
+<tr>
+<td>ihr</td>
+<td>euch</td>
+<td>euch</td>
+<td>Setzt <strong>euch</strong>!</td>
+</tr>
+<tr>
+<td>sie / Sie</td>
+<td><strong>sich</strong></td>
+<td><strong>sich</strong></td>
+<td>Sie streiten <strong>sich</strong> oft. / Setzen Sie <strong>sich</strong>!</td>
+</tr>
+</tbody>
+</table></div>
+<p>Only <em>ich</em> and <em>du</em> have separate accusative and dative forms. Everything in the third person, including polite <em>Sie</em>, is <strong>sich</strong>, and <em>sich</em> is never capitalised: <em>Bitte setzen Sie <strong>sich</strong></em>, not <s>Sich</s>.</p>
+<aside class="callout hack"><p class="callout-title">Only two forms to learn</p><p>Take the personal pronoun table and replace every third-person object form (<em>ihn, ihm, sie, ihr, es, ihnen, Sie, Ihnen</em>) with <strong>sich</strong>. That is the whole reflexive table. The only real decision left is <em>mich</em> or <em>mir</em>, <em>dich</em> or <em>dir</em>.</p></aside>
+<h3>Reflexive or not: who is meant?</h3>
+<p>A reflexive pronoun means "the same person as the subject". A normal personal pronoun means "someone else". Compare:</p>
+<ul>
+<li>Er wäscht <strong>sich</strong>. — <em>He is washing (himself).</em></li>
+<li>Er wäscht <strong>ihn</strong>. — <em>He is washing him</em> (another man, or the dog).</li>
+<li>Sie kauft <strong>sich</strong> ein Eis. — <em>She buys herself an ice cream.</em></li>
+<li>Sie kauft <strong>ihr</strong> ein Eis. — <em>She buys her</em> (another woman or girl) <em>an ice cream.</em></li>
+</ul>
+<h3>mich or mir?</h3>
+<p>The rule is about how many objects the verb has:</p>
+<ul>
+<li>The reflexive pronoun is the <strong>only</strong> object → <strong>accusative</strong>: <em>Ich wasche <strong>mich</strong>. Ich ziehe <strong>mich</strong> an.</em></li>
+<li>There is <strong>another</strong> accusative object (often a body part or clothing) → the reflexive becomes <strong>dative</strong>: <em>Ich wasche <strong>mir</strong> die Haare. Ich ziehe <strong>mir</strong> eine Jacke an.</em></li>
+</ul>
+<p>With body parts German uses the article, not a possessive: <em>Ich putze <strong>mir die</strong> Zähne</em> ("I brush my teeth"), not <s>Ich putze meine Zähne</s> (understandable, but un-German).</p>
+<aside class="callout trap"><p class="callout-title">Some verbs always take the dative</p><p>A few reflexive verbs take a dative pronoun even without a second object, because there is a hidden one (often a <em>dass</em>-clause or <em>etwas</em>): <em>Ich wünsche <strong>mir</strong> ein Fahrrad. Ich stelle <strong>mir</strong> das schwierig vor. Das merke ich <strong>mir</strong>. Ich überlege <strong>mir</strong> das.</em> Learn them as <em>sich (Dat) etwas wünschen / vorstellen / merken / überlegen</em>. The full verb list is on <a data-quiz="d6157bf64e54" href="../verbs/reflexive-verbs.html">Reflexive verbs</a>.</p></aside>
+<h2>B1</h2>
+<h3>"Each other": reciprocal uns, euch, sich</h3>
+<p>In the plural, the same pronouns can mean "each other":</p>
+<ul>
+<li>Wir kennen <strong>uns</strong> seit der Schule. — <em>We have known each other since school.</em></li>
+<li>Ihr seht <strong>euch</strong> ja jeden Tag. — <em>You see each other every day.</em></li>
+<li>Die beiden lieben <strong>sich</strong>. — <em>The two of them love each other.</em></li>
+<li>Wir schreiben <strong>uns</strong> jede Woche. — <em>We write to each other every week.</em> (dative: <em>jemandem schreiben</em>)</li>
+</ul>
+<p>When it could be ambiguous (<em>Sie waschen sich</em>: each one washes themselves, or they wash each other?), German uses <strong>einander</strong> or <strong>gegenseitig</strong>: <em>Sie helfen <strong>einander</strong></em>, <em>Sie helfen sich <strong>gegenseitig</strong></em>. With a preposition, <em>einander</em> joins it as one word: <em>miteinander</em> (with each other), <em>voneinander</em>, <em>nebeneinander</em>, <em>aufeinander</em>.</p>
+<ul>
+<li>Wir sprechen oft <strong>miteinander</strong>. — <em>We often talk to each other.</em></li>
+<li>Die Kinder sitzen <strong>nebeneinander</strong>. — <em>The children are sitting next to each other.</em></li>
+<li>Die beiden haben <strong>voneinander</strong> gelernt. — <em>The two learned from each other.</em></li>
+</ul>
+<h3>Reflexive after prepositions</h3>
+<p>When a preposition refers back to the subject, use the reflexive form too: <em>Er denkt nur an <strong>sich</strong></em> ("He only thinks about himself"), <em>Hast du Geld bei <strong>dir</strong>?</em> ("Do you have money on you?"), <em>Sie hat die Tür hinter <strong>sich</strong> zugemacht</em> ("She closed the door behind her").</p>
+<h3>Where the pronoun goes</h3>
+<p>The reflexive pronoun stands as early as it can, right after the conjugated verb. In a question or after an inverted subject pronoun it follows that pronoun. In a subordinate clause it follows the subject or may come before a noun subject:</p>
+<ul>
+<li>Ich habe <strong>mich</strong> sehr gefreut. — <em>I was very pleased.</em></li>
+<li>Morgen treffen wir <strong>uns</strong> im Café. — <em>Tomorrow we're meeting at the café.</em></li>
+<li>Hast du <strong>dich</strong> schon angemeldet? — <em>Have you registered yet?</em></li>
+<li>..., weil <strong>sich</strong> mein Bruder verletzt hat / weil mein Bruder <strong>sich</strong> verletzt hat. — <em>... because my brother hurt himself.</em> (both are correct)</li>
+</ul>
+<h3>selbst and selber: "myself" for emphasis</h3>
+<p>English uses "myself, herself" in two ways: as a real object (<em>I hurt myself</em> → <em>Ich habe mich verletzt</em>) and for emphasis (<em>I made it myself</em>). For the second meaning German does <strong>not</strong> use <em>mich/sich</em>, but the unchanging word <strong>selbst</strong> (or, more colloquially, <strong>selber</strong>):</p>
+<ul>
+<li>Ich habe den Kuchen <strong>selbst</strong> gebacken. — <em>I baked the cake myself.</em></li>
+<li>Das kann er <strong>selber</strong> machen. — <em>He can do that himself.</em></li>
+<li>Sie hat sich <strong>selbst</strong> die Haare geschnitten. — <em>She cut her own hair (herself).</em></li>
+</ul>
+<p>Placed before a word, <em>selbst</em> means "even": <em><strong>Selbst</strong> mein Vater war überrascht</em> ("Even my father was surprised").</p>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Ich wasche <s>mich</s> die Hände</em> → <em>Ich wasche <strong>mir</strong> die Hände.</em> Second object, so dative.</li>
+<li><em>Er freut <s>ihn</s></em> → <em>Er freut <strong>sich</strong>.</em> Third person reflexive is always <em>sich</em>.</li>
+<li><em>Setzen Sie <s>Sich</s></em> → <em>Setzen Sie <strong>sich</strong>.</em> Never capitalised.</li>
+<li><em>Ich habe es <s>mich</s> gemacht</em> (= I did it myself) → <em>Ich habe es <strong>selbst</strong> gemacht.</em></li>
+<li><em>Wir treffen <s>einander</s> uns</em> → either <em>Wir treffen uns</em> or <em>Wir treffen einander</em>, not both.</li>
+</ul></aside>
+<aside class="callout fact"><p class="callout-title">One word for every person, once</p><p>Old Germanic languages had a reflexive like <em>sich</em> for all persons, and you can still see relatives of it: Swedish <em>sig</em>, Dutch <em>zich</em>, Latin <em>se</em>, Ukrainian <em>себе</em> and the reflexive ending <em>-ся</em>. English lost it and replaced it with <em>himself, herself</em>, which is why the German <em>sich</em> feels so unfamiliar.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: lassen + sich</p><p>A common B2 pattern uses <em>sich lassen</em> to mean "can be done": <em>Das Fenster lässt sich nicht öffnen</em> ("The window can't be opened"), <em>Das lässt sich leicht erklären</em>. It is a stylish alternative to the passive.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="d6157bf64e54" href="../verbs/reflexive-verbs.html">Reflexive verbs</a></li>
+<li><a data-quiz="94e63021296d" href="personal.html">Personal pronouns</a></li>
+<li><a data-quiz="68fbbfc373da" href="../cases/dative.html">Dative</a></li>
+<li><a data-quiz="bd3572acc655" href="../sentences/word-order.html">Word order</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="94e63021296d" class="btn" href="personal.html">← Personal</a><a data-quiz="8f8aa84beb74" class="btn" href="possessive.html">Possessive →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich freue *___* auf das Wochenende.", "options": ["ich", "mir", "mich", "sich", "mein"], "answer": 2, "explain": "The reflexive pronoun is the only object, so accusative: *mich* (A2)."}, {"q": "Ich putze *___* die Zähne.", "options": ["mein", "mich", "meine", "mir", "sich"], "answer": 3, "explain": "*die Zähne* is the accusative object, so the reflexive pronoun moves to the dative: *mir* (A2)."}, {"q": "Er rasiert *___* jeden Morgen.", "options": ["ihm", "sich", "sein", "er", "ihn"], "answer": 1, "explain": "The third person reflexive is always *sich* (A2)."}, {"q": "Bitte setzen Sie *___*!", "options": ["sich", "Sie", "sie", "Sich", "Ihnen"], "answer": 0, "explain": "Polite *Sie* has the reflexive *sich*, written with a small letter (A2)."}, {"q": "Beeil *___*, der Zug fährt gleich ab!", "options": ["dir", "sich", "du", "euch", "dich"], "answer": 4, "explain": "*sich beeilen*, imperative for *du*: *Beeil dich!* (A2)."}, {"q": "Wir treffen *___* um sieben vor dem Kino.", "options": ["einander uns", "sich", "uns", "unser", "euch"], "answer": 2, "explain": "*wir* → *uns*; here it also means \"each other\" (A2)."}, {"q": "Zieh *___* eine warme Jacke an, es ist kalt.", "options": ["deine", "dich", "sich", "dir", "du"], "answer": 3, "explain": "*eine warme Jacke* is the accusative object, so the reflexive is dative: *dir* (B1)."}, {"q": "Kinder, wascht *___* bitte die Hände!", "options": ["euch", "ihr", "sich", "uns", "dich"], "answer": 0, "explain": "*ihr* → *euch* (same form in accusative and dative) (A2)."}, {"q": "Ich wünsche *___* zum Geburtstag ein neues Fahrrad.", "options": ["sich", "mein", "meinen", "mich", "mir"], "answer": 4, "explain": "*sich etwas wünschen*: *ein Fahrrad* is the accusative object, the reflexive is dative *mir* (B1)."}, {"q": "Anna kauft *___* ein Eis. (for herself)", "options": ["sie", "sich", "ihm", "ihre", "ihr"], "answer": 1, "explain": "She buys it for herself, the same person as the subject → *sich*. *ihr* would mean another girl or woman (B1)."}, {"q": "Peter wäscht *___*. (his little son)", "options": ["sich", "ihn", "ihm", "er", "seinen"], "answer": 1, "explain": "He washes someone else, so a normal accusative pronoun: *ihn*. *sich* would mean himself (B1)."}, {"q": "Die beiden kennen *___* seit dem Kindergarten.", "options": ["sie", "uns", "euch", "sich", "ihnen"], "answer": 3, "explain": "Plural reflexive with the meaning \"each other\": *Sie kennen sich* (B1)."}, {"q": "Wir haben lange *___* gesprochen.", "options": ["miteinander", "einander mit", "mit uns", "miteinander uns", "mit sich"], "answer": 0, "explain": "\"with each other\" = *miteinander*, preposition + *einander* in one word (B1)."}, {"q": "Hast du genug Geld bei *___*?", "options": ["sich", "du", "dein", "dich", "dir"], "answer": 4, "explain": "The preposition refers back to the subject *du*; *bei* takes the dative: *bei dir* (B1)."}, {"q": "Er denkt immer nur an *___*.", "options": ["ihm", "er", "sich", "sein", "ihn"], "answer": 2, "explain": "\"himself\" after a preposition, referring to the subject: *an sich* (B1)."}, {"q": "Hast du das Brot *___* gebacken? – Ja, ganz allein!", "options": ["selbst", "einander", "dich", "dir", "sich"], "answer": 0, "explain": "Emphatic \"yourself\" is *selbst* (or *selber*), not a reflexive pronoun (B1)."}, {"q": "Ich kann *___* das gut vorstellen.", "options": ["ich", "mein", "mich", "mir", "sich"], "answer": 3, "explain": "*sich (Dat) etwas vorstellen* = to imagine; *das* is the accusative object, so *mir* (B1)."}, {"q": "Gestern hat *___* mein Bruder beim Fußball verletzt.", "options": ["ihn", "ihm", "sich", "er", "seinen"], "answer": 2, "explain": "The reflexive pronoun can stand before a noun subject: *hat sich mein Bruder verletzt* (B1)."}], "title": "Reflexive pronouns quiz", "level": "A2–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

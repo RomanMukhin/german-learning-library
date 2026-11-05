@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="5a1d79d108f6">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Prepositions of manner · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="ad4f1730c7d6" class="hide-sm" href="index.html">Prepositions</a><span class="sep">/</span><span class="cur">Manner</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1–B2</span><h1>Prepositions of manner</h1><p class="sub">How, with what, made of what, for whom and for how much: mit, ohne, aus, auf Deutsch, zu Fuß, statt, außer, laut and meiner Meinung nach.</p></header>
+<article class="prose card">
+<p>Prepositions of manner (<em>modale Präpositionen</em>) answer the questions <strong>wie?</strong> (how?), <strong>womit?</strong> (with what?), <strong>woraus?</strong> (made of what?), <strong>für wen?</strong> (for whom?) and <strong>wie viel?</strong> (how much?). Many of them are words you already know from place and time, like <em>mit, aus, auf, in</em>, used with a new meaning. As always, learn each one together with its case.</p>
+<h2>B1 core</h2>
+<h3>The most useful ones</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Case</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mit</strong></td>
+<td>Dat</td>
+<td>with (together, tool, feature), by (transport)</td>
+<td>Ich schreibe <em>mit einem Bleistift</em>. Der Mann <em>mit dem Hut</em>. <em>mit dem Zug</em></td>
+</tr>
+<tr>
+<td><strong>ohne</strong></td>
+<td>Akk</td>
+<td>without</td>
+<td>Kaffee <em>ohne Zucker</em>, bitte. <em>Ohne dich</em> gehe ich nicht.</td>
+</tr>
+<tr>
+<td><strong>aus</strong></td>
+<td>Dat</td>
+<td>made of (material)</td>
+<td>ein Tisch <em>aus Holz</em>, eine Tasche <em>aus Leder</em></td>
+</tr>
+<tr>
+<td><strong>für</strong></td>
+<td>Akk</td>
+<td>for (a person, a price, a purpose)</td>
+<td>Das ist <em>für dich</em>. Ich habe das Rad <em>für 50 Euro</em> gekauft.</td>
+</tr>
+<tr>
+<td><strong>auf</strong></td>
+<td>Akk</td>
+<td>in a ... way; in a language</td>
+<td><em>auf diese Weise</em>, <em>auf Deutsch</em>, <em>auf Englisch</em></td>
+</tr>
+<tr>
+<td><strong>in</strong></td>
+<td>Dat</td>
+<td>in (colour, style, state, language with an adjective)</td>
+<td>ein Kleid <em>in Blau</em>, <em>in Eile</em>, <em>in gutem Deutsch</em></td>
+</tr>
+<tr>
+<td><strong>zu</strong></td>
+<td>Dat</td>
+<td>on (foot), in (a group of)</td>
+<td><em>zu Fuß</em>, <em>zu zweit</em>, <em>zu dritt</em></td>
+</tr>
+<tr>
+<td><strong>von</strong></td>
+<td>Dat</td>
+<td>by (author, artist), from (a giver)</td>
+<td>ein Roman <em>von Kafka</em>, ein Geschenk <em>von meiner Oma</em></td>
+</tr>
+<tr>
+<td><strong>außer</strong></td>
+<td>Dat</td>
+<td>except, apart from</td>
+<td><em>Außer mir</em> waren alle da.</td>
+</tr>
+<tr>
+<td><strong>statt / anstatt</strong></td>
+<td>Gen (spoken: Dat)</td>
+<td>instead of</td>
+<td><em>Statt eines Autos</em> hat sie ein E-Bike gekauft.</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wir fahren <strong>mit dem</strong> Fahrrad, nicht <strong>mit dem</strong> Auto. — <em>We're going by bike, not by car.</em></li>
+<li>Das Spielzeug ist <strong>aus</strong> Holz und Wolle. — <em>The toy is made of wood and wool.</em></li>
+<li>Kannst du das bitte <strong>auf</strong> Deutsch sagen? — <em>Can you say that in German, please?</em></li>
+<li>Wir gehen heute <strong>zu Fuß</strong>. — <em>We're walking today.</em></li>
+<li>Ich habe das Problem <strong>ohne</strong> Hilfe gelöst. — <em>I solved the problem without help.</em></li>
+</ul>
+<aside class="callout hack"><p class="callout-title">auf Deutsch, but in gutem Deutsch</p><p>A bare language name takes <strong>auf</strong>: <em>auf Deutsch, auf Ukrainisch</em>. As soon as there is an adjective, or with the word <em>Sprache</em>, switch to <strong>in</strong> + dative: <em>in perfektem Englisch, in einfacher Sprache, in welcher Sprache?</em> Both are "in" in English.</p></aside>
+<h3>Material and transport: no article</h3>
+<p>Materials after <em>aus</em> normally have no article: <em>aus Glas, aus Plastik, aus Baumwolle</em>. Transport after <em>mit</em> normally has one: <em>mit dem Bus, mit der U-Bahn, mit dem Taxi</em>. The big exception is walking: <strong>zu Fuß</strong>, never <s>mit den Füßen</s>.</p>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Ich fahre <s>mit Fuß</s></em> → <em>Ich gehe <strong>zu Fuß</strong>.</em></li>
+<li><em><s>in</s> Deutsch sprechen</em> → <em><strong>auf</strong> Deutsch sprechen</em> (but <em>Ich habe eine Zwei <strong>in</strong> Deutsch</em>: German as a school subject).</li>
+<li><em>ein Tisch <s>von</s> Holz</em> → <em>ein Tisch <strong>aus</strong> Holz</em>. <em>von</em> is for the maker or the giver.</li>
+<li><em>für <s>dir</s></em> → <em>für <strong>dich</strong></em>; <em>ohne <s>mir</s></em> → <em>ohne <strong>mich</strong></em>. Both take the accusative.</li>
+<li><em>außer <s>mich</s></em> → <em>außer <strong>mir</strong></em>. <em>außer</em> takes the dative.</li>
+</ul></aside>
+<h2>B1+</h2>
+<h3>Amounts, prices and approximations</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Case</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>um</strong> (die)</td>
+<td>Akk</td>
+<td>about, around (a number)</td>
+<td>Das kostet <em>um die 20 Euro</em>.</td>
+</tr>
+<tr>
+<td><strong>bis zu</strong></td>
+<td>Dat</td>
+<td>up to</td>
+<td>Hier passen <em>bis zu 50 Personen</em> rein.</td>
+</tr>
+<tr>
+<td><strong>pro / je</strong></td>
+<td>(no article)</td>
+<td>per, each</td>
+<td>10 Euro <em>pro Person</em>, zweimal <em>pro Woche</em>, <em>je</em> Kind ein Geschenk</td>
+</tr>
+<tr>
+<td><strong>per</strong></td>
+<td>(no article)</td>
+<td>by (channel)</td>
+<td><em>per E-Mail</em>, <em>per Post</em>, <em>per Du sein</em></td>
+</tr>
+<tr>
+<td><strong>bis auf</strong></td>
+<td>Akk</td>
+<td>except (for); right down to</td>
+<td><em>Bis auf einen Fehler</em> war alles richtig. Ausverkauft <em>bis auf den letzten Platz</em>.</td>
+</tr>
+<tr>
+<td><strong>gegen</strong></td>
+<td>Akk</td>
+<td>in exchange for</td>
+<td>Die Jacke bekommen Sie <em>gegen Quittung</em> zurück.</td>
+</tr>
+<tr>
+<td><strong>für</strong> (… für …)</td>
+<td>Akk</td>
+<td>... by ...</td>
+<td><em>Schritt für Schritt</em>, <em>Tag für Tag</em>, <em>Wort für Wort</em></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Circumstances: bei, unter, mit, ohne</h3>
+<ul>
+<li><strong>bei</strong> + Dat for conditions: <em><strong>Bei</strong> Regen bleiben wir zu Hause</em> ("If it rains, we stay at home"), <em><strong>bei</strong> offenem Fenster schlafen</em>.</li>
+<li><strong>unter</strong> + Dat for accompanying circumstances: <em><strong>unter</strong> Tränen</em> (in tears), <em><strong>unter</strong> großem Protest</em>, <em><strong>unter</strong> einer Bedingung</em> (on one condition).</li>
+<li><strong>mit / ohne</strong> + noun often replace an adverb: <em>mit Absicht</em> (on purpose), <em>mit Vergnügen</em> (with pleasure), <em>ohne Probleme</em> (without problems).</li>
+</ul>
+<h3>Instead of, including, excluding</h3>
+<p>These are typical of written German and take the genitive. In speech the dative is common with <em>statt</em>; with a plural noun without an article, use <em>von</em> + dative.</p>
+<ul>
+<li><strong>Statt</strong> eines Briefes schicke ich eine E-Mail. — <em>Instead of a letter I'll send an email.</em></li>
+<li>Der Preis versteht sich <strong>inklusive</strong> der Mehrwertsteuer. — <em>The price includes VAT.</em> (<em>exklusive</em> = excluding)</li>
+<li><strong>Mithilfe</strong> eines Wörterbuchs habe ich den Brief verstanden. — <em>With the help of a dictionary I understood the letter.</em> (also <em>mithilfe von</em> + Dat)</li>
+<li><strong>Anhand</strong> dieser Beispiele lernt man die Regel. — <em>You learn the rule from these examples.</em></li>
+<li><strong>Entgegen</strong> meiner Erwartung war der Film gut. — <em>Contrary to my expectation the film was good.</em> (<em>entgegen</em> takes the dative)</li>
+</ul>
+<h3>According to: laut, nach, gemäß, zufolge</h3>
+<p>To give a source or a rule, German has several prepositions, all usable with the dative. Two of them like to stand <strong>after</strong> the noun:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Preposition</th>
+<th>Position</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>laut</strong> + Dat (Gen)</td>
+<td>before</td>
+<td><em>Laut dem Wetterbericht</em> regnet es morgen.</td>
+</tr>
+<tr>
+<td><strong>nach</strong> + Dat</td>
+<td>after (in fixed phrases) or before</td>
+<td><em>Meiner Meinung nach</em> ist das falsch. <em>Nach Angaben der Polizei</em> ...</td>
+</tr>
+<tr>
+<td><strong>zufolge</strong> + Dat</td>
+<td>after</td>
+<td><em>Einer Studie zufolge</em> schlafen wir zu wenig.</td>
+</tr>
+<tr>
+<td><strong>gemäß</strong> + Dat</td>
+<td>before (after in legal texts)</td>
+<td><em>Gemäß der Hausordnung</em> ist Rauchen verboten.</td>
+</tr>
+</tbody>
+</table></div>
+<aside class="callout hack"><p class="callout-title">meiner Meinung nach</p><p>The most useful phrase on this page: <strong>meiner Meinung nach</strong> = "in my opinion". <em>nach</em> comes last, and <em>meiner Meinung</em> is dative (die Meinung → der Meinung → meiner). Variations: <em>deiner Meinung nach, seiner Meinung nach</em>. Never say <s>in meiner Meinung</s>.</p></aside>
+<aside class="callout fact"><p class="callout-title">Why "zu Fuß"?</p><p><em>zu</em> once meant "at, on" much more broadly, the way <em>at</em> still does in English. That older meaning is frozen in phrases of manner: <em>zu Fuß</em> ("on foot"), <em>zu Pferd</em> ("on horseback"), <em>zu Hause</em>, <em>zum Glück</em> ("luckily"), <em>zu zweit</em> ("in twos").</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: bezüglich, hinsichtlich</p><p>Business letters love <em>bezüglich</em> and <em>hinsichtlich</em> + genitive ("regarding"): <em>Bezüglich Ihrer Anfrage teilen wir Ihnen mit, ...</em>. In normal speech say <em>wegen</em> or <em>zu</em>: <em>Ich habe eine Frage zu Ihrem Angebot.</em></p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="e61ac6d6d8ee" href="causal.html">Causal prepositions</a></li>
+<li><a data-quiz="9d811ffb6cdd" href="place-and-direction.html">Place and direction</a></li>
+<li><a data-quiz="ad4f1730c7d6" href="index.html">Prepositions hub</a></li>
+<li><a data-quiz="50797f39ef5f" href="../cases/genitive.html">Genitive case</a></li>
+<li><a href="../../docs/prepositions.html">Prepositions reference</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="9d811ffb6cdd" class="btn" href="place-and-direction.html">← Place and direction</a><a data-quiz="e61ac6d6d8ee" class="btn" href="causal.html">Causal →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Ich fahre jeden Tag *___* Bus zur Arbeit.", "options": ["mit dem", "mit den", "mit der", "per dem", "zu dem"], "answer": 0, "explain": "Means of transport: *mit* + dative, *der Bus* → *mit dem Bus* (A2)."}, {"q": "Heute ist schönes Wetter, wir gehen *___*.", "options": ["per Fuß", "zu Fuß", "mit Fuß", "mit den Füßen", "auf Fuß"], "answer": 1, "explain": "Walking is the fixed phrase *zu Fuß* (A2)."}, {"q": "Ich trinke den Kaffee immer *___* Zucker, ich mag ihn nicht süß.", "options": ["außer", "statt", "ohne", "mit", "aus"], "answer": 2, "explain": "Not sweet → *ohne* (without) + accusative (A2)."}, {"q": "Der Tisch ist *___* Holz.", "options": ["von", "mit", "in", "auf", "aus"], "answer": 4, "explain": "Material: *aus* + dative, usually without an article (B1)."}, {"q": "Kannst du das bitte *___* Deutsch wiederholen?", "options": ["mit", "zu", "im", "auf", "in"], "answer": 3, "explain": "A bare language name takes *auf*: *auf Deutsch* (B1)."}, {"q": "Der Brief ist in sehr *___* Deutsch geschrieben.", "options": ["guter", "gutem", "gutes", "guten", "gute"], "answer": 1, "explain": "With an adjective, the language takes *in* + dative: *in gutem Deutsch* (B1)."}, {"q": "*___* mir waren alle auf der Party.", "options": ["Außer", "Ohne", "Statt", "Bis auf", "Für"], "answer": 0, "explain": "*außer* (except) takes the dative: *außer mir*. *ohne, für* would need *mich* (B1)."}, {"q": "Das Geschenk ist für *___*, alles Gute zum Geburtstag!", "options": ["du", "deiner", "dein", "dich", "dir"], "answer": 3, "explain": "*für* always takes the accusative: *für dich* (A2)."}, {"q": "Ich habe das Fahrrad *___* 80 Euro gekauft.", "options": ["per", "zu", "für", "um", "mit"], "answer": 2, "explain": "Price paid: *für* + accusative (B1)."}, {"q": "Das Ticket kostet 15 Euro *___* Person.", "options": ["für die", "per die", "an", "zu", "pro"], "answer": 4, "explain": "\"per person\" = *pro Person* (no article) (B1)."}, {"q": "*___* Regen findet das Konzert in der Halle statt.", "options": ["Aus", "Bei", "Mit", "Wegen dem", "Unter"], "answer": 1, "explain": "*bei* + noun for a condition: *bei Regen* = if it rains (B1)."}, {"q": "*___* eines Briefes habe ich ihr eine Nachricht geschrieben.", "options": ["Ohne", "Mit", "Bis auf", "Statt", "Außer"], "answer": 3, "explain": "*statt* (instead of) + genitive: *statt eines Briefes* (B1)."}, {"q": "*___* einen Fehler war der Test perfekt.", "options": ["Bis auf", "Bis zu", "Statt", "Mit", "Ohne dem"], "answer": 0, "explain": "*bis auf* + accusative = except for (B2)."}, {"q": "Meiner Meinung *___* ist das keine gute Idee.", "options": ["zufolge", "laut", "gemäß", "von", "nach"], "answer": 4, "explain": "The fixed phrase *meiner Meinung nach*, with *nach* after the noun (B1)."}, {"q": "*___* dem Wetterbericht wird es morgen sonnig.", "options": ["Statt", "Bei", "Laut", "Nach", "Zufolge"], "answer": 2, "explain": "*laut* (according to) stands before the noun. *zufolge* would come after it (B2)."}, {"q": "Einer neuen Studie *___* schlafen Jugendliche zu wenig.", "options": ["gemäß", "statt", "nach dem", "zufolge", "laut"], "answer": 3, "explain": "*zufolge* + dative stands after the noun: *einer Studie zufolge* (B2)."}, {"q": "Hier können bis *___* 100 Gäste feiern.", "options": ["auf", "an", "um", "für", "zu"], "answer": 4, "explain": "\"up to\" with a number: *bis zu* (B1)."}, {"q": "Er hat den Text Wort *___* Wort übersetzt.", "options": ["nach", "für", "mit", "um", "zu"], "answer": 1, "explain": "The pattern *X für X*: *Wort für Wort* (word by word) (B1)."}, {"q": "Das Paket schicke ich dir *___* Post.", "options": ["per", "pro", "mit", "durch", "zu"], "answer": 0, "explain": "The channel used: *per Post, per E-Mail*, without an article (B2)."}], "title": "Prepositions of manner quiz", "level": "B1–B2"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
