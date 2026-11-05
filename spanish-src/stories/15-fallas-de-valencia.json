@@ -1,0 +1,540 @@
+{
+  "n": 15,
+  "area": "Travel and culture",
+  "level": "B1–B2",
+  "title_es": "Fuego y pólvora: las Fallas de Valencia",
+  "title_en": "Fire and gunpowder: the Fallas of Valencia",
+  "grammar": [
+    {
+      "name": "The subjunctive after conjunctions and value judgements",
+      "explain": "Some conjunctions always take the subjunctive because they point to something not yet real: *para que* (so that), *antes de que* (before), *sin que* (without). *Cuando* and *hasta que* take it when they refer to the future: *Espera a que lleguen las Fallas.* Value judgements like *es una pena que*, *me sorprende que* also trigger it. *Aunque* is special: with the indicative it states a fact (*aunque no es religioso* — although he isn't), with the subjunctive it leaves it open (*aunque no puedan venir* — even if they can't come). In the past, the subjunctive changes to the imperfect subjunctive: *Le pidió que la acompañara.*",
+      "examples": [
+        {
+          "es": "Abre la boca *para que* no te *duelan* los oídos.",
+          "en": "Open your mouth so that your ears don't hurt."
+        },
+        {
+          "es": "*Es una pena que* todo se *convierta* en cenizas.",
+          "en": "It's a shame that it all turns to ashes."
+        },
+        {
+          "es": "Amparo le pidió que la *acompañara*.",
+          "en": "Amparo asked him to go with her. (past → imperfect subjunctive)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Subjunctive",
+          "url": "../advanced/subjunctive.html"
+        },
+        {
+          "title": "Subjunctive vs. indicative",
+          "url": "../advanced/subjunctive-vs-indicative.html"
+        },
+        {
+          "title": "Imperfect subjunctive",
+          "url": "../advanced/imperfect-subjunctive.html"
+        }
+      ]
+    },
+    {
+      "name": "Relative pronouns: que, donde, lo que, el que, cuyo",
+      "explain": "*Que* is the all-purpose relative (*figuras que se burlan…*). After a preposition, or to mean *the one that*, use *el que / la que / los que* (*el que elige el público* — the one the public chooses). *Lo que* refers to an idea: *Lo que más le impresionó fue la mascletà* (What impressed him most…). *Donde* refers to a place. *Cuyo/cuya/cuyos/cuyas* means *whose* and agrees with the thing owned, not the owner: *una comisión cuyos miembros…*",
+      "examples": [
+        {
+          "es": "*Lo que* más me gusta es el ambiente.",
+          "en": "What I like most is the atmosphere."
+        },
+        {
+          "es": "Cada barrio tiene una comisión *cuyos* miembros trabajan todo el año.",
+          "en": "Each neighbourhood has a committee whose members work all year."
+        },
+        {
+          "es": "Se salva solo el ninot *que* elige el público.",
+          "en": "Only the ninot that the public chooses is saved."
+        }
+      ],
+      "links": [
+        {
+          "title": "Relative pronouns",
+          "url": "../advanced/relative-pronouns.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "fallero",
+      "es": "fallero",
+      "gender": "m",
+      "plural": "falleros",
+      "en": "member of a Fallas committee; (adj.) of the Fallas",
+      "examples": [
+        {
+          "es": "Los *falleros* llevan trajes tradicionales.",
+          "en": "The fallas members wear traditional costumes."
+        },
+        {
+          "es": "Amparo es *fallera* desde que nació.",
+          "en": "Amparo has been a fallera since she was born."
+        }
+      ],
+      "note": "Feminine: *la fallera*. Each year a *Fallera Mayor* represents the whole city."
+    },
+    {
+      "id": "casal",
+      "es": "casal",
+      "gender": "m",
+      "plural": "casales",
+      "en": "clubhouse of a Fallas committee",
+      "examples": [
+        {
+          "es": "Cenamos en el *casal* con toda la comisión.",
+          "en": "We had dinner at the clubhouse with the whole committee."
+        },
+        {
+          "es": "El *casal* está abierto todo el año.",
+          "en": "The clubhouse is open all year round."
+        }
+      ],
+      "note": "A Valencian/Catalan word used in Valencian Spanish. In standard Spanish *casal* is an old word for a country house."
+    },
+    {
+      "id": "presupuesto",
+      "es": "presupuesto",
+      "gender": "m",
+      "plural": "presupuestos",
+      "en": "budget; quote, estimate",
+      "examples": [
+        {
+          "es": "La falla tiene un *presupuesto* enorme.",
+          "en": "The falla has a huge budget."
+        },
+        {
+          "es": "Pedí un *presupuesto* para arreglar el coche.",
+          "en": "I asked for a quote to repair the car."
+        }
+      ],
+      "note": "Not *presupposition* (that is *presuposición*). *Ajustarse al presupuesto* = to stay within budget."
+    },
+    {
+      "id": "monumento",
+      "es": "monumento",
+      "gender": "m",
+      "plural": "monumentos",
+      "en": "monument; (Fallas) the falla sculpture",
+      "examples": [
+        {
+          "es": "El *monumento* mide veinte metros.",
+          "en": "The sculpture is twenty metres tall."
+        },
+        {
+          "es": "Valencia tiene muchos *monumentos* históricos.",
+          "en": "Valencia has many historic monuments."
+        }
+      ],
+      "note": "In the Fallas, *el monumento* or *la falla* is the whole satirical sculpture, made of many *ninots*."
+    },
+    {
+      "id": "ninot",
+      "es": "ninot",
+      "gender": "m",
+      "plural": "ninots",
+      "en": "figure of a falla (puppet-like statue)",
+      "examples": [
+        {
+          "es": "Este *ninot* representa a un político.",
+          "en": "This figure represents a politician."
+        },
+        {
+          "es": "Los *ninots* son de cartón y corcho.",
+          "en": "The figures are made of cardboard and polystyrene."
+        }
+      ],
+      "note": "Valencian for 'doll, puppet'. The Valencian plural *ninots* is used in Spanish too."
+    },
+    {
+      "id": "satirico",
+      "es": "satírico",
+      "gender": "",
+      "en": "satirical",
+      "examples": [
+        {
+          "es": "Es una revista *satírica*.",
+          "en": "It's a satirical magazine."
+        },
+        {
+          "es": "Las fallas son muy *satíricas* con los políticos.",
+          "en": "The fallas are very satirical about politicians."
+        }
+      ],
+      "note": "Stress on the second syllable: *sa-TÍ-ri-co*. Noun: *la sátira*."
+    },
+    {
+      "id": "multitud",
+      "es": "multitud",
+      "gender": "f",
+      "plural": "multitudes",
+      "en": "crowd; multitude",
+      "examples": [
+        {
+          "es": "Una *multitud* llenaba la plaza.",
+          "en": "A crowd filled the square."
+        },
+        {
+          "es": "Tengo una *multitud* de cosas que hacer.",
+          "en": "I have loads of things to do."
+        }
+      ],
+      "note": "Feminine, like all nouns in *-tud*. Everyday synonym: *un montón de gente*; for a dense crowd *el gentío*."
+    },
+    {
+      "id": "petardo",
+      "es": "petardo",
+      "gender": "m",
+      "plural": "petardos",
+      "en": "firecracker, banger",
+      "examples": [
+        {
+          "es": "Los niños tiran *petardos* en la calle.",
+          "en": "The kids set off bangers in the street."
+        },
+        {
+          "es": "¡Qué ruido hacen esos *petardos*!",
+          "en": "What a noise those firecrackers make!"
+        }
+      ],
+      "note": "Colloquially in Spain *un petardo* is a boring or annoying person: *¡Qué petardo eres!*"
+    },
+    {
+      "id": "ensordecedor",
+      "es": "ensordecedor",
+      "gender": "",
+      "en": "deafening",
+      "examples": [
+        {
+          "es": "El ruido era *ensordecedor*.",
+          "en": "The noise was deafening."
+        },
+        {
+          "es": "Hubo un aplauso *ensordecedor*.",
+          "en": "There was deafening applause."
+        }
+      ],
+      "note": "From *sordo* (deaf) → *ensordecer* (to deafen). Feminine: *ensordecedora*."
+    },
+    {
+      "id": "polvora",
+      "es": "pólvora",
+      "gender": "f",
+      "plural": "pólvoras",
+      "en": "gunpowder",
+      "examples": [
+        {
+          "es": "Huele a *pólvora*.",
+          "en": "It smells of gunpowder."
+        },
+        {
+          "es": "Los fuegos artificiales se hacen con *pólvora*.",
+          "en": "Fireworks are made with gunpowder."
+        }
+      ],
+      "note": "Valencians are famously fond of it: *la cultura de la pólvora*. *Correr como la pólvora* = to spread like wildfire."
+    },
+    {
+      "id": "desfilar",
+      "es": "desfilar",
+      "gender": "",
+      "en": "to parade, to march past",
+      "examples": [
+        {
+          "es": "Las bandas *desfilan* por el centro.",
+          "en": "The bands parade through the centre."
+        },
+        {
+          "es": "Miles de falleros *desfilaron* con flores.",
+          "en": "Thousands of falleros paraded with flowers."
+        }
+      ],
+      "note": "Noun: *el desfile* (parade). *Desfilar* is also used for models on a catwalk."
+    },
+    {
+      "id": "quemar",
+      "es": "quemar",
+      "gender": "",
+      "en": "to burn",
+      "examples": [
+        {
+          "es": "Esa noche se *queman* las fallas.",
+          "en": "That night the fallas are burnt."
+        },
+        {
+          "es": "Me *quemé* con el café.",
+          "en": "I burnt myself with the coffee."
+        }
+      ],
+      "note": "Transitive (you burn something). For something that is burning on its own, use *arder*."
+    },
+    {
+      "id": "indultar",
+      "es": "indultar",
+      "gender": "",
+      "en": "to pardon, to spare",
+      "examples": [
+        {
+          "es": "El público decide qué ninot se *indulta*.",
+          "en": "The public decides which figure is spared."
+        },
+        {
+          "es": "El gobierno *indultó* a varios presos.",
+          "en": "The government pardoned several prisoners."
+        }
+      ],
+      "note": "A legal word in origin. The *ninot indultat* (Valencian) is the figure saved from the fire by popular vote."
+    },
+    {
+      "id": "arder",
+      "es": "arder",
+      "gender": "",
+      "en": "to burn, to be on fire, to blaze",
+      "examples": [
+        {
+          "es": "La falla *ardió* en pocos minutos.",
+          "en": "The falla burnt down in a few minutes."
+        },
+        {
+          "es": "Me *arden* los ojos por el humo.",
+          "en": "My eyes are stinging from the smoke."
+        }
+      ],
+      "note": "Intransitive: *la casa arde* (is burning). *Estar que arde* = to be furious or very tense."
+    },
+    {
+      "id": "madrugada",
+      "es": "madrugada",
+      "gender": "f",
+      "plural": "madrugadas",
+      "en": "early hours of the morning (after midnight)",
+      "examples": [
+        {
+          "es": "Volvimos a casa a las tres de la *madrugada*.",
+          "en": "We got home at three in the morning."
+        },
+        {
+          "es": "Trabaja de *madrugada*.",
+          "en": "He works in the early hours."
+        }
+      ],
+      "note": "Spanish divides the time after midnight: *la una de la madrugada* sounds more natural than *de la mañana* until dawn."
+    },
+    {
+      "id": "cenizas",
+      "es": "cenizas",
+      "gender": "fpl",
+      "plural": "cenizas",
+      "en": "ashes",
+      "examples": [
+        {
+          "es": "De la falla solo quedaron *cenizas*.",
+          "en": "Only ashes were left of the falla."
+        },
+        {
+          "es": "Esparcieron sus *cenizas* en el mar.",
+          "en": "They scattered his ashes in the sea."
+        }
+      ],
+      "note": "Singular *la ceniza* (ash). *Miércoles de Ceniza* = Ash Wednesday; *el cenicero* = ashtray."
+    },
+    {
+      "id": "efimero",
+      "es": "efímero",
+      "gender": "",
+      "en": "ephemeral, short-lived",
+      "examples": [
+        {
+          "es": "Las fallas son arte *efímero*.",
+          "en": "The fallas are ephemeral art."
+        },
+        {
+          "es": "Fue un éxito *efímero*.",
+          "en": "It was a short-lived success."
+        }
+      ],
+      "note": "More common in Spanish than in English, used in everyday writing about art and fame."
+    },
+    {
+      "id": "aguantar",
+      "es": "aguantar",
+      "gender": "",
+      "en": "to put up with, to stand; to hold",
+      "examples": [
+        {
+          "es": "No *aguanto* el ruido.",
+          "en": "I can't stand the noise."
+        },
+        {
+          "es": "*Aguanta* la puerta, por favor.",
+          "en": "Hold the door, please."
+        }
+      ],
+      "note": "*No aguanto a mi jefe* = I can't stand my boss. *¡Aguanta!* = Hang on!"
+    },
+    {
+      "id": "agobiarse",
+      "es": "agobiarse",
+      "gender": "",
+      "en": "to feel overwhelmed, stressed or claustrophobic",
+      "examples": [
+        {
+          "es": "Me *agobio* cuando hay tanta gente.",
+          "en": "I feel overwhelmed when there are so many people."
+        },
+        {
+          "es": "No *te agobies*, tenemos tiempo.",
+          "en": "Don't stress, we've got time."
+        }
+      ],
+      "note": "Very common in Spain. Adjective: *agobiado*; *¡Qué agobio!* = How stressful / stifling!"
+    },
+    {
+      "id": "merecer",
+      "es": "merecer la pena",
+      "gender": "",
+      "en": "to be worth it",
+      "examples": [
+        {
+          "es": "El viaje *merece la pena*.",
+          "en": "The trip is worth it."
+        },
+        {
+          "es": "¿*Merece la pena* esperar?",
+          "en": "Is it worth waiting?"
+        }
+      ],
+      "note": "Spain says *merecer la pena*; Latin America mostly *valer la pena*. Both are understood everywhere."
+    }
+  ],
+  "text": "Lucas, un estudiante brasileño de arquitectura, llegó a Valencia con una beca Erasmus. Sus compañeros le habían advertido: «Espera a que lleguen las Fallas. No has visto nada igual.» {{=Tenían razón|They were right}}: en marzo la ciudad se transformó.\n\nLas Fallas, que la UNESCO declaró Patrimonio Cultural Inmaterial en 2016, se celebran del 15 al 19 de marzo. Cada barrio tiene una comisión cuyos miembros, los {{fallero|falleros}}, se reúnen todo el año en un {{casal|casal}} y {{=recaudan|raise}} dinero para su {{monumento|monumento}}. Los más grandes tienen un {{presupuesto|presupuesto}} de cientos de miles de euros. Están formados por {{ninot|ninots}}, figuras enormes de cartón y madera, muchas veces {{satirico|satíricas}}, que {{=se burlan de|make fun of}} políticos y famosos.\n\nLo que más impresionó a Lucas fue la {{=mascletà|daytime firecracker display}}: del 1 al 19 de marzo, a las dos de la tarde, una {{multitud|multitud}} se reúne en la plaza del Ayuntamiento para oír unos minutos de {{petardo|petardos}}. El {{=estruendo|roar, din}} es tan {{ensordecedor|ensordecedor}} que se siente en el pecho, y el aire huele a {{polvora|pólvora}} durante horas. «Abre la boca para que no te duelan los oídos», le aconsejó su amiga Amparo, que es fallera desde niña.\n\nAmparo le pidió que la acompañara a la Ofrenda, donde miles de falleros {{desfilar|desfilan}} para llevar flores a la Virgen. Aunque Lucas no es religioso, le pareció precioso.\n\nLa noche del 19 llega la cremà: se {{quemar|queman}} casi todos los monumentos. Solo se salvan dos ninots, los que el público elige por votación: los ninots {{indultar|indultados}}, que pasan al Museo Fallero. Lucas vio {{arder|arder}} la falla de su barrio a la una de la {{madrugada|madrugada}}. «Es una pena que un año de trabajo se convierta en {{cenizas|cenizas}} en diez minutos», le dijo a Amparo.\n\n«Por eso es especial», respondió ella. «Es arte {{efimero|efímero}}.» Lucas, que al principio no {{aguantar|aguantaba}} el ruido y se {{agobiarse|agobiaba}} entre tanta gente, lo tiene claro: {{merecer|ha merecido la pena}}. Ya ha invitado a sus padres para el año que viene, aunque no sabe si podrán venir.",
+  "quiz": [
+    {
+      "q": "¿Qué le dijeron a Lucas sus compañeros antes de las Fallas?",
+      "options": [
+        "que se fuera de la ciudad",
+        "que no había visto nada igual",
+        "que las Fallas eran aburridas",
+        "que comprara tapones",
+        "que se hiciera fallero"
+      ],
+      "answer": 1,
+      "explain": "«Espera a que lleguen las Fallas. No has visto nada igual.»"
+    },
+    {
+      "q": "¿Quiénes son los falleros?",
+      "options": [
+        "los miembros de las comisiones de cada barrio",
+        "los políticos de los ninots",
+        "los artistas del museo",
+        "los bomberos de Valencia",
+        "los turistas que visitan las Fallas"
+      ],
+      "answer": 0,
+      "explain": "«Cada barrio tiene una comisión cuyos miembros, los falleros, se reúnen todo el año en un casal.»"
+    },
+    {
+      "q": "¿Cómo son muchas veces los ninots?",
+      "options": [
+        "de piedra",
+        "tristes",
+        "invisibles",
+        "pequeños y religiosos",
+        "satíricos"
+      ],
+      "answer": 4,
+      "explain": "They are «figuras enormes… muchas veces satíricas, que se burlan de políticos y famosos»."
+    },
+    {
+      "q": "¿Qué es la mascletà, según el texto?",
+      "options": [
+        "un espectáculo de petardos a las dos de la tarde",
+        "la quema de los monumentos",
+        "un museo",
+        "un desfile de flores",
+        "un plato típico"
+      ],
+      "answer": 0,
+      "explain": "«A las dos de la tarde, una multitud se reúne en la plaza del Ayuntamiento para oír unos minutos de petardos.»"
+    },
+    {
+      "q": "¿Por qué Amparo le dice a Lucas que abra la boca?",
+      "options": [
+        "para cantar",
+        "para respirar mejor",
+        "para que no le duelan los oídos",
+        "para probar la pólvora",
+        "para gritar con la gente"
+      ],
+      "answer": 2,
+      "explain": "«Abre un poco la boca para que no te duelan los oídos.»"
+    },
+    {
+      "q": "¿Qué pasa con los ninots indultados?",
+      "options": [
+        "Se regalan a los turistas.",
+        "Se guardan para el año siguiente.",
+        "Se queman primero.",
+        "Se venden.",
+        "Se salvan y pasan al Museo Fallero."
+      ],
+      "answer": 4,
+      "explain": "«Solo se salvan dos ninots… los ninots indultados, que pasan al Museo Fallero.»"
+    },
+    {
+      "q": "¿Cómo se sentía Lucas al principio de las fiestas?",
+      "options": [
+        "Estaba enfermo.",
+        "Estaba aburrido.",
+        "No aguantaba el ruido y se agobiaba entre tanta gente.",
+        "Quería ser fallero.",
+        "Tenía miedo de los bomberos."
+      ],
+      "answer": 2,
+      "explain": "«Lucas, que al principio no aguantaba el ruido y se agobiaba entre tanta gente…»"
+    },
+    {
+      "q": "Completa: «Es una pena que la falla *___* en diez minutos.»",
+      "options": [
+        "arde",
+        "arda",
+        "ardió",
+        "arderá",
+        "arder"
+      ],
+      "answer": 1,
+      "explain": "*Es una pena que* is a value judgement and triggers the present subjunctive: *arda*."
+    },
+    {
+      "q": "Completa: «Cada barrio tiene una comisión *___* miembros trabajan todo el año.»",
+      "options": [
+        "lo que",
+        "que",
+        "cuya",
+        "cuyos",
+        "donde"
+      ],
+      "answer": 3,
+      "explain": "*Cuyo* means *whose* and agrees with what follows: *miembros* is masculine plural → *cuyos*."
+    },
+    {
+      "q": "En España se dice «merece la pena». ¿Qué se dice más en América Latina?",
+      "options": [
+        "hace la pena",
+        "es una pena",
+        "vale la pena",
+        "tiene la pena",
+        "da pena"
+      ],
+      "answer": 2,
+      "explain": "Latin America mostly uses *valer la pena*. Careful: *es una pena* means *it's a shame*, and *dar pena* means *to make sad / embarrassed*."
+    }
+  ]
+}

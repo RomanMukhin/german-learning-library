@@ -1,0 +1,539 @@
+{
+  "n": 16,
+  "area": "Travel and culture",
+  "level": "B1",
+  "title_es": "Mi primera milonga",
+  "title_en": "My first milonga",
+  "grammar": [
+    {
+      "name": "Voseo: vos instead of tú in Argentina",
+      "explain": "In Argentina and Uruguay people say *vos* instead of *tú*, with its own verb forms. In the present tense the stress moves to the ending and there is no stem change: *vos bailás, querés, sabés, sos* (instead of *tú bailas, quieres, sabes, eres*). Object and reflexive pronouns stay the same as with *tú*: *te*, *tu*. *Vos* is normal, friendly and used in all social classes, not slang.",
+      "examples": [
+        {
+          "es": "¿*Vos sos* de Francia?",
+          "en": "Are you from France? (tú eres)"
+        },
+        {
+          "es": "Si *querés* bailar, *asentís* con la cabeza.",
+          "en": "If you want to dance, you nod. (tú quieres, asientes)"
+        },
+        {
+          "es": "*Bailás* muy lindo.",
+          "en": "You dance really nicely. (tú bailas)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Argentinean Spanish",
+          "url": "../regional-spanish/argentinean-spanish.html"
+        }
+      ]
+    },
+    {
+      "name": "Commands (imperative), with vos and tú",
+      "explain": "The affirmative *vos* command is the infinitive without the final *-r*, plus an accent on the last vowel: *mirá, cerrá, vení, escuchá*. Pronouns are attached at the end, and then the accent usually disappears: *animate, dejate llevar, relajate* (tú: *anímate, déjate, relájate*). Negative commands use the present subjunctive, and in Argentina most speakers use the *tú* form for them: *No pienses tanto.*",
+      "examples": [
+        {
+          "es": "*Cerrá* los ojos.",
+          "en": "Close your eyes. (tú: cierra)"
+        },
+        {
+          "es": "*Dejate* llevar por la música.",
+          "en": "Let yourself be carried by the music. (tú: déjate)"
+        },
+        {
+          "es": "*No pienses* tanto.",
+          "en": "Don't think so much. (negative → subjunctive)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Commands",
+          "url": "../intermediate/commands.html"
+        },
+        {
+          "title": "Argentinean Spanish",
+          "url": "../regional-spanish/argentinean-spanish.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "porteno",
+      "es": "porteño",
+      "gender": "",
+      "en": "from Buenos Aires; (noun) person from Buenos Aires",
+      "examples": [
+        {
+          "es": "Es un barrio muy *porteño*.",
+          "en": "It's a very Buenos Aires neighbourhood."
+        },
+        {
+          "es": "Los *porteños* cenan muy tarde.",
+          "en": "People from Buenos Aires have dinner very late."
+        }
+      ],
+      "note": "From *puerto* (port). Also a noun: *un porteño, una porteña*. Note that in Chile *porteño* means from Valparaíso."
+    },
+    {
+      "id": "animarse",
+      "es": "animarse (a)",
+      "gender": "",
+      "en": "(Arg., colloquial) to dare, to go for it; to cheer up",
+      "examples": [
+        {
+          "es": "¿*Te animás a* bailar?",
+          "en": "Do you dare to dance? / Fancy dancing?"
+        },
+        {
+          "es": "Dale, *animate*, no pasa nada.",
+          "en": "Come on, go for it, it's fine."
+        }
+      ],
+      "note": "In the Río de la Plata *animarse* very often means to dare; in Spain it more often means to cheer up or to liven up."
+    },
+    {
+      "id": "milonga",
+      "es": "milonga",
+      "gender": "f",
+      "plural": "milongas",
+      "en": "tango dance event (and a lively tango rhythm)",
+      "examples": [
+        {
+          "es": "Los jueves vamos a una *milonga* en San Telmo.",
+          "en": "On Thursdays we go to a milonga in San Telmo."
+        },
+        {
+          "es": "La orquesta tocó una *milonga* muy rápida.",
+          "en": "The orchestra played a very fast milonga."
+        }
+      ],
+      "note": "Both the social dance evening and a musical genre, faster and happier than tango. A regular is *un milonguero*."
+    },
+    {
+      "id": "paso",
+      "es": "paso",
+      "gender": "m",
+      "plural": "pasos",
+      "en": "step; dance step",
+      "examples": [
+        {
+          "es": "Aprendí tres *pasos* nuevos.",
+          "en": "I learnt three new steps."
+        },
+        {
+          "es": "Vamos *paso a paso*.",
+          "en": "Let's go step by step."
+        }
+      ],
+      "note": "*Estar de paso* = to be passing through. *El paso de peatones* (Spain) = pedestrian crossing."
+    },
+    {
+      "id": "verguenza",
+      "es": "vergüenza",
+      "gender": "f",
+      "plural": "vergüenzas",
+      "en": "embarrassment, shyness; shame",
+      "examples": [
+        {
+          "es": "Me da *vergüenza* hablar en público.",
+          "en": "I'm embarrassed to speak in public."
+        },
+        {
+          "es": "¡Qué *vergüenza*!",
+          "en": "How embarrassing!"
+        }
+      ],
+      "note": "*Dar vergüenza* works like *gustar*: *me da vergüenza*. *Embarazada* means pregnant — not embarrassed!"
+    },
+    {
+      "id": "abrazo",
+      "es": "abrazo",
+      "gender": "m",
+      "plural": "abrazos",
+      "en": "hug, embrace; (tango) dance hold",
+      "examples": [
+        {
+          "es": "En el tango todo empieza con el *abrazo*.",
+          "en": "In tango everything starts with the embrace."
+        },
+        {
+          "es": "Un *abrazo* fuerte, ¡nos vemos!",
+          "en": "A big hug, see you!"
+        }
+      ],
+      "note": "*Un abrazo* is also a common friendly way to end a message or an email."
+    },
+    {
+      "id": "pista",
+      "es": "pista",
+      "gender": "f",
+      "plural": "pistas",
+      "en": "dance floor; track; clue",
+      "examples": [
+        {
+          "es": "La *pista* estaba llena de parejas.",
+          "en": "The dance floor was full of couples."
+        },
+        {
+          "es": "Dame una *pista*.",
+          "en": "Give me a clue."
+        }
+      ],
+      "note": "Also *pista de tenis* (court), *pista de esquí* (ski slope), *pista de aterrizaje* (runway)."
+    },
+    {
+      "id": "zapato",
+      "es": "zapato",
+      "gender": "m",
+      "plural": "zapatos",
+      "en": "shoe",
+      "examples": [
+        {
+          "es": "Compré *zapatos* de tango.",
+          "en": "I bought tango shoes."
+        },
+        {
+          "es": "Estos *zapatos* me hacen daño.",
+          "en": "These shoes hurt me."
+        }
+      ],
+      "note": "Trainers are *zapatillas* (Spain, Argentina), *tenis* (Mexico, Colombia). *Estar en los zapatos de alguien* = to be in someone's shoes."
+    },
+    {
+      "id": "tanda",
+      "es": "tanda",
+      "gender": "f",
+      "plural": "tandas",
+      "en": "set of 3–4 songs danced with one partner; batch, round",
+      "examples": [
+        {
+          "es": "Bailé dos *tandas* con él.",
+          "en": "I danced two sets with him."
+        },
+        {
+          "es": "Hicimos las galletas en dos *tandas*.",
+          "en": "We made the biscuits in two batches."
+        }
+      ],
+      "note": "In a milonga you normally stay with the same partner for the whole *tanda*."
+    },
+    {
+      "id": "cortina",
+      "es": "cortina",
+      "gender": "f",
+      "plural": "cortinas",
+      "en": "curtain; (tango) short non-tango interlude between sets",
+      "examples": [
+        {
+          "es": "Durante la *cortina* la gente vuelve a su mesa.",
+          "en": "During the cortina people go back to their tables."
+        },
+        {
+          "es": "Cerrá la *cortina*, por favor.",
+          "en": "Close the curtain, please."
+        }
+      ],
+      "note": "In the milonga the *cortina* 'closes' one tanda, the signal to change partners."
+    },
+    {
+      "id": "pareja",
+      "es": "pareja",
+      "gender": "f",
+      "plural": "parejas",
+      "en": "partner; couple",
+      "examples": [
+        {
+          "es": "Busco *pareja* de baile.",
+          "en": "I'm looking for a dance partner."
+        },
+        {
+          "es": "Había muchas *parejas* en la pista.",
+          "en": "There were many couples on the floor."
+        }
+      ],
+      "note": "Always feminine, even for a man: *Juan es mi pareja.* *Vivir en pareja* = to live together."
+    },
+    {
+      "id": "bandoneon",
+      "es": "bandoneón",
+      "gender": "m",
+      "plural": "bandoneones",
+      "en": "bandoneon (tango button accordion)",
+      "examples": [
+        {
+          "es": "El *bandoneón* es el alma del tango.",
+          "en": "The bandoneon is the soul of tango."
+        },
+        {
+          "es": "Mi abuelo tocaba el *bandoneón*.",
+          "en": "My grandfather played the bandoneon."
+        }
+      ],
+      "note": "Invented in Germany in the 19th century and named after Heinrich Band; it became the sound of Argentine tango."
+    },
+    {
+      "id": "cabeceo",
+      "es": "cabeceo",
+      "gender": "m",
+      "plural": "cabeceos",
+      "en": "nod of invitation (tango code); nodding",
+      "examples": [
+        {
+          "es": "Te invitan con un *cabeceo*.",
+          "en": "They invite you with a nod."
+        },
+        {
+          "es": "Respondió al *cabeceo* con una sonrisa.",
+          "en": "She responded to the nod with a smile."
+        }
+      ],
+      "note": "From *cabeza*. Together with *la mirada* it's the traditional, discreet way to invite someone to dance."
+    },
+    {
+      "id": "mirada",
+      "es": "mirada",
+      "gender": "f",
+      "plural": "miradas",
+      "en": "look, glance, gaze",
+      "examples": [
+        {
+          "es": "Buscó su *mirada* desde la mesa.",
+          "en": "He looked for her eye from the table."
+        },
+        {
+          "es": "Tiene una *mirada* muy dulce.",
+          "en": "She has a very sweet look."
+        }
+      ],
+      "note": "*Echar una mirada* = to take a look (also *echar un vistazo*)."
+    },
+    {
+      "id": "milonguero",
+      "es": "milonguero",
+      "gender": "m",
+      "plural": "milongueros",
+      "en": "regular at the milongas, experienced social tango dancer",
+      "examples": [
+        {
+          "es": "Es un *milonguero* de toda la vida.",
+          "en": "He's been going to milongas all his life."
+        },
+        {
+          "es": "Las *milongueras* conocen todos los códigos.",
+          "en": "The women regulars know all the codes."
+        }
+      ],
+      "note": "Feminine: *milonguera*. *Estilo milonguero* is a close-embrace way of dancing."
+    },
+    {
+      "id": "pisar",
+      "es": "pisar",
+      "gender": "",
+      "en": "to step on, to tread on",
+      "examples": [
+        {
+          "es": "Perdón, ¿te *pisé*?",
+          "en": "Sorry, did I step on you?"
+        },
+        {
+          "es": "No *pises* el césped.",
+          "en": "Don't walk on the grass."
+        }
+      ],
+      "note": "*Pisar fuerte* = to make a strong entrance. *No pisar* = Keep off."
+    },
+    {
+      "id": "dejarse_llevar",
+      "es": "dejarse llevar",
+      "gender": "",
+      "en": "to let yourself go, to go with the flow",
+      "examples": [
+        {
+          "es": "*Dejate llevar* por la música.",
+          "en": "Let the music carry you."
+        },
+        {
+          "es": "Me *dejé llevar* y compré tres libros.",
+          "en": "I got carried away and bought three books."
+        }
+      ],
+      "note": "Literally 'to let yourself be carried'. In dance it means following your partner's lead."
+    },
+    {
+      "id": "marcar",
+      "es": "marcar",
+      "gender": "",
+      "en": "(dance) to lead; to mark; to dial",
+      "examples": [
+        {
+          "es": "En el tango, uno *marca* y el otro sigue.",
+          "en": "In tango, one person leads and the other follows."
+        },
+        {
+          "es": "*Marcá* el número de nuevo.",
+          "en": "Dial the number again."
+        }
+      ],
+      "note": "Also *marcar un gol* (to score). Dancers today often say *conducir* or *guiar* for leading."
+    },
+    {
+      "id": "girar",
+      "es": "girar",
+      "gender": "",
+      "en": "to turn, to spin",
+      "examples": [
+        {
+          "es": "*Girá* a la derecha en la esquina.",
+          "en": "Turn right at the corner."
+        },
+        {
+          "es": "La pareja *giraba* por la pista.",
+          "en": "The couple were spinning around the floor."
+        }
+      ],
+      "note": "Also used for directions. The noun is *el giro* (turn), as in tango's *giros*."
+    },
+    {
+      "id": "ensayar",
+      "es": "ensayar",
+      "gender": "",
+      "en": "to practise, to rehearse",
+      "examples": [
+        {
+          "es": "Tenemos que *ensayar* antes del show.",
+          "en": "We have to rehearse before the show."
+        },
+        {
+          "es": "*Ensayo* todos los días en casa.",
+          "en": "I practise at home every day."
+        }
+      ],
+      "note": "For a performance or a routine. *Practicar* is more general. *El ensayo* = rehearsal, and also essay."
+    }
+  ],
+  "text": "Sophie es de Lyon y hace tres meses que vive en Buenos Aires. Vino por trabajo, pero se enamoró de la ciudad desde el primer día: de los cafés, de las librerías de la avenida Corrientes y, sobre todo, del tango. Ahora toma clases dos veces por semana en San Telmo con Martín, un profesor {{porteno|porteño}} de sesenta años.\n\n«{{animarse|Animate}}, Sophie», le dijo Martín una tarde. «El sábado vamos a una {{milonga|milonga}}. Ya estás lista.» Sophie no estaba tan segura. Sabía algunos {{paso|pasos}} básicos, pero le daba {{verguenza|vergüenza}} bailar con desconocidos. «Tranquila», insistió él. «En la milonga no hace falta ser perfecta. Lo importante es el {{abrazo|abrazo}}.»\n\nEl sábado, a las once de la noche, la {{pista|pista}} ya estaba llena. Sophie se puso sus {{zapato|zapatos}} nuevos y se sentó a mirar. La música no sonaba sin parar: se ponía en {{tanda|tandas}} de tres o cuatro temas, y entre una tanda y otra había una {{cortina|cortina}}, una música corta que no es tango, para cambiar de {{pareja|pareja}}. El {{bandoneon|bandoneón}} de las grabaciones antiguas {{=le ponía la piel de gallina|gave her goosebumps}}.\n\nMartín le explicó el {{=código|unwritten rules}} del {{cabeceo|cabeceo}}: «Acá nadie viene a tu mesa a invitarte. El que quiere bailar busca tu {{mirada|mirada}} desde lejos y hace un gesto con la cabeza. Si querés bailar, {{=asentís|you nod}}. Si no, mirás para otro lado y listo, nadie se ofende.»\n\nMedia hora después, un {{milonguero|milonguero}} de pelo blanco la miró desde el otro lado del salón. Sophie respiró hondo y asintió. Al principio estaba tan nerviosa que le {{pisar|pisó}} el pie dos veces. «No pienses tanto», le {{=susurró|whispered}} él. «Cerrá los ojos y {{dejarse_llevar|dejate llevar}}. Yo {{marcar|marco}}, vos escuchás la música.»\n\nY funcionó. Poco a poco, Sophie empezó a {{girar|girar}} sin miedo. Cuando terminó la tanda, el señor le dijo: «Bailás muy lindo, {{=piba|girl (Rioplatense slang)}}. ¿Hace cuánto que bailás?» «Tres meses», contestó ella, orgullosa. Esa semana volvió a la academia con una sola idea: {{ensayar|ensayar}} mucho para volver a la milonga el sábado siguiente.",
+  "quiz": [
+    {
+      "q": "¿Por qué vino Sophie a Buenos Aires?",
+      "options": [
+        "de vacaciones",
+        "para aprender tango",
+        "por trabajo",
+        "para estudiar",
+        "por amor"
+      ],
+      "answer": 2,
+      "explain": "«Vino por trabajo, pero se enamoró de la ciudad desde el primer día.»"
+    },
+    {
+      "q": "¿Qué le daba vergüenza a Sophie?",
+      "options": [
+        "bailar con desconocidos",
+        "comprar zapatos",
+        "ir a San Telmo",
+        "cantar tango",
+        "hablar español"
+      ],
+      "answer": 0,
+      "explain": "«Le daba vergüenza bailar con desconocidos.»"
+    },
+    {
+      "q": "Según Martín, ¿qué es lo más importante en la milonga?",
+      "options": [
+        "los zapatos",
+        "el abrazo",
+        "la ropa elegante",
+        "conocer muchos pasos",
+        "ser perfecta"
+      ],
+      "answer": 1,
+      "explain": "«En la milonga no hace falta ser perfecta. Lo importante es el abrazo.»"
+    },
+    {
+      "q": "¿Para qué sirve la cortina en una milonga?",
+      "options": [
+        "para cambiar de pareja",
+        "para cerrar el salón",
+        "para bailar más rápido",
+        "para anunciar la cena",
+        "para descansar los músicos"
+      ],
+      "answer": 0,
+      "explain": "«Entre una tanda y otra había una cortina… para cambiar de pareja.»"
+    },
+    {
+      "q": "¿Cómo se invita a bailar con el cabeceo?",
+      "options": [
+        "Se aplaude.",
+        "Se va a la mesa y se pregunta.",
+        "Se manda un mensaje.",
+        "Se busca la mirada de la otra persona y se hace un gesto con la cabeza.",
+        "El profesor elige las parejas."
+      ],
+      "answer": 3,
+      "explain": "«El que quiere bailar busca tu mirada desde lejos y hace un gesto con la cabeza.»"
+    },
+    {
+      "q": "¿Qué pasa si no querés bailar?",
+      "options": [
+        "Te vas de la milonga.",
+        "Bailás igual.",
+        "Le pisás el pie.",
+        "Tenés que decir que no en voz alta.",
+        "Mirás para otro lado."
+      ],
+      "answer": 4,
+      "explain": "«Si no, mirás para otro lado y listo, nadie se ofende.»"
+    },
+    {
+      "q": "¿Qué le pasó a Sophie al principio del baile?",
+      "options": [
+        "Perdió un zapato.",
+        "Se rió mucho.",
+        "Se cayó.",
+        "Le pisó el pie a su pareja dos veces.",
+        "Se olvidó de los pasos y se fue."
+      ],
+      "answer": 3,
+      "explain": "«Estaba tan nerviosa que le pisó el pie dos veces.»"
+    },
+    {
+      "q": "¿Cuál es la forma de vos de «tú quieres»?",
+      "options": [
+        "vos quiere",
+        "vos quieres",
+        "vos querés",
+        "vos querís",
+        "vos queréis"
+      ],
+      "answer": 2,
+      "explain": "Present-tense *vos* forms keep the infinitive vowel and stress the ending: *querer → vos querés* (no *e → ie* change)."
+    },
+    {
+      "q": "«Cerrá los ojos» en español de España (con tú) es…",
+      "options": [
+        "Cierre los ojos.",
+        "Cerrar los ojos.",
+        "Cerrás los ojos.",
+        "Cierra los ojos.",
+        "Cerrad los ojos."
+      ],
+      "answer": 3,
+      "explain": "*Cerrá* is the *vos* command; with *tú* it is *cierra* (stem change *e → ie*). *Cierre* is the *usted* form."
+    },
+    {
+      "q": "En el texto, «animate» significa…",
+      "options": [
+        "wake up",
+        "calm down",
+        "hurry up",
+        "cheer up",
+        "go for it / dare"
+      ],
+      "answer": 4,
+      "explain": "In the Río de la Plata *animarse* very often means to dare: Martín is encouraging Sophie to come to the milonga."
+    }
+  ]
+}
