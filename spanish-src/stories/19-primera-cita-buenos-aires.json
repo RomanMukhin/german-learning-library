@@ -1,0 +1,537 @@
+{
+  "n": 19,
+  "area": "Food and social life",
+  "level": "B1",
+  "title_es": "Primera cita en Buenos Aires",
+  "title_en": "A first date in Buenos Aires",
+  "grammar": [
+    {
+      "name": "Preterite vs. imperfect",
+      "explain": "Both are past tenses. The imperfect describes the background: what things were like, feelings, habits and actions in progress (*le encantaba, se sentía, Facundo escribía, parecía tímido*). The preterite tells what happened next — completed events that move the story forward (*se descargó, vio, llegó, charlaron*). A typical combination: an action in progress (imperfect) is interrupted by an event (preterite). A period with clear limits (*durante una semana, durante horas*) takes the preterite.",
+      "examples": [
+        {
+          "es": "Facundo ya la *esperaba* cuando Emily *llegó*.",
+          "en": "Facundo was already waiting for her when Emily arrived."
+        },
+        {
+          "es": "*Estaba* tan nerviosa que *se cambió* de ropa tres veces.",
+          "en": "She was so nervous that she changed clothes three times."
+        },
+        {
+          "es": "Durante una semana *se mandaron* mensajes.",
+          "en": "For a week they sent each other messages. (limited period → preterite)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite vs. imperfect",
+          "url": "../intermediate/preterite-vs-imperfect.html"
+        },
+        {
+          "title": "Imperfect",
+          "url": "../intermediate/imperfect.html"
+        }
+      ]
+    },
+    {
+      "name": "Voseo (Argentina)",
+      "explain": "In Argentina, Uruguay and parts of Central America, *vos* replaces *tú*. In the present tense the stress moves to the ending and the stem doesn't change: *vos tenés, hacés, querés, podés, sos* (instead of *tienes, haces, quieres, puedes, eres*). Commands also drop the stem change: *vení, decime, mirá*. The object pronoun stays *te*: *¿Te gusta?*",
+      "examples": [
+        {
+          "es": "¿*Vos* qué *hacés* el jueves?",
+          "en": "What are you doing on Thursday?"
+        },
+        {
+          "es": "¿*Tenés* ganas de tomar algo?",
+          "en": "Do you feel like having a drink?"
+        },
+        {
+          "es": "¿*Querés* que hagamos otro plan?",
+          "en": "Do you want to do something else together?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Argentinean Spanish",
+          "url": "../regional-spanish/argentinean-spanish.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "cita",
+      "es": "cita",
+      "gender": "f",
+      "plural": "citas",
+      "en": "date; appointment",
+      "examples": [
+        {
+          "es": "Tengo una *cita* el jueves.",
+          "en": "I have a date on Thursday."
+        },
+        {
+          "es": "Pedí *cita* con el médico.",
+          "en": "I made an appointment with the doctor."
+        }
+      ],
+      "note": "*Cita* is a romantic date or an appointment. A calendar date is *la fecha*."
+    },
+    {
+      "id": "aplicacion",
+      "es": "aplicación",
+      "gender": "f",
+      "plural": "aplicaciones",
+      "en": "app",
+      "examples": [
+        {
+          "es": "Se descargó una *aplicación* de citas.",
+          "en": "She downloaded a dating app."
+        },
+        {
+          "es": "Esta *aplicación* es gratis.",
+          "en": "This app is free."
+        }
+      ],
+      "note": "Colloquially *la app*. The accent disappears in the plural: *aplicaciones*."
+    },
+    {
+      "id": "perfil",
+      "es": "perfil",
+      "gender": "m",
+      "plural": "perfiles",
+      "en": "profile",
+      "examples": [
+        {
+          "es": "Su *perfil* dice que le gustan los perros.",
+          "en": "His profile says he likes dogs."
+        },
+        {
+          "es": "Actualicé la foto de mi *perfil*.",
+          "en": "I updated my profile picture."
+        }
+      ],
+      "note": "*De perfil* = side view: *una foto de perfil*."
+    },
+    {
+      "id": "deslizar",
+      "es": "deslizar",
+      "gender": "",
+      "en": "to swipe, to slide",
+      "examples": [
+        {
+          "es": "*Deslizó* a la derecha.",
+          "en": "She swiped right."
+        },
+        {
+          "es": "Pasé una hora *deslizando* fotos.",
+          "en": "I spent an hour swiping through photos."
+        }
+      ],
+      "note": "On dating apps people also say *dar like* or *hacer match* — Spanglish, but very common."
+    },
+    {
+      "id": "mensaje",
+      "es": "mensaje",
+      "gender": "m",
+      "plural": "mensajes",
+      "en": "message, text",
+      "examples": [
+        {
+          "es": "Te mando un *mensaje* luego.",
+          "en": "I'll text you later."
+        },
+        {
+          "es": "Recibí tres *mensajes* de voz.",
+          "en": "I got three voice messages."
+        }
+      ],
+      "note": "Masculine: *el mensaje*. In Argentina and Spain people also say *mandar un WhatsApp* or *un audio*."
+    },
+    {
+      "id": "nervioso",
+      "es": "nervioso",
+      "gender": "",
+      "en": "nervous",
+      "examples": [
+        {
+          "es": "*Estoy* muy *nerviosa*.",
+          "en": "I'm very nervous."
+        },
+        {
+          "es": "Es una persona *nerviosa*.",
+          "en": "He's an anxious person."
+        }
+      ],
+      "note": "With *estar* = nervous right now; with *ser* = a nervous person by nature."
+    },
+    {
+      "id": "puntual",
+      "es": "puntual",
+      "gender": "",
+      "en": "punctual, on time",
+      "examples": [
+        {
+          "es": "Mi jefe nunca es *puntual*.",
+          "en": "My boss is never on time."
+        },
+        {
+          "es": "El colectivo llegó *puntual*.",
+          "en": "The bus arrived on time."
+        }
+      ],
+      "note": "Same form for masculine and feminine. *Llegar tarde* = to be late."
+    },
+    {
+      "id": "charlar",
+      "es": "charlar",
+      "gender": "",
+      "en": "to chat",
+      "examples": [
+        {
+          "es": "*Charlamos* durante horas.",
+          "en": "We chatted for hours."
+        },
+        {
+          "es": "Me gusta *charlar* con mis vecinos.",
+          "en": "I like chatting with my neighbours."
+        }
+      ],
+      "note": "Mexico: *platicar*. Argentina and Spain: *charlar*, *hablar*."
+    },
+    {
+      "id": "mate",
+      "es": "mate",
+      "gender": "m",
+      "plural": "mates",
+      "en": "mate (herbal tea drunk from a gourd)",
+      "examples": [
+        {
+          "es": "En Argentina se toma *mate* todo el día.",
+          "en": "In Argentina people drink mate all day."
+        },
+        {
+          "es": "¿Querés un *mate*?",
+          "en": "Do you want some mate?"
+        }
+      ],
+      "note": "Sharing mate is a sign of friendship. Say *gracias* only when you don't want any more!"
+    },
+    {
+      "id": "plan",
+      "es": "plan",
+      "gender": "m",
+      "plural": "planes",
+      "en": "plan; something to do together",
+      "examples": [
+        {
+          "es": "¿Tenés *plan* para el sábado?",
+          "en": "Have you got plans for Saturday?"
+        },
+        {
+          "es": "Hagamos otro *plan* la semana que viene.",
+          "en": "Let's do something again next week."
+        }
+      ],
+      "note": "In Spanish *plan* is often a casual outing: *un plan tranquilo* = a quiet night."
+    },
+    {
+      "id": "pareja",
+      "es": "pareja",
+      "gender": "f",
+      "plural": "parejas",
+      "en": "couple; partner",
+      "examples": [
+        {
+          "es": "Son *pareja* desde hace un año.",
+          "en": "They've been a couple for a year."
+        },
+        {
+          "es": "Vino a la fiesta con su *pareja*.",
+          "en": "He came to the party with his partner."
+        }
+      ],
+      "note": "Always feminine, even for a man: *Juan es mi pareja*."
+    },
+    {
+      "id": "timido",
+      "es": "tímido",
+      "gender": "",
+      "en": "shy",
+      "examples": [
+        {
+          "es": "Al principio es un poco *tímido*.",
+          "en": "At first he's a bit shy."
+        },
+        {
+          "es": "No seas *tímida*, hablá.",
+          "en": "Don't be shy, speak up."
+        }
+      ],
+      "note": "Agrees with the noun: *tímido, tímida*. *La timidez* = shyness."
+    },
+    {
+      "id": "verguenza",
+      "es": "vergüenza",
+      "gender": "f",
+      "plural": "vergüenzas",
+      "en": "embarrassment, shame",
+      "examples": [
+        {
+          "es": "Me da *vergüenza* hablar en público.",
+          "en": "I'm embarrassed to speak in public."
+        },
+        {
+          "es": "¡Qué *vergüenza*!",
+          "en": "How embarrassing!"
+        }
+      ],
+      "note": "*Me da vergüenza* = I'm embarrassed. Never say ~~estoy embarazada~~: that means I'm pregnant! Mexico: *me da pena*."
+    },
+    {
+      "id": "medias",
+      "es": "a medias",
+      "gender": "",
+      "en": "half and half (splitting the cost); half-done",
+      "examples": [
+        {
+          "es": "Pagamos *a medias*.",
+          "en": "We split the bill."
+        },
+        {
+          "es": "Dejó el trabajo *a medias*.",
+          "en": "He left the job half-done."
+        }
+      ],
+      "note": "Spain also: *pagar a escote*, *a pachas*. *Las medias* (noun) are tights or stockings."
+    },
+    {
+      "id": "confianza",
+      "es": "confianza",
+      "gender": "f",
+      "en": "trust; ease, familiarity",
+      "examples": [
+        {
+          "es": "Ya tenemos mucha *confianza*.",
+          "en": "We're very comfortable with each other now."
+        },
+        {
+          "es": "Hay que tener *confianza* en uno mismo.",
+          "en": "You have to believe in yourself."
+        }
+      ],
+      "note": "*De confianza* = trustworthy: *un amigo de confianza*."
+    },
+    {
+      "id": "sincero",
+      "es": "sincero",
+      "gender": "",
+      "en": "sincere, honest",
+      "examples": [
+        {
+          "es": "Te voy a ser *sincera*.",
+          "en": "I'll be honest with you."
+        },
+        {
+          "es": "Fue una respuesta muy *sincera*.",
+          "en": "It was a very honest answer."
+        }
+      ],
+      "note": "*Sinceramente* = honestly, to be honest."
+    },
+    {
+      "id": "beso",
+      "es": "beso",
+      "gender": "m",
+      "plural": "besos",
+      "en": "kiss",
+      "examples": [
+        {
+          "es": "Se saludan con un *beso*.",
+          "en": "They greet each other with a kiss."
+        },
+        {
+          "es": "Mandale *besos* a tu mamá.",
+          "en": "Send your mum my love."
+        }
+      ],
+      "note": "In Argentina people greet with one kiss on the cheek (men too, among friends); in Spain it's two."
+    },
+    {
+      "id": "despedirse",
+      "es": "despedirse",
+      "gender": "",
+      "en": "to say goodbye",
+      "examples": [
+        {
+          "es": "Nos *despedimos* en la puerta.",
+          "en": "We said goodbye at the door."
+        },
+        {
+          "es": "Se fue sin *despedirse*.",
+          "en": "He left without saying goodbye."
+        }
+      ],
+      "note": "Reflexive with stem change e → i: *me despido*; preterite *se despidieron*. *Despedir* (not reflexive) = to fire someone."
+    },
+    {
+      "id": "colectivo",
+      "es": "colectivo",
+      "gender": "m",
+      "plural": "colectivos",
+      "en": "bus (Argentina)",
+      "examples": [
+        {
+          "es": "Tomé el *colectivo* hasta Palermo.",
+          "en": "I took the bus to Palermo."
+        },
+        {
+          "es": "El *colectivo* 152 va al centro.",
+          "en": "The number 152 bus goes downtown."
+        }
+      ],
+      "note": "Argentina: *colectivo* or slang *bondi*. Spain: *autobús*; Mexico: *camión*; Caribbean: *guagua*."
+    },
+    {
+      "id": "onda",
+      "es": "onda",
+      "gender": "f",
+      "plural": "ondas",
+      "en": "vibe; wave",
+      "examples": [
+        {
+          "es": "Tiene muy buena *onda*.",
+          "en": "He's got really good vibes."
+        },
+        {
+          "es": "¡Qué mala *onda*!",
+          "en": "That's so uncool!"
+        }
+      ],
+      "note": "*Buena onda* = nice, good vibes (Argentina, Mexico, Chile). Mexico: *¿Qué onda?* = What's up?"
+    }
+  ],
+  "text": "Emily es de Chicago y {{=hace seis meses que|for six months}} vive en Buenos Aires. Trabaja en remoto para una empresa estadounidense y, aunque le encantaba la ciudad, a veces se sentía un poco sola. Un domingo por la noche, aburrida en el sofá, se descargó una {{aplicacion|aplicación}} de citas. Estuvo una hora {{deslizar|deslizando}} fotos hasta que vio el {{perfil|perfil}} de Facundo: profesor de historia, 31 años, «fanático del {{mate|mate}} y de los perros».\n\nDurante una semana se mandaron {{mensaje|mensajes}} todos los días. Facundo escribía con mucho humor y usaba el voseo: «¿Vos qué hacés el jueves? ¿Tenés ganas de tomar algo?». Emily {{=tardó un rato en|took a while to}} responder porque no sabía si era buena idea, pero al final dijo que sí. Era su primera {{cita|cita}} en español.\n\nEl jueves estaba tan {{nervioso|nerviosa}} que se cambió de ropa tres veces. Tomó el {{colectivo|colectivo}} hasta Palermo y llegó diez minutos tarde, aunque en Buenos Aires casi nadie es {{puntual|puntual}}. Facundo ya la esperaba en la puerta de un bar pequeño. Parecía un poco {{timido|tímido}}, pero tenía una sonrisa simpática y muy buena {{onda|onda}}.\n\nSe sentaron junto a la ventana y {{charlar|charlaron}} durante horas: de sus familias, de viajes, de libros. En un momento, Emily quiso decir que le daba {{verguenza|vergüenza}} su acento, pero dijo «estoy embarazada». Facundo {{=casi se atragantó|nearly choked}} con la cerveza y después los dos se rieron un montón. {{=A partir de ahí|From then on}}, hubo mucha más {{confianza|confianza}} entre ellos.\n\nAl final, Facundo propuso pagar {{medias|a medias}}, y a Emily le pareció perfecto. «¿Querés que hagamos otro {{plan|plan}} el sábado?», le preguntó él, muy {{sincero|sincero}}. Ella dijo que sí. Se {{despedirse|despidieron}} con un {{beso|beso}} en la mejilla, como se hace en Argentina. Emily volvió a casa sonriendo. Todavía no eran {{pareja|pareja}}, pero {{=por algo se empieza|you have to start somewhere}}.",
+  "quiz": [
+    {
+      "q": "¿Por qué se descargó Emily la aplicación?",
+      "options": [
+        "porque buscaba trabajo",
+        "porque a veces se sentía un poco sola",
+        "porque quería aprender español",
+        "porque una amiga se lo pidió",
+        "porque se aburría en el trabajo"
+      ],
+      "answer": 1,
+      "explain": "«Aunque le encantaba la ciudad, a veces se sentía un poco sola» — background in the imperfect."
+    },
+    {
+      "q": "¿Qué decía el perfil de Facundo?",
+      "options": [
+        "que era fanático del fútbol",
+        "que vivía en Chicago",
+        "que era profesor de historia y le gustaban el mate y los perros",
+        "que era camarero",
+        "que tenía 25 años"
+      ],
+      "answer": 2,
+      "explain": "«profesor de historia, 31 años, “fanático del mate y de los perros”»."
+    },
+    {
+      "q": "¿Cómo llegó Emily a Palermo?",
+      "options": [
+        "en taxi",
+        "en metro",
+        "andando",
+        "en colectivo",
+        "en bicicleta"
+      ],
+      "answer": 3,
+      "explain": "«Tomó el colectivo hasta Palermo» — *colectivo* is the Argentine word for bus."
+    },
+    {
+      "q": "¿Cómo estaba Emily antes de la cita?",
+      "options": [
+        "tranquila",
+        "tan nerviosa que se cambió de ropa tres veces",
+        "enfadada",
+        "cansada",
+        "enferma"
+      ],
+      "answer": 1,
+      "explain": "«El jueves estaba tan nerviosa que se cambió de ropa tres veces.»"
+    },
+    {
+      "q": "¿Qué error cometió Emily?",
+      "options": [
+        "Dijo «estoy embarazada» en vez de decir que le daba vergüenza su acento.",
+        "Llegó una hora tarde.",
+        "Olvidó el nombre de Facundo.",
+        "Pidió un mate en el bar.",
+        "Se fue sin pagar."
+      ],
+      "answer": 0,
+      "explain": "*Embarazada* = pregnant, a classic false friend. Embarrassed is *me da vergüenza*."
+    },
+    {
+      "q": "¿Cómo pagaron la cuenta?",
+      "options": [
+        "pagó Facundo",
+        "pagó Emily",
+        "a medias",
+        "no pagaron",
+        "pagaron los amigos de Facundo"
+      ],
+      "answer": 2,
+      "explain": "«Facundo propuso pagar a medias» — each paid half."
+    },
+    {
+      "q": "¿Cómo se despidieron?",
+      "options": [
+        "con un abrazo",
+        "con dos besos",
+        "dándose la mano",
+        "sin decir nada",
+        "con un beso en la mejilla"
+      ],
+      "answer": 4,
+      "explain": "«Se despidieron con un beso en la mejilla, como se hace en Argentina» — one kiss, not two as in Spain."
+    },
+    {
+      "q": "Facundo ya la *___* en la puerta cuando Emily llegó.",
+      "options": [
+        "esperó",
+        "esperaba",
+        "espera",
+        "esperará",
+        "ha esperado"
+      ],
+      "answer": 1,
+      "explain": "An action in progress (imperfect *esperaba*) when another event happened (preterite *llegó*)."
+    },
+    {
+      "q": "En Argentina: «¿Vos qué *___* el jueves?» (hacer)",
+      "options": [
+        "haces",
+        "hacéis",
+        "hacés",
+        "hace",
+        "hagás"
+      ],
+      "answer": 2,
+      "explain": "Voseo present: stress on the ending — *vos hacés, tenés, querés*."
+    },
+    {
+      "q": "«Tiene muy buena onda» significa que Facundo…",
+      "options": [
+        "sabe surfear",
+        "tiene el pelo rizado",
+        "habla muy alto",
+        "es simpático y transmite buena energía",
+        "es muy serio"
+      ],
+      "answer": 3,
+      "explain": "*Buena onda* = good vibes, a nice person to be around."
+    }
+  ]
+}

@@ -1,0 +1,534 @@
+{
+  "n": 18,
+  "area": "Food and social life",
+  "level": "A2–B1",
+  "title_es": "Tamales con la abuela en Oaxaca",
+  "title_en": "Making tamales with Grandma in Oaxaca",
+  "grammar": [
+    {
+      "name": "Preterite (simple past)",
+      "explain": "The story is told in the preterite, the tense for completed actions in the past: *comieron, gritó, llegó, explicó*. Regular *-ar* verbs end in *-é, -aste, -ó, -amos, -aron*; *-er/-ir* verbs in *-í, -iste, -ió, -imos, -ieron*. Some very common verbs are irregular: *hacer → hizo, hicieron*; *poner → pusieron*; *venir → vino*; *salir* is regular: *le salió*.",
+      "examples": [
+        {
+          "es": "Lucas *llegó* a las ocho de la mañana.",
+          "en": "Lucas arrived at eight in the morning."
+        },
+        {
+          "es": "Al final *hicieron* sesenta tamales.",
+          "en": "In the end they made sixty tamales."
+        },
+        {
+          "es": "*Pusieron* los tamales en la olla.",
+          "en": "They put the tamales in the pot."
+        }
+      ],
+      "links": [
+        {
+          "title": "Preterite",
+          "url": "../intermediate/preterite.html"
+        }
+      ]
+    },
+    {
+      "name": "Informal commands (tú)",
+      "explain": "Grandma gives instructions with *tú* commands. For most verbs the affirmative command is the same as the *él/ella* present form: *mezcla, añade, envuelve, ata*. A few common verbs have short irregular forms: *poner → pon*, *tener → ten*, *hacer → haz*, *venir → ven*. Negative commands use the subjunctive: *no mezcles*. Pronouns are attached to the end of affirmative commands: *pruébalo*.",
+      "examples": [
+        {
+          "es": "*Mezcla* la harina con la manteca.",
+          "en": "Mix the flour with the lard."
+        },
+        {
+          "es": "*Pon* una cucharada de masa en la hoja.",
+          "en": "Put a spoonful of dough on the leaf."
+        },
+        {
+          "es": "*Ten* paciencia, mijo.",
+          "en": "Be patient, son."
+        }
+      ],
+      "links": [
+        {
+          "title": "Commands",
+          "url": "../intermediate/commands.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "masa",
+      "es": "masa",
+      "gender": "f",
+      "plural": "masas",
+      "en": "dough (for tamales: corn dough)",
+      "examples": [
+        {
+          "es": "La *masa* tiene que estar suave.",
+          "en": "The dough has to be soft."
+        },
+        {
+          "es": "Hacemos la *masa* con harina de maíz.",
+          "en": "We make the dough with corn flour."
+        }
+      ],
+      "note": "*Masa* is any dough; in Mexico it usually means corn dough (*masa de maíz*)."
+    },
+    {
+      "id": "hoja",
+      "es": "hoja",
+      "gender": "f",
+      "plural": "hojas",
+      "en": "leaf; husk; sheet of paper",
+      "examples": [
+        {
+          "es": "En Oaxaca envuelven los tamales en *hojas* de plátano.",
+          "en": "In Oaxaca they wrap tamales in banana leaves."
+        },
+        {
+          "es": "Dame una *hoja* de papel.",
+          "en": "Give me a sheet of paper."
+        }
+      ],
+      "note": "In central and northern Mexico tamales are usually wrapped in *hojas de maíz* (corn husks)."
+    },
+    {
+      "id": "maiz",
+      "es": "maíz",
+      "gender": "m",
+      "plural": "maíces",
+      "en": "corn, maize",
+      "examples": [
+        {
+          "es": "El *maíz* es la base de la cocina mexicana.",
+          "en": "Corn is the basis of Mexican cooking."
+        },
+        {
+          "es": "Compré harina de *maíz*.",
+          "en": "I bought corn flour."
+        }
+      ],
+      "note": "Accent on the *i*: *ma-íz*. Corn on the cob: *elote* (Mexico), *choclo* (Argentina, Peru), *mazorca* (Spain)."
+    },
+    {
+      "id": "manteca",
+      "es": "manteca",
+      "gender": "f",
+      "plural": "mantecas",
+      "en": "lard (Mexico, Spain); butter (Argentina, Uruguay)",
+      "examples": [
+        {
+          "es": "Los tamales tradicionales llevan *manteca* de cerdo.",
+          "en": "Traditional tamales contain pork lard."
+        },
+        {
+          "es": "En Buenos Aires ponen *manteca* en las tostadas.",
+          "en": "In Buenos Aires they put butter on toast."
+        }
+      ],
+      "note": "Regional trap: butter is *mantequilla* in most countries, but in the River Plate *manteca* means butter."
+    },
+    {
+      "id": "relleno",
+      "es": "relleno",
+      "gender": "m",
+      "plural": "rellenos",
+      "en": "filling",
+      "examples": [
+        {
+          "es": "El *relleno* es de pollo con mole.",
+          "en": "The filling is chicken with mole."
+        },
+        {
+          "es": "¿Qué *relleno* prefieres?",
+          "en": "Which filling do you prefer?"
+        }
+      ],
+      "note": "From *rellenar* (to fill, to stuff). As an adjective: *chiles rellenos* — stuffed peppers."
+    },
+    {
+      "id": "mole",
+      "es": "mole",
+      "gender": "m",
+      "plural": "moles",
+      "en": "mole (Mexican sauce of chillies, spices and often chocolate)",
+      "examples": [
+        {
+          "es": "Oaxaca es famosa por sus siete *moles*.",
+          "en": "Oaxaca is famous for its seven moles."
+        },
+        {
+          "es": "El *mole* negro lleva chocolate.",
+          "en": "Black mole contains chocolate."
+        }
+      ],
+      "note": "Masculine: *el mole*. From Nahuatl *mōlli*, sauce."
+    },
+    {
+      "id": "olla",
+      "es": "olla",
+      "gender": "f",
+      "plural": "ollas",
+      "en": "pot, cooking pot",
+      "examples": [
+        {
+          "es": "Pon el agua en la *olla*.",
+          "en": "Put the water in the pot."
+        },
+        {
+          "es": "Tenemos una *olla* enorme para los tamales.",
+          "en": "We have a huge pot for the tamales."
+        }
+      ],
+      "note": "Pressure cooker: *olla exprés* (Spain), *olla de presión* (Latin America)."
+    },
+    {
+      "id": "receta",
+      "es": "receta",
+      "gender": "f",
+      "plural": "recetas",
+      "en": "recipe; prescription",
+      "examples": [
+        {
+          "es": "Es una *receta* de mi abuela.",
+          "en": "It's my grandmother's recipe."
+        },
+        {
+          "es": "El médico me dio una *receta*.",
+          "en": "The doctor gave me a prescription."
+        }
+      ],
+      "note": "False friend: a receipt is *el recibo* or *el ticket*, not *receta*."
+    },
+    {
+      "id": "costumbre",
+      "es": "costumbre",
+      "gender": "f",
+      "plural": "costumbres",
+      "en": "custom, tradition; habit",
+      "examples": [
+        {
+          "es": "Es una *costumbre* muy antigua.",
+          "en": "It's a very old custom."
+        },
+        {
+          "es": "Tengo la *costumbre* de leer antes de dormir.",
+          "en": "I'm in the habit of reading before bed."
+        }
+      ],
+      "note": "Feminine despite the *-e*: *la costumbre*. *Como de costumbre* = as usual."
+    },
+    {
+      "id": "muneco",
+      "es": "muñeco",
+      "gender": "m",
+      "plural": "muñecos",
+      "en": "figurine, toy figure",
+      "examples": [
+        {
+          "es": "En la rosca hay un *muñeco* escondido.",
+          "en": "There's a figurine hidden in the rosca."
+        },
+        {
+          "es": "Mi hijo juega con sus *muñecos*.",
+          "en": "My son plays with his toy figures."
+        }
+      ],
+      "note": "*La muñeca* is a doll — and also the wrist."
+    },
+    {
+      "id": "rosca",
+      "es": "rosca",
+      "gender": "f",
+      "plural": "roscas",
+      "en": "ring-shaped sweet bread",
+      "examples": [
+        {
+          "es": "El 6 de enero comemos *rosca* de Reyes.",
+          "en": "On 6 January we eat Kings' cake."
+        },
+        {
+          "es": "Compramos la *rosca* en la panadería.",
+          "en": "We bought the rosca at the bakery."
+        }
+      ],
+      "note": "Mexico: *rosca de Reyes*; Spain: *roscón de Reyes*."
+    },
+    {
+      "id": "mezclar",
+      "es": "mezclar",
+      "gender": "",
+      "en": "to mix",
+      "examples": [
+        {
+          "es": "*Mezcla* la harina con el agua.",
+          "en": "Mix the flour with the water."
+        },
+        {
+          "es": "No *mezcles* los colores.",
+          "en": "Don't mix the colours."
+        }
+      ],
+      "note": "*La mezcla* is also a noun: a mix, a blend."
+    },
+    {
+      "id": "envolver",
+      "es": "envolver",
+      "gender": "",
+      "en": "to wrap",
+      "examples": [
+        {
+          "es": "*Envuelve* el tamal en la hoja.",
+          "en": "Wrap the tamal in the leaf."
+        },
+        {
+          "es": "¿Me lo puede *envolver* para regalo?",
+          "en": "Can you gift-wrap it for me?"
+        }
+      ],
+      "note": "Stem change o → ue: *envuelvo*. Irregular participle: *envuelto*."
+    },
+    {
+      "id": "atar",
+      "es": "atar",
+      "gender": "",
+      "en": "to tie",
+      "examples": [
+        {
+          "es": "*Ata* bien el tamal.",
+          "en": "Tie the tamal well."
+        },
+        {
+          "es": "*Átate* los zapatos.",
+          "en": "Tie your shoes."
+        }
+      ],
+      "note": "In Mexico people often say *amarrar*: *amarra el tamal*."
+    },
+    {
+      "id": "cocer",
+      "es": "cocer",
+      "gender": "",
+      "en": "to cook (in water or steam), to boil",
+      "examples": [
+        {
+          "es": "Hay que *cocer* los tamales al vapor.",
+          "en": "You have to steam the tamales."
+        },
+        {
+          "es": "*Cuece* la pasta diez minutos.",
+          "en": "Boil the pasta for ten minutes."
+        }
+      ],
+      "note": "Don't confuse with *coser* (to sew) — in Latin America they sound the same! Stem change: *cuezo, cueces*."
+    },
+    {
+      "id": "ensenar",
+      "es": "enseñar",
+      "gender": "",
+      "en": "to teach; to show",
+      "examples": [
+        {
+          "es": "Mi abuela me *enseñó* a cocinar.",
+          "en": "My grandmother taught me to cook."
+        },
+        {
+          "es": "Te *enseño* las fotos.",
+          "en": "I'll show you the photos."
+        }
+      ],
+      "note": "*Enseñar a* + infinitive: *me enseñó a hacer tamales*. *Aprender* = to learn."
+    },
+    {
+      "id": "paciencia",
+      "es": "paciencia",
+      "gender": "f",
+      "en": "patience",
+      "examples": [
+        {
+          "es": "Hay que tener *paciencia*.",
+          "en": "You have to be patient."
+        },
+        {
+          "es": "¡Se me acaba la *paciencia*!",
+          "en": "I'm running out of patience!"
+        }
+      ],
+      "note": "*Tener paciencia* = to be patient; the *tú* command is *ten paciencia*."
+    },
+    {
+      "id": "cucharada",
+      "es": "cucharada",
+      "gender": "f",
+      "plural": "cucharadas",
+      "en": "spoonful",
+      "examples": [
+        {
+          "es": "Pon una *cucharada* de masa.",
+          "en": "Put in a spoonful of dough."
+        },
+        {
+          "es": "Añade dos *cucharadas* de azúcar.",
+          "en": "Add two spoonfuls of sugar."
+        }
+      ],
+      "note": "*Cuchara* = spoon, *cucharada* = spoonful, *cucharadita* = teaspoonful."
+    },
+    {
+      "id": "listo",
+      "es": "listo",
+      "gender": "",
+      "en": "ready (estar); clever (ser)",
+      "examples": [
+        {
+          "es": "¿*Estás lista*? Nos vamos.",
+          "en": "Are you ready? We're leaving."
+        },
+        {
+          "es": "Tu hijo es muy *listo*.",
+          "en": "Your son is very clever."
+        }
+      ],
+      "note": "The meaning changes with the verb: *estar listo* = to be ready, *ser listo* = to be clever."
+    },
+    {
+      "id": "sabroso",
+      "es": "sabroso",
+      "gender": "",
+      "en": "tasty, flavourful",
+      "examples": [
+        {
+          "es": "Este mole está muy *sabroso*.",
+          "en": "This mole is very tasty."
+        },
+        {
+          "es": "La comida oaxaqueña es muy *sabrosa*.",
+          "en": "Oaxacan food is very tasty."
+        }
+      ],
+      "note": "Very common in Latin America; in Spain people more often say *rico* or *bueno*."
+    }
+  ],
+  "text": "Lucas es de São Paulo y vive en Oaxaca, en el sur de México, con su novia Ximena. El 6 de enero, en casa de la familia de Ximena, todos comieron {{rosca|rosca}} de Reyes, un pan dulce en forma de anillo. Dentro de la rosca hay pequeños {{muneco|muñecos}} de plástico, y a Lucas {{=le salió|got (by chance)}} uno. «¡Ahora te toca invitar los tamales el 2 de febrero!», gritó el tío Beto. Es una {{costumbre|costumbre}} mexicana: quien encuentra el muñeco, prepara o paga los tamales del Día de la Candelaria.\n\nLucas nunca hizo tamales en su vida, así que la abuela Chela le ofreció ayuda. El primero de febrero, Lucas llegó a su casa a las ocho de la mañana. La abuela ya tenía todo en la mesa: harina de {{maiz|maíz}}, {{manteca|manteca}}, caldo de pollo, {{hoja|hojas}} de plátano y una {{olla|olla}} enorme. «Esta {{receta|receta}} es de mi mamá», le explicó. «No está escrita {{=en ningún lado|anywhere}}.»\n\nPrimero hicieron la {{masa|masa}}. «{{mezclar|Mezcla}} la harina con la manteca y el caldo. No, así no, con las manos. Y ten {{paciencia|paciencia}}, {{=mijo|son, dear (from mi hijo)}}», le dijo la abuela. Después prepararon el {{relleno|relleno}}: pollo con {{mole|mole}} negro, el mole más famoso de Oaxaca.\n\nLuego vino la parte difícil. «Pon una {{cucharada|cucharada}} de masa en la hoja, añade el relleno y {{envolver|envuelve}} bien. Después {{atar|ata}} el tamal con una tira de hoja», le {{ensenar|enseñó}} Chela. Los primeros tamales de Lucas {{=quedaron horribles|turned out awful}}, pero poco a poco {{=le agarró la onda|he got the hang of it}}. Al final hicieron sesenta.\n\nPusieron los tamales en la olla para {{cocer|cocerlos}} al vapor durante más de una hora. «¿Cómo sé si están {{listo|listos}}?», preguntó Lucas. «Cuando la masa se separa fácilmente de la hoja», contestó la abuela. Al día siguiente, toda la familia los probó. «¡Están muy {{sabroso|sabrosos}}!», dijo el tío Beto. Lucas sonrió, cansado pero orgulloso.",
+  "quiz": [
+    {
+      "q": "¿Dónde vive Lucas?",
+      "options": [
+        "en São Paulo",
+        "en Ciudad de México",
+        "en Oaxaca",
+        "en Madrid",
+        "en Río de Janeiro"
+      ],
+      "answer": 2,
+      "explain": "He is from São Paulo but «vive en Oaxaca, en el sur de México»."
+    },
+    {
+      "q": "¿Por qué tiene que invitar Lucas los tamales?",
+      "options": [
+        "porque es su cumpleaños",
+        "porque le salió el muñeco en la rosca de Reyes",
+        "porque la abuela está enferma",
+        "porque le gusta cocinar",
+        "porque perdió una apuesta"
+      ],
+      "answer": 1,
+      "explain": "The custom: «quien encuentra el muñeco, prepara o paga los tamales del Día de la Candelaria»."
+    },
+    {
+      "q": "Según la costumbre, ¿qué día se comen los tamales?",
+      "options": [
+        "el 2 de febrero",
+        "el 6 de enero",
+        "el 1 de febrero",
+        "el 24 de diciembre",
+        "el 1 de noviembre"
+      ],
+      "answer": 0,
+      "explain": "«¡Ahora te toca invitar los tamales el 2 de febrero!» — the Día de la Candelaria. They cooked on 1 February."
+    },
+    {
+      "q": "¿De quién es la receta?",
+      "options": [
+        "de un libro",
+        "de internet",
+        "de la mamá de la abuela",
+        "del tío Beto",
+        "de un restaurante"
+      ],
+      "answer": 2,
+      "explain": "«Esta receta es de mi mamá», says Grandma Chela — it isn't written down anywhere."
+    },
+    {
+      "q": "¿Con qué envuelven los tamales en esta historia?",
+      "options": [
+        "con hojas de maíz",
+        "con papel",
+        "con tortillas",
+        "con hojas de plátano",
+        "con plástico"
+      ],
+      "answer": 3,
+      "explain": "On the table there are «hojas de plátano», typical for Oaxacan tamales."
+    },
+    {
+      "q": "¿Cuál es el relleno?",
+      "options": [
+        "cerdo con salsa verde",
+        "queso y chile",
+        "frijoles",
+        "pescado",
+        "pollo con mole negro"
+      ],
+      "answer": 4,
+      "explain": "«Después prepararon el relleno: pollo con mole negro.»"
+    },
+    {
+      "q": "¿Cómo se sabe si los tamales están listos?",
+      "options": [
+        "cuando huelen a chocolate",
+        "cuando la masa se separa fácilmente de la hoja",
+        "después de diez minutos",
+        "cuando la olla hace ruido",
+        "cuando la hoja se pone negra"
+      ],
+      "answer": 1,
+      "explain": "Grandma: «Cuando la masa se separa fácilmente de la hoja.»"
+    },
+    {
+      "q": "La abuela le dice a Lucas: «*___* paciencia, mijo.» (tener, tú)",
+      "options": [
+        "Tienes",
+        "Tenga",
+        "Ten",
+        "Tene",
+        "Tuve"
+      ],
+      "answer": 2,
+      "explain": "*Tener* has a short irregular *tú* command: *ten*. *Tenga* is the *usted* form."
+    },
+    {
+      "q": "Lucas y la abuela *___* sesenta tamales. (hacer, pretérito)",
+      "options": [
+        "hacieron",
+        "hicieron",
+        "hacían",
+        "hizo",
+        "hiceron"
+      ],
+      "answer": 1,
+      "explain": "*Hacer* is irregular in the preterite: *hice, hiciste, hizo, hicimos, hicisteis, hicieron*."
+    },
+    {
+      "q": "En Argentina, «manteca» significa…",
+      "options": [
+        "aceite",
+        "grasa de cerdo",
+        "masa",
+        "mantequilla",
+        "nata"
+      ],
+      "answer": 3,
+      "explain": "In Mexico *manteca* is lard (*grasa de cerdo*), but in Argentina and Uruguay it means butter."
+    }
+  ]
+}

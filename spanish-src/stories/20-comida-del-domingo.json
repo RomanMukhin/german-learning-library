@@ -1,0 +1,564 @@
+{
+  "n": 20,
+  "area": "Food and social life",
+  "level": "B1",
+  "title_es": "La comida del domingo en Valencia",
+  "title_en": "Sunday lunch in Valencia",
+  "grammar": [
+    {
+      "name": "Present perfect for today (Spain)",
+      "explain": "In Spain the present perfect (*he, has, ha, hemos, habéis, han* + participle) is used for actions in a time period that isn't over yet: *hoy, esta mañana, este fin de semana*. That's why this story, told on the same Sunday, uses *ha conocido, ha cocinado, ha sobrado*. In most of Latin America people would use the preterite here: *hoy conoció*.",
+      "examples": [
+        {
+          "es": "Hoy *ha sido* un día importante.",
+          "en": "Today has been an important day."
+        },
+        {
+          "es": "Esta mañana *ha conocido* a sus suegros.",
+          "en": "This morning she met her in-laws."
+        },
+        {
+          "es": "*Ha sobrado* mucha paella.",
+          "en": "There's a lot of paella left over."
+        }
+      ],
+      "links": [
+        {
+          "title": "Present perfect",
+          "url": "../advanced/present-perfect.html"
+        },
+        {
+          "title": "Past participles",
+          "url": "../advanced/past-participles.html"
+        }
+      ]
+    },
+    {
+      "name": "Object pronouns (lo, la, le, se la)",
+      "explain": "Direct object pronouns (*lo, la, los, las*) replace the thing, indirect ones (*le, les*) the person who receives it. With a compound tense they go before *haber*: *lo ha mirado*. When both appear together, the indirect one comes first and *le/les* becomes *se*: *la madre se la ha puesto (la paella, a Giulia)*.",
+      "examples": [
+        {
+          "es": "Giulia *lo* ha mirado todo.",
+          "en": "Giulia watched everything."
+        },
+        {
+          "es": "El padre *le* ha explicado la receta.",
+          "en": "The father explained the recipe to her."
+        },
+        {
+          "es": "La madre *se la* ha puesto en un táper.",
+          "en": "Her mother put it in a container for her."
+        }
+      ],
+      "links": [
+        {
+          "title": "Object pronouns",
+          "url": "../intermediate/object-pronouns.html"
+        },
+        {
+          "title": "Indirect object pronouns",
+          "url": "../beginner/indirect-object-pronouns.html"
+        }
+      ]
+    },
+    {
+      "name": "Comparisons",
+      "explain": "*Más / menos* + adjective + *que* compares two things: *más ruidosa que la mía*. *Igual de* + adjective/adverb (*que*) says they are the same: *cocina igual de bien*. Add the article for the superlative: *la mejor parte*. *Bueno* and *bien* have irregular forms: *mejor, peor*.",
+      "examples": [
+        {
+          "es": "Tu familia es *más ruidosa que* la mía.",
+          "en": "Your family is louder than mine."
+        },
+        {
+          "es": "Pero cocina *igual de* bien.",
+          "en": "But it cooks just as well."
+        },
+        {
+          "es": "El socarrat es *la mejor* parte.",
+          "en": "The socarrat is the best part."
+        }
+      ],
+      "links": [
+        {
+          "title": "Comparatives and superlatives",
+          "url": "../intermediate/comparatives-and-superlatives.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "suegro",
+      "es": "suegro",
+      "gender": "m",
+      "plural": "suegros",
+      "en": "father-in-law; (pl.) parents-in-law",
+      "examples": [
+        {
+          "es": "Mis *suegros* viven en un pueblo.",
+          "en": "My in-laws live in a village."
+        },
+        {
+          "es": "Mi *suegra* cocina muy bien.",
+          "en": "My mother-in-law is a very good cook."
+        }
+      ],
+      "note": "Used loosely for a partner's parents, even if the couple isn't married."
+    },
+    {
+      "id": "cunado",
+      "es": "cuñado",
+      "gender": "m",
+      "plural": "cuñados",
+      "en": "brother-in-law",
+      "examples": [
+        {
+          "es": "Mi *cuñado* es muy gracioso.",
+          "en": "My brother-in-law is very funny."
+        },
+        {
+          "es": "Mis *cuñadas* vienen a comer.",
+          "en": "My sisters-in-law are coming for lunch."
+        }
+      ],
+      "note": "In Spain *un cuñado* is also slang for a know-it-all with an opinion on everything — the classic guest at a family lunch."
+    },
+    {
+      "id": "paella",
+      "es": "paella",
+      "gender": "f",
+      "plural": "paellas",
+      "en": "paella; the pan it's cooked in",
+      "examples": [
+        {
+          "es": "Los domingos hacemos *paella*.",
+          "en": "On Sundays we make paella."
+        },
+        {
+          "es": "Esta *paella* es para diez personas.",
+          "en": "This paella pan is for ten people."
+        }
+      ],
+      "note": "In Valencia *la paella* is also the pan; elsewhere it's often called *la paellera*."
+    },
+    {
+      "id": "arroz",
+      "es": "arroz",
+      "gender": "m",
+      "plural": "arroces",
+      "en": "rice",
+      "examples": [
+        {
+          "es": "El *arroz* de la paella no se remueve.",
+          "en": "You don't stir paella rice."
+        },
+        {
+          "es": "Valencia tiene muchos *arroces* típicos.",
+          "en": "Valencia has many typical rice dishes."
+        }
+      ],
+      "note": "Plural *arroces* = rice dishes. *Arroz con leche* = rice pudding."
+    },
+    {
+      "id": "lena",
+      "es": "leña",
+      "gender": "f",
+      "en": "firewood",
+      "examples": [
+        {
+          "es": "La paella se hace a la *leña*.",
+          "en": "Paella is cooked over a wood fire."
+        },
+        {
+          "es": "Trae más *leña* para el fuego.",
+          "en": "Bring more wood for the fire."
+        }
+      ],
+      "note": "Uncountable. *Echar leña al fuego* = to add fuel to the fire."
+    },
+    {
+      "id": "socarrat",
+      "es": "socarrat",
+      "gender": "m",
+      "en": "the crispy toasted rice at the bottom of a paella",
+      "examples": [
+        {
+          "es": "El *socarrat* es la mejor parte.",
+          "en": "The socarrat is the best part."
+        },
+        {
+          "es": "Esta paella no tiene *socarrat*.",
+          "en": "This paella has no crispy bottom."
+        }
+      ],
+      "note": "A Valencian word (from *socarrar*, to scorch). The final *t* is pronounced."
+    },
+    {
+      "id": "aperitivo",
+      "es": "aperitivo",
+      "gender": "m",
+      "plural": "aperitivos",
+      "en": "pre-lunch drink and snacks",
+      "examples": [
+        {
+          "es": "Tomamos el *aperitivo* a la una.",
+          "en": "We have drinks and nibbles at one."
+        },
+        {
+          "es": "¿Vamos de *aperitivo*?",
+          "en": "Shall we go for a pre-lunch drink?"
+        }
+      ],
+      "note": "In Spain the Sunday *aperitivo* is a ritual: a vermouth or a beer with olives before lunch."
+    },
+    {
+      "id": "mantel",
+      "es": "mantel",
+      "gender": "m",
+      "plural": "manteles",
+      "en": "tablecloth",
+      "examples": [
+        {
+          "es": "Pon el *mantel* limpio.",
+          "en": "Put the clean tablecloth on."
+        },
+        {
+          "es": "Un *mantel* de cuadros.",
+          "en": "A checked tablecloth."
+        }
+      ],
+      "note": "*Mantel individual* = placemat."
+    },
+    {
+      "id": "poner_mesa",
+      "es": "poner la mesa",
+      "gender": "",
+      "en": "to set the table",
+      "examples": [
+        {
+          "es": "¿Me ayudas a *poner la mesa*?",
+          "en": "Will you help me set the table?"
+        },
+        {
+          "es": "Los niños *ponen la mesa*.",
+          "en": "The children set the table."
+        }
+      ],
+      "note": "Opposite: *quitar* or *recoger la mesa* (to clear the table)."
+    },
+    {
+      "id": "servir",
+      "es": "servir",
+      "gender": "",
+      "en": "to serve; to be useful",
+      "examples": [
+        {
+          "es": "Mi madre *sirve* la sopa.",
+          "en": "My mother serves the soup."
+        },
+        {
+          "es": "Esto no *sirve* para nada.",
+          "en": "This is useless."
+        }
+      ],
+      "note": "Stem change e → i: *sirvo, sirves*; participle *servido*. *¿Para qué sirve?* = What's it for?"
+    },
+    {
+      "id": "repetir",
+      "es": "repetir",
+      "gender": "",
+      "en": "to have seconds; to repeat",
+      "examples": [
+        {
+          "es": "Estaba tan buena que *repetí*.",
+          "en": "It was so good that I had seconds."
+        },
+        {
+          "es": "¿Puedes *repetir*, por favor?",
+          "en": "Can you repeat that, please?"
+        }
+      ],
+      "note": "At the table *repetir* = to take a second helping. Stem change e → i: *repito*."
+    },
+    {
+      "id": "postre",
+      "es": "postre",
+      "gender": "m",
+      "plural": "postres",
+      "en": "dessert",
+      "examples": [
+        {
+          "es": "¿Qué hay de *postre*?",
+          "en": "What's for dessert?"
+        },
+        {
+          "es": "No tomo *postre*, gracias.",
+          "en": "I won't have dessert, thanks."
+        }
+      ],
+      "note": "*De postre* = for dessert. Masculine: *el postre*."
+    },
+    {
+      "id": "sobremesa",
+      "es": "sobremesa",
+      "gender": "f",
+      "plural": "sobremesas",
+      "en": "after-meal conversation at the table",
+      "examples": [
+        {
+          "es": "La *sobremesa* duró tres horas.",
+          "en": "The after-lunch chat lasted three hours."
+        },
+        {
+          "es": "En España la *sobremesa* es sagrada.",
+          "en": "In Spain lingering at the table is sacred."
+        }
+      ],
+      "note": "No English equivalent: the time spent talking at the table after eating, with coffee or a liqueur."
+    },
+    {
+      "id": "brindar",
+      "es": "brindar",
+      "gender": "",
+      "en": "to toast, to drink to",
+      "examples": [
+        {
+          "es": "*Brindamos* por los novios.",
+          "en": "We toasted the bride and groom."
+        },
+        {
+          "es": "Vamos a *brindar* con cava.",
+          "en": "Let's toast with cava."
+        }
+      ],
+      "note": "*Brindar por algo/alguien*. While clinking glasses: *¡Salud!*"
+    },
+    {
+      "id": "discutir",
+      "es": "discutir",
+      "gender": "",
+      "en": "to argue; to discuss",
+      "examples": [
+        {
+          "es": "Mis padres *discuten* por la política.",
+          "en": "My parents argue about politics."
+        },
+        {
+          "es": "Tenemos que *discutir* el plan.",
+          "en": "We have to discuss the plan."
+        }
+      ],
+      "note": "Careful: it often means to argue or quarrel. *Una discusión* is usually an argument."
+    },
+    {
+      "id": "sobrar",
+      "es": "sobrar",
+      "gender": "",
+      "en": "to be left over",
+      "examples": [
+        {
+          "es": "Ha *sobrado* mucha comida.",
+          "en": "There's lots of food left over."
+        },
+        {
+          "es": "Nos *sobran* dos entradas.",
+          "en": "We have two spare tickets."
+        }
+      ],
+      "note": "Works like *gustar*: *me sobra dinero* = I have money left over. *Las sobras* = leftovers."
+    },
+    {
+      "id": "fregar",
+      "es": "fregar",
+      "gender": "",
+      "en": "to wash up (dishes); to mop",
+      "examples": [
+        {
+          "es": "Hoy *friego* yo los platos.",
+          "en": "I'll do the dishes today."
+        },
+        {
+          "es": "Hay que *fregar* el suelo.",
+          "en": "The floor needs mopping."
+        }
+      ],
+      "note": "Spain; stem change e → ie: *friego*. Latin America: *lavar los platos*; in some countries *fregar* means to annoy!"
+    },
+    {
+      "id": "madrugar",
+      "es": "madrugar",
+      "gender": "",
+      "en": "to get up early",
+      "examples": [
+        {
+          "es": "Mañana tengo que *madrugar*.",
+          "en": "I have to get up early tomorrow."
+        },
+        {
+          "es": "Odio *madrugar* los domingos.",
+          "en": "I hate getting up early on Sundays."
+        }
+      ],
+      "note": "Proverb: *A quien madruga, Dios le ayuda* — the early bird catches the worm."
+    },
+    {
+      "id": "taper",
+      "es": "táper",
+      "gender": "m",
+      "plural": "tápers",
+      "en": "plastic food container, Tupperware",
+      "examples": [
+        {
+          "es": "Me llevo la comida en un *táper*.",
+          "en": "I take my lunch in a plastic box."
+        },
+        {
+          "es": "Mi madre siempre me da *tápers* con comida.",
+          "en": "My mother always gives me containers of food."
+        }
+      ],
+      "note": "Spain (also written *tupper*). Mexico: *tóper*. Taking home leftovers in a *táper* is a family tradition."
+    },
+    {
+      "id": "huerto",
+      "es": "huerto",
+      "gender": "m",
+      "plural": "huertos",
+      "en": "vegetable garden, small orchard",
+      "examples": [
+        {
+          "es": "Tenemos tomates del *huerto*.",
+          "en": "We have tomatoes from the garden."
+        },
+        {
+          "es": "Mi abuelo trabaja en su *huerto*.",
+          "en": "My grandfather works in his vegetable garden."
+        }
+      ],
+      "note": "In Valencia, *la huerta* is the whole farmland around the city."
+    }
+  ],
+  "text": "Hoy ha sido un día importante para Giulia. Es de Bolonia, lleva un año en Valencia y {{=sale con|is going out with}} Pau desde hace seis meses. Esta mañana, por fin, ha conocido a sus {{suegro|suegros}} en la comida del domingo, en un pueblo cerca de la Albufera.\n\nEl padre de Pau ha {{madrugar|madrugado}} para comprar los ingredientes en el mercado y ha cocinado la {{paella|paella}} en el patio, al fuego de {{lena|leña}}. «La paella valenciana auténtica lleva pollo, conejo y judías verdes. {{=Nada de marisco|No seafood at all}}», le ha explicado muy serio. Giulia lo ha mirado todo con atención: en Italia el {{arroz|arroz}} del risotto se remueve mucho, pero aquí no se toca. Por eso se forma el {{socarrat|socarrat}}, la capa tostada del fondo, que según Toni, el {{cunado|cuñado}} de Pau, es la mejor parte.\n\nAntes de comer, han tomado el {{aperitivo|aperitivo}} en la terraza: aceitunas, cacahuetes y un vermú. Giulia ha ayudado a {{poner_mesa|poner la mesa}} con un {{mantel|mantel}} de cuadros. La madre de Pau ha {{servir|servido}} el arroz en los platos, pero el abuelo se lo ha comido directamente de la paella, como se hacía antes. Giulia ha {{repetir|repetido}} dos veces, y su suegra estaba encantada: «¡Por fin una nuera que come!».\n\nDe {{postre|postre}} ha habido naranjas del {{huerto|huerto}} y un bizcocho casero. Luego han {{brindar|brindado}} por la pareja con cava y ha empezado la {{sobremesa|sobremesa}}, que ha durado casi tres horas. Han hablado de todo, también de la gran pregunta: ¿se puede poner chorizo en la paella? Toni y el padre han {{discutir|discutido}} {{=a gritos|shouting}} pero de buen humor. «Tranquila, aquí siempre discutimos así», le ha dicho Pau {{=al oído|in her ear}}.\n\nComo ha {{sobrar|sobrado}} mucha paella, la madre se la ha puesto a Giulia en un {{taper|táper}} para la cena. Ella se ha ofrecido a {{fregar|fregar}} los platos, pero no la han dejado. En el coche, Pau le ha preguntado: «¿Qué tal?». Giulia ha contestado: «Tu familia es más ruidosa que la mía, pero cocina igual de bien».",
+  "quiz": [
+    {
+      "q": "¿A quién ha conocido hoy Giulia?",
+      "options": [
+        "a los padres de Pau",
+        "a su nuevo jefe",
+        "a sus vecinos",
+        "a una amiga de Bolonia",
+        "solo a los abuelos de Pau"
+      ],
+      "answer": 0,
+      "explain": "«Esta mañana, por fin, ha conocido a sus suegros» — Pau's parents."
+    },
+    {
+      "q": "Según el padre, ¿qué lleva la paella valenciana auténtica?",
+      "options": [
+        "marisco y chorizo",
+        "pollo, conejo y judías verdes",
+        "solo verduras",
+        "pescado y gambas",
+        "cerdo y patatas"
+      ],
+      "answer": 1,
+      "explain": "«La paella valenciana auténtica lleva pollo, conejo y judías verdes. Nada de marisco.»"
+    },
+    {
+      "q": "¿Qué es el socarrat?",
+      "options": [
+        "un vino valenciano",
+        "un postre",
+        "la capa tostada de arroz del fondo",
+        "una cuchara de madera",
+        "un tipo de leña"
+      ],
+      "answer": 2,
+      "explain": "«el socarrat, la capa tostada del fondo» — it forms because the rice isn't stirred."
+    },
+    {
+      "q": "¿Por qué estaba encantada la madre de Pau?",
+      "options": [
+        "porque Giulia trajo vino",
+        "porque Giulia repitió dos veces",
+        "porque Giulia habla valenciano",
+        "porque Giulia fregó los platos",
+        "porque Pau llegó pronto"
+      ],
+      "answer": 1,
+      "explain": "«Giulia ha repetido dos veces» — *repetir* at the table = to have seconds. «¡Por fin una nuera que come!»"
+    },
+    {
+      "q": "¿Sobre qué han discutido Toni y el padre?",
+      "options": [
+        "sobre el precio de la casa",
+        "sobre Giulia",
+        "sobre el postre",
+        "sobre si se puede poner chorizo en la paella",
+        "sobre el coche"
+      ],
+      "answer": 3,
+      "explain": "The big question: «¿se puede poner chorizo en la paella?» They argued loudly but in good humour."
+    },
+    {
+      "q": "¿Qué es la sobremesa?",
+      "options": [
+        "la mesa de la cocina",
+        "un mantel especial",
+        "el postre típico",
+        "la siesta",
+        "el tiempo que se pasa charlando en la mesa después de comer"
+      ],
+      "answer": 4,
+      "explain": "*La sobremesa* has no English equivalent: the conversation at the table after the meal. Here it lasted almost three hours."
+    },
+    {
+      "q": "¿Qué ha hecho la madre con la paella que ha sobrado?",
+      "options": [
+        "la ha tirado",
+        "se la ha dado al perro",
+        "se la ha puesto a Giulia en un táper",
+        "la ha congelado",
+        "se la ha comido"
+      ],
+      "answer": 2,
+      "explain": "«La madre se la ha puesto a Giulia en un táper para la cena.»"
+    },
+    {
+      "q": "(En España) Hoy Giulia *___* a los padres de Pau.",
+      "options": [
+        "conoció",
+        "ha conocido",
+        "conocía",
+        "conocerá",
+        "haya conocido"
+      ],
+      "answer": 1,
+      "explain": "With *hoy* Spaniards use the present perfect: *ha conocido*. In Latin America *hoy conoció* is normal."
+    },
+    {
+      "q": "La madre ha servido la paella. → La madre *___* ha servido.",
+      "options": [
+        "le",
+        "lo",
+        "la",
+        "se",
+        "las"
+      ],
+      "answer": 2,
+      "explain": "*La paella* is a feminine direct object → *la*, placed before *ha*."
+    },
+    {
+      "q": "Tu familia es *___* ruidosa *___* la mía.",
+      "options": [
+        "más … que",
+        "más … de",
+        "tan … que",
+        "mucho … como",
+        "igual … que"
+      ],
+      "answer": 0,
+      "explain": "Comparison of two things: *más + adjective + que*. (*Más de* is used before numbers: *más de tres horas*.)"
+    }
+  ]
+}

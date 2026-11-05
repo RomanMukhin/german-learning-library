@@ -1,0 +1,567 @@
+{
+  "n": 21,
+  "area": "Food and social life",
+  "level": "B1–B2",
+  "title_es": "Un tinto en el Eje Cafetero",
+  "title_en": "A cup of coffee in Colombia's coffee region",
+  "grammar": [
+    {
+      "name": "Present subjunctive after wishes, advice and feelings",
+      "explain": "When someone wants, recommends or feels something about what *another* person does, the second verb goes into the subjunctive after *que*: *le recomiendo que lo pruebe*, *queremos que eso cambie*, *me preocupa que no quieran*. *Cuando* + a future action also takes the subjunctive: *cuando vuelva a Portland*. Compare: *Quiero cambiar* (same person, infinitive) vs. *Quiero que cambie* (different person, subjunctive).",
+      "examples": [
+        {
+          "es": "Le recomiendo que lo *pruebe* sin azúcar.",
+          "en": "I recommend you try it without sugar."
+        },
+        {
+          "es": "Me preocupa que los jóvenes no *quieran* este trabajo.",
+          "en": "It worries me that young people don't want this job."
+        },
+        {
+          "es": "Cuando *vuelva* a Portland, cuénteselo a sus clientes.",
+          "en": "When you go back to Portland, tell your customers."
+        }
+      ],
+      "links": [
+        {
+          "title": "Subjunctive",
+          "url": "../advanced/subjunctive.html"
+        },
+        {
+          "title": "Subjunctive vs. indicative",
+          "url": "../advanced/subjunctive-vs-indicative.html"
+        }
+      ]
+    },
+    {
+      "name": "Passive and impersonal se",
+      "explain": "To say that something is done without saying who does it, Spanish uses *se* + verb in the third person. The verb agrees with the thing: *se recoge el café* (singular), *se recogen los frutos* (plural). It's far more common than the passive with *ser*.",
+      "examples": [
+        {
+          "es": "Aquí todo *se recoge* a mano.",
+          "en": "Here everything is picked by hand."
+        },
+        {
+          "es": "Solo *se cogen* los frutos maduros.",
+          "en": "Only the ripe fruit is picked."
+        },
+        {
+          "es": "El tinto *se toma* a cualquier hora.",
+          "en": "Tinto is drunk at any time of day."
+        }
+      ],
+      "links": [
+        {
+          "title": "Impersonal and passive se",
+          "url": "../advanced/impersonal-and-passive-se.html"
+        },
+        {
+          "title": "Passive voice",
+          "url": "../advanced/passive-voice.html"
+        }
+      ]
+    },
+    {
+      "name": "Relative pronouns: que, donde, lo que",
+      "explain": "*Que* links a clause to a noun (people or things): *un café negro que se toma…* *Donde* refers to a place: *la región donde se cultiva el café*. *Lo que* means *what / the thing that*: *Lo que más me preocupa es…*",
+      "examples": [
+        {
+          "es": "Es la región *donde* se cultiva buena parte del café.",
+          "en": "It's the region where much of the coffee is grown."
+        },
+        {
+          "es": "Es un café pequeño *que* se toma a cualquier hora.",
+          "en": "It's a small coffee that people drink at any time."
+        },
+        {
+          "es": "*Lo que* más me preocupa es el futuro.",
+          "en": "What worries me most is the future."
+        }
+      ],
+      "links": [
+        {
+          "title": "Relative pronouns",
+          "url": "../advanced/relative-pronouns.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "finca",
+      "es": "finca",
+      "gender": "f",
+      "plural": "fincas",
+      "en": "farm, country estate",
+      "examples": [
+        {
+          "es": "La *finca* tiene diez hectáreas.",
+          "en": "The farm has ten hectares."
+        },
+        {
+          "es": "Pasamos el puente en una *finca*.",
+          "en": "We spent the long weekend at a country house."
+        }
+      ],
+      "note": "In Colombia *finca* is any farm or country house; in Spain it can also mean a building or plot (*finca urbana*)."
+    },
+    {
+      "id": "cafetal",
+      "es": "cafetal",
+      "gender": "m",
+      "plural": "cafetales",
+      "en": "coffee plantation",
+      "examples": [
+        {
+          "es": "El *cafetal* está en la montaña.",
+          "en": "The coffee plantation is on the mountain."
+        },
+        {
+          "es": "Recorrimos los *cafetales* a pie.",
+          "en": "We walked through the coffee fields."
+        }
+      ],
+      "note": "The suffix *-al* means a place full of a plant: *platanal, naranjal, maizal*."
+    },
+    {
+      "id": "grano",
+      "es": "grano",
+      "gender": "m",
+      "plural": "granos",
+      "en": "bean, grain",
+      "examples": [
+        {
+          "es": "Compro el café en *grano*.",
+          "en": "I buy whole-bean coffee."
+        },
+        {
+          "es": "No queda ni un *grano* de arroz.",
+          "en": "There isn't a single grain of rice left."
+        }
+      ],
+      "note": "*Café en grano* vs. *café molido* (ground). *Ir al grano* = to get to the point."
+    },
+    {
+      "id": "cosecha",
+      "es": "cosecha",
+      "gender": "f",
+      "plural": "cosechas",
+      "en": "harvest",
+      "examples": [
+        {
+          "es": "La *cosecha* empieza en octubre.",
+          "en": "The harvest starts in October."
+        },
+        {
+          "es": "Este año la *cosecha* ha sido buena.",
+          "en": "This year's harvest has been good."
+        }
+      ],
+      "note": "Verb: *cosechar*. Colombia has two coffee harvests a year: the main one and the smaller *mitaca*."
+    },
+    {
+      "id": "recolector",
+      "es": "recolector",
+      "gender": "m",
+      "plural": "recolectores",
+      "en": "picker, harvester",
+      "examples": [
+        {
+          "es": "Los *recolectores* empiezan al amanecer.",
+          "en": "The pickers start at dawn."
+        },
+        {
+          "es": "Una buena *recolectora* recoge cien kilos al día.",
+          "en": "A good picker gathers a hundred kilos a day."
+        }
+      ],
+      "note": "From *recolectar / recoger* (to pick, to gather). Feminine: *recolectora*."
+    },
+    {
+      "id": "maduro",
+      "es": "maduro",
+      "gender": "",
+      "en": "ripe; mature",
+      "examples": [
+        {
+          "es": "Solo se recogen los frutos *maduros*.",
+          "en": "Only the ripe fruit is picked."
+        },
+        {
+          "es": "Es un chico muy *maduro* para su edad.",
+          "en": "He's very mature for his age."
+        }
+      ],
+      "note": "*Estar maduro* = to be ripe; *ser maduro* = to be mature. In Colombia *un maduro* is also a fried ripe plantain."
+    },
+    {
+      "id": "tostar",
+      "es": "tostar",
+      "gender": "",
+      "en": "to roast (coffee); to toast",
+      "examples": [
+        {
+          "es": "Aquí *tostamos* nuestro propio café.",
+          "en": "We roast our own coffee here."
+        },
+        {
+          "es": "Me gusta el pan *tostado*.",
+          "en": "I like toasted bread."
+        }
+      ],
+      "note": "Stem change o → ue: *tuesto, tuestas, tuesta… tuestan*."
+    },
+    {
+      "id": "moler",
+      "es": "moler",
+      "gender": "",
+      "en": "to grind",
+      "examples": [
+        {
+          "es": "*Muele* el café justo antes de prepararlo.",
+          "en": "Grind the coffee just before you make it."
+        },
+        {
+          "es": "Compré café *molido*.",
+          "en": "I bought ground coffee."
+        }
+      ],
+      "note": "Stem change o → ue: *muelo, mueles*. *El molino* = mill; *el molinillo* = grinder."
+    },
+    {
+      "id": "tinto",
+      "es": "tinto",
+      "gender": "m",
+      "plural": "tintos",
+      "en": "small black coffee (Colombia); red wine (elsewhere)",
+      "examples": [
+        {
+          "es": "¿Le provoca un *tinto*?",
+          "en": "Would you like a black coffee?"
+        },
+        {
+          "es": "En España pedí un *tinto* y me trajeron vino.",
+          "en": "In Spain I asked for a tinto and they brought me wine."
+        }
+      ],
+      "note": "Regional trap: in Colombia *un tinto* is a small black coffee; elsewhere it's red wine (*vino tinto*)."
+    },
+    {
+      "id": "aroma",
+      "es": "aroma",
+      "gender": "m",
+      "plural": "aromas",
+      "en": "aroma, smell",
+      "examples": [
+        {
+          "es": "Me encanta el *aroma* del café.",
+          "en": "I love the smell of coffee."
+        },
+        {
+          "es": "Tiene un *aroma* a chocolate.",
+          "en": "It has a chocolate aroma."
+        }
+      ],
+      "note": "Masculine despite the *-a*: *el aroma*, like *el problema, el clima, el idioma*."
+    },
+    {
+      "id": "taza",
+      "es": "taza",
+      "gender": "f",
+      "plural": "tazas",
+      "en": "cup",
+      "examples": [
+        {
+          "es": "Una *taza* de café, por favor.",
+          "en": "A cup of coffee, please."
+        },
+        {
+          "es": "Lava las *tazas*, por favor.",
+          "en": "Wash the cups, please."
+        }
+      ],
+      "note": "*Taza* = cup; *vaso* = glass; *copa* = wine glass."
+    },
+    {
+      "id": "sabor",
+      "es": "sabor",
+      "gender": "m",
+      "plural": "sabores",
+      "en": "flavour, taste",
+      "examples": [
+        {
+          "es": "Este café tiene *sabor* a frutas rojas.",
+          "en": "This coffee tastes of red berries."
+        },
+        {
+          "es": "¿De qué *sabor* es el helado?",
+          "en": "What flavour is the ice cream?"
+        }
+      ],
+      "note": "*Saber a* = to taste of: *sabe a chocolate*. Masculine: *el sabor*."
+    },
+    {
+      "id": "amargo",
+      "es": "amargo",
+      "gender": "",
+      "en": "bitter",
+      "examples": [
+        {
+          "es": "Este café es muy *amargo*.",
+          "en": "This coffee is very bitter."
+        },
+        {
+          "es": "Fue una experiencia *amarga*.",
+          "en": "It was a bitter experience."
+        }
+      ],
+      "note": "Opposite: *dulce*. *Ácido* (acidic) is a positive word in coffee tasting."
+    },
+    {
+      "id": "cultivar",
+      "es": "cultivar",
+      "gender": "",
+      "en": "to grow, to cultivate",
+      "examples": [
+        {
+          "es": "Mi familia *cultiva* café desde hace cien años.",
+          "en": "My family has grown coffee for a hundred years."
+        },
+        {
+          "es": "En la zona también se *cultivan* plátanos.",
+          "en": "Bananas are also grown in the area."
+        }
+      ],
+      "note": "*Cultivar* is transitive (someone grows a plant); *crecer* = to grow by itself."
+    },
+    {
+      "id": "ladera",
+      "es": "ladera",
+      "gender": "f",
+      "plural": "laderas",
+      "en": "hillside, slope",
+      "examples": [
+        {
+          "es": "El cafetal está en una *ladera*.",
+          "en": "The coffee field is on a hillside."
+        },
+        {
+          "es": "Las casas suben por la *ladera*.",
+          "en": "The houses climb up the hillside."
+        }
+      ],
+      "note": "*Empinado* = steep: *una ladera muy empinada*."
+    },
+    {
+      "id": "exportar",
+      "es": "exportar",
+      "gender": "",
+      "en": "to export",
+      "examples": [
+        {
+          "es": "Colombia *exporta* café a todo el mundo.",
+          "en": "Colombia exports coffee all over the world."
+        },
+        {
+          "es": "Antes *exportaban* los mejores granos.",
+          "en": "They used to export the best beans."
+        }
+      ],
+      "note": "Noun: *la exportación*. Opposite: *importar*, which also means to matter."
+    },
+    {
+      "id": "precio",
+      "es": "precio",
+      "gender": "m",
+      "plural": "precios",
+      "en": "price",
+      "examples": [
+        {
+          "es": "El *precio* del café ha subido.",
+          "en": "The price of coffee has gone up."
+        },
+        {
+          "es": "Lo venden a buen *precio*.",
+          "en": "They sell it at a good price."
+        }
+      ],
+      "note": "*¿Qué precio tiene?* = How much is it? *Fijar el precio* = to set the price."
+    },
+    {
+      "id": "jornal",
+      "es": "jornal",
+      "gender": "m",
+      "plural": "jornales",
+      "en": "day's wage (for manual work)",
+      "examples": [
+        {
+          "es": "El *jornal* es muy bajo.",
+          "en": "The day's pay is very low."
+        },
+        {
+          "es": "Pagan los *jornales* cada sábado.",
+          "en": "They pay the wages every Saturday."
+        }
+      ],
+      "note": "*Jornalero* = day labourer. *Jornada* = working day: *jornada completa*."
+    },
+    {
+      "id": "cata",
+      "es": "cata",
+      "gender": "f",
+      "plural": "catas",
+      "en": "tasting (of coffee, wine)",
+      "examples": [
+        {
+          "es": "Hicimos una *cata* de café.",
+          "en": "We did a coffee tasting."
+        },
+        {
+          "es": "Fuimos a una *cata* de vinos en La Rioja.",
+          "en": "We went to a wine tasting in La Rioja."
+        }
+      ],
+      "note": "From *catar* (to taste professionally). In coffee English it's called *cupping*."
+    },
+    {
+      "id": "sostenible",
+      "es": "sostenible",
+      "gender": "",
+      "en": "sustainable",
+      "examples": [
+        {
+          "es": "Cultivan de forma *sostenible*.",
+          "en": "They farm sustainably."
+        },
+        {
+          "es": "Es un café *sostenible* y de comercio justo.",
+          "en": "It's a sustainable, fair-trade coffee."
+        }
+      ],
+      "note": "Same form for masculine and feminine. Noun: *la sostenibilidad*."
+    }
+  ],
+  "text": "Daniel es barista en Portland y lleva años preparando café colombiano para sus clientes, pero nunca había visto una planta de café. Por eso, en su primer viaje a Colombia, fue directamente al Eje Cafetero, la región de montañas verdes donde se cultiva buena parte del café del país. Se alojó en una pequeña {{finca|finca}} cerca de Salento, que lleva cuatro generaciones en manos de la familia Giraldo.\n\nLa primera mañana, doña Aurora le ofreció un {{tinto|tinto}}. Daniel, confundido, pensó que era vino. «Aquí el tinto es un café negro, pequeño, que se toma a cualquier hora», le explicó ella. «Le recomiendo que lo pruebe sin azúcar, aunque la mayoría de la gente aquí lo toma bien dulce.»\n\nDespués, su hijo Andrés lo llevó al {{cafetal|cafetal}}, que está en una {{ladera|ladera}} tan {{=empinada|steep}} que Daniel tuvo que agarrarse a las plantas. Era época de {{cosecha|cosecha}}, y los {{recolector|recolectores}} trabajaban desde las seis de la mañana. «Aquí todo se recoge a mano, porque en estas montañas no entran las máquinas», contó Andrés. «Solo se cogen los frutos {{maduro|maduros}}. Lo que más me preocupa es que los jóvenes ya no quieran hacer este trabajo: el {{jornal|jornal}} es bajo y el trabajo es duro.»\n\nAndrés le explicó que durante décadas Colombia {{exportar|exportaba}} los mejores {{grano|granos}} y los colombianos {{=se quedaban con|were left with}} el café de peor calidad. «Mi abuelo vendía todo a un {{precio|precio}} que fijaban otros», dijo. «Nosotros queremos que eso cambie.» Por eso ahora {{cultivar|cultivan}} de forma {{sostenible|sostenible}} y {{tostar|tuestan}} y {{moler|muelen}} parte del café en la propia finca para venderlo directamente a cafeterías {{=de especialidad|specialty (coffee shops)}}.\n\nLa última tarde hicieron una {{cata|cata}}. Andrés sirvió cinco {{taza|tazas}} de café y le pidió a Daniel que adivinara cuál era el de la finca. Daniel notó que uno tenía un {{aroma|aroma}} a chocolate y un {{sabor|sabor}} a frutas rojas, nada {{amargo|amargo}}. «Es el de ustedes, ¿verdad?» Andrés sonrió: «{{=¡Qué berraquera!|Brilliant! (Colombian slang)}} Cuando vuelva a Portland, cuénteles a sus clientes de dónde viene su café.»",
+  "quiz": [
+    {
+      "q": "¿Por qué fue Daniel directamente al Eje Cafetero?",
+      "options": [
+        "para trabajar como recolector",
+        "porque nunca había visto una planta de café",
+        "para comprar una finca",
+        "para visitar a su familia",
+        "para abrir una cafetería"
+      ],
+      "answer": 1,
+      "explain": "He had prepared Colombian coffee for years «pero nunca había visto una planta de café»."
+    },
+    {
+      "q": "¿Qué pensó Daniel cuando doña Aurora le ofreció un tinto?",
+      "options": [
+        "que era té",
+        "que era chocolate",
+        "que era agua de panela",
+        "que era vino",
+        "que era un postre"
+      ],
+      "answer": 3,
+      "explain": "«Daniel, confundido, pensó que era vino» — in Colombia *un tinto* is a small black coffee."
+    },
+    {
+      "q": "Según Aurora, ¿cómo toma el tinto la mayoría de la gente allí?",
+      "options": [
+        "sin azúcar",
+        "con leche",
+        "bien dulce",
+        "con hielo",
+        "con canela"
+      ],
+      "answer": 2,
+      "explain": "«…aunque la mayoría de la gente aquí lo toma bien dulce.»"
+    },
+    {
+      "q": "¿Por qué se recoge el café a mano?",
+      "options": [
+        "porque las máquinas no entran en esas montañas",
+        "porque es más barato",
+        "porque es una tradición religiosa",
+        "porque no tienen electricidad",
+        "porque los turistas lo pagan"
+      ],
+      "answer": 0,
+      "explain": "«Aquí todo se recoge a mano, porque en estas montañas no entran las máquinas.»"
+    },
+    {
+      "q": "¿Qué es lo que más le preocupa a Andrés?",
+      "options": [
+        "que llueva demasiado",
+        "que los jóvenes ya no quieran hacer este trabajo",
+        "que Daniel no pague",
+        "que suban los impuestos",
+        "que no vengan turistas"
+      ],
+      "answer": 1,
+      "explain": "«Lo que más me preocupa es que los jóvenes ya no quieran hacer este trabajo» — *preocupar que* + subjunctive."
+    },
+    {
+      "q": "Durante décadas, ¿con qué café se quedaban los colombianos?",
+      "options": [
+        "con el mejor",
+        "con el café de especialidad",
+        "con el café importado",
+        "con el café tostado en la finca",
+        "con el de peor calidad"
+      ],
+      "answer": 4,
+      "explain": "Colombia exported the best beans «y los colombianos se quedaban con el café de peor calidad»."
+    },
+    {
+      "q": "¿Cómo era el café de la finca en la cata?",
+      "options": [
+        "muy amargo",
+        "con sabor a vino",
+        "con aroma a chocolate y sabor a frutas rojas",
+        "muy dulce",
+        "sin ningún aroma"
+      ],
+      "answer": 2,
+      "explain": "«uno tenía un aroma a chocolate y un sabor a frutas rojas, nada amargo»."
+    },
+    {
+      "q": "Le recomiendo que lo *___* sin azúcar. (probar)",
+      "options": [
+        "prueba",
+        "pruebe",
+        "probar",
+        "probe",
+        "pruebo"
+      ],
+      "answer": 1,
+      "explain": "*Recomendar que* + a different subject → subjunctive: *pruebe* (usted)."
+    },
+    {
+      "q": "Aquí todo el café *___* a mano.",
+      "options": [
+        "se recoge",
+        "se recogen",
+        "recogemos se",
+        "es recogiendo",
+        "se recogido"
+      ],
+      "answer": 0,
+      "explain": "Passive *se*: the verb agrees with *el café* (singular) → *se recoge*."
+    },
+    {
+      "q": "«*___* más me preocupa es el futuro de la finca.»",
+      "options": [
+        "Que",
+        "Lo que",
+        "El cual",
+        "Quien",
+        "Cuyo"
+      ],
+      "answer": 1,
+      "explain": "*Lo que* = what, the thing that: *Lo que más me preocupa es…*"
+    }
+  ]
+}

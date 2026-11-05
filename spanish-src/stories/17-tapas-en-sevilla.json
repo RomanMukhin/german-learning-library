@@ -1,0 +1,558 @@
+{
+  "n": 17,
+  "area": "Food and social life",
+  "level": "A2",
+  "title_es": "Noche de tapas en Sevilla",
+  "title_en": "Tapas night in Seville",
+  "grammar": [
+    {
+      "name": "Gustar and encantar",
+      "explain": "*Gustar* works backwards compared with *to like*: the food is the subject and the person is an indirect object pronoun (*me, te, le, nos, os, les*). Use *gusta* with one thing and *gustan* with several things. *Encantar* (to love) works the same way. To say who, add *a + person*: *A Olena le encantan…*",
+      "examples": [
+        {
+          "es": "A Olena *le encantan* las espinacas con garbanzos.",
+          "en": "Olena loves the spinach with chickpeas. (plural → encantan)"
+        },
+        {
+          "es": "No *le gustan* mucho las patatas bravas.",
+          "en": "She doesn't really like the patatas bravas."
+        },
+        {
+          "es": "¿*Te gusta* el salmorejo?",
+          "en": "Do you like salmorejo? (singular → gusta)"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbs like gustar",
+          "url": "../intermediate/verbs-like-gustar.html"
+        }
+      ]
+    },
+    {
+      "name": "Stem-changing verbs: pedir (e → i), probar (o → ue)",
+      "explain": "In the present tense some verbs change the vowel of the stem when it is stressed. *Pedir* changes *e → i* (*pido, pides, pide… piden*) and *probar* changes *o → ue* (*pruebo, pruebas, prueba… prueban*). The *nosotros* and *vosotros* forms keep the original vowel: *pedimos, probáis*.",
+      "examples": [
+        {
+          "es": "Rocío *pide* por todos.",
+          "en": "Rocío orders for everyone."
+        },
+        {
+          "es": "Olena *prueba* el salmorejo.",
+          "en": "Olena tries the salmorejo."
+        },
+        {
+          "es": "Allí *piden* una ración de pescado.",
+          "en": "There they order a portion of fish."
+        }
+      ],
+      "links": [
+        {
+          "title": "Present tense",
+          "url": "../beginner/present.html"
+        }
+      ]
+    },
+    {
+      "name": "Ir a + infinitive (near future)",
+      "explain": "To talk about plans, use *ir* in the present + *a* + infinitive: *voy a invitar, vamos a salir*. It's the most common way to talk about the future in everyday Spanish, like English *going to*.",
+      "examples": [
+        {
+          "es": "Esta noche *vamos a salir* de tapas.",
+          "en": "Tonight we're going to go out for tapas."
+        },
+        {
+          "es": "La próxima semana *voy a invitar* yo.",
+          "en": "Next week I'm going to pay."
+        },
+        {
+          "es": "¿Qué *vas a pedir*?",
+          "en": "What are you going to order?"
+        }
+      ],
+      "links": [
+        {
+          "title": "Verbal periphrasis",
+          "url": "../beginner/verbal-periphrasis.html"
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "id": "tapa",
+      "es": "tapa",
+      "gender": "f",
+      "plural": "tapas",
+      "en": "tapa, small snack served with a drink",
+      "examples": [
+        {
+          "es": "En Granada te ponen una *tapa* gratis con cada bebida.",
+          "en": "In Granada they give you a free tapa with every drink."
+        },
+        {
+          "es": "Los viernes vamos de *tapas*.",
+          "en": "On Fridays we go out for tapas."
+        }
+      ],
+      "note": "*Ir de tapas* or *tapear* = to go from bar to bar eating tapas. In Mexico small snacks are *botanas*, in Argentina *picadas*."
+    },
+    {
+      "id": "barra",
+      "es": "barra",
+      "gender": "f",
+      "plural": "barras",
+      "en": "bar counter",
+      "examples": [
+        {
+          "es": "Comemos de pie en la *barra*.",
+          "en": "We eat standing at the counter."
+        },
+        {
+          "es": "La *barra* está llena de gente.",
+          "en": "The counter is full of people."
+        }
+      ],
+      "note": "*Una barra de pan* is a baguette-style loaf in Spain."
+    },
+    {
+      "id": "camarero",
+      "es": "camarero",
+      "gender": "m",
+      "plural": "camareros",
+      "en": "waiter",
+      "examples": [
+        {
+          "es": "El *camarero* nos trae la carta.",
+          "en": "The waiter brings us the menu."
+        },
+        {
+          "es": "La *camarera* es muy simpática.",
+          "en": "The waitress is very nice."
+        }
+      ],
+      "note": "Spain. Mexico: *mesero*; Argentina: *mozo*; Venezuela: *mesonero*."
+    },
+    {
+      "id": "pedir",
+      "es": "pedir",
+      "gender": "",
+      "en": "to order, to ask for",
+      "examples": [
+        {
+          "es": "¿Qué vas a *pedir*?",
+          "en": "What are you going to order?"
+        },
+        {
+          "es": "Siempre *pido* lo mismo.",
+          "en": "I always order the same thing."
+        }
+      ],
+      "note": "Stem change e → i: *pido, pides, pide, pedimos, pedís, piden*. *Pedir* = ask for something; *preguntar* = ask a question."
+    },
+    {
+      "id": "probar",
+      "es": "probar",
+      "gender": "",
+      "en": "to try, to taste",
+      "examples": [
+        {
+          "es": "¿*Pruebas* el salmorejo?",
+          "en": "Will you try the salmorejo?"
+        },
+        {
+          "es": "Nunca he *probado* el pulpo.",
+          "en": "I've never tried octopus."
+        }
+      ],
+      "note": "Stem change o → ue: *pruebo, pruebas…* *Probarse* = to try on clothes."
+    },
+    {
+      "id": "racion",
+      "es": "ración",
+      "gender": "f",
+      "plural": "raciones",
+      "en": "large portion (to share)",
+      "examples": [
+        {
+          "es": "Pedimos una *ración* de calamares.",
+          "en": "We order a portion of squid."
+        },
+        {
+          "es": "Las *raciones* son para compartir.",
+          "en": "The portions are for sharing."
+        }
+      ],
+      "note": "Bar sizes in Spain, from small to big: *tapa → media ración → ración*. The accent disappears in the plural."
+    },
+    {
+      "id": "cana",
+      "es": "caña",
+      "gender": "f",
+      "plural": "cañas",
+      "en": "small draught beer",
+      "examples": [
+        {
+          "es": "Dos *cañas*, por favor.",
+          "en": "Two small beers, please."
+        },
+        {
+          "es": "Nos tomamos una *caña* después del trabajo.",
+          "en": "We have a beer after work."
+        }
+      ],
+      "note": "Spain only; literally a reed. A bottle is *un tercio* or *un botellín*."
+    },
+    {
+      "id": "refresco",
+      "es": "refresco",
+      "gender": "m",
+      "plural": "refrescos",
+      "en": "soft drink",
+      "examples": [
+        {
+          "es": "¿Quieres un *refresco* o una cerveza?",
+          "en": "Do you want a soft drink or a beer?"
+        },
+        {
+          "es": "Este bar tiene *refrescos* sin azúcar.",
+          "en": "This bar has sugar-free soft drinks."
+        }
+      ],
+      "note": "Spain and Mexico say *refresco*; Argentina and Colombia usually *gaseosa*."
+    },
+    {
+      "id": "tortilla",
+      "es": "tortilla",
+      "gender": "f",
+      "plural": "tortillas",
+      "en": "Spanish omelette (Spain); flatbread (Mexico)",
+      "examples": [
+        {
+          "es": "La *tortilla* de patatas lleva huevo y patata.",
+          "en": "Spanish omelette is made with egg and potato."
+        },
+        {
+          "es": "En México comemos *tortillas* de maíz con todo.",
+          "en": "In Mexico we eat corn tortillas with everything."
+        }
+      ],
+      "note": "Classic trap: in Spain *tortilla* is an egg dish; in Mexico and Central America it's flat corn or wheat bread."
+    },
+    {
+      "id": "rico",
+      "es": "rico",
+      "gender": "",
+      "en": "tasty, delicious; rich",
+      "examples": [
+        {
+          "es": "¡Qué *rica* está la tortilla!",
+          "en": "The omelette is so tasty!"
+        },
+        {
+          "es": "Su tío es muy *rico*.",
+          "en": "His uncle is very rich."
+        }
+      ],
+      "note": "With *estar* it means tasty (*está rico*); with *ser* it means wealthy (*es rico*)."
+    },
+    {
+      "id": "picante",
+      "es": "picante",
+      "gender": "",
+      "en": "spicy, hot",
+      "examples": [
+        {
+          "es": "Esta salsa es muy *picante*.",
+          "en": "This sauce is very spicy."
+        },
+        {
+          "es": "No me gusta la comida *picante*.",
+          "en": "I don't like spicy food."
+        }
+      ],
+      "note": "*Caliente* means hot in temperature, not spicy. Same form for masculine and feminine."
+    },
+    {
+      "id": "lleno",
+      "es": "lleno",
+      "gender": "",
+      "en": "full",
+      "examples": [
+        {
+          "es": "El bar está *lleno*.",
+          "en": "The bar is full."
+        },
+        {
+          "es": "No puedo más, estoy *llena*.",
+          "en": "I can't eat any more, I'm full."
+        }
+      ],
+      "note": "Agrees with the noun: *lleno, llena, llenos, llenas*. Used with *estar*."
+    },
+    {
+      "id": "terraza",
+      "es": "terraza",
+      "gender": "f",
+      "plural": "terrazas",
+      "en": "terrace, outdoor seating of a bar",
+      "examples": [
+        {
+          "es": "Nos sentamos en la *terraza*.",
+          "en": "We sit outside."
+        },
+        {
+          "es": "En verano las *terrazas* están llenas hasta medianoche.",
+          "en": "In summer the terraces are full until midnight."
+        }
+      ],
+      "note": "In Spain *la terraza* is the tables a bar puts out on the pavement or square."
+    },
+    {
+      "id": "plato",
+      "es": "plato",
+      "gender": "m",
+      "plural": "platos",
+      "en": "plate; dish",
+      "examples": [
+        {
+          "es": "Es un *plato* típico de Andalucía.",
+          "en": "It's a typical Andalusian dish."
+        },
+        {
+          "es": "Pon los *platos* en la mesa.",
+          "en": "Put the plates on the table."
+        }
+      ],
+      "note": "*Primer plato, segundo plato* = first course, main course."
+    },
+    {
+      "id": "ronda",
+      "es": "ronda",
+      "gender": "f",
+      "plural": "rondas",
+      "en": "round (of drinks)",
+      "examples": [
+        {
+          "es": "Esta *ronda* la pago yo.",
+          "en": "This round is on me."
+        },
+        {
+          "es": "Pedimos otra *ronda* de cañas.",
+          "en": "We order another round of beers."
+        }
+      ],
+      "note": "In a group, people usually take turns paying for each *ronda*."
+    },
+    {
+      "id": "cuenta",
+      "es": "cuenta",
+      "gender": "f",
+      "plural": "cuentas",
+      "en": "the bill, check; account",
+      "examples": [
+        {
+          "es": "La *cuenta*, por favor.",
+          "en": "The bill, please."
+        },
+        {
+          "es": "Tengo una *cuenta* en este banco.",
+          "en": "I have an account at this bank."
+        }
+      ],
+      "note": "*Darse cuenta* = to realise, nothing to do with paying."
+    },
+    {
+      "id": "invitar",
+      "es": "invitar",
+      "gender": "",
+      "en": "to treat (to pay for someone); to invite",
+      "examples": [
+        {
+          "es": "Hoy te *invito* yo.",
+          "en": "Today it's on me."
+        },
+        {
+          "es": "Me *invitaron* a una boda.",
+          "en": "They invited me to a wedding."
+        }
+      ],
+      "note": "In Spanish social life *te invito* usually means 'I'm paying'. Whoever invites normally pays."
+    },
+    {
+      "id": "propina",
+      "es": "propina",
+      "gender": "f",
+      "plural": "propinas",
+      "en": "tip",
+      "examples": [
+        {
+          "es": "Dejamos una *propina* de dos euros.",
+          "en": "We left a two-euro tip."
+        },
+        {
+          "es": "¿Aquí se deja *propina*?",
+          "en": "Do people tip here?"
+        }
+      ],
+      "note": "In Spain tips are small and optional (people often round up); in Mexico 10–15% is expected."
+    },
+    {
+      "id": "quedar",
+      "es": "quedar",
+      "gender": "",
+      "en": "to meet up, to arrange to meet",
+      "examples": [
+        {
+          "es": "*Quedamos* a las nueve en la plaza.",
+          "en": "We're meeting at nine in the square."
+        },
+        {
+          "es": "¿*Quedamos* el sábado?",
+          "en": "Shall we meet on Saturday?"
+        }
+      ],
+      "note": "Spain: *quedar con alguien*. Also *to be left* (*queda poco*) and *to suit* (*te queda bien*)."
+    },
+    {
+      "id": "salir",
+      "es": "salir",
+      "gender": "",
+      "en": "to go out",
+      "examples": [
+        {
+          "es": "Los viernes *salgo* con mis amigos.",
+          "en": "On Fridays I go out with my friends."
+        },
+        {
+          "es": "¿*Salimos* a cenar?",
+          "en": "Shall we go out for dinner?"
+        }
+      ],
+      "note": "Irregular *yo* form: *salgo*. *Salir con alguien* can also mean to date someone."
+    }
+  ],
+  "text": "Olena es de Kiev y vive en Sevilla desde marzo. Trabaja en la recepción de un hotel del centro. El viernes, sus compañeros Rocío y Javi le dicen: «Esta noche vamos a {{salir|salir}} de tapas. ¿Vienes?». Olena dice que sí. {{quedar|Quedan}} a las nueve en una plaza de Triana, {{=al otro lado del río|on the other side of the river}}.\n\nEl primer bar está muy {{lleno|lleno}}. No hay mesas libres en la {{terraza|terraza}}, así que comen {{=de pie|standing up}} en la {{barra|barra}}. «Aquí es normal», explica Javi. El {{camarero|camarero}} es muy rápido y {{=habla muy deprisa|talks very fast}}. Olena no entiende nada, pero Rocío {{pedir|pide}} por todos: dos {{cana|cañas}}, un {{refresco|refresco}} para Javi, {{=que conduce|who is driving}}, y varias {{tapa|tapas}}.\n\nOlena {{probar|prueba}} el salmorejo, una crema fría de tomate, y la {{tortilla|tortilla}} de patatas. Todo está muy {{rico|rico}}. A Olena le encantan las espinacas con garbanzos, pero no le gustan mucho las patatas bravas: la salsa es demasiado {{picante|picante}} para ella. «En Ucrania no comemos tan picante», dice, y bebe un poco de agua.\n\nA las once van a otro bar, cerca del mercado. Allí piden una {{racion|ración}} de pescado frito. «Una ración es un {{plato|plato}} más grande que una tapa, para compartir», explica Rocío. Javi paga la primera {{ronda|ronda}} y Rocío paga la segunda. Olena está muy contenta: en Sevilla la gente habla con todo el mundo, también con personas que no conoce.\n\nAl final, Olena quiere pagar la {{cuenta|cuenta}}, pero Javi dice: «No, no. Hoy te {{invitar|invitamos}} nosotros. ¡Eres nueva en Sevilla!». Olena deja una pequeña {{propina|propina}} para el camarero. {{=De camino a casa|On the way home}}, piensa: «La próxima semana voy a invitar yo. Y voy a pedir la tortilla otra vez».",
+  "quiz": [
+    {
+      "q": "¿De dónde es Olena?",
+      "options": [
+        "de Sevilla",
+        "de Kiev",
+        "de Triana",
+        "de Varsovia",
+        "de Madrid"
+      ],
+      "answer": 1,
+      "explain": "«Olena es de Kiev y vive en Sevilla desde marzo.» Triana is the Seville neighbourhood where they meet."
+    },
+    {
+      "q": "¿Dónde comen en el primer bar?",
+      "options": [
+        "en la terraza",
+        "en una mesa dentro",
+        "de pie en la barra",
+        "en casa de Rocío",
+        "junto al río"
+      ],
+      "answer": 2,
+      "explain": "There are no free tables outside, «así que comen de pie en la barra»."
+    },
+    {
+      "q": "¿Por qué Javi bebe un refresco?",
+      "options": [
+        "no le gusta la cerveza",
+        "conduce",
+        "está enfermo",
+        "es muy joven",
+        "no tiene dinero"
+      ],
+      "answer": 1,
+      "explain": "«un refresco para Javi, que conduce» — he is driving."
+    },
+    {
+      "q": "¿Qué no le gusta mucho a Olena?",
+      "options": [
+        "el salmorejo",
+        "la tortilla",
+        "las espinacas con garbanzos",
+        "las patatas bravas",
+        "el pescado frito"
+      ],
+      "answer": 3,
+      "explain": "«No le gustan mucho las patatas bravas: la salsa es demasiado picante para ella.»"
+    },
+    {
+      "q": "Según Rocío, ¿qué es una ración?",
+      "options": [
+        "una bebida",
+        "una tapa pequeña",
+        "un plato más grande que una tapa",
+        "la cuenta",
+        "una propina"
+      ],
+      "answer": 2,
+      "explain": "«Una ración es un plato más grande que una tapa, para compartir.»"
+    },
+    {
+      "q": "¿Quién paga la cuenta al final?",
+      "options": [
+        "Olena",
+        "Javi y Rocío",
+        "el camarero",
+        "nadie",
+        "Olena y Javi"
+      ],
+      "answer": 1,
+      "explain": "Javi says «Hoy te invitamos nosotros» — *invitar* here means they pay for her."
+    },
+    {
+      "q": "A Olena *___* las espinacas con garbanzos.",
+      "options": [
+        "le encanta",
+        "le encantan",
+        "me encantan",
+        "encantan",
+        "se encanta"
+      ],
+      "answer": 1,
+      "explain": "*Las espinacas* is plural → *encantan*; Olena is *a ella* → *le*."
+    },
+    {
+      "q": "Rocío *___* dos cañas. (pedir)",
+      "options": [
+        "pede",
+        "piede",
+        "pidemos",
+        "pedo",
+        "pide"
+      ],
+      "answer": 4,
+      "explain": "*Pedir* changes e → i in the stressed forms: *pido, pides, pide*."
+    },
+    {
+      "q": "«Hoy te invito yo» significa:",
+      "options": [
+        "Hoy pago yo.",
+        "Hoy pagas tú.",
+        "Pagamos a medias.",
+        "Hoy no salgo.",
+        "Vamos a mi casa."
+      ],
+      "answer": 0,
+      "explain": "In Spanish social life *te invito* means 'I'm paying for you'."
+    },
+    {
+      "q": "¿Qué va a hacer Olena la próxima semana?",
+      "options": [
+        "volver a Ucrania",
+        "no salir más de tapas",
+        "trabajar el viernes por la noche",
+        "invitar ella y pedir la tortilla otra vez",
+        "cocinar en casa"
+      ],
+      "answer": 3,
+      "explain": "«La próxima semana voy a invitar yo. Y voy a pedir la tortilla otra vez» — *ir a* + infinitive for plans."
+    }
+  ]
+}
