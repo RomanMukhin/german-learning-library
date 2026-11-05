@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="316e1f970e9e">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Types of adverbs · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="e598ddd84674" class="hide-sm" href="index.html">Adverbs</a><span class="sep">/</span><span class="cur">Types</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · A1–B1</span><h1>Types of adverbs</h1><p class="sub">Place and direction (hier, dorthin, hin and her), time and frequency (schon, noch, morgens), manner and degree, comment words like leider, deshalb and trotzdem, and the da- and wo-words.</p></header>
+<article class="prose card">
+<p>Adverbs are easiest to learn in families: words that answer the same question. This page goes through the families one by one, with the words you need most at A2 and B1 and the traps in each group.</p>
+<h2>A1–A2 core</h2>
+<h3>Place: wo?</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adverb</th>
+<th>Meaning</th>
+<th>Opposite</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>hier</td><td>here</td><td>da / dort (there)</td></tr>
+<tr><td>oben</td><td>up, upstairs, at the top</td><td>unten (down, downstairs)</td></tr>
+<tr><td>vorne</td><td>at the front</td><td>hinten (at the back)</td></tr>
+<tr><td>links</td><td>on the left</td><td>rechts (on the right)</td></tr>
+<tr><td>drinnen</td><td>inside</td><td>draußen (outside)</td></tr>
+<tr><td>innen</td><td>on the inside</td><td>außen (on the outside)</td></tr>
+<tr><td>überall</td><td>everywhere</td><td>nirgends / nirgendwo (nowhere)</td></tr>
+<tr><td>irgendwo</td><td>somewhere</td><td>–</td></tr>
+<tr><td>nebenan</td><td>next door</td><td>gegenüber (opposite)</td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>Die Kinder spielen <strong>draußen</strong>. — <em>The children are playing outside.</em></li>
+<li>Mein Büro ist <strong>oben</strong>, im dritten Stock. — <em>My office is upstairs, on the third floor.</em></li>
+<li>Ich habe meine Brille <strong>überall</strong> gesucht. — <em>I've looked for my glasses everywhere.</em></li>
+</ul>
+<p><em>da</em> and <em>dort</em> both mean "there"; <em>dort</em> is a bit further away or more formal, <em>da</em> is the everyday word and can also mean "here, present": <em>Ist Frau Klein <strong>da</strong>?</em> ("Is Ms Klein in?").</p>
+<h3>Direction: wohin? woher? with hin and her</h3>
+<p>German marks direction on the adverb itself. <strong>hin</strong> means movement <strong>away from</strong> the speaker, <strong>her</strong> movement <strong>towards</strong> the speaker. They attach to place adverbs and question words:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Wo? (place)</th>
+<th>Wohin? (to there)</th>
+<th>Woher? (from there / to here)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>hier</td><td>–</td><td><strong>hierher</strong> (to here)</td></tr>
+<tr><td>da / dort</td><td><strong>dahin / dorthin</strong></td><td><strong>daher / dorther</strong></td></tr>
+<tr><td>oben / unten</td><td><strong>nach oben / nach unten</strong></td><td><strong>von oben / von unten</strong></td></tr>
+<tr><td>links / rechts</td><td><strong>nach links / nach rechts</strong></td><td><strong>von links / von rechts</strong></td></tr>
+<tr><td>drinnen / draußen</td><td><strong>hinein</strong> (rein) / <strong>hinaus</strong> (raus)</td><td><strong>herein</strong> (rein) / <strong>heraus</strong> (raus)</td></tr>
+<tr><td>zu Hause</td><td><strong>nach Hause</strong></td><td><strong>von zu Hause</strong></td></tr>
+<tr><td>überall</td><td><strong>überallhin</strong></td><td><strong>überallher</strong></td></tr>
+</tbody>
+</table></div>
+<ul>
+<li>Wir fahren am Wochenende <strong>dorthin</strong>. — <em>We're going there at the weekend.</em> (not <s>Wir fahren dort</s>)</li>
+<li>Komm bitte <strong>hierher</strong>! — <em>Please come here!</em></li>
+<li>Geh <strong>nach oben</strong> und hol deine Jacke. — <em>Go upstairs and get your jacket.</em></li>
+<li><strong>Herein</strong>! — <em>Come in!</em> (said by the person inside)</li>
+<li>Wo kommst du <strong>her</strong>? / Wo gehst du <strong>hin</strong>? — <em>Where are you coming from? / Where are you going?</em> (<em>woher, wohin</em> split in speech)</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">hin = hence, her = here</p><p>Point with your hand: <strong>hin</strong> goes away from you, <strong>her</strong> comes towards you. In speech both shrink to <em>r-</em>: <em>rein, raus, rauf, runter, rüber</em>, so you do not need to choose there. In writing, the person outside says <em>Ich gehe <strong>hinein</strong></em>, the person inside says <em>Komm <strong>herein</strong></em>.</p></aside>
+<h3>Time: wann?</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Past</th>
+<th>Present</th>
+<th>Future</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>gestern, vorgestern</td><td>heute, jetzt, gerade</td><td>morgen, übermorgen</td></tr>
+<tr><td>früher (in the past), damals (back then)</td><td>heutzutage (nowadays), zurzeit (currently)</td><td>bald (soon), später (later)</td></tr>
+<tr><td>neulich, vorhin (recently, a moment ago)</td><td>sofort, gleich (immediately, in a moment)</td><td>demnächst (shortly), irgendwann (sometime)</td></tr>
+<tr><td>vorher (before that)</td><td>inzwischen (meanwhile)</td><td>danach, dann (after that, then)</td></tr>
+</tbody>
+</table></div>
+<p>Combine a day adverb with a part of the day: <em>heute <strong>Morgen</strong>, gestern <strong>Abend</strong>, morgen <strong>Nachmittag</strong></em>. The part of the day is a noun and keeps its capital letter. "Tomorrow morning" is <em>morgen früh</em> (not <s>morgen Morgen</s>).</p>
+<h3>Frequency: wie oft?</h3>
+<p>From most to least: <strong>immer</strong> (always) – <strong>meistens</strong> (mostly) – <strong>oft</strong> (often) – <strong>manchmal</strong> (sometimes) – <strong>selten</strong> (rarely) – <strong>fast nie</strong> (hardly ever) – <strong>nie</strong> (never). Also <em>täglich, wöchentlich, jährlich</em> (daily, weekly, yearly) and <em>einmal, zweimal, dreimal</em> (once, twice, three times).</p>
+<p>Days and parts of the day with <strong>-s</strong> become adverbs for repeated events, written in lower case: <em><strong>montags</strong></em> (on Mondays), <em><strong>morgens</strong></em> (in the mornings), <em><strong>abends</strong></em>, <em><strong>nachts</strong></em>, <em><strong>sonntags</strong></em>. Compare: <em>am Montag</em> (this one Monday) vs <em>montags</em> (every Monday).</p>
+<h3>Manner and degree: wie? wie sehr?</h3>
+<ul>
+<li><strong>Manner</strong>: most adjectives (<em>schnell, langsam, gut, laut</em>) plus <em>so</em> (like this), <em>anders</em> (differently), <em>zusammen</em> (together), <em>allein</em> (alone), <em>gern</em> (gladly), <em>umsonst</em> (for free / in vain).</li>
+<li><strong>Degree</strong>, before an adjective or adverb: <em>sehr</em> (very), <em>ziemlich</em> (quite), <em>ganz</em> (quite / completely), <em>besonders</em> (especially), <em>etwas</em> (a bit), <em>zu</em> (too), <em>so</em> (so), <em>fast</em> (almost), <em>kaum</em> (hardly), <em>genug</em> (enough, after the adjective: <em>alt <strong>genug</strong></em>).</li>
+</ul>
+<aside class="callout trap"><p class="callout-title">gern is not an adjective</p><p><em>gern</em> (or <em>gerne</em>) + verb is how German says "like doing": <em>Ich koche <strong>gern</strong></em> ("I like cooking"). It cannot describe a noun and has no ending. For liking a thing or person, use <em>mögen</em> or <em>gefallen</em>: <em>Ich mag Pizza</em>, <em>Der Film gefällt mir</em>. And <em>Gern!</em> alone means "With pleasure!" or "You're welcome."</p></aside>
+<h2>B1</h2>
+<h3>schon, noch, erst</h3>
+<p>These three small time adverbs are everywhere and often confuse learners:</p>
+<ul>
+<li><strong>schon</strong> = already, as early as: <em>Bist du <strong>schon</strong> fertig?</em> ("Are you finished already?"), <em><strong>schon</strong> um sechs</em>.</li>
+<li><strong>noch</strong> = still; <strong>noch nicht</strong> = not yet; <strong>nicht mehr</strong> = no longer: <em>Er schläft <strong>noch</strong>. Ich bin <strong>noch nicht</strong> fertig. Sie wohnt <strong>nicht mehr</strong> hier.</em></li>
+<li><strong>erst</strong> = only, not until (later or less than expected): <em>Er ist <strong>erst</strong> fünf</em> ("He's only five"), <em>Der Zug kommt <strong>erst</strong> um neun</em> ("not until nine"). For "only" in the sense of quantity, use <strong>nur</strong>: <em>Ich habe <strong>nur</strong> zehn Euro.</em></li>
+</ul>
+<h3>Comment adverbs: what the speaker thinks</h3>
+<p>Some adverbs comment on the whole sentence rather than on the verb. They tell how sure the speaker is or how they feel about it:</p>
+<ul>
+<li>certainty: <em>sicher, bestimmt</em> (certainly), <em>wahrscheinlich</em> (probably), <em>vielleicht</em> (maybe), <em>möglicherweise</em> (possibly)</li>
+<li>feeling: <em>leider</em> (unfortunately), <em>hoffentlich</em> (hopefully), <em>zum Glück / glücklicherweise</em> (luckily), <em>natürlich</em> (of course)</li>
+</ul>
+<p>Many adverbs of this kind end in <strong>-weise</strong>, made from an adjective + <em>-er-</em>: <em>glücklich<strong>erweise</strong>, normal<strong>erweise</strong>, überraschend<strong>erweise</strong></em>. From a noun, <em>-weise</em> means "by the ...": <em>stunden<strong>weise</strong></em> (by the hour), <em>teil<strong>weise</strong></em> (partly).</p>
+<h3>Reason and consequence: deshalb, trotzdem</h3>
+<p>These adverbs connect two main clauses. They count as a normal sentence element, so when they come first the <strong>verb follows immediately</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Adverb</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>deshalb, deswegen, darum, daher</td><td>that's why, therefore</td><td>Ich bin krank, <em>deshalb <strong>bleibe</strong> ich</em> zu Hause.</td></tr>
+<tr><td>also</td><td>so, therefore (not "also"!)</td><td>Es ist spät, <em>also <strong>gehen</strong> wir</em>.</td></tr>
+<tr><td>trotzdem</td><td>nevertheless, anyway</td><td>Es regnet, <em>trotzdem <strong>gehen</strong> wir</em> joggen.</td></tr>
+<tr><td>sonst</td><td>otherwise</td><td>Beeil dich, <em>sonst <strong>verpasst</strong> du</em> den Bus.</td></tr>
+<tr><td>dann</td><td>then</td><td>Erst essen wir, <em>dann <strong>gehen</strong> wir</em> ins Kino.</td></tr>
+<tr><td>nämlich</td><td>you see, because (never first)</td><td>Ich bin müde. Ich habe <em>nämlich</em> schlecht geschlafen.</td></tr>
+</tbody>
+</table></div>
+<aside class="callout trap"><p class="callout-title">also ≠ also</p><p>German <em>also</em> means "so, therefore". English "also" is <strong>auch</strong>: <em>Ich komme <strong>auch</strong></em> ("I'm coming too"). <em>Ich komme <strong>also</strong></em> means "So I'm coming".</p></aside>
+<h3>Pronominal adverbs: da- and wo-words</h3>
+<p>A preposition + "it/that" for a thing becomes one word: <strong>da(r)-</strong> + preposition. A preposition + "what" becomes <strong>wo(r)-</strong> + preposition. The <em>-r-</em> appears before a vowel: <em>damit, dafür, davon</em> but <em>darauf, daran, darüber</em>; <em>womit, wofür</em> but <em>worauf, woran, worüber</em>.</p>
+<ul>
+<li>Das ist mein neues Handy. Ich bin sehr zufrieden <strong>damit</strong>. — <em>That's my new phone. I'm very happy with it.</em></li>
+<li><strong>Worüber</strong> sprecht ihr? – <strong>Über</strong> die Party. – Ach, <strong>darüber</strong> will ich nichts hören. — <em>What are you talking about? – The party. – Oh, I don't want to hear about that.</em></li>
+<li>Ich habe keine Zeit <strong>dafür</strong>. — <em>I don't have time for it.</em></li>
+</ul>
+<p>For people, keep the preposition with a pronoun: <em>mit <strong>ihm</strong>, auf <strong>wen</strong>?</em>. Fixed prepositions after verbs, adjectives and nouns are on <a data-quiz="1f9efa8beb88" href="../verbs/verbs-with-prepositions.html">Verbs with prepositions</a> and <a data-quiz="c9a6006c1dcd" href="../prepositions/with-prepositions.html">Adjectives and nouns with prepositions</a>. As relative words, the <em>wo</em>-forms also refer to a whole clause: <em>Er hat angerufen, <strong>worüber</strong> ich mich sehr gefreut habe.</em></p>
+<aside class="callout fact"><p class="callout-title">English used to do this too</p><p>Old-fashioned English legal language still has pronominal adverbs: <em>thereby, therefore, thereof, whereby, wherefore, herewith</em>. They are built exactly like German <em>dadurch, dafür, davon, wodurch, wofür, hiermit</em>. German simply kept the pattern alive in everyday speech.</p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: adverbs as particles</p><p>Some adverbs double as modal particles with a different meaning: <em>Das ist <strong>schon</strong> gut</em> ("That's fine, really"), <em>Komm <strong>doch</strong> mit!</em>, <em>Das ist <strong>ja</strong> toll!</em>. They add tone rather than content; see <a href="../../docs/particles-expressions.html">Particles and expressions</a>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="27b80fa45833" href="position.html">Position of adverbs</a></li>
+<li><a data-quiz="c926a1ebc463" href="comparison.html">Comparison of adverbs</a></li>
+<li><a data-quiz="2cb8b6e747de" href="../pronouns/indefinite.html">Indefinite pronouns</a> (irgendwo, irgendwann)</li>
+<li><a data-quiz="9d811ffb6cdd" href="../prepositions/place-and-direction.html">Place and direction</a></li>
+<li><a href="../../docs/connectors.html">Connectors</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="27b80fa45833" class="btn" href="position.html">Position →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Es ist kalt *___*, zieh eine Jacke an.", "options": ["hinaus", "heraus", "außen", "draußen", "drinnen"], "answer": 3, "explain": "Location outside the house: *draußen* (A2)."}, {"q": "Wir fahren nächste Woche nach Hamburg. Warst du schon mal *___*?", "options": ["her", "dort", "dorthin", "dahin", "hin"], "answer": 1, "explain": "*sein* is location (wo?), so no direction word: *dort* (A2)."}, {"q": "Hamburg ist toll! Wir fahren nächstes Jahr wieder *___*.", "options": ["dort", "daher", "hier", "hierher", "dorthin"], "answer": 4, "explain": "Movement to a place (wohin?) needs *hin*: *dorthin* (B1)."}, {"q": "Komm bitte mal *___*, ich will dir etwas zeigen.", "options": ["dort", "hinein", "her", "hin", "dorthin"], "answer": 2, "explain": "Movement towards the speaker: *her* (B1)."}, {"q": "Mein Zimmer ist im zweiten Stock. Ich gehe jetzt nach *___*.", "options": ["oben", "unten", "drinnen", "hinauf", "aufwärts"], "answer": 0, "explain": "Direction upwards with *nach*: *nach oben* (A2)."}, {"q": "*___* habe ich Deutschkurs, jeden Montag um 18 Uhr.", "options": ["Montags", "Am Montags", "Am Montagen", "Im Montag", "Am montags"], "answer": 0, "explain": "A repeated day becomes an adverb with *-s*, in lower case except at the start: *montags* (A2)."}, {"q": "Ich gehe fast *___* ins Kino, vielleicht einmal im Jahr.", "options": ["meistens", "manchmal", "nie", "immer", "oft"], "answer": 2, "explain": "Once a year = hardly ever: *fast nie* (A2)."}, {"q": "Ich habe *___* Abend lange gearbeitet.", "options": ["gestern den", "gestern", "Gestern", "gestern am", "gestrig"], "answer": 1, "explain": "Day adverb + part of the day: *gestern Abend* (A2)."}, {"q": "Ich koche sehr *___*, besonders italienisch.", "options": ["gerner", "lieb", "gernes", "mag", "gern"], "answer": 4, "explain": "*gern* + verb = to like doing (A1)."}, {"q": "Bist du *___* fertig? Das ging ja schnell!", "options": ["erst", "nur", "noch nicht", "schon", "noch"], "answer": 3, "explain": "Earlier than expected: *schon* (already) (A2)."}, {"q": "Ich bin *___* fertig, ich brauche noch zehn Minuten.", "options": ["erst", "schon nicht", "noch nicht", "schon", "nicht mehr"], "answer": 2, "explain": "Not yet = *noch nicht* (A2)."}, {"q": "Mein Sohn ist *___* drei Jahre alt, aber er spricht schon viel.", "options": ["mehr", "erst", "schon", "noch", "nur noch"], "answer": 1, "explain": "Younger than you might expect: *erst* (only) (B1)."}, {"q": "*___* habe ich den Zug verpasst, ich war zu spät.", "options": ["Gern", "Deshalb", "Vielleicht", "Leider", "Hoffentlich"], "answer": 3, "explain": "Regret about something that happened: *leider* (A2)."}, {"q": "*___* ist das Wetter morgen besser!", "options": ["Hoffentlich", "Leider", "Gern", "Trotzdem", "Sonst"], "answer": 0, "explain": "A wish about the future: *hoffentlich* (A2)."}, {"q": "Ich bin müde, *___* gehe ich früh ins Bett.", "options": ["weil", "denn", "obwohl", "trotzdem", "deshalb"], "answer": 4, "explain": "*deshalb* gives the consequence and is followed directly by the verb (B1)."}, {"q": "Beeil dich, *___* kommen wir zu spät.", "options": ["sonst", "also", "dann", "trotzdem", "deshalb"], "answer": 0, "explain": "*sonst* = otherwise (B1)."}, {"q": "Ich habe ein neues Fahrrad und fahre jeden Tag *___* zur Arbeit.", "options": ["womit", "dabei", "damit", "mit ihm", "mit es"], "answer": 2, "explain": "For a thing after a preposition: *damit* (B1)."}, {"q": "*___* freust du dich so? – Über das Geschenk.", "options": ["Über was es", "Wofür", "Worauf", "Worüber", "Darüber"], "answer": 3, "explain": "*sich freuen über* + a thing → question with *worüber* (B1)."}], "title": "Types of adverbs quiz", "level": "A1–B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

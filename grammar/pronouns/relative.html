@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="page-id" content="2b36fd175ca1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Relative pronouns · German library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: app bar with back link, then one centred column of cards (UI-kit style: zinc neutrals, indigo brand, 12px radius) */
+:root {
+  --bg: #fafafa; --card: #ffffff; --fg: #09090b; --muted: #71717a; --border: #e4e4e7; --input: #e4e4e7;
+  --primary: #18181b; --primary-fg: #fafafa; --secondary: #f4f4f5;
+  --brand: #4f46e5; --brand-soft: #eef2ff; --ring: #818cf8;
+  --ok: #15803d; --ok-soft: #f0fdf4; --bad: #dc2626; --bad-soft: #fef2f2;
+  --m: #2563eb; --m-soft: #eff6ff; --f: #db2777; --f-soft: #fdf2f8; --n: #059669; --n-soft: #ecfdf5; --pl: #7c3aed; --pl-soft: #f5f3ff; --x: #71717a; --x-soft: #f4f4f5;
+  --tip-bg: #18181b; --tip-fg: #fafafa;
+  --shadow: 0 1px 2px rgba(9, 9, 11, .05), 0 1px 3px rgba(9, 9, 11, .04);
+  --radius: 12px;
+  --font: "Geist", "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+    --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+    --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+    --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+    --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+    --tip-bg: #fafafa; --tip-fg: #09090b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09090b; --card: #111113; --fg: #fafafa; --muted: #a1a1aa; --border: #27272a; --input: #27272a;
+  --primary: #fafafa; --primary-fg: #18181b; --secondary: #1c1c20;
+  --brand: #818cf8; --brand-soft: #1e1b4b; --ring: #6366f1;
+  --ok: #4ade80; --ok-soft: #052e16; --bad: #f87171; --bad-soft: #2a0f0f;
+  --m: #60a5fa; --m-soft: #172554; --f: #f472b6; --f-soft: #3b0a24; --n: #34d399; --n-soft: #022c22; --pl: #a78bfa; --pl-soft: #2e1065; --x: #a1a1aa; --x-soft: #1c1c20;
+  --tip-bg: #fafafa; --tip-fg: #09090b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: var(--brand); text-underline-offset: 3px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--bg); }
+
+/* App bar */
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: saturate(1.5) blur(10px); -webkit-backdrop-filter: saturate(1.5) blur(10px); border-bottom: 1px solid var(--border); }
+.appbar-inner { margin: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.crumbs { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 14px; color: var(--muted); }
+.crumbs .cur { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crumbs .sep { opacity: .5; }
+.appbar .spacer { flex: 1; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; font-weight: 500; border: 1px solid var(--input); background: var(--card); color: var(--fg); text-decoration: none; box-shadow: var(--shadow); white-space: nowrap; }
+.btn:hover { background: var(--secondary); }
+.btn.primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn.primary:hover { opacity: .9; background: var(--primary); }
+.btn.ghost { border-color: transparent; box-shadow: none; background: transparent; padding: 0 10px; }
+.btn.ghost:hover { background: var(--secondary); }
+.btn:disabled, .btn.primary:disabled:hover { opacity: .38; cursor: not-allowed; box-shadow: none; }
+[hidden] { display: none !important; }
+.btn:focus-visible, .opt:focus-visible, summary:focus-visible, a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+.wrap { margin: 0; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); padding-block: 32px 80px; display: grid; gap: 28px; }
+header.hero { display: grid; gap: 10px; }
+.badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid var(--border); background: var(--card); color: var(--muted); width: max-content; }
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; font-size: 18px; }
+.intro { color: var(--muted); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--brand-soft); color: var(--brand); text-decoration: none; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--secondary); border-radius: 10px; width: max-content; max-width: 100%; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 7px; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.tabs a:hover { color: var(--fg); background: var(--card); box-shadow: var(--shadow); }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+section { display: grid; gap: 14px; scroll-margin-top: 72px; }
+.sec-head { display: grid; gap: 2px; }
+h2 { font-size: 20px; letter-spacing: -0.01em; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 10px; }
+h2 .num { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+.hint { color: var(--muted); font-size: 14px; margin: 0; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+
+/* Quiz (shared) */
+.qbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 56px); z-index: 20; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 10px 14px; }
+.progress { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 10px; }
+.progress strong { color: var(--fg); }
+.meter { width: 120px; height: 6px; border-radius: 999px; background: var(--secondary); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.q { padding: 18px; display: grid; gap: 12px; }
+.qhead { display: flex; gap: 12px; align-items: baseline; }
+.qnum { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: none; font-variant-numeric: tabular-nums; }
+.qtext { font-weight: 600; min-width: 0; }
+.qtext em, .explain em { font-style: normal; background: var(--brand-soft); color: var(--fg); padding: 0 5px; border-radius: 5px; }
+.opts { display: grid; gap: 8px; }
+.opt { display: flex; gap: 12px; align-items: center; text-align: left; border: 1px solid var(--border); background: var(--card); color: var(--fg); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.opt:hover { background: var(--secondary); }
+.opt .key { font-family: var(--mono); font-size: 12px; width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; border: 1px solid var(--border); color: var(--muted); flex: none; }
+.opt .label { min-width: 0; }
+.opt.sel { border-color: var(--brand); background: var(--brand-soft); box-shadow: 0 0 0 1px var(--brand) inset; }
+.opt.sel .key { background: var(--brand); border-color: var(--brand); color: #fff; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.locked .opt { cursor: default; }
+.locked .opt:hover { background: inherit; }
+.locked .opt.right:hover { background: var(--ok-soft); } .locked .opt.wrong:hover { background: var(--bad-soft); }
+.verdict { display: inline-flex; width: max-content; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.verdict.ok { color: var(--ok); background: var(--ok-soft); } .verdict.no { color: var(--bad); background: var(--bad-soft); }
+.explain { margin: -2px 0 4px 18px; padding: 8px 12px; border-left: 2px solid var(--ok); background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 14px; }
+.explain p { margin: 0; }
+.result { padding: 18px; display: grid; gap: 4px; }
+.result h3 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+.result p { margin: 0; color: var(--muted); }
+.note-copy { font-size: 14px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .opt, .btn, .tabs a { transition: background .12s, border-color .12s, box-shadow .12s; } }
+/* Full-width layout: pages use the whole window, and long words wrap instead of pushing the page sideways */
+:root { --gutter: clamp(16px, 3vw, 40px); }
+.wrap > *, section > *, .card { min-width: 0; }
+body { overflow-wrap: break-word; }
+.qtext, .opt .label, .explain, .result, .hero h1, .sub, .intro { overflow-wrap: anywhere; }
+/* last quiz result (localStorage) */
+.lastres { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.lastres.hi { color: var(--ok); }
+.score { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: var(--mono); vertical-align: middle; background: var(--secondary); color: var(--muted); }
+.score.hi { background: var(--ok-soft); color: var(--ok); }
+
+/* Doc pages on the website: markdown rendered into one card, tables scroll inside their own box */
+.prose { padding: clamp(18px, 3vw, 36px); display: block; font-size: 16.5px; line-height: 1.65; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { font-size: 22px; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--border); display: block; }
+.prose h3 { font-size: 18px; margin: 26px 0 8px; letter-spacing: -0.01em; }
+.prose h4 { font-size: 16px; margin: 20px 0 6px; }
+.prose p, .prose ul, .prose ol { margin: 0 0 12px; }
+.prose li { margin: 3px 0; }
+.prose li > p { margin: 0; }
+.prose strong { font-weight: 650; }
+.prose em { font-style: italic; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--secondary); padding: 1px 5px; border-radius: 5px; }
+.prose blockquote { margin: 12px 0; padding: 8px 14px; border-left: 3px solid var(--brand); background: var(--brand-soft); border-radius: 0 8px 8px 0; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.table-wrap { overflow-x: auto; margin: 12px 0 16px; border: 1px solid var(--border); border-radius: 10px; -webkit-overflow-scrolling: touch; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.prose th { background: var(--secondary); font-weight: 600; white-space: nowrap; }
+.prose tr:last-child td { border-bottom: 0; }
+.prose td { overflow-wrap: normal; word-break: normal; min-width: 7ch; }
+.prose h2.b2 { color: var(--muted); }
+.prose h2.b2::after { content: "Later"; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: var(--pl-soft); color: var(--pl); }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a { text-decoration: none; }
+.home-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.home-card { padding: 16px 18px; text-decoration: none; color: var(--fg); display: grid; gap: 4px; }
+.home-card:hover { border-color: var(--ring); }
+.home-card .t { font-weight: 600; }
+.home-card .d { color: var(--muted); font-size: 14px; }
+.home-card .k { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter button { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--fg); font: inherit; font-size: 13px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.home-card a.t { color: var(--fg); text-decoration: none; }
+.home-card a.t:hover, a.home-card:hover .t { color: var(--brand); }
+.home-card .k a { text-decoration: none; }
+.callout { margin: 16px 0; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--secondary); }
+.callout > :last-child { margin-bottom: 0; }
+.callout-title { font-weight: 650; margin: 0 0 6px !important; display: flex; align-items: center; gap: 8px; }
+.callout-title::before { font-size: 16px; }
+.callout.hack { background: var(--ok-soft); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.callout.hack .callout-title::before { content: "💡"; }
+.callout.fact { background: var(--brand-soft); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+.callout.fact .callout-title::before { content: "📜"; }
+.callout.trap { background: var(--bad-soft); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+.callout.trap .callout-title::before { content: "⚠️"; }
+.callout.ukbox { background: var(--n-soft); border-color: color-mix(in srgb, var(--n) 35%, transparent); }
+.callout.ukbox .callout-title::before { content: "🇺🇦"; }
+.callout.b2box { background: var(--pl-soft); border-color: color-mix(in srgb, var(--pl) 35%, transparent); }
+.pager { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--fg); }
+
+body { margin: 0; }
+/* site switch */
+.siteswitch { margin-left: auto; display: flex; gap: 2px; padding: 3px; background: var(--secondary); border-radius: 9px; flex: none; }
+.siteswitch a { padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; }
+.siteswitch a:hover { color: var(--fg); }
+.siteswitch a[aria-current="page"] { background: var(--card); color: var(--fg); box-shadow: var(--shadow); }
+@media (max-width: 520px) { .siteswitch .long { display: none; } .crumbs a, .crumbs .sep { display: none; } .crumbs .cur { white-space: nowrap; } }
+</style>
+</head>
+<body>
+<div class="appbar"><div class="appbar-inner">
+  <a class="btn ghost" href="../../index.html">← Main page</a>
+  <div class="crumbs"><span class="sep">/</span><a data-quiz="db484b5100d1" class="hide-sm" href="../index.html">Grammar</a><span class="sep">/</span><a data-quiz="c0540e70c480" class="hide-sm" href="index.html">Pronouns</a><span class="sep">/</span><span class="cur">Relative</span></div>
+<nav class="siteswitch" aria-label="Library"><a aria-current="page" href="../../index.html">🇩🇪<span class="long"> German</span></a><a href="../../english/index.html">🇬🇧<span class="long"> English</span></a><a href="../../spanish/index.html">🇪🇸<span class="long"> Spanish</span></a></nav></div></div>
+<div class="wrap">
+<header class="hero"><span class="badge"><span class="dot"></span>Grammar · B1</span><h1>Relative pronouns</h1><p class="sub">der, die, das, denen, dessen and deren in relative clauses, plus prepositions, was, wo and wer.</p></header>
+<article class="prose card">
+<p>A relative clause describes a noun: "the man <em>who lives next door</em>", "the book <em>that I bought</em>". In German it starts with a relative pronoun, which is almost always a form of <strong>der / die / das</strong>, and it sends the verb to the end. English can often drop "who/that" (<em>the book I bought</em>); German never can.</p>
+<h2>B1 core</h2>
+<h3>The table</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Masculine</th>
+<th>Feminine</th>
+<th>Neuter</th>
+<th>Plural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nominative</td>
+<td>der</td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Accusative</td>
+<td><strong>den</strong></td>
+<td>die</td>
+<td>das</td>
+<td>die</td>
+</tr>
+<tr>
+<td>Dative</td>
+<td>dem</td>
+<td>der</td>
+<td>dem</td>
+<td><strong>denen</strong></td>
+</tr>
+<tr>
+<td>Genitive</td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+<td><strong>dessen</strong></td>
+<td><strong>deren</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>It is the definite article with four exceptions: dative plural <strong>denen</strong> and the genitive forms <strong>dessen / deren</strong>. These are the same forms as the demonstrative pronoun (see <a data-quiz="10cf416b167d" href="demonstrative.html">Demonstrative pronouns</a>).</p>
+<h3>Two questions, two answers</h3>
+<p>Choosing the form is a two-step job, and each step looks in a different place:</p>
+<ol>
+<li><strong>Gender and number</strong> come from the noun in the main clause that you describe.</li>
+<li><strong>Case</strong> comes from the job of the pronoun <strong>inside</strong> the relative clause: subject, accusative object, dative object, after a preposition, owner.</li>
+</ol>
+<ul>
+<li>Der Mann, <strong>der</strong> neben mir wohnt, ist Arzt. — <em>The man who lives next to me is a doctor.</em> (masc., subject → <em>der</em>)</li>
+<li>Der Mann, <strong>den</strong> ich gestern getroffen habe, ist Arzt. — <em>The man (whom) I met yesterday is a doctor.</em> (masc., object of <em>treffen</em> → <em>den</em>)</li>
+<li>Der Mann, <strong>dem</strong> ich geholfen habe, ist Arzt. — <em>The man I helped is a doctor.</em> (masc., <em>helfen</em> + dative → <em>dem</em>)</li>
+<li>Die Kollegin, <strong>die</strong> ich anrufe, heißt Eva. — <em>The colleague I'm calling is called Eva.</em></li>
+<li>Das Buch, <strong>das</strong> auf dem Tisch liegt, gehört mir. — <em>The book that is on the table is mine.</em></li>
+<li>Die Leute, <strong>denen</strong> das Haus gehört, wohnen in München. — <em>The people who own the house live in Munich.</em> (plural, <em>gehören</em> + dative → <em>denen</em>)</li>
+</ul>
+<aside class="callout hack"><p class="callout-title">Split it into two sentences</p><p>Rewrite the relative clause as a sentence of its own, with the article: <em>Ich habe <strong>den</strong> Mann gestern getroffen.</em> The article you get (<em>den</em>) is your relative pronoun: <em>der Mann, <strong>den</strong> ich gestern getroffen habe</em>. Only in the dative plural and genitive do you need the long forms.</p></aside>
+<h3>Commas and word order</h3>
+<p>A relative clause is a subordinate clause: always set off with <strong>commas</strong> on both sides, and the conjugated verb goes to the <strong>end</strong>. It usually stands right after the noun it describes, which can split the main clause in two:</p>
+<ul>
+<li>Die Wohnung, die wir gemietet <strong>haben</strong>, ist sehr hell. — <em>The flat we rented is very bright.</em></li>
+<li>Ich habe die Wohnung gesehen, die du mir empfohlen <strong>hast</strong>. — <em>I saw the flat you recommended to me.</em> (when only the participle would be left after it, the relative clause can move behind the end of the main clause)</li>
+</ul>
+<h3>With prepositions</h3>
+<p>If the verb inside the relative clause needs a preposition, the preposition goes at the very start of the clause, <strong>before</strong> the pronoun, and it decides the case. English often puts the preposition at the end (<em>the friend I went with</em>); German never does.</p>
+<ul>
+<li>Das ist die Freundin, <strong>mit der</strong> ich in Urlaub fahre. — <em>That's the friend I'm going on holiday with.</em> (<em>mit</em> + dative fem.)</li>
+<li>Der Film, <strong>über den</strong> alle sprechen, läuft im Kino. — <em>The film everyone is talking about is on at the cinema.</em> (<em>sprechen über</em> + accusative)</li>
+<li>Die Kinder, <strong>mit denen</strong> mein Sohn spielt, sind sehr nett. — <em>The children my son plays with are very nice.</em></li>
+<li>Das ist das Problem, <strong>an das</strong> ich die ganze Zeit denke. — <em>That's the problem I keep thinking about.</em></li>
+</ul>
+<h3>dessen and deren: whose</h3>
+<p>For "whose", use <strong>dessen</strong> (masculine and neuter noun in the main clause) or <strong>deren</strong> (feminine or plural). The form follows the <strong>owner</strong>, not the thing owned, and the noun after it takes no article:</p>
+<ul>
+<li>Der Nachbar, <strong>dessen</strong> Hund immer bellt, ist ausgezogen. — <em>The neighbour whose dog always barks has moved out.</em></li>
+<li>Die Frau, <strong>deren</strong> Auto vor der Tür steht, ist meine Chefin. — <em>The woman whose car is outside is my boss.</em></li>
+<li>Das Kind, <strong>dessen</strong> Eltern verreist sind, wohnt bei uns. — <em>The child whose parents are away is staying with us.</em></li>
+<li>Meine Freunde, <strong>deren</strong> Tochter in Wien studiert, ... — <em>My friends, whose daughter studies in Vienna, ...</em></li>
+</ul>
+<aside class="callout trap"><p class="callout-title">Classic mistakes</p><ul>
+<li><em>Die Leute, mit <s>den</s> ich arbeite</em> → <em>mit <strong>denen</strong> ich arbeite</em>. Dative plural is <em>denen</em>.</li>
+<li><em>Der Film, <s>der</s> ich gesehen habe</em> → <em><strong>den</strong> ich gesehen habe</em>. Inside the clause it is the object.</li>
+<li><em>Das Buch, ich gekauft habe</em> → <em>Das Buch, <strong>das</strong> ich gekauft habe</em>. The pronoun can never be dropped.</li>
+<li><em>Die Frau, <s>dessen</s> Sohn ...</em> → <em><strong>deren</strong> Sohn</em>. The owner (<em>die Frau</em>) decides, not the son.</li>
+<li><em>Der Kollege, <s>den</s> ich mit arbeite</em> → <em><strong>mit dem</strong> ich arbeite</em>. The preposition comes first.</li>
+<li><em>das</em> (relative pronoun, one <em>s</em>) vs <em>dass</em> (conjunction "that"): <em>das Haus, <strong>das</strong> ich kaufe</em> / <em>Ich weiß, <strong>dass</strong> du kommst.</em></li>
+</ul></aside>
+<h2>B1+</h2>
+<h3>was after alles, nichts, etwas, das</h3>
+<p>After indefinite words that do not name a noun, the relative pronoun is <strong>was</strong>:</p>
+<ul>
+<li><strong>Alles, was</strong> du sagst, stimmt. — <em>Everything you say is true.</em></li>
+<li>Es gibt <strong>nichts, was</strong> ich lieber esse. — <em>There's nothing I'd rather eat.</em></li>
+<li>Ich habe <strong>etwas</strong> gefunden, <strong>was</strong> dir gefallen wird. — <em>I've found something you'll like.</em></li>
+<li><strong>Das, was</strong> er erzählt hat, war interessant. — <em>What he told us was interesting.</em></li>
+<li>Das ist <strong>das Beste, was</strong> ich je gegessen habe. — <em>That's the best thing I've ever eaten.</em> (after a superlative used as a noun)</li>
+</ul>
+<p><em>was</em> also refers to a <strong>whole clause</strong>: <em>Er hat die Prüfung bestanden, <strong>was</strong> mich sehr freut</em> ("He passed the exam, which makes me very happy"). With a preposition, this becomes <em>wo(r)-</em>: <em>..., <strong>worüber</strong> ich mich sehr freue</em>.</p>
+<h3>wo for places (and times)</h3>
+<p>After a place, <strong>wo</strong> can replace <em>in dem / in der</em>; after a city or country name it is the only natural choice. <strong>woher</strong> and <strong>wohin</strong> work the same way:</p>
+<ul>
+<li>Das ist das Café, <strong>wo</strong> (= in dem) wir uns kennengelernt haben. — <em>That's the café where we met.</em></li>
+<li>Ich fahre nach Graz, <strong>wo</strong> meine Oma wohnt. — <em>I'm going to Graz, where my grandma lives.</em></li>
+<li>Das Dorf, <strong>woher</strong> er kommt, ist winzig. — <em>The village he comes from is tiny.</em></li>
+</ul>
+<p>In speech <em>wo</em> is also used after time words: <em>an dem Tag, <strong>wo</strong> wir uns getroffen haben</em>. In careful writing prefer <em>an dem</em> or <em>als</em>.</p>
+<h3>wer and was without a noun: whoever, whatever</h3>
+<p>A relative clause can also start a sentence without any noun before it. Then <strong>wer</strong> means "whoever, anyone who" and <strong>was</strong> "whatever, what":</p>
+<ul>
+<li><strong>Wer</strong> zu spät kommt, muss draußen warten. — <em>Anyone who comes late has to wait outside.</em></li>
+<li><strong>Was</strong> du heute kannst besorgen, das verschiebe nicht auf morgen. — <em>What you can get done today, don't put off until tomorrow.</em> (a proverb)</li>
+</ul>
+<h3>welcher in formal writing</h3>
+<p>Instead of <em>der/die/das</em> you may read <strong>welcher / welche / welches</strong> in official or old-fashioned texts, mostly to avoid a repetition like <em>die, die</em>: <em>Die Frau, <strong>welche</strong> die Firma leitet, ...</em>. There is no genitive form; use <em>dessen/deren</em>. In speech, simply use <em>der/die/das</em>.</p>
+<aside class="callout fact"><p class="callout-title">"which" for a whole idea is was</p><p>English sometimes uses "which" for a whole idea: "He came late, which annoyed me." Learners then write <em>..., <s>das</s> mich geärgert hat</em>. But <em>das</em> needs a neuter noun to point back to. For a whole idea German uses <strong>was</strong>: <em>Er kam zu spät, <strong>was</strong> mich geärgert hat.</em></p></aside>
+<aside class="callout b2box"><p class="callout-title">Later: more advanced patterns</p><p>Relative clauses with genitive prepositions (<em>der Grund, wegen dessen ...</em>), long genitive chains and the participle as an alternative to a relative clause are on the <a href="../../docs/relative-pronouns.html">relative pronouns reference</a>.</p></aside>
+<h2>See also</h2>
+<ul>
+<li><a data-quiz="10cf416b167d" href="demonstrative.html">Demonstrative pronouns</a></li>
+<li><a data-quiz="f320e2b7cf4f" href="interrogative.html">Interrogative pronouns</a></li>
+<li><a data-quiz="71e3f53b0a44" href="../sentences/subordinate-clauses.html">Subordinate clauses</a></li>
+<li><a href="../../docs/relative-pronouns.html">Relative pronouns reference</a></li>
+</ul>
+</article>
+<nav class="pager"><a data-quiz="10cf416b167d" class="btn" href="demonstrative.html">← Demonstrative</a><a data-quiz="2cb8b6e747de" class="btn" href="indefinite.html">Indefinite →</a></nav>
+<section id="quiz" data-embedded>
+  <div class="sec-head"><h2>Quiz</h2><p class="hint">Answer every question, then check. Each answer comes with a short explanation. Reloading the page starts over.</p></div>
+  <div class="qbar card">
+    <div class="progress"><span id="progress"></span><span class="meter"><i id="meter"></i></span></div>
+    <div class="actions">
+      <button class="btn primary" id="check" type="button">Check answers</button>
+      <button class="btn" id="copy" type="button" hidden>Copy results</button>
+      <button class="btn" id="reset" type="button">Start over</button>
+    </div>
+  </div>
+  <p class="note-copy" id="copynote" hidden></p>
+  <div class="result card" id="result" hidden aria-live="polite"></div>
+  <div id="questions" style="display:grid;gap:12px"></div>
+</section>
+<footer><span>Part of the German library</span><a class="btn" href="../../index.html">← Back to the main page</a></footer>
+</div>
+<script type="application/json" id="quiz-data">
+{"questions": [{"q": "Der Mann, *___* neben uns wohnt, ist Lehrer.", "options": ["der", "dessen", "die", "den", "dem"], "answer": 0, "explain": "*der Mann* is masculine and the pronoun is the subject of *wohnt*: nominative *der* (B1)."}, {"q": "Der Film, *___* wir gestern gesehen haben, war langweilig.", "options": ["dem", "das", "dessen", "der", "den"], "answer": 4, "explain": "*der Film* is masculine; inside the clause it is the object of *sehen*: accusative *den* (B1)."}, {"q": "Die Kollegin, *___* ich oft helfe, ist neu im Team.", "options": ["den", "deren", "der", "dem", "die"], "answer": 2, "explain": "*helfen* takes the dative; feminine dative is *der* (B1)."}, {"q": "Das Buch, *___* auf dem Tisch liegt, gehört mir.", "options": ["was", "das", "dass", "der", "dem"], "answer": 1, "explain": "*das Buch* is neuter and the subject of *liegt*: *das*, with one *s* (B1)."}, {"q": "Die Leute, *___* das Haus gehört, wohnen in Hamburg.", "options": ["den", "die", "deren", "denen", "dem"], "answer": 3, "explain": "*gehören* + dative, plural: *denen* (not *den*) (B1)."}, {"q": "Die Kinder, *___* wir eingeladen haben, kommen um drei.", "options": ["deren", "den", "denen", "die", "der"], "answer": 3, "explain": "Plural, accusative object of *einladen*: *die* (B1)."}, {"q": "Das ist die Freundin, *___* ich in Urlaub fahre.", "options": ["mit die", "mit dem", "mit der", "mit deren", "die mit"], "answer": 2, "explain": "The preposition comes first and takes the dative: *mit der* (feminine) (B1)."}, {"q": "Der Film, *___* alle sprechen, läuft jetzt im Kino.", "options": ["über dem", "über den", "den über", "worüber den", "über der"], "answer": 1, "explain": "*sprechen über* + accusative, masculine: *über den* (B1)."}, {"q": "Die Kollegen, *___* ich arbeite, sind sehr nett.", "options": ["mit deren", "mit dem", "mit den", "mit die", "mit denen"], "answer": 4, "explain": "*mit* + dative plural as a relative pronoun: *mit denen* (B1)."}, {"q": "Der Nachbar, *___* Hund immer bellt, ist ausgezogen.", "options": ["dessen", "der", "den", "deren", "dem"], "answer": 0, "explain": "\"whose\" with a masculine owner (*der Nachbar*): *dessen* (B1)."}, {"q": "Die Frau, *___* Auto vor der Tür steht, ist meine Chefin.", "options": ["die", "denen", "dessen", "deren", "der"], "answer": 3, "explain": "The owner is feminine (*die Frau*), so *deren*; the gender of *Auto* does not matter (B1)."}, {"q": "Alles, *___* du sagst, ist richtig.", "options": ["der", "wo", "das", "dass", "was"], "answer": 4, "explain": "After *alles, nichts, etwas, das* the relative pronoun is *was* (B1)."}, {"q": "Das ist das Schönste, *___* ich je gesehen habe.", "options": ["welches", "das", "was", "dass", "wo"], "answer": 2, "explain": "After a neuter superlative used as a noun, use *was* (B1)."}, {"q": "Er hat die Prüfung bestanden, *___* mich sehr freut.", "options": ["was", "wo", "das", "dass", "der"], "answer": 0, "explain": "*was* refers back to the whole clause, not to one noun (B1)."}, {"q": "Ich fahre nach Leipzig, *___* meine Schwester studiert.", "options": ["was", "wo", "die", "in die", "wohin"], "answer": 1, "explain": "After a city name, use *wo* for \"where\" (B1)."}, {"q": "*___* zu spät kommt, bekommt keinen Kaffee mehr.", "options": ["Was", "Wen", "Wer", "Wem", "Der"], "answer": 2, "explain": "Without a noun before it, *wer* means \"whoever, anyone who\" (B1)."}, {"q": "Das Kind, *___* Eltern verreist sind, schläft heute bei uns.", "options": ["das", "der", "deren", "dessen", "dem"], "answer": 3, "explain": "*das Kind* is neuter, so \"whose\" is *dessen*, even though *Eltern* is plural (B1)."}, {"q": "Das ist ein Thema, *___* ich mich sehr interessiere.", "options": ["für dem", "wofür das", "das für", "an das", "für das"], "answer": 4, "explain": "*sich interessieren für* + accusative; neuter *das Thema* → *für das* (B1)."}], "title": "Relative pronouns quiz", "level": "B1"}
+</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('quiz-data').textContent);
+  var KEYS = ['A', 'B', 'C', 'D', 'E'];
+  function L(o, k) { return o[k]; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  // Allows *word* in question text to mark the gap or key word
+  function rich(node, text) {
+    String(text).split(/(\*[^*]+\*)/).forEach(function (part) {
+      if (/^\*[^*]+\*$/.test(part)) node.appendChild(el('em', null, part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    });
+    return node;
+  }
+
+  var total = data.questions.length;
+  // Last result per page, kept in this browser only (key: the page's fixed id)
+  var PID = (document.querySelector('meta[name="page-id"]') || {}).content;
+  function loadRes() { try { return PID ? JSON.parse(localStorage.getItem('quiz:' + PID) || 'null') : null; } catch (e) { return null; } }
+  function saveRes(s, t) { try { if (PID) localStorage.setItem('quiz:' + PID, JSON.stringify({ score: s, total: t, at: Date.now() })); } catch (e) {} showLast(); }
+  function showLast() {
+    var r = loadRes(), qb = document.querySelector('#quiz .qbar'); if (!qb) return;
+    var p = document.getElementById('lastres');
+    if (!p) { p = document.createElement('p'); p.id = 'lastres'; p.className = 'lastres'; qb.parentNode.insertBefore(p, qb); }
+    if (!r || !r.total) { p.hidden = true; return; }
+    var pct = r.score / r.total;
+    p.hidden = false; p.className = 'lastres' + (pct >= 0.9 ? ' hi' : '');
+    p.textContent = 'Last result: ' + (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total + ' · ' + new Date(r.at).toLocaleDateString();
+  }
+  showLast();
+  // Standalone quiz pages fill their own header; a quiz embedded in a topic page has none
+  if (document.getElementById('eyebrow')) {
+    document.getElementById('eyebrow').appendChild(document.createTextNode(data.level + ' · ' + total + ' questions'));
+    document.getElementById('title').textContent = L(data, 'title');
+    document.getElementById('crumb').textContent = L(data, 'title');
+    var dl = document.getElementById('doclink');
+    if (data.doc && data.doc.url) dl.href = data.doc.url; else dl.hidden = true;
+    var intro = document.getElementById('intro');
+    intro.textContent = 'Answer every question, then press Check answers. Reloading the page starts over.';
+    if (data.doc && data.doc.url) {
+      intro.appendChild(document.createTextNode(' Based on '));
+      var a = el('a', null, L(data.doc, 'title')); a.href = data.doc.url; 
+      intro.appendChild(a); intro.appendChild(document.createTextNode('.'));
+    }
+  }
+
+  // State lives only in memory: reloading the page starts the quiz fresh
+  var state = { answers: {}, checked: false };
+  var qWrap = document.getElementById('questions');
+  function score() { return data.questions.filter(function (q, i) { return state.answers[i] === q.answer; }).length; }
+  function render() {
+    qWrap.innerHTML = '';
+    data.questions.forEach(function (q, i) {
+      var card = el('article', 'q card' + (state.checked ? ' locked' : ''));
+      var head = el('div', 'qhead');
+      head.appendChild(el('span', 'qnum', String(i + 1).padStart(2, '0')));
+      head.appendChild(rich(el('div', 'qtext'), L(q, 'q')));
+      card.appendChild(head);
+      if (state.checked) {
+        var ok = state.answers[i] === q.answer;
+        card.appendChild(el('span', 'verdict ' + (ok ? 'ok' : 'no'), ok ? 'Correct' : 'Wrong · answer ' + KEYS[q.answer]));
+      }
+      var opts = el('div', 'opts'); opts.setAttribute('role', 'radiogroup');
+      L(q, 'options').forEach(function (o, j) {
+        var b = el('button', 'opt'); b.type = 'button'; b.id = 'q' + i + 'o' + j;
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', state.answers[i] === j ? 'true' : 'false');
+        b.appendChild(el('span', 'key', KEYS[j])); b.appendChild(el('span', 'label', o));
+        if (state.checked) {
+          if (j === q.answer) b.classList.add('right'); else if (state.answers[i] === j) b.classList.add('wrong');
+        } else {
+          if (state.answers[i] === j) b.classList.add('sel');
+          b.addEventListener('click', function () { state.answers[i] = j; render(); });
+        }
+        opts.appendChild(b);
+        // After checking, the explanation sits directly under the correct option
+        if (state.checked && j === q.answer) { var ex = el('div', 'explain'); ex.appendChild(rich(el('p'), L(q, 'explain'))); opts.appendChild(ex); }
+      });
+      card.appendChild(opts);
+      qWrap.appendChild(card);
+    });
+    var answered = Object.keys(state.answers).length;
+    var prog = document.getElementById('progress'), res = document.getElementById('result'), meter = document.getElementById('meter');
+    if (state.checked) {
+      var s = score();
+      prog.innerHTML = 'Score' + ' <strong>' + s + ' / ' + total + '</strong>';
+      meter.style.width = (100 * s / total) + '%';
+      res.hidden = false; res.innerHTML = '';
+      res.appendChild(el('h3', null, s + ' of ' + total + ' correct'));
+      var pct = s / total;
+      res.appendChild(el('p', null, pct >= 0.9 ? 'Solid. This topic is ready to move on from.' : pct >= 0.7 ? 'Good. Read the explanations under the ones you missed.' : 'Worth another pass through the topic, then try again.'));
+    } else {
+      prog.innerHTML = 'Answered' + ' <strong>' + answered + ' / ' + total + '</strong>';
+      meter.style.width = (100 * answered / total) + '%';
+      res.hidden = true;
+    }
+    document.getElementById('check').disabled = state.checked || answered < total;
+    document.getElementById('copy').hidden = !state.checked;
+  }
+
+  document.getElementById('check').addEventListener('click', function () { state.checked = true; render(); saveRes(score(), total); var qs = document.getElementById('quiz'); if (qs && qs.hasAttribute('data-embedded')) qs.scrollIntoView(); else window.scrollTo({ top: 0 }); });
+  document.getElementById('reset').addEventListener('click', function () { state = { answers: {}, checked: false }; document.getElementById('copynote').hidden = true; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var lines = ['Test: ' + L(data, 'title') + ' — ' + score() + '/' + total];
+    data.questions.forEach(function (q, i) {
+      var mine = state.answers[i];
+      if (mine !== q.answer) var op = L(q, 'options'); lines.push('Q' + (i + 1) + ': chose ' + (mine === undefined ? '—' : KEYS[mine] + ' (' + op[mine] + ')') + ', correct ' + KEYS[q.answer] + ' (' + op[q.answer] + ')');
+    });
+    var text = lines.join('\n'), note = document.getElementById('copynote');
+    function fallback() { note.hidden = false; note.textContent = text; note.style.whiteSpace = 'pre-wrap'; }
+    try {
+      navigator.clipboard.writeText(text).then(function () { note.hidden = false; note.textContent = 'Copied. Paste it anywhere to keep a record of your mistakes.'; }, fallback);
+    } catch (e) { fallback(); }
+  });
+  render();
+})();
+
+</script>
+<script>
+(function () {
+  // tiles on this page that link to a quiz: show the last saved result
+  function get(id) { try { return JSON.parse(localStorage.getItem('quiz:' + id) || 'null'); } catch (e) { return null; } }
+  document.querySelectorAll('.home-grid [data-quiz]').forEach(function (a) {
+    var r = get(a.getAttribute('data-quiz')); if (!r || !r.total) return;
+    var pct = r.score / r.total, b = document.createElement('span');
+    b.className = 'score' + (pct >= 0.9 ? ' hi' : '');
+    b.textContent = (pct >= 0.9 ? '✓ ' : '') + r.score + '/' + r.total; b.title = 'Last quiz result' + (r.at ? ', ' + new Date(r.at).toLocaleDateString() : '');
+    (a.querySelector('.t') || a).appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
